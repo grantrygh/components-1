@@ -1,0 +1,28 @@
+{
+    "extends": ["@audentio/standard", "prettier", "prettier/react"],
+    "plugins": ["react-hooks"],
+    "rules": {
+        "dot-notation": ["off"],
+        "jsx-a11y/media-has-caption": ["off"],
+        "react/jsx-props-no-spreading": ["off"],
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "off",
+        "react/state-in-constructor": ["off"],
+        "react/static-property-placement": ["off"]
+    },
+    "overrides": [
+        {
+            "files": "cypress/**/*.ts",
+            "rules": {
+                "spaced-comment": ["off"]
+            }
+        },
+        {
+            "files": "src/**/*.anim.ts",
+            "rules": {
+                "no-param-reassign": ["off"],
+                "react-hooks/rules-of-hooks": ["off"]
+            }
+        }
+    ]
+}

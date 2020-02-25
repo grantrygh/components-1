@@ -1,8 +1,8 @@
-import * as React from "react";
+import * as React from 'react';
 
 export interface IColorModeProvider {
-  value?: "light" | "dark";
-  children: React.ReactNode;
+    value?: 'light' | 'dark';
+    children: React.ReactNode;
 }
 
 declare const ColorModeProvider: React.FC<IColorModeProvider>;
@@ -10,8 +10,8 @@ declare const ColorModeProvider: React.FC<IColorModeProvider>;
 export default ColorModeProvider;
 
 export interface IUseColorMode {
-  colorMode: "light" | "dark";
-  toggleColorMode: () => void;
+    colorMode: 'light' | 'dark';
+    toggleColorMode: () => void;
 }
 export function useColorMode(): IUseColorMode;
 

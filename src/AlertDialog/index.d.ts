@@ -1,11 +1,11 @@
-import * as React from "react";
-import { BoxProps } from "../Box";
-import { IModal } from "../Modal";
-import { Omit } from "../common-types";
-import { CloseButtonProps } from "../CloseButton";
+import * as React from 'react';
+import { BoxProps } from '../Box';
+import { IModal } from '../Modal';
+import { Omit } from '../common-types';
+import { CloseButtonProps } from '../CloseButton';
 
-interface IAlertDialog extends Omit<IModal, "initialFocusRef"> {
-  leastDestructiveRef: React.RefObject<HTMLElement>;
+interface IAlertDialog extends Omit<IModal, 'initialFocusRef'> {
+    leastDestructiveRef: React.RefObject<HTMLElement>;
 }
 
 export const AlertDialog: React.FC<IAlertDialog>;

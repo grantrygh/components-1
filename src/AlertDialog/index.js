@@ -1,42 +1,28 @@
 /** @jsx jsx */
-import { jsx } from "@emotion/core";
-import { forwardRef } from "react";
-import {
-  Modal,
-  ModalContent,
-  ModalFooter,
-  ModalBody,
-  ModalHeader,
-  ModalOverlay,
-  ModalCloseButton,
-} from "../Modal";
+import { jsx } from '@emotion/core';
+import { forwardRef } from 'react';
+import { Modal, ModalContent, ModalFooter, ModalBody, ModalHeader, ModalOverlay, ModalCloseButton } from '../Modal';
 
 const formatIds = id => ({
-  content: `alert-dialog-${id}`,
-  header: `alert-dialog-${id}-label`,
-  body: `alert-dialog-${id}-desc`,
+    content: `alert-dialog-${id}`,
+    header: `alert-dialog-${id}-label`,
+    body: `alert-dialog-${id}-desc`,
 });
 
 const AlertDialog = ({ leastDestructiveRef, ...props }) => (
-  <Modal
-    formatIds={formatIds}
-    initialFocusRef={leastDestructiveRef}
-    {...props}
-  />
+    <Modal formatIds={formatIds} initialFocusRef={leastDestructiveRef} {...props} />
 );
 
-const AlertDialogContent = forwardRef((props, ref) => (
-  <ModalContent ref={ref} role="alertdialog" {...props} />
-));
+const AlertDialogContent = forwardRef((props, ref) => <ModalContent ref={ref} role="alertdialog" {...props} />);
 
-AlertDialogContent.displayName = "AlertDialogContent";
+AlertDialogContent.displayName = 'AlertDialogContent';
 
 export {
-  AlertDialog,
-  AlertDialogContent,
-  ModalOverlay as AlertDialogOverlay,
-  ModalBody as AlertDialogBody,
-  ModalHeader as AlertDialogHeader,
-  ModalFooter as AlertDialogFooter,
-  ModalCloseButton as AlertDialogCloseButton,
+    AlertDialog,
+    AlertDialogContent,
+    ModalOverlay as AlertDialogOverlay,
+    ModalBody as AlertDialogBody,
+    ModalHeader as AlertDialogHeader,
+    ModalFooter as AlertDialogFooter,
+    ModalCloseButton as AlertDialogCloseButton,
 };

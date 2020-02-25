@@ -1,11 +1,11 @@
 interface IDisclosure {
-  /**
-   *
-   */
-  isOpen: boolean;
-  onOpen: () => void;
-  onClose: () => void;
-  onToggle: () => void;
+    /**
+     *
+     */
+    isOpen: boolean;
+    onOpen: () => void;
+    onClose: () => void;
+    onToggle: () => void;
 }
 
 /**

@@ -1,20 +1,20 @@
-import * as React from "react";
-import { InputProps } from "../Input";
-import { PseudoBoxProps } from "../PseudoBox";
-import { FlexProps } from "../Flex";
-import { UseNumberInputProps } from "../useNumberInput";
-import { Omit } from "../common-types";
+import * as React from 'react';
+import { InputProps } from '../Input';
+import { PseudoBoxProps } from '../PseudoBox';
+import { FlexProps } from '../Flex';
+import { UseNumberInputProps } from '../useNumberInput';
+import { Omit } from '../common-types';
 
 type InputAttributes = React.InputHTMLAttributes<HTMLInputElement>;
 
 export interface INumberInput extends UseNumberInputProps {
-  isFullWidth?: boolean;
-  size?: InputProps["size"];
+    isFullWidth?: boolean;
+    size?: InputProps['size'];
 }
 
 export type NumberInputProps = INumberInput &
-  Omit<FlexProps, "onChange" | "ref" | "size"> &
-  React.RefAttributes<HTMLInputElement>;
+    Omit<FlexProps, 'onChange' | 'ref' | 'size'> &
+    React.RefAttributes<HTMLInputElement>;
 
 export const NumberInput: React.FC<NumberInputProps>;
 export const NumberInputField: React.FC<InputProps>;

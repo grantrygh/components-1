@@ -1,16 +1,16 @@
-import { BoxProps } from "../Box";
-import { IconProps } from "../Icon";
-import * as React from "react";
+import { BoxProps } from '../Box';
+import { IconProps } from '../Icon';
+import * as React from 'react';
 
 export interface IAlert {
-  /**
-   * The status of the alert
-   */
-  status?: "error" | "success" | "warning" | "info";
-  /**
-   * The variant of the alert style to use.
-   */
-  variant?: "subtle" | "solid" | "left-accent" | "top-accent";
+    /**
+     * The status of the alert
+     */
+    status?: 'error' | 'success' | 'warning' | 'info';
+    /**
+     * The variant of the alert style to use.
+     */
+    variant?: 'subtle' | 'solid' | 'left-accent' | 'top-accent';
 }
 
 export type AlertProps = IAlert & BoxProps;

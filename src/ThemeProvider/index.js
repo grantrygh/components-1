@@ -1,23 +1,21 @@
 /** @jsx jsx */
-import { jsx, ThemeContext } from "@emotion/core";
-import { ThemeProvider as EmotionThemeProvider } from "emotion-theming";
-import { useContext } from "react";
-import theme from "../theme";
+import { jsx, ThemeContext } from '@emotion/core';
+import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming';
+import { useContext } from 'react';
+import theme from '../theme';
 
-const ThemeProvider = ({ theme, children }) => (
-  <EmotionThemeProvider theme={theme}>{children}</EmotionThemeProvider>
-);
+const ThemeProvider = ({ theme, children }) => <EmotionThemeProvider theme={theme}>{children}</EmotionThemeProvider>;
 
 ThemeProvider.defaultProps = {
-  theme,
+    theme,
 };
 
 const useTheme = () => {
-  const theme = useContext(ThemeContext);
-  if (theme === undefined) {
-    throw new Error("useTheme must be used within a ThemeProvider");
-  }
-  return theme;
+    const theme = useContext(ThemeContext);
+    if (theme === undefined) {
+        throw new Error('useTheme must be used within a ThemeProvider');
+    }
+    return theme;
 };
 
 export default ThemeProvider;

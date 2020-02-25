@@ -1,10 +1,10 @@
-import { BoxProps } from "../Box";
-import * as React from "react";
-import { IInput } from "../Input";
+import { BoxProps } from '../Box';
+import * as React from 'react';
+import { IInput } from '../Input';
 
 export interface IInputGroup {
-  size?: IInput["size"];
-  children: React.ReactNode;
+    size?: IInput['size'];
+    children: React.ReactNode;
 }
 
 export type InputGroupProps = IInputGroup & BoxProps;

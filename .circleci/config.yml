@@ -31,12 +31,12 @@ orbs:
               command: docker save -o workspace/build.tar $ECR_REPO/$CIRCLE_BRANCH:$CIRCLE_SHA1
           - run:
               name: Copy dist from image
-              command: docker cp $(docker create -t -i $ECR_REPO/$CIRCLE_BRANCH:$CIRCLE_SHA1):/opt/app/dist workspace/dist
+              command: docker cp $(docker create -t -i $ECR_REPO/$CIRCLE_BRANCH:$CIRCLE_SHA1):/opt/app/storybook-build workspace/storybook-build
           - persist_to_workspace:
               root: workspace
               paths:
                 - build.tar
-                - dist
+                - storybook-build
       pushimage:
         description: "Push built app image to ECR Repository"
         steps:
@@ -141,18 +141,6 @@ orbs:
               path: cypress/videos
           - store_artifacts:
               path: cypress/screenshots
-      sentry-release:
-        steps:
-          - checkout
-          - attach_workspace:
-              at: /tmp/workspace
-          - run: cp -R /tmp/workspace/dist ~/app/dist
-          - run:
-              name: Install sentry-cli
-              command: curl -sL https://sentry.io/get-cli/ | bash
-          - run:
-              name: Create sentry release and upload build artifacts
-              command: sh ./.circleci/sentry-upload.sh
 
 BranchJob: &branch-job
   filters:

@@ -6,6 +6,8 @@
   "scripts": {
     "test": "jest --passWithNoTests",
     "storybook": "start-storybook -p 50600",
+    "storybook:build": "build-storybook -c .storybook -o storybook-build",
+    "storybook:server": "http-server storybook-build",
     "cy": "cypress run",
     "cy:open": "cypress open"
   },
@@ -68,6 +70,7 @@
     "use-dark-mode": "2.3.1"
   },
   "dependencies": {
-    "fast-async": "^6.3.8"
+    "fast-async": "^6.3.8",
+    "http-server": "^0.12.1"
   }
 }

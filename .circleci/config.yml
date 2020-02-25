@@ -166,28 +166,15 @@ BranchJob: &branch-job
 ## ?====================================================================================================================
 
 jobs:
-  unit-tests:
-    executor: audentio-frontend/cypress
-    steps: 
-      - audentio-frontend/unit-tests
-  # e2e-tests:
-  #   executor: audentio-frontend/cypress
-  #   steps: 
-  #     - audentio-frontend/e2e-tests
   build:
     executor: audentio-frontend/docker-ce
     steps: 
       - audentio-frontend/build
-  sentry:
-    executor: audentio-frontend/cypress
-    working_directory: ~/app
-    steps: 
-      - audentio-frontend/sentry-release
   deploy:
     executor: audentio-frontend/docker-ce
     steps:
       - audentio-frontend/ssh-deploy:
-          key-fingerprint: 92:ac:ad:31:35:16:8c:52:68:d7:9c:c2:b4:c3:09:f8
+          key-fingerprint: bb:18:5d:b4:a4:2f:4e:72:ed:d7:31:01:50:d2:81:de
           host: s4.audent.io
           user: demo
           port: '5070'
@@ -197,11 +184,7 @@ workflows:
     jobs:
       - build:
           <<: *branch-job
-      - sentry:
-          requires:
-            - build
-          <<: *branch-job
       - deploy:
           requires:
-            - sentry
+            - build
           <<: *branch-job

@@ -79,7 +79,7 @@ orbs:
           - run: ssh-keyscan << parameters.host >> >> ~/.ssh/known_hosts
           - run: APP_PORT=<< parameters.port >> sh ./.circleci/templater.sh ./.circleci/docker-compose-template.yml > docker-compose.yml
           - run: scp ./docker-compose.yml << parameters.user >>@<< parameters.host >>:"~/$CIRCLE_BRANCH.components"
-          - run: ssh << parameters.user >>@<< parameters.host >> "cd $CIRCLE_BRANCH.components"' && $(~/.local/bin/aws ecr get-login --no-include-email --profile audentio) && /bin/docker-compose up -d'
+          - run: ssh << parameters.user >>@<< parameters.host >> "cd $CIRCLE_BRANCH.components"' && $(~/.local/bin/aws ecr get-login --no-include-email --profile demo) && /bin/docker-compose up -d'
       eb-deploy:
         steps:
           - checkout

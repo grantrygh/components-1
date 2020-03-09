@@ -71,7 +71,13 @@ const PostActions = ({ id, onReply, onLike, onDislike, numLikes, numDislikes }) 
                 )}
             </Flex>
             {showReplyBox && onReply && (
-                <ResponseBox onSubmit={() => onReply(id)} onCancel={() => setShowReplyBox(false)} />
+                <ResponseBox
+                    onSubmit={() => {
+                        onReply(id);
+                        setShowReplyBox(false);
+                    }}
+                    onCancel={() => setShowReplyBox(false)}
+                />
             )}
         </Box>
     );

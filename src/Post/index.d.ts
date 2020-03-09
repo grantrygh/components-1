@@ -3,7 +3,10 @@ import { PostActionsProps } from '../PostActions';
 
 type PostProps = PostActionsProps & {
     message: string;
-    author: any;
+    author: {
+        name?: string;
+        avatar?: string; // avatar src
+    };
     date?: any;
     replies?: Array<PostProps>;
 };

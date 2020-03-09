@@ -5,13 +5,14 @@ export type PostActionsProps = {
 
     // actions. passing values for these will display buttons beneath the post
     // if no value is passed (or set to null), no action button will display
-    onLike?: any;
-    onDislike?: any;
-    onReply?: any;
+    onLike?: (id: string) => void;
+    onDislike?: (id: string) => void;
+
+    onReply?: (id: string) => void;
 
     // labels
-    numLikes?: number;
-    numDislikes?: number;
+    numLikes?: number | string;
+    numDislikes?: number | string;
 };
 
 const PostActions: React.FC<PostActionsProps>;

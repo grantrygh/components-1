@@ -65,6 +65,7 @@ const PostActions = ({ id, onReply, onLike, onDislike, numLikes, numDislikes }) 
                         onClick={() => setShowReplyBox(!showReplyBox)}
                         {...buttonActionStyle}
                         variant="outline"
+                        color="blue.500"
                     >
                         Reply
                     </Button>

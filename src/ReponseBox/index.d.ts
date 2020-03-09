@@ -1,10 +1,12 @@
 import * as React from 'react';
 
 type ResponseBoxProps = {
-    onChange?: any;
-    onSubmit?: any;
-    ref?: any;
-    value?: any;
+    onChange?: React.ChangeEventHandler<HTMLInputElement>;
+    onSubmit?: (value) => void;
+    ref?: React.RefObject<HTMLElement>;
+    value?: {
+        message: string;
+    };
     isFetching?: boolean;
     errors?: Array<String>;
 };

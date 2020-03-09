@@ -5,9 +5,15 @@ import Button from '../Button';
 import Textarea from '../Textarea';
 
 const ResponseBox = ({ onChange, onSubmit, onCancel, ref, value, isFetching, errors, ...formProps }) => {
+    const responseBoxStyle = {
+        textTransform: 'uppercase',
+        fontSize: 'xs',
+    };
+
     return (
-        <Box w="100%">
+        <Box w="100%" {...responseBoxStyle}>
             {/* <FormMessages messages={formMessages} /> */}
+            {/* // TODO: add form once its a component */}
             <form onChange={onChange} onSubmit={onSubmit} ref={ref} value={value} errors={errors} {...formProps}>
                 <Textarea
                     placeholder="Type and hit enter to send..."
@@ -21,12 +27,12 @@ const ResponseBox = ({ onChange, onSubmit, onCancel, ref, value, isFetching, err
                 />
 
                 {onCancel && (
-                    <Button onClick={onCancel} size="sm" mr="8px" variant="ghost">
+                    <Button onClick={onCancel} size="sm" mr="8px" variant="ghost" {...responseBoxStyle}>
                         Cancel
                     </Button>
                 )}
 
-                <Button type="submit" size="sm">
+                <Button type="submit" size="sm" bg="blue.500" color="white" {...responseBoxStyle}>
                     Send message
                 </Button>
             </form>

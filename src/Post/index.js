@@ -10,25 +10,8 @@ import PostActions from '../PostActions';
 import Text from '../Text';
 
 const Post = props => {
-    const { message, author, date, replies, avatar, onLike, onDislike, ...rest } = props;
+    const { message, author, date, replies, ...rest } = props;
     const [showReplies, setShowReplies] = useState(false);
-
-    const postActions = [
-        // Like
-        {
-            icon: 'chevron-up',
-            label: message.length, // TODO: replace with posts.likes
-            onClick: id => onLike(id),
-            skip: !onLike,
-        },
-        // Dislike
-        {
-            icon: 'chevron-down',
-            label: '4', // TODO: replace with posts.dislikes
-            onClick: id => onDislike(id),
-            skip: !onDislike,
-        },
-    ];
 
     return (
         <Flex w="100%" py="8px">
@@ -42,13 +25,15 @@ const Post = props => {
                 </Flex>
                 <Text my="2px">{message}</Text>
 
-                <PostActions actions={postActions} {...rest} />
+                {/* // TODO: numLikes & dislikes just temporary. change with known structure */}
+                <PostActions numLikes={message.length} numDislikes={author.name.length} {...rest} />
 
                 {replies && replies.length > 0 && (
                     <Box>
                         <Box py="8px">
                             <Link onClick={() => setShowReplies(!showReplies)} color="blue.500">
-                                {showReplies ? 'Hide' : 'View'} {replies.length} replies
+                                {showReplies ? 'Hide' : 'View'} {replies.length}{' '}
+                                {replies.length === 1 ? 'reply' : 'replies'}
                                 <Icon name={showReplies ? 'chevron-up' : 'chevron-down'} />{' '}
                             </Link>
                         </Box>
@@ -56,7 +41,6 @@ const Post = props => {
                             <Box w="100%">
                                 {replies.map(reply => (
                                     <Post
-                                        {...props}
                                         {...rest}
                                         author={reply.author}
                                         message={reply.message}

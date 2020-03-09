@@ -4,16 +4,32 @@ import { useState } from 'react';
 import Box from '../Box';
 import Button from '../Button';
 import Flex from '../Flex';
-import Icon from '../Icon';
 import ResponseBox from '../ReponseBox';
 
-const PostActions = ({ id, actions, onReply }) => {
+const PostActions = ({ id, onReply, onLike, onDislike, numLikes, numDislikes }) => {
     const [showReplyBox, setShowReplyBox] = useState(false);
 
     const buttonActionStyle = {
         textTransform: 'uppercase',
         fontSize: 'xs',
     };
+
+    const actions = [
+        // Like
+        {
+            icon: 'chevron-up',
+            label: numLikes, // TODO: replace with posts.likes
+            onClick: id => onLike(id),
+            skip: !onLike,
+        },
+        // Dislike
+        {
+            icon: 'chevron-down',
+            label: numDislikes, // TODO: replace with posts.dislikes
+            onClick: id => onDislike(id),
+            skip: !onDislike,
+        },
+    ];
 
     if (actions && actions.filter(a => !a.skip).length === 0 && !onReply) {
         return null;
@@ -33,10 +49,10 @@ const PostActions = ({ id, actions, onReply }) => {
                                     mr="8px"
                                     size="sm"
                                     onClick={() => action.onClick(id)}
-                                    {...buttonActionStyle}
                                     variant="outline"
+                                    leftIcon={action.icon}
+                                    {...buttonActionStyle}
                                 >
-                                    {action.icon && <Icon name={action.icon} />}
                                     {action.label}
                                 </Button>
                             );

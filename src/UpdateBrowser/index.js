@@ -80,7 +80,7 @@ const UpdateBrowser = ({ onClick, href, children, ...props }) => {
                 ))}
             </Box>
             <Box w="100%" float="left">
-                <Button href={href} bg="blue.500" color="white">
+                <Button href={href} onClick={onClick} bg="blue.500" color="white">
                     Remind me later
                 </Button>
             </Box>

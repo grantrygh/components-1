@@ -8,4 +8,5 @@ type UpdateBrowserProps = BoxProps & {
     href?: string;
 };
 
-export const UpdateBrowser: React.FC<UpdateBrowserProps>;
+const UpdateBrowser: React.FC<UpdateBrowserProps>;
+export default UpdateBrowser;

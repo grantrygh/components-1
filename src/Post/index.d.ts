@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { PostActionsProps } from '../PostActions';
+import { IPostActionsProps } from '../PostActions';
 
-type PostProps = PostActionsProps & {
+type PostProps = IPostActionsProps & {
     message: string;
     author: {
         name?: string;

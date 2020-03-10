@@ -1,20 +1,31 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
+import { useState } from 'react';
 import Box from '../Box';
 import Button from '../Button';
 import Textarea from '../Textarea';
 
-const ResponseBox = ({ onChange, onSubmit, onCancel, ref, value, isFetching, errors, ...formProps }) => {
+const ResponseBox = ({ onSubmit, onCancel }) => {
+    const [message, setMessage] = useState('');
     const responseBoxStyle = {
         textTransform: 'uppercase',
         fontSize: 'xs',
+    };
+
+    const handleFormChange = e => {
+        setMessage(e.target.value);
+    };
+
+    const handleFormSubmit = e => {
+        e.preventDefault();
+        onSubmit(message);
     };
 
     return (
         <Box w="100%" {...responseBoxStyle}>
             {/* <FormMessages messages={formMessages} /> */}
             {/* // TODO: add form once its a component */}
-            <form onChange={onChange} onSubmit={onSubmit} ref={ref} value={value} errors={errors} {...formProps}>
+            <form onChange={handleFormChange} onSubmit={handleFormSubmit}>
                 <Textarea
                     placeholder="Type and hit enter to send..."
                     variant="outline"

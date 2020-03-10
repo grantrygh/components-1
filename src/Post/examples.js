@@ -105,7 +105,11 @@ stories.add('comments section - no actions', () => {
     return (
         <Box>
             <Box pb="16px">
-                <ResponseBox />
+                <ResponseBox
+                    onSubmit={message => {
+                        console.log('Submit - Handle creating new content response here', message);
+                    }}
+                />
             </Box>
             {postList.map(post => (
                 <Post
@@ -124,7 +128,11 @@ stories.add('comments section - with actions', () => {
     return (
         <Box>
             <Box pb="16px">
-                <ResponseBox />
+                <ResponseBox
+                    onSubmit={message => {
+                        console.log('Submit - Handle creating new content response here', message);
+                    }}
+                />
             </Box>
             {postList.map(post => (
                 <Post

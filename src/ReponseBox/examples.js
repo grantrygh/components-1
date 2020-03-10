@@ -14,6 +14,10 @@ stories.addDecorator(story => {
 
 stories.add('Default', () => (
     <Fragment>
-        <ResponseBox onChange={value => console.log(value)} onSubmit={() => console.log('submit')} />
+        <ResponseBox
+            onSubmit={message => {
+                console.log(message);
+            }}
+        />
     </Fragment>
 ));

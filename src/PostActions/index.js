@@ -42,7 +42,7 @@ const PostActions = ({ id, showActionMenu, onReply, onLike, onDislike, onReport,
     // TODO: if the viewer has already liked/disliked a post, set a state on the button to not allow duplicate actions
 
     return (
-        <Box w="100%" py="8px">
+        <Box w="100%" py={2}>
             <Flex w="100%" justify="space-between">
                 <Flex w="100%">
                     {actions &&
@@ -50,7 +50,7 @@ const PostActions = ({ id, showActionMenu, onReply, onLike, onDislike, onReport,
                             if (!action.skip) {
                                 return (
                                     <Button
-                                        mr="8px"
+                                        mr={2}
                                         size="sm"
                                         onClick={() => action.onClick(id)}
                                         variant="outline"
@@ -66,7 +66,7 @@ const PostActions = ({ id, showActionMenu, onReply, onLike, onDislike, onReport,
                         })}
                     {!showReplyBox && onReply && (
                         <Button
-                            mr="8px"
+                            mr={2}
                             size="sm"
                             onClick={() => setShowReplyBox(!showReplyBox)}
                             {...buttonActionStyle}

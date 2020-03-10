@@ -27,12 +27,12 @@ const Post = props => {
 
     const dateStyle = {
         color: 'gray.600',
-        mx: '8px',
+        mx: 2,
     };
 
     return (
-        <Flex w="100%" py="8px" fontSize={['sm', 'md']}>
-            <Avatar size="sm" mr="16px" name={author.name} src={author.avatar} />
+        <Flex w="100%" py={2} fontSize={['sm', 'md']}>
+            <Avatar size="sm" mr={4} name={author.name} src={author.avatar} />
             <Box flexGrow="1">
                 <Box onMouseEnter={() => handleMouseAction(true)} onMouseLeave={() => handleMouseAction(false)}>
                     <Flex align="center" fontSize={['xs', 'sm']}>
@@ -52,7 +52,7 @@ const Post = props => {
 
                 {replies && replies.length > 0 && (
                     <Box>
-                        <Box py="8px">
+                        <Box py={2}>
                             <Link onClick={() => setShowReplies(!showReplies)} color="blue.500">
                                 {showReplies ? 'Hide' : 'View'} {replies.length}{' '}
                                 {replies.length === 1 ? 'reply' : 'replies'}

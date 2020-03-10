@@ -34,11 +34,11 @@ const ResponseBox = ({ onSubmit, onCancel }) => {
                     size="md"
                     name="message"
                     focusBorderColor="cyan.500"
-                    my="8px"
+                    my={2}
                 />
 
                 {onCancel && (
-                    <Button onClick={onCancel} size="sm" mr="8px" variant="ghost" {...responseBoxStyle}>
+                    <Button onClick={onCancel} size="sm" mr={2} variant="ghost" {...responseBoxStyle}>
                         Cancel
                     </Button>
                 )}

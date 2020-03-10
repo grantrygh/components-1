@@ -47,7 +47,6 @@ const PostActions = ({ id, showActionMenu, onReply, onLike, onDislike, onReport,
                 <Flex w="100%">
                     {actions &&
                         actions.map(action => {
-                            console.log(action);
                             if (!action.skip) {
                                 return (
                                     <Button

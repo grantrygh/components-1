@@ -31,28 +31,24 @@ const Post = props => {
     };
 
     return (
-        <Flex
-            w="100%"
-            py="8px"
-            fontSize={['sm', 'md']}
-            onMouseEnter={() => handleMouseAction(true)}
-            onMouseLeave={() => handleMouseAction(false)}
-        >
+        <Flex w="100%" py="8px" fontSize={['sm', 'md']}>
             <Avatar size="sm" mr="16px" name={author.name} src={author.avatar} />
             <Box flexGrow="1">
-                <Flex align="center" fontSize={['xs', 'sm']}>
-                    <Text fontWeight="bold">{author.name}</Text>
-                    <Text {...dateStyle}>{date}</Text>
-                </Flex>
-                <Text my="2px">{message}</Text>
+                <Box onMouseEnter={() => handleMouseAction(true)} onMouseLeave={() => handleMouseAction(false)}>
+                    <Flex align="center" fontSize={['xs', 'sm']}>
+                        <Text fontWeight="bold">{author.name}</Text>
+                        <Text {...dateStyle}>{date}</Text>
+                    </Flex>
+                    <Text my="2px">{message}</Text>
 
-                {/* // TODO: numLikes & dislikes just temporary. change with known structure */}
-                <PostActions
-                    showActionMenu={showActionMenu}
-                    numLikes={message.length}
-                    numDislikes={author.name.length}
-                    {...rest}
-                />
+                    {/* // TODO: numLikes & dislikes just temporary. change with known structure */}
+                    <PostActions
+                        showActionMenu={showActionMenu}
+                        numLikes={message.length}
+                        numDislikes={author.name.length}
+                        {...rest}
+                    />
+                </Box>
 
                 {replies && replies.length > 0 && (
                     <Box>

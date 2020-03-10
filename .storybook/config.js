@@ -11,14 +11,31 @@ function loadStories() {
     req.keys().forEach(filename => req(filename));
 }
 
-const StorybookBg = {
-    light: 'white',
-    dark: 'gray.800',
+const storyStyle = {
+    light: {
+        pageBg: 'white',
+        switchTo: {
+            label: 'Dark',
+            value: DarkMode,
+        },
+        buttonBg: 'black',
+        buttonColor: 'white',
+    },
+    dark: {
+        pageBg: 'gray.800',
+        switchTo: {
+            label: 'Light',
+            value: LightMode,
+        },
+        buttonBg: 'white',
+        buttonColor: 'black',
+    },
 };
 
 const AppProvider = ({ children }) => {
     const [CurrentColorMode, setCurrentColorMode] = useState(() => LightMode);
     const color = CurrentColorMode().props.value;
+    const story = storyStyle[color];
 
     return (
         <ThemeProvider>
@@ -27,27 +44,16 @@ const AppProvider = ({ children }) => {
                 <Box position="fixed" right={4} top={4} zIndex={1}>
                     <Button
                         onClick={() => {
-                            setCurrentColorMode(() => LightMode);
+                            setCurrentColorMode(() => story.switchTo.value);
                         }}
                         size="sm"
-                        bg="white"
-                        color="black"
+                        bg={story.buttonBg}
+                        color={story.buttonColor}
                     >
-                        Light
-                    </Button>
-
-                    <Button
-                        onClick={() => {
-                            setCurrentColorMode(() => DarkMode);
-                        }}
-                        size="sm"
-                        bg="black"
-                        color="white"
-                    >
-                        Dark
+                        Switch to {story.switchTo.label} mode
                     </Button>
                 </Box>
-                <Box bg={StorybookBg[color]} minHeight="100vh">
+                <Box bg={story.pageBg} minHeight="100vh">
                     {children}
                 </Box>
             </CurrentColorMode>

@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
+import { forwardRef } from 'react';
 import { Transition } from 'react-spring/renderprops.cjs';
-import { ModalHeader, ModalFooter, ModalBody, ModalOverlay, ModalContent } from '../Modal';
 import CloseButton from '../CloseButton';
 import { useColorMode } from '../ColorModeProvider';
-import { forwardRef } from 'react';
+import { ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '../Modal';
 
 const DrawerTransition = ({ isOpen, children, duration = 200, placement, isFullHeight }) => {
     let placements = {

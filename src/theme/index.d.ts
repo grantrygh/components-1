@@ -1,7 +1,6 @@
 // import * as StyledSystem from "styled-system";
-import { Icons } from './icons';
-import { Omit } from '../common-types';
 import * as SS from 'styled-system';
+import { Omit } from '../common-types';
 
 interface Shadows {
     sm: string;

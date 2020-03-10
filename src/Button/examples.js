@@ -34,9 +34,6 @@ stories.add('variants', () => (
 
 stories.add('sizes', () => (
     <ButtonGroup>
-        <Button variantColor="blue" size="inline">
-            Button
-        </Button>
         <Button variantColor="blue" size="xs">
             Button
         </Button>

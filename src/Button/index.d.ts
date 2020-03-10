@@ -7,7 +7,7 @@ export interface IButton {
     /**
      * The size of the button
      */
-    size?: 'inline' | 'xs' | 'sm' | 'md' | 'lg';
+    size?: 'xs' | 'sm' | 'md' | 'lg';
     /**
      * If `true`, the button will show a spinner.
      */

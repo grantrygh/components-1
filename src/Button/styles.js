@@ -179,12 +179,6 @@ const sizes = {
         fontSize: 'xs',
         px: 2,
     },
-    inline: {
-        height: 4,
-        minWidth: 4,
-        fontSize: 'xs',
-        px: 2,
-    },
 };
 
 const sizeProps = ({ size }) => sizes[size];

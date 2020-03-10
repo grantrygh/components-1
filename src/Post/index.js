@@ -8,11 +8,22 @@ import Icon from '../Icon';
 import Link from '../Link';
 import PostActions from '../PostActions';
 import Text from '../Text';
+import { useWindowResize } from '../utils';
 
 const Post = props => {
     const { message, author, date, replies, ...rest } = props;
     const [showReplies, setShowReplies] = useState(false);
-    const [showActionMenu, setShowActionMenu] = useState(false);
+
+    // desktop - submenu shows on post hover. mobile - always shows
+    const { windowWidth } = useWindowResize();
+    const mobile = windowWidth <= 768;
+    const [showActionMenu, setShowActionMenu] = useState(mobile);
+    const handleMouseAction = show => {
+        if (mobile) {
+            return null;
+        }
+        setShowActionMenu(show);
+    };
 
     const dateStyle = {
         color: 'gray.600',
@@ -24,8 +35,8 @@ const Post = props => {
             w="100%"
             py="8px"
             fontSize={['sm', 'md']}
-            onMouseEnter={() => setShowActionMenu(true)}
-            onMouseLeave={() => setShowActionMenu(false)}
+            onMouseEnter={() => handleMouseAction(true)}
+            onMouseLeave={() => handleMouseAction(false)}
         >
             <Avatar size="sm" mr="16px" name={author.name} src={author.avatar} />
             <Box flexGrow="1">

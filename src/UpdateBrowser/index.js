@@ -26,7 +26,26 @@ const UpdateBrowser = ({ onClick, href, children, ...props }) => {
         },
     };
 
-    const boxStyleProps = colorModeStyles[colorMode];
+    const boxStyleProps = {
+        ...colorModeStyles[colorMode],
+        position: 'fixed',
+        left: 0,
+        top: 0,
+        width: '100%',
+        height: '100%',
+        textAlign: 'center',
+        display: 'table',
+    };
+
+    const browserBoxStyle = {
+        bg: 'gray.50',
+        padding: '32px',
+        margin: '16px',
+        height: '175px',
+        width: '200px',
+        textAlign: 'center',
+        display: 'inline-block',
+    };
 
     const browsers = [
         {
@@ -51,38 +70,30 @@ const UpdateBrowser = ({ onClick, href, children, ...props }) => {
         },
     ];
 
-    const browserBoxStyle = {
-        bg: 'gray.50',
-        padding: '32px',
-        margin: '16px',
-        height: '175px',
-        width: '200px',
-        textAlign: 'center',
-        display: 'inline-block',
-    };
-
+    // Component is served to legacy browsers. IE6-8, for example, doesn't support rem units, so use px for UpdateBrowser.
     return (
-        <Box pos="fixed" left="0" top="0" w="100%" h="100%" textAlign="center" {...boxStyleProps}>
-            <Heading fontSize="sm">(graphic here)</Heading>
-            <Heading fontSize="xl" lineHeight="48px">
-                Please update your browser.
-            </Heading>
-            <Heading fontSize="sm">
-                Your browser isn't supported anymore. Update it to get the best experience and access to our latest
-                features.
-            </Heading>
-            <Box w="100%" maxWidth="992px" margin="16px auto" textAlign="center">
-                {browsers.map(browser => (
-                    <Link {...browserBoxStyle} href={browser.href}>
-                        <Image htmlWidth="70px" src={browser.logo} margin="0 auto 10px" />
-                        <Text>{browser.name}</Text>
-                    </Link>
-                ))}
-            </Box>
-            <Box w="100%" float="left">
-                <Button href={href} onClick={onClick} bg="blue.500" color="white">
-                    Remind me later
-                </Button>
+        <Box {...boxStyleProps}>
+            <Box display="table-cell" verticalAlign="middle">
+                <Heading fontSize="xl" lineHeight="48px">
+                    Please update your browser.
+                </Heading>
+                <Heading fontSize="sm">
+                    Your browser isn't supported anymore. Update it to get the best experience and access to our latest
+                    features.
+                </Heading>
+                <Box w="100%" maxWidth="992px" margin="16px auto" textAlign="center">
+                    {browsers.map(browser => (
+                        <Link {...browserBoxStyle} href={browser.href} key={browser.name}>
+                            <Image htmlWidth="70px" src={browser.logo} margin="0 auto 10px" />
+                            <Text>{browser.name}</Text>
+                        </Link>
+                    ))}
+                </Box>
+                <Box w="100%" float="left">
+                    <Button href={href} onClick={onClick} bg="blue.500" color="white">
+                        Remind me later
+                    </Button>
+                </Box>
             </Box>
         </Box>
     );

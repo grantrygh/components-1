@@ -1,4 +1,5 @@
-import { useMemo, useLayoutEffect, useEffect } from 'react';
+import { throttle } from '@audentio/utils/src/throttle';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { useTheme } from '../ThemeProvider';
 
 export const assignRef = (ref, value) => {
@@ -166,4 +167,31 @@ export function useVariantColorWarning(label, variantColor) {
             }
         }
     }
+}
+
+export function useWindowResize(throttleDuration = 200) {
+    const [state, setState] = useState({
+        windowHeight: __BROWSER__ ? window.innerHeight : 0,
+        windowWidth: __BROWSER__ ? window.innerWidth : 0,
+    });
+
+    const resizeHandler = useCallback(
+        throttle(() => {
+            setState({
+                windowWidth: window.innerWidth,
+                windowHeight: window.innerHeight,
+            });
+        }, throttleDuration),
+        []
+    );
+
+    useEffect(() => {
+        window.addEventListener('resize', resizeHandler);
+
+        return function cleanup() {
+            window.removeEventListener('resize', resizeHandler);
+        };
+    }, []);
+
+    return state;
 }

@@ -11,5 +11,5 @@ type PostProps = IPostActionsProps & {
     replies?: Array<PostProps>;
 };
 
-const Post: React.FC<PostProps>;
+declare const Post: React.FC<PostProps>;
 export default Post;

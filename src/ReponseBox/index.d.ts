@@ -11,5 +11,5 @@ type ResponseBoxProps = {
     errors?: Array<String>;
 };
 
-const ResponseBox: React.FC<ResponseBoxProps>;
+declare const ResponseBox: React.FC<ResponseBoxProps>;
 export default ResponseBox;

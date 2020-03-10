@@ -23,7 +23,5 @@ interface IPostActions {
     numDislikes?: number | string;
 }
 
-const PostActionsProps = IPostActions & IPostActionsProps;
-
-const PostActions: React.FC<PostActionsProps>;
+declare const PostActions: React.FC<IPostActionsProps & IPostActions>;
 export default PostActions;

@@ -4,9 +4,11 @@ import { useState } from 'react';
 import Box from '../Box';
 import Button from '../Button';
 import Flex from '../Flex';
+import Icon from '../Icon';
+import Menu, { MenuButton, MenuItem, MenuList } from '../Menu';
 import ResponseBox from '../ReponseBox';
 
-const PostActions = ({ id, onReply, onLike, onDislike, numLikes, numDislikes }) => {
+const PostActions = ({ id, showActionMenu, onReply, onLike, onDislike, onReport, numLikes, numDislikes }) => {
     const [showReplyBox, setShowReplyBox] = useState(false);
 
     const buttonActionStyle = {
@@ -17,6 +19,7 @@ const PostActions = ({ id, onReply, onLike, onDislike, numLikes, numDislikes }) 
     const actions = [
         // Like
         {
+            title: 'Like',
             icon: 'chevron-up',
             label: numLikes, // TODO: replace with posts.likes
             onClick: id => onLike(id),
@@ -24,6 +27,7 @@ const PostActions = ({ id, onReply, onLike, onDislike, numLikes, numDislikes }) 
         },
         // Dislike
         {
+            title: 'Dislike',
             icon: 'chevron-down',
             label: numDislikes, // TODO: replace with posts.dislikes
             onClick: id => onDislike(id),
@@ -39,36 +43,51 @@ const PostActions = ({ id, onReply, onLike, onDislike, numLikes, numDislikes }) 
 
     return (
         <Box w="100%" py="8px">
-            <Flex w="100%">
-                {actions &&
-                    actions.map(action => {
-                        console.log(action);
-                        if (!action.skip) {
-                            return (
-                                <Button
-                                    mr="8px"
-                                    size="sm"
-                                    onClick={() => action.onClick(id)}
-                                    variant="outline"
-                                    leftIcon={action.icon}
-                                    {...buttonActionStyle}
-                                >
-                                    {action.label}
-                                </Button>
-                            );
-                        }
-                    })}
-                {!showReplyBox && onReply && (
-                    <Button
-                        mr="8px"
-                        size="sm"
-                        onClick={() => setShowReplyBox(!showReplyBox)}
-                        {...buttonActionStyle}
-                        variant="outline"
-                        color="blue.500"
-                    >
-                        Reply
-                    </Button>
+            <Flex w="100%" justify="space-between">
+                <Flex w="100%">
+                    {actions &&
+                        actions.map(action => {
+                            console.log(action);
+                            if (!action.skip) {
+                                return (
+                                    <Button
+                                        mr="8px"
+                                        size="sm"
+                                        onClick={() => action.onClick(id)}
+                                        variant="outline"
+                                        leftIcon={action.icon}
+                                        title={action.title}
+                                        {...buttonActionStyle}
+                                    >
+                                        {action.label}
+                                    </Button>
+                                );
+                            }
+                        })}
+                    {!showReplyBox && onReply && (
+                        <Button
+                            mr="8px"
+                            size="sm"
+                            onClick={() => setShowReplyBox(!showReplyBox)}
+                            {...buttonActionStyle}
+                            variant="outline"
+                            color="blue.500"
+                            title="Reply"
+                        >
+                            Reply
+                        </Button>
+                    )}
+                </Flex>
+                {showActionMenu && onReport && (
+                    <Menu>
+                        <MenuButton as={Button} size="sm" variant="ghost">
+                            <Icon name="settings" />
+                        </MenuButton>
+
+                        <MenuList minWidth="200px">
+                            <MenuItem onClick={() => onReport(id)}>Report</MenuItem>
+                        </MenuList>
+                    </Menu>
                 )}
             </Flex>
             {showReplyBox && onReply && (

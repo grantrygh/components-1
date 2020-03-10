@@ -12,21 +12,36 @@ import Text from '../Text';
 const Post = props => {
     const { message, author, date, replies, ...rest } = props;
     const [showReplies, setShowReplies] = useState(false);
+    const [showActionMenu, setShowActionMenu] = useState(false);
+
+    const dateStyle = {
+        color: 'gray.600',
+        mx: '8px',
+    };
 
     return (
-        <Flex w="100%" py="8px">
+        <Flex
+            w="100%"
+            py="8px"
+            fontSize={['sm', 'md']}
+            onMouseEnter={() => setShowActionMenu(true)}
+            onMouseLeave={() => setShowActionMenu(false)}
+        >
             <Avatar size="sm" mr="16px" name={author.name} src={author.avatar} />
             <Box flexGrow="1">
-                <Flex fontSize="sm">
-                    <Text fontWeight="bold" mr="8px">
-                        {author.name}
-                    </Text>
-                    <Text color="gray.600">{date}</Text>
+                <Flex align="center" fontSize={['xs', 'sm']}>
+                    <Text fontWeight="bold">{author.name}</Text>
+                    <Text {...dateStyle}>{date}</Text>
                 </Flex>
                 <Text my="2px">{message}</Text>
 
                 {/* // TODO: numLikes & dislikes just temporary. change with known structure */}
-                <PostActions numLikes={message.length} numDislikes={author.name.length} {...rest} />
+                <PostActions
+                    showActionMenu={showActionMenu}
+                    numLikes={message.length}
+                    numDislikes={author.name.length}
+                    {...rest}
+                />
 
                 {replies && replies.length > 0 && (
                     <Box>

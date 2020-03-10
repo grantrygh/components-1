@@ -78,6 +78,33 @@ const postList = [
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa id neque aliquam vestibulum. Sem integer vitae justo eget magna. Aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices.',
         date: 'March 4, 2020',
     },
+    {
+        id: 6,
+        author: { name: 'Jane Goodwin', avatar: 'the avatar' },
+        message:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa id neque aliquam vestibulum. Sem integer vitae justo eget magna. Aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices.',
+        date: 'March 3, 2020',
+        replies: [
+            {
+                id: 7,
+                message: 'hey, I agree',
+                author: {
+                    name: 'John Smith',
+                },
+                date: 'March 7, 2020',
+                replies: [
+                    {
+                        id: 8,
+                        message: 'reply to a reply',
+                        author: {
+                            name: 'Johnny Appleseed',
+                        },
+                        date: 'March 12, 2020',
+                    },
+                ],
+            },
+        ],
+    },
 ];
 
 stories.add('comments section - no actions', () => {
@@ -112,9 +139,10 @@ stories.add('comments section - with actions', () => {
                     date={post.date}
                     replies={post.replies}
                     id={post.id}
-                    onReply={id => console.log(id)}
+                    onReply={id => console.log('replied to post id: ', id)}
                     onLike={id => console.log('liked post id: ', id)}
                     onDislike={id => console.log('disliked post id: ', id)}
+                    onReport={id => console.log('reported post id: ', id)}
                 />
             ))}
         </Box>

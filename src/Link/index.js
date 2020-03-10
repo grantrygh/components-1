@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import PseudoBox from '../PseudoBox';
 import { forwardRef } from 'react';
+import PseudoBox from '../PseudoBox';
 
 const baseStyleProps = {
     transition: `all 0.15s ease-out`,

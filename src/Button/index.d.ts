@@ -1,13 +1,13 @@
 import * as React from 'react';
+import { Omit } from '../common-types';
 import { PseudoBoxProps } from '../PseudoBox';
 import { Icons } from '../theme/icons';
-import { Omit } from '../common-types';
 
 export interface IButton {
     /**
      * The size of the button
      */
-    size?: 'xs' | 'sm' | 'md' | 'lg';
+    size?: 'inline' | 'xs' | 'sm' | 'md' | 'lg';
     /**
      * If `true`, the button will show a spinner.
      */

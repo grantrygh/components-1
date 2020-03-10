@@ -1,5 +1,5 @@
-import { addOpacity } from '../theme/colors-utils';
 import { useColorMode } from '../ColorModeProvider';
+import { addOpacity } from '../theme/colors-utils';
 import { useTheme } from '../ThemeProvider';
 
 const grayGhostStyle = {
@@ -176,6 +176,12 @@ const sizes = {
     xs: {
         height: 6,
         minWidth: 6,
+        fontSize: 'xs',
+        px: 2,
+    },
+    inline: {
+        height: 4,
+        minWidth: 4,
         fontSize: 'xs',
         px: 2,
     },

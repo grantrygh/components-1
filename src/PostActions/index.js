@@ -56,6 +56,7 @@ const PostActions = ({ id, showActionMenu, onReply, onLike, onDislike, onReport,
                                         variant="outline"
                                         leftIcon={action.icon}
                                         title={action.title}
+                                        key={action.title + id}
                                         {...buttonActionStyle}
                                     >
                                         {action.label}

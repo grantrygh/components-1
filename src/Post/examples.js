@@ -12,19 +12,13 @@ const stories = storiesOf('Post', module).addDecorator(story => (
 ));
 
 stories.add('no replies', () => {
-    return (
-        <Post
-            author={{ name: 'Test Name', avatar: 'the avatar' }}
-            message="This is a test message"
-            date="March 1, 2020"
-        />
-    );
+    return <Post author={{ name: 'Test Name' }} message="This is a test message" date="March 1, 2020" />;
 });
 
 stories.add('with replies', () => {
     return (
         <Post
-            author={{ name: 'Test Name', avatar: 'the avatar' }}
+            author={{ name: 'Test Name' }}
             message="This is a test message"
             date="March 1, 2020"
             replies={[
@@ -43,20 +37,20 @@ stories.add('with replies', () => {
 const postList = [
     {
         id: 1,
-        author: { name: 'James Miller', avatar: 'the avatar' },
+        author: { name: 'James Miller' },
         message:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa id neque aliquam vestibulum. Sem integer vitae justo eget magna. Aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices. Nibh sed pulvinar proin gravida. Diam vel quam elementum pulvinar. Purus semper eget duis at tellus at urna condimentum. Ac turpis egestas integer eget aliquet nibh praesent tristique magna. Massa eget egestas purus viverra accumsan in nisl nisi. Adipiscing elit duis tristique sollicitudin nibh sit amet commodo.',
         date: 'March 1, 2020',
     },
     {
         id: 2,
-        author: { name: 'Kelly Williams', avatar: 'the avatar' },
+        author: { name: 'Kelly Williams' },
         message: 'This is a test message',
         date: 'March 1, 2020',
     },
     {
         id: 3,
-        author: { name: 'Jane Goodwin', avatar: 'the avatar' },
+        author: { name: 'Jane Goodwin' },
         message:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa id neque aliquam vestibulum. Sem integer vitae justo eget magna. Aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices.',
         date: 'March 3, 2020',
@@ -73,14 +67,14 @@ const postList = [
     },
     {
         id: 4,
-        author: { name: 'Thomas Johnson', avatar: 'the avatar' },
+        author: { name: 'Thomas Johnson' },
         message:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa id neque aliquam vestibulum. Sem integer vitae justo eget magna. Aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices.',
         date: 'March 4, 2020',
     },
     {
         id: 6,
-        author: { name: 'Jane Goodwin', avatar: 'the avatar' },
+        author: { name: 'Jane Goodwin' },
         message:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa id neque aliquam vestibulum. Sem integer vitae justo eget magna. Aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices.',
         date: 'March 3, 2020',

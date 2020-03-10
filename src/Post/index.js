@@ -69,6 +69,7 @@ const Post = props => {
                                         date={reply.date}
                                         replies={reply.replies}
                                         id={reply.id}
+                                        key={reply.id}
                                     />
                                 ))}
                             </Box>

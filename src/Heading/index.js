@@ -1,7 +1,9 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import Box from '../Box';
 import { forwardRef } from 'react';
+import Box from '../Box';
+import { useColorMode } from '../ColorModeProvider';
+import { useTheme } from '../ThemeProvider';
 
 const sizes = {
     '2xl': ['4xl', null, '5xl'],
@@ -12,17 +14,24 @@ const sizes = {
     xs: 'sm',
 };
 
-const Heading = forwardRef(({ size = 'xl', ...props }, ref) => (
-    <Box
-        ref={ref}
-        as="h2"
-        fontSize={sizes[size]}
-        lineHeight="shorter"
-        fontWeight="bold"
-        fontFamily="heading"
-        {...props}
-    />
-));
+const Heading = forwardRef(({ size = 'xl', ...props }, ref) => {
+    const { colorMode } = useColorMode();
+    const { colors } = useTheme();
+    const textColors = { light: colors.black, dark: colors.white };
+
+    return (
+        <Box
+            ref={ref}
+            as="h2"
+            fontSize={sizes[size]}
+            lineHeight="shorter"
+            fontWeight="bold"
+            fontFamily="heading"
+            color={textColors[colorMode]}
+            {...props}
+        />
+    );
+});
 
 Heading.displayName = 'Heading';
 

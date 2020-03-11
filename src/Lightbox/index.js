@@ -43,7 +43,7 @@ const useGalleryContext = () => {
 };
 
 const LightboxMedia = ({ src, skip, children }) => {
-    const context = useContext(GalleryContext);
+    const context = useGalleryContext();
 
     useEffect(() => {
         if (!skip) {
@@ -76,7 +76,7 @@ const LightboxGallery = () => {
     const context = useGalleryContext();
     return (
         <Lightbox isOpen={!!context.activeItem} onClose={() => context.setActiveItem(null)}>
-            {/* // TODO: this will be replaced by (carousel?) media navigation */}
+            {/* // TODO: this will be replaced by (carousel?) media navigation. context.activeItem can be used to determine starting slide in the carousel */}
             <Flex justify="center">
                 {context.media.map(mediaItem => (
                     <Box>
@@ -122,4 +122,4 @@ const Lightbox = props => {
 
 export default Lightbox;
 
-export { LightboxMedia, LightboxGalleryProvider };
+export { LightboxMedia, LightboxGalleryProvider, useGalleryContext };

@@ -31,6 +31,16 @@ declare const Lightbox: React.FC<LightboxProps>;
 declare const LightboxMedia: React.FC<LightboxMediaProps>;
 declare const LightboxGalleryProvider: React.FC;
 
+/**
+ *  useGalleryContext exposes the following props. can be used in cases such as adding off-screen images
+ *  register(mediaItem): function to add new item to lightbox
+ *  unregister(mediaItem): function to remove an item from the lightbox
+ *  media[]: array of current items in the lightbox
+ *  activeItem: current active lightbox item. lightbox will not display if there is no activeItem
+ *  setActiveItem(mediaItem): set new activeItem
+ */
+declare function useGalleryContext<T>(value: T): T;
+
 export default Lightbox;
 
-export { LightboxMedia, LightboxGalleryProvider };
+export { LightboxMedia, LightboxGalleryProvider, useGalleryContext };

@@ -65,6 +65,7 @@ const LightboxMedia = ({ src, skip, children }) => {
                     context.setActiveItem(src);
                 }
             }}
+            cursor={!skip && 'pointer'}
         >
             {children}
         </Box>
@@ -77,6 +78,7 @@ const LightboxGallery = () => {
     return (
         <Lightbox isOpen={!!context.activeItem} onClose={() => context.setActiveItem(null)}>
             {/* // TODO: this will be replaced by (carousel?) media navigation. context.activeItem can be used to determine starting slide in the carousel */}
+            <Box>replace with carousel</Box>
             <Flex justify="center">
                 {context.media.map(mediaItem => (
                     <Box>

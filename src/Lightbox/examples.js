@@ -10,11 +10,7 @@ import Text from '../Text';
 const stories = storiesOf('Lightbox', module);
 
 stories.add('Default', () => {
-    const images = [
-        'https://via.placeholder.com/150',
-        'https://via.placeholder.com/200',
-        'https://via.placeholder.com/250',
-    ];
+    const images = ['http://lorempixel.com/200/200', 'http://lorempixel.com/250/250', 'http://lorempixel.com/225/225'];
 
     return (
         <Box maxWidth="sm" mx="auto" mt={3}>
@@ -22,11 +18,13 @@ stories.add('Default', () => {
                 <Box>
                     <Box>Page content</Box>
 
-                    {images.map(src => (
-                        <LightboxMedia src={src} key={src}>
-                            <Image src={src} htmlHeight="150px" />
-                        </LightboxMedia>
-                    ))}
+                    <Flex>
+                        {images.map(src => (
+                            <LightboxMedia src={src} key={src}>
+                                <Image src={src} htmlHeight="150px" />
+                            </LightboxMedia>
+                        ))}
+                    </Flex>
                 </Box>
             </LightboxGalleryProvider>
         </Box>
@@ -34,13 +32,9 @@ stories.add('Default', () => {
 });
 
 stories.add('With skip', () => {
-    const images = [
-        'https://via.placeholder.com/150',
-        'https://via.placeholder.com/200',
-        'https://via.placeholder.com/250',
-    ];
+    const images = ['http://lorempixel.com/200/200', 'http://lorempixel.com/250/250', 'http://lorempixel.com/225/225'];
 
-    const imagesSecond = ['https://via.placeholder.com/300', 'https://via.placeholder.com/350'];
+    const imagesSecond = ['http://lorempixel.com/300/300', 'http://lorempixel.com/350/350'];
 
     return (
         <Box maxWidth="sm" mx="auto" mt={3}>

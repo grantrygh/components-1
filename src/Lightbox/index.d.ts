@@ -16,6 +16,12 @@ export interface ILightboxMedia {
      *  media item src
      */
     src: string;
+
+    /**
+     *  if true, the media item will not be registered to the lightbox, nor will open the lightbox onClick
+     *  defaults to false
+     */
+    skip?: boolean;
 }
 
 export type LightboxProps = ILightbox;

@@ -42,21 +42,33 @@ const useGalleryContext = () => {
     return context;
 };
 
-const LightboxMedia = ({ src, children }) => {
+const LightboxMedia = ({ src, skip, children }) => {
     const context = useContext(GalleryContext);
 
     useEffect(() => {
-        // add image to lightbox context media array on mount
-        context.register(src);
+        if (!skip) {
+            // add image to lightbox context media array on mount
+            context.register(src);
 
-        // remove image from lightbox context media array on unmount
-        () => {
-            context.unregister(src);
-        };
+            // remove image from lightbox context media array on unmount
+            return () => {
+                context.unregister(src);
+            };
+        }
     }, [src]);
 
     // when the media item is clicked, set the context's active item to the media src
-    return <Box onClick={() => context.setActiveItem(src)}>{children}</Box>;
+    return (
+        <Box
+            onClick={() => {
+                if (!skip) {
+                    context.setActiveItem(src);
+                }
+            }}
+        >
+            {children}
+        </Box>
+    );
 };
 
 // Lightbox with image gallery as content
@@ -64,6 +76,7 @@ const LightboxGallery = () => {
     const context = useGalleryContext();
     return (
         <Lightbox isOpen={!!context.activeItem} onClose={() => context.setActiveItem(null)}>
+            {/* // TODO: this will be replaced by (carousel?) media navigation */}
             <Flex justify="center">
                 {context.media.map(mediaItem => (
                     <Box>
@@ -97,7 +110,7 @@ const Lightbox = props => {
                         <ModalOverlay opacity={1} bg={bg[colorMode]}>
                             <ModalCloseButton />
                         </ModalOverlay>
-                        <ModalContent {...styles} shadow={0}>
+                        <ModalContent {...styles} shadow={0} bg="transparent">
                             {children}
                         </ModalContent>
                     </Modal>

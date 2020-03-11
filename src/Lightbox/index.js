@@ -92,21 +92,12 @@ const Lightbox = props => {
     const { colorMode } = useColorMode();
     const { isOpen, onClose, children } = props;
     const bg = { light: 'white', dark: 'black' };
-    // const btnRef = useRef();
-    const btnRef = null;
 
     return (
         <Box>
             <SlideIn offset="10px" in={isOpen}>
                 {styles => (
-                    <Modal
-                        isOpen={isOpen}
-                        onClose={onClose}
-                        finalFocusRef={btnRef}
-                        preserveScrollBarGap
-                        isCentered
-                        blockScrollOnMount
-                    >
+                    <Modal isOpen={isOpen} onClose={onClose} preserveScrollBarGap isCentered blockScrollOnMount>
                         <ModalOverlay opacity={1} bg={bg[colorMode]}>
                             <ModalCloseButton />
                         </ModalOverlay>

@@ -62,30 +62,26 @@ const useGalleryContext = () => {
     return context;
 };
 
-const LightboxMedia = ({ src, skip, children }) => {
+const LightboxMedia = ({ src, children }) => {
     const context = useGalleryContext();
 
     useEffect(() => {
-        if (!skip) {
-            // add image to lightbox context media array on mount
-            context.register(src);
+        // add image to lightbox context media array on mount
+        context.register(src);
 
-            // remove image from lightbox context media array on unmount
-            return () => {
-                context.unregister(src);
-            };
-        }
-    }, [src]);
+        // remove image from lightbox context media array on unmount
+        return () => {
+            context.unregister(src);
+        };
+    }, []);
 
     // when the media item is clicked, set the context's active item to the media src
     return (
         <Box
             onClick={() => {
-                if (!skip) {
-                    context.setActiveItem(src);
-                }
+                context.setActiveItem(src);
             }}
-            cursor={!skip && 'pointer'}
+            cursor="pointer"
         >
             {children}
         </Box>

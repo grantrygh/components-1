@@ -9,6 +9,10 @@ export interface ILightbox {
      * Event that gets fired when the lightbox overlay or close button are clicked.
      */
     onClose?: boolean;
+    /**
+     * (For Gallery) If 'true', show Prev and Next arrows for media navigation
+     */
+    showControls?: boolean;
 }
 
 export interface ILightboxMedia {

@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
+import { useColorMode } from '../ColorModeProvider';
 import Icon from '../Icon';
 import PseudoBox from '../PseudoBox';
-import { useColorMode } from '../ColorModeProvider';
 
 const baseProps = {
     display: 'inline-flex',

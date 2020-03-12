@@ -103,6 +103,18 @@ const LightboxGallery = () => {
         opacity: 0.5,
     };
 
+    const onKeyDown = event => {
+        if (event.key === 'ArrowLeft') {
+            event.preventDefault();
+            onPrev();
+        }
+
+        if (event.key === 'ArrowRight') {
+            event.preventDefault();
+            onNext();
+        }
+    };
+
     const generateThumbnails = () => {
         const list = [];
         const start = numItems > 4 ? 2 : 1;
@@ -124,7 +136,7 @@ const LightboxGallery = () => {
     };
 
     return (
-        <Lightbox isOpen={!!activeItem} onClose={() => setActiveItem(null)} showControls>
+        <Lightbox isOpen={!!activeItem} onClose={() => setActiveItem(null)} onKeyDown={onKeyDown} showControls>
             <Flex direction="column" h="100%">
                 {/* gallery active image */}
                 <Flex flex={1} align="center" justify="center">

@@ -13,6 +13,10 @@ export interface ILightbox {
      * (For Gallery) If 'true', show Prev and Next arrows for media navigation
      */
     showControls?: boolean;
+    /**
+     * Allows custom keydown events for lightbox. Gallery uses for arrow onPrev, onNext arrows
+     */
+    onKeyDown?: (event: React.KeyboardEvent) => void;
 }
 
 export interface ILightboxMedia {

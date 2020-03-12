@@ -10,7 +10,7 @@ import { LightboxGalleryControls, LightboxGalleryProvider, LightboxMedia, useGal
 const Lightbox = props => {
     const { colorMode } = useColorMode();
     const { zIndices } = useTheme();
-    const { isOpen, onClose, showControls, children } = props;
+    const { isOpen, onClose, showControls, onKeyDown, children } = props;
     const bg = { light: 'white', dark: 'black' };
 
     return (
@@ -22,7 +22,7 @@ const Lightbox = props => {
                         <ModalOverlay opacity={1} bg={bg[colorMode]} />
 
                         {/* overlay wrapper for close & navigation button actions */}
-                        <ModalOverlay bg="transparent">
+                        <ModalOverlay bg="transparent" onKeyDown={onKeyDown}>
                             <ModalCloseButton zIndex={zIndices.modal + 1} />
                             {showControls && <LightboxGalleryControls />}
                             <ModalContent {...styles} shadow={0} bg="transparent" h="100%" my={0} py={4}>

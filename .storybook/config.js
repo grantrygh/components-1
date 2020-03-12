@@ -2,7 +2,7 @@ import { addDecorator, configure } from '@storybook/react';
 import React from 'react';
 import { CSSReset, ThemeProvider } from '../src';
 
-const req = require.context('../src', true, /examples\.(js|mdx)$/);
+const req = require.context('../src', true, /examples\.(js|mdx|ts|tsx)$/);
 
 function loadStories() {
     req.keys().forEach(filename => req(filename));

@@ -10,7 +10,7 @@ import Text from '../Text';
 const stories = storiesOf('Lightbox', module);
 
 stories.add('Default', () => {
-    const images = ['http://lorempixel.com/200/200', 'http://lorempixel.com/250/250', 'http://lorempixel.com/225/225'];
+    const images = ['http://placeimg.com/200/200', 'http://placeimg.com/250/250', 'http://placeimg.com/225/225'];
 
     return (
         <Box maxWidth="sm" mx="auto" mt={3}>
@@ -32,9 +32,9 @@ stories.add('Default', () => {
 });
 
 stories.add('With skip', () => {
-    const images = ['http://lorempixel.com/200/200', 'http://lorempixel.com/250/250', 'http://lorempixel.com/225/225'];
+    const images = ['http://placeimg.com/200/200', 'http://placeimg.com/250/250', 'http://placeimg.com/350/350'];
 
-    const imagesSecond = ['http://lorempixel.com/300/300', 'http://lorempixel.com/350/350'];
+    const imagesSecond = ['http://placeimg.com/300/300', 'http://placeimg.com/350/350'];
 
     return (
         <Box maxWidth="sm" mx="auto" mt={3}>
@@ -67,6 +67,43 @@ stories.add('With skip', () => {
                         </TabPanel>
                     </TabPanels>
                 </Tabs>
+            </LightboxGalleryProvider>
+        </Box>
+    );
+});
+
+stories.add('Large image list', () => {
+    const images = [
+        'http://placeimg.com/200/200',
+        'http://placeimg.com/250/250',
+        'http://placeimg.com/225/225',
+        'http://placeimg.com/235/235',
+        'http://placeimg.com/245/245',
+        'http://placeimg.com/255/255',
+        'http://placeimg.com/265/265',
+        'http://placeimg.com/275/275',
+        'http://placeimg.com/285/285',
+        'http://placeimg.com/295/295',
+        'http://placeimg.com/305/305',
+        'http://placeimg.com/315/315',
+        'http://placeimg.com/325/325',
+        'http://placeimg.com/335/335',
+    ];
+
+    return (
+        <Box maxWidth="sm" mx="auto" mt={3}>
+            <LightboxGalleryProvider>
+                <Box>
+                    <Box>Page content</Box>
+
+                    <Flex wrap="wrap">
+                        {images.map(src => (
+                            <LightboxMedia src={src} key={src}>
+                                <Image src={src} htmlHeight="150px" />
+                            </LightboxMedia>
+                        ))}
+                    </Flex>
+                </Box>
             </LightboxGalleryProvider>
         </Box>
     );

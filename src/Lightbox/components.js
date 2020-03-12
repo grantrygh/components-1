@@ -82,8 +82,9 @@ const LightboxGallery = () => {
 
     const generateThumbnails = () => {
         const list = [];
+        const start = numItems > 4 ? 2 : 1;
         // show thumbnails 2 above and below current index
-        for (let i = -2; i <= 2; i++) {
+        for (let i = -start; i <= start; i++) {
             let itemIndex = items.indexOf(context.activeItem) + i;
             if (itemIndex < 0) {
                 itemIndex = numItems + itemIndex;
@@ -109,7 +110,7 @@ const LightboxGallery = () => {
 
                 {/* gallery thumbnails */}
                 <Flex justify="center">
-                    <SimpleGrid columns={[3, null, 5]} spacing="10px">
+                    <SimpleGrid columns={[3, null, Math.min(5, numItems)]} spacing="10px">
                         {generateThumbnails()}
                     </SimpleGrid>
                 </Flex>

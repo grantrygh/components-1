@@ -80,6 +80,11 @@ const LightboxGallery = () => {
     const items = context.media;
     const numItems = items.length;
 
+    const activeStyle = {
+        outline: '1px solid rgba(0,0,0,0.8)',
+        opacity: 0.5,
+    };
+
     const generateThumbnails = () => {
         const list = [];
         const start = numItems > 4 ? 2 : 1;
@@ -92,7 +97,12 @@ const LightboxGallery = () => {
                 itemIndex = itemIndex - numItems;
             }
             list.push(
-                <Box onClick={() => context.setActiveItem(items[itemIndex])} w={90} h={90}>
+                <Box
+                    onClick={() => context.setActiveItem(items[itemIndex])}
+                    w={90}
+                    h={90}
+                    {...(i === 0 ? activeStyle : {})}
+                >
                     <Image src={items[itemIndex]} />
                 </Box>
             );

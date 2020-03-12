@@ -95,8 +95,8 @@ const LightboxMedia = ({ src, skip, children }) => {
 // Lightbox with image gallery as content
 const LightboxGallery = () => {
     const context = useGalleryContext();
-    const items = context.media;
-    const numItems = items.length;
+    const { activeItem, activeIndex, media, setActiveItem, onPrev, onNext } = context;
+    const numItems = media.length;
 
     const activeStyle = {
         outline: '1px solid rgba(0,0,0,0.8)',
@@ -108,20 +108,15 @@ const LightboxGallery = () => {
         const start = numItems > 4 ? 2 : 1;
         // show thumbnails 2 above and below current index
         for (let i = -start; i <= start; i++) {
-            let itemIndex = items.indexOf(context.activeItem) + i;
+            let itemIndex = activeIndex + i;
             if (itemIndex < 0) {
                 itemIndex = numItems + itemIndex;
             } else if (itemIndex >= numItems) {
                 itemIndex = itemIndex - numItems;
             }
             list.push(
-                <Box
-                    onClick={() => context.setActiveItem(items[itemIndex])}
-                    w={90}
-                    h={90}
-                    {...(i === 0 ? activeStyle : {})}
-                >
-                    <Image src={items[itemIndex]} />
+                <Box onClick={() => setActiveItem(media[itemIndex])} w={90} h={90} {...(i === 0 ? activeStyle : {})}>
+                    <Image src={media[itemIndex]} />
                 </Box>
             );
         }
@@ -129,11 +124,11 @@ const LightboxGallery = () => {
     };
 
     return (
-        <Lightbox isOpen={!!context.activeItem} onClose={() => context.setActiveItem(null)} showControls>
+        <Lightbox isOpen={!!activeItem} onClose={() => setActiveItem(null)} showControls>
             <Flex direction="column" h="100%">
                 {/* gallery active image */}
                 <Flex flex={1} align="center" justify="center">
-                    <Image src={context.activeItem} />
+                    <Image src={activeItem} />
                 </Flex>
 
                 {/* gallery thumbnails */}
@@ -160,6 +155,7 @@ const LightboxGalleryControls = () => {
         size: 'lg',
         variant: 'outline',
     };
+
     return (
         <Fragment>
             <Button left={4} {...buttonStyles} onClick={onPrev}>

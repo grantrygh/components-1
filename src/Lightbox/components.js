@@ -17,6 +17,8 @@ const LightboxGalleryProvider = props => {
     const [activeItem, setActiveItem] = useState(null);
     const [mediaList, setMediaList] = useState([]);
     const media = [];
+    const activeIndex = mediaList.indexOf(activeItem);
+    const numMedia = mediaList.length;
 
     const register = mediaItem => {
         media.push(mediaItem);
@@ -26,7 +28,23 @@ const LightboxGalleryProvider = props => {
         setMediaList(mediaList.filter(item => item !== mediaItem));
     };
 
-    const context = { register, unregister, media: mediaList, activeItem, setActiveItem };
+    const onNext = () => {
+        if (activeIndex === numMedia - 1) {
+            setActiveItem(mediaList[0]);
+        } else {
+            setActiveItem(mediaList[activeIndex + 1]);
+        }
+    };
+
+    const onPrev = () => {
+        if (activeIndex === 0) {
+            setActiveItem(mediaList[numMedia - 1]);
+        } else {
+            setActiveItem(mediaList[activeIndex - 1]);
+        }
+    };
+
+    const context = { register, unregister, media: mediaList, activeItem, activeIndex, setActiveItem, onPrev, onNext };
 
     return (
         <GalleryContext.Provider value={context}>
@@ -131,26 +149,7 @@ const LightboxGallery = () => {
 
 const LightboxGalleryControls = () => {
     const theme = useTheme();
-    const context = useGalleryContext();
-    const items = context.media;
-    const numItems = items.length;
-    const currentIndex = items.indexOf(context.activeItem);
-
-    const onNext = () => {
-        if (currentIndex === numItems - 1) {
-            context.setActiveItem(items[0]);
-        } else {
-            context.setActiveItem(items[currentIndex + 1]);
-        }
-    };
-
-    const onPrev = () => {
-        if (currentIndex === 0) {
-            context.setActiveItem(items[numItems - 1]);
-        } else {
-            context.setActiveItem(items[currentIndex - 1]);
-        }
-    };
+    const { onPrev, onNext } = useGalleryContext();
 
     const buttonStyles = {
         position: 'absolute',

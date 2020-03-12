@@ -41,7 +41,10 @@ declare const LightboxGalleryProvider: React.FC;
  *  unregister(mediaItem): function to remove an item from the lightbox
  *  media[]: array of current items in the lightbox
  *  activeItem: current active lightbox item. lightbox will not display if there is no activeItem
+ *  activeIndex: index of active item in array
  *  setActiveItem(mediaItem): set new activeItem
+ *  onPrev: set active item to current index - 1
+ *  onNext: set active item to current index + 1
  */
 declare function useGalleryContext<T>(value: T): T;
 

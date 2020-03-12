@@ -159,7 +159,7 @@ const LightboxGalleryControls = () => {
         margin: 'auto',
         zIndex: theme.zIndices.modal + 1,
         size: 'lg',
-        variant: 'ghost',
+        variant: 'outline',
     };
     return (
         <Fragment>

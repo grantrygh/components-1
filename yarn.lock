@@ -19,7 +19,7 @@
 
 "@audentio/utils@^4.4.1":
   version "4.4.1"
-  resolved "https://registry.yarnpkg.com/@audentio/utils/-/utils-4.4.1.tgz#3a6117fba72a22f7f29c85c831a66297b74b1242"
+  resolved "https://registry.npmjs.org/@audentio/utils/-/utils-4.4.1.tgz#3a6117fba72a22f7f29c85c831a66297b74b1242"
   integrity sha512-z/7lzBfUf1ZiIFSBBKQZWbqgX9lv0cnn327F9nIfdqnCKhGoH90t7T+MXySswMInQMp8dPD8SHUXqhvJlQN06w==
   dependencies:
     query-string "^6.10.1"
@@ -5652,7 +5652,7 @@ executable@4.1.1:
 
 exenv@^1.2.2:
   version "1.2.2"
-  resolved "https://registry.yarnpkg.com/exenv/-/exenv-1.2.2.tgz#2ae78e85d9894158670b03d47bec1f03bd91bb9d"
+  resolved "https://registry.npmjs.org/exenv/-/exenv-1.2.2.tgz#2ae78e85d9894158670b03d47bec1f03bd91bb9d"
   integrity sha1-KueOhdmJQVhnCwPUe+wfA72Ru50=
 
 exit-hook@^1.0.0:

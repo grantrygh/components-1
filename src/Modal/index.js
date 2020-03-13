@@ -1,14 +1,14 @@
-import React, { useRef, useEffect, createContext, useContext, forwardRef, useCallback } from 'react';
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
-import FocusLock from 'react-focus-lock/dist/cjs';
-import { wrapEvent, useForkRef, getFocusables } from '../utils';
-import Box from '../Box';
-import Portal from '../Portal';
-import CloseButton from '../CloseButton';
-import { hideOthers } from 'aria-hidden';
 import { useId } from '@reach/auto-id';
-import { useColorMode } from '../ColorModeProvider';
+import { hideOthers } from 'aria-hidden';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import exenv from 'exenv';
+import React, { createContext, forwardRef, useCallback, useContext, useEffect, useRef } from 'react';
+import FocusLock from 'react-focus-lock/dist/cjs';
+import Box from '../Box';
+import CloseButton from '../CloseButton';
+import { useColorMode } from '../ColorModeProvider';
+import Portal from '../Portal';
+import { getFocusables, useForkRef, wrapEvent } from '../utils';
 
 ////////////////////////////////////////////////////////////////////////
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
+import { Omit } from '../common-types';
 import { PseudoBoxProps } from '../PseudoBox';
 import { Icons } from '../theme/icons';
-import { Omit } from '../common-types';
 
 export interface IButton {
     /**

@@ -1,10 +1,9 @@
-import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
-import { css } from '@emotion/core';
 import React from 'react';
+import Button from '.';
 import Box from '../Box';
 import ButtonGroup from '../ButtonGroup';
-import Button from '.';
 
 const stories = storiesOf('Button', module);
 stories.addDecorator(withKnobs);

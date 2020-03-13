@@ -1,5 +1,5 @@
-import { addOpacity } from '../theme/colors-utils';
 import { useColorMode } from '../ColorModeProvider';
+import { addOpacity } from '../theme/colors-utils';
 import { useTheme } from '../ThemeProvider';
 
 const grayGhostStyle = {

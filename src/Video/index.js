@@ -6,13 +6,14 @@ import { LightboxMedia } from '../Lightbox';
 import PseudoBox from '../PseudoBox';
 import Text from '../Text';
 import { useWindowResize } from '../utils';
-import { isStuckStyle, videoStyle } from './styles';
+import { fullVideoStyle, iframeStyle, isStuckStyle, nativeVideoStyle, videoStyle } from './styles';
 
 function OuterContainer(props) {
-    const { id, cover, children, src, withLightbox, iFrame, innerRef, ...rest } = props;
+    const { id, cover, children, src, withLightbox, full, iFrame, innerRef, ...rest } = props;
 
     const containerProps = {
         ...videoStyle,
+        ...(full && fullVideoStyle),
     };
 
     // set cover image background
@@ -35,9 +36,16 @@ function OuterContainer(props) {
     return innerContent;
 }
 
-const getMediaStyle = ({ isStuck, allowSticky }) => {
+const getMediaStyle = ({ isStuck, allowSticky, isEmbed, full, height, width }) => {
     if (isStuck && allowSticky) {
         return isStuckStyle;
+    }
+
+    if (full || (height && width)) {
+        if (!isEmbed) {
+            return nativeVideoStyle;
+        }
+        return iframeStyle;
     }
 
     return {};
@@ -107,7 +115,12 @@ export default function Video(props) {
     if (src.indexOf('youtube') > -1) {
         return (
             <OuterContainer id={id} cover={cover} src={src} iFrame innerRef={videoRef} {...rest}>
-                <iframe id="youtube_embed" src={src} {...props} style={getMediaStyle({ isStuck, allowSticky })} />
+                <iframe
+                    id="youtube_embed"
+                    src={src}
+                    {...props}
+                    style={getMediaStyle({ isStuck, isEmbed: true, ...props })}
+                />
             </OuterContainer>
         );
     }
@@ -122,7 +135,7 @@ export default function Video(props) {
                 key={id}
                 controls
                 autoPlay={autoplay}
-                style={getMediaStyle({ isStuck, allowSticky })}
+                style={getMediaStyle({ isStuck, ...props })}
             >
                 <source src={src} type="video/mp4" />
                 <source src={src} media="all and (max-width:800px)" type="video/mp4" />

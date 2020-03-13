@@ -35,7 +35,7 @@ stories.add('With skip', () => {
     const imagesSecond = ['http://placeimg.com/300/300', 'http://placeimg.com/350/350'];
 
     return (
-        <Box maxWidth="sm" mx="auto" mt={3}>
+        <Box maxWidth="lg" mx="auto" mt={3}>
             <LightboxGalleryProvider>
                 <Text>Page 2 media items are skipped from showing in lightbox</Text>
                 <Tabs size="md" color="pink" isFitted>

@@ -122,6 +122,12 @@ const LightboxGallery = () => {
     };
 
     const MediaTag = activeItem && activeItem.type === 'video' ? Video : Image;
+    const mediaStyles = {
+        video: {
+            full: true,
+        },
+        image: {},
+    };
 
     const generateThumbnails = () => {
         const list = [];
@@ -160,11 +166,11 @@ const LightboxGallery = () => {
             <Flex direction="column" h="100%">
                 {/* gallery active image */}
                 <Flex flex={1} align="center" justify="center">
-                    <MediaTag src={activeItem.src} />
+                    <MediaTag src={activeItem.src} {...mediaStyles[activeItem.type]} />
                 </Flex>
 
                 {/* gallery thumbnails */}
-                <Flex justify="center">
+                <Flex justify="center" align="center" height="8rem">
                     <SimpleGrid columns={[3, null, Math.min(5, numItems)]} spacing="10px">
                         {generateThumbnails()}
                     </SimpleGrid>

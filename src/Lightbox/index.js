@@ -15,7 +15,7 @@ const Lightbox = props => {
 
     return (
         <Box>
-            <SlideIn offset="10px" in={isOpen}>
+            <SlideIn offset="10px" in={isOpen} maxWidth="100%">
                 {styles => (
                     <Modal isOpen={isOpen} onClose={onClose} preserveScrollBarGap isCentered blockScrollOnMount>
                         {/* solid background ModalOverlay */}
@@ -25,7 +25,7 @@ const Lightbox = props => {
                         <ModalOverlay bg="transparent" onKeyDown={onKeyDown}>
                             <ModalCloseButton zIndex={zIndices.modal + 1} />
                             {showControls && <LightboxGalleryControls />}
-                            <ModalContent {...styles} shadow={0} bg="transparent" h="100%" my={0} py={4}>
+                            <ModalContent {...styles} shadow={0} bg="transparent" h="100%" my={0} pt="48px">
                                 {children}
                             </ModalContent>
                         </ModalOverlay>

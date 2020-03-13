@@ -76,7 +76,7 @@ stories.add('In lightbox', () => (
             />
 
             <Text>use default YT thumbnail</Text>
-            <Video withLightbox src="http://www.youtube.com/embed/ScMzIvxBSi4" id={1} height={400} width={600} />
+            <Video withLightbox src="http://www.youtube.com/embed/ScMzIvxBSi4" id={1} />
         </Box>
     </LightboxGalleryProvider>
 ));

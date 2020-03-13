@@ -63,7 +63,7 @@ stories.add('sticky', () => (
 stories.add('In lightbox', () => (
     <LightboxGalleryProvider>
         <Box>
-            <Image src="http://placeimg.com/335/335" withLightbox htmlHeight="150px" key={0} />
+            <Image src="http://placeimg.com/335/335" withLightbox key={0} />
 
             <Text>custom cover</Text>
             <Video
@@ -77,6 +77,10 @@ stories.add('In lightbox', () => (
 
             <Text>use default YT thumbnail</Text>
             <Video withLightbox src="http://www.youtube.com/embed/ScMzIvxBSi4" id={1} />
+
+            <Image src="http://placeimg.com/340/340" withLightbox key={2} />
+            <Image src="http://placeimg.com/600/400" withLightbox key={3} />
+            <Image src="http://placeimg.com/1200/800" withLightbox key={3} />
         </Box>
     </LightboxGalleryProvider>
 ));

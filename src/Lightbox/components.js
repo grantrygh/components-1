@@ -126,7 +126,9 @@ const LightboxGallery = () => {
         video: {
             full: true,
         },
-        image: {},
+        image: {
+            maxHeight: 'calc(100vh - 8rem - 48px)',
+        },
     };
 
     const generateThumbnails = () => {

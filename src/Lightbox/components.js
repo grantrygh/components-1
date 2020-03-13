@@ -9,6 +9,7 @@ import Icon from '../Icon';
 import Image from '../Image';
 import SimpleGrid from '../SimpleGrid';
 import { useTheme } from '../ThemeProvider';
+import { Scale } from '../Transition';
 import Video from '../Video';
 
 const GalleryContext = createContext();
@@ -125,9 +126,12 @@ const LightboxGallery = () => {
     const mediaStyles = {
         video: {
             full: true,
+            maxWidth: 'calc(100% - 16rem)',
+            maxHeight: '100%',
         },
         image: {
-            maxHeight: 'calc(100vh - 8rem - 48px)',
+            maxWidth: 'calc(100% - 16rem)',
+            maxHeight: '100%',
         },
     };
 
@@ -167,8 +171,24 @@ const LightboxGallery = () => {
         <Lightbox isOpen={!!activeItem} onClose={() => setActiveItem(null)} onKeyDown={onKeyDown} showControls>
             <Flex direction="column" h="100%">
                 {/* gallery active image */}
-                <Flex flex={1} align="center" justify="center">
-                    <MediaTag src={activeItem.src} {...mediaStyles[activeItem.type]} />
+                <Flex flex={1} align="center" justify="center" maxHeight="calc(100vh - 8rem - 48px)" pos="relative">
+                    {media.map(mi => (
+                        <Scale
+                            in={activeItem.src === mi.src}
+                            initialScale={1}
+                            position="absolute"
+                            top={0}
+                            right={0}
+                            left={0}
+                            bottom={0}
+                            margin="auto"
+                        >
+                            {styles => {
+                                console.log(styles);
+                                return <MediaTag src={mi.src} {...mediaStyles[activeItem.type]} {...styles} />;
+                            }}
+                        </Scale>
+                    ))}
                 </Flex>
 
                 {/* gallery thumbnails */}

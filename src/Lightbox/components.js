@@ -9,6 +9,7 @@ import Icon from '../Icon';
 import Image from '../Image';
 import SimpleGrid from '../SimpleGrid';
 import { useTheme } from '../ThemeProvider';
+import Video from '../Video';
 
 const GalleryContext = createContext();
 
@@ -17,7 +18,7 @@ const LightboxGalleryProvider = props => {
     const [activeItem, setActiveItem] = useState(null);
     const [mediaList, setMediaList] = useState([]);
     const media = [];
-    const activeIndex = mediaList.indexOf(activeItem);
+    const activeIndex = mediaList.findIndex(i => i.src === (activeItem && activeItem.src));
     const numMedia = mediaList.length;
 
     const register = mediaItem => {
@@ -25,7 +26,7 @@ const LightboxGalleryProvider = props => {
         setMediaList(media);
     };
     const unregister = mediaItem => {
-        setMediaList(mediaList.filter(item => item !== mediaItem));
+        setMediaList(mediaList.filter(item => item.src !== mediaItem.src));
     };
 
     const onNext = () => {
@@ -62,24 +63,29 @@ const useGalleryContext = () => {
     return context;
 };
 
-const LightboxMedia = ({ src, children }) => {
+const LightboxMedia = ({ src, type, cover, children }) => {
     const context = useGalleryContext();
+    const media = {
+        src,
+        type,
+        cover,
+    };
 
     useEffect(() => {
-        // add image to lightbox context media array on mount
-        context.register(src);
+        // add media item to lightbox context media array on mount
+        context.register(media);
 
-        // remove image from lightbox context media array on unmount
+        // remove media item from lightbox context media array on unmount
         return () => {
-            context.unregister(src);
+            context.unregister(media);
         };
     }, []);
 
-    // when the media item is clicked, set the context's active item to the media src
+    // when the media item is clicked, set the context's active item
     return (
         <Box
             onClick={() => {
-                context.setActiveItem(src);
+                context.setActiveItem(media);
             }}
             cursor="pointer"
         >
@@ -93,6 +99,10 @@ const LightboxGallery = () => {
     const context = useGalleryContext();
     const { activeItem, activeIndex, media, setActiveItem, onPrev, onNext } = context;
     const numItems = media.length;
+
+    if (!activeItem) {
+        return null;
+    }
 
     const activeStyle = {
         outline: '1px solid rgba(0,0,0,0.8)',
@@ -111,6 +121,8 @@ const LightboxGallery = () => {
         }
     };
 
+    const MediaTag = activeItem && activeItem.type === 'video' ? Video : Image;
+
     const generateThumbnails = () => {
         const list = [];
         const start = numItems > 4 ? 2 : 1;
@@ -122,9 +134,21 @@ const LightboxGallery = () => {
             } else if (itemIndex >= numItems) {
                 itemIndex = itemIndex - numItems;
             }
+
+            const thumb = media[itemIndex];
+            // use passed cover as media thumbnail image
+            let thumbnail = thumb.cover;
+
+            // if the media item is a video and has no passed cover, check if YT thumb is available
+            if (!thumbnail && thumb.type === 'video') {
+                const re = new RegExp('(/|%3D|v=)([0-9A-z-_]{11})([%#?&]|$)');
+                const ytId = thumb.src.match(re) && thumb.src.match(re)[2];
+                thumbnail = ytId ? `https://img.youtube.com/vi/${ytId}/sddefault.jpg` : null;
+            }
+
             list.push(
                 <Box onClick={() => setActiveItem(media[itemIndex])} w={90} h={90} {...(i === 0 ? activeStyle : {})}>
-                    <Image src={media[itemIndex]} />
+                    <Image src={thumbnail} h="100%" />
                 </Box>
             );
         }
@@ -136,7 +160,7 @@ const LightboxGallery = () => {
             <Flex direction="column" h="100%">
                 {/* gallery active image */}
                 <Flex flex={1} align="center" justify="center">
-                    <Image src={activeItem} />
+                    <MediaTag src={activeItem.src} />
                 </Flex>
 
                 {/* gallery thumbnails */}

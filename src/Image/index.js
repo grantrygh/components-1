@@ -54,7 +54,7 @@ const Image = forwardRef(({ src, fallbackSrc, onError, onLoad, ignoreFallback, w
 
     if (withLightbox) {
         return (
-            <LightboxMedia src={src || fallbackSrc}>
+            <LightboxMedia src={src || fallbackSrc} type="image" cover={src || fallbackSrc}>
                 <Box as={NativeImage} ref={ref} {...imageProps} {...props} />
             </LightboxMedia>
         );

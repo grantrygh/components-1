@@ -2,13 +2,14 @@ import 'intersection-observer';
 import React, { useEffect, useRef, useState } from 'react';
 import Box from '../Box';
 import Heading from '../Heading';
+import { LightboxMedia } from '../Lightbox';
 import PseudoBox from '../PseudoBox';
 import Text from '../Text';
 import { useWindowResize } from '../utils';
 import { isStuckStyle, videoStyle } from './styles';
 
 function OuterContainer(props) {
-    const { id, cover, children, iFrame, innerRef, ...rest } = props;
+    const { id, cover, children, src, withLightbox, iFrame, innerRef, ...rest } = props;
 
     const containerProps = {
         ...videoStyle,
@@ -17,11 +18,21 @@ function OuterContainer(props) {
     // set cover image background
     if (iFrame && cover) containerProps.style = { backgroundImage: `url(${cover})` };
 
-    return (
+    const innerContent = (
         <PseudoBox id={id} ref={innerRef} {...containerProps} {...rest}>
             {children}
         </PseudoBox>
     );
+
+    if (withLightbox && src) {
+        return (
+            <LightboxMedia src={src} type="video" cover={cover}>
+                {innerContent}
+            </LightboxMedia>
+        );
+    }
+
+    return innerContent;
 }
 
 const getMediaStyle = ({ isStuck, allowSticky }) => {
@@ -33,7 +44,6 @@ const getMediaStyle = ({ isStuck, allowSticky }) => {
 };
 
 const VideoError = ({ error }) => {
-    console.log('err', error.toString());
     return (
         <Box>
             <Heading size="md">Something went wrong!</Heading>
@@ -96,7 +106,7 @@ export default function Video(props) {
 
     if (src.indexOf('youtube') > -1) {
         return (
-            <OuterContainer id={id} cover={cover} iFrame innerRef={videoRef} {...rest}>
+            <OuterContainer id={id} cover={cover} src={src} iFrame innerRef={videoRef} {...rest}>
                 <iframe id="youtube_embed" src={src} {...props} style={getMediaStyle({ isStuck, allowSticky })} />
             </OuterContainer>
         );
@@ -104,7 +114,7 @@ export default function Video(props) {
 
     //* Native Video
     return (
-        <OuterContainer id={id} cover={cover} innerRef={videoRef} {...rest}>
+        <OuterContainer id={id} cover={cover} innerRef={videoRef} src={src} {...rest}>
             {/* <ContentWrap className={style.videoWrapperSticky}> */}
             <video
                 poster={cover}

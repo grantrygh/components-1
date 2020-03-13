@@ -9,6 +9,9 @@ export interface IVideo {
     autoplay?: boolean;
     allowSticky?: boolean;
 
+    // if true, video will be included in lightbox media item list
+    withLightbox?: boolean;
+
     error?: Error;
     loading?: boolean;
 }

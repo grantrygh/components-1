@@ -7,6 +7,7 @@ import Button from '../Button';
 import Flex from '../Flex';
 import Icon from '../Icon';
 import Image from '../Image';
+import Link from '../Link';
 import SimpleGrid from '../SimpleGrid';
 import { useTheme } from '../ThemeProvider';
 import { Scale } from '../Transition';
@@ -159,9 +160,9 @@ const LightboxGallery = () => {
             }
 
             list.push(
-                <Box onClick={() => setActiveItem(media[itemIndex])} w={90} h={90} {...(i === 0 ? activeStyle : {})}>
+                <Link onClick={() => setActiveItem(media[itemIndex])} w={90} h={90} {...(i === 0 ? activeStyle : {})}>
                     <Image src={thumbnail} h="100%" />
-                </Box>
+                </Link>
             );
         }
         return list;

@@ -107,7 +107,7 @@ const LightboxGallery = () => {
     }
 
     const activeStyle = {
-        outline: '1px solid rgba(0,0,0,0.8)',
+        outline: '1px solid rgba(255,255,255,0.8)',
         opacity: 0.5,
     };
 
@@ -215,6 +215,7 @@ const LightboxGalleryControls = () => {
         zIndex: theme.zIndices.modal + 1,
         size: 'lg',
         variant: 'outline',
+        color: 'white',
     };
 
     return (

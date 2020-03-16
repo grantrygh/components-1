@@ -12,7 +12,7 @@ export interface IBadge {
     /**
      * The variant of the badge
      */
-    variant?: 'solid' | 'subtle' | 'outline';
+    variant?: 'solid' | 'subtle' | 'outline' | 'hexagon';
 }
 
 export type BadgeProps = IBadge & BoxProps;

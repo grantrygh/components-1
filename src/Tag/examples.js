@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
-import Stack from '../Stack';
-import Tag, { TagLabel, TagCloseButton, TagIcon } from '.';
+import Tag, { TagCloseButton, TagIcon, TagLabel } from '.';
 import Avatar from '../Avatar';
+import Stack from '../Stack';
 
 const stories = storiesOf('Tag', module);
 

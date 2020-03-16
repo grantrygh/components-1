@@ -11,7 +11,7 @@ const Lightbox = props => {
     const { colorMode } = useColorMode();
     const { zIndices } = useTheme();
     const { isOpen, onClose, showControls, onKeyDown, children } = props;
-    const bg = { light: 'white', dark: 'black' };
+    // const bg = { light: 'white', dark: 'black' };
 
     return (
         <Box>
@@ -19,7 +19,7 @@ const Lightbox = props => {
                 {styles => (
                     <Modal isOpen={isOpen} onClose={onClose} preserveScrollBarGap isCentered blockScrollOnMount>
                         {/* solid background ModalOverlay */}
-                        <ModalOverlay opacity={1} bg={bg[colorMode]} />
+                        <ModalOverlay opacity={1} backgroundColor="rgba(11,11,11,0.9)" />
 
                         {/* overlay wrapper for close & navigation button actions */}
                         <ModalOverlay bg="transparent" onKeyDown={onKeyDown}>

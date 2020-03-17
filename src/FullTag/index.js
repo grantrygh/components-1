@@ -3,16 +3,14 @@ import { jsx } from '@emotion/core';
 import useBadgeStyle from '../Badge/styles';
 import Flex from '../Flex';
 import Stack from '../Stack';
-import Tag, { TagIcon, TagLabel } from '../Tag';
+import Tag, { TagCloseButton, TagIcon, TagLabel } from '../Tag';
 
-const FullTag = ({ variant = 'solid', variantColor = 'gray', label, subLabel, rounded, ...rest }) => {
+const FullTag = ({ variant = 'solid', variantColor = 'gray', label, subLabel, onClose, rounded, ...rest }) => {
     // Wrong usage of `variantColor` prop is quite common
     // Let's add a warning hook that validates the passed variantColor
     // useVariantColorWarning('Badge', variantColor);
 
     const badgeStyleProps = useBadgeStyle({ color: variantColor, variant });
-
-    console.log(badgeStyleProps);
 
     const fullStyle = {
         h: '56px',
@@ -43,6 +41,7 @@ const FullTag = ({ variant = 'solid', variantColor = 'gray', label, subLabel, ro
                 </TagLabel>
                 {subLabel && <TagLabel fontSize="xs">{subLabel}</TagLabel>}
             </Stack>
+            {onClose && <TagCloseButton mr={2} onClick={onClose} />}
         </Tag>
     );
 };

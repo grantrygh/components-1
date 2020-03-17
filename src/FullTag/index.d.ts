@@ -13,6 +13,9 @@ export interface IFullTag {
 
     label?: string;
     subLabel?: string;
+
+    // if true, will display a close icon with an onClick action
+    onClose?: () => void;
 }
 
 export type FullTagProps = IFullTag;

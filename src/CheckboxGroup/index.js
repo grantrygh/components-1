@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { Children, cloneElement, useState, useRef, isValidElement } from 'react';
 import { useId } from '@reach/auto-id';
-import Box from '../Box';
+import { Children, cloneElement, isValidElement, useRef, useState } from 'react';
+import { Box } from '../Box';
 
 const CheckboxGroup = ({
     onChange,

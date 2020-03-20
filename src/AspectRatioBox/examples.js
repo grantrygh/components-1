@@ -2,8 +2,8 @@
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import AspectRatioBox from '.';
+import { Box } from '../Box';
 import Image from '../Image';
-import Box from '../Box';
 
 const stories = storiesOf('AspectRatioBox', module);
 stories.add('with video', () => (

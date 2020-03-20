@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { forwardRef } from 'react';
-import Input from '../Input';
+import { Box } from '../Box';
 import { useColorMode } from '../ColorModeProvider';
-import Box from '../Box';
-import splitProps from './utils';
 import Icon from '../Icon/custom';
+import Input from '../Input';
+import splitProps from './utils';
 
 const SelectIconWrapper = forwardRef(function SelectIconWrapper(props, ref) {
     return (

@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
+import React from 'react';
+import { Box } from '../Box';
 import Button from '../Button';
 import Collapse from '../Collapse';
-import Box from '../Box';
-import React from 'react';
 
 const stories = storiesOf('Collapse', module).addDecorator(story => (
     <Box maxW="sm" mx="auto" mt={5}>

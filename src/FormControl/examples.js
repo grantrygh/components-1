@@ -2,14 +2,14 @@
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import FormControl from '.';
-import Box from '../Box';
+import { Box } from '../Box';
+import FormValidationText from '../FormErrorMessage';
 import FormHelperText from '../FormHelperText';
 import FormLabel from '../FormLabel';
 import Input from '../Input';
-import Select from '../Select';
 import { InputLeftAddon } from '../InputAddon';
 import InputGroup from '../InputGroup';
-import FormValidationText from '../FormErrorMessage';
+import Select from '../Select';
 
 const stories = storiesOf('FormControl', module).addDecorator(story => (
     <Box maxWidth="sm" mx="auto" mt={5}>

@@ -1,12 +1,12 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { forwardRef } from 'react';
+import { Box } from '../Box';
 import Icon from '../Icon';
-import Spinner from '../Spinner';
-import useButtonStyle from './styles';
 import PseudoBox from '../PseudoBox';
-import Box from '../Box';
+import Spinner from '../Spinner';
 import { useVariantColorWarning } from '../utils';
+import useButtonStyle from './styles';
 
 const ButtonIcon = ({ icon, ...props }) => {
     if (typeof icon === 'string') {
@@ -48,6 +48,18 @@ const Button = forwardRef(
             colorMode,
         });
         const _isDisabled = isDisabled || isLoading;
+
+        const theme = useTheme();
+
+        getTheme() {
+            if (theme.button) {
+                return theme.button
+            } else {
+                return buttonTheme;
+            }
+        }
+
+        const btnTheme = getTheme();
 
         return (
             <PseudoBox

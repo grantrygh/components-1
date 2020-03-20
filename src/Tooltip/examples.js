@@ -1,9 +1,9 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import Button from '../Button';
-import Box from '../Box';
-import Icon from '../Icon';
 import Tooltip from '.';
+import { Box } from '../Box';
+import Button from '../Button';
+import Icon from '../Icon';
 
 const stories = storiesOf('Tooltip', module);
 stories.addDecorator(story => {

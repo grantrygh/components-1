@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import useAvatarStyle, { avatarSizes } from './styles';
+import { Box } from '../Box';
+import { useColorMode } from '../ColorModeProvider';
 import { useHasImageLoaded } from '../Image';
 import { useTheme } from '../ThemeProvider';
-import { useColorMode } from '../ColorModeProvider';
-import Box from '../Box';
+import useAvatarStyle, { avatarSizes } from './styles';
 
 export const AvatarBadge = props => {
     const { colorMode } = useColorMode();

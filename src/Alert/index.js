@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { createContext, useContext } from 'react';
-import Box from '../Box';
+import { Box } from '../Box';
 import Icon from '../Icon';
 import useAlertStyle, { useAlertIconStyle } from './styles';
 

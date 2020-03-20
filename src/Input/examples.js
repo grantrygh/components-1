@@ -1,7 +1,7 @@
+import { boolean, select, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import React from 'react';
-import Box from '../Box';
+import { Box } from '../Box';
 import Input from '../Input';
 
 const colors = ['blue.500', 'red.200', 'orange.300', 'teal.600', 'tomato', '#fd5'];

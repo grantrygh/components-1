@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { forwardRef } from 'react';
-import Icon from '../Icon';
+import { Box } from '../Box';
 import Button from '../Button';
-import Box from '../Box';
+import Icon from '../Icon';
 
 const IconButton = forwardRef(({ icon, isRound, 'aria-label': ariaLabel, ...rest }, ref) => {
     // Remove some props before passing it to IconButton

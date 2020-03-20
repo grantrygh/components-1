@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
-import Box from '../Box';
+import { Box } from '../Box';
 import { Form, useFormField } from './';
 
 const stories = storiesOf('Form', module);

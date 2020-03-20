@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { forwardRef, Children, cloneElement, isValidElement } from 'react';
-import Box from '../Box';
+import { Children, cloneElement, forwardRef, isValidElement } from 'react';
+import { Box } from '../Box';
 import Icon from '../Icon';
 import PseudoBox from '../PseudoBox';
 

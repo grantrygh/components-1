@@ -1,7 +1,7 @@
 /** @jsx jsx */
+import { useColorMode } from '../ColorModeProvider';
 import { colorEmphasis } from '../theme/colors-utils';
 import { useTheme } from '../ThemeProvider';
-import { useColorMode } from '../ColorModeProvider';
 
 const leftAccent = props => {
     const { color } = props;

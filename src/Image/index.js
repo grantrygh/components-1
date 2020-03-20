@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { useEffect, useState, forwardRef, useRef } from 'react';
-import Box from '../Box';
+import { forwardRef, useEffect, useRef, useState } from 'react';
+import { Box } from '../Box';
 
 export const useHasImageLoaded = ({ src, onLoad, onError }) => {
     const isMounted = useRef(true);

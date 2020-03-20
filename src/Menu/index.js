@@ -2,15 +2,15 @@
 import { jsx } from '@emotion/core';
 import { useId } from '@reach/auto-id';
 import { createContext, forwardRef, useContext, useEffect, useRef, useState } from 'react';
-import Box from '../Box';
+import { Box } from '../Box';
+import { useColorMode } from '../ColorModeProvider';
+import Divider from '../Divider';
+import Popper from '../Popper';
 import PseudoBox from '../PseudoBox';
 import Text from '../Text';
-import { useColorMode } from '../ColorModeProvider';
 import usePrevious from '../usePrevious';
 import { getFocusables, useForkRef, wrapEvent } from '../utils';
 import { useMenuItemStyle, useMenuListStyle } from './styles';
-import Divider from '../Divider';
-import Popper from '../Popper';
 
 const MenuContext = createContext();
 
@@ -412,5 +412,5 @@ MenuGroup.displayName = 'MenuGroup';
 //////////////////////////////////////////////////////////////////////////////////////////
 
 export default Menu;
-export { MenuButton, MenuDivider, MenuGroup, MenuList, MenuItem };
 export * from './MenuOption';
+export { MenuButton, MenuDivider, MenuGroup, MenuList, MenuItem };

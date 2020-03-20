@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react';
-import Kbd from '.';
 import React from 'react';
-import Box from '../Box';
+import Kbd from '.';
+import { Box } from '../Box';
 
 const stories = storiesOf('Keyboard', module);
 

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { Children, cloneElement, isValidElement } from 'react';
-import Box from '../Box';
+import { Box } from '../Box';
 import Input from '../Input';
 import { inputSizes } from '../Input/styles';
 import { InputLeftElement, InputRightElement } from '../InputElement';

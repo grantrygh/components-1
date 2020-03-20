@@ -1,13 +1,13 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { forwardRef, useEffect, useRef } from 'react';
-import Box from '../Box';
+import { Box } from '../Box';
 import { useColorMode } from '../ColorModeProvider';
 import ControlBox from '../ControlBox';
 import Icon from '../Icon';
+import { useForkRef, useVariantColorWarning } from '../utils';
 import VisuallyHidden from '../VisuallyHidden';
 import useCheckboxStyle from './styles';
-import { useForkRef, useVariantColorWarning } from '../utils';
 
 const Checkbox = forwardRef(
     (

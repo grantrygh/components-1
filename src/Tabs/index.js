@@ -1,12 +1,12 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { Children, cloneElement, createContext, forwardRef, useContext, useRef, useState, isValidElement } from 'react';
 import { useId } from '@reach/auto-id';
-import { assignRef, useVariantColorWarning } from '../utils';
-import { useTabStyle, useTabListStyle } from './styles';
-import PseudoBox from '../PseudoBox';
+import { Children, cloneElement, createContext, forwardRef, isValidElement, useContext, useRef, useState } from 'react';
+import { Box } from '../Box';
 import Flex from '../Flex';
-import Box from '../Box';
+import PseudoBox from '../PseudoBox';
+import { assignRef, useVariantColorWarning } from '../utils';
+import { useTabListStyle, useTabStyle } from './styles';
 
 const Tab = forwardRef((props, ref) => {
     const { isSelected, isDisabled, id, size, ...rest } = props;

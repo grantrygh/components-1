@@ -1,9 +1,9 @@
-import React from 'react';
 import { storiesOf } from '@storybook/react';
+import React from 'react';
 import Stack from '.';
+import { Box } from '../Box';
 import Heading from '../Heading';
 import Text from '../Text';
-import Box from '../Box';
 
 const stories = storiesOf('Stack', module);
 

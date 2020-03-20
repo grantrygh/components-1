@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import useBadgeStyle from '../Badge/styles';
+import { Box } from '../Box';
 import Icon from '../Icon';
-import Box from '../Box';
 import PseudoBox from '../PseudoBox';
 import { useVariantColorWarning } from '../utils';
 

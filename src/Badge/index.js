@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import useBadgeStyle from './styles';
-import Box from '../Box';
 import { forwardRef } from 'react';
+import { Box } from '../Box';
 import { useVariantColorWarning } from '../utils';
+import useBadgeStyle from './styles';
 
 const Badge = forwardRef(({ variantColor = 'gray', variant = 'subtle', ...props }, ref) => {
     // Wrong usage of `variantColor` prop is quite common

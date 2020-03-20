@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import Breadcrumb, { BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from '.';
-import Box from '../Box';
+import { Box } from '../Box';
 import Icon from '../Icon';
 
 const stories = storiesOf('Breadcrumb', module).addDecorator(story => (

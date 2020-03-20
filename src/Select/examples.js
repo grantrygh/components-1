@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import Select from '.';
-import Box from '../Box';
+import { Box } from '../Box';
 import Stack from '../Stack';
 
 const stories = storiesOf('Select', module);

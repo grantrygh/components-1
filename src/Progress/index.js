@@ -1,9 +1,9 @@
 /** @jsx jsx */
-import { jsx, keyframes, css } from '@emotion/core';
+import { css, jsx, keyframes } from '@emotion/core';
+import { Box } from '../Box';
 import { useColorMode } from '../ColorModeProvider';
-import Box from '../Box';
-import { generateStripe } from '../theme/colors-utils';
 import { valueToPercent } from '../Slider';
+import { generateStripe } from '../theme/colors-utils';
 
 const stripe = keyframes`
   from { background-position: 1rem 0}

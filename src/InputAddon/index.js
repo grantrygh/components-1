@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import Box from '../Box';
-import useInputStyle from '../Input/styles';
+import { Box } from '../Box';
 import { useColorMode } from '../ColorModeProvider';
+import useInputStyle from '../Input/styles';
 
 const InputAddon = ({ placement = 'left', size = 'md', ...props }) => {
     const { colorMode } = useColorMode();

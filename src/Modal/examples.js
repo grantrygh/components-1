@@ -1,14 +1,14 @@
 import { storiesOf } from '@storybook/react';
-import React, { useState, Fragment, useRef } from 'react';
-import Box from '../Box';
-import Button from '../Button';
-import FormControl from '../FormControl';
-import Input from '../Input';
-import FormLabel from '../FormLabel';
-import CloseButton from '../CloseButton';
-import { Modal, ModalContent, ModalOverlay, ModalCloseButton, ModalBody, ModalFooter, ModalHeader } from '.';
+import React, { Fragment, useRef, useState } from 'react';
 import Lorem from 'react-lorem-component';
-import { SlideIn, Scale } from '../Transition';
+import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '.';
+import { Box } from '../Box';
+import Button from '../Button';
+import CloseButton from '../CloseButton';
+import FormControl from '../FormControl';
+import FormLabel from '../FormLabel';
+import Input from '../Input';
+import { Scale, SlideIn } from '../Transition';
 import useDisclosure from '../useDisclosure';
 
 const stories = storiesOf('Modal', module);

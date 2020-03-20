@@ -5,6 +5,7 @@ import {
     background,
     border,
     color,
+    compose,
     flexbox,
     grid,
     layout,
@@ -12,7 +13,6 @@ import {
     shadow,
     space,
     typography,
-    compose,
 } from 'styled-system';
 import extraConfig from './config';
 
@@ -60,7 +60,7 @@ const shouldForwardProp = createShouldForwardProp([
  */
 const nativeHTMLPropAlias = ['htmlWidth', 'htmlHeight'];
 
-const Box = styled('div', {
+export const Box = styled('div', {
     shouldForwardProp: prop => {
         if (nativeHTMLPropAlias.includes(prop)) {
             return true;
@@ -69,7 +69,3 @@ const Box = styled('div', {
         }
     },
 })(truncate, systemProps);
-
-Box.displayName = 'Box';
-
-export default Box;

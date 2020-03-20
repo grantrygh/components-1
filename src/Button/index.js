@@ -49,18 +49,6 @@ const Button = forwardRef(
         });
         const _isDisabled = isDisabled || isLoading;
 
-        const theme = useTheme();
-
-        getTheme() {
-            if (theme.button) {
-                return theme.button
-            } else {
-                return buttonTheme;
-            }
-        }
-
-        const btnTheme = getTheme();
-
         return (
             <PseudoBox
                 disabled={_isDisabled}

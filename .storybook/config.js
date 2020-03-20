@@ -1,9 +1,10 @@
 import { addDecorator, configure } from '@storybook/react';
 import React, { useState } from 'react';
-import { CSSReset, ThemeProvider } from '../src';
 import { Box } from '../src/Box';
 import Button from '../src/Button';
 import { DarkMode, LightMode } from '../src/ColorModeProvider';
+import CSSReset from '../src/CSSReset';
+import ThemeProvider from '../src/ThemeProvider';
 
 const req = require.context('../src', true, /examples\.(js|mdx|ts|tsx)$/);
 

@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/react';
 import React, { Fragment, useRef, useState } from 'react';
 import Lorem from 'react-lorem-component';
 import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '.';
-import { Box } from '../Box';
+import Box from '../Box';
 import Button from '../Button';
 import CloseButton from '../CloseButton';
 import FormControl from '../FormControl';

@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react';
 import React, { Fragment } from 'react';
 import Radio from '.';
-import { Box } from '../Box';
+import Box from '../Box';
 import RadioGroup from '../RadioGroup';
 
 const stories = storiesOf('Radio', module);

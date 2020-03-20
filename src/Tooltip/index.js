@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/core';
 import { useId } from '@reach/auto-id';
 import { Children, cloneElement, Fragment, useRef } from 'react';
-import { Box } from '../Box';
+import Box from '../Box';
 import { useColorMode } from '../ColorModeProvider';
 import Popper, { PopperArrow } from '../Popper';
 import useDisclosure from '../useDisclosure';

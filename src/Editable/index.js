@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { createContext, forwardRef, useContext, useEffect, useRef, useState } from 'react';
-import { Box } from '../Box';
+import Box from '../Box';
 import PseudoBox from '../PseudoBox';
 
 const EditableContext = createContext();

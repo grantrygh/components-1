@@ -8,7 +8,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { createContext, forwardRef, useCallback, useContext, useRef, useState } from 'react';
-import { Box } from '../Box';
+import Box from '../Box';
 import PseudoBox from '../PseudoBox';
 import { useForkRef } from '../utils';
 import useSliderStyle from './styles';

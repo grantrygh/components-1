@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/core';
 import { useId } from '@reach/auto-id';
 import { Children, cloneElement, createContext, forwardRef, isValidElement, useContext, useRef, useState } from 'react';
-import { Box } from '../Box';
+import Box from '../Box';
 import Flex from '../Flex';
 import PseudoBox from '../PseudoBox';
 import { assignRef, useVariantColorWarning } from '../utils';

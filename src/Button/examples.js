@@ -2,7 +2,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import Button from '.';
-import { Box } from '../Box';
+import Box from '../Box';
 import ButtonGroup from '../ButtonGroup';
 
 const stories = storiesOf('Button', module);

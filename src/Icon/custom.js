@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import Icon from '.';
-import { Box } from '../Box';
+import Box from '../Box';
 
 const EnhancedIcon = ({ icon, ...props }) => {
     if (typeof icon === 'string') {

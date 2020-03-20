@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import AspectRatioBox from '.';
-import { Box } from '../Box';
+import Box from '../Box';
 import Image from '../Image';
 
 const stories = storiesOf('AspectRatioBox', module);

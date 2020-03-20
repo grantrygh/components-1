@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { Box } from '../Box';
+import Box from '../Box';
 import Flex from '../Flex';
 import Icon from '../Icon';
 import Text from '../Text';

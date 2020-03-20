@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import { Box } from '../Box';
+import Box from '../Box';
 import Stack from '../Stack';
 import Switch from '../Switch';
 

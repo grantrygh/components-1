@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 import { useId } from '@reach/auto-id';
 import { Children, cloneElement, forwardRef, isValidElement, useRef, useState } from 'react';
 import { MenuGroup, useMenuContext } from '.';
-import { Box } from '../Box';
+import Box from '../Box';
 import Icon from '../Icon';
 import PseudoBox from '../PseudoBox';
 import { useMenuItemStyle } from './styles';

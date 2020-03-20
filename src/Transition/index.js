@@ -105,6 +105,7 @@ export const Scale = ({ in: inProp, initialScale = 0.97, duration = 150, childre
                 children({
                     willChange: 'opacity, transform',
                     ...styles,
+                    ...rest,
                 }))
         }
     </Transition>
@@ -125,6 +126,7 @@ export const SlideIn = ({ in: inProp, offset = '10px', duration = 150, children,
                 children({
                     willChange: 'opacity, transform',
                     ...styles,
+                    ...rest,
                 }))
         }
     </Transition>

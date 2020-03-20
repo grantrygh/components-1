@@ -2,6 +2,7 @@
 import { jsx } from '@emotion/core';
 import { forwardRef, useEffect, useRef, useState } from 'react';
 import { Box } from '../Box';
+import { LightboxMedia } from '../Lightbox';
 
 export const useHasImageLoaded = ({ src, onLoad, onError }) => {
     const isMounted = useRef(true);
@@ -42,7 +43,7 @@ const NativeImage = forwardRef(({ htmlWidth, htmlHeight, alt, ...props }, ref) =
     <img width={htmlWidth} height={htmlHeight} ref={ref} alt={alt} {...props} />
 ));
 
-const Image = forwardRef(({ src, fallbackSrc, onError, onLoad, ignoreFallback, ...props }, ref) => {
+const Image = forwardRef(({ src, fallbackSrc, onError, onLoad, ignoreFallback, withLightbox, ...props }, ref) => {
     const hasLoaded = useHasImageLoaded({ src, onLoad, onError });
     let imageProps;
     if (ignoreFallback) {
@@ -50,6 +51,15 @@ const Image = forwardRef(({ src, fallbackSrc, onError, onLoad, ignoreFallback, .
     } else {
         imageProps = { src: hasLoaded ? src : fallbackSrc };
     }
+
+    if (withLightbox) {
+        return (
+            <LightboxMedia src={src || fallbackSrc} type="image" cover={src || fallbackSrc}>
+                <Box as={NativeImage} ref={ref} {...imageProps} {...props} />
+            </LightboxMedia>
+        );
+    }
+
     return <Box as={NativeImage} ref={ref} {...imageProps} {...props} />;
 });
 

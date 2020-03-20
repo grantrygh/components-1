@@ -1,9 +1,9 @@
-import { IBadge } from '../Badge';
 import * as React from 'react';
+import { IBadge } from '../Badge';
 import { BoxProps } from '../Box';
-import { PseudoBoxProps } from '../PseudoBox';
-import { IconProps } from '../Icon';
 import { Omit } from '../common-types';
+import { IconProps } from '../Icon';
+import { PseudoBoxProps } from '../PseudoBox';
 
 export interface ITag {
     /**

@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import { LightboxGalleryProvider, LightboxMedia } from '.';
+import { LightboxGalleryProvider } from '.';
 import { Box } from '../Box';
 import Flex from '../Flex';
 import Image from '../Image';
@@ -20,9 +20,7 @@ stories.add('Default', () => {
 
                     <Flex>
                         {images.map(src => (
-                            <LightboxMedia src={src} key={src}>
-                                <Image src={src} htmlHeight="150px" />
-                            </LightboxMedia>
+                            <Image src={src} withLightbox htmlHeight="150px" />
                         ))}
                     </Flex>
                 </Box>
@@ -37,7 +35,7 @@ stories.add('With skip', () => {
     const imagesSecond = ['http://placeimg.com/300/300', 'http://placeimg.com/350/350'];
 
     return (
-        <Box maxWidth="sm" mx="auto" mt={3}>
+        <Box maxWidth="lg" mx="auto" mt={3}>
             <LightboxGalleryProvider>
                 <Text>Page 2 media items are skipped from showing in lightbox</Text>
                 <Tabs size="md" color="pink" isFitted>
@@ -50,18 +48,14 @@ stories.add('With skip', () => {
                         <TabPanel>
                             <Flex>
                                 {images.map(src => (
-                                    <LightboxMedia src={src} key={src}>
-                                        <Image src={src} />
-                                    </LightboxMedia>
+                                    <Image withLightbox src={src} />
                                 ))}
                             </Flex>
                         </TabPanel>
                         <TabPanel>
                             <Flex>
                                 {imagesSecond.map(src => (
-                                    <LightboxMedia src={src} skip>
-                                        <Image src={src} />
-                                    </LightboxMedia>
+                                    <Image src={src} />
                                 ))}
                             </Flex>
                         </TabPanel>
@@ -98,9 +92,7 @@ stories.add('Large image list', () => {
 
                     <Flex wrap="wrap">
                         {images.map(src => (
-                            <LightboxMedia src={src} key={src}>
-                                <Image src={src} htmlHeight="150px" />
-                            </LightboxMedia>
+                            <Image src={src} withLightbox htmlHeight="150px" key={src} />
                         ))}
                     </Flex>
                 </Box>

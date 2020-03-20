@@ -1,6 +1,6 @@
+import { useColorMode } from '../ColorModeProvider';
 import { addOpacity, generateAlphaColors, get } from '../theme/colors-utils';
 import { useTheme } from '../ThemeProvider';
-import { useColorMode } from '../ColorModeProvider';
 
 const solidStyle = ({ theme: { colors }, color }) => {
     const _color = colors[color] && colors[color][500];
@@ -13,6 +13,29 @@ const solidStyle = ({ theme: { colors }, color }) => {
         dark: {
             bg: darkModeBg,
             color: 'whiteAlpha.800',
+        },
+    };
+};
+
+const hexagonStyle = ({ theme: { colors }, color, size = 40 }) => {
+    const _color = colors[color] && colors[color][500];
+
+    const hexStyle = {
+        fontSize: `${size}px`,
+        lineHeight: `${size}px`,
+        style: { fill: _color },
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: 'white',
+    };
+
+    return {
+        light: {
+            ...hexStyle,
+        },
+        dark: {
+            ...hexStyle,
         },
     };
 };
@@ -59,6 +82,8 @@ const variantProps = props => {
             return subtleStyle(props)[colorMode];
         case 'outline':
             return outlineStyle(props)[colorMode];
+        case 'hexagon':
+            return hexagonStyle(props)[colorMode];
         default:
             return {};
     }

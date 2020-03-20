@@ -1,5 +1,5 @@
-import { BoxProps } from '../Box';
 import * as React from 'react';
+import { BoxProps } from '../Box';
 
 interface IImage {
     /**
@@ -35,6 +35,10 @@ interface IImage {
      * Opt out of the `fallbackSrc` logic and use the `Image` directly
      */
     ignoreFallback?: boolean;
+    /**
+     * If true, image will be included in the lightbox, and serve as a trigger to open the lightbox.
+     */
+    withLightbox?: boolean;
 }
 
 export type ImageProps = IImage & BoxProps;

@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 import Badge from '.';
 import { Box } from '../Box';
+import Icon from '../Icon';
 
 const stories = storiesOf('Badge', module);
 stories.addDecorator(withKnobs);
@@ -48,6 +49,21 @@ stories.add('Outline Badges', () => {
                     {color}
                 </Badge>
             ))}
+        </React.Fragment>
+    );
+});
+
+stories.add('Hexagonal Badges', () => {
+    return (
+        <React.Fragment>
+            {['gray', 'green', 'red', 'orange', 'purple', 'teal'].map((color, i) => (
+                <Badge variantColor={color} variant="hexagon" mr={2} size={60}>
+                    {i}
+                </Badge>
+            ))}
+            <Badge variantColor={'blue'} variant="hexagon" mr={2} size={60}>
+                <Icon name="repeat-clock" />
+            </Badge>
         </React.Fragment>
     );
 });

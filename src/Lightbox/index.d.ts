@@ -13,6 +13,10 @@ export interface ILightbox {
      * (For Gallery) If 'true', show Prev and Next arrows for media navigation
      */
     showControls?: boolean;
+    /**
+     * Allows custom keydown events for lightbox. Gallery uses for arrow onPrev, onNext arrows
+     */
+    onKeyDown?: (event: React.KeyboardEvent) => void;
 }
 
 export interface ILightboxMedia {
@@ -20,12 +24,6 @@ export interface ILightboxMedia {
      *  media item src
      */
     src: string;
-
-    /**
-     *  if true, the media item will not be registered to the lightbox, nor will open the lightbox onClick
-     *  defaults to false
-     */
-    skip?: boolean;
 }
 
 export type LightboxProps = ILightbox;
@@ -41,7 +39,10 @@ declare const LightboxGalleryProvider: React.FC;
  *  unregister(mediaItem): function to remove an item from the lightbox
  *  media[]: array of current items in the lightbox
  *  activeItem: current active lightbox item. lightbox will not display if there is no activeItem
+ *  activeIndex: index of active item in array
  *  setActiveItem(mediaItem): set new activeItem
+ *  onPrev: set active item to current index - 1
+ *  onNext: set active item to current index + 1
  */
 declare function useGalleryContext<T>(value: T): T;
 

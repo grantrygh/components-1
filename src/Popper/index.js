@@ -7,22 +7,12 @@
 
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-
-import React, {
-    forwardRef,
-    useEffect,
-    useLayoutEffect,
-    useRef,
-    useImperativeHandle,
-    useState,
-    useCallback,
-} from 'react';
-
 import PopperJS from 'popper.js';
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react';
+import { Box } from '../Box';
 import Portal from '../Portal';
 import PseudoBox from '../PseudoBox';
-import Box from '../Box';
-import { useForkRef, setRef, createChainedFunction } from '../utils';
+import { createChainedFunction, setRef, useForkRef } from '../utils';
 import getPopperArrowStyle from './styles';
 
 /**

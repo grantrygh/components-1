@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { Children, cloneElement, isValidElement } from 'react';
-import Box from '../Box';
+import { Box } from '../Box';
 
 const ButtonGroup = ({ size, variantColor, variant, isAttached, spacing = 2, children, ...rest }) => {
     const clones = Children.map(children, (child, index) => {

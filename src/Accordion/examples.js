@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react';
 import { storiesOf } from '@storybook/react';
-import { Accordion, AccordionItem, AccordionHeader, AccordionIcon, AccordionPanel } from '.';
+import React, { Fragment } from 'react';
+import { Accordion, AccordionHeader, AccordionIcon, AccordionItem, AccordionPanel } from '.';
+import { Box } from '../Box';
 import Icon from '../Icon';
-import Box from '../Box';
 
 const stories = storiesOf('Accordion', module).addDecorator(story => (
     <Box maxW="sm" mx="auto" mt={5}>

@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { useId } from '@reach/auto-id';
-import { createContext, forwardRef, useContext, useRef, useState, Children, cloneElement, isValidElement } from 'react';
-import Box from '../Box';
+import { Children, cloneElement, createContext, forwardRef, isValidElement, useContext, useRef, useState } from 'react';
+import { Box } from '../Box';
 import Collapse from '../Collapse';
-import PseudoBox from '../PseudoBox';
 import Icon from '../Icon';
+import PseudoBox from '../PseudoBox';
 
 const Accordion = ({ allowMultiple, allowToggle, index, defaultIndex, onChange, children, ...rest }) => {
     const initializeState = () => {

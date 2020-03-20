@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
-import Box from '../Box';
-import Stack from '../Stack';
 import Progress from '.';
+import { Box } from '../Box';
+import Stack from '../Stack';
 
 const stories = storiesOf('Progress', module).addDecorator(story => (
     <Box maxWidth="400px" mx="auto" mt={8} p={3}>

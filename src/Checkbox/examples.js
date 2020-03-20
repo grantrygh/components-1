@@ -1,9 +1,9 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import Box from '../Box';
+import { Box } from '../Box';
 import Checkbox from '../Checkbox';
-import Stack from '../Stack';
 import FormValidationText from '../FormErrorMessage';
+import Stack from '../Stack';
 
 const stories = storiesOf('Checkbox', module);
 

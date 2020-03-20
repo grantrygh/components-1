@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/core';
 import { useState } from 'react';
 import Avatar from '../Avatar';
-import Box from '../Box';
+import { Box } from '../Box';
 import Flex from '../Flex';
 import Icon from '../Icon';
 import Link from '../Link';

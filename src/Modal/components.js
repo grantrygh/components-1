@@ -1,15 +1,14 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
+import styled from '@emotion/styled-base';
 import { DialogContent, DialogOverlay } from '@reach/dialog';
 import { forwardRef } from 'react';
 import { Transition } from 'react-spring/renderprops.cjs';
-import { useTheme } from '../ThemeProvider';
-import { useColorMode } from '../ColorModeProvider';
-import Box from '../Box';
-import Flex from '../Flex';
-import styled from '@emotion/styled-base';
-import { systemProps } from '../Box';
+import { Box, systemProps } from '../Box';
 import extraConfig from '../Box/config';
+import { useColorMode } from '../ColorModeProvider';
+import Flex from '../Flex';
+import { useTheme } from '../ThemeProvider';
 
 const ModalHeader = props => (
     <Box px={6} py={4} as="header" position="relative" fontSize="xl" fontWeight="semibold" {...props} />

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import Box from '../Box';
 import { forwardRef } from 'react';
+import { Box } from '../Box';
 
 const Divider = forwardRef(({ orientation, ...props }, ref) => {
     const borderProps =

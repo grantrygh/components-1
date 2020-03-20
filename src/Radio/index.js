@@ -1,12 +1,12 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { forwardRef } from 'react';
-import ControlBox from '../ControlBox';
-import { useColorMode } from '../ColorModeProvider';
-import VisuallyHidden from '../VisuallyHidden';
+import { Box } from '../Box';
 import useCheckboxStyle from '../Checkbox/styles';
-import Box from '../Box';
+import { useColorMode } from '../ColorModeProvider';
+import ControlBox from '../ControlBox';
 import { useVariantColorWarning } from '../utils';
+import VisuallyHidden from '../VisuallyHidden';
 
 const Radio = forwardRef(
     (

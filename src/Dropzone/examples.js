@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react';
 import React, { useState } from 'react';
 import Dropzone from '.';
-import Box from '../Box';
+import { Box } from '../Box';
 import Text from '../Text';
 
 const stories = storiesOf('Dropzone', module);

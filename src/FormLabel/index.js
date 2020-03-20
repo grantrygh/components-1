@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { forwardRef } from 'react';
-import Box from '../Box';
-import { useFormControl } from '../FormControl';
+import { Box } from '../Box';
 import { useColorMode } from '../ColorModeProvider';
+import { useFormControl } from '../FormControl';
 
 export const RequiredIndicator = props => {
     const { colorMode } = useColorMode();

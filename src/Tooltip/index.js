@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { cloneElement, useRef, Children, Fragment } from 'react';
-import { useColorMode } from '../ColorModeProvider';
-import Box from '../Box';
-import useDisclosure from '../useDisclosure';
 import { useId } from '@reach/auto-id';
+import { Children, cloneElement, Fragment, useRef } from 'react';
+import { Box } from '../Box';
+import { useColorMode } from '../ColorModeProvider';
 import Popper, { PopperArrow } from '../Popper';
+import useDisclosure from '../useDisclosure';
 import VisuallyHidden from '../VisuallyHidden';
 
 const wrapEvent = (child, theirHandler, ourHandler) => event => {

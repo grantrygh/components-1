@@ -2,12 +2,11 @@
 import { jsx } from '@emotion/core';
 import { useId } from '@reach/auto-id';
 import { Children, cloneElement, createContext, useContext, useEffect, useRef, useState } from 'react';
-import Box from '../Box';
+import { Box } from '../Box';
 import CloseButton from '../CloseButton';
 import { useColorMode } from '../ColorModeProvider';
 import Popper, { PopperArrow } from '../Popper';
 import usePrevious from '../usePrevious';
-
 import { wrapEvent } from '../utils';
 
 /**

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { createContext, useContext, forwardRef } from 'react';
-import Box from '../Box';
+import { createContext, forwardRef, useContext } from 'react';
+import { Box } from '../Box';
 
 export const useFormControl = props => {
     const context = useFormControlContext();

@@ -7,11 +7,11 @@
 
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { forwardRef, useRef, useState, useCallback, createContext, useContext } from 'react';
-import Box from '../Box';
-import useSliderStyle from './styles';
+import { createContext, forwardRef, useCallback, useContext, useRef, useState } from 'react';
+import { Box } from '../Box';
 import PseudoBox from '../PseudoBox';
 import { useForkRef } from '../utils';
+import useSliderStyle from './styles';
 
 export function valueToPercent(value, min, max) {
     return ((value - min) * 100) / (max - min);

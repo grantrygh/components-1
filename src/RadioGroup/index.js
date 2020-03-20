@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { Children, cloneElement, useState, useRef, forwardRef, useImperativeHandle, isValidElement } from 'react';
 import { useId } from '@reach/auto-id';
-import Box from '../Box';
+import { Children, cloneElement, forwardRef, isValidElement, useImperativeHandle, useRef, useState } from 'react';
+import { Box } from '../Box';
 
 const RadioGroup = forwardRef(
     (

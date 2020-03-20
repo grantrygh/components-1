@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx, ThemeContext } from '@emotion/core';
 import styled from '@emotion/styled';
-import { useContext, forwardRef } from 'react';
-import Box from '../Box';
+import { forwardRef, useContext } from 'react';
+import { Box } from '../Box';
 
 const Svg = styled(Box)`
     flex-shrink: 0;

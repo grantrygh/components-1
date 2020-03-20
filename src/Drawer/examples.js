@@ -1,9 +1,9 @@
 import { storiesOf } from '@storybook/react';
-import React, { useState, Fragment, useRef } from 'react';
-import { Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton } from '.';
+import React, { Fragment, useRef, useState } from 'react';
+import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay } from '.';
+import { Box } from '../Box';
 import Button from '../Button';
 import Input from '../Input';
-import Box from '../Box';
 
 const stories = storiesOf('Drawer', module);
 stories.addDecorator(story => {

@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx, keyframes } from '@emotion/core';
-import { useColorMode } from '../ColorModeProvider';
-import Box from '../Box';
 import { forwardRef } from 'react';
+import { Box } from '../Box';
+import { useColorMode } from '../ColorModeProvider';
 
 const circularProgressCircle = keyframes`
   0% {
@@ -119,7 +119,7 @@ function getComputedProps({ min, max, size, value, angle, thickness, trackColor,
     };
 }
 
-const CircularProgress = forwardRef((props, ref) => {
+export const CircularProgress = forwardRef((props, ref) => {
     const {
         size = '48px',
         max = 100,
@@ -162,7 +162,3 @@ const CircularProgress = forwardRef((props, ref) => {
         </Box>
     );
 });
-
-CircularProgress.displayName = 'CircularProgress';
-
-export default CircularProgress;

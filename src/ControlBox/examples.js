@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
-import VisuallyHidden from '../VisuallyHidden';
 import ControlBox from '.';
-import Box from '../Box';
+import { Box } from '../Box';
 import Icon from '../Icon';
+import VisuallyHidden from '../VisuallyHidden';
 const stories = storiesOf('ControlBox', module);
 
 const Checkbox = props => {

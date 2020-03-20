@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react';
+import { Box } from '../Box';
+import Flex from '../Flex';
 import Icon from '../Icon';
 import Text from '../Text';
-import Box from '../Box';
-import Flex from '../Flex';
 
 const StatLabel = forwardRef((props, ref) => <Text ref={ref} fontWeight="medium" fontSize="sm" {...props} />);
 

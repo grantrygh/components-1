@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import Box from '../Box';
-import { NumberInput, NumberInputField, NumberInputStepper, NumberDecrementStepper, NumberIncrementStepper } from '.';
+import { storiesOf } from '@storybook/react';
 import { useState } from 'react';
+import { NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper } from '.';
+import { Box } from '../Box';
 
 const stories = storiesOf('NumberInput', module);
 

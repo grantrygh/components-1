@@ -4,27 +4,27 @@ import React, { useRef, useState } from 'react';
 import FocusLock from 'react-focus-lock/dist/cjs';
 import {
     Popover,
+    PopoverArrow,
+    PopoverBody,
     PopoverCloseButton,
     PopoverContent,
-    PopoverArrow,
-    PopoverTrigger,
-    PopoverBody,
     PopoverFooter,
     PopoverHeader,
+    PopoverTrigger,
 } from '.';
-import Button from '../Button';
 import Avatar from '../Avatar';
-import Box from '../Box';
-import Text from '../Text';
 import Badge from '../Badge';
-import Link from '../Link';
+import { Box } from '../Box';
+import Button from '../Button';
 import ButtonGroup from '../ButtonGroup';
 import { DarkMode } from '../ColorModeProvider';
-import Stack from '../Stack';
 import FormControl from '../FormControl';
 import FormLabel from '../FormLabel';
-import Input from '../Input';
 import IconButton from '../IconButton';
+import Input from '../Input';
+import Link from '../Link';
+import Stack from '../Stack';
+import Text from '../Text';
 
 const stories = storiesOf('Popover', module);
 

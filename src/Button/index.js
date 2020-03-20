@@ -1,12 +1,12 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { forwardRef } from 'react';
+import { Box } from '../Box';
 import Icon from '../Icon';
-import Spinner from '../Spinner';
-import useButtonStyle from './styles';
 import PseudoBox from '../PseudoBox';
-import Box from '../Box';
+import Spinner from '../Spinner';
 import { useVariantColorWarning } from '../utils';
+import useButtonStyle from './styles';
 
 const ButtonIcon = ({ icon, ...props }) => {
     if (typeof icon === 'string') {

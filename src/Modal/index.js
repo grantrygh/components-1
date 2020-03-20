@@ -4,7 +4,7 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import exenv from 'exenv';
 import React, { createContext, forwardRef, useCallback, useContext, useEffect, useRef } from 'react';
 import FocusLock from 'react-focus-lock/dist/cjs';
-import Box from '../Box';
+import { Box } from '../Box';
 import CloseButton from '../CloseButton';
 import { useColorMode } from '../ColorModeProvider';
 import Portal from '../Portal';

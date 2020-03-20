@@ -1,6 +1,6 @@
+import * as React from 'react';
 import { BoxProps } from '../Box';
 import { IconProps } from '../Icon';
-import * as React from 'react';
 
 export interface IAlert {
     /**

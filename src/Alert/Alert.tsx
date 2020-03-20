@@ -1,9 +1,7 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
-import { createContext, useContext } from 'react';
+import React, { createContext, useContext } from 'react';
 import Box from '../Box';
 import Icon from '../Icon';
-import useAlertStyle, { useAlertIconStyle } from './styles';
+import { useAlertIconStyle, useAlertStyle } from './styles';
 
 export const statuses = {
     info: { icon: 'info', color: 'blue' },
@@ -12,14 +10,12 @@ export const statuses = {
     error: { icon: 'warning', color: 'red' },
 };
 
-const AlertContext = createContext();
-const useAlertContext = () => {
-    const context = useContext(AlertContext);
-    if (context === undefined) {
-        throw new Error('useAlertContext must be used within a AlertContextProvider');
-    }
-    return context;
-};
+interface IAlertContext {
+    status?: string;
+    variant?: string;
+}
+
+const AlertContext = createContext<IAlertContext>({});
 
 const Alert = ({ status = 'info', variant = 'subtle', ...rest }) => {
     const alertStyleProps = useAlertStyle({
@@ -40,7 +36,7 @@ const AlertTitle = props => <Box fontWeight="bold" lineHeight="normal" {...props
 const AlertDescription = props => <Box {...props} />;
 
 const AlertIcon = props => {
-    const { status, variant } = useAlertContext();
+    const { status, variant } = useContext(AlertContext);
     const iconStyleProps = useAlertIconStyle({
         variant,
         color: statuses[status] && statuses[status]['color'],

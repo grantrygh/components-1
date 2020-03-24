@@ -2,7 +2,6 @@
 import { jsx } from '@emotion/core';
 import Box from '../Box';
 import Button from '../Button';
-import { useColorMode } from '../ColorModeProvider';
 import Heading from '../Heading';
 import Image from '../Image';
 import Link from '../Link';
@@ -11,41 +10,11 @@ import chrome_logo from './assets/chrome.png';
 import edge_logo from './assets/edge.png';
 import firefox_logo from './assets/firefox.png';
 import opera_logo from './assets/opera.png';
+import useUpdateBrowserStyle from './styles';
+import { UpdateBrowserProps } from './types';
 
-const UpdateBrowser = ({ onClick, href, children, ...props }) => {
-    const { colorMode } = useColorMode();
-
-    const colorModeStyles = {
-        light: {
-            bg: 'white',
-            shadow: '0 7px 14px 0 rgba(0,0,0, 0.1), 0 3px 6px 0 rgba(0, 0, 0, .07)',
-        },
-        dark: {
-            bg: 'gray.700',
-            shadow: `rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px`,
-        },
-    };
-
-    const boxStyleProps = {
-        ...colorModeStyles[colorMode],
-        position: 'fixed',
-        left: 0,
-        top: 0,
-        width: '100%',
-        height: '100%',
-        textAlign: 'center',
-        display: 'table',
-    };
-
-    const browserBoxStyle = {
-        bg: 'gray.50',
-        padding: '32px',
-        margin: '16px',
-        height: '175px',
-        width: '200px',
-        textAlign: 'center',
-        display: 'inline-block',
-    };
+export const UpdateBrowser = ({ onClick, href, children, ...props }: UpdateBrowserProps) => {
+    const { updateBrowserStyleProps, browserBoxStyleProps } = useUpdateBrowserStyle(null);
 
     const browsers = [
         {
@@ -72,7 +41,7 @@ const UpdateBrowser = ({ onClick, href, children, ...props }) => {
 
     // Component is served to legacy browsers. IE6-8, for example, doesn't support rem units, so use px for UpdateBrowser.
     return (
-        <Box {...boxStyleProps}>
+        <Box {...updateBrowserStyleProps}>
             <Box display="table-cell" verticalAlign="middle">
                 <Heading fontSize="xl" lineHeight="48px">
                     Please update your browser.
@@ -83,7 +52,7 @@ const UpdateBrowser = ({ onClick, href, children, ...props }) => {
                 </Heading>
                 <Box w="100%" maxWidth="992px" margin="16px auto" textAlign="center">
                     {browsers.map(browser => (
-                        <Link {...browserBoxStyle} href={browser.href} key={browser.name}>
+                        <Link {...browserBoxStyleProps} href={browser.href} key={browser.name}>
                             <Image htmlWidth="70px" src={browser.logo} margin="0 auto 10px" />
                             <Text>{browser.name}</Text>
                         </Link>
@@ -98,7 +67,3 @@ const UpdateBrowser = ({ onClick, href, children, ...props }) => {
         </Box>
     );
 };
-
-UpdateBrowser.displayName = 'UpdateBrowser';
-
-export default UpdateBrowser;

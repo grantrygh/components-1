@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css, jsx, keyframes } from '@emotion/core';
-import { Box } from '../Box';
+import Box from '../Box';
 import { useColorMode } from '../ColorModeProvider';
 import { valueToPercent } from '../Slider';
 import { generateStripe } from '../theme/colors-utils';

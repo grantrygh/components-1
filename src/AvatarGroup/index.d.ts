@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { BoxProps } from '../Box';
 import { IAvatar } from '../Avatar';
+import { BoxProps } from '../Box/types';
 import { Omit } from '../common-types';
 
 interface IMoreIndicator {

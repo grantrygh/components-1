@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as AnimateHeight from 'react-animate-height';
-import { BoxProps } from '../Box';
+import { BoxProps } from '../Box/types';
 
 type AnimateHeightProps = Pick<
     AnimateHeight.AnimateHeightProps,

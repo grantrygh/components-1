@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { TransitionProps } from 'react-spring/renderprops';
-import { BoxProps } from '../Box';
+import { BoxProps } from '../Box/types';
 
 interface ISlideIn {
     in: boolean;

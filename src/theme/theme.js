@@ -85,6 +85,10 @@ const theme = {
     shadows,
     space,
     icons,
+
+    // component styles
+    // add to this in custom theme to override component styling
+    styles: {},
 };
 
 export default theme;

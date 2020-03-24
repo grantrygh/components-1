@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { BoxProps } from '../Box';
 import * as StyledSystem from 'styled-system';
+import { BoxProps } from '../Box/types';
 import { LinkProps } from '../Link';
 
 interface IBreadcrumb {

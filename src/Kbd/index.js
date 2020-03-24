@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { Box } from '../Box';
+import Box from '../Box';
 import { useColorMode } from '../ColorModeProvider';
 
 const Kbd = props => {

@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { BoxProps } from '../Box';
+import { BoxProps } from '../Box/types';
 import { CloseButtonProps } from '../CloseButton';
-import { TransitionProps } from 'react-spring/renderprops';
 
 type ModalSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | 'full';
 

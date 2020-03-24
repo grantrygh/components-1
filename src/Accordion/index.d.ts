@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { BoxProps } from '../Box';
-import { PseudoBoxProps } from '../PseudoBox';
+import { BoxProps } from '../Box/types';
 import { CollapseProps } from '../Collapse';
-import { IconProps } from '../Icon';
 import { Omit } from '../common-types';
+import { IconProps } from '../Icon';
+import { PseudoBoxProps } from '../PseudoBox';
 
 interface IAccordion {
     /**

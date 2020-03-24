@@ -1,7 +1,7 @@
-import { BoxProps } from '../Box';
 import * as React from 'react';
-import { Icons } from '../theme/icons';
+import { BoxProps } from '../Box/types';
 import { Omit } from '../common-types';
+import { Icons } from '../theme/icons';
 
 interface IIcon {
     /**

@@ -1,9 +1,4 @@
-const colors = {
-    transparent: 'transparent',
-    current: 'currentColor',
-    black: '#000',
-    white: '#fff',
-
+const palette = {
     whiteAlpha: {
         50: 'rgba(255, 255, 255, 0.04)',
         100: 'rgba(255, 255, 255, 0.06)',
@@ -158,6 +153,28 @@ const colors = {
         700: '#97266d',
         800: '#702459',
         900: '#521B41',
+    },
+};
+
+const colors = {
+    transparent: 'transparent',
+    current: 'currentColor',
+    black: '#000',
+    white: '#fff',
+
+    ...palette,
+
+    brand: {
+        primary: palette.blue,
+        secondary: palette.green,
+        tertiary: palette.orange,
+    },
+
+    statuses: {
+        info: palette.blue,
+        success: palette.green,
+        danger: palette.red,
+        warning: palette.orange,
     },
 
     linkedin: {

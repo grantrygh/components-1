@@ -1,6 +1,6 @@
-import * as StyledSystem from 'styled-system';
 // import * as Emotion from "@emotion/styled";
 import * as React from 'react';
+import * as StyledSystem from 'styled-system';
 import { Omit } from '../common-types';
 
 type CSS = React.CSSProperties;
@@ -157,7 +157,3 @@ type ModifiedStyledSystemProps = TypographyProps &
 type BoxHTMLProps = React.RefAttributes<any> & React.HTMLAttributes<any>;
 
 export type BoxProps = BoxHTMLProps & StyledSystemProps & ModifiedStyledSystemProps & As & Truncated;
-
-declare const Box: React.FC<BoxProps>;
-
-export default Box;

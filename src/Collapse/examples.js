@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import { Box } from '../Box';
+import Box from '../Box';
 import Button from '../Button';
 import Collapse from '../Collapse';
 

@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 import { useCallback } from 'react';
 import toaster from 'toasted-notes';
 import { Alert, AlertDescription, AlertIcon, AlertTitle } from '../Alert';
-import { Box } from '../Box';
+import Box from '../Box';
 import CloseButton from '../CloseButton';
 import ThemeProvider, { useTheme } from '../ThemeProvider';
 

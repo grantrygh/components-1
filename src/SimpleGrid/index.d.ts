@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { ResponsiveValue, GridProps } from 'styled-system';
-import { BoxProps } from '../Box';
+import { GridProps, ResponsiveValue } from 'styled-system';
+import { BoxProps } from '../Box/types';
 
 interface ISimpleGrid {
     /**

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as StyledSystem from 'styled-system';
+import { BoxProps } from '../Box/types';
 import { IButton } from '../Button';
-import { BoxProps } from '../Box';
 import { Omit } from '../common-types';
 
 export interface IButtonGroup {

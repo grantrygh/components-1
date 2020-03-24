@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { forwardRef } from 'react';
-import { Box } from '../Box';
+import Box from '../Box';
 import useCheckboxStyle from '../Checkbox/styles';
 import { useColorMode } from '../ColorModeProvider';
 import ControlBox from '../ControlBox';

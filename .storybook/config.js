@@ -1,6 +1,6 @@
 import { addDecorator, configure } from '@storybook/react';
 import React, { useState } from 'react';
-import { Box } from '../src/Box';
+import Box from '../src/Box';
 import Button from '../src/Button';
 import { DarkMode, LightMode } from '../src/ColorModeProvider';
 import CSSReset from '../src/CSSReset';

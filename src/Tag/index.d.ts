@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IBadge } from '../Badge';
-import { BoxProps } from '../Box';
+import { BoxProps } from '../Box/types';
 import { Omit } from '../common-types';
 import { IconProps } from '../Icon';
 import { PseudoBoxProps } from '../PseudoBox';

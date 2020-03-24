@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import styled from '@emotion/styled';
 import { createShouldForwardProp, props } from '@styled-system/should-forward-prop';
 import {
@@ -16,8 +15,8 @@ import {
 } from 'styled-system';
 import extraConfig from './config';
 
-export const truncate = props => {
-    if (props.isTruncated) {
+export const truncate: any = $props => {
+    if ($props.isTruncated) {
         return {
             overflow: 'hidden',
             textOverflow: 'ellipsis',
@@ -60,12 +59,14 @@ const shouldForwardProp = createShouldForwardProp([
  */
 const nativeHTMLPropAlias = ['htmlWidth', 'htmlHeight'];
 
-export const Box = styled('div', {
+const Box = styled('div', {
     shouldForwardProp: prop => {
         if (nativeHTMLPropAlias.includes(prop)) {
             return true;
-        } else {
-            return shouldForwardProp(prop);
         }
+
+        return shouldForwardProp(prop);
     },
 })(truncate, systemProps);
+
+export default Box;

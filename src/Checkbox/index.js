@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { forwardRef, useEffect, useRef } from 'react';
-import { Box } from '../Box';
+import Box from '../Box';
 import { useColorMode } from '../ColorModeProvider';
 import ControlBox from '../ControlBox';
 import Icon from '../Icon';

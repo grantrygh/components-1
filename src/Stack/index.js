@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { Children, cloneElement, isValidElement } from 'react';
-import { Box } from '../Box';
+import Box from '../Box';
 import Flex from '../Flex';
 
 // TODO: Reduce complexity by deprecating isInline and isReversed prop

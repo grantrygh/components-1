@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { IModal, ModalContentProps } from '../Modal';
-import { BoxProps } from '../Box';
+import { BoxProps } from '../Box/types';
 import { CloseButtonProps } from '../CloseButton';
+import { IModal, ModalContentProps } from '../Modal';
 
 interface IDrawer extends IModal {
     /**

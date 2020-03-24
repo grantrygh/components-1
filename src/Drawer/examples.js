@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react';
 import React, { Fragment, useRef, useState } from 'react';
 import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay } from '.';
-import { Box } from '../Box';
+import Box from '../Box';
 import Button from '../Button';
 import Input from '../Input';
 

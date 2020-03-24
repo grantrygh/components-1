@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/core';
 import { createContext, Fragment, useContext, useEffect, useState } from 'react';
 import Lightbox from '.';
-import { Box } from '../Box';
+import Box from '../Box';
 import Button from '../Button';
 import Flex from '../Flex';
 import Icon from '../Icon';

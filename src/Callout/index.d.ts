@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IAlert } from '../Alert';
-import { BoxProps } from '../Box';
+import { BoxProps } from '../Box/types';
 
 interface ICallout {
     /**

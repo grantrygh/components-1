@@ -1,8 +1,8 @@
 import { storiesOf } from '@storybook/react';
 import React, { useState } from 'react';
-import Dropzone from '.';
 import Box from '../Box';
 import Text from '../Text';
+import { Dropzone } from './Dropzone';
 
 const stories = storiesOf('Dropzone', module);
 stories.addDecorator(story => {

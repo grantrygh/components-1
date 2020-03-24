@@ -1,12 +1,13 @@
-import * as React from 'react';
 import { BoxProps } from '../Box/types';
 
 interface IDropzone {
     // event handler when a file is dropped
-    dropEvent: (file?: File) => Promise<void>;
+    dropEvent: (file?: File) => Promise<void> | void;
 
     // disable dropzone events
     disabled?: boolean;
+    // optional color to set the default border color and text color
+    color?: string;
 
     // allow custom disabled and upload text
     disabledMessage?: string;
@@ -18,7 +19,3 @@ interface IDropzone {
 }
 
 export type DropzoneProps = IDropzone & BoxProps;
-
-declare const Dropzone: React.FC<DropzoneProps>;
-
-export default Dropzone;

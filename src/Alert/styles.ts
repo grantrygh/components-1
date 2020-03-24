@@ -1,4 +1,17 @@
-const defaultTheme = ({ color }) => ({
+import { useTheme } from '../ThemeProvider';
+
+export const alertStyle = ({ color }, theme) => ({
+    style: {
+        display: 'flex',
+        alignItems: 'center',
+        position: 'relative',
+        overflow: 'hidden',
+        pl: 4,
+        pr: 4,
+        pt: 3,
+        pb: 3,
+    },
+
     variants: {
         subtle: {
             bg: `${color}.100`,
@@ -22,18 +35,18 @@ const defaultTheme = ({ color }) => ({
     },
 });
 
-export const useAlertStyle = props => ({
-    display: 'flex',
-    alignItems: 'center',
-    position: 'relative',
-    overflow: 'hidden',
-    pl: 4,
-    pr: 4,
-    pt: 3,
-    pb: 3,
+export const useAlertStyle = props => {
+    const theme = useTheme();
+    const styles = theme['styles'].alertStyle ? theme['styles'].alertStyle(props, theme) : alertStyle(props, theme);
 
-    ...defaultTheme(props).variants[props.variant || 'subtle'],
-});
+    return {
+        // base style
+        ...styles.style,
+
+        // variant style
+        ...styles.variants[props.variant || 'subtle'],
+    };
+};
 
 export const useAlertIconStyle = ({ variant, color }) => {
     if (['left-accent', 'top-accent', 'subtle'].includes(variant)) {

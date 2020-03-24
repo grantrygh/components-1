@@ -215,6 +215,7 @@ export interface DefaultTheme extends Typography {
     shadows: Shadows;
     space: BaseSizes;
     icons: Record<string, Icon>;
+    styles: any;
 }
 
 interface Icon {

@@ -1,7 +1,9 @@
 import React, { createContext, useContext } from 'react';
 import Box from '../Box';
+import { BoxProps } from '../Box/types';
 import Icon from '../Icon';
 import { useAlertIconStyle, useAlertStyle } from './styles';
+import { AlertProps, IAlertContext } from './types';
 
 export const statuses = {
     info: { icon: 'info', color: 'blue' },
@@ -10,14 +12,9 @@ export const statuses = {
     error: { icon: 'warning', color: 'red' },
 };
 
-interface IAlertContext {
-    status?: string;
-    variant?: string;
-}
-
 const AlertContext = createContext<IAlertContext>({});
 
-const Alert = ({ status = 'info', variant = 'subtle', ...rest }) => {
+export const Alert = ({ status = 'info', variant = 'subtle', ...rest }: AlertProps) => {
     const alertStyleProps = useAlertStyle({
         variant,
         color: statuses[status] && statuses[status]['color'],
@@ -32,26 +29,16 @@ const Alert = ({ status = 'info', variant = 'subtle', ...rest }) => {
     );
 };
 
-const AlertTitle = props => <Box fontWeight="bold" lineHeight="normal" {...props} />;
-const AlertDescription = props => <Box {...props} />;
+export const AlertTitle = (props: BoxProps) => <Box fontWeight="bold" lineHeight="normal" {...props} />;
 
-const AlertIcon = props => {
+export const AlertDescription = (props: BoxProps) => <Box {...props} />;
+
+export const AlertIcon = props => {
     const { status, variant } = useContext(AlertContext);
     const iconStyleProps = useAlertIconStyle({
         variant,
         color: statuses[status] && statuses[status]['color'],
     });
 
-    return (
-        <Icon
-            // mt={1}
-            mr={3}
-            size={5}
-            name={statuses[status] && statuses[status]['icon']}
-            {...iconStyleProps}
-            {...props}
-        />
-    );
+    return <Icon mr={3} size={5} name={statuses[status] && statuses[status]['icon']} {...iconStyleProps} {...props} />;
 };
-
-export { Alert, AlertTitle, AlertDescription, AlertIcon };

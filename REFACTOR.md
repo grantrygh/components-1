@@ -4,6 +4,8 @@
 
 -   Rename .js files to .ts
 -   Rename .js files with JSX inside them to .tsx
+-   Create <ComponentName>.types.ts to keep type information (replacing index.d.ts)
+    -   requires some refactor to use types directly in the tsx file. we'll generate .d.ts files for consumption at build
 
 ### Components/theming
 
@@ -12,9 +14,10 @@
 -   use <brand.color.level> if a component needs to use brand color (e.g. bg: 'brand.primary.400')
 -   make sure component is a styled instance [unconfirmed]
     -   to allow referencing as nested selector for dynamic hover styling and such
--
 
-#### Compare
+---
+
+### Compare
 
 **JS way**
 

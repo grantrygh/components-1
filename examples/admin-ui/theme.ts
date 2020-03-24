@@ -1,0 +1,18 @@
+import update from 'immutability-helper';
+import { alertStyle } from '../../src/Alert/styles';
+import defaultTheme from '../../src/theme';
+
+export default {
+    ...defaultTheme,
+
+    styles: {
+        ...defaultTheme['styles'],
+        alertStyle: (props, theme) =>
+            update(alertStyle(props, theme), {
+                variants: {
+                    subtle: { bg: { $set: '#eee' } },
+                    leftAccent: { borderLeft: { $set: '2px solid' } },
+                },
+            }),
+    },
+};

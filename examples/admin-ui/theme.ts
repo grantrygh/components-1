@@ -7,7 +7,7 @@ export default {
 
     styles: {
         ...defaultTheme['styles'],
-        alertStyle: (props, theme) =>
+        alert: (props, theme) =>
             update(alertStyle(props, theme), {
                 variants: {
                     subtle: { bg: { $set: '#eee' } },

@@ -164,11 +164,10 @@ const colors = {
 
     ...palette,
 
-    brand: {
-        primary: palette.blue,
-        secondary: palette.green,
-        tertiary: palette.orange,
-    },
+    // brand colors
+    primary: palette.blue,
+    secondary: palette.green,
+    tertiary: palette.orange,
 
     statuses: {
         info: palette.blue,

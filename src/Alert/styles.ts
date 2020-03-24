@@ -37,7 +37,7 @@ export const alertStyle = ({ color }, theme) => ({
 
 const useAlertStyle = props => {
     const theme = useTheme();
-    const styles = theme['styles'].alertStyle ? theme['styles'].alertStyle(props, theme) : alertStyle(props, theme);
+    const styles = theme['styles'].alert ? theme['styles'].alert(props, theme) : alertStyle(props, theme);
 
     return {
         // base style

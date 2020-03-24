@@ -8,6 +8,7 @@
     "start": "yarn example:admin",
     "example:admin": "EXAMPLE=admin-ui ./node_modules/.bin/webpack-dev-server --config ./webpack/example-dev.js",
     "example:styleguide": "EXAMPLE=styleguide ./node_modules/.bin/webpack-dev-server --config ./webpack/example-dev.js",
+    "dev": "EXAMPLE=dev ./node_modules/.bin/webpack-dev-server --config ./webpack/example-dev.js",
     "storybook": "start-storybook -p 50600",
     "storybook:build": "build-storybook -c .storybook -o storybook-build",
     "storybook:server": "http-server storybook-build",

@@ -11,7 +11,7 @@
 
 -   Switch to named exports
 -   remove dark/light modes. we'll use theme for those
--   use <brand.color.level> if a component needs to use brand color (e.g. bg: 'brand.primary.400')
+-   use <brand.color.level> if a component needs to use brand color (e.g. bg: 'primary.400')
 -   make sure component is a styled instance [unconfirmed]
     -   to allow referencing as nested selector for dynamic hover styling and such
 

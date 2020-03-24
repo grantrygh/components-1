@@ -22,13 +22,8 @@ function AdminUI(props) {
 
             <ThemeProvider
                 theme={update(theme, {
-                    colors: {
-                        red: {
-                            100: { $set: '#ddd' },
-                        },
-                    },
                     styles: {
-                        alertStyle: {
+                        alert: {
                             $set: (props, theme) =>
                                 update(alertStyle(props, theme), {
                                     variants: {

@@ -3,7 +3,6 @@ process.env['BABEL_ENV'] = 'client';
 /* eslint-disable global-require, import/no-dynamic-require */
 
 const path = require('path');
-const helmet = require('helmet');
 const ejs = require('ejs');
 const fs = require('fs');
 const { resolve } = require('path');
@@ -89,35 +88,8 @@ const createConfig = (options = {}) =>
         }
     );
 
-// const AutoDllPlugin = require('autodll-webpack-plugin');
-
 const config = createConfig();
 
-// if (!PROFILING) {
-//     config.output.pathinfo = false;
-//     config.plugins.push(
-//         new AutoDllPlugin({
-//             devtool: DEVTOOL,
-//             filename: '[name].dll.js',
-//             entry: {
-//                 vendor: [
-//                     'react',
-//                     'react-dom',
-//                     'react-helmet-async',
-//                     'react-router-dom',
-//                     'lodash',
-//                     'sockjs-client',
-//                     'sockjs-client/dist/sockjs.js',
-//                     'html-entities',
-//                     'yup',
-//                     'date-fns',
-//                 ],
-//             },
-//         })
-//     );
-// }
-
-// config.devServer.allowedHosts = [DEV_HOSTNAME];
 config.devServer.overlay = true;
 
 module.exports = Object.assign(config, {

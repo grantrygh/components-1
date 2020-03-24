@@ -129,18 +129,3 @@ interface IPseudoBoxProps {
 }
 
 export type PseudoBoxProps = IPseudoBoxProps & BoxProps;
-
-/**
- * PseudoBox is an interactive wrapper that composes `Box`
- * and converts common CSS pseudo-selectors to props for ease of styling.
- *
- * For example, to style `:hover` use `_hover`
- *
- * @example
- * ```jsx
- * <PseudoBox _hover={...} _focus={...}/>
- * ```
- */
-declare const PseudoBox: React.FC<PseudoBoxProps>;
-
-export default PseudoBox;

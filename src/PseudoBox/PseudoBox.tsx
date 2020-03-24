@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import css from '@styled-system/css';
 import Box from '../Box';
 import { transformAliasProps as tx } from '../Box/config';
+import { PseudoBoxProps } from './types';
 
 /**
  * The selectors are based on [WAI-ARIA state properties](https://www.w3.org/WAI/PF/aria-1.1/states_and_properties) and common CSS Selectors
@@ -29,6 +30,17 @@ const notFirst = '&:not(:first-of-type)';
 const notLast = '&:not(:last-of-type)';
 const groupHover = '[role=group]:hover &';
 
+/**
+ * PseudoBox is an interactive wrapper that composes `Box`
+ * and converts common CSS pseudo-selectors to props for ease of styling.
+ *
+ * For example, to style `:hover` use `_hover`
+ *
+ * @example
+ * ```jsx
+ * <PseudoBox _hover={...} _focus={...}/>
+ * ```
+ */
 const PseudoBox = styled(Box)(
     ({
         _after,
@@ -55,7 +67,7 @@ const PseudoBox = styled(Box)(
         _mixed,
         _odd,
         _even,
-    }) => {
+    }: PseudoBoxProps) => {
         return css({
             [hover]: tx(_hover),
             [focus]: tx(_focus),

@@ -119,7 +119,7 @@ function getComputedProps({ min, max, size, value, angle, thickness, trackColor,
     };
 }
 
-export const CircularProgress = forwardRef((props, ref) => {
+const CircularProgress = forwardRef((props, ref) => {
     const {
         size = '48px',
         max = 100,
@@ -162,3 +162,5 @@ export const CircularProgress = forwardRef((props, ref) => {
         </Box>
     );
 });
+
+export default CircularProgress;

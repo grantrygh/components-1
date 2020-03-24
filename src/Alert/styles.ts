@@ -35,7 +35,7 @@ export const alertStyle = ({ color }, theme) => ({
     },
 });
 
-export const useAlertStyle = props => {
+const useAlertStyle = props => {
     const theme = useTheme();
     const styles = theme['styles'].alertStyle ? theme['styles'].alertStyle(props, theme) : alertStyle(props, theme);
 
@@ -57,3 +57,5 @@ export const useAlertIconStyle = ({ variant, color }) => {
 
     return {};
 };
+
+export default useAlertStyle;

@@ -2,7 +2,7 @@ import React, { createContext, useContext } from 'react';
 import Box from '../Box';
 import { BoxProps } from '../Box/types';
 import Icon from '../Icon';
-import { useAlertIconStyle, useAlertStyle } from './styles';
+import useAlertStyle, { useAlertIconStyle } from './styles';
 import { AlertProps, IAlertContext } from './types';
 
 export const statuses = {
@@ -14,6 +14,9 @@ export const statuses = {
 
 const AlertContext = createContext<IAlertContext>({});
 
+/**
+ * Alerts are used to communicate a state that affects a system, feature or page
+ */
 export const Alert = ({ status = 'info', variant = 'subtle', ...rest }: AlertProps) => {
     const alertStyleProps = useAlertStyle({
         variant,

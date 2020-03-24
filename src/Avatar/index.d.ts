@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BoxProps } from '../Box';
+import { BoxProps } from '../Box/types';
 import { Omit } from '../common-types';
 
 type Size = '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';

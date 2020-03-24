@@ -1,6 +1,5 @@
-import * as StyledSystem from 'styled-system';
-import { BoxProps } from '../Box';
 import * as React from 'react';
+import { BoxProps } from '../Box/types';
 
 interface IFlex {
     /**

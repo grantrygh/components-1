@@ -1,5 +1,5 @@
-import { BoxProps } from '../Box';
 import * as React from 'react';
+import { BoxProps } from '../Box/types';
 
 declare const FormHelperText: React.FC<BoxProps>;
 

@@ -1,8 +1,8 @@
-import * as React from 'react';
 import PopperJs from 'popper.js';
+import * as React from 'react';
+import { BoxProps } from '../Box/types';
 import { PortalProps } from '../Portal';
 import { PseudoBoxProps } from '../PseudoBox';
-import { BoxProps } from '../Box';
 
 type RenderProps = {
     placement?: PopperJs.Placement;

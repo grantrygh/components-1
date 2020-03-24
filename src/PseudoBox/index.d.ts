@@ -1,5 +1,4 @@
-import * as StyledSystem from 'styled-system';
-import { BoxProps } from '../Box';
+import { BoxProps } from '../Box/types';
 
 interface IPseudoBoxProps {
     /**

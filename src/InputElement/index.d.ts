@@ -1,7 +1,7 @@
-import { IInput } from '../Input';
 import * as React from 'react';
-import { BoxProps } from '../Box';
+import { BoxProps } from '../Box/types';
 import { Omit } from '../common-types';
+import { IInput } from '../Input';
 
 interface IInputElement {
     /**

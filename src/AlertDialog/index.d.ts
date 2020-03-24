@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { BoxProps } from '../Box';
-import { IModal } from '../Modal';
-import { Omit } from '../common-types';
+import { BoxProps } from '../Box/types';
 import { CloseButtonProps } from '../CloseButton';
+import { Omit } from '../common-types';
+import { IModal } from '../Modal';
 
 interface IAlertDialog extends Omit<IModal, 'initialFocusRef'> {
     leastDestructiveRef: React.RefObject<HTMLElement>;

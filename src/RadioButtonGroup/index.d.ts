@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { BoxProps } from '../Box';
-import { IRadio } from '../Radio';
+import { BoxProps } from '../Box/types';
 import { Omit } from '../common-types';
+import { IRadio } from '../Radio';
 
 export interface IRadioButtonGroup {
     name?: IRadio['name'];

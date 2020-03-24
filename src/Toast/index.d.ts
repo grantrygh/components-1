@@ -1,8 +1,6 @@
-import { IAlert, AlertProps as BaseAlertProps } from '../Alert';
-import { BoxProps } from '../Box';
-import { Omit } from '../common-types';
-import { Position } from 'toasted-notes';
 import * as React from 'react';
+import { Position } from 'toasted-notes';
+import { IAlert } from '../Alert';
 
 export interface IToast extends IAlert {
     /**

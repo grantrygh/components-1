@@ -1,6 +1,6 @@
-import { BoxProps } from '../Box';
 import * as React from 'react';
 import * as StyledSystem from 'styled-system';
+import { BoxProps } from '../Box/types';
 import { FlexProps } from '../Flex';
 
 interface IStack {

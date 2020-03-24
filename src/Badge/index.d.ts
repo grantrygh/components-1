@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BoxProps } from '../Box';
+import { BoxProps } from '../Box/types';
 
 export interface IBadge {
     /**

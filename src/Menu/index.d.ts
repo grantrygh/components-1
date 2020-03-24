@@ -1,6 +1,5 @@
 import * as React from 'react';
-import PopperJS from 'popper.js';
-import { BoxProps } from '../Box';
+import { BoxProps } from '../Box/types';
 import { PopperProps } from '../Popper';
 import { PseudoBoxProps } from '../PseudoBox';
 

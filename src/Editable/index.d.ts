@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { BoxProps } from '../Box';
-import { PseudoBoxProps } from '../PseudoBox';
+import { BoxProps } from '../Box/types';
 import { Omit } from '../common-types';
+import { PseudoBoxProps } from '../PseudoBox';
 
 interface IEditable {
     /**

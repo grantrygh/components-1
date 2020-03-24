@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { BoxProps } from '../Box';
+import { BoxProps } from '../Box/types';
+import { Omit } from '../common-types';
 import { FlexProps } from '../Flex';
 import { PseudoBoxProps } from '../PseudoBox';
-import { Omit } from '../common-types';
 
 export interface ITabs {
     /**

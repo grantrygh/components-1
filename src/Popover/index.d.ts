@@ -1,9 +1,8 @@
-import * as React from 'react';
 import PopperJS from 'popper.js';
-import StyledSystem from 'styled-system';
-import { BoxProps } from '../Box';
-import { PseudoBoxProps } from '../PseudoBox';
+import * as React from 'react';
+import { BoxProps } from '../Box/types';
 import { PopperProps } from '../Popper';
+import { PseudoBoxProps } from '../PseudoBox';
 
 interface PopoverContextValue {
     popoverRef: React.RefObject<HTMLElement>;

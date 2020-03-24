@@ -1,15 +1,14 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
-import { Fragment } from 'react';
+import React from 'react';
 import Heading from '.';
+import { HeadingProps } from './types';
 
 const stories = storiesOf('Heading', module);
 
 stories.add('Default', () => (
-    <Fragment>
-        {['2xl', 'xl', 'lg', 'md', 'sm', 'xs'].map((size, index) => (
+    <>
+        {['2xl', 'xl', 'lg', 'md', 'sm', 'xs'].map((size: HeadingProps['size'], index) => (
             <Heading size={size}>Heading {index + 1}</Heading>
         ))}
-    </Fragment>
+    </>
 ));

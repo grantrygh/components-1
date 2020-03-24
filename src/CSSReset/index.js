@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Global, css } from '@emotion/core';
+import { css, Global, jsx } from '@emotion/core';
 import { useColorMode } from '../ColorModeProvider';
 import preflight from './preflight';
 
@@ -35,10 +35,13 @@ const CSSReset = ({ config }) => {
                 background-color: ${bg};
             }
 
-            /**
-      * Allow adding a border to an element by just adding a border-width.
-      */
+            body {
+                font-family: ${theme.fonts.sans};
+            }
 
+            /**
+            * Allow adding a border to an element by just adding a border-width.
+            */
             *,
             *::before,
             *::after {

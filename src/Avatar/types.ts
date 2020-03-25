@@ -32,16 +32,10 @@ export interface IAvatar {
     src?: string;
 }
 
-export type AvatarNameProps = IAvatar['name'] & BoxProps;
-export const AvatarName: React.FC<AvatarNameProps>;
+interface IAvatarName {
+    name?: string;
+}
 
-export const AvatarBadge: React.FC<BoxProps>;
+export type AvatarNameProps = IAvatarName & BoxProps;
 
 export type AvatarProps = IAvatar & Omit<BoxProps, 'size'>;
-/**
- * The Avatar component is used to represent user, and displays the profile
- * picture, initials or fallback icon.
- */
-declare const Avatar: React.FC<AvatarProps>;
-
-export default Avatar;

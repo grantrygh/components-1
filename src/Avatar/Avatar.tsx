@@ -1,12 +1,13 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import Box from '../Box';
+import { BoxProps } from '../Box/types';
 import { useColorMode } from '../ColorModeProvider';
 import { useHasImageLoaded } from '../Image';
-import { useTheme } from '../ThemeProvider';
-import useAvatarStyle, { avatarSizes } from './styles';
+import useAvatarStyle from './styles';
+import { AvatarNameProps, AvatarProps } from './types';
 
-export const AvatarBadge = props => {
+export const AvatarBadge = (props: BoxProps) => {
     const { colorMode } = useColorMode();
     const borderColor = { light: 'white', dark: 'gray.800' };
 
@@ -28,16 +29,16 @@ export const AvatarBadge = props => {
 };
 
 const getInitials = name => {
-    let [firstName, lastName] = name.split(' ');
+    const [firstName, lastName] = name.split(' ');
 
     if (firstName && lastName) {
         return `${firstName.charAt(0)}${lastName.charAt(0)}`;
-    } else {
-        return firstName.charAt(0);
     }
+
+    return firstName.charAt(0);
 };
 
-const AvatarName = ({ name, ...props }) => {
+const AvatarName = ({ name, ...props }: AvatarNameProps) => {
     return (
         <Box textAlign="center" textTransform="uppercase" fontWeight="medium" aria-label={name} {...props}>
             {name ? getInitials(name) : null}
@@ -56,7 +57,11 @@ const DefaultAvatar = props => (
     </Box>
 );
 
-const Avatar = ({ size, showBorder, name, src, borderColor, children, ...rest }) => {
+/**
+ * The Avatar component is used to represent user, and displays the profile
+ * picture, initials or fallback icon.
+ */
+export const Avatar = ({ size = 'md', showBorder, name, src, borderColor, children, ...rest }: AvatarProps) => {
     const avatarStyleProps = useAvatarStyle({
         name,
         size,
@@ -65,10 +70,7 @@ const Avatar = ({ size, showBorder, name, src, borderColor, children, ...rest })
     });
     const hasLoaded = useHasImageLoaded({ src });
 
-    const theme = useTheme();
-    const sizeKey = avatarSizes[size];
-    const _size = theme.sizes[sizeKey];
-    const fontSize = `calc(${_size} / 2.5)`;
+    const _size = null;
 
     const renderChildren = () => {
         if (src && hasLoaded) {
@@ -78,9 +80,8 @@ const Avatar = ({ size, showBorder, name, src, borderColor, children, ...rest })
         if (src && !hasLoaded) {
             if (name) {
                 return <AvatarName size={_size} name={name} />;
-            } else {
-                return <DefaultAvatar aria-label={name} />;
             }
+            return <DefaultAvatar aria-label={name} />;
         }
 
         if (!src && name) {
@@ -91,15 +92,9 @@ const Avatar = ({ size, showBorder, name, src, borderColor, children, ...rest })
     };
 
     return (
-        <Box fontSize={fontSize} lineHeight={_size} verticalAlign="top" {...avatarStyleProps} {...rest}>
+        <Box {...avatarStyleProps} {...rest}>
             {renderChildren()}
             {children}
         </Box>
     );
 };
-
-Avatar.defaultProps = {
-    size: 'md',
-};
-
-export default Avatar;

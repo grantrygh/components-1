@@ -1,6 +1,6 @@
+import { componentStyleDef } from '../theme/types';
 import { useTheme } from '../ThemeProvider';
-import { useColorMode } from '../ColorModeProvider';
-import { isDarkColor } from '../theme/colors-utils';
+import { AvatarProps } from './types';
 
 // Found this on StackOverflow :)
 function string2Hex(str) {
@@ -12,7 +12,7 @@ function string2Hex(str) {
     }
     let color = '#';
     for (let j = 0; j < 3; j++) {
-        let value = (hash >> (j * 8)) & 255;
+        const value = (hash >> (j * 8)) & 255;
         color += ('00' + value.toString(16)).substr(-2);
     }
     return color;
@@ -29,33 +29,31 @@ export const avatarSizes = {
     full: 'full',
 };
 
-const useAvatarStyle = ({ size, name, showBorder, borderColor }) => {
-    const { colors } = useTheme();
-    const { colorMode } = useColorMode();
-
-    const bg = name ? string2Hex(name) : colors.gray[400];
-    const color = name ? (isDarkColor(bg) ? '#fff' : 'gray.800') : '#fff';
-    const _borderColor = { light: '#fff', dark: 'gray.800' };
-
-    const baseProps = {
+export const avatarStyle: componentStyleDef<AvatarProps> = ({ size, showBorder }, theme) => ({
+    style: {
         display: 'inline-flex',
+        verticalAlign: 'top',
         rounded: 'full',
         alignItems: 'center',
         flexShrink: '0',
         justifyContent: 'center',
         position: 'relative',
-    };
-
-    return {
-        ...baseProps,
+        bg: name ? string2Hex(name) : 'gray.400',
         size: avatarSizes[size],
-        bg,
-        color,
         ...(showBorder && {
             border: '2px',
-            borderColor: borderColor || _borderColor[colorMode],
+            borderColor: 'white',
         }),
-    };
+        fontSize: `calc(${theme.sizes[avatarSizes[size]]} / 2.5)`,
+        lineHeight: avatarSizes[size],
+    },
+});
+
+const useAvatarStyle = props => {
+    const theme = useTheme();
+    const styles = theme['styles'].avatar ? theme['styles'].avatar(props, theme) : avatarStyle(props, theme);
+
+    return styles.style;
 };
 
 export default useAvatarStyle;

@@ -14,8 +14,8 @@ export const badgeStyle = ({ color, size = 40 }, theme) => ({
 
     variants: {
         subtle: {
-            bg: `${color}.100`,
-            color: `${color}.800`,
+            bg: `${color}.50`,
+            color: `${color}.500`,
         },
         solid: {
             bg: `${color}.500`,

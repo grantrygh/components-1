@@ -19,7 +19,7 @@ interface IScale {
     children: (styles: Object) => React.ReactNode;
 }
 
-type ScaleProps = IScale & TransitionProps<boolean>;
+type ScaleProps = IScale & Partial<TransitionProps<boolean>>;
 export const Scale: React.FC<ScaleProps>;
 
 interface ISlide {

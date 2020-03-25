@@ -1,19 +1,46 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { createContext, Fragment, useContext, useEffect, useState } from 'react';
-import Lightbox from '.';
+import ChevronLeftIcon from 'mdi-react/ChevronLeftIcon';
+import ChevronRightIcon from 'mdi-react/ChevronRightIcon';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { Lightbox } from '.';
 import Box from '../Box';
 import Button from '../Button';
 import Flex from '../Flex';
-import Icon from '../Icon';
 import Image from '../Image';
 import Link from '../Link';
 import SimpleGrid from '../SimpleGrid';
-import { useTheme } from '../ThemeProvider';
 import { Scale } from '../Transition';
 import Video from '../Video';
+import useLightboxStyle from './styles';
+import { GalleryProps, LightboxMediaProps } from './types';
 
-const GalleryContext = createContext();
+/**
+ *  useGalleryContext exposes the following props. can be used in cases such as adding off-screen images
+ *  register(mediaItem): function to add new item to lightbox
+ *  unregister(mediaItem): function to remove an item from the lightbox
+ *  media[]: array of current items in the lightbox
+ *  activeItem: current active lightbox item. lightbox will not display if there is no activeItem
+ *  activeIndex: index of active item in array
+ *  setActiveItem(mediaItem): set new activeItem
+ *  onPrev: set active item to current index - 1
+ *  onNext: set active item to current index + 1
+ */
+
+const GalleryContext = createContext<GalleryProps>({
+    register: media => null,
+    unregister: media => null,
+    setActiveItem: media => null,
+    onNext: () => null,
+    onPrev: () => null,
+    media: [],
+    activeItem: {
+        src: '',
+        cover: '',
+        type: 'image',
+    },
+    activeIndex: null,
+});
 
 // context provider hoc
 const LightboxGalleryProvider = props => {
@@ -52,7 +79,7 @@ const LightboxGalleryProvider = props => {
     return (
         <GalleryContext.Provider value={context}>
             {props.children}
-            <LightboxGallery isOpen={!activeItem} />
+            <LightboxGallery />
         </GalleryContext.Provider>
     );
 };
@@ -65,7 +92,7 @@ const useGalleryContext = () => {
     return context;
 };
 
-const LightboxMedia = ({ src, type, cover, children }) => {
+const LightboxMedia = ({ src, type, cover, children }: LightboxMediaProps) => {
     const context = useGalleryContext();
     const media = {
         src,
@@ -76,7 +103,6 @@ const LightboxMedia = ({ src, type, cover, children }) => {
     useEffect(() => {
         // add media item to lightbox context media array on mount
         context.register(media);
-
         // remove media item from lightbox context media array on unmount
         return () => {
             context.unregister(media);
@@ -107,7 +133,6 @@ const LightboxGallery = () => {
     }
 
     const activeStyle = {
-        outline: '1px solid rgba(255,255,255,0.8)',
         opacity: 0.5,
     };
 
@@ -131,6 +156,7 @@ const LightboxGallery = () => {
             maxHeight: '100%',
         },
         image: {
+            full: true,
             maxWidth: 'calc(100% - 16rem)',
             maxHeight: '100%',
         },
@@ -143,9 +169,9 @@ const LightboxGallery = () => {
         for (let i = -start; i <= start; i++) {
             let itemIndex = activeIndex + i;
             if (itemIndex < 0) {
-                itemIndex = numItems + itemIndex;
+                itemIndex += numItems;
             } else if (itemIndex >= numItems) {
-                itemIndex = itemIndex - numItems;
+                itemIndex -= numItems;
             }
 
             const thumb = media[itemIndex];
@@ -161,7 +187,7 @@ const LightboxGallery = () => {
 
             list.push(
                 <Link onClick={() => setActiveItem(media[itemIndex])} w={90} h={90} {...(i === 0 ? activeStyle : {})}>
-                    <Image src={thumbnail} h="100%" />
+                    <Image src={thumbnail} h="full" w="full" />
                 </Link>
             );
         }
@@ -185,7 +211,6 @@ const LightboxGallery = () => {
                             margin="auto"
                         >
                             {styles => {
-                                console.log(styles);
                                 return <MediaTag src={mi.src} {...mediaStyles[activeItem.type]} {...styles} />;
                             }}
                         </Scale>
@@ -194,7 +219,7 @@ const LightboxGallery = () => {
 
                 {/* gallery thumbnails */}
                 <Flex justify="center" align="center" height="8rem">
-                    <SimpleGrid columns={[3, null, Math.min(5, numItems)]} spacing="10px">
+                    <SimpleGrid columns={[3, null, numItems >= 5 ? 5 : 3]} spacing="10px">
                         {generateThumbnails()}
                     </SimpleGrid>
                 </Flex>
@@ -204,29 +229,21 @@ const LightboxGallery = () => {
 };
 
 const LightboxGalleryControls = () => {
-    const theme = useTheme();
     const { onPrev, onNext } = useGalleryContext();
 
-    const buttonStyles = {
-        position: 'absolute',
-        top: 0,
-        bottom: 0,
-        margin: 'auto',
-        zIndex: theme.zIndices.modal + 1,
-        size: 'lg',
-        variant: 'outline',
+    const { controlStyles } = useLightboxStyle({
         color: 'white',
-    };
+    });
 
     return (
-        <Fragment>
-            <Button left={4} {...buttonStyles} onClick={onPrev}>
-                <Icon name="chevron-left" size={36} />
+        <React.Fragment>
+            <Button left={4} {...controlStyles} onClick={onPrev}>
+                <ChevronLeftIcon size={36} />
             </Button>
-            <Button right={4} {...buttonStyles} onClick={onNext}>
-                <Icon name="chevron-right" size={36} />
+            <Button right={4} {...controlStyles} onClick={onNext}>
+                <ChevronRightIcon size={36} />
             </Button>
-        </Fragment>
+        </React.Fragment>
     );
 };
 

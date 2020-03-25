@@ -30,9 +30,5 @@ interface IAvatarGroup {
 }
 
 export type AvatarGroupProps = IAvatarGroup & Omit<BoxProps, 'size'>;
-/**
- * AvatarGroup is a wrapper to render a collection of evenly spaced avatars.
- */
-declare const AvatarGroup: React.FC<AvatarGroupProps>;
 
-export default AvatarGroup;
+export type MoreIndicatorProps = IMoreIndicator & BoxProps;

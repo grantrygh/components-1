@@ -3,10 +3,12 @@ import { jsx } from '@emotion/core';
 import useBadgeStyle from '../Badge/styles';
 import Box from '../Box';
 import { useVariantColorWarning } from '../utils';
+import { CodeProps } from './types';
 
-const Code = ({ variantColor = 'gray', ...props }) => {
+export const Code = ({ variantColor = 'gray', ...props }: CodeProps) => {
     useVariantColorWarning('Code', variantColor);
     const badgeStyle = useBadgeStyle({ variant: 'subtle', color: variantColor });
+
     return (
         <Box
             as="code"
@@ -20,5 +22,3 @@ const Code = ({ variantColor = 'gray', ...props }) => {
         />
     );
 };
-
-export default Code;

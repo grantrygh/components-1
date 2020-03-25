@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { BoxProps } from '../Box/types';
 
 export interface IBadge {
@@ -16,10 +15,3 @@ export interface IBadge {
 }
 
 export type BadgeProps = IBadge & BoxProps;
-
-/**
- * The Badge component is used for state, general text, and number labels.
- */
-declare const Badge: React.FC<BadgeProps>;
-
-export default Badge;

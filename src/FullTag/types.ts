@@ -1,7 +1,6 @@
-import * as React from 'react';
-import { IBadge } from '../Badge';
+import { IBadge } from '../Badge/types';
 
-export interface IFullTag {
+interface IFullTag {
     /**
      * circular features
      */
@@ -11,14 +10,16 @@ export interface IFullTag {
      */
     variantColor?: IBadge['variantColor'];
 
+    variant?: IBadge['variant'];
+
     label?: string;
     subLabel?: string;
 
     // if true, will display a close icon with an onClick action
     onClose?: () => void;
+
+    // Include mdi-react icon as child
+    children?: any;
 }
 
 export type FullTagProps = IFullTag;
-
-declare const FullTag: React.FC<FullTagProps>;
-export default FullTag;

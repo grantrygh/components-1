@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IAvatar } from '../Avatar';
+import { IAvatar } from '../Avatar/types';
 import { BoxProps } from '../Box/types';
 import { Omit } from '../common-types';
 

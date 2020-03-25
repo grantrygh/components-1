@@ -2,30 +2,16 @@
 import { jsx } from '@emotion/core';
 import Box from '../Box';
 import { BoxProps } from '../Box/types';
-import { useColorMode } from '../ColorModeProvider';
 import { useHasImageLoaded } from '../Image';
-import useAvatarStyle from './styles';
+import useAvatarStyle, { useAvatarBadgeStyle } from './styles';
 import { AvatarNameProps, AvatarProps } from './types';
 
 export const AvatarBadge = (props: BoxProps) => {
-    const { colorMode } = useColorMode();
-    const borderColor = { light: 'white', dark: 'gray.800' };
+    const avatarBadgeProps = useAvatarBadgeStyle({
+        color: props.color,
+    });
 
-    return (
-        <Box
-            position="absolute"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            transform="translate(25%, 25%)"
-            bottom="0"
-            right="0"
-            border="0.2em solid"
-            borderColor={borderColor[colorMode]}
-            rounded="full"
-            {...props}
-        />
-    );
+    return <Box {...avatarBadgeProps} {...props} />;
 };
 
 const getInitials = name => {

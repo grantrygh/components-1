@@ -56,4 +56,20 @@ const useAvatarStyle = props => {
     return styles.style;
 };
 
+export const useAvatarBadgeStyle = ({ color = 'white' }) => {
+    return {
+        position: 'absolute',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        transform: 'translate(25%, 25%)',
+        bottom: '0',
+        right: '0',
+        border: '0.2em solid',
+        borderColor: color,
+        rounded: 'full',
+    };
+    // const borderColor = { light: 'white', dark: 'gray.800' };
+};
+
 export default useAvatarStyle;

@@ -9329,7 +9329,7 @@ mdast-util-compact@^1.0.0:
 
 mdi-react@^7.0.0:
   version "7.0.0"
-  resolved "https://registry.npmjs.org/mdi-react/-/mdi-react-7.0.0.tgz#efc3577ef302c9622adc72aa07ed62c8ace2283c"
+  resolved "https://registry.yarnpkg.com/mdi-react/-/mdi-react-7.0.0.tgz#efc3577ef302c9622adc72aa07ed62c8ace2283c"
   integrity sha512-eCsnXO0W4kzPhSuQ3xeGKz4mAZuo0wmSwgoJYOp6LLFZZPWFOX3mjNthk+AXV2jLa6ajXjZeZ/IFrxHMyPQKSQ==
 
 mdn-data@2.0.4:

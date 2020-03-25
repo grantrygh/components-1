@@ -4,7 +4,6 @@ export const badgeStyle = ({ color, size = 40 }, theme) => ({
     style: {
         display: 'inline-block',
         px: 1,
-        textTransform: 'uppercase',
         fontSize: 'xs',
         borderRadius: 'sm',
         fontWeight: 'bold',

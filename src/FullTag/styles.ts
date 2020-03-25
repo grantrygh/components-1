@@ -43,13 +43,10 @@ export const useFullTagLabelStyle = ({ variant, color }) => {
         return {
             bg,
             color: isDarkColor(bg) && 'white',
-            textTransform: 'unset',
         };
     }
 
-    return {
-        textTransform: 'unset',
-    };
+    return {};
 };
 
 export default useFullTagStyle;

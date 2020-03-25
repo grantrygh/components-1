@@ -99,6 +99,7 @@ const Tag = ({ variant = 'subtle', size = 'lg', variantColor = 'gray', ...rest }
 
     return (
         <PseudoBox
+            {...styleProps}
             display="inline-flex"
             alignItems="center"
             minH={6}
@@ -106,7 +107,6 @@ const Tag = ({ variant = 'subtle', size = 'lg', variantColor = 'gray', ...rest }
             rounded="md"
             fontWeight="medium"
             {...sizeProps}
-            {...styleProps}
             {...rest}
         />
     );

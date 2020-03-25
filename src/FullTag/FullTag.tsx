@@ -45,8 +45,6 @@ export const FullTag = ({
     //     whiteSpace: 'nowrap',
     //     verticalAlign: 'middle',
 
-    console.log('fulltag', fullTagStyleProps);
-
     return (
         <Tag variantColor={variantColor} {...fullStyle} rounded={rounded ? 'full' : 'md'} {...fullTagLabelStyleProps}>
             <Flex
@@ -55,9 +53,7 @@ export const FullTag = ({
                 {...fullTagStyleProps} // get dark color of variant
                 h="100%"
                 w="56px"
-                // display="flex"
                 rounded={rounded ? 'full' : 'md'}
-                // rounded="full"
             >
                 {children}
             </Flex>

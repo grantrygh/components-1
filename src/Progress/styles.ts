@@ -2,12 +2,10 @@ import { useTheme } from '../ThemeProvider';
 
 export const progressStyle = ({ borderRadius, color, isIndeterminate }, theme) => ({
     style: {
-        bg: 'gray.100',
+        bg: 'faintBg',
         borderRadius,
         overflow: 'hidden',
     },
-    // const trackColor = { light: 'gray.100', dark: 'whiteAlpha.300' };
-
     sizes: {
         lg: {
             height: '1rem',

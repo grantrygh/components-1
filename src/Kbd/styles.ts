@@ -2,7 +2,7 @@ import { useTheme } from '../ThemeProvider';
 
 export const kbdStyle = ({ color }, theme) => ({
     style: {
-        bg: 'gray.100',
+        bg: '',
         rounded: 'md',
         border: '1px',
         borderColor: 'inherit',
@@ -13,7 +13,6 @@ export const kbdStyle = ({ color }, theme) => ({
         px: '0.4em',
         whiteSpace: 'nowrap',
     },
-    // const bg = { light: 'gray.100', dark: 'whiteAlpha.50' };
 });
 
 const useKbdStyle = props => {

@@ -1,5 +1,5 @@
 import { Omit } from '../common-types';
-import { PseudoBoxProps } from '../PseudoBox';
+import { PseudoBoxProps } from '../PseudoBox/types';
 
 interface ICloseButton {
     /**

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { BoxProps } from '../Box/types';
+import { IButton } from '../Button';
 import { PopperProps } from '../Popper';
 import { PseudoBoxProps } from '../PseudoBox/types';
 
@@ -32,7 +33,8 @@ export type MenuProps = IMenu & MenuChildren;
 export interface IMenuButton {
     onClick?: React.MouseEventHandler<HTMLElement>;
     onKeyDown?: React.KeyboardEventHandler<HTMLElement>;
-    variantColor?: string;
+    variantColor?: IButton['variantColor'];
+    variant?: IButton['variant'];
 }
 export type MenuButtonProps = PseudoBoxProps & IMenuButton;
 
@@ -57,5 +59,3 @@ interface IMenuGroup {
     children: React.ReactNode;
 }
 export type MenuGroupProps = IMenuGroup & BoxProps;
-
-export * from './MenuOption';

@@ -1,4 +1,4 @@
-import { MenuProps } from '../Menu/types';
+import { BoxProps } from '../Box/types';
 
 // props passed down through the Post component
 interface IPostActionsProps {
@@ -10,10 +10,8 @@ interface IPostActionsProps {
 
     showActionMenu?: boolean;
 
-    // optional secondary-action menu to display on post hover
-    menu?: React.FC<MenuProps>;
-
-    children?: any;
+    // optional secondary-action <Menu> to display on post hover
+    menu?: any;
 }
 
-export type PostActionsProps = IPostActionsProps;
+export type PostActionsProps = IPostActionsProps & BoxProps;

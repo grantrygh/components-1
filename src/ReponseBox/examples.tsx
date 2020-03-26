@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/react';
-import React, { Fragment } from 'react';
+import React from 'react';
 import ResponseBox from '.';
 import Box from '../Box';
 
@@ -13,11 +13,11 @@ stories.addDecorator(story => {
 });
 
 stories.add('Default', () => (
-    <Fragment>
+    <>
         <ResponseBox
             onSubmit={message => {
                 console.log(message);
             }}
         />
-    </Fragment>
+    </>
 ));

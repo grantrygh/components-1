@@ -4,13 +4,14 @@ import { useState } from 'react';
 import Box from '../Box';
 import Button from '../Button';
 import Textarea from '../Textarea';
+import useResponseBoxStyle from './styles';
+import { ResponseBoxProps } from './types';
 
-const ResponseBox = ({ onSubmit, onCancel }) => {
+export const ResponseBox = ({ onSubmit, onCancel = null, ...props }: ResponseBoxProps) => {
     const [message, setMessage] = useState('');
-    const responseBoxStyle = {
-        textTransform: 'uppercase',
-        fontSize: 'xs',
-    };
+    const responseStyleProps = useResponseBoxStyle({
+        color: props.color,
+    });
 
     const handleFormChange = e => {
         setMessage(e.target.value);
@@ -22,7 +23,7 @@ const ResponseBox = ({ onSubmit, onCancel }) => {
     };
 
     return (
-        <Box w="100%" {...responseBoxStyle}>
+        <Box w="100%">
             {/* <FormMessages messages={formMessages} /> */}
             {/* // TODO: add form once its a component */}
             <form onChange={handleFormChange} onSubmit={handleFormSubmit}>
@@ -31,26 +32,20 @@ const ResponseBox = ({ onSubmit, onCancel }) => {
                     variant="outline"
                     autoComplete="off"
                     block
-                    size="md"
                     name="message"
-                    focusBorderColor="cyan.500"
-                    my={2}
+                    {...responseStyleProps.text}
                 />
 
                 {onCancel && (
-                    <Button onClick={onCancel} size="sm" mr={2} variant="ghost" {...responseBoxStyle}>
+                    <Button onClick={onCancel} {...responseStyleProps.cancel}>
                         Cancel
                     </Button>
                 )}
 
-                <Button type="submit" size="sm" bg="blue.500" color="white" {...responseBoxStyle}>
+                <Button type="submit" {...responseStyleProps.submit}>
                     Send message
                 </Button>
             </form>
         </Box>
     );
 };
-
-ResponseBox.displayName = 'ResponseBox';
-
-export default ResponseBox;

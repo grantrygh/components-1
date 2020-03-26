@@ -1,8 +1,12 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
-import Post from '.';
+import { Post } from '.';
 import Box from '../Box';
+import Button from '../Button';
+import Icon from '../Icon';
+import Menu, { MenuButton, MenuItem, MenuList } from '../Menu';
+import PostActions from '../PostActions';
 import ResponseBox from '../ReponseBox';
 
 const stories = storiesOf('Post', module).addDecorator(story => (
@@ -125,6 +129,23 @@ stories.add('comments section - no actions', () => {
 });
 
 stories.add('comments section - with actions', () => {
+    const actions = [
+        // Like
+        {
+            title: 'Like',
+            icon: 'chevron-up',
+            label: 1,
+            onClick: id => console.log('liked post id: ', id),
+        },
+        // Dislike
+        {
+            title: 'Dislike',
+            icon: 'chevron-down',
+            label: 2,
+            onClick: id => console.log('disliked post id: ', id),
+        },
+    ];
+
     return (
         <Box>
             <Box pb="16px">
@@ -135,17 +156,37 @@ stories.add('comments section - with actions', () => {
                 />
             </Box>
             {postList.map(post => (
-                <Post
-                    author={post.author}
-                    message={post.message}
-                    date={post.date}
-                    replies={post.replies}
-                    id={post.id}
-                    onReply={id => console.log('replied to post id: ', id)}
-                    onLike={id => console.log('liked post id: ', id)}
-                    onDislike={id => console.log('disliked post id: ', id)}
-                    onReport={id => console.log('reported post id: ', id)}
-                />
+                <Post author={post.author} message={post.message} date={post.date} replies={post.replies} id={post.id}>
+                    <PostActions
+                        menu={
+                            <Menu>
+                                <MenuButton as={Button} size="sm" variant="ghost">
+                                    <Icon name="settings" />
+                                </MenuButton>
+
+                                <MenuList minWidth="200px">
+                                    <MenuItem onClick={id => console.log('reported id: ', id)}>Report</MenuItem>
+                                </MenuList>
+                            </Menu>
+                        }
+                        onReply={id => console.log('replied to post id: ', id)}
+                    >
+                        {actions.map(action => (
+                            <Button
+                                mr={2}
+                                size="sm"
+                                onClick={action.onClick}
+                                variant="outline"
+                                color="blue.500"
+                                textTransform="uppercase"
+                                fontSize="xs"
+                                title={action.title}
+                            >
+                                {action.title}
+                            </Button>
+                        ))}
+                    </PostActions>
+                </Post>
             ))}
         </Box>
     );

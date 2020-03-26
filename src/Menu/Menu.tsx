@@ -10,9 +10,10 @@ import PseudoBox from '../PseudoBox';
 import Text from '../Text';
 import usePrevious from '../usePrevious';
 import { getFocusables, useForkRef, wrapEvent } from '../utils';
-import { useMenuItemStyle, useMenuListStyle } from './styles';
+import { useMenuItemStyle, useMenuStyle } from './styles';
+import { MenuButtonProps, MenuGroupProps, MenuItemProps, MenuListProps, MenuProps } from './types';
 
-const MenuContext = createContext();
+const MenuContext = createContext({});
 
 const Menu = ({
     children,
@@ -25,7 +26,7 @@ const Menu = ({
     closeOnSelect = true,
     defaultActiveIndex,
     placement,
-}) => {
+}: MenuProps) => {
     const { colorMode } = useColorMode();
 
     const [activeIndex, setActiveIndex] = useState(defaultActiveIndex || -1);
@@ -41,9 +42,13 @@ const Menu = ({
     const menuRef = useRef(null);
     const buttonRef = useRef(null);
 
+    const initTabIndex = () => {
+        focusableItems.current.forEach((node, index) => index === 0 && node.setAttribute('tabindex', 0));
+    };
+
     useEffect(() => {
         if (_isOpen && menuRef && menuRef.current) {
-            let focusables = getFocusables(menuRef.current).filter(node =>
+            const focusables = getFocusables(menuRef.current).filter(node =>
                 ['menuitem', 'menuitemradio', 'menuitemcheckbox'].includes(node.getAttribute('role'))
             );
             focusableItems.current = menuRef.current ? focusables : [];
@@ -53,7 +58,7 @@ const Menu = ({
 
     const updateTabIndex = index => {
         if (focusableItems.current.length > 0) {
-            let nodeAtIndex = focusableItems.current[index];
+            const nodeAtIndex = focusableItems.current[index];
             focusableItems.current.forEach(node => {
                 if (node !== nodeAtIndex) {
                     node.setAttribute('tabindex', -1);
@@ -69,29 +74,22 @@ const Menu = ({
         }
     };
 
-    const initTabIndex = () => {
-        focusableItems.current.forEach((node, index) => index === 0 && node.setAttribute('tabindex', 0));
-    };
-
     const wasPreviouslyOpen = usePrevious(_isOpen);
 
     useEffect(() => {
         if (activeIndex !== -1) {
-            focusableItems.current[activeIndex] && focusableItems.current[activeIndex].focus();
+            if (focusableItems.current[activeIndex]) {
+                focusableItems.current[activeIndex].focus();
+            }
             updateTabIndex(activeIndex);
         }
-        if (activeIndex === -1 && !_isOpen && wasPreviouslyOpen) {
-            buttonRef.current && buttonRef.current.focus();
+        if (activeIndex === -1 && !_isOpen && wasPreviouslyOpen && buttonRef.current) {
+            buttonRef.current.focus();
         }
-        if (activeIndex === -1 && _isOpen) {
-            menuRef.current && menuRef.current.focus();
+        if (activeIndex === -1 && _isOpen && menuRef.current) {
+            menuRef.current.focus();
         }
     }, [activeIndex, _isOpen, buttonRef, menuRef, wasPreviouslyOpen]);
-
-    const focusOnFirstItem = () => {
-        openMenu();
-        setActiveIndex(0);
-    };
 
     const openMenu = () => {
         if (!isControlled) {
@@ -101,6 +99,11 @@ const Menu = ({
         if (onOpen) {
             onOpen();
         }
+    };
+
+    const focusOnFirstItem = () => {
+        openMenu();
+        setActiveIndex(0);
     };
 
     const focusAtIndex = index => {
@@ -160,13 +163,14 @@ export function useMenuContext() {
     return context;
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////
+//
 
 const PseudoButton = forwardRef((props, ref) => <PseudoBox ref={ref} as="button" {...props} />);
 
-PseudoButton.displayName = 'PseudoButton';
+//
 
-const MenuButton = forwardRef(({ onClick, onKeyDown, as: Comp = PseudoButton, ...rest }, ref) => {
+const MenuButton = forwardRef(({ onClick, onKeyDown, as: Comp = PseudoButton, ...rest }: MenuButtonProps, ref) => {
+    // @ts-ignore
     const {
         isOpen,
         focusOnLastItem,
@@ -192,12 +196,10 @@ const MenuButton = forwardRef(({ onClick, onKeyDown, as: Comp = PseudoButton, ..
             onClick={wrapEvent(onClick, () => {
                 if (isOpen) {
                     closeMenu();
+                } else if (autoSelect) {
+                    focusOnFirstItem();
                 } else {
-                    if (autoSelect) {
-                        focusOnFirstItem();
-                    } else {
-                        openMenu();
-                    }
+                    openMenu();
                 }
             })}
             onKeyDown={wrapEvent(onKeyDown, event => {
@@ -216,11 +218,9 @@ const MenuButton = forwardRef(({ onClick, onKeyDown, as: Comp = PseudoButton, ..
     );
 });
 
-MenuButton.displayName = 'MenuButton';
+//
 
-//////////////////////////////////////////////////////////////////////////////////////////
-
-const MenuList = ({ onKeyDown, onBlur, ...props }) => {
+const MenuList = ({ onKeyDown, onBlur, ...props }: MenuListProps) => {
     const {
         activeIndex: index,
         isOpen,
@@ -262,14 +262,16 @@ const MenuList = ({ onKeyDown, onBlur, ...props }) => {
         if (/^[a-z0-9_-]$/i.test(event.key)) {
             event.stopPropagation();
             event.preventDefault();
-            let foundNode = focusableItems.current.find(item => item.textContent.toLowerCase().startsWith(event.key));
+            const foundNode = focusableItems.current.find(item => item.textContent.toLowerCase().startsWith(event.key));
             if (foundNode) {
                 nextIndex = focusableItems.current.indexOf(foundNode);
                 focusAtIndex(nextIndex);
             }
         }
 
-        onKeyDown && onKeyDown(event);
+        if (onKeyDown) {
+            onKeyDown(event);
+        }
     };
 
     // Close the menu on blur
@@ -285,10 +287,12 @@ const MenuList = ({ onKeyDown, onBlur, ...props }) => {
             closeMenu();
         }
 
-        onBlur && onBlur(event);
+        if (onBlur) {
+            onBlur(event);
+        }
     };
 
-    const styleProps = useMenuListStyle();
+    const menuStyleProps = useMenuStyle(null);
 
     return (
         <Popper
@@ -299,44 +303,34 @@ const MenuList = ({ onKeyDown, onBlur, ...props }) => {
             modifiers={{
                 preventOverflow: { enabled: true, boundariesElement: 'viewport' },
             }}
-            minW="3xs"
-            rounded="md"
             role="menu"
             ref={menuRef}
             id={menuId}
-            py={2}
             aria-labelledby={buttonId}
             onKeyDown={handleKeyDown}
             onBlur={handleBlur}
-            tabIndex={-1}
-            zIndex="1"
-            _focus={{ outline: 0 }}
-            {...styleProps}
+            {...menuStyleProps}
             {...props}
         />
     );
 };
 
-//////////////////////////////////////////////////////////////////////////////////////////
+//
 
 const MenuItem = forwardRef(
-    ({ isDisabled, onClick, onMouseLeave, onMouseEnter, onKeyDown, role = 'menuitem', ...props }, ref) => {
+    (
+        { isDisabled, onClick, onMouseLeave, onMouseEnter, onKeyDown, role = 'menuitem', ...props }: MenuItemProps,
+        ref
+    ) => {
+        // @ts-ignore
         const { focusableItems, focusAtIndex, closeOnSelect, closeMenu } = useMenuContext();
 
-        const styleProps = useMenuItemStyle();
+        const menuItemStyleProps = useMenuItemStyle(null);
 
         return (
             <PseudoBox
                 as="button"
                 ref={ref}
-                display="flex"
-                textDecoration="none"
-                color="inherit"
-                minHeight="32px"
-                alignItems="center"
-                textAlign="left"
-                outline="none"
-                px={4}
                 role={role}
                 tabIndex={-1}
                 disabled={isDisabled}
@@ -358,7 +352,7 @@ const MenuItem = forwardRef(
                         return;
                     }
                     if (focusableItems && focusableItems.current.length > 0) {
-                        let nextIndex = focusableItems.current.indexOf(event.currentTarget);
+                        const nextIndex = focusableItems.current.indexOf(event.currentTarget);
                         focusAtIndex(nextIndex);
                     }
                 })}
@@ -371,7 +365,7 @@ const MenuItem = forwardRef(
                         event.preventDefault();
 
                         if (onClick) {
-                            onClick();
+                            onClick(event);
                         }
 
                         if (closeOnSelect) {
@@ -379,24 +373,20 @@ const MenuItem = forwardRef(
                         }
                     }
                 })}
-                {...styleProps}
+                {...menuItemStyleProps}
                 {...props}
             />
         );
     }
 );
 
-MenuItem.displayName = 'MenuItem';
-
-//////////////////////////////////////////////////////////////////////////////////////////
+//
 
 const MenuDivider = forwardRef((props, ref) => <Divider ref={ref} orientation="horizontal" {...props} />);
 
-MenuDivider.displayName = 'MenuDivider';
+//
 
-//////////////////////////////////////////////////////////////////////////////////////////
-
-const MenuGroup = forwardRef(({ children, title, ...rest }, ref) => (
+const MenuGroup = forwardRef(({ children, title, ...rest }: MenuGroupProps, ref) => (
     <Box ref={ref} role="group">
         {title && (
             <Text mx={4} my={2} fontWeight="semibold" fontSize="sm" {...rest}>
@@ -407,10 +397,4 @@ const MenuGroup = forwardRef(({ children, title, ...rest }, ref) => (
     </Box>
 ));
 
-MenuGroup.displayName = 'MenuGroup';
-
-//////////////////////////////////////////////////////////////////////////////////////////
-
-export default Menu;
-export * from './MenuOption';
-export { MenuButton, MenuDivider, MenuGroup, MenuList, MenuItem };
+export { Menu, MenuButton, MenuDivider, MenuGroup, MenuList, MenuItem };

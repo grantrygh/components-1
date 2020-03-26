@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BoxProps } from '../Box/types';
 import { PopperProps } from '../Popper';
-import { PseudoBoxProps } from '../PseudoBox';
+import { PseudoBoxProps } from '../PseudoBox/types';
 
 interface InternalState {
     isOpen?: boolean;
@@ -19,25 +19,28 @@ export interface IMenu {
     autoSelect?: boolean;
     closeOnBlur?: boolean;
     closeOnSelect?: boolean;
+
+    defaultIsOpen?: boolean;
+    onOpen?: () => void;
+    onClose?: () => void;
+    defaultActiveIndex?: number;
+    placement?: PopperProps['placement'];
 }
 
 export type MenuProps = IMenu & MenuChildren;
-declare const Menu: React.FC<MenuProps>;
-export default Menu;
 
 export interface IMenuButton {
     onClick?: React.MouseEventHandler<HTMLElement>;
     onKeyDown?: React.KeyboardEventHandler<HTMLElement>;
+    variantColor?: string;
 }
 export type MenuButtonProps = PseudoBoxProps & IMenuButton;
-export const MenuButton: React.FC<MenuButtonProps>;
 
 export interface IMenuList {
     onKeydown?: React.KeyboardEventHandler<HTMLElement>;
     onBlur?: React.FocusEventHandler<HTMLElement>;
 }
 export type MenuListProps = IMenuList & PopperProps;
-export const MenuList: React.FC<MenuListProps>;
 
 interface IMenuItem {
     isDisabled?: boolean;
@@ -49,14 +52,10 @@ interface IMenuItem {
 }
 export type MenuItemProps = IMenuItem & PseudoBoxProps;
 
-export const MenuItem: React.FC<MenuItemProps>;
-
 interface IMenuGroup {
     title?: string;
     children: React.ReactNode;
 }
 export type MenuGroupProps = IMenuGroup & BoxProps;
-export const MenuGroup: React.FC<MenuGroupProps>;
 
-export const MenuDivider: React.FC<BoxProps>;
 export * from './MenuOption';

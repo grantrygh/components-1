@@ -2,21 +2,40 @@
 import { jsx } from '@emotion/core';
 import { useId } from '@reach/auto-id';
 import { Children, cloneElement, forwardRef, isValidElement, useRef, useState } from 'react';
-import { MenuGroup, useMenuContext } from '.';
-import Box from '../Box';
-import Icon from '../Icon';
-import PseudoBox from '../PseudoBox';
-import { useMenuItemStyle } from './styles';
+import Box from '../../Box';
+import Icon from '../../Icon';
+import PseudoBox from '../../PseudoBox';
+import { MenuGroup, useMenuContext } from '../Menu';
+import { useMenuItemStyle } from '../styles';
+import { MenuItemOptionProps, MenuOptionGroupProps } from './types';
 
 export const MenuItemOption = forwardRef(
-    ({ isDisabled, children, onClick, type, onMouseLeave, onMouseEnter, onKeyDown, isChecked, ...rest }, ref) => {
+    (
+        {
+            isDisabled,
+            children,
+            onClick,
+            type,
+            onMouseLeave,
+            onMouseEnter,
+            onKeyDown,
+            isChecked,
+            ...rest
+        }: MenuItemOptionProps,
+        ref
+    ) => {
+        // @ts-ignore
         const { focusableItems, focusAtIndex, closeMenu, closeOnSelect } = useMenuContext();
 
         const role = `menuitem${type}`;
 
-        const handleSelect = () => {
-            onClick && onClick();
-            closeOnSelect && closeMenu();
+        const handleSelect = e => {
+            if (onClick) {
+                onClick(e);
+            }
+            if (closeOnSelect) {
+                closeMenu();
+            }
         };
 
         const handleClick = event => {
@@ -25,14 +44,14 @@ export const MenuItemOption = forwardRef(
                 event.preventDefault();
                 return;
             }
-            handleSelect();
+            handleSelect(event);
         };
 
         const handleKeyDown = event => {
             if (isDisabled) return;
             if (['Enter', ' '].includes(event.key)) {
                 event.preventDefault();
-                handleSelect();
+                handleSelect(event);
             }
 
             if (onKeyDown) {
@@ -46,7 +65,7 @@ export const MenuItemOption = forwardRef(
                 event.preventDefault();
                 return;
             }
-            let nextIndex = focusableItems.current.indexOf(event.currentTarget);
+            const nextIndex = focusableItems.current.indexOf(event.currentTarget);
             focusAtIndex(nextIndex);
 
             if (onMouseEnter) {
@@ -61,15 +80,12 @@ export const MenuItemOption = forwardRef(
             }
         };
 
-        const styleProps = useMenuItemStyle();
+        const styleProps = useMenuItemStyle(null);
 
         return (
             <PseudoBox
                 ref={ref}
                 as="button"
-                display="flex"
-                minHeight="32px"
-                alignItems="center"
                 onClick={handleClick}
                 role={role}
                 tabIndex={-1}
@@ -100,7 +116,7 @@ export const MenuItemOption = forwardRef(
     }
 );
 
-MenuItemOption.displayName = 'MenuItemOption';
+//
 
 export const MenuOptionGroup = ({
     children,
@@ -111,25 +127,35 @@ export const MenuOptionGroup = ({
     defaultValue,
     onChange,
     ...rest
-}) => {
+}: MenuOptionGroupProps) => {
     const [value, setValue] = useState(defaultValue || '');
     const { current: isControlled } = useRef(valueProp != null);
 
     const derivedValue = isControlled ? valueProp : value;
 
+    console.log('OPTION DERIVED VALUE');
+
     const handleChange = _value => {
         if (type === 'radio') {
-            !isControlled && setValue(_value);
-            onChange && onChange(_value);
+            if (!isControlled) {
+                setValue(_value);
+            }
+            if (onChange) {
+                onChange(_value);
+            }
         }
 
         if (type === 'checkbox') {
-            let newValue = derivedValue.includes(_value)
+            const newValue = derivedValue.includes(_value)
                 ? derivedValue.filter(itemValue => itemValue !== _value)
                 : [...derivedValue, _value];
 
-            !isControlled && setValue(newValue);
-            onChange && onChange(newValue);
+            if (!isControlled) {
+                setValue(newValue);
+            }
+            if (onChange) {
+                onChange(newValue);
+            }
         }
     };
 
@@ -138,7 +164,9 @@ export const MenuOptionGroup = ({
     return (
         <MenuGroup title={title} {...rest}>
             {Children.map(children, child => {
-                if (!isValidElement(child)) return;
+                if (!isValidElement(child)) {
+                    return null;
+                }
 
                 if (type === 'radio') {
                     return cloneElement(child, {
@@ -168,6 +196,8 @@ export const MenuOptionGroup = ({
                         isChecked: derivedValue.includes(child.props.value),
                     });
                 }
+
+                return null;
             })}
         </MenuGroup>
     );

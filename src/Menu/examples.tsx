@@ -1,9 +1,9 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import Menu, { MenuButton, MenuDivider, MenuGroup, MenuItem, MenuList } from '.';
 import Button from '../Button';
 import Icon from '../Icon';
-import { MenuItemOption, MenuOptionGroup } from './MenuOption';
+import { Menu, MenuButton, MenuDivider, MenuGroup, MenuItem, MenuList } from './Menu';
+import { MenuItemOption, MenuOptionGroup } from './MenuItemOption';
 
 const stories = storiesOf('Menu', module);
 

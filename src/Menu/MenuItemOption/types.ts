@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { MenuGroupProps } from '.';
-import { PseudoBoxProps } from '../PseudoBox';
+import { PseudoBoxProps } from '../../PseudoBox/types';
+import { MenuGroupProps } from '../types';
 
 type stringOrNumber = string | number | Array<number | string>;
 
@@ -14,8 +14,7 @@ interface IMenuOptionGroup {
     onChange?: (value: stringOrNumber) => void;
 }
 
-type MenuOptionGroupProps = MenuGroupProps & IMenuOptionGroup;
-export const MenuOptionGroup: React.FC<MenuOptionGroupProps>;
+export type MenuOptionGroupProps = MenuGroupProps & IMenuOptionGroup;
 
 interface IMenuItemOption {
     children: React.ReactNode;
@@ -29,6 +28,4 @@ interface IMenuItemOption {
     value?: string | number;
 }
 
-type MenuItemOptionProps = PseudoBoxProps & IMenuItemOption;
-
-export const MenuItemOption: React.FC<MenuItemOptionProps>;
+export type MenuItemOptionProps = PseudoBoxProps & IMenuItemOption;

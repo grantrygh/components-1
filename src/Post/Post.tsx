@@ -25,8 +25,11 @@ export const Post = props => {
         }
     };
 
-    const PostActionChild = () =>
-        Children.map(children, (child, index) => {
+    const PostActionChild = () => {
+        if (!children) {
+            return null;
+        }
+        return Children.map(children, (child, index) => {
             if (!isValidElement(child)) return null;
 
             return cloneElement(child, {
@@ -34,6 +37,7 @@ export const Post = props => {
                 showActionMenu,
             });
         });
+    };
 
     const postStyleProps = usePostStyle({});
     const actionStyleProps = usePostActionsStyle({});

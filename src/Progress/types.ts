@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { BoxProps } from '../Box/types';
 
 export interface IProgress {
@@ -9,9 +8,8 @@ export interface IProgress {
     size?: 'lg' | 'md' | 'sm';
     hasStripe?: boolean;
     isAnimated?: boolean;
+
+    isIndeterminate?: boolean;
 }
 
 export type ProgressProps = IProgress & BoxProps;
-declare const Progress: React.FC<ProgressProps>;
-
-export default Progress;

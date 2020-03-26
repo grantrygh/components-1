@@ -1,9 +1,10 @@
 /** @jsx jsx */
 import { css, jsx, keyframes } from '@emotion/core';
 import Box from '../Box';
-import { useColorMode } from '../ColorModeProvider';
 import { valueToPercent } from '../Slider';
 import { generateStripe } from '../theme/colors-utils';
+import useProgressStyle, { useProgressIndicatorStyle } from './styles';
+import { ProgressProps } from './types';
 
 const stripe = keyframes`
   from { background-position: 1rem 0}
@@ -29,23 +30,17 @@ const ProgressIndicator = ({ isIndeterminate, min, max, value, ...rest }) => {
             transition="all 0.3s"
             width={`${percent}%`}
             {...rest}
-        ></Box>
+        />
     );
 };
 
-const progressbarSizes = {
-    lg: '1rem',
-    md: '0.75rem',
-    sm: '0.5rem',
+const ProgressTrack = props => {
+    return <Box pos="relative" {...props} />;
 };
 
-const ProgressTrack = ({ size, ...rest }) => {
-    return <Box pos="relative" height={progressbarSizes[size]} overflow="hidden" {...rest} />;
-};
-
-const Progress = ({
+export const Progress = ({
     color = 'blue',
-    value = 63,
+    value = 60,
     min = 0,
     max = 100,
     size = 'md',
@@ -56,40 +51,29 @@ const Progress = ({
     children,
     isIndeterminate,
     ...rest
-}) => {
+}: ProgressProps) => {
     const _borderRadius = rounded || borderRadius;
-    const { colorMode } = useColorMode();
 
-    const trackColor = { light: 'gray.100', dark: 'whiteAlpha.300' };
-    const indicatorColor = { light: `${color}.500`, dark: `${color}.200` };
+    const trackStyleProps = useProgressStyle({
+        borderRadius: _borderRadius,
+        size,
+    });
 
-    const stripeStyle = {
-        light: generateStripe({}),
-        dark: generateStripe({
-            color: 'rgba(0,0,0,0.1)',
-        }),
-    };
+    const indicatorStyleProps = useProgressIndicatorStyle({
+        color,
+        borderRadius: _borderRadius,
+        isIndeterminate,
+    });
 
     return (
-        <ProgressTrack size={size} bg={trackColor[colorMode]} borderRadius={_borderRadius} {...rest}>
+        <ProgressTrack {...trackStyleProps} {...rest}>
             <ProgressIndicator
                 min={min}
                 max={max}
                 value={value}
-                bg={indicatorColor[colorMode]}
-                borderRadius={_borderRadius}
-                {...(isIndeterminate && {
-                    width: '100%',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    bottom: 0,
-                    willChange: 'left, right',
-                })}
-                css={[hasStripe && stripeStyle[colorMode], hasStripe && isAnimated && stripeAnimation]}
+                css={[hasStripe && generateStripe({}), hasStripe && isAnimated && stripeAnimation]}
+                {...indicatorStyleProps}
             />
         </ProgressTrack>
     );
 };
-
-export default Progress;

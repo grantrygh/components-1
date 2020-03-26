@@ -16,7 +16,7 @@ stories.add('basic usage', () => {
 });
 
 stories.add('with theme color ', () => {
-    return <Progress color="pink" value={20} />;
+    return <Progress color="pink" value={20} rounded="md" />;
 });
 
 stories.add('with stripe', () => {

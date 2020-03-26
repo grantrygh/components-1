@@ -1,6 +1,5 @@
-import * as React from 'react';
-import { PseudoBoxProps } from '../PseudoBox';
 import { Omit } from '../common-types';
+import { PseudoBoxProps } from '../PseudoBox';
 
 interface ICloseButton {
     /**
@@ -26,7 +25,3 @@ interface ICloseButton {
 }
 
 export type CloseButtonProps = ICloseButton & Omit<PseudoBoxProps, 'size'>;
-
-declare const CloseButton: React.FC<CloseButtonProps>;
-
-export default CloseButton;

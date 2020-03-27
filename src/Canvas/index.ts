@@ -1,2 +1,2 @@
 export * from './Canvas';
-export { default } from './Canvas.tsx';
+export { default } from './Canvas';

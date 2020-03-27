@@ -4,6 +4,7 @@ import { useTheme } from '../ThemeProvider';
 export const canvasStyle: componentStyleDef = ({ kind }, theme) => ({
     canvasPanel: {},
     style: {
+        minHeight: '100vh',
         flexDirection: 'row',
         justifyContent: 'space-between',
     },

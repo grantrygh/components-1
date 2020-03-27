@@ -11,7 +11,8 @@ function reverseNumber(n, min, max) {
 
 const getKind = kind => ({
     fontSize: scaleRatio ** kind * sizeBase,
-    lineHeight: '1.4',
+    lineHeight: '1.2',
+    mb: '0.4em',
 });
 
 export const headingStyle: componentStyleDef<HeadingProps> = ({ kind }, theme) => ({

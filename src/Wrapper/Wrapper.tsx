@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import CanvasContainer, { CanvasPanel } from '../Canvas';
+import CanvasContainer from '../Canvas';
 
 const WrapperContext = createContext<any>({});
 
@@ -8,11 +8,7 @@ export default function Wrapper(props) {
 
     return (
         <WrapperContext.Provider value={{ canvasState, setCanvasState }}>
-            <CanvasContainer>
-                <CanvasPanel>Left</CanvasPanel>
-
-                <CanvasPanel flex="1">{props.children}</CanvasPanel>
-            </CanvasContainer>
+            <CanvasContainer>{props.children}</CanvasContainer>
         </WrapperContext.Provider>
     );
 }

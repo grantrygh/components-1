@@ -90,6 +90,8 @@ export const wrapEvent = (theirHandler, ourHandler) => event => {
     if (!event.defaultPrevented) {
         return ourHandler(event);
     }
+
+    return null;
 };
 
 export const isReducedMotion = () => {

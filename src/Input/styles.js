@@ -1,6 +1,6 @@
-import { useTheme } from '../ThemeProvider';
-import { useColorMode } from '../ColorModeProvider';
 import { get } from 'styled-system';
+import { useColorMode } from '../ColorModeProvider';
+import { useTheme } from '../ThemeProvider';
 
 const outlinedStyle = ({ theme, colorMode, focusBorderColor, errorBorderColor }) => {
     const bg = { light: 'white', dark: 'whiteAlpha.100' };

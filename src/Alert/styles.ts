@@ -23,13 +23,13 @@ export const alertStyle = ({ color }, theme) => ({
         leftAccent: {
             pl: 3,
             bg: `${color}.100`,
-            borderLeft: '4px',
+            borderLeft: '2px',
             borderColor: `${color}.500`,
         },
         topAccent: {
             pl: 2,
             bg: `${color}.100`,
-            borderTop: '4px',
+            borderTop: '2px',
             borderColor: `${color}.500`,
         },
     },
@@ -44,7 +44,7 @@ const useAlertStyle = props => {
         ...styles.style,
 
         // variant style
-        ...styles.variants[props.variant || 'subtle'],
+        ...styles.variants[props.variant || 'leftAccent'],
     };
 };
 

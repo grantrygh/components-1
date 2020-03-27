@@ -1,15 +1,14 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
-import { forwardRef } from 'react';
-import { useColorMode } from '../ColorModeProvider';
+import React, { forwardRef } from 'react';
 import PseudoBox from '../PseudoBox';
-import { useTheme } from '../ThemeProvider';
+import { LinkProps } from './types';
 
 const baseStyleProps = {
     transition: `all 0.15s ease-out`,
     cursor: 'pointer',
     textDecoration: 'none',
     outline: 'none',
+    color: 'bodyText',
+    _hover: { textDecoration: 'underline' },
     _focus: {
         boxShadow: 'outline',
     },
@@ -20,12 +19,8 @@ const baseStyleProps = {
     },
 };
 
-const Link = forwardRef(({ isDisabled, isExternal, onClick, ...rest }, ref) => {
+const Link = forwardRef(({ isDisabled, isExternal, onClick, ...rest }: LinkProps, ref) => {
     const externalProps = isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : null;
-
-    const { colorMode } = useColorMode();
-    const { colors } = useTheme();
-    const color = { light: colors.black, dark: colors.white };
 
     return (
         <PseudoBox
@@ -34,8 +29,6 @@ const Link = forwardRef(({ isDisabled, isExternal, onClick, ...rest }, ref) => {
             tabIndex={isDisabled ? -1 : undefined}
             aria-disabled={isDisabled}
             onClick={isDisabled ? event => event.preventDefault() : onClick}
-            _hover={{ textDecoration: 'underline' }}
-            color={color[colorMode]}
             {...externalProps}
             {...baseStyleProps}
             {...rest}

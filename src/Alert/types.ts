@@ -1,4 +1,4 @@
-import { BoxProps } from '../Box/Box.types';
+import { BoxProps } from '../Box/types';
 
 export interface IAlert {
     /**

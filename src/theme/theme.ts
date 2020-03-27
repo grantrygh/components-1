@@ -6,7 +6,7 @@ import typography from './typography';
 const space = baseSizes;
 
 const shadows = {
-    sm: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+    sm: '0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px 0 rgba(0, 0, 0, 0.04)',
     md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
     lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
     xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
@@ -17,11 +17,12 @@ const shadows = {
 };
 
 const breakpoints = ['30em', '48em', '62em', '80em'];
+
 // aliases
-breakpoints.sm = breakpoints[0];
-breakpoints.md = breakpoints[1];
-breakpoints.lg = breakpoints[2];
-breakpoints.xl = breakpoints[3];
+breakpoints['sm'] = breakpoints[0];
+breakpoints['md'] = breakpoints[1];
+breakpoints['lg'] = breakpoints[2];
+breakpoints['xl'] = breakpoints[3];
 
 const zIndices = {
     hide: -1,
@@ -90,5 +91,7 @@ const theme = {
     // add to this in custom theme to override component styling
     styles: {},
 };
+
+export type ThemeType = typeof theme;
 
 export default theme;

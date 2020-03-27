@@ -12,7 +12,7 @@ function AdminUI(props) {
     return (
         <ThemeProvider theme={theme}>
             <CSSReset />
-            <Alert mt="2" variant="leftAccent" status="success" maxWidth="sm" mx="auto" alignItems="start">
+            <Alert mt="2" variant="left-accent" status="success" maxWidth="sm" mx="auto" alignItems="start">
                 <AlertIcon />
                 <Box flex="1">
                     <AlertTitle>Holy Smokes!</AlertTitle>

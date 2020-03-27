@@ -2,7 +2,7 @@ import { throttle } from '@audentio/utils/src/throttle';
 import { useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { useTheme } from '../ThemeProvider';
 
-export const assignRef = (ref, value) => {
+export function assignRef(ref: any, value: any) {
     if (ref == null) return;
     if (typeof ref === 'function') {
         ref(value);
@@ -13,7 +13,7 @@ export const assignRef = (ref, value) => {
             throw new Error(`Cannot assign value "${value}" to ref "${ref}"`);
         }
     }
-};
+}
 
 const focusableElList = [
     'a[href]',
@@ -31,7 +31,7 @@ const focusableElList = [
 
 const focusableElSelector = focusableElList.join();
 
-export function getFocusables(element, keyboardOnly = false) {
+export function getFocusables(element: HTMLElement, keyboardOnly: boolean = false) {
     let focusableEls = Array.from(element.querySelectorAll(focusableElSelector));
 
     // filter out elements with display: none
@@ -44,7 +44,7 @@ export function getFocusables(element, keyboardOnly = false) {
     return focusableEls;
 }
 
-export function setRef(ref, value) {
+export function setRef(ref: any, value: any) {
     if (typeof ref === 'function') {
         ref(value);
     } else if (ref) {
@@ -52,7 +52,7 @@ export function setRef(ref, value) {
     }
 }
 
-export function useForkRef(refA, refB) {
+export function useForkRef(refA: any, refB: any) {
     return useMemo(() => {
         if (refA == null && refB == null) {
             return null;
@@ -139,7 +139,7 @@ export const inputProps = [
     'isRequired',
 ];
 
-export function useVariantColorWarning(label, variantColor) {
+export function useVariantColorWarning(label: string, variantColor: string) {
     const theme = useTheme();
     if (process.env.NODE_ENV !== 'production') {
         const variantColorIsDefined = variantColor != null;
@@ -169,7 +169,7 @@ export function useVariantColorWarning(label, variantColor) {
     }
 }
 
-export function useWindowResize(throttleDuration = 200) {
+export function useWindowResize(throttleDuration: number = 200) {
     const [state, setState] = useState({
         windowHeight: __BROWSER__ ? window.innerHeight : 0,
         windowWidth: __BROWSER__ ? window.innerWidth : 0,

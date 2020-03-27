@@ -107,3 +107,23 @@ interface IModalContent {
 }
 
 export type ModalContentProps = IModalContent & BoxProps;
+
+interface IModalContext {
+    contentRef?: React.MutableRefObject<any>;
+    bodyId?: string;
+    headerId?: string;
+    contentId?: string;
+    addAriaLabelledby?: boolean;
+    addAriaDescribedby?: boolean;
+}
+
+export type ModalContextProps = IModalContext & Omit<ModalProps, 'children'>;
+
+interface IAriaHider {
+    isOpen?: boolean;
+    id?: string;
+    enableInert?: boolean;
+    container?: HTMLElement | null;
+}
+
+export type AriaHiderProps = IAriaHider;

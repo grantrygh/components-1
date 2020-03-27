@@ -13,17 +13,13 @@ import Flex from '../Flex';
 import Portal from '../Portal';
 import { getFocusables, useForkRef, wrapEvent } from '../utils';
 import useModalStyle, { useModalWrapperStyle } from './styles';
-import { ModalContentProps, ModalProps } from './types';
-
-//
+import { AriaHiderProps, ModalContentProps, ModalContextProps, ModalProps } from './types';
 
 const { canUseDOM } = exenv;
-const ModalContext = createContext({});
+const ModalContext = createContext<ModalContextProps>({});
 const useModalContext = () => useContext(ModalContext);
 
-//
-
-function useAriaHider({ isOpen, id, enableInert, container = canUseDOM ? document.body : null }) {
+function useAriaHider({ isOpen, id, enableInert, container = canUseDOM ? document.body : null }: AriaHiderProps) {
     const mountRef = useRef(canUseDOM ? document.getElementById(id) || document.createElement('div') : null);
 
     useEffect(() => {
@@ -50,8 +46,6 @@ function useAriaHider({ isOpen, id, enableInert, container = canUseDOM ? documen
 
     return mountRef;
 }
-
-//
 
 const Modal = ({
     isOpen,
@@ -130,6 +124,7 @@ const Modal = ({
         isOpen,
         id: portalId,
         enableInert: useInert,
+        // @ts-ignore
         container,
     });
 
@@ -186,8 +181,6 @@ const Modal = ({
     );
 };
 
-//
-
 const ModalOverlay = React.forwardRef((props: BoxProps, ref) => {
     return (
         <Box
@@ -207,10 +200,7 @@ const ModalOverlay = React.forwardRef((props: BoxProps, ref) => {
     );
 });
 
-//
-
 const ModalContent = React.forwardRef(({ onClick, children, zIndex, noStyles, ...props }: ModalContentProps, ref) => {
-    console.log('content');
     const {
         contentRef,
         onClose,

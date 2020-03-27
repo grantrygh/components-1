@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { BoxProps } from '../Box/types';
-import { CloseButtonProps } from '../CloseButton';
 
 type ModalSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | 'full';
 
@@ -98,18 +97,13 @@ export interface IModal {
     formatIds?: (id: string | number) => { content: string; header: string; body: string };
 }
 
-export const Modal: React.FC<IModal>;
-export const ModalOverlay: React.FC<BoxProps>;
+export type ModalProps = IModal;
 
 interface IModalContent {
     onClick?: React.KeyboardEventHandler<HTMLElement>;
     zIndex?: BoxProps['zIndex'];
     children: React.ReactNode;
+    noStyles?: boolean;
 }
 
-type ModalContentProps = IModalContent & BoxProps;
-export const ModalContent: React.FC<ModalContentProps>;
-export const ModalHeader: React.FC<BoxProps>;
-export const ModalFooter: React.FC<BoxProps>;
-export const ModalBody: React.FC<BoxProps>;
-export const ModalCloseButton: React.FC<CloseButtonProps>;
+export type ModalContentProps = IModalContent & BoxProps;

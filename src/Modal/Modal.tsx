@@ -4,26 +4,31 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import exenv from 'exenv';
 import React, { createContext, forwardRef, useCallback, useContext, useEffect, useRef } from 'react';
 import FocusLock from 'react-focus-lock/dist/cjs';
+import { Transition } from 'react-spring/renderprops';
 import Box from '../Box';
+import { BoxProps } from '../Box/types';
 import CloseButton from '../CloseButton';
-import { useColorMode } from '../ColorModeProvider';
+import { CloseButtonProps } from '../CloseButton/types';
+import Flex from '../Flex';
 import Portal from '../Portal';
 import { getFocusables, useForkRef, wrapEvent } from '../utils';
+import useModalStyle, { useModalWrapperStyle } from './styles';
+import { ModalContentProps, ModalProps } from './types';
 
-////////////////////////////////////////////////////////////////////////
+//
 
 const { canUseDOM } = exenv;
 const ModalContext = createContext({});
 const useModalContext = () => useContext(ModalContext);
 
-////////////////////////////////////////////////////////////////////////
+//
 
 function useAriaHider({ isOpen, id, enableInert, container = canUseDOM ? document.body : null }) {
     const mountRef = useRef(canUseDOM ? document.getElementById(id) || document.createElement('div') : null);
 
     useEffect(() => {
         let undoAriaHidden = null;
-        let mountNode = mountRef.current;
+        const mountNode = mountRef.current;
 
         if (isOpen && canUseDOM) {
             mountRef.current.id = id;
@@ -46,7 +51,7 @@ function useAriaHider({ isOpen, id, enableInert, container = canUseDOM ? documen
     return mountRef;
 }
 
-////////////////////////////////////////////////////////////////////////
+//
 
 const Modal = ({
     isOpen,
@@ -71,7 +76,7 @@ const Modal = ({
     children,
     id,
     size = 'md',
-}) => {
+}: ModalProps) => {
     const contentRef = useRef(null);
     const uuid = useId();
     const _id = id || uuid;
@@ -111,11 +116,13 @@ const Modal = ({
             }
         };
 
-        if (isOpen && !closeOnOverlayClick) {
-            canUseDOM && document.addEventListener('keydown', func);
+        if (isOpen && !closeOnOverlayClick && canUseDOM) {
+            document.addEventListener('keydown', func);
         }
         return () => {
-            canUseDOM && document.removeEventListener('keydown', func);
+            if (canUseDOM) {
+                document.removeEventListener('keydown', func);
+            }
         };
     }, [isOpen, onClose, closeOnOverlayClick, closeOnEsc]);
 
@@ -148,12 +155,10 @@ const Modal = ({
     const activateFocusLock = useCallback(() => {
         if (initialFocusRef && initialFocusRef.current) {
             initialFocusRef.current.focus();
-        } else {
-            if (contentRef.current) {
-                let focusables = getFocusables(contentRef.current);
-                if (focusables.length === 0) {
-                    contentRef.current.focus();
-                }
+        } else if (contentRef.current) {
+            const focusables = getFocusables(contentRef.current);
+            if (focusables.length === 0) {
+                contentRef.current.focus();
             }
         }
     }, [initialFocusRef]);
@@ -181,9 +186,9 @@ const Modal = ({
     );
 };
 
-////////////////////////////////////////////////////////////////////////
+//
 
-const ModalOverlay = React.forwardRef((props, ref) => {
+const ModalOverlay = React.forwardRef((props: BoxProps, ref) => {
     return (
         <Box
             pos="fixed"
@@ -202,11 +207,10 @@ const ModalOverlay = React.forwardRef((props, ref) => {
     );
 });
 
-ModalOverlay.displayName = 'ModalOverlay';
+//
 
-////////////////////////////////////////////////////////////////////////
-
-const ModalContent = React.forwardRef(({ onClick, children, zIndex = 'modal', noStyles, ...props }, ref) => {
+const ModalContent = React.forwardRef(({ onClick, children, zIndex, noStyles, ...props }: ModalContentProps, ref) => {
+    console.log('content');
     const {
         contentRef,
         onClose,
@@ -222,70 +226,16 @@ const ModalContent = React.forwardRef(({ onClick, children, zIndex = 'modal', no
         closeOnOverlayClick,
     } = useModalContext();
     const _contentRef = useForkRef(ref, contentRef);
-    const { colorMode } = useColorMode();
 
-    const colorModeStyles = {
-        light: {
-            bg: 'white',
-            shadow: '0 7px 14px 0 rgba(0,0,0, 0.1), 0 3px 6px 0 rgba(0, 0, 0, .07)',
-        },
-        dark: {
-            bg: 'gray.700',
-            shadow: `rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px`,
-        },
-    };
+    const modalWrapperStyleProps = useModalWrapperStyle({
+        scrollBehavior,
+        isCentered,
+    });
 
-    const boxStyleProps = colorModeStyles[colorMode];
-
-    let wrapperStyle = {};
-    let contentStyle = {};
-
-    if (isCentered) {
-        wrapperStyle = {
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-        };
-    } else {
-        contentStyle = {
-            top: '3.75rem',
-            mx: 'auto',
-        };
-    }
-
-    if (scrollBehavior === 'inside') {
-        wrapperStyle = {
-            ...wrapperStyle,
-            maxHeight: 'calc(100vh - 7.5rem)',
-            overflow: 'hidden',
-            top: '3.75rem',
-        };
-
-        contentStyle = {
-            ...contentStyle,
-            height: '100%',
-            top: 0,
-        };
-    }
-
-    if (scrollBehavior === 'outside') {
-        wrapperStyle = {
-            ...wrapperStyle,
-            overflowY: 'auto',
-            overflowX: 'hidden',
-        };
-
-        contentStyle = {
-            ...contentStyle,
-            my: '3.75rem',
-            top: 0,
-        };
-    }
-
-    if (noStyles) {
-        wrapperStyle = {};
-        contentStyle = {};
-    }
+    const modalStyleProps = useModalStyle({
+        scrollBehavior,
+        isCentered,
+    });
 
     return (
         <Box
@@ -294,7 +244,7 @@ const ModalContent = React.forwardRef(({ onClick, children, zIndex = 'modal', no
             top="0"
             w="100%"
             h="100%"
-            zIndex={zIndex}
+            zIndex={zIndex || 'modal'}
             onClick={event => {
                 event.stopPropagation();
                 if (closeOnOverlayClick) {
@@ -309,7 +259,7 @@ const ModalContent = React.forwardRef(({ onClick, children, zIndex = 'modal', no
                     }
                 }
             }}
-            {...wrapperStyle}
+            {...modalWrapperStyleProps}
         >
             <Box
                 ref={_contentRef}
@@ -326,10 +276,9 @@ const ModalContent = React.forwardRef(({ onClick, children, zIndex = 'modal', no
                 pos="relative"
                 d="flex"
                 flexDir="column"
-                zIndex={zIndex}
+                zIndex={zIndex || 'modal'}
                 onClick={wrapEvent(onClick, event => event.stopPropagation())}
-                {...boxStyleProps}
-                {...contentStyle}
+                {...modalStyleProps}
                 {...props}
             >
                 {children}
@@ -338,11 +287,7 @@ const ModalContent = React.forwardRef(({ onClick, children, zIndex = 'modal', no
     );
 });
 
-ModalContent.displayName = 'ModalContent';
-
-////////////////////////////////////////////////////////////////////////
-
-const ModalHeader = forwardRef((props, ref) => {
+const ModalHeader = forwardRef((props: BoxProps, ref) => {
     const { headerId } = useModalContext();
     return (
         <Box
@@ -359,19 +304,11 @@ const ModalHeader = forwardRef((props, ref) => {
     );
 });
 
-ModalHeader.displayName = 'ModalHeader';
-
-////////////////////////////////////////////////////////////////////////
-
-const ModalFooter = forwardRef((props, ref) => (
-    <Box display="flex" justifyContent="flex-end" ref={ref} px={6} py={4} as="footer" {...props} />
+const ModalFooter = forwardRef((props: BoxProps, ref) => (
+    <Flex justify="flex-end" ref={ref} px={6} py={4} as="footer" {...props} />
 ));
 
-ModalFooter.displayName = 'ModalFooter';
-
-////////////////////////////////////////////////////////////////////////
-
-const ModalBody = forwardRef((props, ref) => {
+const ModalBody = forwardRef((props: BoxProps, ref) => {
     const { bodyId, scrollBehavior } = useModalContext();
 
     let style = {};
@@ -382,17 +319,21 @@ const ModalBody = forwardRef((props, ref) => {
     return <Box ref={ref} id={bodyId} px={6} py={2} flex="1" {...style} {...props} />;
 });
 
-ModalBody.displayName = 'ModalBody';
-
-////////////////////////////////////////////////////////////////////////
-
-const ModalCloseButton = forwardRef((props, ref) => {
+const ModalCloseButton = forwardRef((props: CloseButtonProps, ref) => {
     const { onClose } = useModalContext();
     return <CloseButton ref={ref} onClick={onClose} position="absolute" top="8px" right="12px" {...props} />;
 });
 
-ModalCloseButton.displayName = 'ModalCloseButton';
+const ModalTransition = ({ isOpen, duration = 150, children }) => (
+    <Transition
+        items={isOpen}
+        from={{ opacity: 0, y: 10 }}
+        enter={{ opacity: 1, y: 0 }}
+        leave={{ opacity: 0, y: -10 }}
+        config={{ duration }}
+    >
+        {isTransOpen => isTransOpen && (styles => children(styles))}
+    </Transition>
+);
 
-////////////////////////////////////////////////////////////////////////
-
-export { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton };
+export { Modal, ModalHeader, ModalTransition, ModalFooter, ModalBody, ModalCloseButton, ModalOverlay, ModalContent };

@@ -201,11 +201,11 @@ const colors = {
     black: '#000',
     white: '#fff',
 
-    altBg: '#EDF2F7', // ~ whiteAlpha.100 for dark
-    modalBg: '#fff', // gray.700 for dark
-
     bodyText: '#333',
     faintText: '#aaa',
+
+    altBg: '#EDF2F7', // ~ whiteAlpha.100 for dark
+    modalBg: '#fff', // gray.700 for dark
 
     ...palette,
     ...brand,

@@ -43,13 +43,11 @@ export const UpdateBrowser = ({ onClick, href, children, ...props }: UpdateBrows
     return (
         <Box {...updateBrowserStyleProps}>
             <Box display="table-cell" verticalAlign="middle">
-                <Heading fontSize="xl" lineHeight="48px">
-                    Please update your browser.
-                </Heading>
-                <Heading fontSize="sm">
+                <Heading kind="h2">Please update your browser.</Heading>
+                <Text fontSize="md">
                     Your browser isn't supported anymore. Update it to get the best experience and access to our latest
                     features.
-                </Heading>
+                </Text>
                 <Box w="100%" maxWidth="992px" margin="16px auto" textAlign="center">
                     {browsers.map(browser => (
                         <Link {...browserBoxStyleProps} href={browser.href} key={browser.name}>

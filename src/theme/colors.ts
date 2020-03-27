@@ -161,7 +161,9 @@ const colors = {
     current: 'currentColor',
     black: '#000',
     white: '#fff',
-    faintBg: '#EDF2F7', // for a darker theme use ~ whiteAlpha.100
+
+    altBg: '#EDF2F7', // ~ whiteAlpha.100 for dark
+    modalBg: '#fff', // gray.700 for dark
 
     ...palette,
 

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { BoxProps } from '../Box/types';
 
 interface IFlex {
@@ -21,7 +20,3 @@ interface IFlex {
 }
 
 export type FlexProps = IFlex & BoxProps;
-
-declare const Flex: React.FC<FlexProps>;
-
-export default Flex;

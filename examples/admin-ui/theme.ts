@@ -1,4 +1,4 @@
-import update from 'immutability-helper';
+ptheimport update from 'immutability-helper';
 import { alertStyle } from '../../src/Alert/styles';
 import defaultTheme from '../../src/theme';
 

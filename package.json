@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --passWithNoTests",
-    "start": "yarn example:admin",
+    "start": "yarn example:styleguide",
     "example:admin": "EXAMPLE=admin-ui ./node_modules/.bin/webpack-dev-server --config ./webpack/example-dev.js",
     "example:styleguide": "EXAMPLE=styleguide ./node_modules/.bin/webpack-dev-server --config ./webpack/example-dev.js",
     "dev": "EXAMPLE=dev ./node_modules/.bin/webpack-dev-server --config ./webpack/example-dev.js",

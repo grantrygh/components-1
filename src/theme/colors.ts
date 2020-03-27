@@ -1,3 +1,42 @@
+import color from 'color';
+
+const generateShades = primary => {
+    const p = color(primary);
+
+    const shades = {
+        50: p.lighten(0.8),
+        100: p.lighten(0.4),
+        200: p.lighten(0.3),
+        300: p.lighten(0.2),
+        400: p.lighten(0.1),
+        500: p,
+        600: p.darken(0.1),
+        700: p.darken(0.2),
+        800: p.darken(0.3),
+        900: p.darken(0.4),
+    };
+
+    for (const key in shades) {
+        shades[key] = shades[key].hex();
+    }
+
+    return shades;
+};
+
+// brand colors
+// use https://material.io/resources/color
+const brand = {
+    primary: generateShades('#0069FF'),
+    secondary: generateShades('#3CD598'),
+};
+
+const states = {
+    success: generateShades('#3DD598'),
+    info: generateShades('#50B5FF'),
+    warning: generateShades('#FFC542'),
+    error: generateShades('#FC5A5A'),
+};
+
 const palette = {
     whiteAlpha: {
         50: 'rgba(255, 255, 255, 0.04)',
@@ -165,19 +204,12 @@ const colors = {
     altBg: '#EDF2F7', // ~ whiteAlpha.100 for dark
     modalBg: '#fff', // gray.700 for dark
 
+    bodyText: '#333',
+    faintText: '#aaa',
+
     ...palette,
-
-    // brand colors
-    primary: palette.blue,
-    secondary: palette.green,
-    tertiary: palette.orange,
-
-    statuses: {
-        info: palette.blue,
-        success: palette.green,
-        danger: palette.red,
-        warning: palette.orange,
-    },
+    ...brand,
+    ...states,
 
     linkedin: {
         50: '#E8F4F9',
@@ -257,5 +289,7 @@ const colors = {
         900: '#003f5e',
     },
 };
+
+console.log(states.success);
 
 export default colors;

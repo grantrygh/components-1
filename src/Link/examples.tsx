@@ -1,9 +1,9 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
-import Link from '../Link';
+import React from 'react';
+import Link from './Link';
 
 const stories = storiesOf('Link', module);
+
 stories.add('Default', () => (
     <div>
         <Link variant="nice-border">Home</Link>

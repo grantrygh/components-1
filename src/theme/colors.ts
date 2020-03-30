@@ -204,6 +204,8 @@ const colors = {
     bodyText: '#333',
     faintText: '#aaa',
 
+    border: '#E2E2EA',
+
     altBg: '#EDF2F7', // ~ whiteAlpha.100 for dark
     modalBg: '#fff', // gray.700 for dark
 

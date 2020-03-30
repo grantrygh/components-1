@@ -2,27 +2,27 @@ import { useTheme } from '../ThemeProvider';
 
 export const tagStyle = (props, theme) => ({
     style: {
-        rounded: 'md',
+        rounded: 'full',
+        border: '1px',
+        borderColor: 'border',
         fontWeight: 'medium',
+        fontSize: 'sm',
     },
     sizes: {
         sm: {
             minH: 6,
             minW: 6,
-            fontSize: 'sm',
             px: 2,
         },
         md: {
             minH: '1.75rem',
             minW: '1.75rem',
-            fontSize: 'sm',
             px: 2,
         },
         lg: {
             minH: 8,
             minW: 8,
             px: 3,
-            fontSize: 'md',
         },
     },
 });

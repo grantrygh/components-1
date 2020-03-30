@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
+import CloseIcon from 'mdi-react/CloseIcon';
 import useBadgeStyle from '../Badge/styles';
 import Box from '../Box';
 import Icon from '../Icon';
@@ -20,7 +21,7 @@ export const TagCloseButton = ({ isDisabled, ...props }: TagCloseButtonProps) =>
         outline="none"
         ml={1}
         mr={-1}
-        opacity="0.5"
+        opacity="0.35"
         disabled={isDisabled}
         _disabled={{
             opacity: '40%',
@@ -39,7 +40,8 @@ export const TagCloseButton = ({ isDisabled, ...props }: TagCloseButtonProps) =>
         }}
         {...props}
     >
-        <Icon size="18px" name="small-close" focusable={false} />
+        <CloseIcon size={18} focusable={false} />
+        {/* <Icon size="18px" name="small-close" focusable={false} /> */}
     </PseudoBox>
 );
 
@@ -54,7 +56,7 @@ export const TagIcon = ({ icon, ...props }: TagIconProps) => {
 
 export const TagLabel = (props: TagLabelProps) => <Box isTruncated lineHeight="1.2" as="span" {...props} />;
 
-export const Tag = ({ variant = 'subtle', size = 'lg', variantColor = 'gray', ...rest }: TagProps) => {
+export const Tag = ({ variant = 'subtle', size = 'lg', variantColor = 'transparent', ...rest }: TagProps) => {
     useVariantColorWarning('Tag', variantColor);
     const badgeStyleProps = useBadgeStyle({ color: variantColor, variant });
     const tagStyleProps = useTagStyle({

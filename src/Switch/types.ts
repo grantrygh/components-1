@@ -53,7 +53,3 @@ export interface ISwitch {
 }
 
 export type SwitchProps = ISwitch & Omit<BoxProps, 'defaultChecked' | 'size'>;
-
-declare const Switch: React.FC<SwitchProps>;
-
-export default Switch;

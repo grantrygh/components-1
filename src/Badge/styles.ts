@@ -10,7 +10,6 @@ export const badgeStyle = ({ color, size = 40 }, theme) => ({
         whiteSpace: 'nowrap',
         verticalAlign: 'middle',
     },
-
     variants: {
         subtle: {
             bg: `${color}.50`,

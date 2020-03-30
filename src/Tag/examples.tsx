@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
-import Tag, { TagCloseButton, TagIcon, TagLabel } from '.';
+import { Tag, TagCloseButton, TagIcon, TagLabel } from '.';
 import Avatar from '../Avatar';
 import Stack from '../Stack';
 

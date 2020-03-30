@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { BoxProps } from '../Box/types';
 import { Omit } from '../common-types';
 
@@ -39,12 +38,3 @@ export interface ISpinnerProps {
 }
 
 export type SpinnerProps = Omit<BoxProps, 'size'> & ISpinnerProps;
-
-/**
- * Spinner is used for indicating a loading state of a component or page.
- *
- * RECOMMENDED: Add `aria-busy="true"` to the component that triggered the loading state while the spinner is shown.
- */
-declare const Spinner: React.FC<SpinnerProps>;
-
-export default Spinner;

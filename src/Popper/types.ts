@@ -1,7 +1,7 @@
 import PopperJs from 'popper.js';
 import * as React from 'react';
 import { BoxProps } from '../Box/types';
-import { PortalProps } from '../Portal';
+import { PortalProps } from '../Portal/types';
 import { PseudoBoxProps } from '../PseudoBox';
 
 type RenderProps = {
@@ -59,7 +59,10 @@ export interface IPopper {
     /**
      * Options provided to the [`popper.js`](https://github.com/FezVrasta/popper.js) instance.
      */
-    popperOptions?: object;
+    popperOptions?: {
+        modifiers?: any;
+        onUpdate?: any;
+    };
     /**
      * A ref that points to the used popper instance.
      */
@@ -88,7 +91,4 @@ export interface IPopper {
 
 export type PopperProps = IPopper & PseudoBoxProps & PopperChildren;
 
-declare const Popper: React.FC<PopperProps>;
-export default Popper;
-
-export const PopperArrow: React.FC<BoxProps>;
+export type PopperArrowProps = BoxProps;

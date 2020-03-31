@@ -13,7 +13,8 @@ import Box from '../Box';
 import Portal from '../Portal';
 import PseudoBox from '../PseudoBox';
 import { createChainedFunction, setRef, useForkRef } from '../utils';
-import getPopperArrowStyle from './styles';
+import usePopperStyle from './styles';
+import { PopperArrowProps, PopperProps } from './types';
 
 /**
  * Flips placement if in <body dir="rtl" />
@@ -46,12 +47,11 @@ function getAnchorEl(anchorEl) {
 
 const useEnhancedEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
-const Popper = forwardRef(
+export const Popper = forwardRef(
     (
         {
             anchorEl,
             children,
-            gutter,
             container,
             usePortal = true,
             unmountOnExit = true,
@@ -65,7 +65,7 @@ const Popper = forwardRef(
             arrowShadowColor,
             hasArrow,
             ...rest
-        },
+        }: PopperProps,
         ref
     ) => {
         const tooltipRef = useRef(null);
@@ -74,6 +74,12 @@ const Popper = forwardRef(
         const popperRef = useRef(null);
         const handlePopperRef = useForkRef(popperRef, popperRefProp);
         const handlePopperRefRef = useRef(handlePopperRef);
+
+        const popperStyleProps = usePopperStyle({
+            arrowSize,
+            arrowShadowColor,
+            hasArrow,
+        });
 
         useEnhancedEffect(() => {
             handlePopperRefRef.current = handlePopperRef;
@@ -169,7 +175,10 @@ const Popper = forwardRef(
             return null;
         }
 
-        const childProps = { placement };
+        const childProps = {
+            placement,
+            transition: {},
+        };
 
         if (willUseTransition) {
             childProps.transition = {
@@ -181,12 +190,7 @@ const Popper = forwardRef(
 
         return (
             <Portal isDisabled={!usePortal} container={container}>
-                <PseudoBox
-                    ref={handleRef}
-                    pos="absolute"
-                    css={getPopperArrowStyle({ arrowSize, arrowShadowColor, hasArrow })}
-                    {...rest}
-                >
+                <PseudoBox ref={handleRef} pos="absolute" {...popperStyleProps} {...rest}>
                     {typeof children === 'function' ? children(childProps) : children}
                 </PseudoBox>
             </Portal>
@@ -194,6 +198,4 @@ const Popper = forwardRef(
     }
 );
 
-export default Popper;
-
-export const PopperArrow = props => <Box x-arrow="" role="presentation" bg="inherit" {...props} />;
+export const PopperArrow = (props: PopperArrowProps) => <Box x-arrow="" role="presentation" bg="inherit" {...props} />;

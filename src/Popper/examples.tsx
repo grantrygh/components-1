@@ -1,8 +1,8 @@
 /** @jsx jsx */
-import React from 'react';
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
-import Popper from '.';
+import React from 'react';
+import { Popper } from '.';
 import Button from '../Button';
 
 const stories = storiesOf('Popper', module);
@@ -20,7 +20,7 @@ const Example = () => {
             <Button size="sm" ref={buttonRef} onClick={handleClick}>
                 Toggle Popper
             </Button>
-            <Popper placement="right" isOpen={open} anchorEl={buttonRef.current}>
+            <Popper placement="right" isOpen={open} anchorEl={buttonRef.current} hasArrow>
                 <p>The content of the Popper.</p>
             </Popper>
         </>

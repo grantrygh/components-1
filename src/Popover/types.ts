@@ -1,37 +1,37 @@
 import PopperJS from 'popper.js';
 import * as React from 'react';
-import { BoxProps } from '../Box/types';
 import { PopperProps } from '../Popper';
 import { PseudoBoxProps } from '../PseudoBox';
 
-interface PopoverContextValue {
-    popoverRef: React.RefObject<HTMLElement>;
-    placement: PopperJS.Placement;
-    referenceRef: React.RefObject<HTMLElement>;
-    headerId: string;
-    bodyId: string;
-    popoverId: string;
-    onOpen: () => void;
-    onClose: () => void;
-    onToggle: () => void;
-    trigger: 'hover' | 'click';
-    isOpen: boolean;
-    onBlur: React.FocusEventHandler<HTMLElement>;
-    closeOnEsc: boolean;
-    initialFocusRef: boolean;
-    isHoveringRef: React.RefObject<boolean>;
-    usePortal: boolean;
+export interface IPopoverContextValue {
+    popoverRef?: React.RefObject<HTMLElement>;
+    placement?: PopperJS.Placement;
+    referenceRef?: React.RefObject<HTMLElement>;
+    headerId?: string;
+    bodyId?: string;
+    popoverId?: string;
+    onOpen?: () => void;
+    onClose?: () => void;
+    onToggle?: () => void;
+    trigger?: 'hover' | 'click';
+    isOpen?: boolean;
+    onBlur?: React.FocusEventHandler<HTMLElement>;
+    closeOnEsc?: boolean;
+    initialFocusRef?: React.RefObject<HTMLElement>;
+    isHoveringRef?: React.RefObject<boolean>;
+    usePortal?: boolean;
 }
+export type PopoverContextValueProps = IPopoverContextValue;
 
-declare const PopoverContext: React.Context<{}>;
-declare const usePopoverContext: () => PopoverContextValue | undefined;
+// declare const PopoverContext: React.Context<{}>;
+// declare const usePopoverContext: () => PopoverContextValue | undefined;
 
 type InternalState = { isOpen?: boolean; onClose?: () => void };
 
 /**
  * The content of the popover
  */
-type PopoverChildren =
+export type PopoverChildren =
     | {
           children: React.ReactNode;
       }
@@ -73,11 +73,6 @@ interface IPopover {
      */
     returnFocusOnClose?: boolean;
     /**
-     * The gap (in pixels) to apply between the popover and the target.
-     * Used by `popper.js`
-     */
-    gutter?: number;
-    /**
      * The placment of the popover
      */
     placement?: PopperJS.Placement;
@@ -106,14 +101,12 @@ interface IPopover {
      */
     usePortal?: boolean;
 }
-
-type PopoverProps = IPopover & PopoverChildren;
-export const Popover: React.FC<PopoverProps>;
+export type PopoverProps = IPopover & PopoverChildren;
 
 interface IPopoverTrigger {
-    children: React.ReactNode;
+    children: React.ReactElement;
 }
-export const PopoverTrigger: React.FC<IPopoverTrigger>;
+export type PopoverTriggerProps = IPopoverTrigger;
 
 interface IPopoverContent {
     onKeyDown?: React.KeyboardEventHandler<HTMLElement>;
@@ -128,15 +121,9 @@ interface IPopoverContent {
      */
     'aria-label'?: string;
 }
-type PopoverContentProps = IPopoverContent & PopperProps;
-export const PopoverContent: React.FC<PopoverContentProps>;
+export type PopoverContentProps = IPopoverContent & PopperProps;
 
-export const PopoverArrow: React.FC<BoxProps>;
-export const PopoverHeader: React.FC<BoxProps>;
-export const PopoverFooter: React.FC<BoxProps>;
-export const PopoverBody: React.FC<BoxProps>;
-
-type PopoverCloseButtonProps = PseudoBoxProps & {
+interface IPopoverCloseButton {
     onClick?: React.MouseEventHandler<HTMLElement>;
-};
-export const PopoverCloseButton: React.FC<PopoverCloseButtonProps>;
+}
+export type PopoverCloseButtonProps = PseudoBoxProps & IPopoverCloseButton;

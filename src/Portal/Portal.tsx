@@ -5,18 +5,20 @@
  * Original source: https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Portal/Portal.js
  */
 
-import React, { Children, cloneElement, useState, forwardRef } from 'react';
-import { findDOMNode, createPortal } from 'react-dom';
-import { useForkRef, setRef, useEnhancedEffect } from '../utils';
+import { Children, cloneElement, forwardRef, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { setRef, useEnhancedEffect, useForkRef } from '../utils';
+import { PortalProps } from './types';
 
 function getContainer(container) {
-    container = typeof container === 'function' ? container() : container;
-    return findDOMNode(container);
+    const newContainer = typeof container === 'function' ? container() : container;
+    return newContainer;
 }
 
-const Portal = forwardRef(({ children, container, isDisabled = false, onRendered }, ref) => {
+export const Portal = forwardRef(({ children, container, isDisabled = false, onRendered }: PortalProps, ref) => {
     const [mountNode, setMountNode] = useState(null);
-    const handleRef = useForkRef(children.ref, ref);
+    const childRef = useRef(children);
+    const handleRef = useForkRef(childRef, ref);
 
     useEnhancedEffect(() => {
         if (!isDisabled) {
@@ -50,7 +52,3 @@ const Portal = forwardRef(({ children, container, isDisabled = false, onRendered
 
     return mountNode ? createPortal(children, mountNode) : mountNode;
 });
-
-Portal.displayName = 'Portal';
-
-export default Portal;

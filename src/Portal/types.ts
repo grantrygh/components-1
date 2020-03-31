@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-export interface PortalProps {
+export interface IPortal {
     /**
      * The children to render into the `container`.
      */
-    children: React.ReactNode;
+    children: React.ReactElement;
     /**
      * A node, component instance, or function that returns either.
      * The `container` will have the portal children appended to it.
@@ -22,6 +22,4 @@ export interface PortalProps {
     onRendered?: () => void;
 }
 
-declare const Portal: React.FC<PortalProps>;
-
-export default Portal;
+export type PortalProps = IPortal;

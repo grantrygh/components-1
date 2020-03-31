@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
-import Tag, { TagCloseButton, TagIcon, TagLabel } from '.';
+import { Tag, TagCloseButton, TagIcon, TagLabel } from '.';
 import Avatar from '../Avatar';
 import Stack from '../Stack';
 
@@ -11,8 +11,8 @@ stories.add('Default', () => {
     return (
         <Stack align="center" spacing={4} isInline>
             {['sm', 'md', 'lg'].map(size => (
-                <Tag size={size} variantColor="gray">
-                    Gray
+                <Tag size={size} variant="outline">
+                    Default
                 </Tag>
             ))}
         </Stack>
@@ -23,7 +23,7 @@ stories.add('with left icon', () => {
     return (
         <Stack align="center" spacing={4} isInline>
             {['sm', 'md', 'lg'].map(size => (
-                <Tag size={size} variantColor="cyan">
+                <Tag size={size} variantColor="cyan" rounded="sm">
                     <TagIcon icon="add" size="12px" />
                     <TagLabel>Green</TagLabel>
                 </Tag>
@@ -49,7 +49,7 @@ stories.add('with close button', () => {
     return (
         <Stack align="center" spacing={4} isInline>
             {['sm', 'md', 'lg'].map(size => (
-                <Tag size={size} rounded="full" variant="solid" variantColor="cyan">
+                <Tag size={size} variant="outline">
                     <TagLabel>Green</TagLabel>
                     <TagCloseButton />
                 </Tag>

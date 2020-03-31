@@ -2,7 +2,7 @@ import { useTheme } from '../ThemeProvider';
 
 export const progressStyle = ({ borderRadius, color, isIndeterminate }, theme) => ({
     style: {
-        bg: 'faintBg',
+        bg: 'altBg',
         borderRadius,
         overflow: 'hidden',
     },

@@ -200,10 +200,14 @@ const colors = {
     current: 'currentColor',
     black: '#000',
     white: '#fff',
-    faintBg: '#EDF2F7', // for a darker theme use ~ whiteAlpha.100
 
     bodyText: '#333',
     faintText: '#aaa',
+
+    border: '#E2E2EA',
+
+    altBg: '#EDF2F7', // ~ whiteAlpha.100 for dark
+    modalBg: '#fff', // gray.700 for dark
 
     ...palette,
     ...brand,

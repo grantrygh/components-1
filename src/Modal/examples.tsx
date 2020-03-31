@@ -1,10 +1,9 @@
 import { storiesOf } from '@storybook/react';
-import React, { Fragment, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Lorem from 'react-lorem-component';
 import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '.';
 import Box from '../Box';
 import Button from '../Button';
-import CloseButton from '../CloseButton';
 import FormControl from '../FormControl';
 import FormLabel from '../FormLabel';
 import Input from '../Input';
@@ -26,13 +25,13 @@ stories.add('Default', () => {
         const close = () => setIsOpen(false);
         const firstField = useRef();
         return (
-            <Fragment>
+            <>
                 <Modal initialFocusRef={firstField} isOpen={isOpen} onClose={close}>
                     <ModalOverlay />
                     <ModalContent>
                         <ModalHeader>Create your account</ModalHeader>
 
-                        <CloseButton onClick={close} position="absolute" top="8px" right="12px" />
+                        <ModalCloseButton onClick={close} position="absolute" top="8px" right="12px" />
 
                         <ModalBody pb={6}>
                             <FormControl mb={4}>
@@ -52,7 +51,7 @@ stories.add('Default', () => {
                     </ModalContent>
                 </Modal>
                 <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
-            </Fragment>
+            </>
         );
     };
 
@@ -64,7 +63,7 @@ stories.add('with slide transition', () => {
         const [isOpen, setIsOpen] = useState(false);
         const btnRef = useRef();
         return (
-            <Fragment>
+            <>
                 <Button ref={btnRef} onClick={() => setIsOpen(true)}>
                     Trigger modal
                 </Button>
@@ -82,7 +81,7 @@ stories.add('with slide transition', () => {
                         </Modal>
                     )}
                 </SlideIn>
-            </Fragment>
+            </>
         );
     };
 
@@ -94,7 +93,7 @@ stories.add('with preserve scrollbar', () => {
         const [isOpen, setIsOpen] = useState(false);
         const btnRef = useRef();
         return (
-            <Fragment>
+            <>
                 <Button ref={btnRef} onClick={() => setIsOpen(true)}>
                     Trigger modal
                 </Button>
@@ -118,7 +117,7 @@ stories.add('with preserve scrollbar', () => {
                         </Modal>
                     )}
                 </SlideIn>
-            </Fragment>
+            </>
         );
     };
 
@@ -130,7 +129,7 @@ stories.add('with scale transition', () => {
         const [isOpen, setIsOpen] = useState(false);
         const btnRef = useRef();
         return (
-            <Fragment>
+            <>
                 <Button ref={btnRef} onClick={() => setIsOpen(true)}>
                     Trigger modal
                 </Button>
@@ -148,7 +147,7 @@ stories.add('with scale transition', () => {
                         </Modal>
                     )}
                 </Scale>
-            </Fragment>
+            </>
         );
     };
 
@@ -159,7 +158,7 @@ stories.add('Basic usage', () => {
     const SampleModal = () => {
         const [isOpen, setIsOpen] = useState(false);
         return (
-            <Fragment>
+            <>
                 <Button onClick={() => setIsOpen(true)}>Trigger modal</Button>
 
                 <Modal onClose={() => setIsOpen(false)} isOpen={isOpen}>
@@ -172,7 +171,7 @@ stories.add('Basic usage', () => {
                         </ModalBody>
                     </ModalContent>
                 </Modal>
-            </Fragment>
+            </>
         );
     };
 
@@ -184,7 +183,7 @@ stories.add('Scroll inside', () => {
         const [isOpen, setIsOpen] = useState(false);
         const btnRef = useRef();
         return (
-            <Fragment>
+            <>
                 <Button ref={btnRef} onClick={() => setIsOpen(true)}>
                     Trigger modal
                 </Button>
@@ -209,7 +208,7 @@ stories.add('Scroll inside', () => {
                         </ModalFooter>
                     </ModalContent>
                 </Modal>
-            </Fragment>
+            </>
         );
     };
 
@@ -220,7 +219,7 @@ stories.add('Scroll outside', () => {
         const [isOpen, setIsOpen] = useState(false);
         const btnRef = useRef();
         return (
-            <Fragment>
+            <>
                 <Button ref={btnRef} onClick={() => setIsOpen(true)}>
                     Trigger modal
                 </Button>
@@ -244,14 +243,14 @@ stories.add('Scroll outside', () => {
                         </ModalFooter>
                     </ModalContent>
                 </Modal>
-            </Fragment>
+            </>
         );
     };
 
     return <SampleModal />;
 });
 
-stories.add('close on overlay click', () => {
+stories.add('no close on overlay click', () => {
     function ManualClose() {
         const [isOpen, setIsOpen] = React.useState(false);
         const close = () => setIsOpen(false);
@@ -333,9 +332,9 @@ stories.add('initial and final focus ref', () => {
 });
 
 function App() {
-    let { isOpen, onOpen, onClose } = useDisclosure();
-    let [firstName, setFirstName] = useState();
-    let [lastName, setLastName] = useState();
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const [firstName, setFirstName] = useState();
+    const [lastName, setLastName] = useState();
 
     return (
         <>

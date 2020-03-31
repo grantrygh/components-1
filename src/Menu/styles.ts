@@ -50,7 +50,7 @@ export const menuItemStyle = (props, theme) => ({
             bg: 'gray.200',
         },
         _focus: {
-            bg: 'faintBg',
+            bg: 'altBg',
             outline: 0,
         },
         _disabled: {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BoxProps } from '../Box/types';
 import { IButton } from '../Button';
-import { PopperProps } from '../Popper';
+import { PopperProps } from '../Popper/types';
 import { PseudoBoxProps } from '../PseudoBox/types';
 
 interface InternalState {
@@ -59,3 +59,23 @@ interface IMenuGroup {
     children: React.ReactNode;
 }
 export type MenuGroupProps = IMenuGroup & BoxProps;
+
+interface IMenuContext {
+    activeIndex?: number;
+    isOpen?: boolean;
+    focusAtIndex?: (index: number) => void;
+    focusOnFirstItem?: () => void;
+    focusOnLastItem?: () => void;
+    closeMenu?: () => void;
+    openMenu?: () => void;
+    focusableItems?: React.RefObject<any>;
+    buttonRef?: React.RefObject<any>;
+    menuId?: string;
+    buttonId?: string;
+    menuRef?: React.RefObject<any>;
+    closeOnBlur?: boolean;
+    autoSelect?: IMenu['autoSelect'];
+    placement?: IMenu['placement'];
+}
+
+export type MenuContextProps = IMenuContext;

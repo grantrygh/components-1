@@ -3,7 +3,6 @@ import { jsx } from '@emotion/core';
 import { useId } from '@reach/auto-id';
 import { createContext, forwardRef, useContext, useEffect, useRef, useState } from 'react';
 import Box from '../Box';
-import { useColorMode } from '../ColorModeProvider';
 import Divider from '../Divider';
 import Popper from '../Popper';
 import PseudoBox from '../PseudoBox';
@@ -11,9 +10,9 @@ import Text from '../Text';
 import usePrevious from '../usePrevious';
 import { getFocusables, useForkRef, wrapEvent } from '../utils';
 import { useMenuItemStyle, useMenuStyle } from './styles';
-import { MenuButtonProps, MenuGroupProps, MenuItemProps, MenuListProps, MenuProps } from './types';
+import { MenuButtonProps, MenuContextProps, MenuGroupProps, MenuItemProps, MenuListProps, MenuProps } from './types';
 
-const MenuContext = createContext({});
+const MenuContext = createContext<MenuContextProps>({});
 
 const Menu = ({
     children,
@@ -27,8 +26,6 @@ const Menu = ({
     defaultActiveIndex,
     placement,
 }: MenuProps) => {
-    const { colorMode } = useColorMode();
-
     const [activeIndex, setActiveIndex] = useState(defaultActiveIndex || -1);
     const [isOpen, setIsOpen] = useState(defaultIsOpen || false);
     const { current: isControlled } = useRef(isOpenProp != null);
@@ -145,7 +142,6 @@ const Menu = ({
         autoSelect,
         closeOnSelect,
         closeOnBlur,
-        colorMode,
     };
 
     return (

@@ -13,6 +13,6 @@ stories.add('Default', () => (
 
 stories.add('indeterminate', () => (
     <div>
-        <CircularProgress value={60} capIsRound isIndeterminate></CircularProgress>
+        <CircularProgress value={60} capIsRound isIndeterminate color="red.500" />
     </div>
 ));

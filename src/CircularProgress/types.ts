@@ -39,19 +39,17 @@ interface ICircularProgress {
      */
     children?: React.ReactNode;
     /**
-     * The color name of the progress track. Use a color key in the theme object
+     * The color name of the progress track. Use a color key in the theme object, i.e. "blue.500"
+     * Defaults to theme variable color: "track"
      */
     trackColor?: string;
     /**
-     * The color of the progress indicator. Use a color key in the theme object
+     * The color of the progress indicator. Use a color key in the theme object, i.e. "gray.100"
+     * Defaults to theme variable color: "progress"
      */
     color?: string;
 }
 
-type CircularProgressProps = BoxProps & ICircularProgress;
+export type CircularProgressProps = BoxProps & ICircularProgress;
 
-declare const CircularProgress: React.FC<CircularProgressProps>;
-
-export default CircularProgress;
-
-export const CircularProgressLabel: React.FC<BoxProps>;
+export type CircularProgressLabelProps = BoxProps;

@@ -1,6 +1,6 @@
 import PopperJS from 'popper.js';
 import * as React from 'react';
-import { PopperProps } from '../Popper';
+import { PopperProps } from '../Popper/types';
 import { PseudoBoxProps } from '../PseudoBox';
 
 export interface IPopoverContextValue {

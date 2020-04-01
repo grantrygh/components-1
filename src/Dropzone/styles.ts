@@ -18,18 +18,18 @@ export const dropzoneStyle = ({ color = 'gray', disabled }, theme) => ({
         boxSizing: 'border-box',
         _hover: !disabled && {
             cursor: 'pointer',
-            borderColor: theme.colors.statuses.info[500],
+            borderColor: 'info.500',
         },
     },
     states: {
         active: {
-            borderColor: theme.colors.statuses.info[500],
+            borderColor: 'info.500',
         },
         accept: {
-            borderColor: theme.colors.statuses.success[500],
+            borderColor: 'success.500',
         },
         reject: {
-            borderColor: theme.colors.statuses.danger[500],
+            borderColor: 'error.500',
         },
     },
 });

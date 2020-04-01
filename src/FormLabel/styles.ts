@@ -11,7 +11,7 @@ export const formLabelStyle = ({ isDisabled }, theme) => ({
     },
     requiredIndicator: {
         ml: 1,
-        color: 'statuses.danger.500',
+        color: 'error.500',
     },
 });
 

@@ -27,7 +27,23 @@ const generateShades = primary => {
 // use https://material.io/resources/color
 const brand = {
     primary: generateShades('#0069FF'),
-    secondary: generateShades('#3CD598'),
+    secondary: generateShades('#3DD598'),
+};
+
+const neutral = {
+    1: '#FFF',
+    2: '#FAFAFA',
+    3: '#F5F5F5',
+    4: '#F0F0F0',
+    5: '#D9D9D9',
+    6: '#BFBFBF',
+    7: '#8C8C8C',
+    8: '#595959',
+    9: '#434343',
+    10: '#262626',
+    11: '#1F1F1F',
+    12: '#141414',
+    13: '#000',
 };
 
 const states = {
@@ -198,20 +214,23 @@ const palette = {
 const colors = {
     transparent: 'transparent',
     current: 'currentColor',
-    black: '#000',
-    white: '#fff',
 
-    bodyText: '#333',
-    faintText: '#aaa',
-
-    border: '#E2E2EA',
-
-    altBg: palette.gray[100],
+    // Neutral Scale Design Colors
+    black: neutral[13],
+    titleText: neutral[12],
+    bodyText: neutral[9],
+    faintText: neutral[7],
+    disabled: neutral[5],
+    border: neutral[3], // and divider
+    altBg: neutral[2],
+    white: neutral[1],
 
     // component specific
-    modalBg: '#fff',
+    cardBg: neutral[1],
+    modalBg: neutral[2],
+    popoverBg: neutral[2],
     progress: brand.primary[500],
-    track: palette.gray[100],
+    track: neutral[3],
 
     ...palette,
     ...brand,

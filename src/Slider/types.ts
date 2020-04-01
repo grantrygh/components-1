@@ -29,14 +29,23 @@ interface ISlider {
     children?: React.ReactNode;
 }
 
-export const SliderThumb: React.FC<PseudoBoxProps>;
+interface ISliderContext {
+    trackRef?: React.RefObject<any>;
+    thumbRef?: React.RefObject<any>;
+    onFocus?: BoxProps['onFocus'];
+    onThumbKeyDown?: (event) => void;
+    valueText?: string;
+    trackPercent?: number;
+    ariaLabelledBy?: ISlider['aria-labelledby'];
+}
 
-export const SliderTrack: React.FC<BoxProps>;
-
-export const SliderFilledTrack: React.FC<PseudoBoxProps>;
+export type SliderContextProps = ISliderContext &
+    Omit<ISlider, 'defaultValue' | 'step' | 'name' | 'id' | 'onChange' | 'children'>;
 
 export type SliderProps = ISlider & Omit<BoxProps, 'onChange' | 'size'>;
 
-declare const Slider: React.FC<SliderProps>;
+export type SliderThumbProps = PseudoBoxProps;
 
-export default Slider;
+export type SliderTrackProps = BoxProps;
+
+export type SliderFilledTrackProps = PseudoBoxProps;

@@ -7,43 +7,21 @@
 
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { createContext, forwardRef, useCallback, useContext, useRef, useState } from 'react';
+import { createContext, forwardRef, RefObject, useCallback, useContext, useRef, useState } from 'react';
 import Box from '../Box';
 import PseudoBox from '../PseudoBox';
 import { useForkRef } from '../utils';
 import useSliderStyle from './styles';
+import { SliderContextProps, SliderFilledTrackProps, SliderProps, SliderThumbProps, SliderTrackProps } from './types';
+import { clampValue, percentToValue, roundValueToStep, valueToPercent } from './utils';
 
-export function valueToPercent(value, min, max) {
-    return ((value - min) * 100) / (max - min);
-}
+const SliderContext = createContext<SliderContextProps>({});
 
-export function percentToValue(percent, min, max) {
-    return (max - min) * percent + min;
-}
+const useSliderContext = () => {
+    return useContext(SliderContext);
+};
 
-function makeValuePrecise(value, step) {
-    const stepDecimalPart = step.toString().split('.')[1];
-    const stepPrecision = stepDecimalPart ? stepDecimalPart.length : 0;
-    return Number(value.toFixed(stepPrecision));
-}
-
-export function roundValueToStep(value, step) {
-    return makeValuePrecise(Math.round(value / step) * step, step);
-}
-
-export function clampValue(val, min, max) {
-    if (val > max) {
-        return max;
-    }
-    if (val < min) {
-        return min;
-    }
-    return val;
-}
-
-////////////////////////////////////////////////////////////////
-
-export const SliderThumb = forwardRef((props, ref) => {
+export const SliderThumb = forwardRef((props: SliderThumbProps, ref) => {
     const {
         thumbRef,
         isDisabled,
@@ -55,18 +33,15 @@ export const SliderThumb = forwardRef((props, ref) => {
         orientation,
         trackPercent,
         size,
-        color,
         value,
         ariaLabelledBy,
     } = useSliderContext();
-    const { thumbStyle } = useSliderStyle({
+    const { thumb: thumbStyleProps } = useSliderStyle({
         trackPercent,
-        orientation,
         size,
-        color,
     });
-
     const sliderThumbRef = useForkRef(thumbRef, ref);
+
     return (
         <PseudoBox
             data-slider-thumb=""
@@ -86,38 +61,31 @@ export const SliderThumb = forwardRef((props, ref) => {
             aria-valuemax={max}
             aria-labelledby={ariaLabelledBy}
             onKeyDown={onKeyDown}
-            {...thumbStyle}
+            {...thumbStyleProps}
             {...props}
         />
     );
 });
 
-SliderThumb.displayName = 'SliderThumb';
-
-////////////////////////////////////////////////////////////////
-
-export const SliderTrack = props => {
-    const { trackRef, isDisabled, ...context } = useSliderContext();
-    const { trackStyle } = useSliderStyle(context);
-    return <Box data-slider-track="" aria-disabled={isDisabled} ref={trackRef} {...trackStyle} {...props} />;
+export const SliderTrack = (props: SliderTrackProps) => {
+    const { trackRef, isDisabled, size } = useSliderContext();
+    const { track: trackStyleProps } = useSliderStyle({
+        size,
+    });
+    return <Box data-slider-track="" aria-disabled={isDisabled} ref={trackRef} {...trackStyleProps} {...props} />;
 };
 
-////////////////////////////////////////////////////////////////
-
-export const SliderFilledTrack = props => {
-    const { isDisabled, ...context } = useSliderContext();
-    const { filledTrackStyle } = useSliderStyle(context);
-    return <PseudoBox aria-disabled={isDisabled} data-slider-filled-track="" {...filledTrackStyle} {...props} />;
+export const SliderFilledTrack = (props: SliderFilledTrackProps) => {
+    const { isDisabled, size, color, trackPercent } = useSliderContext();
+    const { filledTrack: filledTrackStyleProps } = useSliderStyle({
+        size,
+        color,
+        trackPercent,
+    });
+    return <PseudoBox aria-disabled={isDisabled} data-slider-filled-track="" {...filledTrackStyleProps} {...props} />;
 };
 
-////////////////////////////////////////////////////////////////
-
-const SliderContext = createContext();
-const useSliderContext = () => {
-    return useContext(SliderContext);
-};
-
-const Slider = forwardRef(
+export const Slider = forwardRef(
     (
         {
             value: controlledValue,
@@ -136,39 +104,34 @@ const Slider = forwardRef(
             'aria-valuetext': ariaValueText,
             orientation = 'horizontal',
             getAriaValueText,
-            size = 'md',
-            color = 'blue',
+            size,
+            color,
             name,
             id,
             children,
             ...rest
-        },
+        }: SliderProps,
         ref
     ) => {
         const { current: isControlled } = useRef(controlledValue != null);
         const [value, setValue] = useState(defaultValue || 0);
 
         const _value = isControlled ? controlledValue : value;
-        let actualValue = clampValue(_value, min, max);
+        const actualValue = clampValue(_value, min, max);
 
         const trackPercent = valueToPercent(actualValue, min, max);
 
-        const { rootStyle } = useSliderStyle({
-            trackPercent,
-            orientation,
-            size,
-            color,
-        });
+        const { root: rootStyleProps } = useSliderStyle({});
 
-        const trackRef = useRef();
-        const thumbRef = useRef();
+        const trackRef: RefObject<HTMLElement> = useRef();
+        const thumbRef: RefObject<HTMLElement> = useRef();
 
         const getNewValue = event => {
             if (trackRef.current) {
                 const { left, width } = trackRef.current.getBoundingClientRect();
                 const { clientX } = event.touches ? event.touches[0] : event;
-                let diffX = clientX - left;
-                let percent = diffX / width;
+                const diffX = clientX - left;
+                const percent = diffX / width;
                 let newValue = percentToValue(percent, min, max);
 
                 if (step) {
@@ -179,6 +142,8 @@ const Slider = forwardRef(
 
                 return newValue;
             }
+
+            return null;
         };
 
         const updateValue = useCallback(
@@ -239,7 +204,15 @@ const Slider = forwardRef(
             newValue = clampValue(newValue, min, max);
             updateValue(newValue);
 
-            onKeyDown && onKeyDown(event);
+            if (onKeyDown) {
+                onKeyDown(event);
+            }
+        };
+
+        // TODO: Optimize this mouseMove event
+        const handleMouseMove = event => {
+            const newValue = getNewValue(event);
+            updateValue(newValue);
         };
 
         const handleMouseUp = () => {
@@ -249,19 +222,14 @@ const Slider = forwardRef(
             document.body.removeEventListener('touchend', handleMouseUp);
         };
 
-        // TODO: Optimize this mouseMove event
-
-        const handleMouseMove = event => {
-            let newValue = getNewValue(event);
-            updateValue(newValue);
-        };
-
         const handleMouseDown = event => {
             if (isDisabled) return;
-            onMouseDown && onMouseDown(event);
+            if (onMouseDown) {
+                onMouseDown(event);
+            }
             event.preventDefault();
 
-            let newValue = getNewValue(event);
+            const newValue = getNewValue(event);
             if (newValue !== actualValue) {
                 updateValue(newValue);
             }
@@ -270,7 +238,10 @@ const Slider = forwardRef(
             document.body.addEventListener('touchmove', handleMouseMove);
             document.body.addEventListener('mouseup', handleMouseUp);
             document.body.addEventListener('touchend', handleMouseUp);
-            thumbRef.current && thumbRef.current.focus();
+
+            if (thumbRef.current) {
+                thumbRef.current.focus();
+            }
         };
 
         const valueText = getAriaValueText ? getAriaValueText(actualValue) : ariaValueText;
@@ -303,13 +274,14 @@ const Slider = forwardRef(
                     onTouchEnd={handleMouseUp}
                     onBlur={event => {
                         handleMouseUp();
-                        onBlur && onBlur(event);
+                        if (onBlur) {
+                            onBlur(event);
+                        }
                     }}
-                    py={3}
                     aria-disabled={isDisabled}
                     ref={ref}
                     css={{ touchAction: 'none' }}
-                    {...rootStyle}
+                    {...rootStyleProps}
                     {...rest}
                 >
                     {children}
@@ -319,7 +291,3 @@ const Slider = forwardRef(
         );
     }
 );
-
-Slider.displayName = 'Slider';
-
-export default Slider;

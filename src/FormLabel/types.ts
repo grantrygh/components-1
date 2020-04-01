@@ -12,12 +12,3 @@ interface ILabelProps {
 }
 
 export type FormLabelProps = ILabelProps & BoxProps & React.LabelHTMLAttributes<any>;
-
-/**
- * FormLabel is used for form inputs and controls.
- * It reads from the `FormControl` context to handle it's styles for
- * the various form states.
- */
-declare const FormLabel: React.FC<FormLabelProps>;
-
-export default FormLabel;

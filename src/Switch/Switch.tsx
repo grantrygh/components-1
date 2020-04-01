@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 import { forwardRef } from 'react';
 import Box from '../Box';
 import ControlBox from '../ControlBox';
-import VisuallyHidden from '../VisuallyHidden';
+import { VisuallyHidden } from '../VisuallyHidden';
 import useSwitchStyle from './styles';
 import { SwitchProps } from './types';
 

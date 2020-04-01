@@ -2,7 +2,7 @@
 import { jsx, keyframes } from '@emotion/core';
 import { forwardRef } from 'react';
 import Box from '../Box';
-import VisuallyHidden from '../VisuallyHidden';
+import { VisuallyHidden } from '../VisuallyHidden';
 import useSpinnerStyle from './styles';
 import { SpinnerProps } from './types';
 

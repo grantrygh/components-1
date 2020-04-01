@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import Box from '../Box';
 
-const VisuallyHidden = styled(Box)`
+export const VisuallyHidden = styled(Box)`
     border: 0px;
     clip: rect(0px, 0px, 0px, 0px);
     height: 1px;
@@ -12,7 +12,3 @@ const VisuallyHidden = styled(Box)`
     white-space: nowrap;
     position: absolute;
 `;
-
-VisuallyHidden.displayName = 'VisuallyHidden';
-
-export default VisuallyHidden;

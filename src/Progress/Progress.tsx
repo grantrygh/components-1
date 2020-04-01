@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx, keyframes } from '@emotion/core';
 import Box from '../Box';
-import { valueToPercent } from '../Slider';
+import { valueToPercent } from '../Slider/utils';
 import { generateStripe } from '../theme/colors-utils';
 import useProgressStyle, { useProgressIndicatorStyle } from './styles';
 import { ProgressProps } from './types';

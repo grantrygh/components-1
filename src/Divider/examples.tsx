@@ -2,15 +2,15 @@
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import Box from '../Box';
-import Divider from '../Divider';
 import Flex from '../Flex';
+import { Divider } from './Divider';
 
 const stories = storiesOf('Divider', module);
 
 stories.add('vertical', () => (
     <Flex align="stretch">
         <span>Part 1</span>
-        <Divider orientation="vertical" />
+        <Divider orientation="vertical" borderColor="red.500" />
         <span>Part 2</span>
     </Flex>
 ));

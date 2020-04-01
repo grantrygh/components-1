@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
-import FormControl from '.';
+import { FormControl } from '.';
 import Box from '../Box';
 import FormValidationText from '../FormErrorMessage';
-import FormHelperText from '../FormHelperText';
-import FormLabel from '../FormLabel';
+import { FormHelperText } from '../FormHelperText';
+import { FormLabel } from '../FormLabel';
 import Input from '../Input';
 import { InputLeftAddon } from '../InputAddon';
 import InputGroup from '../InputGroup';

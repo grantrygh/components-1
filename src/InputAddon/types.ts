@@ -19,9 +19,3 @@ interface IInputAddon {
 }
 
 export type InputAddonProps = IInputAddon & BoxProps;
-
-declare const InputAddon: React.FC<InputAddonProps>;
-
-export default InputAddon;
-export const InputLeftAddon: React.FC<InputAddonProps>;
-export const InputRightAddon: React.FC<InputAddonProps>;

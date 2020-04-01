@@ -1,3 +1,5 @@
+/** @jsx jsx */
+
 /**
  * Popper Component
  *
@@ -5,7 +7,6 @@
  * Original source: https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Popper/Popper.js
  */
 
-/** @jsx jsx */
 import { jsx } from '@emotion/core';
 import PopperJS from 'popper.js';
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react';

@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import { FormControl } from '.';
 import Box from '../Box';
-import FormValidationText from '../FormErrorMessage';
+import FormErrorMessage from '../FormErrorMessage';
 import { FormHelperText } from '../FormHelperText';
 import { FormLabel } from '../FormLabel';
 import Input from '../Input';
@@ -57,6 +57,6 @@ stories.add('with error', () => (
             <InputLeftAddon>https://</InputLeftAddon>
             <Input type="url" id="url" aria-describedby="url-error" roundedLeft="0" placeholder="awesomesite.com" />
         </InputGroup>
-        <FormValidationText id="url-error">Website is invalid</FormValidationText>
+        <FormErrorMessage id="url-error">Website is invalid</FormErrorMessage>
     </FormControl>
 ));

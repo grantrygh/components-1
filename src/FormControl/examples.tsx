@@ -35,13 +35,13 @@ stories.add('with helper text', () => (
     <FormControl>
         <FormLabel htmlFor="lname">Last name</FormLabel>
         <Input id="lname" aria-describedby="lname-help" placeholder="Last name" />
-        <FormHelperText id="lname-help">Ensure it's up to 7 charaters</FormHelperText>
+        <FormHelperText id="lname-help">Ensure it's up to 7 characters</FormHelperText>
     </FormControl>
 ));
 
 stories.add('with input group', () => (
     <FormControl>
-        <FormLabel>How much you wan buy am?</FormLabel>
+        <FormLabel>Portfolio url</FormLabel>
         <InputGroup>
             <InputLeftAddon>https://</InputLeftAddon>
             <Input roundedLeft="0" placeholder="Welcome" />

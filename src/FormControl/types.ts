@@ -18,13 +18,8 @@ interface IFormControl {
      * If `true` set the form control to the disabled state.
      */
     isDisabled?: boolean;
+
+    isReadOnly?: boolean;
 }
 
 export type FormControlProps = IFormControl & BoxProps;
-
-/**
- * FormControl provides context such as `isInvalid`, `isRequired`, `isDisabled` to it's children.
- */
-declare const FormControl: React.FC<FormControlProps>;
-
-export default FormControl;

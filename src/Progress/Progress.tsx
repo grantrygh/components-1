@@ -39,11 +39,11 @@ const ProgressTrack = props => {
 };
 
 export const Progress = ({
-    color = 'blue',
-    value = 60,
+    color,
+    value,
     min = 0,
     max = 100,
-    size = 'md',
+    size,
     hasStripe,
     isAnimated,
     borderRadius,

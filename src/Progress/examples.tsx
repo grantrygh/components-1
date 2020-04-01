@@ -16,23 +16,23 @@ stories.add('basic usage', () => {
 });
 
 stories.add('with theme color ', () => {
-    return <Progress color="pink" value={20} rounded="md" />;
+    return <Progress color="pink.500" value={20} rounded="md" />;
 });
 
 stories.add('with stripe', () => {
-    return <Progress color="green" hasStripe value={20} />;
+    return <Progress color="green.500" hasStripe value={20} />;
 });
 
 stories.add('with sizes', () => {
     return (
         <Stack spacing={5}>
-            <Progress color="green" size="sm" value={20} />
-            <Progress color="green" size="md" value={20} />
-            <Progress color="green" size="lg" value={20} />
+            <Progress color="green.500" size="sm" value={20} />
+            <Progress color="green.500" size="md" value={20} />
+            <Progress color="green.500" size="lg" value={20} />
         </Stack>
     );
 });
 
 stories.add('with stripe animation', () => {
-    return <Progress color="green" hasStripe isAnimated value={20} />;
+    return <Progress color="green.500" hasStripe isAnimated value={20} />;
 });

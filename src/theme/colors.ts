@@ -206,8 +206,12 @@ const colors = {
 
     border: '#E2E2EA',
 
-    altBg: '#EDF2F7', // ~ whiteAlpha.100 for dark
-    modalBg: '#fff', // gray.700 for dark
+    altBg: palette.gray[100],
+
+    // component specific
+    modalBg: '#fff',
+    progress: brand.primary[500],
+    track: palette.gray[100],
 
     ...palette,
     ...brand,

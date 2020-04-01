@@ -14,31 +14,30 @@ stories.addDecorator(story => {
 });
 
 stories.add('Default', () => (
-    <>
-        <Radio value="male" defaultChecked name="bee">
+    <RadioGroup>
+        <Radio value="male" name="bee">
             Male
         </Radio>
-        <Radio ml={3} value="female" name="bee" defaultChecked>
+        <Radio value="female" name="bee">
             Female
         </Radio>
-    </>
+    </RadioGroup>
 ));
 
-stories.add('Inline Radio ', () => (
-    <RadioGroup
-        // isInline
-        size="lg"
-        // spacing={5}
-        defaultValue="male"
-        onChange={(event, value) => console.log(value)}
-    >
+stories.add('Inline Radio (large) ', () => (
+    <RadioGroup isInline size="lg" defaultValue="male" onChange={(event, value) => console.log(value)}>
         <Radio value="male">Male</Radio>
         <Radio value="female">Female</Radio>
     </RadioGroup>
 ));
 
 stories.add('Disabled', () => (
-    <Radio value="male" defaultChecked name="bee" isDisabled>
-        Male
-    </Radio>
+    <RadioGroup>
+        <Radio value="male" name="bee" isDisabled>
+            Male
+        </Radio>
+        <Radio value="female" name="bee">
+            Female
+        </Radio>
+    </RadioGroup>
 ));

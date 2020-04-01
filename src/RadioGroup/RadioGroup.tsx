@@ -1,10 +1,20 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { useId } from '@reach/auto-id';
-import { Children, cloneElement, forwardRef, isValidElement, useImperativeHandle, useRef, useState } from 'react';
+import {
+    Children,
+    cloneElement,
+    forwardRef,
+    isValidElement,
+    RefObject,
+    useImperativeHandle,
+    useRef,
+    useState,
+} from 'react';
 import Box from '../Box';
+import { RadioGroupProps } from './types';
 
-const RadioGroup = forwardRef(
+export const RadioGroup = forwardRef(
     (
         {
             onChange,
@@ -17,14 +27,14 @@ const RadioGroup = forwardRef(
             spacing = 2,
             children,
             ...rest
-        },
+        }: RadioGroupProps,
         ref
     ) => {
         const { current: isControlled } = useRef(valueProp != null);
         const [value, setValue] = useState(defaultValue || null);
         const _value = isControlled ? valueProp : value;
 
-        const rootRef = useRef();
+        const rootRef: RefObject<any> = useRef();
 
         const _onChange = event => {
             if (!isControlled) {
@@ -41,7 +51,9 @@ const RadioGroup = forwardRef(
         const _name = name || fallbackName;
 
         const clones = Children.map(children, (child, index) => {
-            if (!isValidElement(child)) return;
+            if (!isValidElement(child)) {
+                return null;
+            }
 
             const isLastRadio = children.length === index + 1;
             const spacingProps = isInline ? { mr: spacing } : { mb: spacing };
@@ -85,7 +97,3 @@ const RadioGroup = forwardRef(
         );
     }
 );
-
-RadioGroup.displayName = 'RadioGroup';
-
-export default RadioGroup;

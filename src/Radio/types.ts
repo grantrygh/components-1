@@ -66,6 +66,3 @@ export interface IRadio {
 export type RadioProps = IRadio &
     Omit<BoxProps, 'onChange' | 'ref' | 'onFocus' | 'onBlur' | 'size'> &
     React.RefAttributes<HTMLInputElement>;
-
-declare const Radio: React.FC<RadioProps>;
-export default Radio;

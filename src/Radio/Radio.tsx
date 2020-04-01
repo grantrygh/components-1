@@ -1,14 +1,14 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { forwardRef } from 'react';
+import { VisuallyHidden } from '..';
 import Box from '../Box';
 import useCheckboxStyle from '../Checkbox/styles';
-import { useColorMode } from '../ColorModeProvider';
 import ControlBox from '../ControlBox';
 import { useVariantColorWarning } from '../utils';
-import VisuallyHidden from '../VisuallyHidden';
+import { RadioProps } from './types';
 
-const Radio = forwardRef(
+export const Radio = forwardRef(
     (
         {
             id,
@@ -16,7 +16,7 @@ const Radio = forwardRef(
             value,
             'aria-label': ariaLabel,
             'aria-labelledby': ariaLabelledBy,
-            variantColor = 'blue',
+            variantColor = 'primary',
             defaultIsChecked,
             isChecked,
             isFullWidth,
@@ -28,18 +28,16 @@ const Radio = forwardRef(
             onFocus,
             children,
             ...rest
-        },
+        }: RadioProps,
         ref
     ) => {
         // Wrong usage of `variantColor` prop is quite common
         // Let's add a warning hook that validates the passed variantColor
         useVariantColorWarning('Radio', variantColor);
 
-        const { colorMode } = useColorMode();
         const styleProps = useCheckboxStyle({
             color: variantColor,
             size,
-            colorMode,
             type: 'radio',
         });
 
@@ -75,7 +73,7 @@ const Radio = forwardRef(
                     <Box bg="currentColor" as="span" rounded="full" size="50%" />
                 </ControlBox>
                 {children && (
-                    <Box ml={2} fontSize={size} userSelect="none" opacity={isDisabled ? 0.32 : 1}>
+                    <Box ml={2} fontSize={size} userSelect="none" color={isDisabled && 'disabled'}>
                         {children}
                     </Box>
                 )}
@@ -83,7 +81,3 @@ const Radio = forwardRef(
         );
     }
 );
-
-Radio.displayName = 'Radio';
-
-export default Radio;

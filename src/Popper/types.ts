@@ -87,6 +87,8 @@ export interface IPopper {
      * @default "rgba(0, 0, 0, 0.1)"
      */
     arrowShadowColor?: string;
+
+    timeout?: number;
 }
 
 export type PopperProps = IPopper & PseudoBoxProps & PopperChildren;

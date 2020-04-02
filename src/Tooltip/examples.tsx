@@ -1,9 +1,9 @@
 import { storiesOf } from '@storybook/react';
+import PhoneIcon from 'mdi-react/PhoneIcon';
 import React from 'react';
-import Tooltip from '.';
+import { Tooltip } from '.';
 import Box from '../Box';
 import Button from '../Button';
-import Icon from '../Icon';
 
 const stories = storiesOf('Tooltip', module);
 stories.addDecorator(story => {
@@ -26,6 +26,6 @@ stories.add('with a string', () => <Tooltip label="Welcome home">This is a sampl
 
 stories.add('with icon', () => (
     <Tooltip hasArrow shouldWrapChildren label="Welcome home" placement="right">
-        <Icon name="phone" />
+        <PhoneIcon />
     </Tooltip>
 ));

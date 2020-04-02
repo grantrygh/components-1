@@ -1,12 +1,13 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { useId } from '@reach/auto-id';
-import { Children, cloneElement, Fragment, useRef } from 'react';
+import React, { Children, cloneElement, MutableRefObject, useRef } from 'react';
 import Box from '../Box';
-import { useColorMode } from '../ColorModeProvider';
 import Popper, { PopperArrow } from '../Popper';
 import useDisclosure from '../useDisclosure';
 import VisuallyHidden from '../VisuallyHidden';
+import useTooltipStyle from './styles';
+import { TooltipProps } from './types';
 
 const wrapEvent = (child, theirHandler, ourHandler) => event => {
     if (typeof child !== 'string' && child.props[theirHandler]) {
@@ -16,14 +17,16 @@ const wrapEvent = (child, theirHandler, ourHandler) => event => {
     if (!event.defaultPrevented) {
         return ourHandler(event);
     }
+
+    return null;
 };
 
-const Tooltip = ({
+export const Tooltip = ({
     label,
     'aria-label': ariaLabel,
     showDelay = 0,
     hideDelay = 0,
-    placement = 'auto',
+    placement,
     children,
     hasArrow,
     closeOnClick,
@@ -33,14 +36,14 @@ const Tooltip = ({
     onOpen: onOpenProp,
     onClose: onCloseProp,
     ...rest
-}) => {
+}: TooltipProps) => {
     const { isOpen, onClose, onOpen } = useDisclosure(defaultIsOpen || false);
     const { current: isControlled } = useRef(controlledIsOpen != null);
     const _isOpen = isControlled ? controlledIsOpen : isOpen;
 
     const referenceRef = useRef();
-    const enterTimeoutRef = useRef();
-    const exitTimeoutRef = useRef();
+    const enterTimeoutRef: MutableRefObject<any> = useRef();
+    const exitTimeoutRef: MutableRefObject<any> = useRef();
 
     const openWithDelay = () => {
         enterTimeoutRef.current = setTimeout(onOpen, showDelay);
@@ -72,9 +75,9 @@ const Tooltip = ({
         }
     };
 
-    const { colorMode } = useColorMode();
-    const _bg = colorMode === 'dark' ? 'gray.300' : 'gray.700';
-    const _color = colorMode === 'dark' ? 'gray.900' : 'whiteAlpha.900';
+    const tooltipStyleProps = useTooltipStyle({
+        placement,
+    });
 
     const handleClick = wrapEvent(children, 'onClick', () => {
         if (closeOnClick) {
@@ -101,36 +104,24 @@ const Tooltip = ({
             </Box>
         );
     } else {
-        clone = cloneElement(Children.only(children), referenceProps);
+        clone = cloneElement(Children.only(children) as React.ReactElement, referenceProps);
     }
 
     const hasAriaLabel = ariaLabel != null;
 
     return (
-        <Fragment>
+        <React.Fragment>
             {clone}
 
             <Popper
                 usePortal
                 isOpen={_isOpen}
-                placement={placement}
-                timeout={200}
                 modifiers={{ offset: { enabled: true, offset: `0, 8` } }}
                 anchorEl={referenceRef.current}
-                arrowSize="10px"
                 hasArrow={hasArrow}
-                px="8px"
-                py="2px"
                 id={hasAriaLabel ? undefined : tooltipId}
                 role={hasAriaLabel ? undefined : 'tooltip'}
-                bg={_bg}
-                borderRadius="sm"
-                fontWeight="medium"
-                pointerEvents="none"
-                color={_color}
-                fontSize="sm"
-                shadow="md"
-                maxW="320px"
+                {...tooltipStyleProps}
                 {...rest}
             >
                 {label}
@@ -141,8 +132,6 @@ const Tooltip = ({
                 )}
                 {hasArrow && <PopperArrow />}
             </Popper>
-        </Fragment>
+        </React.Fragment>
     );
 };
-
-export default Tooltip;

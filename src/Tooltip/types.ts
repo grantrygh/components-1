@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import { BoxProps } from '../Box/types';
-import { PopperProps } from '../Popper';
+import { PopperProps } from '../Popper/types';
 
 export interface ITooltip {
-    'aria-label': string;
+    'aria-label'?: string;
     /**
      * The delay in `ms` for the tooltip to show
      */
@@ -19,7 +19,7 @@ export interface ITooltip {
     /**
      * The `ReactNode` to be used as the trigger of the tooltip.
      */
-    children: React.ReactNode;
+    children: React.ReactElement | string;
     /**
      * If `true` display an arrow tip on the tooltip.
      */
@@ -52,7 +52,3 @@ export interface ITooltip {
 }
 
 export type TooltipProps = ITooltip & BoxProps;
-
-declare const Tooltip: React.FC<TooltipProps>;
-
-export default Tooltip;

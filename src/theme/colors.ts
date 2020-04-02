@@ -235,6 +235,7 @@ const colors = {
     // component specific
     progress: brand.primary[500],
     track: neutral[4],
+    tooltip: neutral[9],
 
     ...palette,
     ...brand,

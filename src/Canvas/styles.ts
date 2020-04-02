@@ -1,12 +1,16 @@
 import { componentStyleDef } from '../theme/types';
 import { useTheme } from '../ThemeProvider';
 
-export const canvasStyle: componentStyleDef = ({ kind }, theme) => ({
-    canvasPanel: {},
+function canvasPanelStyle({ type, isInline, isOverlay }, theme) {}
+
+export const canvasStyle: componentStyleDef = (props, theme) => ({
     style: {
         minHeight: '100vh',
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        // justifyContent: 'space-between',
+    },
+    panel: {
+        // background: '#444',
     },
 });
 
@@ -14,10 +18,7 @@ const useCanvasStyle = props => {
     const theme = useTheme();
     const styles = theme['styles'].canvas ? theme['styles'].canvas(props, theme) : canvasStyle(props, theme);
 
-    return {
-        ...styles.style,
-        canvasPanel: styles.canvasPanel,
-    };
+    return styles;
 };
 
 export default useCanvasStyle;

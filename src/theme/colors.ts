@@ -232,6 +232,8 @@ const colors = {
     progress: brand.primary[500],
     track: neutral[3],
 
+    overlayBg: 'rgba(0, 0, 0, 0.2)',
+
     ...palette,
     ...brand,
     ...states,

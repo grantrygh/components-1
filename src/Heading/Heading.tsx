@@ -4,9 +4,10 @@ import useHeadingStyle from './styles';
 import { HeadingProps } from './types';
 
 const Heading = forwardRef((props: HeadingProps, ref) => {
-    const headingStyle = useHeadingStyle(props);
+    const { kind = 'h1', ...rest } = props;
+    const headingStyle = useHeadingStyle({ kind });
 
-    return <Box ref={ref} as="h2" {...headingStyle} {...props} />;
+    return <Box ref={ref} as="h2" {...headingStyle} {...rest} />;
 });
 
 Heading.displayName = 'Heading';

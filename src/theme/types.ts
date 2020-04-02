@@ -51,6 +51,7 @@ interface Radii {
     md: string;
     lg: string;
     full: string;
+    radius: string;
 }
 
 interface Borders {
@@ -63,8 +64,30 @@ interface Borders {
 interface Colors {
     transparent: string;
     current: string;
+    // brand
+    primary: ColorHues;
+    secondary: ColorHues;
+    // states
+    success: ColorHues;
+    info: ColorHues;
+    warning: ColorHues;
+    error: ColorHues;
+    // neutral scale colors
     black: string;
+    titleText: string;
+    bodyText: string;
+    faintText: string;
+    disabled: string;
+    border: string;
+    altBg: string;
     white: string;
+    // component specific
+    cardBg: string;
+    modalBg: string;
+    popoverBg: string;
+    progress: string;
+    track: string;
+    // palette
     whiteAlpha: ColorHues;
     blackAlpha: ColorHues;
     gray: ColorHues;
@@ -77,6 +100,7 @@ interface Colors {
     cyan: ColorHues;
     purple: ColorHues;
     pink: ColorHues;
+    // social
     linkedin: ColorHues;
     facebook: ColorHues;
     messenger: ColorHues;

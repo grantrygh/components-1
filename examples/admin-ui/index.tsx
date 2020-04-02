@@ -24,8 +24,8 @@ function AdminUI(props) {
                 theme={update(theme, {
                     styles: {
                         alert: {
-                            $set: (props, theme) =>
-                                update(alertStyle(props, theme), {
+                            $set: ($props, $theme) =>
+                                update(alertStyle($props, $theme), {
                                     variants: {
                                         leftAccent: { borderLeft: { $set: '5px solid' } },
                                     },

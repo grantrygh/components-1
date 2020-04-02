@@ -205,6 +205,8 @@ const colors = {
     bodyText: '#333',
     faintText: '#aaa',
 
+    overlayBg: 'rgba(0, 0, 0, 0.2)',
+
     ...palette,
     ...brand,
     ...states,

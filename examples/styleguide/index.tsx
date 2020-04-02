@@ -7,6 +7,7 @@ import {
     AlertDescription,
     AlertIcon,
     Box,
+    Checkbox,
     CSSReset,
     Flex,
     Heading,
@@ -22,6 +23,10 @@ import {
 import CanvasContainer, { CanvasContext, CanvasPanel } from '../../src/Canvas';
 import { Logo } from './components/Logo';
 
+const initialCanvasState = {
+    drawer: { overlay: false, inline: true },
+};
+
 function StyleGuide(props) {
     return (
         <HelmetProvider>
@@ -35,21 +40,22 @@ function StyleGuide(props) {
                     />
                 </Helmet>
 
-                <CanvasContainer initialState={{ left: false, main: true }}>
-                    <CanvasPanel name="left" bg="#222" color="#eee" p="3" width="200px">
+                <CanvasContainer initialState={initialCanvasState}>
+                    <CanvasPanel type="drawer" bg="#222" color="#eee" p="3" width="200px">
                         Left CanvasPanel
                     </CanvasPanel>
 
-                    <CanvasPanel name="main" flex="1">
+                    <CanvasPanel type="main" flex="1">
                         <Navigation>
                             <Navigation.Primary alignItems="center">
                                 <CanvasContext.Consumer>
-                                    {({ canvasState, toggleCanvas }) => {
+                                    {({ canvasState, toggleCanvasOverlay, toggleCanvasInline }) => {
                                         return (
                                             <Box mr="2">
                                                 <MenuIcon
+                                                    title="Overlay"
                                                     onClick={() => {
-                                                        toggleCanvas('left');
+                                                        toggleCanvasOverlay('drawer');
                                                     }}
                                                 />
                                             </Box>
@@ -85,6 +91,35 @@ function StyleGuide(props) {
 
                         <Flex flexDirection="row">
                             <Box width="100%" bg="white" p={10} m={4}>
+                                <CanvasContext.Consumer>
+                                    {({ canvasState, toggleCanvasInline, toggleCanvasOverlay }) => (
+                                        <>
+                                            <Box>
+                                                <Checkbox
+                                                    mb="2"
+                                                    isChecked={!!canvasState['drawer'].inline}
+                                                    onChange={e => {
+                                                        toggleCanvasInline('drawer');
+                                                    }}
+                                                >
+                                                    Pin drawer
+                                                </Checkbox>
+                                            </Box>
+                                            <Box>
+                                                <Checkbox
+                                                    mb="4"
+                                                    isChecked={!!canvasState['drawer'].overlay}
+                                                    onChange={e => {
+                                                        toggleCanvasOverlay('drawer');
+                                                    }}
+                                                >
+                                                    Toggle drawer
+                                                </Checkbox>
+                                            </Box>
+                                        </>
+                                    )}
+                                </CanvasContext.Consumer>
+
                                 <Alert variant="leftAccent" status="success" maxWidth="sm" alignItems="start" mb={4}>
                                     <AlertIcon />
                                     <AlertDescription>Something just happened!</AlertDescription>

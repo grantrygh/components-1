@@ -23,13 +23,13 @@ export const alertStyle = ({ color }, theme) => ({
         leftAccent: {
             pl: 3,
             bg: `${color}.100`,
-            borderLeft: '4px',
+            borderLeft: '2px',
             borderColor: `${color}.500`,
         },
         topAccent: {
             pl: 2,
             bg: `${color}.100`,
-            borderTop: '4px',
+            borderTop: '2px',
             borderColor: `${color}.500`,
         },
     },
@@ -37,14 +37,14 @@ export const alertStyle = ({ color }, theme) => ({
 
 const useAlertStyle = props => {
     const theme = useTheme();
-    const styles = theme['styles'].alertStyle ? theme['styles'].alertStyle(props, theme) : alertStyle(props, theme);
+    const styles = theme['styles'].alert ? theme['styles'].alert(props, theme) : alertStyle(props, theme);
 
     return {
         // base style
         ...styles.style,
 
         // variant style
-        ...styles.variants[props.variant || 'subtle'],
+        ...styles.variants[props.variant || 'leftAccent'],
     };
 };
 

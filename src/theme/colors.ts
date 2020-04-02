@@ -1,3 +1,58 @@
+import color from 'color';
+
+const generateShades = primary => {
+    const p = color(primary);
+
+    const shades = {
+        50: p.lighten(0.8),
+        100: p.lighten(0.4),
+        200: p.lighten(0.3),
+        300: p.lighten(0.2),
+        400: p.lighten(0.1),
+        500: p,
+        600: p.darken(0.1),
+        700: p.darken(0.2),
+        800: p.darken(0.3),
+        900: p.darken(0.4),
+    };
+
+    for (const key in shades) {
+        shades[key] = shades[key].hex();
+    }
+
+    return shades;
+};
+
+// brand colors
+// use https://material.io/resources/color
+const brand = {
+    primary: generateShades('#0069FF'),
+    secondary: generateShades('#3DD598'),
+};
+
+const neutral = {
+    1: '#FFF',
+    2: '#FAFAFA',
+    3: '#F5F5F5',
+    4: '#F0F0F0',
+    5: '#D9D9D9',
+    6: '#BFBFBF',
+    7: '#8C8C8C',
+    8: '#595959',
+    9: '#434343',
+    10: '#262626',
+    11: '#1F1F1F',
+    12: '#141414',
+    13: '#000',
+};
+
+const states = {
+    success: generateShades('#3DD598'),
+    info: generateShades('#50B5FF'),
+    warning: generateShades('#FFC542'),
+    error: generateShades('#FC5A5A'),
+};
+
 const palette = {
     whiteAlpha: {
         50: 'rgba(255, 255, 255, 0.04)',
@@ -159,23 +214,27 @@ const palette = {
 const colors = {
     transparent: 'transparent',
     current: 'currentColor',
-    black: '#000',
-    white: '#fff',
+
+    // Neutral Scale Design Colors
+    black: neutral[13],
+    titleText: neutral[12],
+    bodyText: neutral[9],
+    faintText: neutral[7],
+    disabled: neutral[5],
+    border: neutral[3], // and divider
+    altBg: neutral[2],
+    white: neutral[1],
+
+    // component specific
+    cardBg: neutral[1],
+    modalBg: neutral[2],
+    popoverBg: neutral[2],
+    progress: brand.primary[500],
+    track: neutral[3],
 
     ...palette,
-
-    brand: {
-        primary: palette.blue,
-        secondary: palette.green,
-        tertiary: palette.orange,
-    },
-
-    statuses: {
-        info: palette.blue,
-        success: palette.green,
-        danger: palette.red,
-        warning: palette.orange,
-    },
+    ...brand,
+    ...states,
 
     linkedin: {
         50: '#E8F4F9',
@@ -255,5 +314,7 @@ const colors = {
         900: '#003f5e',
     },
 };
+
+console.log(states.success);
 
 export default colors;

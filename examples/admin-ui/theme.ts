@@ -1,4 +1,4 @@
-import update from 'immutability-helper';
+ptheimport update from 'immutability-helper';
 import { alertStyle } from '../../src/Alert/styles';
 import defaultTheme from '../../src/theme';
 
@@ -7,7 +7,7 @@ export default {
 
     styles: {
         ...defaultTheme['styles'],
-        alertStyle: (props, theme) =>
+        alert: (props, theme) =>
             update(alertStyle(props, theme), {
                 variants: {
                     subtle: { bg: { $set: '#eee' } },

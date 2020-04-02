@@ -3,7 +3,7 @@ import { useTheme } from '../ThemeProvider';
 export const toastStyle = ({ color }, theme) => ({
     style: {
         textAlign: 'left',
-        boxShadow: 'lg',
+        boxShadow: 'toast',
         rounded: 'md',
         alignItems: 'start',
         m: 2,

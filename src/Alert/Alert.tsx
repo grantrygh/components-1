@@ -3,7 +3,7 @@ import Box from '../Box';
 import { BoxProps } from '../Box/types';
 import Icon from '../Icon';
 import useAlertStyle, { useAlertIconStyle } from './styles';
-import { AlertProps, IAlertContext } from './types';
+import { AlertProps, IAlert } from './types';
 
 export const statuses = {
     info: { icon: 'info', color: 'blue' },
@@ -12,7 +12,7 @@ export const statuses = {
     error: { icon: 'warning', color: 'red' },
 };
 
-const AlertContext = createContext<IAlertContext>({});
+const AlertContext = createContext<IAlert>({});
 
 /**
  * Alerts are used to communicate a state that affects a system, feature or page

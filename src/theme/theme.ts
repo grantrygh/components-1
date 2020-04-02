@@ -40,12 +40,17 @@ const zIndices = {
     tooltip: 1800,
 };
 
-const radii = {
+const baseRadii = {
     none: '0',
     sm: '0.125rem',
     md: '0.25rem',
     lg: '0.5rem',
     full: '9999px',
+};
+
+const radii = {
+    ...baseRadii,
+    radius: baseRadii.sm, // radius var for component consistency
 };
 
 const opacity = {

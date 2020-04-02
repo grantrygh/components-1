@@ -10,7 +10,7 @@ export const dropzoneStyle = ({ color = 'gray', disabled }, theme) => ({
         minHeight: '125px',
         padding: 4,
         borderWidth: 2,
-        borderRadius: 'md',
+        borderRadius: 'radius',
         borderColor: `${color}.400`,
         borderStyle: 'dashed',
         transition: 'border 0.24s ease-in-out',

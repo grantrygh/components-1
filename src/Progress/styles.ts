@@ -1,6 +1,6 @@
 import { useTheme } from '../ThemeProvider';
 
-export const progressStyle = ({ borderRadius, color = 'progress', isIndeterminate }, theme) => ({
+export const progressStyle = ({ borderRadius = 'radius', color = 'progress', isIndeterminate }, theme) => ({
     style: {
         bg: 'track',
         borderRadius,

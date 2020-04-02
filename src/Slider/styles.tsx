@@ -44,7 +44,7 @@ export const sliderStyle = ({ color: fillColor = 'primary', size = 'md', trackPe
         track: {
             ...centerProps,
             height: trackHeight,
-            borderRadius: 'sm',
+            borderRadius: 'radius',
             width: '100%',
             bg: 'track',
             _disabled: {

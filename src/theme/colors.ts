@@ -222,15 +222,19 @@ const colors = {
     faintText: neutral[7],
     disabled: neutral[5],
     border: neutral[3], // and divider
-    altBg: neutral[2],
     white: neutral[1],
 
-    // component specific
+    // page layout
+    navBg: neutral[2],
+    canvasBg: neutral[4],
+    pageBg: neutral[3],
     cardBg: neutral[1],
-    modalBg: neutral[2],
+    altBg: neutral[3],
     popoverBg: neutral[2],
+
+    // component specific
     progress: brand.primary[500],
-    track: neutral[3],
+    track: neutral[4],
 
     ...palette,
     ...brand,

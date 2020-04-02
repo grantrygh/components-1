@@ -6,21 +6,13 @@ import { Alert, AlertDescription, AlertIcon, AlertTitle } from '../Alert';
 import Box from '../Box';
 import CloseButton from '../CloseButton';
 import ThemeProvider, { useTheme } from '../ThemeProvider';
+import useToastStyle from './styles';
+import { ToastProps, useToastOptions } from './types';
 
-const Toast = ({ status, variant, id, title, isClosable, onClose, description, ...props }) => {
+export const Toast = ({ status, variant, id, title, isClosable, onClose, description, ...props }: ToastProps) => {
+    const toastStyleProps = useToastStyle({});
     return (
-        <Alert
-            status={status}
-            variant={variant}
-            id={id}
-            textAlign="left"
-            boxShadow="lg"
-            rounded="md"
-            alignItems="start"
-            m={2}
-            pr={8}
-            {...props}
-        >
+        <Alert status={status} variant={variant} id={id} {...toastStyleProps} {...props}>
             <AlertIcon />
             <Box flex="1">
                 {title && <AlertTitle>{title}</AlertTitle>}
@@ -31,7 +23,7 @@ const Toast = ({ status, variant, id, title, isClosable, onClose, description, .
     );
 };
 
-function useToast() {
+export function useToast() {
     const theme = useTheme();
 
     const notify = useCallback(
@@ -44,7 +36,7 @@ function useToast() {
             status,
             variant = 'solid',
             isClosable,
-        }) => {
+        }: useToastOptions) => {
             const options = {
                 position,
                 duration,
@@ -75,11 +67,11 @@ function useToast() {
                 ),
                 options
             );
+
+            return null;
         },
         [theme]
     );
 
     return notify;
 }
-
-export default useToast;

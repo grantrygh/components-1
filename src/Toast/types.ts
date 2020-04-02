@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Position } from 'toasted-notes';
-import { IAlert } from '../Alert';
+import { AlertProps, IAlert } from '../Alert/types';
 
 export interface IToast extends IAlert {
     /**
@@ -33,6 +33,5 @@ interface RenderOption {
     render?: (props: { onClose: () => void; id: string }) => React.ReactNode;
 }
 export type useToastOptions = IToast & RenderOption;
-declare const useToast: () => (props: useToastOptions) => void;
 
-export default useToast;
+export type ToastProps = AlertProps & IToast;

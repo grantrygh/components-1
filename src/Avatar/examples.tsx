@@ -15,7 +15,7 @@ stories.add('Default', () => (
     <>
         {['xs', 'sm', 'md', 'lg', 'xl', '2xl'].map(size => (
             <Avatar mr={2} size={size} name="Uchiha Itachi" src="https://bit.ly/uchiha-itachi">
-                <AvatarBadge size="1.25em" bg="green.500" />
+                <AvatarBadge size="1.25em" />
             </Avatar>
         ))}
     </>

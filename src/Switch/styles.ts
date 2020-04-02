@@ -23,7 +23,7 @@ export const switchStyle = ({ color = 'primary', size = 'md' }, theme) => {
             width,
             rounded: 'full',
             justifyContent: 'flex-start',
-            bg: 'gray.300', // TODO: replace with common variable (among inputs / track color?)
+            bg: 'track',
             boxSizing: 'content-box',
             p: '3px',
             _checked: {

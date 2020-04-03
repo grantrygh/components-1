@@ -16,14 +16,25 @@ import Box from '../Box';
 import Flex from '../Flex';
 import PseudoBox from '../PseudoBox';
 import { assignRef, useVariantColorWarning } from '../utils';
-import { useTabListStyle, useTabStyle } from './styles';
+import useTabStyle, { useTabListStyle } from './styles';
 import { TabContextProps, TabListProps, TabPanelProps, TabProps, TabsProps } from './types';
 
 export const TabContext = createContext<TabContextProps>({});
 
 const Tab = forwardRef((props: TabProps, ref) => {
-    const { isSelected, isDisabled, id, size, ...rest } = props;
-    const tabStyleProps = useTabStyle();
+    const { isSelected, isDisabled, id, ...rest } = props;
+
+    const { orientation, variant, isFitted, color, size } = useContext(TabContext);
+
+    console.log('TAB', size, orientation, variant, isFitted);
+
+    const tabStyleProps = useTabStyle({
+        color,
+        orientation,
+        variant,
+        size,
+        isFitted,
+    });
 
     return (
         <PseudoBox
@@ -56,9 +67,15 @@ const TabList = forwardRef((props: TabListProps, ref) => {
         onChangeTab,
         onFocusPanel,
         orientation,
+        variant,
+        align,
     } = useContext(TabContext);
 
-    const tabListStyleProps = useTabListStyle();
+    const tabListStyleProps = useTabListStyle({
+        orientation,
+        variant,
+        align,
+    });
 
     const allNodes = useRef([]);
 
@@ -213,8 +230,8 @@ const Tabs = forwardRef(
             defaultIndex,
             isManual,
             variant = 'line',
-            variantColor = 'blue',
-            align = 'start',
+            variantColor,
+            align,
             size = 'md',
             orientation = 'horizontal',
             isFitted,
@@ -281,6 +298,8 @@ const Tabs = forwardRef(
         };
 
         const id = useId();
+
+        console.log('context', size);
 
         const context = {
             id,

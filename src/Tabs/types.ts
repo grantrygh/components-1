@@ -109,14 +109,12 @@ export type TabProps = PseudoBoxProps &
 
 interface ITabContext {
     id?: string;
-    index?: ITabs['index'];
     manualIndex?: number;
-    isManual?: ITabs['isManual'];
     onChangeTab?: (index: number) => void;
     onManualTabChange?: (index: number) => void;
     onFocusPanel?: () => void;
-    orientation?: ITabs['orientation'];
     selectedPanelRef?: React.RefObject<HTMLElement>;
+    color?: string;
 }
 
-export type TabContextProps = ITabContext;
+export type TabContextProps = ITabContext & Omit<ITabs, 'children'>;

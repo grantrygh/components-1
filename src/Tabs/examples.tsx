@@ -3,8 +3,8 @@ import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 import { boolean, select, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
-import React, { Fragment } from 'react';
-import Tabs, { Tab, TabList, TabPanel, TabPanels } from '.';
+import React from 'react';
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from '.';
 import Box from '../Box';
 import Icon from '../Icon';
 
@@ -31,15 +31,15 @@ const Content = styled.div`
 
 stories.add('Default', () => {
     return (
-        <Tabs size="md" color="pink" isFitted>
+        <Tabs isFitted>
             <TabList>
                 <Tab>
                     <Icon name="phone" size="1em" mr={2} />
                     Settings
                 </Tab>
-                <Tab isDisabled>Billings</Tab>
+                <Tab>Billings</Tab>
                 <Tab>Preferences</Tab>
-                <Tab>Shut Down</Tab>
+                <Tab isDisabled>Shut Down</Tab>
             </TabList>
 
             <TabPanels>
@@ -60,11 +60,103 @@ stories.add('Default', () => {
     );
 });
 
+stories.add('Enclosed', () => {
+    return (
+        <Tabs variant="enclosed" isFitted variantColor="secondary">
+            <TabList>
+                <Tab>
+                    <Icon name="phone" size="1em" mr={2} />
+                    Settings
+                </Tab>
+                <Tab>Billings</Tab>
+            </TabList>
+
+            <TabPanels>
+                <TabPanel>
+                    <Content>Settings</Content>
+                </TabPanel>
+                <TabPanel>
+                    <Content>Billings</Content>
+                </TabPanel>
+            </TabPanels>
+        </Tabs>
+    );
+});
+
+stories.add('Enclosed Colored', () => {
+    return (
+        <Tabs variant="enclosed-colored" isFitted>
+            <TabList>
+                <Tab>
+                    <Icon name="phone" size="1em" mr={2} />
+                    Settings
+                </Tab>
+                <Tab>Billings</Tab>
+            </TabList>
+
+            <TabPanels>
+                <TabPanel>
+                    <Content>Settings</Content>
+                </TabPanel>
+                <TabPanel>
+                    <Content>Billings</Content>
+                </TabPanel>
+            </TabPanels>
+        </Tabs>
+    );
+});
+
+stories.add('Soft Rounded', () => {
+    return (
+        <Tabs variant="soft-rounded">
+            <TabList>
+                <Tab>
+                    <Icon name="phone" size="1em" mr={2} />
+                    Settings
+                </Tab>
+                <Tab>Billings</Tab>
+            </TabList>
+
+            <TabPanels>
+                <TabPanel>
+                    <Content>Settings</Content>
+                </TabPanel>
+                <TabPanel>
+                    <Content>Billings</Content>
+                </TabPanel>
+            </TabPanels>
+        </Tabs>
+    );
+});
+
+stories.add('Solid Rounded', () => {
+    return (
+        <Tabs variant="solid-rounded">
+            <TabList>
+                <Tab>
+                    <Icon name="phone" size="1em" mr={2} />
+                    Settings
+                </Tab>
+                <Tab>Billings</Tab>
+            </TabList>
+
+            <TabPanels>
+                <TabPanel>
+                    <Content>Settings</Content>
+                </TabPanel>
+                <TabPanel>
+                    <Content>Billings</Content>
+                </TabPanel>
+            </TabPanels>
+        </Tabs>
+    );
+});
+
 stories.add('Tablist Only (Manual)', () => {
     const props = {
         variant: select(
             'variant',
-            ['solid-rounded', 'enclosed', 'enclosed-colored', 'soft-rounded', 'line', 'contained'],
+            ['solid-rounded', 'enclosed', 'enclosed-colored', 'soft-rounded', 'line'],
             'enclosed'
         ),
         align: select('alignment', ['start', 'center', 'end'], 'center'),
@@ -77,7 +169,7 @@ stories.add('Tablist Only (Manual)', () => {
     const TabEx = () => {
         const [index, setIndex] = React.useState(2);
         return (
-            <Fragment>
+            <>
                 <input type="range" max="4" min="0" value={index} onChange={e => setIndex(Number(e.target.value))} />
                 <Tabs {...props} color="green" index={index} defaultIndex={2} isManual onChange={setIndex}>
                     <TabList>
@@ -88,7 +180,7 @@ stories.add('Tablist Only (Manual)', () => {
                         <Tab>Tab 5</Tab>
                     </TabList>
                 </Tabs>
-            </Fragment>
+            </>
         );
     };
 

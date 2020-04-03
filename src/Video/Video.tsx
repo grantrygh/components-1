@@ -6,14 +6,16 @@ import { LightboxMedia } from '../Lightbox';
 import PseudoBox from '../PseudoBox';
 import Text from '../Text';
 import { useWindowResize } from '../utils';
-import { fullVideoStyle, iframeStyle, isStuckStyle, nativeVideoStyle, videoStyle } from './styles';
+import useVideoStyle from './styles';
+import { OuterContainerProps, VideoProps } from './types';
 
-function OuterContainer(props) {
+function OuterContainer(props: OuterContainerProps) {
     const { id, cover, children, src, withLightbox, full, iFrame, innerRef, ...rest } = props;
+    const { root: videoStyleProps, full: fullVideoStyleProps } = useVideoStyle({});
 
     const containerProps = {
-        ...videoStyle,
-        ...(full && fullVideoStyle),
+        ...videoStyleProps,
+        ...(full && fullVideoStyleProps),
     };
 
     // set cover image background
@@ -36,16 +38,17 @@ function OuterContainer(props) {
     return innerContent;
 }
 
-const getMediaStyle = ({ isStuck, allowSticky, isEmbed, full, height, width }) => {
+const useMediaStyle = ({ isStuck = false, allowSticky = false, isEmbed = false, full = false, height, width }) => {
+    const { stuck: isStuckStyleProps, native: nativeVideoStyleProps, iframe: iframeStyleProps } = useVideoStyle({});
     if (isStuck && allowSticky) {
-        return isStuckStyle;
+        return isStuckStyleProps;
     }
 
     if (full || (height && width)) {
         if (!isEmbed) {
-            return nativeVideoStyle;
+            return nativeVideoStyleProps;
         }
-        return iframeStyle;
+        return iframeStyleProps;
     }
 
     return {};
@@ -54,7 +57,7 @@ const getMediaStyle = ({ isStuck, allowSticky, isEmbed, full, height, width }) =
 const VideoError = ({ error }) => {
     return (
         <Box>
-            <Heading size="md">Something went wrong!</Heading>
+            <Heading>Something went wrong!</Heading>
             <Text>{error.toString()}</Text>
         </Box>
     );
@@ -62,13 +65,16 @@ const VideoError = ({ error }) => {
 
 const SourceMissingError = new Error('video source missing');
 
-export default function Video(props) {
-    const { loading, error, src, cover, id, autoplay = true, allowSticky, ...rest } = props;
+export const Video = (props: VideoProps) => {
+    const { loading, error, src, cover, id, autoplay = true, allowSticky, height, width, ...rest } = props;
 
     const videoRef = useRef(null);
 
     const { windowWidth } = useWindowResize(1000);
     const [isStuck, setIsStuck] = useState(false);
+
+    const videoStyleProps = useMediaStyle({ isStuck, height, width, ...props });
+    const embedStyleProps = useMediaStyle({ isStuck, isEmbed: true, height, width, ...props });
 
     useEffect(() => {
         if (allowSticky && 'IntersectionObserver' in window && windowWidth > 600) {
@@ -102,7 +108,7 @@ export default function Video(props) {
     if (loading) {
         return (
             <OuterContainer id={id} cover={cover}>
-                <video poster={cover} key={id} style={getMediaStyle({ isStuck, allowSticky })} />
+                <video poster={cover} key={id} style={videoStyleProps} />
             </OuterContainer>
         );
     }
@@ -114,36 +120,31 @@ export default function Video(props) {
 
     if (src.indexOf('youtube') > -1) {
         return (
-            <OuterContainer id={id} cover={cover} src={src} iFrame innerRef={videoRef} {...rest}>
-                <iframe
-                    id="youtube_embed"
-                    src={src}
-                    {...props}
-                    style={getMediaStyle({ isStuck, isEmbed: true, ...props })}
-                />
+            <OuterContainer
+                id={id}
+                cover={cover}
+                src={src}
+                iFrame
+                innerRef={videoRef}
+                height={height}
+                width={width}
+                {...rest}
+            >
+                <iframe id="youtube_embed" src={src} title="Video" style={embedStyleProps} {...props} />
             </OuterContainer>
         );
     }
 
     //* Native Video
     return (
-        <OuterContainer id={id} cover={cover} innerRef={videoRef} src={src} {...rest}>
-            {/* <ContentWrap className={style.videoWrapperSticky}> */}
-            <video
-                poster={cover}
-                playsInline
-                key={id}
-                controls
-                autoPlay={autoplay}
-                style={getMediaStyle({ isStuck, ...props })}
-            >
+        <OuterContainer id={id} cover={cover} innerRef={videoRef} src={src} height={height} width={width} {...rest}>
+            <video poster={cover} playsInline key={id} controls autoPlay={autoplay} style={videoStyleProps}>
                 <source src={src} type="video/mp4" />
                 <source src={src} media="all and (max-width:800px)" type="video/mp4" />
                 <p>
                     Your browser doesn't support HTML5 video. Here is a <a href={src}>link to the video</a> instead.
                 </p>
             </video>
-            {/* </ContentWrap> */}
         </OuterContainer>
     );
-}
+};

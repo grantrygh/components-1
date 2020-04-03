@@ -2,10 +2,21 @@
 import { jsx } from '@emotion/core';
 import { Children, cloneElement, isValidElement } from 'react';
 import Box from '../Box';
+import { ButtonGroupProps } from './types';
 
-const ButtonGroup = ({ size, variantColor, variant, isAttached, spacing = 2, children, ...rest }) => {
+export const ButtonGroup = ({
+    size,
+    variantColor = 'primary',
+    variant,
+    isAttached,
+    spacing = 2,
+    children,
+    ...rest
+}: ButtonGroupProps) => {
     const clones = Children.map(children, (child, index) => {
-        if (!isValidElement(child)) return;
+        if (!isValidElement(child)) {
+            return null;
+        }
 
         const isFirst = index === 0;
         const isLast = index === Children.count(children) - 1;
@@ -30,5 +41,3 @@ const ButtonGroup = ({ size, variantColor, variant, isAttached, spacing = 2, chi
         </Box>
     );
 };
-
-export default ButtonGroup;

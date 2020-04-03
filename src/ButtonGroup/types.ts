@@ -8,6 +8,7 @@ export interface IButtonGroup {
     size?: IButton['size'];
     color?: string;
     variant?: IButton['variant'];
+    variantColor?: IButton['variantColor'];
     /**
      * If `true`, the borderRadius of button that are direct children will be altered
      * to look flushed together
@@ -18,7 +19,3 @@ export interface IButtonGroup {
 }
 
 export type ButtonGroupProps = IButtonGroup & Omit<BoxProps, 'size'>;
-
-declare const ButtonGroup: React.FC<ButtonGroupProps>;
-
-export default ButtonGroup;

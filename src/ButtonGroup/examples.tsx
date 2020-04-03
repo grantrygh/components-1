@@ -1,7 +1,7 @@
 import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import ButtonGroup from '.';
+import { ButtonGroup } from '.';
 import Box from '../Box';
 import Button from '../Button';
 
@@ -18,7 +18,7 @@ stories.addDecorator(story => {
 stories.add('Default', () => (
     <ButtonGroup>
         <Button variant="outline">Button 1</Button>
-        <Button color="blue">Button 2</Button>
+        <Button>Button 2</Button>
         <Button variant="outline">Button 3</Button>
     </ButtonGroup>
 ));

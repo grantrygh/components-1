@@ -42,7 +42,3 @@ interface IImage {
 }
 
 export type ImageProps = IImage & BoxProps;
-
-declare const Image: React.FC<ImageProps>;
-
-export default Image;

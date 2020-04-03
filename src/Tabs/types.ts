@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BoxProps } from '../Box/types';
 import { Omit } from '../common-types';
-import { FlexProps } from '../Flex';
+import { FlexProps } from '../Flex/types';
 import { PseudoBoxProps } from '../PseudoBox';
 
 export interface ITabs {
@@ -60,11 +60,6 @@ export interface ITabs {
 
 export type TabsProps = ITabs & Omit<BoxProps, 'onChange' | 'size'>;
 
-declare const Tabs: React.FC<TabsProps>;
-export default Tabs;
-
-////////////////////////////////////////////////////////////////////////
-
 export interface ITabList {
     /**
      * The children of the tab list should be `Tab`.
@@ -73,9 +68,6 @@ export interface ITabList {
 }
 
 export type TabListProps = ITabList & FlexProps;
-export const TabList: React.FC<TabListProps>;
-
-////////////////////////////////////////////////////////////////////////
 
 export interface ITabPanel {
     /**
@@ -99,9 +91,6 @@ export interface ITabPanel {
     selectedPanelRef?: React.RefObject<HTMLElement>;
 }
 export type TabPanelProps = ITabPanel & BoxProps;
-export const TabPanel: React.FC<TabPanelProps>;
-
-////////////////////////////////////////////////////////////////////////
 
 export interface ITabPanels {
     /**
@@ -111,8 +100,23 @@ export interface ITabPanels {
 }
 
 export type TabPanelsProps = ITabPanels & BoxProps;
-export const TabPanels: React.FC<TabPanelsProps>;
 
-////////////////////////////////////////////////////////////////////////
-type TabProps = PseudoBoxProps & React.ButtonHTMLAttributes<any>;
-export const Tab: React.FC<TabProps>;
+export type TabProps = PseudoBoxProps &
+    React.ButtonHTMLAttributes<any> & {
+        isDisabled?: boolean;
+        isSelected?: boolean;
+    };
+
+interface ITabContext {
+    id?: string;
+    index?: ITabs['index'];
+    manualIndex?: number;
+    isManual?: ITabs['isManual'];
+    onChangeTab?: (index: number) => void;
+    onManualTabChange?: (index: number) => void;
+    onFocusPanel?: () => void;
+    orientation?: ITabs['orientation'];
+    selectedPanelRef?: React.RefObject<HTMLElement>;
+}
+
+export type TabContextProps = ITabContext;

@@ -1,14 +1,27 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { useId } from '@reach/auto-id';
-import { Children, cloneElement, createContext, forwardRef, isValidElement, useContext, useRef, useState } from 'react';
+import {
+    Children,
+    cloneElement,
+    createContext,
+    forwardRef,
+    isValidElement,
+    RefObject,
+    useContext,
+    useRef,
+    useState,
+} from 'react';
 import Box from '../Box';
 import Flex from '../Flex';
 import PseudoBox from '../PseudoBox';
 import { assignRef, useVariantColorWarning } from '../utils';
 import { useTabListStyle, useTabStyle } from './styles';
+import { TabContextProps, TabListProps, TabPanelProps, TabProps, TabsProps } from './types';
 
-const Tab = forwardRef((props, ref) => {
+export const TabContext = createContext<TabContextProps>({});
+
+const Tab = forwardRef((props: TabProps, ref) => {
     const { isSelected, isDisabled, id, size, ...rest } = props;
     const tabStyleProps = useTabStyle();
 
@@ -31,11 +44,7 @@ const Tab = forwardRef((props, ref) => {
     );
 });
 
-Tab.displayName = 'Tab';
-
-////////////////////////////////////////////////////////////////////////
-
-const TabList = forwardRef((props, ref) => {
+const TabList = forwardRef((props: TabListProps, ref) => {
     const { children, onKeyDown, onClick, ...rest } = props;
 
     const {
@@ -57,6 +66,7 @@ const TabList = forwardRef((props, ref) => {
         if (isValidElement(child)) {
             return child.props.isDisabled === true ? null : index;
         }
+        return null;
     }).filter(index => index != null);
 
     const enabledSelectedIndex = focusableIndexes.indexOf(selectedIndex);
@@ -65,7 +75,9 @@ const TabList = forwardRef((props, ref) => {
     const updateIndex = index => {
         const childIndex = focusableIndexes[index];
         allNodes.current[childIndex].focus();
-        onChangeTab && onChangeTab(childIndex);
+        if (onChangeTab) {
+            onChangeTab(childIndex);
+        }
     };
 
     const handleKeyDown = event => {
@@ -93,7 +105,9 @@ const TabList = forwardRef((props, ref) => {
 
         if (event.key === 'ArrowDown') {
             event.preventDefault();
-            onFocusPanel && onFocusPanel();
+            if (onFocusPanel) {
+                onFocusPanel();
+            }
         }
 
         if (onKeyDown) {
@@ -101,8 +115,8 @@ const TabList = forwardRef((props, ref) => {
         }
     };
 
-    const clones = Children.map(children, (child, index) => {
-        let isSelected = isManual ? index === manualIndex : index === selectedIndex;
+    const clones = Children.map(children, (child: React.ReactElement, index) => {
+        const isSelected = isManual ? index === manualIndex : index === selectedIndex;
 
         const handleClick = event => {
             // Hack for Safari. Buttons don't receive focus on click on Safari
@@ -119,12 +133,17 @@ const TabList = forwardRef((props, ref) => {
 
         if (isValidElement(child)) {
             return cloneElement(child, {
-                ref: node => (allNodes.current[index] = node),
+                //  @ts-ignore
+                ref: (node: any) => {
+                    allNodes.current[index] = node;
+                },
                 isSelected,
                 onClick: handleClick,
                 id: `${id}-${index}`,
             });
         }
+
+        return null;
     });
 
     return (
@@ -141,11 +160,7 @@ const TabList = forwardRef((props, ref) => {
     );
 });
 
-TabList.displayName = 'TabList';
-
-////////////////////////////////////////////////////////////////////////
-
-const TabPanel = forwardRef(({ children, isSelected, selectedPanelRef, id, ...rest }, ref) => {
+const TabPanel = forwardRef(({ children, isSelected, selectedPanelRef, id, ...rest }: TabPanelProps, ref) => {
     return (
         <Box
             ref={node => {
@@ -167,15 +182,13 @@ const TabPanel = forwardRef(({ children, isSelected, selectedPanelRef, id, ...re
     );
 });
 
-TabPanel.displayName = 'TabPanel';
-
-////////////////////////////////////////////////////////////////////////
-
-const TabPanels = forwardRef(({ children, ...rest }, ref) => {
+const TabPanels = forwardRef(({ children, ...rest }: TabPanelProps, ref) => {
     const { index: selectedIndex, selectedPanelRef, id, isManual, manualIndex } = useContext(TabContext);
 
     const clones = Children.map(children, (child, index) => {
-        if (!isValidElement(child)) return;
+        if (!isValidElement(child)) {
+            return null;
+        }
 
         return cloneElement(child, {
             isSelected: isManual ? index === manualIndex : index === selectedIndex,
@@ -190,12 +203,6 @@ const TabPanels = forwardRef(({ children, ...rest }, ref) => {
         </Box>
     );
 });
-
-TabPanels.displayName = 'TabPanels';
-
-////////////////////////////////////////////////////////////////////////
-
-export const TabContext = createContext();
 
 const Tabs = forwardRef(
     (
@@ -212,37 +219,36 @@ const Tabs = forwardRef(
             orientation = 'horizontal',
             isFitted,
             ...props
-        },
+        }: TabsProps,
         ref
     ) => {
         // Wrong usage of `variantColor` prop is quite common
         // Let's add a warning hook that validates the passed variantColor
         useVariantColorWarning('Tabs', variantColor);
 
+        const [manualIndex, setManualIndex] = useState(controlledIndex || defaultIndex || 0);
+
         const { current: isControlled } = useRef(controlledIndex != null);
-        const selectedPanelRef = useRef();
+        const selectedPanelRef: RefObject<HTMLElement> = useRef();
 
         const getInitialIndex = () => {
             if (!isManual) {
                 return defaultIndex || 0;
-            } else {
-                return controlledIndex || defaultIndex || 0;
             }
+            return controlledIndex || defaultIndex || 0;
         };
+
+        const [selectedIndex, setSelectedIndex] = useState(getInitialIndex);
 
         const getActualIdx = () => {
             if (isManual) {
                 return selectedIndex;
-            } else {
-                return isControlled ? controlledIndex : selectedIndex;
             }
+            return isControlled ? controlledIndex : selectedIndex;
         };
 
-        const [selectedIndex, setSelectedIndex] = useState(getInitialIndex);
-        const [manualIndex, setManualIndex] = useState(controlledIndex || defaultIndex || 0);
-
-        let actualIdx = getActualIdx();
-        let manualIdx = isControlled ? controlledIndex : manualIndex;
+        const actualIdx = getActualIdx();
+        const manualIdx = isControlled ? controlledIndex : manualIndex;
 
         const onChangeTab = index => {
             if (!isControlled) {
@@ -253,8 +259,8 @@ const Tabs = forwardRef(
                 setSelectedIndex(index);
             }
 
-            if (!isManual) {
-                onChange && onChange(index);
+            if (!isManual && onChange) {
+                onChange(index);
             }
         };
 
@@ -263,8 +269,8 @@ const Tabs = forwardRef(
                 setManualIndex(index);
             }
 
-            if (isManual) {
-                onChange && onChange(index);
+            if (isManual && onChange) {
+                onChange(index);
             }
         };
 
@@ -303,7 +309,4 @@ const Tabs = forwardRef(
     }
 );
 
-Tabs.displayName = 'Tabs';
-
-export default Tabs;
-export { TabList, Tab, TabPanel, TabPanels };
+export { Tabs, TabList, Tab, TabPanel, TabPanels };

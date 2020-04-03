@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import React from "react";
 
 const iconPaths = {
@@ -6,7 +7,7 @@ const iconPaths = {
       <path
         fill="currentColor"
         d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"
-      ></path>
+      />
     ),
   },
   search: {
@@ -36,8 +37,8 @@ const iconPaths = {
   sun: {
     path: (
       <g
-        strokeLinejoin="full"
-        strokeLinecap="full"
+        strokeLinejoin="round"
+        strokeLinecap="round"
         strokeWidth="2"
         fill="none"
         stroke="currentColor"
@@ -156,7 +157,7 @@ const iconPaths = {
   },
   edit: {
     path: (
-      <g fill="none" stroke="currentColor" strokeLinecap="full" strokeWidth="2">
+      <g fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="2">
         <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
         <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
       </g>
@@ -228,7 +229,7 @@ const iconPaths = {
   },
   "external-link": {
     path: (
-      <g fill="none" stroke="currentColor" strokeLinecap="full" strokeWidth="2">
+      <g fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="2">
         <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
         <path d="M15 3h6v6" />
         <path d="M10 14L21 3" />
@@ -245,7 +246,7 @@ const iconPaths = {
   },
   "plus-square": {
     path: (
-      <g fill="none" stroke="currentColor" strokeLinecap="full" strokeWidth="2">
+      <g fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="2">
         <rect height="18" width="18" rx="2" ry="2" x="3" y="3" />
         <path d="M12 8v8" />
         <path d="M8 12h8" />
@@ -346,7 +347,7 @@ const iconPaths = {
   },
   spinner: {
     path: (
-      <React.Fragment>
+      <>
         <defs>
           <linearGradient
             x1="28.154%"
@@ -368,7 +369,7 @@ const iconPaths = {
           />
           <rect fill="currentColor" x="8" width="4" height="4" rx="8" />
         </g>
-      </React.Fragment>
+      </>
     ),
   },
   "drag-handle": {
@@ -464,13 +465,13 @@ const iconPaths = {
     path: (
       <g stroke="currentColor" strokeWidth="1.5">
         <path
-          strokeLinecap="full"
+          strokeLinecap="round"
           fill="none"
           d="M9,9a3,3,0,1,1,4,2.829,1.5,1.5,0,0,0-1,1.415V14.25"
         />
         <path
           fill="none"
-          strokeLinecap="full"
+          strokeLinecap="round"
           d="M12,17.25a.375.375,0,1,0,.375.375A.375.375,0,0,0,12,17.25h0"
         />
         <circle fill="none" strokeMiterlimit="10" cx="12" cy="12" r="11.25" />

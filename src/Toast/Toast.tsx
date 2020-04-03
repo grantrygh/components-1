@@ -5,7 +5,7 @@ import toaster from 'toasted-notes';
 import { Alert, AlertDescription, AlertIcon, AlertTitle } from '../Alert';
 import Box from '../Box';
 import CloseButton from '../CloseButton';
-import ThemeProvider, { useTheme } from '../ThemeProvider';
+import { ThemeProvider, useTheme } from '../ThemeProvider';
 import useToastStyle from './styles';
 import { ToastProps, useToastOptions } from './types';
 
@@ -42,16 +42,18 @@ export function useToast() {
                 duration,
             };
 
+            console.log('here', theme);
+
             if (render) {
                 return toaster.notify(
-                    ({ onClose, id }) => <ThemeProvider theme={theme}>{render({ onClose, id })}</ThemeProvider>,
+                    ({ onClose, id }) => <ThemeProvider>{render({ onClose, id })}</ThemeProvider>,
                     options
                 );
             }
 
             toaster.notify(
                 ({ onClose, id }) => (
-                    <ThemeProvider theme={theme}>
+                    <ThemeProvider>
                         <Toast
                             {...{
                                 onClose,

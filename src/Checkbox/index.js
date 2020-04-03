@@ -4,8 +4,9 @@ import { forwardRef, useEffect, useRef } from 'react';
 import Box from '../Box';
 import { useColorMode } from '../ColorModeProvider';
 import ControlBox from '../ControlBox';
+import { useForkRef } from '../hooks/useForkRef';
+import { useVariantColorWarning } from '../hooks/useVariantColorWarning';
 import Icon from '../Icon';
-import { useForkRef, useVariantColorWarning } from '../utils';
 import VisuallyHidden from '../VisuallyHidden';
 import useCheckboxStyle from './styles';
 

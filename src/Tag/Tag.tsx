@@ -3,9 +3,9 @@ import { jsx } from '@emotion/core';
 import CloseIcon from 'mdi-react/CloseIcon';
 import useBadgeStyle from '../Badge/styles';
 import Box from '../Box';
+import { useVariantColorWarning } from '../hooks/useVariantColorWarning';
 import Icon from '../Icon';
 import PseudoBox from '../PseudoBox';
-import { useVariantColorWarning } from '../utils';
 import useTagStyle, { useTagIconStyle } from './styles';
 import { TagCloseButtonProps, TagIconProps, TagLabelProps, TagProps } from './types';
 

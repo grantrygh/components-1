@@ -5,7 +5,7 @@ import { VisuallyHidden } from '..';
 import Box from '../Box';
 import useCheckboxStyle from '../Checkbox/styles';
 import ControlBox from '../ControlBox';
-import { useVariantColorWarning } from '../utils';
+import { useVariantColorWarning } from '../hooks/useVariantColorWarning';
 import { RadioProps } from './types';
 
 export const Radio = forwardRef(

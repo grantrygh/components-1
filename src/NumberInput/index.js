@@ -1,11 +1,12 @@
 import React, { createContext, forwardRef, useContext } from 'react';
 import { useColorMode } from '../ColorModeProvider';
 import Flex from '../Flex';
+import { useForkRef } from '../hooks/useForkRef';
+import { useNumberInput } from '../hooks/useNumberInput';
 import Icon from '../Icon';
 import Input from '../Input';
 import PseudoBox from '../PseudoBox';
-import useNumberInput from '../useNumberInput';
-import { useForkRef, wrapEvent } from '../utils';
+import { wrapEvent } from '../utils/wrapEvent';
 import styleProps from './styles';
 
 const NumberInputContext = createContext({});

@@ -4,11 +4,13 @@ import { useId } from '@reach/auto-id';
 import { createContext, forwardRef, useContext, useEffect, useRef, useState } from 'react';
 import Box from '../Box';
 import Divider from '../Divider';
+import { useForkRef } from '../hooks/useForkRef';
+import { usePrevious } from '../hooks/usePrevious';
 import Popper from '../Popper';
 import PseudoBox from '../PseudoBox';
 import Text from '../Text';
-import usePrevious from '../usePrevious';
-import { getFocusables, useForkRef, wrapEvent } from '../utils';
+import { getFocusables } from '../utils/getFocusables';
+import { wrapEvent } from '../utils/wrapEvent';
 import { useMenuItemStyle, useMenuStyle } from './styles';
 import { MenuButtonProps, MenuContextProps, MenuGroupProps, MenuItemProps, MenuListProps, MenuProps } from './types';
 

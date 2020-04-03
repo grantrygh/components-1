@@ -7,7 +7,9 @@
 
 import { Children, cloneElement, forwardRef, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { setRef, useEnhancedEffect, useForkRef } from '../utils';
+import { useEnhancedEffect } from '../hooks/useEnhancedEffect';
+import { useForkRef } from '../hooks/useForkRef';
+import { setRef } from '../utils/setRef';
 import { PortalProps } from './types';
 
 function getContainer(container) {

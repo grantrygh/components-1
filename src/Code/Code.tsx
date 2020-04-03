@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/core';
 import useBadgeStyle from '../Badge/styles';
 import Box from '../Box';
-import { useVariantColorWarning } from '../utils';
+import { useVariantColorWarning } from '../hooks/useVariantColorWarning';
 import { CodeProps } from './types';
 
 export const Code = ({ variantColor = 'gray', ...props }: CodeProps) => {

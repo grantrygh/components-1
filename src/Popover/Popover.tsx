@@ -6,9 +6,9 @@ import Box from '../Box';
 import { BoxProps } from '../Box/types';
 import CloseButton from '../CloseButton';
 import { useColorMode } from '../ColorModeProvider';
+import { usePrevious } from '../hooks/usePrevious';
 import Popper, { PopperArrow } from '../Popper';
-import usePrevious from '../usePrevious';
-import { wrapEvent } from '../utils';
+import { wrapEvent } from '../utils/wrapEvent';
 import usePopoverStyle from './styles';
 import {
     IPopoverContextValue,

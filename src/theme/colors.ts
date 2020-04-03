@@ -1,3 +1,5 @@
+/* eslint-disable max-lines */
+
 import color from 'color';
 
 const generateShades = primary => {

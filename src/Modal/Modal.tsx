@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { useId } from '@reach/auto-id';
 import { hideOthers } from 'aria-hidden';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';

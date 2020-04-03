@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { storiesOf } from '@storybook/react';
 import React, { useRef, useState } from 'react';
 import Lorem from 'react-lorem-component';

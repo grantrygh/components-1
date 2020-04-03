@@ -18,7 +18,7 @@ export const videoStyle = (props, theme) => ({
         right: 4,
         position: 'fixed',
         borderRadius: 2,
-        boxShadow: '0 2px 6px 0 rgba(0, 0, 0, 0.2), 0 3px 7px 0 rgba(0, 0, 0, 0.26)',
+        boxShadow: 'toast',
     },
     full: {
         width: '100%',

@@ -1,9 +1,9 @@
 import * as React from 'react';
+import { Omit } from '../common-types';
+import { FlexProps } from '../Flex';
+import { UseNumberInputProps } from '../hooks/useNumberInput/types';
 import { InputProps } from '../Input';
 import { PseudoBoxProps } from '../PseudoBox';
-import { FlexProps } from '../Flex';
-import { UseNumberInputProps } from '../useNumberInput';
-import { Omit } from '../common-types';
 
 type InputAttributes = React.InputHTMLAttributes<HTMLInputElement>;
 

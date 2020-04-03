@@ -14,8 +14,9 @@ import {
 } from 'react';
 import Box from '../Box';
 import Flex from '../Flex';
+import { useVariantColorWarning } from '../hooks/useVariantColorWarning';
 import PseudoBox from '../PseudoBox';
-import { assignRef, useVariantColorWarning } from '../utils';
+import { assignRef } from '../utils/assignRef';
 import useTabStyle, { useTabListStyle } from './styles';
 import { TabContextProps, TabListProps, TabPanelProps, TabProps, TabsProps } from './types';
 
@@ -25,8 +26,6 @@ const Tab = forwardRef((props: TabProps, ref) => {
     const { isSelected, isDisabled, id, ...rest } = props;
 
     const { orientation, variant, isFitted, color, size } = useContext(TabContext);
-
-    console.log('TAB', size, orientation, variant, isFitted);
 
     const tabStyleProps = useTabStyle({
         color,
@@ -298,8 +297,6 @@ const Tabs = forwardRef(
         };
 
         const id = useId();
-
-        console.log('context', size);
 
         const context = {
             id,

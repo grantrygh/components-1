@@ -10,8 +10,10 @@ import { BoxProps } from '../Box/types';
 import CloseButton from '../CloseButton';
 import { CloseButtonProps } from '../CloseButton/types';
 import Flex from '../Flex';
+import { useForkRef } from '../hooks/useForkRef';
 import Portal from '../Portal';
-import { getFocusables, useForkRef, wrapEvent } from '../utils';
+import { getFocusables } from '../utils/getFocusables';
+import { wrapEvent } from '../utils/wrapEvent';
 import useModalStyle, { useModalWrapperStyle } from './styles';
 import { AriaHiderProps, ModalContentProps, ModalContextProps, ModalProps } from './types';
 
@@ -277,7 +279,7 @@ const ModalContent = React.forwardRef(({ onClick, children, zIndex, noStyles, ..
     );
 });
 
-const ModalHeader = forwardRef((props: BoxProps, ref) => {
+const ModalHeader = forwardRef((props: BoxProps & { onClose?: () => void }, ref) => {
     const { headerId } = useModalContext();
     return (
         <Box

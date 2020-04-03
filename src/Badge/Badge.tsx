@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/core';
 import React, { forwardRef } from 'react';
 import Box from '../Box';
-import { useVariantColorWarning } from '../utils';
+import { useVariantColorWarning } from '../hooks/useVariantColorWarning';
 import useBadgeStyle from './styles';
 import { BadgeProps } from './types';
 

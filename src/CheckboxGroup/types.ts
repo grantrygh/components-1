@@ -16,7 +16,7 @@ export interface ICheckboxGroup {
     /**
      * The content of the checkbox group. Must be the `Checkbox` component
      */
-    children?: React.ReactNode;
+    children?: React.ReactNodeArray;
     /**
      * The initial value of the checkbox group
      */
@@ -48,5 +48,3 @@ export interface ICheckboxGroup {
 }
 
 export type CheckboxGroupProps = ICheckboxGroup & Omit<BoxProps, 'onChange' | 'size'>;
-declare const CheckboxGroup: React.FC<CheckboxGroupProps>;
-export default CheckboxGroup;

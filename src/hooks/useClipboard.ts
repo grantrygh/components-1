@@ -1,4 +1,14 @@
+/**
+ * `useClipboard` is a custom hook to handle copying content to clipboard
+ */
+
 import { useState } from 'react';
+
+interface IClipboard<T> {
+    value?: T;
+    onCopy?: () => void;
+    hasCopied?: boolean;
+}
 
 /**
  *
@@ -23,7 +33,7 @@ const copyToClipboard = value => {
     }
 };
 
-const useClipboard = value => {
+function useClipboard<T>(value: T): IClipboard<T> {
     const [hasCopied, setHasCopied] = useState(false);
 
     const onCopy = () => {
@@ -33,6 +43,6 @@ const useClipboard = value => {
     };
 
     return { value, onCopy, hasCopied };
-};
+}
 
 export default useClipboard;

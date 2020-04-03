@@ -4,7 +4,7 @@ export interface UseNumberInputProps {
     /**
      * The value of the input. Should be less than `max` and greater than `min`
      */
-    value?: string | number;
+    value?: number;
     /**
      * The initial value of the input. Should be less than `max` and greater than `min`
      */
@@ -84,13 +84,13 @@ type StepperProps =
     | {
           onMouseUp: React.MouseEventHandler<HTMLElement>;
           onMouseLeave: React.MouseEventHandler<HTMLElement>;
-          onMouseDown: React.MouseEventHandler<HTMLElement>;
+          onMouseDown?: React.MouseEventHandler<HTMLElement>;
           onTouchEnd: React.TouchEventHandler<HTMLElement>;
       }
     | {
           onMouseUp: React.MouseEventHandler<HTMLElement>;
           onMouseLeave: React.MouseEventHandler<HTMLElement>;
-          onTouchStart: React.TouchEventHandler<HTMLElement>;
+          onTouchStart?: React.TouchEventHandler<HTMLElement>;
           onTouchEnd: React.TouchEventHandler<HTMLElement>;
       };
 
@@ -127,9 +127,11 @@ interface hiddenLabelProps {
     style: React.CSSProperties;
 }
 
-interface UseNumberInputReturn {
+export interface UseNumberInputReturn {
     value: number;
     isFocused: boolean;
+    isDisabled: boolean;
+    isReadOnly: boolean;
     incrementStepper: StepperProps;
     decrementStepper: StepperProps;
     incrementButton: ButtonProps;
@@ -137,7 +139,3 @@ interface UseNumberInputReturn {
     input: InputProps;
     hiddenLabel: hiddenLabelProps;
 }
-
-declare function useNumberInput(props: UseNumberInputProps): UseNumberInputReturn;
-
-export default useNumberInput;

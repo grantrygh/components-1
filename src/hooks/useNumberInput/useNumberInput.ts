@@ -1,5 +1,6 @@
 import { canUseDOM } from 'exenv';
-import { useRef, useState, useEffect, useCallback } from 'react';
+import { MutableRefObject, useCallback, useEffect, useRef, useState } from 'react';
+import { UseNumberInputProps, UseNumberInputReturn } from './types';
 import { calculatePrecision, preventNonNumberKey, roundToPrecision } from './utils';
 
 function useLongPress(callback = () => {}, speed = 200) {
@@ -37,7 +38,7 @@ function useLongPress(callback = () => {}, speed = 200) {
     };
 }
 
-function useNumberInput({
+export function useNumberInput({
     value: valueProp,
     onChange,
     defaultValue,
@@ -52,7 +53,7 @@ function useNumberInput({
     isReadOnly,
     isInvalid,
     isDisabled,
-}) {
+}: UseNumberInputProps): UseNumberInputReturn {
     const { current: isControlled } = useRef(valueProp != null);
 
     const defaultPrecision = Math.max(calculatePrecision(stepProp), 0);
@@ -60,11 +61,11 @@ function useNumberInput({
 
     const [valueState, setValue] = useState(() => {
         if (defaultValue != null) {
-            let nextValue = defaultValue;
+            let nextValue = Number(defaultValue);
             if (keepWithinRange) {
                 nextValue = Math.max(Math.min(nextValue, max), min);
             }
-            nextValue = roundToPrecision(nextValue, precision);
+            nextValue = Number(roundToPrecision(nextValue, precision));
             return nextValue;
         }
         return '';
@@ -72,24 +73,25 @@ function useNumberInput({
 
     const [isFocused, setIsFocused] = useState(false);
 
-    const value = isControlled ? valueProp : valueState;
+    const value = Number(isControlled ? valueProp : valueState);
     const isInteractive = !(isReadOnly || isDisabled);
-    const inputRef = useRef();
+    const inputRef: MutableRefObject<HTMLInputElement> = useRef();
 
     const prevNextValue = useRef(null);
 
-    const shouldConvertToNumber = value => {
-        const hasDot = value.indexOf('.') > -1;
-        const hasTrailingZero = value.substr(value.length - 1) === '0';
-        const hasTrailingDot = value.substr(value.length - 1) === '.';
+    const shouldConvertToNumber = val => {
+        const hasDot = val.indexOf('.') > -1;
+        const hasTrailingZero = val.substr(val.length - 1) === '0';
+        const hasTrailingDot = val.substr(val.length - 1) === '.';
         if (hasDot && hasTrailingZero) return false;
         if (hasDot && hasTrailingDot) return false;
         return true;
     };
 
     const updateValue = nextValue => {
-        //eslint-disable-next-line
-        if (prevNextValue.current == nextValue) return;
+        if (prevNextValue.current === nextValue) {
+            return null;
+        }
 
         const shouldConvert = shouldConvertToNumber(nextValue);
         const converted = shouldConvert ? +nextValue : nextValue;
@@ -98,6 +100,16 @@ function useNumberInput({
         if (onChange) onChange(converted);
 
         prevNextValue.current = nextValue;
+
+        return null;
+    };
+
+    const focusInput = () => {
+        if (focusInputOnChange && inputRef.current && canUseDOM) {
+            requestAnimationFrame(() => {
+                inputRef.current.focus();
+            });
+        }
     };
 
     const handleIncrement = (step = stepProp) => {
@@ -108,7 +120,7 @@ function useNumberInput({
             nextValue = Math.min(nextValue, max);
         }
 
-        nextValue = roundToPrecision(nextValue, precision);
+        nextValue = Number(roundToPrecision(nextValue, precision));
         updateValue(nextValue);
 
         focusInput();
@@ -122,18 +134,10 @@ function useNumberInput({
             nextValue = Math.max(nextValue, min);
         }
 
-        nextValue = roundToPrecision(nextValue, precision);
+        nextValue = Number(roundToPrecision(nextValue, precision));
         updateValue(nextValue);
 
         focusInput();
-    };
-
-    const focusInput = () => {
-        if (focusInputOnChange && inputRef.current && canUseDOM) {
-            requestAnimationFrame(() => {
-                inputRef.current.focus();
-            });
-        }
     };
 
     const incrementStepperProps = useLongPress(handleIncrement);
@@ -141,6 +145,17 @@ function useNumberInput({
 
     const handleChange = event => {
         updateValue(event.target.value);
+    };
+
+    const getIncrementFactor = event => {
+        let ratio = 1;
+        if (event.metaKey || event.ctrlKey) {
+            ratio = 0.1;
+        }
+        if (event.shiftKey) {
+            ratio = 10;
+        }
+        return ratio;
     };
 
     const handleKeyDown = event => {
@@ -174,17 +189,6 @@ function useNumberInput({
         }
     };
 
-    const getIncrementFactor = event => {
-        let ratio = 1;
-        if (event.metaKey || event.ctrlKey) {
-            ratio = 0.1;
-        }
-        if (event.shiftKey) {
-            ratio = 10;
-        }
-        return ratio;
-    };
-
     const validateAndClamp = () => {
         const maxExists = max != null;
         const minExists = min != null;
@@ -202,7 +206,7 @@ function useNumberInput({
     const ariaValueText = getAriaValueText ? getAriaValueText(value) : null;
 
     return {
-        value: value,
+        value,
         isFocused,
         isDisabled,
         isReadOnly,
@@ -234,7 +238,7 @@ function useNumberInput({
             'aria-valuemin': min,
             'aria-valuemax': max,
             'aria-disabled': isDisabled,
-            'aria-valuenow': value,
+            'aria-valuenow': Number(value),
             'aria-invalid': isInvalid || isOutOfRange,
             ...(getAriaValueText && { 'aria-valuetext': ariaValueText }),
             readOnly: isReadOnly,
@@ -267,5 +271,3 @@ function useNumberInput({
         },
     };
 }
-
-export default useNumberInput;

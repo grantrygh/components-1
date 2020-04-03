@@ -1,5 +1,4 @@
-import { BoxProps } from '../Box/index';
-import * as Emotion from '@emotion/styled';
+import { BoxProps } from '../Box/types';
 
 export interface IControlBox {
     type?: 'checkbox' | 'radio';
@@ -16,7 +15,3 @@ export interface IControlBox {
 }
 
 export type ControlBoxProps = IControlBox & BoxProps;
-
-declare const ControlBox: Emotion.StyledComponent<ControlBoxProps, {}, {}>;
-
-export default ControlBox;

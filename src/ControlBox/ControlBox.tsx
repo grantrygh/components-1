@@ -1,9 +1,10 @@
-import styled from '@emotion/styled';
-import css from '@styled-system/css';
+import { css } from '@emotion/core';
+import styled, * as Emotion from '@emotion/styled';
 import Box from '../Box';
 import { transformAliasProps } from '../Box/config';
+import { ControlBoxProps } from './types';
 
-const ControlBox = styled(Box)(
+export const ControlBox: Emotion.StyledComponent<ControlBoxProps, {}, {}> = styled(Box)(
     ({
         type = 'checkbox',
         _hover,
@@ -16,15 +17,15 @@ const ControlBox = styled(Box)(
         _checkedAndDisabled,
         _checkedAndFocus,
         _checkedAndHover,
-    }) => {
-        const checkedAndDisabled = `input[type=${type}]:checked:disabled + &, input[type=${type}][aria-checked=mixed]:disabled + &`,
-            checkedAndHover = `input[type=${type}]:checked:hover:not(:disabled) + &, input[type=${type}][aria-checked=mixed]:hover:not(:disabled) + &`,
-            checkedAndFocus = `input[type=${type}]:checked:focus + &, input[type=${type}][aria-checked=mixed]:focus + &`,
-            disabled = `input[type=${type}]:disabled + &`,
-            focus = `input[type=${type}]:focus + &`,
-            hover = `input[type=${type}]:hover:not(:disabled):not(:checked) + &`,
-            checked = `input[type=${type}]:checked + &, input[type=${type}][aria-checked=mixed] + &`,
-            invalid = `input[type=${type}][aria-invalid=true] + &`;
+    }: ControlBoxProps) => {
+        const checkedAndDisabled = `input[type=${type}]:checked:disabled + &, input[type=${type}][aria-checked=mixed]:disabled + &`;
+        const checkedAndHover = `input[type=${type}]:checked:hover:not(:disabled) + &, input[type=${type}][aria-checked=mixed]:hover:not(:disabled) + &`;
+        const checkedAndFocus = `input[type=${type}]:checked:focus + &, input[type=${type}][aria-checked=mixed]:focus + &`;
+        const disabled = `input[type=${type}]:disabled + &`;
+        const focus = `input[type=${type}]:focus + &`;
+        const hover = `input[type=${type}]:hover:not(:disabled):not(:checked) + &`;
+        const checked = `input[type=${type}]:checked + &, input[type=${type}][aria-checked=mixed] + &`;
+        const invalid = `input[type=${type}][aria-invalid=true] + &`;
 
         return css({
             [focus]: transformAliasProps(_focus),
@@ -43,15 +44,11 @@ const ControlBox = styled(Box)(
     }
 );
 
-ControlBox.displayName = 'ControlBox';
-
 ControlBox.defaultProps = {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
     transition: 'all 120ms',
-    flexShrink: '0',
+    flexShrink: 0,
     'aria-hidden': 'true',
 };
-
-export default ControlBox;

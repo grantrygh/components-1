@@ -4,7 +4,8 @@ import { storiesOf } from '@storybook/react';
 import ControlBox from '.';
 import Box from '../Box';
 import Icon from '../Icon';
-import VisuallyHidden from '../VisuallyHidden';
+import { VisuallyHidden } from '../VisuallyHidden';
+
 const stories = storiesOf('ControlBox', module);
 
 const Checkbox = props => {
@@ -20,7 +21,7 @@ const Checkbox = props => {
                 borderColor="inherit"
                 _focus={{ boxShadow: 'outline' }}
                 _hover={{ borderColor: 'gray.300' }}
-                _disabled={{ opacity: '40%' }}
+                _disabled={{ opacity: 0.4 }}
                 _checked={{ bg: 'green.500', borderColor: 'green.500' }}
             >
                 <Icon name="check" size="10px" />
@@ -45,7 +46,7 @@ const Radio = props => {
                 borderColor="inherit"
                 _focus={{ boxShadow: 'outline' }}
                 _hover={{ borderColor: 'gray.300' }}
-                _disabled={{ opacity: '40%' }}
+                _disabled={{ opacity: 0.4 }}
                 _checked={{ bg: 'green.500', borderColor: 'green.500' }}
             >
                 <Box size="8px" bg="white" rounded="full" />

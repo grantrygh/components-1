@@ -237,6 +237,8 @@ const colors = {
     track: neutral[4],
     tooltip: neutral[9],
 
+    overlayBg: 'rgba(0, 0, 0, 0.2)',
+
     ...palette,
     ...brand,
     ...states,

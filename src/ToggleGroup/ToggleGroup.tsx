@@ -1,22 +1,45 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { useId } from '@reach/auto-id';
-import { Children, cloneElement, useRef, useState } from 'react';
+import React, { Children, cloneElement, useRef, useState } from 'react';
+import { Button } from '..';
 import Box from '../Box';
+import useToggleGroupStyle from './styles';
+import { ToggleButtonProps, ToggleGroupProps } from './types';
 
-const RadioButtonGroup = ({
+export const ToggleButton = React.forwardRef((props: ToggleButtonProps, ref) => {
+    const { isChecked, isDisabled, children, ...rest } = props;
+    const { toggleButton: toggleButtonStyleProps } = useToggleGroupStyle({
+        isChecked,
+    });
+    return (
+        <Button
+            ref={ref}
+            aria-checked={isChecked}
+            role="radio"
+            isDisabled={isDisabled}
+            {...toggleButtonStyleProps}
+            {...rest}
+        >
+            {children}
+        </Button>
+    );
+});
+
+export const ToggleGroup = ({
     name,
     children,
     defaultValue,
     value: controlledValue,
     onChange,
-    spacing = '12px',
     isInline,
     ...rest
-}) => {
+}: ToggleGroupProps) => {
     const isControlled = controlledValue != null;
     const [value, setValue] = useState(defaultValue || null);
     const _value = isControlled ? controlledValue : value;
+
+    const { root: toggleGroupStyleProps } = useToggleGroupStyle({});
 
     const allNodes = useRef([]);
 
@@ -31,8 +54,12 @@ const RadioButtonGroup = ({
         const _index = allValues.indexOf(childValue);
         allNodes.current[_index].focus();
 
-        !isControlled && setValue(childValue);
-        onChange && onChange(childValue);
+        if (!isControlled) {
+            setValue(childValue);
+        }
+        if (onChange) {
+            onChange(childValue);
+        }
     };
 
     const handleKeyDown = event => {
@@ -72,44 +99,42 @@ const RadioButtonGroup = ({
     const _name = name || fallbackName;
 
     const clones = Children.map(children, (child, index) => {
-        const isLastChild = children.length === index + 1;
         const isFirstChild = index === 0;
-
-        const spacingProps = isInline ? { mr: spacing } : { mb: spacing };
 
         const isChecked = child.props.value === _value;
 
         const handleClick = () => {
-            !isControlled && setValue(child.props.value);
-            onChange && onChange(child.props.value);
+            if (!isControlled) {
+                setValue(child.props.value);
+            }
+            if (onChange) {
+                onChange(child.props.value);
+            }
         };
 
         const getTabIndex = () => {
             // If a RadioGroup has no radio selected the first enabled radio should be focusable
             if (_value == null) {
                 return isFirstChild ? 0 : -1;
-            } else {
-                return isChecked ? 0 : -1;
             }
+
+            return isChecked ? 0 : -1;
         };
 
         return cloneElement(child, {
-            ref: node => (allNodes.current[index] = node),
+            ref: node => {
+                allNodes.current[index] = node;
+            },
             name: _name,
             onClick: handleClick,
             tabIndex: getTabIndex(),
             isChecked,
-            ...(!isLastChild && spacingProps),
         });
     });
 
     return (
-        <Box role="radiogroup" onKeyDown={handleKeyDown} {...rest}>
+        <Box role="radiogroup" onKeyDown={handleKeyDown} {...toggleGroupStyleProps} {...rest}>
             {clones}
         </Box>
     );
 };
-
-RadioButtonGroup.displayName = 'RadioButtonGroup';
-
-export default RadioButtonGroup;

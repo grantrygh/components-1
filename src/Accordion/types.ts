@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { BoxProps } from '../Box/types';
-import { CollapseProps } from '../Collapse';
 import { Omit } from '../common-types';
-import { IconProps } from '../Icon';
 import { PseudoBoxProps } from '../PseudoBox';
 
 interface IAccordion {
@@ -32,26 +30,13 @@ interface IAccordion {
     children: React.ReactNode;
 }
 
-type AccordionProps = IAccordion & Omit<BoxProps, 'onChange'>;
-
-/**
- * The accordion component delivers large amounts of content in a small space through progressive disclosure.
- *
- * By default, only one item may be expanded and it can only be collapsed again by expanding another.
- */
-export const Accordion: React.FC<AccordionProps>;
-
-/////////////////////////////////////////////////////////////
+export type AccordionProps = IAccordion & Omit<BoxProps, 'onChange'>;
 
 interface IAccordionItemRenderProps {
     isExpanded?: boolean;
     isDisabled?: boolean;
 }
 
-/**
- * The content of the accordion.
- * The children must be the `AccordionHeader` and `AccordionPanel` components.
- */
 type AccordionItemChildren =
     | { children(props: IAccordionItemRenderProps): React.ReactNode }
     | { children: React.ReactNode };
@@ -80,26 +65,12 @@ interface IAccordionItem {
 }
 
 export type AccordionItemProps = IAccordionItem & AccordionItemChildren & PseudoBoxProps;
-
-/**
- * Accordions allow users to expand and collapse sections of content.
- * It composes `Box` component.
- */
-export const AccordionItem: React.FC<AccordionItemProps>;
-
-/////////////////////////////////////////////////////////////
-
 export type AccordionHeaderProps = PseudoBoxProps & React.ButtonHTMLAttributes<any>;
-/**
- * AccordionHeader component composes `PseudoBox`, this means you can use
- * the `_expanded`, `_disabled`, `_hover`, etc. props to style them
- */
-export const AccordionHeader: React.FC<AccordionHeaderProps>;
 
-/////////////////////////////////////////////////////////////
+interface IAccordionContext {
+    panelId?: string;
+    headerId?: string;
+    onToggle?: () => void;
+}
 
-/**
- * AccordionPanel component composes `Collapse` to provide the height animation
- */
-export const AccordionPanel: React.FC<CollapseProps>;
-export const AccordionIcon: React.FC<IconProps>;
+export type AccordionContextProps = IAccordionContext & IAccordionItemRenderProps;

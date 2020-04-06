@@ -53,7 +53,13 @@ stories.add('styles', () => (
         <Button variantColor="success" onClick={() => console.log('success')}>
             Success Button
         </Button>
-        <Button variantColor="error">Error Button</Button>
+        <Button variantColor="error">Primary Error Button</Button>
+        <Button variantColor="error" variant="secondary">
+            Secondary Primary Error Button
+        </Button>
+        <Button variantColor="error" variant="tertiary">
+            Tertiary Error Button
+        </Button>
         <Button variantColor="purple">Colored Button</Button>
         <Button isLoading>Loading</Button>
         <Button isLoading loadingText="Loading">

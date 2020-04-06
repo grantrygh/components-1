@@ -1,32 +1,22 @@
 /** @jsx jsx */
 import { css, Global, jsx } from '@emotion/core';
-import { useColorMode } from '../ColorModeProvider';
 import preflight from './preflight';
+import { CSSResetProps } from './types';
 
 const defaultConfig = theme => ({
-    light: {
-        color: theme.colors.gray[800],
-        bg: undefined,
-        borderColor: theme.colors.gray[200],
-        placeholderColor: theme.colors.gray[400],
-    },
-    dark: {
-        color: theme.colors.whiteAlpha[900],
-        bg: theme.colors.gray[800],
-        borderColor: theme.colors.whiteAlpha[300],
-        placeholderColor: theme.colors.whiteAlpha[400],
-    },
+    color: theme.colors.gray[800],
+    bg: undefined,
+    borderColor: theme.colors.gray[200],
+    placeholderColor: theme.colors.gray[400],
 });
 
-const CSSReset = ({ config }) => {
-    const { colorMode } = useColorMode();
-
+export const CSSReset = ({ config }: CSSResetProps) => {
     const configCSS = theme => {
         const _defaultConfig = defaultConfig(theme);
 
         const _config = config ? config(theme, _defaultConfig) : defaultConfig(theme);
 
-        const { color, bg, borderColor, placeholderColor } = _config[colorMode];
+        const { color, bg, borderColor, placeholderColor } = _config;
 
         return css`
             html {
@@ -69,5 +59,3 @@ const CSSReset = ({ config }) => {
 
     return <Global styles={theme => css([preflight(theme), configCSS(theme)])} />;
 };
-
-export default CSSReset;

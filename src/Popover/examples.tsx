@@ -61,7 +61,7 @@ const PortalEx = () => {
                         Are you sure you want to delete something? This action is permanent, and we're totally not just
                         flipping a field called "deleted" to "true" in our database, we're actually deleting something.
                     </Box>
-                    <Button mt={4} variantColor="blue" ref={initRef}>
+                    <Button mt={4} ref={initRef}>
                         Close
                     </Button>
                 </PopoverBody>
@@ -83,7 +83,7 @@ const PortalAndFocusLockEx = () => (
                 <PopoverHeader>Header</PopoverHeader>
                 <PopoverCloseButton />
                 <PopoverBody>
-                    <Button variantColor="blue">Close</Button>
+                    <Button>Close</Button>
                 </PopoverBody>
                 <PopoverFooter>This is the footer</PopoverFooter>
             </FocusLock>
@@ -170,8 +170,8 @@ const WalkthroughEx = () => (
             <PopoverFooter border="0" d="flex" alignItems="center" justifyContent="space-between" pb={4}>
                 <Box fontSize="sm">Step 2 of 4</Box>
                 <ButtonGroup size="sm">
-                    <Button variantColor="green">Setup Email</Button>
-                    <Button variantColor="blue">Next</Button>
+                    <Button variantColor="success">Setup Email</Button>
+                    <Button>Next</Button>
                 </ButtonGroup>
             </PopoverFooter>
         </PopoverContent>
@@ -192,8 +192,8 @@ const ConfirmationEx = () => (
             <PopoverBody>Are you sure you want to continue with your action?</PopoverBody>
             <PopoverFooter d="flex" justifyContent="flex-end">
                 <ButtonGroup size="sm">
-                    <Button variant="outline">Cancel</Button>
-                    <Button variantColor="red">Apply</Button>
+                    <Button variant="tertiary">Cancel</Button>
+                    <Button variantColor="danger">Apply</Button>
                 </ButtonGroup>
             </PopoverFooter>
         </PopoverContent>
@@ -218,8 +218,8 @@ const CustomTargetEx = () => {
                     <PopoverBody>Are you sure you want to continue with your action?</PopoverBody>
                     <PopoverFooter d="flex" justifyContent="flex-end">
                         <ButtonGroup size="sm">
-                            <Button variant="outline">Cancel</Button>
-                            <Button variantColor="red">Apply</Button>
+                            <Button variant="tertiary">Cancel</Button>
+                            <Button variantColor="danger">Apply</Button>
                         </ButtonGroup>
                     </PopoverFooter>
                 </PopoverContent>
@@ -270,7 +270,7 @@ const DialogForm = () => {
                         <PopoverCloseButton />
                         <Form initField={firstField} />
                         <ButtonGroup mt={5} d="flex" justifyContent="flex-end">
-                            <Button variant="outline">Cancel</Button>
+                            <Button variant="tertiary">Cancel</Button>
                             <Button isDisabled variantColor="teal">
                                 Save
                             </Button>

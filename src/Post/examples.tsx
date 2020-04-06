@@ -160,7 +160,7 @@ stories.add('comments section - with actions', () => {
                     <PostActions
                         menu={
                             <Menu>
-                                <MenuButton as={Button} size="sm" variant="ghost">
+                                <MenuButton as={Button} size="sm" variant="secondary">
                                     <Icon name="settings" />
                                 </MenuButton>
 
@@ -176,8 +176,7 @@ stories.add('comments section - with actions', () => {
                                 mr={2}
                                 size="sm"
                                 onClick={action.onClick}
-                                variant="outline"
-                                color="blue.500"
+                                variant="tertiary"
                                 textTransform="uppercase"
                                 fontSize="xs"
                                 title={action.title}

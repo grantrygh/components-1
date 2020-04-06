@@ -4,9 +4,10 @@ import React, { useRef, useState } from 'react';
 import Lorem from 'react-lorem-component';
 import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '.';
 import Box from '../Box';
-import Button from '../Button';
-import FormControl from '../FormControl';
-import FormLabel from '../FormLabel';
+import { Button } from '../Button';
+import { ButtonGroup } from '../ButtonGroup';
+import { FormControl } from '../FormControl';
+import { FormLabel } from '../FormLabel';
 import { useDisclosure } from '../hooks/useDisclosure';
 import Input from '../Input';
 import { Scale, SlideIn } from '../Transition';
@@ -42,12 +43,12 @@ stories.add('Default', () => {
                         </ModalBody>
 
                         <ModalFooter>
-                            <Button variant="outline" mr={3} onClick={close}>
-                                Cancel
-                            </Button>
-                            <Button color="blue" onClick={close}>
-                                Save
-                            </Button>
+                            <ButtonGroup>
+                                <Button variant="tertiary" onClick={close}>
+                                    Cancel
+                                </Button>
+                                <Button onClick={close}>Save</Button>
+                            </ButtonGroup>
                         </ModalFooter>
                     </ModalContent>
                 </Modal>
@@ -271,10 +272,10 @@ stories.add('no close on overlay click', () => {
                         </ModalBody>
 
                         <ModalFooter>
-                            <Button variantColor="blue" mr={3}>
-                                Save
-                            </Button>
-                            <Button onClick={close}>Cancel</Button>
+                            <ButtonGroup>
+                                <Button>Save</Button>
+                                <Button onClick={close}>Cancel</Button>
+                            </ButtonGroup>
                         </ModalFooter>
                     </ModalContent>
                 </Modal>
@@ -318,10 +319,10 @@ stories.add('initial and final focus ref', () => {
                         </ModalBody>
 
                         <ModalFooter>
-                            <Button variantColor="blue" mr={3}>
-                                Save
-                            </Button>
-                            <Button onClick={close}>Cancel</Button>
+                            <ButtonGroup>
+                                <Button>Save</Button>
+                                <Button onClick={close}>Cancel</Button>
+                            </ButtonGroup>
                         </ModalFooter>
                     </ModalContent>
                 </Modal>

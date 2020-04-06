@@ -14,9 +14,9 @@ export const Collapse = forwardRef(
             onAnimationStart,
             onAnimationEnd,
             duration,
-            easing = 'ease',
-            startingHeight = 0,
-            endingHeight = 'auto',
+            easing,
+            startingHeight,
+            endingHeight,
             ...rest
         }: CollapseProps,
         ref

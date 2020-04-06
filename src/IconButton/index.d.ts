@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ButtonProps } from '../Button';
+import { ButtonProps } from '../Button/types';
 import { Omit } from '../common-types';
 import { Icons } from '../theme/icons';
 
@@ -20,7 +20,7 @@ interface IIconButton {
     /**
      * A11y: A label that describes the button
      */
-    'aria-label': string;
+    'aria-label'?: string;
 }
 
 export type IconButtonProps = IIconButton & _ButtonProps;

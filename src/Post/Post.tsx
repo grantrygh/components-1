@@ -60,7 +60,11 @@ export const Post = props => {
                 {replies && replies.length > 0 && (
                     <Box>
                         <Box py={2}>
-                            <Button onClick={() => setShowReplies(!showReplies)} {...actionStyleProps} variant="ghost">
+                            <Button
+                                onClick={() => setShowReplies(!showReplies)}
+                                {...actionStyleProps}
+                                variant="secondary"
+                            >
                                 {showReplies ? 'Hide' : 'View'} {replies.length}{' '}
                                 {replies.length === 1 ? 'reply' : 'replies'}
                                 <Icon name={showReplies ? 'chevron-up' : 'chevron-down'} />{' '}

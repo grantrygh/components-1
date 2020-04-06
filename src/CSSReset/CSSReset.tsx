@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css, Global, jsx } from '@emotion/core';
-import preflight from './preflight';
+import { tailwindPreflight } from './preflight';
 import { CSSResetProps } from './types';
 
 const defaultConfig = theme => ({
@@ -57,5 +57,5 @@ export const CSSReset = ({ config }: CSSResetProps) => {
         `;
     };
 
-    return <Global styles={theme => css([preflight(theme), configCSS(theme)])} />;
+    return <Global styles={theme => css([tailwindPreflight(theme), configCSS(theme)])} />;
 };

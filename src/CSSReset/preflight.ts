@@ -1,6 +1,6 @@
 import { css } from '@emotion/core';
 
-const tailwindPreflight = theme => css`
+export const tailwindPreflight = theme => css`
     html {
         line-height: 1.15;
         -webkit-text-size-adjust: 100%;
@@ -289,7 +289,6 @@ const tailwindPreflight = theme => css`
     embed,
     object {
         display: block;
-        vertical-align: middle;
     }
 
     img,
@@ -298,5 +297,3 @@ const tailwindPreflight = theme => css`
         height: auto;
     }
 `;
-
-export default tailwindPreflight;

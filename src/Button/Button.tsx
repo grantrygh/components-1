@@ -38,6 +38,7 @@ export const Button = forwardRef(
             iconSpacing = 2,
             type = 'button',
             size = 'md',
+            iconOnly,
             ...rest
         }: ButtonProps,
         ref
@@ -54,6 +55,7 @@ export const Button = forwardRef(
             size,
             isDisabled: _isDisabled,
             isFullWidth,
+            iconOnly,
         });
         return (
             <PseudoBox
@@ -67,7 +69,7 @@ export const Button = forwardRef(
                 {...buttonStyleProps}
                 {...rest}
             >
-                {leftIcon && !isLoading && <ButtonIcon mr={iconSpacing} icon={leftIcon} />}
+                {leftIcon && !isLoading && <ButtonIcon mr={!iconOnly && iconSpacing} icon={leftIcon} />}
                 {isLoading && (
                     <Spinner
                         position={loadingText ? 'relative' : 'absolute'}
@@ -83,7 +85,7 @@ export const Button = forwardRef(
                           </Box>
                       )
                     : children}
-                {rightIcon && !isLoading && <ButtonIcon ml={iconSpacing} icon={rightIcon} />}
+                {rightIcon && !isLoading && <ButtonIcon ml={!iconOnly && iconSpacing} icon={rightIcon} />}
             </PseudoBox>
         );
     }

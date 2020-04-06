@@ -96,6 +96,7 @@ export const buttonStyle = ({ color = 'button' }, theme) => ({
     },
     iconOnly: {
         borderRadius: 'full',
+        px: 0,
     },
 });
 

@@ -45,6 +45,9 @@ stories.add('with icons', () => (
         <Button size="sm" leftIcon={PlusIcon} rightIcon={ChevronDownIcon}>
             MDI icon - Call Us
         </Button>
+        <Button size="sm" leftIcon={PlusIcon} iconOnly />
+        <Button leftIcon={PlusIcon} iconOnly />
+        <Button variant="secondary" leftIcon={PlusIcon} iconOnly />
     </ButtonGroup>
 ));
 

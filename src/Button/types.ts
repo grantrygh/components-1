@@ -44,7 +44,7 @@ export interface IButton {
     /**
      * The content of the button.
      */
-    children: React.ReactNode;
+    children?: React.ReactNode;
     /**
      * If added, the button will show an icon before the button's label.
      * Use the icon key in `theme.iconPath` or an icon from mdi-react.
@@ -60,6 +60,8 @@ export interface IButton {
      * Use the styled-system tokens or add custom values as a string
      */
     iconSpacing?: PseudoBoxProps['margin'];
+
+    iconOnly?: boolean;
 }
 
 export type ButtonProps = IButton & Omit<PseudoBoxProps, 'size'>;

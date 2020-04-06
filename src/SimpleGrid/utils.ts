@@ -10,7 +10,7 @@ export const widthToColumns = width => {
 
     if (width !== null && typeof width === 'object' && Object.keys(width).length > 0) {
         const acc = {};
-        for (let key in width) {
+        for (const key in width) {
             acc[key] = `repeat(auto-fit, minmax(${px(width[key])}, 1fr))`;
         }
         return acc;
@@ -30,7 +30,7 @@ export const countToColumns = count => {
 
     if (count !== null && typeof count === 'object' && Object.keys(count).length > 0) {
         const acc = {};
-        for (let key in count) {
+        for (const key in count) {
             acc[key] = `repeat(${count[key]}, 1fr)`;
         }
         return acc;

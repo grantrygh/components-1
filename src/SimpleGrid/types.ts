@@ -26,7 +26,3 @@ interface ISimpleGrid {
 }
 
 export type SimpleGridProps = BoxProps & ISimpleGrid;
-
-declare const SimpleGrid: React.FC<SimpleGridProps>;
-
-export default SimpleGrid;

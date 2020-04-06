@@ -1,7 +1,8 @@
 import React, { forwardRef } from 'react';
 import Box from '../Box';
+import { GridProps } from './types';
 
-const Grid = forwardRef(
+export const Grid = forwardRef(
     (
         {
             gap,
@@ -17,7 +18,7 @@ const Grid = forwardRef(
             column,
             row,
             ...props
-        },
+        }: GridProps,
         ref
     ) => (
         <Box
@@ -39,7 +40,3 @@ const Grid = forwardRef(
         />
     )
 );
-
-Grid.displayName = 'Grid';
-
-export default Grid;

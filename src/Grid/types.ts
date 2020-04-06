@@ -1,4 +1,3 @@
-import * as React from 'react';
 import * as StyledSystem from 'styled-system';
 import { BoxProps } from '../Box/types';
 
@@ -18,7 +17,3 @@ export interface IGrid {
 }
 
 export type GridProps = BoxProps & IGrid;
-
-declare const Grid: React.FC<GridProps>;
-
-export default Grid;

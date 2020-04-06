@@ -1,3 +1,4 @@
+import { MdiReactIconComponentType } from 'mdi-react';
 import * as React from 'react';
 import { Omit } from '../common-types';
 import { PseudoBoxProps } from '../PseudoBox';
@@ -7,7 +8,7 @@ export interface IButton {
     /**
      * The size of the button
      */
-    size?: 'xs' | 'sm' | 'md' | 'lg';
+    size?: 'sm' | 'md' | 'lg';
     /**
      * If `true`, the button will show a spinner.
      */
@@ -22,11 +23,7 @@ export interface IButton {
     /**
      * The variant of the button style to use.
      */
-    variant?: 'outline' | 'ghost' | 'unstyled' | 'link' | 'solid';
-    /**
-     * If `true`, the button will be styled in it's active state.
-     */
-    isActive?: boolean;
+    variant?: 'primary' | 'secondary' | 'tertiary';
     /**
      * If `true`, the button will be disabled.
      */
@@ -50,14 +47,14 @@ export interface IButton {
     children: React.ReactNode;
     /**
      * If added, the button will show an icon before the button's label.
-     * Use the icon key in `theme.iconPath`
+     * Use the icon key in `theme.iconPath` or an icon from mdi-react.
      */
-    leftIcon?: Icons | React.ComponentType;
+    leftIcon?: Icons | MdiReactIconComponentType;
     /**
      * If added, the button will show an icon after the button's label.
-     * Use the icon key in `theme.iconPath`
+     * Use the icon key in `theme.iconPath` or an icon from mdi-react.
      */
-    rightIcon?: Icons | React.ComponentType;
+    rightIcon?: Icons | MdiReactIconComponentType;
     /**
      * The space between the button icon and label.
      * Use the styled-system tokens or add custom values as a string
@@ -66,7 +63,3 @@ export interface IButton {
 }
 
 export type ButtonProps = IButton & Omit<PseudoBoxProps, 'size'>;
-
-declare const Button: React.FC<ButtonProps>;
-
-export default Button;

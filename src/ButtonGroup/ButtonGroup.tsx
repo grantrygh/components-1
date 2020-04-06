@@ -6,7 +6,7 @@ import { ButtonGroupProps } from './types';
 
 export const ButtonGroup = ({
     size,
-    variantColor = 'primary',
+    variantColor = 'button',
     variant,
     isAttached,
     spacing = 2,
@@ -25,7 +25,6 @@ export const ButtonGroup = ({
             size: size || child.props.size,
             variantColor: child.props.variantColor || variantColor,
             variant: child.props.variant || variant,
-            _focus: { boxShadow: 'outline', zIndex: 1 },
 
             ...(!isLast && !isAttached && { mr: spacing }),
             ...(isFirst && isAttached && { roundedRight: 0 }),

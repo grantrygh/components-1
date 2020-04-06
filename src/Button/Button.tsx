@@ -6,49 +6,55 @@ import { useVariantColorWarning } from '../hooks/useVariantColorWarning';
 import Icon from '../Icon';
 import PseudoBox from '../PseudoBox';
 import Spinner from '../Spinner';
+import { Icons } from '../theme/icons';
 import useButtonStyle from './styles';
+import { ButtonProps } from './types';
 
 const ButtonIcon = ({ icon, ...props }) => {
     if (typeof icon === 'string') {
-        return <Icon focusable="false" name={icon} color="currentColor" {...props} />;
+        return <Icon focusable={false} name={icon as Icons} color="currentColor" {...props} />;
     }
-    return <Box as={icon} data-custom-icon focusable="false" color="currentColor" {...props} />;
+    const MdiIcon = icon;
+    return (
+        <Box {...props}>
+            <MdiIcon as={icon} data-custom-icon focusable={false} color="currentColor" />
+        </Box>
+    );
 };
 
-const Button = forwardRef(
+export const Button = forwardRef(
     (
         {
             isDisabled,
             isLoading,
-            isActive,
             isFullWidth,
             children,
             as: Comp = 'button',
-            variantColor = 'gray',
+            variantColor = 'button',
             leftIcon,
             rightIcon,
-            variant = 'solid',
+            variant = 'primary',
             loadingText,
             iconSpacing = 2,
             type = 'button',
             size = 'md',
-            colorMode,
             ...rest
-        },
+        }: ButtonProps,
         ref
     ) => {
         // Wrong usage of `variantColor` prop is quite common
         // Let's add a warning hook that validates the passed variantColor
         useVariantColorWarning('Button', variantColor);
 
+        const _isDisabled = isDisabled || isLoading;
+
         const buttonStyleProps = useButtonStyle({
             color: variantColor,
             variant,
             size,
-            colorMode,
+            isDisabled: _isDisabled,
+            isFullWidth,
         });
-        const _isDisabled = isDisabled || isLoading;
-
         return (
             <PseudoBox
                 disabled={_isDisabled}
@@ -56,20 +62,18 @@ const Button = forwardRef(
                 ref={ref}
                 as={Comp}
                 type={type}
-                borderRadius="md"
-                fontWeight="semibold"
-                width={isFullWidth ? 'full' : undefined}
-                data-active={isActive ? 'true' : undefined}
+                // width={isFullWidth ? 'full' : undefined}
+                // data-active={isActive ? 'true' : undefined}
                 {...buttonStyleProps}
                 {...rest}
             >
-                {leftIcon && !isLoading && <ButtonIcon ml={-1} mr={iconSpacing} icon={leftIcon} />}
+                {leftIcon && !isLoading && <ButtonIcon mr={iconSpacing} icon={leftIcon} />}
                 {isLoading && (
                     <Spinner
                         position={loadingText ? 'relative' : 'absolute'}
                         mr={loadingText ? iconSpacing : 0}
                         color="currentColor"
-                        size="1em"
+                        size="sm"
                     />
                 )}
                 {isLoading
@@ -79,12 +83,8 @@ const Button = forwardRef(
                           </Box>
                       )
                     : children}
-                {rightIcon && !isLoading && <ButtonIcon mr={-1} ml={iconSpacing} icon={rightIcon} />}
+                {rightIcon && !isLoading && <ButtonIcon ml={iconSpacing} icon={rightIcon} />}
             </PseudoBox>
         );
     }
 );
-
-Button.displayName = 'Button';
-
-export default Button;

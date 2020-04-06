@@ -238,6 +238,8 @@ const colors = {
     progress: brand.primary[500],
     track: neutral[4],
     tooltip: neutral[9],
+    button: brand.primary, // VARIANT: primary button bg , secondary & tertiary button text - uses .500
+    buttonText: neutral[1], // primary button text
 
     overlayBg: 'rgba(0, 0, 0, 0.2)',
 

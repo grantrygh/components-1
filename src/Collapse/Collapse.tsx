@@ -3,8 +3,10 @@ import { jsx } from '@emotion/core';
 import { forwardRef } from 'react';
 import AnimateHeight from 'react-animate-height';
 import Box from '../Box';
+import useCollapseStyle from './styles';
+import { CollapseProps } from './types';
 
-const Collapse = forwardRef(
+export const Collapse = forwardRef(
     (
         {
             isOpen,
@@ -16,23 +18,21 @@ const Collapse = forwardRef(
             startingHeight = 0,
             endingHeight = 'auto',
             ...rest
-        },
+        }: CollapseProps,
         ref
     ) => {
+        const collapseStyleProps = useCollapseStyle({
+            duration,
+            easing,
+            isOpen,
+            startingHeight,
+            endingHeight,
+        });
         return (
             <AnimateHeight
-                duration={duration}
-                easing={easing}
                 animateOpacity={animateOpacity}
-                height={isOpen ? endingHeight : startingHeight}
                 applyInlineTransitions={false}
-                css={{
-                    transition: 'height .2s ease,opacity .2s ease-in-out,transform .2s ease-in-out',
-                    '&.rah-animating--to-height-zero': {
-                        opacity: 0,
-                        transform: 'translateY(-0.625rem)',
-                    },
-                }}
+                {...collapseStyleProps}
                 {...{ onAnimationStart, onAnimationEnd }}
             >
                 <Box ref={ref} {...rest} />
@@ -40,7 +40,3 @@ const Collapse = forwardRef(
         );
     }
 );
-
-Collapse.displayName = 'Collapse';
-
-export default Collapse;

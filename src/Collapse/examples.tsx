@@ -2,9 +2,9 @@
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
+import { Collapse } from '.';
 import Box from '../Box';
-import Button from '../Button';
-import Collapse from '../Collapse';
+import { Button } from '../Button';
 
 const stories = storiesOf('Collapse', module).addDecorator(story => (
     <Box maxW="sm" mx="auto" mt={5}>
@@ -32,7 +32,7 @@ function Example() {
 stories.add('Default', () => <Example />);
 
 stories.add('changing static height', () => {
-    function Example() {
+    function Ex() {
         const [show, setShow] = React.useState(false);
 
         const handleToggle = () => setShow(!show);
@@ -50,5 +50,5 @@ stories.add('changing static height', () => {
         );
     }
 
-    return <Example />;
+    return <Ex />;
 });

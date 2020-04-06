@@ -1,4 +1,3 @@
-import * as React from 'react';
 import * as AnimateHeight from 'react-animate-height';
 import { BoxProps } from '../Box/types';
 
@@ -39,7 +38,3 @@ export interface ICollapse {
 }
 
 export type CollapseProps = AnimateHeightProps & ICollapse & BoxProps;
-
-declare const Collapse: React.FC<CollapseProps>;
-
-export default Collapse;

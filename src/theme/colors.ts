@@ -242,6 +242,10 @@ const colors = {
     button: brand.primary, // VARIANT: primary button bg , secondary & tertiary button text - uses .500
     buttonText: neutral[1], // primary button text
 
+    inputFocus: brand.primary[500],
+    inputHover: neutral[3],
+    inputBg: neutral[2],
+
     overlayBg: 'rgba(0, 0, 0, 0.2)',
 
     ...palette,

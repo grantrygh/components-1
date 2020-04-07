@@ -4,12 +4,13 @@ import { forwardRef } from 'react';
 import { useFormControl } from '../FormControl';
 import PseudoBox from '../PseudoBox';
 import useInputStyle from './styles';
+import { InputProps } from './types';
 
-const Input = forwardRef((props, ref) => {
+export const Input = forwardRef((props: InputProps, ref) => {
     const {
-        size,
-        variant,
-        as,
+        size = 'md',
+        variant = 'outline',
+        as = 'input',
         'aria-label': ariaLabel,
         'aria-describedby': ariaDescribedby,
         isReadOnly,
@@ -17,12 +18,14 @@ const Input = forwardRef((props, ref) => {
         isDisabled,
         isInvalid,
         isRequired,
-        focusBorderColor,
-        errorBorderColor,
         ...rest
     } = props;
 
-    const inputStyleProps = useInputStyle(props);
+    const inputStyleProps = useInputStyle({
+        variant,
+        size,
+        isFullWidth,
+    });
     const formControl = useFormControl(props);
 
     return (
@@ -43,16 +46,3 @@ const Input = forwardRef((props, ref) => {
         />
     );
 });
-
-Input.displayName = 'Input';
-
-Input.defaultProps = {
-    size: 'md',
-    as: 'input',
-    variant: 'outline',
-    isFullWidth: true,
-    focusBorderColor: 'blue.500',
-    errorBorderColor: 'red.500',
-};
-
-export default Input;

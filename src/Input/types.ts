@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { PseudoBoxProps } from '../PseudoBox';
 import { Omit } from '../common-types';
+import { PseudoBoxProps } from '../PseudoBox';
 
 type Variant = 'outline' | 'unstyled' | 'flushed' | 'filled';
 type Size = 'sm' | 'md' | 'lg';
@@ -49,20 +49,6 @@ export interface IInput<T = HTMLInputElement> {
      * [ARIA] The id of the element that describes the input.
      */
     'aria-describedby'?: React.AriaAttributes['aria-describedby'];
-
-    /**
-     * The border color when the input is focused. Use color keys in `theme.colors`
-     * @example
-     * focusBorderColor = "blue.500"
-     */
-    focusBorderColor?: string;
-
-    /**
-     * The border color when the input is invalid. Use color keys in `theme.colors`
-     * @example
-     * errorBorderColor = "red.500"
-     */
-    errorBorderColor?: string;
 }
 
 export type OmittedTypes = 'size' | 'disabled' | 'required' | 'checked' | 'defaultChecked' | 'readOnly';
@@ -73,7 +59,3 @@ export type InputProps<T = HTMLInputElement> = IInput<T> &
     PseudoBoxProps &
     InputHTMLAttributes &
     React.RefAttributes<T>;
-
-declare const Input: React.FC<InputProps>;
-
-export default Input;

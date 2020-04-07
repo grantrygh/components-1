@@ -8,7 +8,7 @@ const readOnly = {
     },
 };
 
-export const inputStyle = ({ color }, theme) => ({
+export const inputStyle = ({ isFullWidth }, theme) => ({
     style: {
         display: 'flex',
         alignItems: 'center',
@@ -23,17 +23,17 @@ export const inputStyle = ({ color }, theme) => ({
         lg: {
             px: 4,
             height: 'input.lg',
-            minWidth: 'input.minWidth',
+            width: isFullWidth ? 'full' : 'input.width',
         },
         md: {
             px: 4,
             height: 'input.md',
-            minWidth: 'input.minWidth',
+            width: isFullWidth ? 'full' : 'input.width',
         },
         sm: {
             px: 4,
             height: 'input.sm',
-            minWidth: 'input.minWidth',
+            width: isFullWidth ? 'full' : 'input.width',
         },
     },
     variants: {
@@ -110,7 +110,6 @@ const useInputStyle = props => {
     return {
         // base style
         ...styles.style,
-        width: props.isFullWidth ? '100%' : undefined,
 
         // variant style
         ...styles.variants[props.variant],

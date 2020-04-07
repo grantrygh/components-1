@@ -50,7 +50,7 @@ const input = {
     sm: '1.75rem',
 
     // Widths
-    width: baseSizes[32],
+    width: baseSizes[40],
 };
 
 const sizes = {

@@ -43,10 +43,21 @@ const containers = {
     xl: '1280px',
 };
 
+const input = {
+    // Heights
+    lg: '2.75rem',
+    md: '2.25rem',
+    sm: '1.75rem',
+
+    // Widths
+    width: baseSizes[32],
+};
+
 const sizes = {
     ...baseSizes,
     ...largeSizes,
     containers,
+    input,
 };
 
 export default sizes;

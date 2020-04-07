@@ -1,6 +1,6 @@
 import { useTheme } from '../ThemeProvider';
 
-export const selectStyle = (selectProps, theme) => ({
+export const selectStyle = ({ size }, theme) => ({
     style: {
         // !IMPORTANT: To override any component style, uncomment and add overrides below provided. some properties can be changed in the theme object below
         // clearIndicator: (provided, props) => ({
@@ -19,20 +19,29 @@ export const selectStyle = (selectProps, theme) => ({
                 borderBottomWidth: '1px',
                 borderColor: isFocused ? stateColor : theme.colors.border,
                 '&:hover': { borderColor: stateColor },
+                width: theme.sizes.input.width,
             };
         },
-        // dropdownIndicator: (provided, props) => ({
-        //     ...provided,
-        // }),
+        dropdownIndicator: (provided, props) => ({
+            ...provided,
+            height: 16,
+            svg: {
+                height: 16,
+                width: 16,
+            },
+        }),
         // group: (provided, props) => ({
         //     ...provided,
         // }),
         // groupHeading: (provided, props) => ({
         //     ...provided,
         // }),
-        // indicatorsContainer: (provided, props) => ({
-        //     ...provided,
-        // }),
+        indicatorsContainer: (provided, props) => ({
+            ...provided,
+            '> div': {
+                padding: '0 8px',
+            },
+        }),
         indicatorSeparator: (provided, props) => ({
             // ...provided,
         }),
@@ -75,9 +84,10 @@ export const selectStyle = (selectProps, theme) => ({
         // singleValue: (provided, props) => ({
         //     ...provided,
         // }),
-        // valueContainer: (provided, props) => ({
-        //     ...provided,
-        // }),
+        valueContainer: (provided, props) => ({
+            ...provided,
+            padding: '1px 8px',
+        }),
     },
     theme: {
         root: {
@@ -104,8 +114,8 @@ export const selectStyle = (selectProps, theme) => ({
         },
         spacing: {
             // baseUnit: 4,
-            // controlHeight: 38,
-            // menuGutter: 8
+            controlHeight: theme.sizes.input[size],
+            // menuGutter: 8,
         },
     },
 });

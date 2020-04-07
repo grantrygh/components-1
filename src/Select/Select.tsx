@@ -1,11 +1,10 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import ReactSelect from 'react-select';
 import AsyncSelect from 'react-select/async';
 import AsyncCreatableSelect from 'react-select/async-creatable';
 import CreatableSelect from 'react-select/creatable';
-import Box from '../Box';
 import { useFormField } from '../Form';
 import useSelectStyle from './styles';
 import { SelectProps } from './types';
@@ -30,6 +29,7 @@ const renderSelect = (props, ref) => {
 
 export const Select = forwardRef((props: SelectProps, ref) => {
     const { onChange: formOnChange } = useFormField(props);
+    const { size = 'md' } = props;
 
     // optionally allow custom onChange event along with passed Form onChange
     const hasOnChange = props.onChange || (formOnChange && typeof formOnChange === 'function');
@@ -42,7 +42,9 @@ export const Select = forwardRef((props: SelectProps, ref) => {
         }
     };
 
-    const { root: selectStyleProps, theme: selectTheme } = useSelectStyle({});
+    const { root: selectStyleProps, theme: selectTheme } = useSelectStyle({
+        size,
+    });
 
     const selectProps = {
         ...props,
@@ -62,5 +64,5 @@ export const Select = forwardRef((props: SelectProps, ref) => {
         }),
     };
 
-    return <Box position="relative">{renderSelect(selectProps, ref)}</Box>;
+    return <React.Fragment>{renderSelect(selectProps, ref)}</React.Fragment>;
 });

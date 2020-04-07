@@ -69,16 +69,16 @@ export const buttonStyle = ({ color = 'button' }, theme) => ({
     },
     sizes: {
         lg: {
-            height: '2.75rem',
-            minWidth: '2.75rem',
+            height: 'input.lg',
+            minWidth: 'input.lg',
         },
         md: {
-            height: '2.25rem',
-            minWidth: '2.25rem',
+            height: 'input.md',
+            minWidth: 'input.md',
         },
         sm: {
-            height: '1.75rem',
-            minWidth: '1.75rem',
+            height: 'input.sm',
+            minWidth: 'input.sm',
         },
     },
     isDisabled: {

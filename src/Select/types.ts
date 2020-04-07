@@ -1,3 +1,5 @@
+import { IInput } from '../Input/types';
+
 // see https://react-select.com/props for full props list
 
 export interface ISelect {
@@ -51,7 +53,7 @@ export interface ISelect {
     filterOption?: Function;
     formatOptionLabel?: Function;
 
-    size?: number;
+    size?: IInput['size'];
     isLoading?: boolean;
 
     label?: React.ReactNode;

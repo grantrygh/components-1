@@ -1,6 +1,7 @@
 import { MdiReactIconComponentType } from 'mdi-react';
 import * as React from 'react';
 import { Omit } from '../common-types';
+import { IInput } from '../Input/types';
 import { PseudoBoxProps } from '../PseudoBox';
 import { Icons } from '../theme/icons';
 
@@ -8,7 +9,7 @@ export interface IButton {
     /**
      * The size of the button
      */
-    size?: 'sm' | 'md' | 'lg';
+    size?: IInput['size'];
     /**
      * If `true`, the button will show a spinner.
      */

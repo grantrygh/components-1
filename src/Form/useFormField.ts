@@ -6,16 +6,19 @@ export function useFormField(props) {
 
     const $onChange = React.useCallback(
         e => {
-            onChange({
-                value: e.target.value,
-                name: props.name,
-            });
+            if (onChange) {
+                onChange({
+                    // support e.value to handle Select, and array constructor for isMulti Select
+                    value: (e.target && e.target.value) || e.value || (e.constructor === Array && e.map(v => v.value)),
+                    name: props.name,
+                });
+            }
         },
         [props.name]
     );
 
     return {
         onChange: $onChange,
-        value: getFieldValue(props.name),
+        value: getFieldValue && getFieldValue(props.name),
     };
 }

@@ -68,12 +68,11 @@ export interface ICheckbox {
      * The children is the label to be displayed to the right of the checkbox.
      */
     children?: React.ReactNode;
+
+    iconColor?: string;
+    iconSize?: string;
 }
 
 export type CheckboxProps = ICheckbox &
     React.RefAttributes<HTMLInputElement> &
     Omit<BoxProps, 'onChange' | 'defaultChecked'>;
-
-declare const Checkbox: React.FC<CheckboxProps>;
-
-export default Checkbox;

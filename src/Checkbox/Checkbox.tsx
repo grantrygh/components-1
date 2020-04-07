@@ -1,16 +1,17 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
+import CheckBoldIcon from 'mdi-react/CheckBoldIcon';
+import MinusIcon from 'mdi-react/MinusIcon';
 import { forwardRef, useEffect, useRef } from 'react';
 import Box from '../Box';
-import { useColorMode } from '../ColorModeProvider';
 import ControlBox from '../ControlBox';
 import { useForkRef } from '../hooks/useForkRef';
 import { useVariantColorWarning } from '../hooks/useVariantColorWarning';
-import Icon from '../Icon';
 import VisuallyHidden from '../VisuallyHidden';
 import useCheckboxStyle from './styles';
+import { CheckboxProps } from './types';
 
-const Checkbox = forwardRef(
+export const Checkbox = forwardRef(
     (
         {
             id,
@@ -18,7 +19,7 @@ const Checkbox = forwardRef(
             value,
             'aria-label': ariaLabel,
             'aria-labelledby': ariaLabelledBy,
-            variantColor = 'blue',
+            variantColor = 'primary',
             defaultIsChecked,
             isChecked,
             isFullWidth,
@@ -32,30 +33,34 @@ const Checkbox = forwardRef(
             isIndeterminate,
             children,
             iconColor,
-            iconSize = '10px',
+            iconSize = '12px',
             ...rest
-        },
+        }: CheckboxProps,
         ref
     ) => {
         // Wrong usage of `variantColor` prop is quite common
         // Let's add a warning hook that validates the passed variantColor
         useVariantColorWarning('Checkbox', variantColor);
 
-        const { colorMode } = useColorMode();
-        const styleProps = useCheckboxStyle({
+        const { root: rootStyleProps, label: labelStyleProps } = useCheckboxStyle({
             color: variantColor,
             size,
-            colorMode,
+            isDisabled,
         });
 
         const ownRef = useRef();
-        const _ref = useForkRef(ownRef, ref);
+        const _ref: any = useForkRef(ownRef, ref);
 
         useEffect(() => {
             if (_ref.current) {
                 _ref.current.indeterminate = Boolean(isIndeterminate);
             }
         }, [isIndeterminate, _ref]);
+
+        const defChecked = defaultIsChecked ? undefined : isChecked;
+        const checkedState = isReadOnly ? Boolean(isChecked) : defChecked;
+
+        const IconTag = isIndeterminate ? MinusIcon : CheckBoldIcon;
 
         return (
             <Box
@@ -79,31 +84,18 @@ const Checkbox = forwardRef(
                     onBlur={onBlur}
                     onFocus={onFocus}
                     defaultChecked={isReadOnly ? undefined : defaultIsChecked}
-                    checked={isReadOnly ? Boolean(isChecked) : defaultIsChecked ? undefined : isChecked}
+                    checked={checkedState}
                     disabled={isDisabled}
                     readOnly={isReadOnly}
                     aria-readonly={isReadOnly}
                     aria-invalid={isInvalid}
                     aria-checked={isIndeterminate ? 'mixed' : isChecked}
                 />
-                <ControlBox opacity={isReadOnly ? 0.8 : 1} {...styleProps}>
-                    <Icon
-                        name={isIndeterminate ? 'minus' : 'check'}
-                        size={iconSize}
-                        color={iconColor}
-                        transition="transform 240ms, opacity 240ms"
-                    />
+                <ControlBox opacity={isReadOnly ? 0.8 : 1} {...rootStyleProps}>
+                    <IconTag size={iconSize} color={iconColor} />
                 </ControlBox>
-                {children && (
-                    <Box ml={2} fontSize={size} userSelect="none" opacity={isDisabled ? 0.4 : 1}>
-                        {children}
-                    </Box>
-                )}
+                {children && <Box {...labelStyleProps}>{children}</Box>}
             </Box>
         );
     }
 );
-
-Checkbox.displayName = 'Checkbox';
-
-export default Checkbox;

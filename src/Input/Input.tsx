@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { forwardRef } from 'react';
+import { useFormField } from '../Form';
 import { useFormControl } from '../FormControl';
 import PseudoBox from '../PseudoBox';
 import useInputStyle from './styles';
@@ -27,6 +28,7 @@ export const Input = forwardRef((props: InputProps, ref) => {
         isFullWidth,
     });
     const formControl = useFormControl(props);
+    const formField = useFormField(props);
 
     return (
         <PseudoBox
@@ -41,6 +43,8 @@ export const Input = forwardRef((props: InputProps, ref) => {
             aria-required={formControl.isRequired}
             aria-disabled={formControl.isDisabled}
             aria-describedby={ariaDescribedby}
+            onChange={formField.onChange}
+            value={formField.value}
             {...inputStyleProps}
             {...rest}
         />

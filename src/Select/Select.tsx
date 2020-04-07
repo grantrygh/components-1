@@ -7,6 +7,7 @@ import AsyncCreatableSelect from 'react-select/async-creatable';
 import CreatableSelect from 'react-select/creatable';
 import Box from '../Box';
 import { useFormField } from '../Form';
+import useSelectStyle from './styles';
 import { SelectProps } from './types';
 
 const renderSelect = (props, ref) => {
@@ -41,9 +42,24 @@ export const Select = forwardRef((props: SelectProps, ref) => {
         }
     };
 
+    const { root: selectStyleProps, theme: selectTheme } = useSelectStyle({});
+
     const selectProps = {
         ...props,
         onChange: hasOnChange && onChange,
+        styles: selectStyleProps,
+        theme: theme => ({
+            ...theme,
+            ...selectTheme.root,
+            colors: {
+                ...theme.colors,
+                ...selectTheme.colors,
+            },
+            spacing: {
+                ...theme.spacing,
+                ...selectTheme.spacing,
+            },
+        }),
     };
 
     return <Box position="relative">{renderSelect(selectProps, ref)}</Box>;

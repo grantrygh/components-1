@@ -218,6 +218,7 @@ const colors = {
     current: 'currentColor',
 
     // Neutral Scale Design Colors
+    neutral,
     black: neutral[13],
     titleText: neutral[12],
     bodyText: neutral[9],

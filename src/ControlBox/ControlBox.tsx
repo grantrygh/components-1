@@ -1,5 +1,6 @@
-import { css } from '@emotion/core';
+/** @jsx jsx */
 import styled, * as Emotion from '@emotion/styled';
+import css from '@styled-system/css';
 import Box from '../Box';
 import { transformAliasProps } from '../Box/config';
 import { ControlBoxProps } from './types';

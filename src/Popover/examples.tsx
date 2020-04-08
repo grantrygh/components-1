@@ -117,13 +117,13 @@ function TwitterEx() {
     return (
         <Popover trigger="hover">
             <PopoverTrigger>
-                <Link href="#" color="blue.500">
+                <Link href="/" color="blue.500">
                     Hover to see @swyx profile
                 </Link>
             </PopoverTrigger>
 
             <PopoverContent bg="#15202b" color="white" width="400px">
-                <Card></Card>
+                <Card />
             </PopoverContent>
         </Popover>
     );

@@ -51,6 +51,7 @@ const input = {
 
     // Widths
     width: baseSizes[40],
+    spacing: baseSizes[4],
 };
 
 const sizes = {

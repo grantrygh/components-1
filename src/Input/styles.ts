@@ -18,22 +18,18 @@ export const inputStyle = ({ isFullWidth }, theme) => ({
         appearance: 'none',
         borderRadius: 'radius',
         boxSizing: 'border-box',
+        px: 'input.spacing',
+        minWidth: isFullWidth ? 'full' : 'input.width',
     },
     sizes: {
         lg: {
-            px: 4,
             height: 'input.lg',
-            width: isFullWidth ? 'full' : 'input.width',
         },
         md: {
-            px: 4,
             height: 'input.md',
-            width: isFullWidth ? 'full' : 'input.width',
         },
         sm: {
-            px: 4,
             height: 'input.sm',
-            width: isFullWidth ? 'full' : 'input.width',
         },
     },
     variants: {

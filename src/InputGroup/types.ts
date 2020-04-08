@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BoxProps } from '../Box/types';
-import { IInput } from '../Input';
+import { IInput } from '../Input/types';
 
 export interface IInputGroup {
     size?: IInput['size'];
@@ -8,6 +8,3 @@ export interface IInputGroup {
 }
 
 export type InputGroupProps = IInputGroup & BoxProps;
-declare const InputGroup: React.FC<InputGroupProps>;
-
-export default InputGroup;

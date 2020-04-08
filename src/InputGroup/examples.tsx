@@ -37,7 +37,7 @@ stories.add('with right addon', () => (
 stories.add('with left icon', () => (
     <InputGroup size={size}>
         <InputLeftElement>
-            <Icon name="phone" size="1em" />
+            <Icon name="phone" />
         </InputLeftElement>
         <Input placeholder="Welcome" />
     </InputGroup>
@@ -54,9 +54,9 @@ stories.add('with right icon', () => (
 
 stories.add('with left and right addon', () => (
     <InputGroup size="sm">
-        <InputLeftAddon children="https://" />
+        <InputLeftAddon>https://</InputLeftAddon>
         <Input rounded="0" placeholder="mysite" />
-        <InputRightAddon children=".com" />
+        <InputRightAddon>.com</InputRightAddon>
     </InputGroup>
 ));
 

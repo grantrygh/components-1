@@ -1,27 +1,26 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { Children, cloneElement, isValidElement } from 'react';
+import { InputLeftElement, InputRightElement } from '..';
 import Box from '../Box';
 import Input from '../Input';
-import { inputSizes } from '../Input/styles';
-import { InputLeftElement, InputRightElement } from '../InputElement';
-import { useTheme } from '../ThemeProvider';
+import { InputGroupProps } from './types';
 
-const InputGroup = ({ children, size = 'md', ...props }) => {
-    const { sizes } = useTheme();
-    const height = inputSizes[size] && inputSizes[size]['height'];
+export const InputGroup = ({ children, size = 'md', ...props }: InputGroupProps) => {
     let pl = null;
     let pr = null;
     return (
         <Box display="flex" position="relative" {...props}>
             {Children.map(children, child => {
-                if (!isValidElement(child)) return;
+                if (!isValidElement(child)) {
+                    return null;
+                }
 
                 if (child.type === InputLeftElement) {
-                    pl = sizes[height];
+                    pl = 'input.spacing';
                 }
                 if (child.type === InputRightElement) {
-                    pr = sizes[height];
+                    pr = 'input.spacing';
                 }
                 if (child.type === Input) {
                     return cloneElement(child, {
@@ -35,5 +34,3 @@ const InputGroup = ({ children, size = 'md', ...props }) => {
         </Box>
     );
 };
-
-export default InputGroup;

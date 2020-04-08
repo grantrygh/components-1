@@ -12,6 +12,7 @@ import {
     useState,
 } from 'react';
 import Box from '../Box';
+import { useFormField } from '../Form';
 import { RadioGroupProps } from './types';
 
 export const RadioGroup = forwardRef(
@@ -34,6 +35,15 @@ export const RadioGroup = forwardRef(
         const [value, setValue] = useState(defaultValue || null);
         const _value = isControlled ? valueProp : value;
 
+        // If no name is passed, we'll generate a random, unique name
+        const fallbackName = `radio-${useId()}`;
+        const _name = name || fallbackName;
+
+        const { onChange: formOnChange } = useFormField({
+            name: _name,
+            onChange,
+        });
+
         const rootRef: RefObject<any> = useRef();
 
         const _onChange = event => {
@@ -44,11 +54,11 @@ export const RadioGroup = forwardRef(
             if (onChange) {
                 onChange(event, event.target.value);
             }
-        };
 
-        // If no name is passed, we'll generate a random, unique name
-        const fallbackName = `radio-${useId()}`;
-        const _name = name || fallbackName;
+            if (formOnChange && typeof formOnChange === 'function') {
+                formOnChange(event);
+            }
+        };
 
         const clones = Children.map(children, (child, index) => {
             if (!isValidElement(child)) {

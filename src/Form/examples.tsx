@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import { Form } from '.';
-import { Button, Checkbox, CheckboxGroup, Input, Select, Switch } from '..';
+import { Button, Checkbox, CheckboxGroup, Input, Radio, RadioGroup, Select, Switch } from '..';
 import Box from '../Box';
 
 const stories = storiesOf('Form', module);
@@ -47,6 +47,14 @@ stories.add('With All Input Types', () => {
                     <Checkbox name="check2">Checkbox 2</Checkbox>
                     <Switch size="lg" name="switch" />
                 </CheckboxGroup>
+                <RadioGroup>
+                    <Radio value="male" name="bee">
+                        Male
+                    </Radio>
+                    <Radio value="female" name="bee">
+                        Female
+                    </Radio>
+                </RadioGroup>
                 <Button type="submit">Submit</Button>
             </Form>
         </Box>

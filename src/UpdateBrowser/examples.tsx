@@ -15,7 +15,7 @@ stories.addDecorator(story => {
 
 stories.add('Default', () => (
     <UpdateBrowser href="#">
-        <Button variant="solid" color="blue">
+        <Button variant="primary" color="blue">
             Child
         </Button>
     </UpdateBrowser>

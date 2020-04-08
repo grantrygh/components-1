@@ -1,6 +1,6 @@
 import { useTheme } from '../ThemeProvider';
 
-export const responseBoxStyle = ({ color = 'blue' }, theme) => ({
+export const responseBoxStyle = ({ color = 'primary' }, theme) => ({
     style: {
         size: 'md',
         focusBorderColor: `${color}.500`,

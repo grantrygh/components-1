@@ -16,7 +16,7 @@ stories.addDecorator(story => {
 
 stories.add('Default', () => (
     <Tooltip label="Welcome home" placement="right" closeOnClick>
-        <Button variant="solid" color="blue">
+        <Button variant="primary" color="blue">
             Close
         </Button>
     </Tooltip>

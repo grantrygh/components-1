@@ -144,7 +144,9 @@ const FeedbackEx = () => (
             <PopoverBody>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore.
-                <Link color="blue.500"> Learn More</Link>
+                <Link href="/" color="blue.500">
+                    Learn More
+                </Link>
             </PopoverBody>
         </PopoverContent>
     </Popover>

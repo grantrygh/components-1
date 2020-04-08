@@ -6,10 +6,10 @@ import useAlertStyle, { useAlertIconStyle } from './styles';
 import { AlertProps, IAlert } from './types';
 
 export const statuses = {
-    info: { icon: 'info', color: 'blue' },
-    warning: { icon: 'warning-2', color: 'orange' },
-    success: { icon: 'check-circle', color: 'green' },
-    error: { icon: 'warning', color: 'red' },
+    info: { icon: 'info', color: 'info' },
+    warning: { icon: 'warning-2', color: 'warning' },
+    success: { icon: 'check-circle', color: 'success' },
+    error: { icon: 'warning', color: 'error' },
 };
 
 const AlertContext = createContext<IAlert>({});

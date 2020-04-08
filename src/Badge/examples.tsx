@@ -61,7 +61,7 @@ stories.add('Hexagonal Badges', () => {
                     {i}
                 </Badge>
             ))}
-            <Badge variantColor={'blue'} variant="hexagon" mr={2} size={60}>
+            <Badge variant="hexagon" mr={2} size={60}>
                 <Icon name="repeat-clock" />
             </Badge>
         </>

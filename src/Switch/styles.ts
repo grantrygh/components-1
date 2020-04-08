@@ -1,6 +1,6 @@
 import { useTheme } from '../ThemeProvider';
 
-export const switchStyle = ({ color = 'primary', size = 'md' }, theme) => {
+export const switchStyle = ({ color = 'primary', size = 'md' }, { colors }) => {
     const sizes = {
         sm: {
             width: '1.5rem',
@@ -27,7 +27,7 @@ export const switchStyle = ({ color = 'primary', size = 'md' }, theme) => {
             boxSizing: 'content-box',
             p: '3px',
             _checked: {
-                bg: `${color}.500`,
+                backgroundColor: colors[color][500],
             },
             _child: {
                 transform: `translateX(0)`,

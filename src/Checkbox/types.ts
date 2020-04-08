@@ -55,6 +55,10 @@ export interface ICheckbox {
      */
     isInvalid?: boolean;
     /**
+     * If `true`, the checkbox will be left-indented.
+     */
+    isChild?: boolean;
+    /**
      * The callback invoked when the checked state of the `Checkbox` changes..
      */
     onChange?: React.ChangeEventHandler<HTMLInputElement>;

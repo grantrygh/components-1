@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as StyledSystem from 'styled-system';
 import { BoxProps } from '../Box/types';
-import { ICheckbox } from '../Checkbox';
+import { ICheckbox } from '../Checkbox/types';
 import { Omit } from '../common-types';
 
 export interface ICheckboxGroup {

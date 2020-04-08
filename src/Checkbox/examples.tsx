@@ -1,9 +1,9 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
+import { Checkbox } from '.';
 import Box from '../Box';
-import Checkbox from '../Checkbox';
-import FormValidationText from '../FormErrorMessage';
-import Stack from '../Stack';
+import { CheckboxGroup } from '../CheckboxGroup';
+import { FormErrorMessage } from '../FormErrorMessage';
 
 const stories = storiesOf('Checkbox', module);
 
@@ -17,81 +17,76 @@ stories.addDecorator(story => {
 
 stories.add('Default', () => (
     <>
-        <Checkbox defaultIsChecked>Disabled and Checked</Checkbox>
-        <Box ml={3} mt={3}>
+        <CheckboxGroup>
             <Checkbox variantColor="pink" isFullWidth defaultIsChecked>
                 Checkbox 1
             </Checkbox>
-            <Checkbox isInvalid mt={2}>
-                Checkbox 2
-            </Checkbox>
-            <FormValidationText
+            <Checkbox isInvalid>Checkbox 2</Checkbox>
+            <FormErrorMessage
                 //  isInvalid
                 id="err"
             >
                 This is not valid
-            </FormValidationText>
-        </Box>
+            </FormErrorMessage>
+        </CheckboxGroup>
 
-        <br />
-        <Checkbox isDisabled>Disabled </Checkbox>
-        <Checkbox isChecked isDisabled>
-            Disabled
-        </Checkbox>
-        <br />
+        <CheckboxGroup>
+            <Checkbox isDisabled>Disabled </Checkbox>
+            <Checkbox isChecked isDisabled>
+                Disabled and checked
+            </Checkbox>
+        </CheckboxGroup>
     </>
 ));
 
 stories.add('disabled checkbox', () => (
-    <>
+    <CheckboxGroup>
         <Checkbox isDisabled>Disabled </Checkbox>
         <Checkbox isChecked isDisabled>
-            Disabled
+            Disabled and checked
         </Checkbox>
-        <br />
-    </>
+    </CheckboxGroup>
 ));
 
 stories.add('readonly checkbox', () => (
-    <>
-        <Checkbox isReadOnly>Readonly (default checked)</Checkbox>
+    <CheckboxGroup>
+        <Checkbox isReadOnly>Readonly</Checkbox>
         <Checkbox isChecked isReadOnly>
-            Readonly
+            Readonly and checked
         </Checkbox>
-        <br />
-    </>
+    </CheckboxGroup>
 ));
 
 function IndeterminateExample() {
-    const [checkedItems, setCheckedItems] = React.useState([true, false]);
+    const [checkedItems, setCheckedItems] = React.useState([]);
 
-    const allChecked = checkedItems.every(Boolean);
-    const isIndeterminate = checkedItems.some(Boolean) && !allChecked;
+    // Children
+    const childNames = ['child1', 'child2'];
+
+    // Parent
+    const parentName = 'parent';
+    const allChecked = checkedItems.every(String) && checkedItems.length === childNames.length;
+    const isIndeterminate = checkedItems.some(String) && !allChecked;
 
     return (
-        <>
+        <CheckboxGroup value={checkedItems} onChange={newVals => setCheckedItems(newVals)}>
             <Checkbox
                 isChecked={allChecked}
                 isIndeterminate={isIndeterminate}
-                onChange={e => setCheckedItems([e.target.checked, e.target.checked])}
+                onChange={e => {
+                    setCheckedItems(e.target.checked ? childNames : []);
+                }}
+                name={parentName}
             >
                 Parent Checkbox
             </Checkbox>
-            <Stack pl={6} mt={1} spacing={1}>
-                <Checkbox
-                    isChecked={checkedItems[0]}
-                    onChange={e => setCheckedItems([e.target.checked, checkedItems[1]])}
-                >
-                    Child Checkbox 1
-                </Checkbox>
-                <Checkbox
-                    isChecked={checkedItems[1]}
-                    onChange={e => setCheckedItems([checkedItems[0], e.target.checked])}
-                >
-                    Child Checkbox 2
-                </Checkbox>
-            </Stack>
-        </>
+            <Checkbox name={childNames[0]} isChild>
+                Child Checkbox 1
+            </Checkbox>
+            <Checkbox name={childNames[1]} isChild>
+                Child Checkbox 2
+            </Checkbox>
+        </CheckboxGroup>
     );
 }
 

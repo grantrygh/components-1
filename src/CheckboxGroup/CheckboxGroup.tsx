@@ -22,13 +22,14 @@ export const CheckboxGroup = ({
     const { current: isControlled } = useRef(valueProp != null);
     const _values = isControlled ? valueProp : values;
 
-    const _onChange = event => {
+    const _onChange = (event, boxName) => {
         const { checked, value } = event.target;
         let newValues;
+
         if (checked) {
-            newValues = [..._values, value];
+            newValues = [..._values, boxName];
         } else {
-            newValues = _values.filter(val => val !== value);
+            newValues = _values.filter(val => val !== boxName);
         }
 
         if (!isControlled) {
@@ -51,14 +52,21 @@ export const CheckboxGroup = ({
         const isLastCheckbox = children.length === index + 1;
         const spacingProps = isInline ? { mr: spacing } : { mb: spacing };
 
+        const defCheckboxName = `${_name}-${index}`;
+
         return (
             <Box display={isInline ? 'inline-block' : 'block'} {...(!isLastCheckbox && spacingProps)}>
                 {cloneElement(child, {
                     size,
                     variantColor,
-                    name: `${_name}-${index}`,
-                    onChange: _onChange,
-                    isChecked: _values.includes(child.props.value),
+                    name: child.props.name || defCheckboxName,
+                    onChange: e => {
+                        _onChange(e, child.props.name || defCheckboxName);
+                        if (typeof child.props.onChange === 'function') {
+                            child.props.onChange(e);
+                        }
+                    },
+                    isChecked: child.props.isChecked || _values.includes(child.props.name || defCheckboxName),
                 })}
             </Box>
         );

@@ -1,6 +1,6 @@
 import { useTheme } from '../ThemeProvider';
 
-export const checkboxStyle = ({ color, type, isDisabled, size }, { colors, shadows }) => ({
+export const checkboxStyle = ({ color, type, isDisabled, isFullWidth, isChild, size }, { colors, shadows }) => ({
     style: {
         userSelect: 'none',
         border: '2px',
@@ -15,7 +15,7 @@ export const checkboxStyle = ({ color, type, isDisabled, size }, { colors, shado
         _checkedAndDisabled: {
             borderColor: colors[color][500],
             backgroundColor: colors[color][500],
-            color: colors._disabled,
+            color: colors.disabled,
             opacity: 0.25,
         },
         _disabled: {
@@ -40,6 +40,14 @@ export const checkboxStyle = ({ color, type, isDisabled, size }, { colors, shado
         userSelect: 'none',
         opacity: isDisabled ? 0.4 : 1,
     },
+    container: {
+        display: 'inline-flex',
+        verticalAlign: 'top',
+        alignItems: 'center',
+        width: isFullWidth ? 'full' : undefined,
+        cursor: isDisabled ? 'not-allowed' : 'pointer',
+        ml: isChild ? 6 : 0,
+    },
 });
 
 const useCheckboxStyle = props => {
@@ -52,6 +60,7 @@ const useCheckboxStyle = props => {
             size: styles.sizes[props.size],
         },
         label: styles.label,
+        container: styles.container,
     };
 };
 

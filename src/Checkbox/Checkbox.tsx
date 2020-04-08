@@ -23,6 +23,7 @@ export const Checkbox = forwardRef(
             defaultIsChecked,
             isChecked,
             isFullWidth,
+            isChild,
             size = 'md',
             isDisabled,
             isInvalid,
@@ -42,10 +43,12 @@ export const Checkbox = forwardRef(
         // Let's add a warning hook that validates the passed variantColor
         useVariantColorWarning('Checkbox', variantColor);
 
-        const { root: rootStyleProps, label: labelStyleProps } = useCheckboxStyle({
+        const { root: rootStyleProps, label: labelStyleProps, container: containerStyleProps } = useCheckboxStyle({
             color: variantColor,
             size,
             isDisabled,
+            isFullWidth,
+            isChild,
         });
 
         const ownRef = useRef();
@@ -63,15 +66,7 @@ export const Checkbox = forwardRef(
         const IconTag = isIndeterminate ? MinusIcon : CheckBoldIcon;
 
         return (
-            <Box
-                as="label"
-                display="inline-flex"
-                verticalAlign="top"
-                alignItems="center"
-                width={isFullWidth ? 'full' : undefined}
-                cursor={isDisabled ? 'not-allowed' : 'pointer'}
-                {...rest}
-            >
+            <Box as="label" {...containerStyleProps} {...rest}>
                 <VisuallyHidden
                     as="input"
                     type="checkbox"

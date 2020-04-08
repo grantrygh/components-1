@@ -170,6 +170,17 @@ type Sizes = BaseSizes &
     LargeSizes & {
         containers: Containers;
     };
+interface Inputs {
+    sm: string;
+    md: string;
+    lg: string;
+    width: string;
+    spacing: string;
+}
+
+type Space = BaseSizes & {
+    input: Inputs;
+};
 
 interface LetterSpacings {
     tighter: string;
@@ -247,7 +258,7 @@ export interface DefaultTheme extends Typography {
     colors: Colors;
     sizes: Sizes;
     shadows: Shadows;
-    space: BaseSizes;
+    space: Space;
     icons: Record<string, Icon>;
     styles: any;
 }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BoxProps } from '../Box/types';
 import { Omit } from '../common-types';
-import { IInput } from '../Input';
+import { IInput } from '../Input/types';
 
 interface IInputElement {
     /**
@@ -21,13 +21,10 @@ interface IInputElement {
      * Disable pointer events on this component.
      * This allows for the content of the adornment to focus the input on click.
      */
-    disabledPointerEvents?: boolean;
+    disablePointerEvents?: boolean;
 }
 
-type IInputElementProps = IInputElement & BoxProps;
+export type InputElementProps = IInputElement & BoxProps;
 
-declare const InputElement: React.FC<IInputElementProps>;
-export default InputElement;
-
-export const InputLeftElement: React.FC<Omit<IInputElementProps, 'placement'>>;
-export const InputRightElement: React.FC<Omit<IInputElementProps, 'placement'>>;
+export type InputLeftElementProps = Omit<InputElementProps, 'placement'>;
+export type InputRightElementProps = Omit<InputElementProps, 'placement'>;

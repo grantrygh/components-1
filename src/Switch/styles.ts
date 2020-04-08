@@ -27,7 +27,7 @@ export const switchStyle = ({ color = 'primary', size = 'md' }, { colors }) => {
             boxSizing: 'content-box',
             p: '3px',
             _checked: {
-                backgroundColor: colors[color][500],
+                bg: `${color}.500`,
             },
             _child: {
                 transform: `translateX(0)`,

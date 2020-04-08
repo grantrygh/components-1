@@ -9,24 +9,24 @@ export const checkboxStyle = ({ color, type, isDisabled, isFullWidth, isChild, s
         transition: 'background-color 120ms, box-shadow 250ms',
         color: 'white',
         _checked: {
-            backgroundColor: colors[color][500],
-            borderColor: colors[color][500],
+            bg: `${color}.500`,
+            borderColor: `${color}.500`,
         },
         _checkedAndDisabled: {
-            borderColor: colors[color][500],
-            backgroundColor: colors[color][500],
-            color: colors.disabled,
+            borderColor: `${color}.500`,
+            bg: `${color}.500`,
+            color: 'disabled',
             opacity: 0.25,
         },
         _disabled: {
-            backgroundColor: colors.border,
-            borderColor: colors.border,
+            bg: 'border',
+            borderColor: 'border',
         },
         _focus: {
-            boxShadow: shadows.outline,
+            boxShadow: 'outline',
         },
         _invalid: {
-            borderColor: colors.error[500],
+            borderColor: 'error.500',
         },
     },
     sizes: {
@@ -38,7 +38,7 @@ export const checkboxStyle = ({ color, type, isDisabled, isFullWidth, isChild, s
         ml: 2,
         fontSize: size,
         userSelect: 'none',
-        opacity: isDisabled ? 0.4 : 1,
+        color: isDisabled && 'disabled',
     },
     container: {
         display: 'inline-flex',

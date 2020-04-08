@@ -5,7 +5,9 @@ import { IRadio } from '../Radio/types';
 
 export interface IRadioGroup {
     id?: string;
+    // form submit value will use radio group name as the key
     name?: string;
+
     children?: React.ReactNodeArray;
     defaultValue?: IRadio['value'];
     value?: IRadio['value'];

@@ -1,8 +1,9 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
+import { useState } from 'react';
 import { Form } from '.';
-import { Button, Checkbox, CheckboxGroup, Input, Radio, RadioGroup, Select, Switch } from '..';
+import { Button, Checkbox, CheckboxGroup, Heading, Input, Radio, RadioGroup, Select, Switch, Text } from '..';
 import Box from '../Box';
 
 const stories = storiesOf('Form', module);
@@ -24,12 +25,13 @@ stories.add('Sample', () => (
 ));
 
 stories.add('With All Input Types', () => {
+    const [formValue, setFormValue] = useState({});
     return (
         <Box maxWidth="md" mx="auto" mt={9}>
             <Form
                 onSubmit={(e, { getFormValue }) => {
                     e.preventDefault();
-                    console.log(getFormValue());
+                    setFormValue(getFormValue());
                 }}
             >
                 Input: <Input name="input" />
@@ -57,6 +59,16 @@ stories.add('With All Input Types', () => {
                 </RadioGroup>
                 <Button type="submit">Submit</Button>
             </Form>
+            {formValue && (
+                <Box>
+                    <Heading kind="h4" />
+                    {Object.keys(formValue).map(key => (
+                        <Text>
+                            {key} : {formValue[key].toString()}
+                        </Text>
+                    ))}
+                </Box>
+            )}
         </Box>
     );
 });

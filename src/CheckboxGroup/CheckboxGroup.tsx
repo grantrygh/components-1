@@ -23,7 +23,7 @@ export const CheckboxGroup = ({
     const _values = isControlled ? valueProp : values;
 
     const _onChange = (event, boxName) => {
-        const { checked, value } = event.target;
+        const { checked } = event.target;
         let newValues;
 
         if (checked) {

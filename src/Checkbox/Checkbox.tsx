@@ -5,6 +5,7 @@ import MinusIcon from 'mdi-react/MinusIcon';
 import { forwardRef, useEffect, useRef } from 'react';
 import Box from '../Box';
 import ControlBox from '../ControlBox';
+import { useFormField } from '../Form';
 import { useForkRef } from '../hooks/useForkRef';
 import { useVariantColorWarning } from '../hooks/useVariantColorWarning';
 import VisuallyHidden from '../VisuallyHidden';
@@ -62,6 +63,17 @@ export const Checkbox = forwardRef(
 
         const defChecked = defaultIsChecked ? undefined : isChecked;
         const checkedState = isReadOnly ? Boolean(isChecked) : defChecked;
+
+        // Form control
+        const { onChange: formOnChange } = useFormField({
+            name,
+            onChange,
+        });
+        useEffect(() => {
+            if (formOnChange && typeof formOnChange === 'function') {
+                formOnChange({ value: checkedState || isIndeterminate });
+            }
+        }, [checkedState]);
 
         const IconTag = isIndeterminate ? MinusIcon : CheckBoldIcon;
 

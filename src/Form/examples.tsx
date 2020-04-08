@@ -45,14 +45,8 @@ stories.add('With All Input Types', () => {
                 <CheckboxGroup name="checkboxGroup">
                     <Checkbox name="check1">Checkbox 1</Checkbox>
                     <Checkbox name="check2">Checkbox 2</Checkbox>
+                    <Switch size="lg" name="switch" />
                 </CheckboxGroup>
-                <Switch
-                    size="lg"
-                    // isDisabled
-                    name="switch"
-                    // onChange={e => console.log(e.target.checked)}
-                    color="cyan"
-                />
                 <Button type="submit">Submit</Button>
             </Form>
         </Box>

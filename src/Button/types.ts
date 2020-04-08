@@ -24,7 +24,7 @@ export interface IButton {
     /**
      * The variant of the button style to use.
      */
-    variant?: 'primary' | 'secondary' | 'tertiary';
+    variant?: 'primary' | 'secondary' | 'tertiary' | 'unstyled';
     /**
      * If `true`, the button will be disabled.
      */

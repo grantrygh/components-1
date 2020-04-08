@@ -8,7 +8,7 @@ const readOnly = {
     },
 };
 
-export const inputStyle = ({ isFullWidth }, theme) => ({
+export const inputStyle = ({ isFullWidth = true }, theme) => ({
     style: {
         display: 'flex',
         alignItems: 'center',
@@ -19,7 +19,7 @@ export const inputStyle = ({ isFullWidth }, theme) => ({
         borderRadius: 'radius',
         boxSizing: 'border-box',
         px: 'input.spacing',
-        minWidth: isFullWidth ? 'full' : 'input.width',
+        width: isFullWidth ? 'full' : 'input.width',
     },
     sizes: {
         lg: {

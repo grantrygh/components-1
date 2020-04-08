@@ -4,23 +4,27 @@ import { Children, cloneElement, isValidElement } from 'react';
 import { InputLeftElement, InputRightElement } from '..';
 import Box from '../Box';
 import Input from '../Input';
+import { useTheme } from '../ThemeProvider';
 import { InputGroupProps } from './types';
 
-export const InputGroup = ({ children, size = 'md', ...props }: InputGroupProps) => {
+export const InputGroup = ({ children, size = 'md', isInline, ...props }: InputGroupProps) => {
+    const { space } = useTheme();
     let pl = null;
     let pr = null;
+    const spacingProps = isInline ? { mr: 'input.spacing' } : { mb: 'input.spacing' };
+
     return (
-        <Box display="flex" position="relative" {...props}>
-            {Children.map(children, child => {
+        <Box display="flex" position="relative" {...spacingProps} {...props}>
+            {Children.map(children, (child, index) => {
                 if (!isValidElement(child)) {
                     return null;
                 }
 
                 if (child.type === InputLeftElement) {
-                    pl = 'input.spacing';
+                    pl = `calc(${space.input[size]} + ${space.input['spacing']})`;
                 }
                 if (child.type === InputRightElement) {
-                    pr = 'input.spacing';
+                    pr = `calc(${space.input[size]} + ${space.input['spacing']})`;
                 }
                 if (child.type === Input) {
                     return cloneElement(child, {

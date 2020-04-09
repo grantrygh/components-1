@@ -16,7 +16,7 @@ export interface ICheckboxGroup {
     /**
      * The content of the checkbox group. Must be the `Checkbox` component
      */
-    children?: React.ReactNodeArray;
+    children?: React.ReactNode[];
     /**
      * The initial value of the checkbox group
      */

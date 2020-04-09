@@ -11,6 +11,7 @@ export interface ISelect {
         | Array<{ value: any; label: string }>
         | Array<{ label: string; options: Array<{ value: any; label: string }> }>;
 
+    id?: string;
     // name - generate an HTML input with this name, containing the current value
     name: string;
 

@@ -50,7 +50,7 @@ export const CheckboxGroup = ({
         }
 
         const isLastCheckbox = children.length === index + 1;
-        const spacingProps = isInline ? { mr: spacing } : { mb: spacing };
+        const spacingProps = isInline ? { mr: 'input.spacing.sm' } : { mb: 'input.spacing.sm' };
 
         const defCheckboxName = `${_name}-${index}`;
 
@@ -72,8 +72,10 @@ export const CheckboxGroup = ({
         );
     });
 
+    const spacingProps = isInline ? { mr: 'input.spacing.lg' } : { mb: 'input.spacing.lg' };
+
     return (
-        <Box role="group" {...rest}>
+        <Box role="group" {...spacingProps} {...rest}>
             {clones}
         </Box>
     );

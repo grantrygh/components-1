@@ -66,7 +66,7 @@ export const RadioGroup = forwardRef(
             }
 
             const isLastRadio = children.length === index + 1;
-            const spacingProps = isInline ? { mr: spacing } : { mb: spacing };
+            const spacingProps = isInline ? { mr: 'input.spacing.sm' } : { mb: 'input.spacing.sm' };
 
             return (
                 <Box display={isInline ? 'inline-block' : 'block'} {...(!isLastRadio && spacingProps)}>
@@ -100,8 +100,10 @@ export const RadioGroup = forwardRef(
             []
         );
 
+        const spacingProps = isInline ? { mr: 'input.spacing.lg' } : { mb: 'input.spacing.lg' };
+
         return (
-            <Box ref={rootRef} role="radiogroup" {...rest}>
+            <Box ref={rootRef} role="radiogroup" {...spacingProps} {...rest}>
                 {clones}
             </Box>
         );

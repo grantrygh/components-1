@@ -51,7 +51,10 @@ const input = {
 
     // Widths
     width: baseSizes[40],
-    spacing: baseSizes[4],
+    spacing: {
+        sm: baseSizes[1], // spacing within input group (radio options, checkboxes)
+        lg: baseSizes[4], // spacing between input groups (vertically, horizontally)
+    },
 };
 
 const sizes = {

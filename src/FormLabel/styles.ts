@@ -2,15 +2,15 @@ import { useTheme } from '../ThemeProvider';
 
 export const formLabelStyle = ({ isDisabled }, theme) => ({
     style: {
-        fontSize: 'md',
-        pr: '12px',
-        pb: '4px',
-        opacity: isDisabled ? '0.4' : '1',
+        fontSize: 'sm',
+        pr: 'input.spacing.sm',
+        pb: 'input.spacing.sm',
+        color: isDisabled ? 'disabled' : 'faintText',
         fontWeight: 'medium',
         textAlign: 'left',
+        cursor: 'pointer',
     },
     requiredIndicator: {
-        ml: 1,
         color: 'error.500',
     },
 });

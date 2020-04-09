@@ -26,8 +26,8 @@ export function Form(props: FormProps) {
 
     const { fields, registerField } = useFormFields();
 
-    const onChange = React.useCallback(({ name, value }) => {
-        setValue(val => ({ ...val, [name]: value }));
+    const onChange = React.useCallback(({ name, value: changeValue }) => {
+        setValue(val => ({ ...val, [name]: changeValue }));
     }, []);
 
     const getFormValue = () => value;

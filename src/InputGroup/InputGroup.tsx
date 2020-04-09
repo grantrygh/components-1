@@ -1,40 +1,57 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { Children, cloneElement, isValidElement } from 'react';
-import { InputLeftElement, InputRightElement } from '..';
+import { FormControl, FormErrorMessage, FormHelperText, FormLabel, InputLeftElement, InputRightElement } from '..';
 import Box from '../Box';
 import Input from '../Input';
 import { useTheme } from '../ThemeProvider';
 import { InputGroupProps } from './types';
 
-export const InputGroup = ({ children, size = 'md', isInline, ...props }: InputGroupProps) => {
+export const InputGroup = ({
+    children,
+    size = 'md',
+    isInline,
+    id,
+    label,
+    isInvalid,
+    isRequired,
+    error,
+    helperText,
+    ...props
+}: InputGroupProps) => {
     const { space } = useTheme();
     let pl = null;
     let pr = null;
-    const spacingProps = isInline ? { mr: 'input.spacing' } : { mb: 'input.spacing' };
+    const spacingProps = isInline ? { mr: 'input.spacing.lg' } : { mb: 'input.spacing.lg' };
 
     return (
-        <Box display="flex" position="relative" {...spacingProps} {...props}>
-            {Children.map(children, (child, index) => {
-                if (!isValidElement(child)) {
-                    return null;
-                }
+        <FormControl isInvalid={isInvalid} isRequired={isRequired} {...spacingProps}>
+            {label && <FormLabel htmlFor={id}>{label}</FormLabel>}
+            <Box display="flex" position="relative" {...props}>
+                {Children.map(children, (child, index) => {
+                    if (!isValidElement(child)) {
+                        return null;
+                    }
 
-                if (child.type === InputLeftElement) {
-                    pl = `calc(${space.input[size]} + ${space.input['spacing']})`;
-                }
-                if (child.type === InputRightElement) {
-                    pr = `calc(${space.input[size]} + ${space.input['spacing']})`;
-                }
-                if (child.type === Input) {
-                    return cloneElement(child, {
-                        size,
-                        pl: child.props.pl || pl,
-                        pr: child.props.pr || pr,
-                    });
-                }
-                return cloneElement(child, { size });
-            })}
-        </Box>
+                    if (child.type === InputLeftElement) {
+                        pl = `calc(${space.input[size]} + ${space.input['spacing']})`;
+                    }
+                    if (child.type === InputRightElement) {
+                        pr = `calc(${space.input[size]} + ${space.input['spacing']})`;
+                    }
+                    if (child.type === Input) {
+                        return cloneElement(child, {
+                            size,
+                            id,
+                            pl: child.props.pl || pl,
+                            pr: child.props.pr || pr,
+                        });
+                    }
+                    return cloneElement(child, { size });
+                })}
+            </Box>
+            {helperText && <FormHelperText id={`${id}-help`}>{helperText}</FormHelperText>}
+            {error && <FormErrorMessage id={`${id}-error`}>{error}</FormErrorMessage>}
+        </FormControl>
     );
 };

@@ -23,15 +23,15 @@ const size = 'md';
 
 stories.add('with addons', () => (
     <Box>
-        <InputGroup size={size}>
+        <InputGroup size={size} label="Addon left" id="left">
             <InputLeftAddon>+234</InputLeftAddon>
             <Input roundedLeft="0" placeholder="Welcome" />
         </InputGroup>
-        <InputGroup size={size}>
+        <InputGroup size={size} label="Addon right" id="right">
             <InputRightAddon>.com</InputRightAddon>
             <Input roundedRight="0" placeholder="Welcome" />
         </InputGroup>
-        <InputGroup size={size}>
+        <InputGroup size={size} label="Error" error="This is an error" isInvalid>
             <InputLeftAddon>https://</InputLeftAddon>
             <Input rounded="0" placeholder="mysite" />
             <InputRightAddon>.com</InputRightAddon>
@@ -68,7 +68,7 @@ stories.add('with icons', () => (
 const PasswordInput = () => {
     const [show, setShow] = useState(false);
     return (
-        <InputGroup size="md">
+        <InputGroup size="md" label="Password" id="password">
             <Input pr="72px" type={show ? 'text' : 'password'} placeholder="Enter password" />
             <InputRightElement width="72px">
                 <Button size="sm" variant="unstyled" onClick={() => setShow(!show)}>

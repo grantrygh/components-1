@@ -2,6 +2,7 @@
 import { jsx } from '@emotion/core';
 import { forwardRef } from 'react';
 import Box from '../Box';
+import useCheckboxStyle from '../Checkbox/styles';
 import ControlBox from '../ControlBox';
 import { useFormField } from '../Form';
 import { VisuallyHidden } from '../VisuallyHidden';
@@ -30,6 +31,9 @@ export const Switch = forwardRef(
         }: SwitchProps,
         ref
     ) => {
+        const { label: labelStyleProps, container: containerStyleProps } = useCheckboxStyle({
+            size,
+        });
         const switchStyleProps = useSwitchStyle({
             size,
             color,
@@ -52,7 +56,7 @@ export const Switch = forwardRef(
         };
 
         return (
-            <Box as="label" display="inline-block" verticalAlign="middle" {...rest}>
+            <Box as="label" {...containerStyleProps} {...rest}>
                 <VisuallyHidden
                     as="input"
                     type="checkbox"
@@ -73,6 +77,7 @@ export const Switch = forwardRef(
                 <ControlBox {...switchStyleProps}>
                     <Box bg="white" transition="transform 250ms" rounded={rounded} size={height} />
                 </ControlBox>
+                {children && <Box {...labelStyleProps}>{children}</Box>}
             </Box>
         );
     }

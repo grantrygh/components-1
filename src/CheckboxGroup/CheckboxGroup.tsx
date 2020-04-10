@@ -13,7 +13,6 @@ export const CheckboxGroup = ({
     defaultValue,
     isInline,
     value: valueProp,
-    spacing = 2,
     children,
     ...rest
 }: CheckboxGroupProps) => {

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as StyledSystem from 'styled-system';
 import { BoxProps } from '../Box/types';
 import { ICheckbox } from '../Checkbox/types';
 import { Omit } from '../common-types';
@@ -29,10 +28,6 @@ export interface ICheckboxGroup {
      * The callback fired when any children Checkbox is checked or unchecked
      */
     onChange?: (value: Array<ICheckbox['value']>) => void;
-    /**
-     * The space between each checkbox
-     */
-    spacing?: StyledSystem.MarginProps['margin'];
     /**
      * If `true`, the checkboxes will aligned horizontally.
      */

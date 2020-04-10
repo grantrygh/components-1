@@ -1,7 +1,6 @@
 import * as React from 'react';
-import * as StyledSystem from 'styled-system';
 import { BoxProps } from '../Box/types';
-import { IButton } from '../Button';
+import { IButton } from '../Button/types';
 import { Omit } from '../common-types';
 
 export interface IButtonGroup {
@@ -14,7 +13,6 @@ export interface IButtonGroup {
      * to look flushed together
      */
     isAttached?: boolean;
-    spacing?: StyledSystem.MarginRightProps['marginRight'];
     children?: React.ReactNode;
 }
 

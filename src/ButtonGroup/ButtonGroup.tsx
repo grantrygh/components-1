@@ -9,7 +9,6 @@ export const ButtonGroup = ({
     variantColor = 'button',
     variant,
     isAttached,
-    spacing = 2,
     children,
     ...rest
 }: ButtonGroupProps) => {
@@ -26,7 +25,7 @@ export const ButtonGroup = ({
             variantColor: child.props.variantColor || variantColor,
             variant: child.props.variant || variant,
 
-            ...(!isLast && !isAttached && { mr: spacing }),
+            ...(!isLast && !isAttached && { mr: 'input.spacing.sm' }),
             ...(isFirst && isAttached && { roundedRight: 0 }),
             ...(isLast && isAttached && { roundedLeft: 0 }),
             ...(!isLast && isAttached && { borderRight: 0 }),

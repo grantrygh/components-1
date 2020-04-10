@@ -13,7 +13,6 @@ export interface IRadioGroup {
     value?: IRadio['value'];
     variantColor?: IRadio['variantColor'];
     onChange?: (event: React.ChangeEvent<HTMLInputElement>, value: IRadio['value']) => void;
-    spacing?: BoxProps['margin'];
     isInline?: boolean;
 }
 

@@ -56,11 +56,6 @@ export interface IButton {
      * Use the icon key in `theme.iconPath` or an icon from mdi-react.
      */
     rightIcon?: Icons | MdiReactIconComponentType;
-    /**
-     * The space between the button icon and label.
-     * Use the styled-system tokens or add custom values as a string
-     */
-    iconSpacing?: PseudoBoxProps['margin'];
 
     iconOnly?: boolean;
 }

@@ -7,9 +7,7 @@ export interface ISelect {
     // noOptionsMessage - ({ inputValue: string }) => string | null - Text to display when there are no options
 
     // options - specify the options the user can select from
-    options?:
-        | Array<{ value: any; label: string }>
-        | Array<{ label: string; options: Array<{ value: any; label: string }> }>;
+    options?: Array<{ label: string; value?: string; options?: Array<{ value: any; label: string }> }>;
 
     id?: string;
     // name - generate an HTML input with this name, containing the current value

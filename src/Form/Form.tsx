@@ -21,8 +21,8 @@ const useFormFields = () => {
 };
 
 export function Form(props: FormProps) {
-    const { onSubmit } = props;
-    const [value, setValue] = React.useState({});
+    const { onSubmit, initialValue = {} } = props;
+    const [value, setValue] = React.useState(initialValue);
 
     const { fields, registerField } = useFormFields();
 

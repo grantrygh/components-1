@@ -5,7 +5,7 @@ export interface FormValue {
 }
 
 export type FormContextType = {
-    // fields: {};
+    fields: {};
     // registerField: Function;
     getFormValue: Function;
     getFieldValue: Function;

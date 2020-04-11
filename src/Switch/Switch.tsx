@@ -18,7 +18,6 @@ export const Switch = forwardRef(
             'aria-label': ariaLabel,
             'aria-labelledby': ariaLabelledBy,
             color,
-            defaultIsChecked,
             isChecked,
             size,
             isDisabled,
@@ -31,6 +30,12 @@ export const Switch = forwardRef(
         }: SwitchProps,
         ref
     ) => {
+        const { onChange: formOnChange, value: initialSwitchValue } = useFormField({
+            name,
+            onChange,
+        });
+        const { defaultIsChecked = initialSwitchValue } = rest;
+
         const { label: labelStyleProps, container: containerStyleProps } = useCheckboxStyle({
             size,
         });
@@ -40,11 +45,6 @@ export const Switch = forwardRef(
         });
         const height = switchStyleProps['height'];
         const rounded = switchStyleProps['rounded'] || 'full';
-
-        const { onChange: formOnChange } = useFormField({
-            name,
-            onChange,
-        });
 
         const onSwitchChange = v => {
             if (formOnChange && typeof formOnChange === 'function') {

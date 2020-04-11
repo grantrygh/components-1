@@ -25,7 +25,6 @@ export const RadioGroup = forwardRef(
             defaultValue,
             isInline,
             value: valueProp,
-            spacing = 2,
             children,
             ...rest
         }: RadioGroupProps,
@@ -39,7 +38,7 @@ export const RadioGroup = forwardRef(
         const fallbackName = `radio-${useId()}`;
         const _name = name || fallbackName;
 
-        const { onChange: formOnChange } = useFormField({
+        const { onChange: formOnChange, value: initialRadioValue } = useFormField({
             name: _name,
             onChange,
         });
@@ -67,6 +66,7 @@ export const RadioGroup = forwardRef(
 
             const isLastRadio = children.length === index + 1;
             const spacingProps = isInline ? { mr: 'input.spacing.sm' } : { mb: 'input.spacing.sm' };
+            const isChecked = child.props.value === _value ? true : undefined;
 
             return (
                 <Box display={isInline ? 'inline-block' : 'block'} {...(!isLastRadio && spacingProps)}>
@@ -75,7 +75,9 @@ export const RadioGroup = forwardRef(
                         variantColor: child.props.variantColor || variantColor,
                         name: _name,
                         onChange: _onChange,
-                        isChecked: child.props.value === _value,
+                        isChecked,
+                        // set undefined to avoid having values for both isChecked and defaultIsChecked
+                        defaultIsChecked: !isChecked ? child.props.value === initialRadioValue : undefined,
                     })}
                 </Box>
             );

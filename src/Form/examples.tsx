@@ -29,8 +29,16 @@ stories.add('Sample', () => {
                     e.preventDefault();
                     setFormValue(getFormValue());
                 }}
+                initialValue={{
+                    first_name: 'testname',
+                    gender: 'male',
+                    chocolate: true,
+                    caramel: false,
+                    flavor: 'mango',
+                    lactose_intolerant: true,
+                }}
             >
-                <InputGroup id="name" label="First Name">
+                <InputGroup label="First Name">
                     <Input name="first_name" />
                 </InputGroup>
                 <RadioGroup name="gender">
@@ -41,13 +49,25 @@ stories.add('Sample', () => {
                         Female
                     </Radio>
                 </RadioGroup>
-                <InputGroup id="flavor" label="Ice cream flavor">
+                <InputGroup label="Ice cream flavor">
                     <Select
                         name="flavor"
                         options={[
                             { value: 'chocolate', label: 'Chocolate' },
-                            { value: 'strawberry', label: 'Strawberry' },
                             { value: 'vanilla', label: 'Vanilla' },
+                            {
+                                label: 'Fruits',
+                                options: [
+                                    {
+                                        label: 'Strawberry',
+                                        value: 'strawberry',
+                                    },
+                                    {
+                                        label: 'Mango',
+                                        value: 'mango',
+                                    },
+                                ],
+                            },
                         ]}
                     />
                 </InputGroup>
@@ -56,11 +76,11 @@ stories.add('Sample', () => {
                     <Checkbox name="caramel">Caramel</Checkbox>
                 </CheckboxGroup>
 
-                <CheckboxGroup>
-                    <Switch size="lg" name="switch">
+                <Box>
+                    <Switch size="lg" name="lactose_intolerant">
                         I'm lactose intolerant
                     </Switch>
-                </CheckboxGroup>
+                </Box>
                 <Button type="submit">Submit</Button>
             </Form>
             {formValue && (

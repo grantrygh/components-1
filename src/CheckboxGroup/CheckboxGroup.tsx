@@ -65,7 +65,9 @@ export const CheckboxGroup = ({
                             child.props.onChange(e);
                         }
                     },
-                    isChecked: child.props.isChecked || _values.includes(child.props.name || defCheckboxName),
+                    isChecked: child.props.isChild
+                        ? _values.includes(child.props.name || defCheckboxName)
+                        : child.props.isChecked,
                 })}
             </Box>
         );

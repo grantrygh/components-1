@@ -22,7 +22,6 @@ export const Checkbox = forwardRef(
             'aria-labelledby': ariaLabelledBy,
             variantColor = 'primary',
             defaultIsChecked,
-            isChecked,
             isFullWidth,
             isChild,
             size = 'md',
@@ -44,6 +43,12 @@ export const Checkbox = forwardRef(
         // Let's add a warning hook that validates the passed variantColor
         useVariantColorWarning('Checkbox', variantColor);
 
+        const { onChange: formOnChange, value: initialCheckboxValue } = useFormField({
+            name,
+            onChange,
+        });
+        const { isChecked = initialCheckboxValue } = rest;
+
         const { root: rootStyleProps, label: labelStyleProps, container: containerStyleProps } = useCheckboxStyle({
             color: variantColor,
             size,
@@ -61,19 +66,14 @@ export const Checkbox = forwardRef(
             }
         }, [isIndeterminate, _ref]);
 
-        const defChecked = defaultIsChecked ? undefined : isChecked;
-        const checkedState = isReadOnly ? Boolean(isChecked) : defChecked;
-
-        // Form control
-        const { onChange: formOnChange } = useFormField({
-            name,
-            onChange,
-        });
-        useEffect(() => {
+        const onSwitchChange = v => {
             if (formOnChange && typeof formOnChange === 'function') {
-                formOnChange({ value: checkedState || isIndeterminate });
+                formOnChange({ value: v.target.checked });
             }
-        }, [checkedState]);
+            if (onChange) {
+                onChange(v);
+            }
+        };
 
         const IconTag = isIndeterminate ? MinusIcon : CheckBoldIcon;
 
@@ -87,11 +87,11 @@ export const Checkbox = forwardRef(
                     ref={_ref}
                     name={name}
                     value={value}
-                    onChange={isReadOnly ? undefined : onChange}
+                    onChange={isReadOnly ? undefined : onSwitchChange}
                     onBlur={onBlur}
                     onFocus={onFocus}
                     defaultChecked={isReadOnly ? undefined : defaultIsChecked}
-                    checked={checkedState}
+                    checked={isChecked}
                     disabled={isDisabled}
                     readOnly={isReadOnly}
                     aria-readonly={isReadOnly}

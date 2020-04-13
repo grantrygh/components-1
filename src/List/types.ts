@@ -20,14 +20,10 @@ interface IList {
     spacing?: StyledSystem.MarginBottomProps['marginBottom'];
 }
 
-type ListProps = IList & BoxProps;
-declare const List: React.FC<ListProps>;
-export const ListItem: React.FC<PseudoBoxProps>;
+export type ListProps = IList & BoxProps;
 
-type ListIconProps = Omit<IconProps, 'name'> & {
+export type ListItemProps = PseudoBoxProps;
+
+export type ListIconProps = Omit<IconProps, 'name'> & {
     icon: IconProps['name'] | React.ComponentType;
 };
-
-export const ListIcon: React.FC<ListIconProps>;
-
-export default List;

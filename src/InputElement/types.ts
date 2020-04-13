@@ -14,7 +14,7 @@ interface IInputElement {
      */
     placement?: 'left' | 'right';
     /**
-     * The content of the component, normally an `IconButton` or string.
+     * The content of the component, normally a string.
      */
     children: React.ReactNode;
     /**

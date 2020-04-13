@@ -20,7 +20,6 @@ import ButtonGroup from '../ButtonGroup';
 import { DarkMode } from '../ColorModeProvider';
 import FormControl from '../FormControl';
 import FormLabel from '../FormLabel';
-import IconButton from '../IconButton';
 import Input from '../Input';
 import Link from '../Link';
 import Stack from '../Stack';
@@ -264,7 +263,7 @@ const DialogForm = () => {
                 closeOnBlur={false}
             >
                 <PopoverTrigger>
-                    <IconButton size="sm" icon="edit" />
+                    <Button>Edit</Button>
                 </PopoverTrigger>
                 <PopoverContent p={5}>
                     <FocusLock returnFocus persistentFocus={false}>

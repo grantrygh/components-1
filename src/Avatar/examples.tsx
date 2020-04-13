@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { Avatar, AvatarBadge } from '.';
 import { AvatarGroup } from '..';
-import Box from '../Box';
+import { Box } from '../Box';
 
 const stories = storiesOf('Avatar', module);
 stories.addDecorator(story => (

@@ -4,7 +4,7 @@ import ChevronLeftIcon from 'mdi-react/ChevronLeftIcon';
 import ChevronRightIcon from 'mdi-react/ChevronRightIcon';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Lightbox } from '.';
-import Box from '../Box';
+import { Box } from '../Box';
 import Button from '../Button';
 import Flex from '../Flex';
 import Image from '../Image';

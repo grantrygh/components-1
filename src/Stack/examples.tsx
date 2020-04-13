@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import Box from '../Box';
+import { Box } from '../Box';
 import Heading from '../Heading';
 import Text from '../Text';
 import { Stack } from './Stack';

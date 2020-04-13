@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/core';
 import CloseIcon from 'mdi-react/CloseIcon';
 import useBadgeStyle from '../Badge/styles';
-import Box from '../Box';
+import { Box } from '../Box';
 import { useVariantColorWarning } from '../hooks/useVariantColorWarning';
 import { Icon } from '../Icon';
 import PseudoBox from '../PseudoBox';

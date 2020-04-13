@@ -1,6 +1,6 @@
 import 'intersection-observer';
 import React, { useEffect, useRef, useState } from 'react';
-import Box from '../Box';
+import { Box } from '../Box';
 import Heading from '../Heading';
 import { useWindowResize } from '../hooks/useWindowResize';
 import { LightboxMedia } from '../Lightbox';

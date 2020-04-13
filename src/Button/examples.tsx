@@ -4,7 +4,7 @@ import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
 import PlusIcon from 'mdi-react/PlusIcon';
 import React from 'react';
 import Button from '.';
-import Box from '../Box';
+import { Box } from '../Box';
 import ButtonGroup from '../ButtonGroup';
 
 const stories = storiesOf('Button', module);

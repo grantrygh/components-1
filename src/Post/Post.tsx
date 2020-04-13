@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/core';
 import { Children, cloneElement, isValidElement, useState } from 'react';
 import Avatar from '../Avatar';
-import Box from '../Box';
+import { Box } from '../Box';
 import Button from '../Button';
 import Flex from '../Flex';
 import { useWindowResize } from '../hooks/useWindowResize';

@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/core';
 import { useId } from '@reach/auto-id';
 import React, { Children, cloneElement, MutableRefObject, useRef } from 'react';
-import Box from '../Box';
+import { Box } from '../Box';
 import { useDisclosure } from '../hooks/useDisclosure';
 import Popper, { PopperArrow } from '../Popper';
 import VisuallyHidden from '../VisuallyHidden';

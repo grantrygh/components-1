@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import { useState } from 'react';
 import Select from '.';
-import Box from '../Box';
+import { Box } from '../Box';
 import { Button } from '../Button';
 import { Form } from '../Form';
 import Stack from '../Stack';

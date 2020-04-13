@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import Box from '../Box';
+import { Box } from '../Box';
 import useHeadingStyle from './styles';
 import { HeadingProps } from './types';
 

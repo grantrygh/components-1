@@ -59,7 +59,7 @@ const shouldForwardProp = createShouldForwardProp([
  */
 const nativeHTMLPropAlias = ['htmlWidth', 'htmlHeight'];
 
-const Box = styled('div', {
+export const Box = styled('div', {
     shouldForwardProp: prop => {
         if (nativeHTMLPropAlias.includes(prop)) {
             return true;
@@ -68,5 +68,3 @@ const Box = styled('div', {
         return shouldForwardProp(prop);
     },
 })(truncate, systemProps);
-
-export default Box;

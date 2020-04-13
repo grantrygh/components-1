@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { Collapse } from '.';
-import Box from '../Box';
+import { Box } from '../Box';
 import { Button } from '../Button';
 
 const stories = storiesOf('Collapse', module).addDecorator(story => (

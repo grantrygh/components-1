@@ -6,7 +6,7 @@ import exenv from 'exenv';
 import React, { createContext, forwardRef, useCallback, useContext, useEffect, useRef } from 'react';
 import FocusLock from 'react-focus-lock/dist/cjs';
 import { Transition } from 'react-spring/renderprops';
-import Box from '../Box';
+import { Box } from '../Box';
 import { BoxProps } from '../Box/types';
 import CloseButton from '../CloseButton';
 import { CloseButtonProps } from '../CloseButton/types';

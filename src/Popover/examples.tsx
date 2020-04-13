@@ -14,7 +14,7 @@ import {
 } from '.';
 import Avatar from '../Avatar';
 import Badge from '../Badge';
-import Box from '../Box';
+import { Box } from '../Box';
 import Button from '../Button';
 import ButtonGroup from '../ButtonGroup';
 import { DarkMode } from '../ColorModeProvider';

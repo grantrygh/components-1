@@ -13,7 +13,7 @@ import {
     useRef,
     useState,
 } from 'react';
-import Box from '../Box';
+import { Box } from '../Box';
 import Flex from '../Flex';
 import { useVariantColorWarning } from '../hooks/useVariantColorWarning';
 import PseudoBox from '../PseudoBox';

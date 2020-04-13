@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react';
-import Box from '../Box';
+import { Box } from '../Box';
 import { BoxProps } from '../Box/types';
 import { Icon } from '../Icon';
 import useAlertStyle, { useAlertIconStyle } from './styles';

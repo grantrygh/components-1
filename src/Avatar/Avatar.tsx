@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import Box from '../Box';
+import { Box } from '../Box';
 import { useHasImageLoaded } from '../Image';
 import useAvatarStyle, { useAvatarBadgeStyle } from './styles';
 import { AvatarBadgeProps, AvatarNameProps, AvatarProps } from './types';

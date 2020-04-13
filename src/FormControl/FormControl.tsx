@@ -3,7 +3,7 @@
  */
 
 import React, { createContext, forwardRef, useContext } from 'react';
-import Box from '../Box';
+import { Box } from '../Box';
 import { FormControlProps } from './types';
 
 const FormControlContext = createContext(null);

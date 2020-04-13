@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 import { useId } from '@reach/auto-id';
 import React, { Children, cloneElement, useRef, useState } from 'react';
 import { Button } from '..';
-import Box from '../Box';
+import { Box } from '../Box';
 import useToggleGroupStyle from './styles';
 import { ToggleButtonProps, ToggleGroupProps } from './types';
 

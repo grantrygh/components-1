@@ -11,7 +11,7 @@ import {
     useRef,
     useState,
 } from 'react';
-import Box from '../Box';
+import { Box } from '../Box';
 import { useFormField } from '../Form';
 import { RadioGroupProps } from './types';
 

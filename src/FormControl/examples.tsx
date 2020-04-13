@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import { FormControl } from '.';
 import { FormErrorMessage, Input, InputGroup, Select } from '..';
-import Box from '../Box';
+import { Box } from '../Box';
 import { FormHelperText } from '../FormHelperText';
 import { FormLabel } from '../FormLabel';
 import { InputLeftAddon } from '../InputAddon';

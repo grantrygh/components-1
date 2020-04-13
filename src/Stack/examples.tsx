@@ -1,14 +1,14 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import Stack from '.';
 import Box from '../Box';
 import Heading from '../Heading';
 import Text from '../Text';
+import { Stack } from './Stack';
 
 const stories = storiesOf('Stack', module);
 
 stories.add('vertical stack', () => (
-    <Stack isInline shouldWrapChildren spacing={4}>
+    <Stack isInline shouldWrapChildren>
         <span>ooooooo</span>
         <span>ahhhhh</span>
         <span>Woah!</span>
@@ -17,14 +17,14 @@ stories.add('vertical stack', () => (
 
 stories.add('Inline Stack', () => (
     <Stack w="100%" bg="blue.500" direction="row">
-        <Box size="40px" background={'#fff'} rounded="full" />
-        <Box size="40px" background={'#fff'} rounded="full" />
-        <Box size="40px" background={'#fff'} rounded="full" />
+        <Box size="40px" background="#fff" rounded="full" />
+        <Box size="40px" background="#fff" rounded="full" />
+        <Box size="40px" background="#fff" rounded="full" />
     </Stack>
 ));
 
 stories.add('Reversed + Inline Stack', () => (
-    <Stack isReversed isInline spacing="40px" w="100%" h="60px">
+    <Stack isReversed isInline w="100%" h="60px">
         <Box w="100%" h="40px" bg="yellow.200">
             1
         </Box>
@@ -38,7 +38,7 @@ stories.add('Reversed + Inline Stack', () => (
 ));
 
 stories.add('Reverse direction prop', () => (
-    <Stack direction="column-reverse" spacing="40px" w="100%">
+    <Stack direction="column-reverse" w="100%">
         <Box w="100%" h="40px" bg="yellow.200">
             1
         </Box>
@@ -61,7 +61,7 @@ function Feature({ title, desc, ...rest }) {
 }
 
 stories.add('Reverse example in docs', () => (
-    <Stack isReversed spacing={8}>
+    <Stack isReversed>
         <Feature title="Plan Money" desc="The future can be even brighter but a goal without a plan is just a wish" />
         <Feature
             title="Save Money"

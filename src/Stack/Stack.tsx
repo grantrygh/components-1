@@ -3,21 +3,21 @@ import { jsx } from '@emotion/core';
 import { Children, cloneElement, isValidElement } from 'react';
 import Box from '../Box';
 import Flex from '../Flex';
+import { StackProps } from './types';
 
 // TODO: Reduce complexity by deprecating isInline and isReversed prop
-const Stack = ({
+export const Stack = ({
     direction,
     isInline = false,
     isReversed = false,
     children,
     align,
     justify,
-    spacing = 2,
     shouldWrapChildren,
     ...rest
-}) => {
-    const _isReversed = isReversed || (direction && direction.endsWith('reverse'));
-    const _isInline = isInline || (direction && direction.startsWith('row'));
+}: StackProps) => {
+    const _isReversed = isReversed || (direction && direction.toString().endsWith('reverse'));
+    const _isInline = isInline || (direction && direction.toString().startsWith('row'));
     let _direction;
 
     if (_isInline) {
@@ -41,10 +41,10 @@ const Stack = ({
     return (
         <Flex align={align} justify={justify} direction={_direction} {...rest}>
             {validChildrenArray.map((child, index) => {
-                let isLastChild = validChildrenArray.length === index + 1;
-                let spacingProps = _isInline
-                    ? { [_isReversed ? 'ml' : 'mr']: isLastChild ? null : spacing }
-                    : { [_isReversed ? 'mt' : 'mb']: isLastChild ? null : spacing };
+                const isLastChild = validChildrenArray.length === index + 1;
+                const spacingProps = _isInline
+                    ? { [_isReversed ? 'ml' : 'mr']: isLastChild ? null : 'spacing.input.sm' }
+                    : { [_isReversed ? 'mt' : 'mb']: isLastChild ? null : 'spacing.input.sm' };
 
                 if (shouldWrapChildren) {
                     return (
@@ -58,5 +58,3 @@ const Stack = ({
         </Flex>
     );
 };
-
-export default Stack;

@@ -1,7 +1,6 @@
 import * as React from 'react';
-import * as StyledSystem from 'styled-system';
 import { BoxProps } from '../Box/types';
-import { FlexProps } from '../Flex';
+import { FlexProps } from '../Flex/types';
 
 interface IStack {
     /**
@@ -21,10 +20,6 @@ interface IStack {
      */
     children?: React.ReactNode;
     /**
-     * The space between each stack item
-     */
-    spacing?: StyledSystem.MarginProps['margin'];
-    /**
      * The alignment of the stack item. Similar to `align-items`
      */
     align?: FlexProps['align'];
@@ -40,7 +35,3 @@ interface IStack {
 }
 
 export type StackProps = IStack & BoxProps;
-
-declare const Stack: React.FC<StackProps>;
-
-export default Stack;

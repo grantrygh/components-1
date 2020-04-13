@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { Icon } from '../Icon';
-import PseudoBox from '../PseudoBox';
+import { PseudoBox } from '../PseudoBox';
 import useCloseButtonStyle from './styles';
 import { CloseButtonProps } from './types';
 

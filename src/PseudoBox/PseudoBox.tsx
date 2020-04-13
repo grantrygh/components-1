@@ -41,7 +41,7 @@ const groupHover = '[role=group]:hover &';
  * <PseudoBox _hover={...} _focus={...}/>
  * ```
  */
-const PseudoBox = styled(Box)(
+export const PseudoBox = styled(Box)(
     ({
         _after,
         _focus,
@@ -96,7 +96,3 @@ const PseudoBox = styled(Box)(
         });
     }
 );
-
-PseudoBox.displayName = 'PseudoBox';
-
-export default PseudoBox;

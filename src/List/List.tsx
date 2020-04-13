@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 import { Children, cloneElement, forwardRef, isValidElement } from 'react';
 import { Box } from '../Box';
 import { Icon } from '../Icon';
-import PseudoBox from '../PseudoBox';
+import { PseudoBox } from '../PseudoBox';
 import { ListIconProps, ListItemProps, ListProps } from './types';
 
 export const List = forwardRef(({ styleType = 'none', stylePos = 'inside', children, ...props }: ListProps, ref) => (

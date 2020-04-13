@@ -8,7 +8,7 @@ import Divider from '../Divider';
 import { useForkRef } from '../hooks/useForkRef';
 import { usePrevious } from '../hooks/usePrevious';
 import Popper from '../Popper';
-import PseudoBox from '../PseudoBox';
+import { PseudoBox } from '../PseudoBox';
 import Text from '../Text';
 import { getFocusables } from '../utils/getFocusables';
 import { wrapEvent } from '../utils/wrapEvent';

@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 import { forwardRef } from 'react';
 import { useFormField } from '../Form';
 import { useFormControl } from '../FormControl';
-import PseudoBox from '../PseudoBox';
+import { PseudoBox } from '../PseudoBox';
 import useInputStyle from './styles';
 import { InputProps } from './types';
 

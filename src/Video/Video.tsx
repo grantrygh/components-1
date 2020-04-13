@@ -4,7 +4,7 @@ import { Box } from '../Box';
 import Heading from '../Heading';
 import { useWindowResize } from '../hooks/useWindowResize';
 import { LightboxMedia } from '../Lightbox';
-import PseudoBox from '../PseudoBox';
+import { PseudoBox } from '../PseudoBox';
 import Text from '../Text';
 import useVideoStyle from './styles';
 import { OuterContainerProps, VideoProps } from './types';

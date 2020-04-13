@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import PseudoBox from '../PseudoBox';
+import { PseudoBox } from '../PseudoBox';
 import { LinkProps } from './types';
 
 const baseStyleProps = {

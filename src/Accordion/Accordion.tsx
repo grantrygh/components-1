@@ -3,10 +3,11 @@ import { jsx } from '@emotion/core';
 import { useId } from '@reach/auto-id';
 import { Children, cloneElement, createContext, forwardRef, isValidElement, useContext, useRef, useState } from 'react';
 import { Box } from '../Box';
-import Collapse from '../Collapse';
+import { Collapse } from '../Collapse';
 import { CollapseProps } from '../Collapse/types';
-import Icon, { IconProps } from '../Icon';
-import PseudoBox from '../PseudoBox';
+import { Icon } from '../Icon';
+import { IconProps } from '../Icon/types';
+import { PseudoBox } from '../PseudoBox';
 import useAccordionStyle from './styles';
 import { AccordionContextProps, AccordionHeaderProps, AccordionItemProps, AccordionProps } from './types';
 

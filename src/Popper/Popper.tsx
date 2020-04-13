@@ -13,7 +13,7 @@ import { forwardRef, useCallback, useEffect, useImperativeHandle, useLayoutEffec
 import { Box } from '../Box';
 import { useForkRef } from '../hooks/useForkRef';
 import Portal from '../Portal';
-import PseudoBox from '../PseudoBox';
+import { PseudoBox } from '../PseudoBox';
 import { createChainedFunction } from '../utils/createChainedFunction';
 import { setRef } from '../utils/setRef';
 import usePopperStyle from './styles';

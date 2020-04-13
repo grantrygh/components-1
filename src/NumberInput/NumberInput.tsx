@@ -5,7 +5,7 @@ import Flex from '../Flex';
 import { useForkRef } from '../hooks/useForkRef';
 import { useNumberInput } from '../hooks/useNumberInput';
 import Input from '../Input';
-import PseudoBox from '../PseudoBox';
+import { PseudoBox } from '../PseudoBox';
 import { wrapEvent } from '../utils/wrapEvent';
 import useNumberInputStyle from './styles';
 import {

@@ -1,3 +1,3 @@
 export * from './PseudoBox';
-export { default } from './PseudoBox';
+export { PseudoBox as default } from './PseudoBox';
 export * from './types';

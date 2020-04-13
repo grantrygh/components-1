@@ -16,7 +16,7 @@ import {
 import { Box } from '../Box';
 import Flex from '../Flex';
 import { useVariantColorWarning } from '../hooks/useVariantColorWarning';
-import PseudoBox from '../PseudoBox';
+import { PseudoBox } from '../PseudoBox';
 import { assignRef } from '../utils/assignRef';
 import useTabStyle, { useTabListStyle } from './styles';
 import { TabContextProps, TabListProps, TabPanelProps, TabProps, TabsProps } from './types';

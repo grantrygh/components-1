@@ -22,13 +22,13 @@ stories.add('version2', () => (
 ));
 
 const ContolledEx = () => {
-    const [val, setVal] = useState('');
+    const [val, setVal] = useState(null);
     return (
         <NumberInput size="md" max={35} min={0} step={4} value={val} precision={2} onChange={setVal}>
             <NumberInputField />
             <NumberInputStepper>
-                <NumberIncrementStepper children="+" />
-                <NumberDecrementStepper children="-" />
+                <NumberIncrementStepper>+</NumberIncrementStepper>
+                <NumberDecrementStepper>-</NumberDecrementStepper>
             </NumberInputStepper>
         </NumberInput>
     );

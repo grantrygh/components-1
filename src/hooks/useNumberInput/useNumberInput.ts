@@ -80,6 +80,9 @@ export function useNumberInput({
     const prevNextValue = useRef(null);
 
     const shouldConvertToNumber = val => {
+        if (typeof val === 'number') {
+            return false;
+        }
         const hasDot = val.indexOf('.') > -1;
         const hasTrailingZero = val.substr(val.length - 1) === '0';
         const hasTrailingDot = val.substr(val.length - 1) === '.';

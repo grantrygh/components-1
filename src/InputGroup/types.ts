@@ -5,7 +5,7 @@ import { IInput } from '../Input/types';
 
 export interface IInputGroup {
     size?: IInput['size'];
-    children: React.ReactNodeArray;
+    children: React.ReactNode;
     isInline?: boolean;
 
     // for form control

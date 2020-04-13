@@ -58,6 +58,11 @@ export interface IButton {
     rightIcon?: Icons | MdiReactIconComponentType;
 
     iconOnly?: boolean;
+
+    /**
+     * If added, Button will be rendered as a Link.
+     */
+    href?: string;
 }
 
 export type ButtonProps = IButton & Omit<PseudoBoxProps, 'size'>;

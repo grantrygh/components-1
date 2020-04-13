@@ -5,7 +5,7 @@ import { Box } from '../Box';
 import { LightboxMedia } from '../Lightbox';
 import { ImageProps } from './types';
 
-export const useHasImageLoaded = ({ src, onLoad, onError }) => {
+export const useHasImageLoaded = ({ src, onLoad = null, onError = null }) => {
     const isMounted = useRef(true);
     const [hasLoaded, setHasLoaded] = useState(false);
 

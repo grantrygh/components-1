@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { Children, cloneElement, isValidElement } from 'react';
-import Flex from '../Flex';
+import { Flex } from '../Flex';
 import useAvatarGroupStyle from './styles';
 import { AvatarGroupProps, MoreIndicatorProps } from './types';
 

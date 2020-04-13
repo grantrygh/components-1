@@ -1,4 +1,4 @@
-import { Schema } from 'yup';
+// import { Schema } from 'yup';
 
 export interface FormValue {
     [key: string]: any;
@@ -21,7 +21,7 @@ export interface FormFieldProps {
      * Validation schema
      * not used directly by input. <Form> uses it for validation
      */
-    schema?: Schema<any>;
+    // schema?: Schema<any>;
 
     /**
      * !unconfirmed
@@ -89,7 +89,7 @@ export interface FormProps {
      * @param {Object} value – form data object
      * @param {boolean} isValid - is form valid
      */
-    onChange?: (args: formCallback) => void;
+    // onChange?: (args: formCallback) => void;
 
     /**
      * Debug mode

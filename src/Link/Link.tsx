@@ -19,7 +19,7 @@ const baseStyleProps = {
     },
 };
 
-const Link = forwardRef(({ isDisabled, isExternal, onClick, ...rest }: LinkProps, ref) => {
+export const Link = forwardRef(({ isDisabled, isExternal, onClick, ...rest }: LinkProps, ref) => {
     const externalProps = isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : null;
 
     return (
@@ -35,7 +35,3 @@ const Link = forwardRef(({ isDisabled, isExternal, onClick, ...rest }: LinkProps
         />
     );
 });
-
-Link.displayName = 'Link';
-
-export default Link;

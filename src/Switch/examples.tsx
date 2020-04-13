@@ -15,9 +15,9 @@ stories.addDecorator(story => {
 });
 
 stories.add('Default', () => (
-    <Stack inline>
-        <Switch size="sm" onChange={e => console.log(e.target.checked)} color="green" />
-        <Switch size="md" onChange={e => console.log(e.target.checked)} color="blue" />
-        <Switch size="lg" isDisabled onChange={e => console.log(e.target.checked)} color="cyan" />
+    <Stack isInline>
+        <Switch size="sm" onChange={e => console.log(e)} color="green" />
+        <Switch size="md" onChange={e => console.log(e)} color="blue" />
+        <Switch size="lg" isDisabled onChange={e => console.log(e)} color="cyan" />
     </Stack>
 ));

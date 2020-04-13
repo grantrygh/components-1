@@ -23,6 +23,7 @@ export const truncate: any = $props => {
             whiteSpace: 'nowrap',
         };
     }
+    return {};
 };
 
 export const systemProps = compose(

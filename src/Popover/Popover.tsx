@@ -1,13 +1,14 @@
+/* eslint-disable max-lines */
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { useId } from '@reach/auto-id';
 import { Children, cloneElement, createContext, useContext, useEffect, useRef, useState } from 'react';
 import { Box } from '../Box';
 import { BoxProps } from '../Box/types';
-import CloseButton from '../CloseButton';
+import { CloseButton } from '../CloseButton';
 import { useColorMode } from '../ColorModeProvider';
 import { usePrevious } from '../hooks/usePrevious';
-import Popper, { PopperArrow } from '../Popper';
+import { Popper, PopperArrow } from '../Popper';
 import { wrapEvent } from '../utils/wrapEvent';
 import usePopoverStyle from './styles';
 import {

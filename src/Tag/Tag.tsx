@@ -6,6 +6,7 @@ import { Box } from '../Box';
 import { useVariantColorWarning } from '../hooks/useVariantColorWarning';
 import { Icon } from '../Icon';
 import { PseudoBox } from '../PseudoBox';
+import { Icons } from '../theme/icons';
 import useTagStyle, { useTagIconStyle } from './styles';
 import { TagCloseButtonProps, TagIconProps, TagLabelProps, TagProps } from './types';
 
@@ -48,7 +49,7 @@ export const TagCloseButton = ({ isDisabled, ...props }: TagCloseButtonProps) =>
 export const TagIcon = ({ icon, ...props }: TagIconProps) => {
     const tagIconStyleProps = useTagIconStyle();
     if (typeof icon === 'string') {
-        return <Icon name={icon} {...tagIconStyleProps} {...props} />;
+        return <Icon name={icon as Icons} {...tagIconStyleProps} {...props} />;
     }
 
     return <Box as={icon} focusable="false" color="currentColor" {...tagIconStyleProps} {...props} />;

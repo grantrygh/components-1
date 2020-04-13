@@ -4,6 +4,7 @@ import { forwardRef } from 'react';
 import { Box } from '../Box';
 import { useVariantColorWarning } from '../hooks/useVariantColorWarning';
 import { Icon } from '../Icon';
+import { Link } from '../Link';
 import { PseudoBox } from '../PseudoBox';
 import Spinner from '../Spinner';
 import { Icons } from '../theme/icons';
@@ -31,6 +32,7 @@ export const Button = forwardRef(
             children,
             as: Comp = 'button',
             variantColor = 'button',
+            href,
             leftIcon,
             rightIcon,
             variant = 'primary',
@@ -56,15 +58,15 @@ export const Button = forwardRef(
             isFullWidth,
             iconOnly,
         });
+
+        const asButton = href ? Link : 'button';
         return (
             <PseudoBox
                 disabled={_isDisabled}
                 aria-disabled={_isDisabled}
                 ref={ref}
-                as={Comp}
+                as={asButton}
                 type={type}
-                // width={isFullWidth ? 'full' : undefined}
-                // data-active={isActive ? 'true' : undefined}
                 {...buttonStyleProps}
                 {...rest}
             >

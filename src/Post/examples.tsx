@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { Post } from '.';
 import Box from '../Box';
 import Button from '../Button';
-import Icon from '../Icon';
+import { Icon } from '../Icon';
 import Menu, { MenuButton, MenuItem, MenuList } from '../Menu';
 import PostActions from '../PostActions';
 import ResponseBox from '../ReponseBox';

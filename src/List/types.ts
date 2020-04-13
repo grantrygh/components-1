@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as StyledSystem from 'styled-system';
 import { BoxProps } from '../Box/types';
 import { Omit } from '../common-types';
-import { IconProps } from '../Icon';
+import { IconProps } from '../Icon/types';
 import { PseudoBoxProps } from '../PseudoBox';
 
 interface IList {

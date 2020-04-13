@@ -1,7 +1,7 @@
 import React from 'react';
 import Avatar from '../Avatar';
 import Flex from '../Flex';
-import Icon from '../Icon';
+import { Icon } from '../Icon';
 import Menu, { MenuButton, MenuItem, MenuList } from '../Menu';
 import Text from '../Text';
 import useUserDropdownStyle from './styles';

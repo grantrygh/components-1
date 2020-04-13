@@ -6,7 +6,7 @@ import Box from '../Box';
 import Button from '../Button';
 import Flex from '../Flex';
 import { useWindowResize } from '../hooks/useWindowResize';
-import Icon from '../Icon';
+import { Icon } from '../Icon';
 import { usePostActionsStyle } from '../PostActions/styles';
 import Text from '../Text';
 import usePostStyle from './styles';

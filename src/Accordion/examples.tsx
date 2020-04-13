@@ -1,8 +1,8 @@
 import { storiesOf } from '@storybook/react';
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Accordion, AccordionHeader, AccordionIcon, AccordionItem, AccordionPanel } from '.';
 import Box from '../Box';
-import Icon from '../Icon';
+import { Icon } from '../Icon';
 
 const stories = storiesOf('Accordion', module).addDecorator(story => (
     <Box maxW="sm" mx="auto" mt={5}>
@@ -120,7 +120,7 @@ stories.add('styling expanded state', () => (
 stories.add('using render prop with icon', () => (
     <AccordionItem>
         {({ isExpanded }) => (
-            <Fragment>
+            <>
                 <AccordionHeader>
                     <Box flex="1" textAlign="left">
                         Section 2 title
@@ -132,7 +132,7 @@ stories.add('using render prop with icon', () => (
                     et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
                     aliquip ex ea commodo consequat.
                 </AccordionPanel>
-            </Fragment>
+            </>
         )}
     </AccordionItem>
 ));

@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { Badge } from '.';
 import Box from '../Box';
-import Icon from '../Icon';
+import { Icon } from '../Icon';
 
 const stories = storiesOf('Badge', module);
 stories.addDecorator(withKnobs);

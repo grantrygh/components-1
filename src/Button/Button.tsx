@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 import { forwardRef } from 'react';
 import Box from '../Box';
 import { useVariantColorWarning } from '../hooks/useVariantColorWarning';
-import Icon from '../Icon';
+import { Icon } from '../Icon';
 import PseudoBox from '../PseudoBox';
 import Spinner from '../Spinner';
 import { Icons } from '../theme/icons';

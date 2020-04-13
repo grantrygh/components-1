@@ -1,7 +1,7 @@
 import React, { createContext, useContext } from 'react';
 import Box from '../Box';
 import { BoxProps } from '../Box/types';
-import Icon from '../Icon';
+import { Icon } from '../Icon';
 import useAlertStyle, { useAlertIconStyle } from './styles';
 import { AlertProps, IAlert } from './types';
 

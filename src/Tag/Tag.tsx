@@ -4,7 +4,7 @@ import CloseIcon from 'mdi-react/CloseIcon';
 import useBadgeStyle from '../Badge/styles';
 import Box from '../Box';
 import { useVariantColorWarning } from '../hooks/useVariantColorWarning';
-import Icon from '../Icon';
+import { Icon } from '../Icon';
 import PseudoBox from '../PseudoBox';
 import useTagStyle, { useTagIconStyle } from './styles';
 import { TagCloseButtonProps, TagIconProps, TagLabelProps, TagProps } from './types';

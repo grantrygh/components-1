@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import ControlBox from '.';
 import Box from '../Box';
-import Icon from '../Icon';
+import { Icon } from '../Icon';
 import { VisuallyHidden } from '../VisuallyHidden';
 
 const stories = storiesOf('ControlBox', module);

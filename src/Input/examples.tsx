@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { Input } from '.';
 import { Box } from '../Box';
+import { Stack } from '../Stack';
 
 const stories = storiesOf('Input', module);
 
@@ -25,11 +26,11 @@ stories.add('Disabled', () => <Input placeholder="Sample placeholder" variant="o
 stories.add('Invalid', () => <Input placeholder="Sample placeholder" variant="outline" size="md" isInvalid />);
 
 stories.add('Sizes', () => (
-    <>
+    <Stack>
         <Input placeholder="Sample placeholder" variant="outline" size="sm" />
         <Input placeholder="Sample placeholder" variant="outline" size="md" />
         <Input placeholder="Sample placeholder" variant="outline" size="lg" />
-    </>
+    </Stack>
 ));
 
 const variantStories = storiesOf('Input/Variants', module);

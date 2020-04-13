@@ -38,8 +38,10 @@ export const Stack = ({
 
     const validChildrenArray = Children.toArray(children).filter(isValidElement);
 
+    const stackSpacingProps = _direction === 'row' ? { mr: 'input.spacing.lg' } : { mb: 'input.spacing.lg' };
+
     return (
-        <Flex align={align} justify={justify} direction={_direction} {...rest}>
+        <Flex align={align} justify={justify} direction={_direction} {...stackSpacingProps} {...rest}>
             {validChildrenArray.map((child, index) => {
                 const isLastChild = validChildrenArray.length === index + 1;
                 const spacingProps = _isInline

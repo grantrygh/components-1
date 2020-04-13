@@ -13,6 +13,7 @@ import {
     Radio,
     RadioGroup,
     Select,
+    Stack,
     Switch,
     Text,
 } from '..';
@@ -76,11 +77,9 @@ stories.add('Sample', () => {
                     <Checkbox name="caramel">Caramel</Checkbox>
                 </CheckboxGroup>
 
-                <Box>
-                    <Switch size="lg" name="lactose_intolerant">
-                        I'm lactose intolerant
-                    </Switch>
-                </Box>
+                <Stack>
+                    <Switch name="lactose_intolerant">I'm lactose intolerant</Switch>
+                </Stack>
                 <Button type="submit">Submit</Button>
             </Form>
             {formValue && (

@@ -1,2 +1,2 @@
 export * from './Heading';
-export { default } from './Heading';
+export { Heading as default } from './Heading';

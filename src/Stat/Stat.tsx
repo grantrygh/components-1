@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react';
 import { Box } from '../Box';
-import Flex from '../Flex';
+import { Flex } from '../Flex';
 import { Icon } from '../Icon';
-import Text from '../Text';
+import { Text } from '../Text';
 import useStatStyle from './styles';
 import { StatArrowProps, StatGroupProps, StatHelpTextProps, StatLabelProps, StatNumberProps, StatProps } from './types';
 

@@ -1,11 +1,11 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import Lorem from 'react-lorem-component';
-import Video from '.';
+import { Video } from '.';
 import { Box } from '../Box';
-import Image from '../Image';
+import { Image } from '../Image';
 import { LightboxGalleryProvider } from '../Lightbox';
-import Text from '../Text';
+import { Text } from '../Text';
 
 const stories = storiesOf('Video', module);
 stories.addDecorator(story => {

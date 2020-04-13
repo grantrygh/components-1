@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { Popper } from '.';
-import Button from '../Button';
+import { Button } from '../Button';
 
 const stories = storiesOf('Popper', module);
 

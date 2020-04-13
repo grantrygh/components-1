@@ -12,7 +12,7 @@ import PopperJS from 'popper.js';
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react';
 import { Box } from '../Box';
 import { useForkRef } from '../hooks/useForkRef';
-import Portal from '../Portal';
+import { Portal } from '../Portal';
 import { PseudoBox } from '../PseudoBox';
 import { createChainedFunction } from '../utils/createChainedFunction';
 import { setRef } from '../utils/setRef';

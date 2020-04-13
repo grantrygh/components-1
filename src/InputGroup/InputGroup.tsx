@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 import { Children, cloneElement, isValidElement } from 'react';
 import { FormControl, FormErrorMessage, FormHelperText, FormLabel, InputLeftElement, InputRightElement } from '..';
 import { Box } from '../Box';
-import Input from '../Input';
+import { Input } from '../Input';
 import { useTheme } from '../ThemeProvider';
 import { InputGroupProps } from './types';
 

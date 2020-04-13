@@ -1,10 +1,10 @@
 import MenuDownIcon from 'mdi-react/MenuDownIcon';
 import MenuUpIcon from 'mdi-react/MenuUpIcon';
 import React, { createContext, forwardRef, useContext } from 'react';
-import Flex from '../Flex';
+import { Flex } from '../Flex';
 import { useForkRef } from '../hooks/useForkRef';
 import { useNumberInput } from '../hooks/useNumberInput';
-import Input from '../Input';
+import { Input } from '../Input';
 import { PseudoBox } from '../PseudoBox';
 import { wrapEvent } from '../utils/wrapEvent';
 import useNumberInputStyle from './styles';

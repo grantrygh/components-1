@@ -3,8 +3,8 @@ import { jsx, ThemeContext } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import React, { useContext } from 'react';
 import { Icon } from '.';
-import Flex from '../Flex';
-import Text from '../Text';
+import { Flex } from '../Flex';
+import { Text } from '../Text';
 import { Icons as ThemeIcons } from '../theme/icons';
 
 const stories = storiesOf('Icons', module);

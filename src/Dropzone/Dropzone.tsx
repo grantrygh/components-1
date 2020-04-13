@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { PseudoBox } from '../PseudoBox';
-import Text from '../Text';
+import { Text } from '../Text';
 import useDropzoneStyle from './styles';
 import { DropzoneProps } from './types';
 

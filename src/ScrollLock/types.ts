@@ -1,14 +1,14 @@
-import React from 'react';
-
 interface OneChildrenElement {
-    children?: React.ReactElement;
+    // allow touch-scroll on this element
+    children?: any;
 }
 
-interface ScrollLockProps extends OneChildrenElement {
-    accountForScrollbars?: boolean;
-    isActive?: boolean;
+interface IScrollLock extends OneChildrenElement {
+    // whether or not to replace the void left by now absent scrollbars with padding
+    accountForScrollbars: boolean;
+    // whether or not the lock is active
+    isActive: boolean;
 }
 
-export default class ScrollLock extends React.Component<ScrollLockProps> {}
-
-export class TouchScrollable extends React.Component<OneChildrenElement> {}
+export type ScrollLockProps = IScrollLock;
+export type TouchScrollableProps = OneChildrenElement;

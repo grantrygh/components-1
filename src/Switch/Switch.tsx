@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 import { forwardRef } from 'react';
 import { Box } from '../Box';
 import useCheckboxStyle from '../Checkbox/styles';
-import ControlBox from '../ControlBox';
+import { ControlBox } from '../ControlBox';
 import { useFormField } from '../Form';
 import { VisuallyHidden } from '../VisuallyHidden';
 import useSwitchStyle from './styles';

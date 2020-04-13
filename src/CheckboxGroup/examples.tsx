@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
-import CheckboxGroup from '.';
-import Checkbox from '../Checkbox';
+import { CheckboxGroup } from '.';
+import { Checkbox } from '../Checkbox';
 
 const stories = storiesOf('CheckboxGroup', module);
 stories.add('Default', () => (

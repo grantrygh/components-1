@@ -14,7 +14,7 @@ import {
     ThemeProvider,
     UserDropdown,
 } from '../../src';
-import CanvasContainer, { CanvasContext, CanvasPanel } from '../../src/Canvas';
+import { CanvasContainer, CanvasContext, CanvasPanel } from '../../src/Canvas';
 import { Logo } from './components/Logo';
 
 const initialCanvasState = {

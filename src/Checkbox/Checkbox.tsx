@@ -4,11 +4,11 @@ import CheckBoldIcon from 'mdi-react/CheckBoldIcon';
 import MinusIcon from 'mdi-react/MinusIcon';
 import { forwardRef, useEffect, useRef } from 'react';
 import { Box } from '../Box';
-import ControlBox from '../ControlBox';
+import { ControlBox } from '../ControlBox';
 import { useFormField } from '../Form';
 import { useForkRef } from '../hooks/useForkRef';
 import { useVariantColorWarning } from '../hooks/useVariantColorWarning';
-import VisuallyHidden from '../VisuallyHidden';
+import { VisuallyHidden } from '../VisuallyHidden';
 import useCheckboxStyle from './styles';
 import { CheckboxProps } from './types';
 

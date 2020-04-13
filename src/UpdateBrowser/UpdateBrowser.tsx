@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { Box } from '../Box';
-import Button from '../Button';
-import Heading from '../Heading';
-import Image from '../Image';
-import Link from '../Link';
-import Text from '../Text';
+import { Button } from '../Button';
+import { Heading } from '../Heading';
+import { Image } from '../Image';
+import { Link } from '../Link';
+import { Text } from '../Text';
 import chrome_logo from './assets/chrome.png';
 import edge_logo from './assets/edge.png';
 import firefox_logo from './assets/firefox.png';

@@ -4,8 +4,8 @@ import { useId } from '@reach/auto-id';
 import React, { Children, cloneElement, MutableRefObject, useRef } from 'react';
 import { Box } from '../Box';
 import { useDisclosure } from '../hooks/useDisclosure';
-import Popper, { PopperArrow } from '../Popper';
-import VisuallyHidden from '../VisuallyHidden';
+import { Popper, PopperArrow } from '../Popper';
+import { VisuallyHidden } from '../VisuallyHidden';
 import useTooltipStyle from './styles';
 import { TooltipProps } from './types';
 

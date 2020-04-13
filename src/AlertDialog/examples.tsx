@@ -10,12 +10,12 @@ import {
     AlertDialogHeader,
     AlertDialogOverlay,
 } from '.';
-import Button from '../Button';
+import { Button } from '../Button';
 
 const stories = storiesOf('AlertDialog', module);
 
 const SampleDialog = () => {
-    const [isOpen, setIsOpen] = useState();
+    const [isOpen, setIsOpen] = useState(false);
     const onOpen = () => setIsOpen(true);
     const onClose = () => setIsOpen(false);
     const cancelRef = useRef();
@@ -48,7 +48,7 @@ const SampleDialog = () => {
 stories.add('default', () => <SampleDialog />);
 
 const SampleDialog2 = () => {
-    const [isOpen, setIsOpen] = useState();
+    const [isOpen, setIsOpen] = useState(false);
     const onOpen = () => setIsOpen(true);
     const onClose = () => setIsOpen(false);
     const cancelRef = useRef();

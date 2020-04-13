@@ -2,9 +2,9 @@
 import { jsx } from '@emotion/core';
 import { useState } from 'react';
 import { Box } from '../Box';
-import Button from '../Button';
-import Flex from '../Flex';
-import ResponseBox from '../ReponseBox';
+import { Button } from '../Button';
+import { Flex } from '../Flex';
+import { ResponseBox } from '../ReponseBox';
 import { usePostActionsStyle } from './styles';
 import { PostActionsProps } from './types';
 

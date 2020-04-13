@@ -4,7 +4,7 @@ import { forwardRef } from 'react';
 import { VisuallyHidden } from '..';
 import { Box } from '../Box';
 import useCheckboxStyle from '../Checkbox/styles';
-import ControlBox from '../ControlBox';
+import { ControlBox } from '../ControlBox';
 import { useVariantColorWarning } from '../hooks/useVariantColorWarning';
 import { RadioProps } from './types';
 

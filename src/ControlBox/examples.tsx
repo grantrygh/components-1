@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
-import ControlBox from '.';
+import { ControlBox } from '.';
 import { Box } from '../Box';
 import { Icon } from '../Icon';
 import { VisuallyHidden } from '../VisuallyHidden';

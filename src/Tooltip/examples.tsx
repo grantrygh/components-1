@@ -3,7 +3,7 @@ import PhoneIcon from 'mdi-react/PhoneIcon';
 import React from 'react';
 import { Tooltip } from '.';
 import { Box } from '../Box';
-import Button from '../Button';
+import { Button } from '../Button';
 
 const stories = storiesOf('Tooltip', module);
 stories.addDecorator(story => {

@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { Radio } from '.';
 import { Box } from '../Box';
-import RadioGroup from '../RadioGroup';
+import { RadioGroup } from '../RadioGroup';
 
 const stories = storiesOf('Radio', module);
 stories.addDecorator(story => {

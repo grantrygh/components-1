@@ -6,7 +6,7 @@ import { useVariantColorWarning } from '../hooks/useVariantColorWarning';
 import { Icon } from '../Icon';
 import { Link } from '../Link';
 import { PseudoBox } from '../PseudoBox';
-import Spinner from '../Spinner';
+import { Spinner } from '../Spinner';
 import { Icons } from '../theme/icons';
 import useButtonStyle from './styles';
 import { ButtonProps } from './types';

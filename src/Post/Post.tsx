@@ -1,14 +1,14 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { Children, cloneElement, isValidElement, useState } from 'react';
-import Avatar from '../Avatar';
+import { Avatar } from '../Avatar';
 import { Box } from '../Box';
-import Button from '../Button';
-import Flex from '../Flex';
+import { Button } from '../Button';
+import { Flex } from '../Flex';
 import { useWindowResize } from '../hooks/useWindowResize';
 import { Icon } from '../Icon';
 import { usePostActionsStyle } from '../PostActions/styles';
-import Text from '../Text';
+import { Text } from '../Text';
 import usePostStyle from './styles';
 
 export const Post = props => {

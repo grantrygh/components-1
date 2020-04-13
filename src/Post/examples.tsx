@@ -3,11 +3,11 @@ import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import { Post } from '.';
 import { Box } from '../Box';
-import Button from '../Button';
+import { Button } from '../Button';
 import { Icon } from '../Icon';
-import Menu, { MenuButton, MenuItem, MenuList } from '../Menu';
-import PostActions from '../PostActions';
-import ResponseBox from '../ReponseBox';
+import { Menu, MenuButton, MenuItem, MenuList } from '../Menu';
+import { PostActions } from '../PostActions';
+import { ResponseBox } from '../ReponseBox';
 
 const stories = storiesOf('Post', module).addDecorator(story => (
     <Box maxWidth="800px" mx="auto" mt={8} p={3}>

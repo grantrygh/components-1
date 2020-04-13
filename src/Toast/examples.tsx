@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { useToast } from '.';
 import { Box } from '../Box';
-import Button from '../Button';
+import { Button } from '../Button';
 
 const stories = storiesOf('Toast', module);
 stories.addDecorator(story => {

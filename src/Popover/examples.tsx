@@ -12,18 +12,18 @@ import {
     PopoverHeader,
     PopoverTrigger,
 } from '.';
-import Avatar from '../Avatar';
-import Badge from '../Badge';
+import { Avatar } from '../Avatar';
+import { Badge } from '../Badge';
 import { Box } from '../Box';
-import Button from '../Button';
-import ButtonGroup from '../ButtonGroup';
+import { Button } from '../Button';
+import { ButtonGroup } from '../ButtonGroup';
 import { DarkMode } from '../ColorModeProvider';
-import FormControl from '../FormControl';
-import FormLabel from '../FormLabel';
-import Input from '../Input';
-import Link from '../Link';
-import Stack from '../Stack';
-import Text from '../Text';
+import { FormControl } from '../FormControl';
+import { FormLabel } from '../FormLabel';
+import { Input } from '../Input';
+import { Link } from '../Link';
+import { Stack } from '../Stack';
+import { Text } from '../Text';
 
 const stories = storiesOf('Popover', module);
 

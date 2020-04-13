@@ -44,7 +44,7 @@ export const CircularProgressLabel = (props: CircularProgressLabelProps) => (
     />
 );
 
-const CircularProgress = forwardRef((props: CircularProgressProps, ref) => {
+export const CircularProgress = forwardRef((props: CircularProgressProps, ref) => {
     const {
         size,
         max,
@@ -90,5 +90,3 @@ const CircularProgress = forwardRef((props: CircularProgressProps, ref) => {
         </Box>
     );
 });
-
-export default CircularProgress;

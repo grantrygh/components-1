@@ -2,10 +2,10 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { LightboxGalleryProvider } from '.';
 import { Box } from '../Box';
-import Flex from '../Flex';
-import Image from '../Image';
-import Tabs, { Tab, TabList, TabPanel, TabPanels } from '../Tabs';
-import Text from '../Text';
+import { Flex } from '../Flex';
+import { Image } from '../Image';
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from '../Tabs';
+import { Text } from '../Text';
 
 const stories = storiesOf('Lightbox', module);
 

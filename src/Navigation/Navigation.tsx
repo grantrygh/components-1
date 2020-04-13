@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '../Box';
 import { BoxProps } from '../Box/types';
-import Flex from '../Flex';
+import { Flex } from '../Flex';
 import useNavigationStyle from './styles';
 
 export default function Navigation(props) {

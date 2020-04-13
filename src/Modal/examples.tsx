@@ -9,7 +9,7 @@ import { ButtonGroup } from '../ButtonGroup';
 import { FormControl } from '../FormControl';
 import { FormLabel } from '../FormLabel';
 import { useDisclosure } from '../hooks/useDisclosure';
-import Input from '../Input';
+import { Input } from '../Input';
 import { Scale, SlideIn } from '../Transition';
 
 const stories = storiesOf('Modal', module);

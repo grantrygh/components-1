@@ -34,8 +34,6 @@ export { default as ControlBox } from './ControlBox';
 export * from './CSSReset';
 export { default as CSSReset } from './CSSReset';
 export { default as Divider } from './Divider';
-export * from './Editable';
-export { default as Editable } from './Editable';
 export * from './Flex';
 export { default as Flex } from './Flex';
 export * from './FormControl';

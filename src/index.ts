@@ -22,8 +22,6 @@ export { default as ColorModeProvider } from './ColorModeProvider';
 export { default as ControlBox } from './ControlBox';
 export { default as CSSReset } from './CSSReset';
 export { default as Divider } from './Divider';
-export * from './Editable';
-export { default as Editable } from './Editable';
 export { default as Flex } from './Flex';
 export * from './FormControl';
 export { default as FormControl } from './FormControl';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { BoxProps } from '../Box/types';
 import { Omit } from '../common-types';
 import { Icons } from '../theme/icons';
@@ -28,7 +27,3 @@ interface IIcon {
 }
 
 export type IconProps = IIcon & Omit<BoxProps, 'size'>;
-
-declare const Icon: React.FC<IconProps>;
-
-export default Icon;

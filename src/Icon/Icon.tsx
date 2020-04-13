@@ -3,6 +3,7 @@ import { jsx, ThemeContext } from '@emotion/core';
 import styled from '@emotion/styled';
 import { forwardRef, useContext } from 'react';
 import Box from '../Box';
+import { IconProps } from './types';
 
 const Svg = styled(Box)`
     flex-shrink: 0;
@@ -12,9 +13,13 @@ const Svg = styled(Box)`
     }
 `;
 
-const Icon = forwardRef(
-    ({ size = '1em', name, color = 'currentColor', role = 'presentation', focusable = false, ...rest }, ref) => {
-        const { icons: iconPaths } = useContext(ThemeContext);
+// TODO: switch Icons to use mdi-react by default
+export const Icon = forwardRef(
+    (
+        { size = '1em', name, color = 'currentColor', role = 'presentation', focusable = false, ...rest }: IconProps,
+        ref
+    ) => {
+        const { icons: iconPaths } = useContext<{ icons?: any }>(ThemeContext);
 
         // Fallback in case you pass the wrong name
         const iconFallback = iconPaths['question-outline'];
@@ -41,7 +46,3 @@ const Icon = forwardRef(
         );
     }
 );
-
-Icon.displayName = 'Icon';
-
-export default Icon;

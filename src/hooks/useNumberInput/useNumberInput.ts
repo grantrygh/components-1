@@ -41,6 +41,7 @@ function useLongPress(callback = () => {}, speed = 200) {
 export function useNumberInput({
     value: valueProp,
     onChange,
+    name,
     defaultValue,
     focusInputOnChange = true,
     clampValueOnBlur = true,
@@ -213,6 +214,7 @@ export function useNumberInput({
         isFocused,
         isDisabled,
         isReadOnly,
+        name,
         incrementStepper: incrementStepperProps,
         decrementStepper: decrementStepperProps,
         incrementButton: {

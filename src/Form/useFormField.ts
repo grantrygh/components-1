@@ -8,8 +8,12 @@ export function useFormField(props) {
         e => {
             if (onChange) {
                 onChange({
-                    // support e.value to handle Select, and array constructor for isMulti Select
-                    value: (e.target && e.target.value) || e.value || (e.constructor === Array && e.map(v => v.value)),
+                    // support e.value to handle Select, and array constructor for isMulti Select, e for NumberInput
+                    value:
+                        (e.target && e.target.value) ||
+                        e.value ||
+                        (e.constructor === Array && e.map(v => v.value)) ||
+                        e,
                     name: props.name,
                 });
             }

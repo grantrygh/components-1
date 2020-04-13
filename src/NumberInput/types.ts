@@ -10,6 +10,7 @@ type InputAttributes = React.InputHTMLAttributes<HTMLInputElement>;
 export interface INumberInput extends UseNumberInputProps {
     isFullWidth?: boolean;
     size?: InputProps['size'];
+    name?: string;
 }
 
 export type NumberInputProps = INumberInput &
@@ -22,6 +23,7 @@ export type NumberIncrementStepperProps = PseudoBoxProps;
 export type NumberDecrementStepperProps = PseudoBoxProps;
 
 interface INumberContextProps {
+    name?: string;
     size?: INumberInput['size'];
     isDisabled?: boolean;
     incrementStepper?: any;

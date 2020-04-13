@@ -41,13 +41,13 @@ export const InputGroup = ({
                     }
                     if (child.type === Input) {
                         return cloneElement(child, {
-                            size,
+                            size: child.props.size || size,
                             id,
                             pl: child.props.pl || pl,
                             pr: child.props.pr || pr,
                         });
                     }
-                    return cloneElement(child, { size });
+                    return cloneElement(child, { size: child.props.size || size });
                 })}
             </Box>
             {helperText && <FormHelperText id={`${id}-help`}>{helperText}</FormHelperText>}

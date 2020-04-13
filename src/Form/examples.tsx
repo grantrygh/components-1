@@ -10,6 +10,7 @@ import {
     Heading,
     Input,
     InputGroup,
+    NumberInput,
     Radio,
     RadioGroup,
     Select,
@@ -33,6 +34,7 @@ stories.add('Sample', () => {
                 initialValue={{
                     first_name: 'testname',
                     gender: 'male',
+                    age: '4',
                     chocolate: true,
                     caramel: false,
                     flavor: 'mango',
@@ -42,6 +44,11 @@ stories.add('Sample', () => {
                 <InputGroup label="First Name">
                     <Input name="first_name" />
                 </InputGroup>
+
+                <InputGroup label="Age">
+                    <NumberInput max={35} min={0} step={1} name="age" />
+                </InputGroup>
+
                 <RadioGroup name="gender">
                     <Radio value="male" name="male">
                         Male
@@ -80,6 +87,7 @@ stories.add('Sample', () => {
                 <Stack>
                     <Switch name="lactose_intolerant">I'm lactose intolerant</Switch>
                 </Stack>
+
                 <Button type="submit">Submit</Button>
             </Form>
             {formValue && (

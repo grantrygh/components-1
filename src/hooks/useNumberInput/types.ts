@@ -5,6 +5,7 @@ export interface UseNumberInputProps {
      * The value of the input. Should be less than `max` and greater than `min`
      */
     value?: number;
+    name?: string;
     /**
      * The initial value of the input. Should be less than `max` and greater than `min`
      */
@@ -129,6 +130,7 @@ interface hiddenLabelProps {
 
 export interface UseNumberInputReturn {
     value: number;
+    name: string;
     isFocused: boolean;
     isDisabled: boolean;
     isReadOnly: boolean;

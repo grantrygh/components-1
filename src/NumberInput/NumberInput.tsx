@@ -2,6 +2,7 @@ import MenuDownIcon from 'mdi-react/MenuDownIcon';
 import MenuUpIcon from 'mdi-react/MenuUpIcon';
 import React, { createContext, forwardRef, useContext } from 'react';
 import { Flex } from '../Flex';
+import { useFormField } from '../Form';
 import { useForkRef } from '../hooks/useForkRef';
 import { useNumberInput } from '../hooks/useNumberInput';
 import { Input } from '../Input';
@@ -30,6 +31,7 @@ const NumberInput = forwardRef(
     (
         {
             value,
+            name,
             onChange,
             defaultValue,
             focusInputOnChange,
@@ -44,16 +46,31 @@ const NumberInput = forwardRef(
             isInvalid,
             isDisabled,
             isFullWidth,
-            size = 'md',
+            size,
             children,
             ...rest
         }: NumberInputProps,
         ref
     ) => {
+        // Form Support
+        const formField = useFormField({
+            name,
+            onChange,
+        });
+        const handleInputChange = e => {
+            if (onChange) {
+                onChange(e);
+            }
+            if (formField.onChange) {
+                formField.onChange(e);
+            }
+        };
+
         const context = useNumberInput({
             value,
-            onChange,
-            defaultValue,
+            name,
+            onChange: handleInputChange,
+            defaultValue: defaultValue || formField.value,
             focusInputOnChange,
             clampValueOnBlur,
             keepWithinRange,
@@ -66,6 +83,7 @@ const NumberInput = forwardRef(
             isInvalid,
             isDisabled,
         });
+
         const _children = children || (
             <>
                 <NumberInputField />
@@ -99,6 +117,7 @@ const NumberInputField = forwardRef(
                 readOnly: isReadOnly,
                 ...otherInputProps
             },
+            name,
         } = useNumberInputContext();
 
         const inputRef = useForkRef(_ref, ref);
@@ -117,6 +136,7 @@ const NumberInputField = forwardRef(
                 onKeyDown={handleKeyDown}
                 onChange={handleChange}
                 size={size}
+                name={name}
                 {...otherInputProps}
                 {...props}
             />

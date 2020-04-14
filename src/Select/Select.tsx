@@ -29,7 +29,7 @@ const renderSelect = (props, ref) => {
 
 export const Select = forwardRef((props: SelectProps, ref) => {
     const { onChange: formOnChange, value: initialSelectValue } = useFormField(props);
-    const { size = 'md' } = props;
+    const { size = 'md', options = [] } = props;
 
     // optionally allow custom onChange event along with passed Form onChange
     const hasOnChange = props.onChange || (formOnChange && typeof formOnChange === 'function');
@@ -48,7 +48,7 @@ export const Select = forwardRef((props: SelectProps, ref) => {
 
     // Handle default value
     let defaultSelectValue = null;
-    props.options.forEach(o => {
+    options.forEach(o => {
         if (o.value && o.value === initialSelectValue) {
             defaultSelectValue = o;
         } else if (o.options) {

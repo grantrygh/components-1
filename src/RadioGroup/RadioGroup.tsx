@@ -66,7 +66,7 @@ export const RadioGroup = forwardRef(
             }
 
             const isLastRadio = children.length === index + 1;
-            const spacingProps = isInline ? { mr: 'input.spacing.sm' } : { mb: 'input.spacing.sm' };
+            const spacingProps = isInline ? { mr: 'input.spacing.lg' } : { mb: 'input.spacing.sm' };
             const isChecked = child.props.value === _value ? true : undefined;
 
             return (

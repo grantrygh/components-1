@@ -1,13 +1,11 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
-import { useState } from 'react';
 import { Select } from '.';
 import { Box } from '../Box';
 import { Button } from '../Button';
 import { Form } from '../Form';
 import { Stack } from '../Stack';
-import { Text } from '../Text';
 
 const stories = storiesOf('Select', module);
 
@@ -73,30 +71,8 @@ stories.add('Variations', () => {
                     onChange={v => console.log('custom', v)}
                     onCreateOption={c => console.log('create', c)}
                 />
-                <Button type="submit">Submit</Button>
+                <Button type="submit">Submit</Button>For
             </Form>
-        </Box>
-    );
-});
-
-stories.add('In Form', () => {
-    const [submittedValue, setSubmittedValue] = useState(null);
-    return (
-        <Box>
-            Form example:
-            <Form
-                onSubmit={(e, { getFormValue }) => {
-                    e.preventDefault();
-                    const formValue = getFormValue();
-                    if (formValue.flavor) {
-                        setSubmittedValue(formValue.flavor);
-                    }
-                }}
-            >
-                <Select placeholder="Select option" options={options} name="flavor" isMulti />
-                <Button type="submit">Submit</Button>
-            </Form>
-            {submittedValue && <Text>{submittedValue}</Text>}
         </Box>
     );
 });

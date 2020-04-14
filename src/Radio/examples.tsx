@@ -24,8 +24,8 @@ stories.add('Default', () => (
     </RadioGroup>
 ));
 
-stories.add('Inline Radio (large) ', () => (
-    <RadioGroup isInline size="lg" defaultValue="male" onChange={(event, value) => console.log(value)}>
+stories.add('Inline Radio ', () => (
+    <RadioGroup isInline defaultValue="male" onChange={(event, value) => console.log(value)}>
         <Radio value="male">Male</Radio>
         <Radio value="female">Female</Radio>
     </RadioGroup>

@@ -57,7 +57,7 @@ const Menu = ({
     }, [_isOpen]);
 
     const updateTabIndex = index => {
-        if (focusableItems.current.length > 0) {
+        if (focusableItems.current && focusableItems.current.length > 0) {
             const nodeAtIndex = focusableItems.current[index];
             focusableItems.current.forEach(node => {
                 if (node !== nodeAtIndex) {
@@ -78,7 +78,7 @@ const Menu = ({
 
     useEffect(() => {
         if (activeIndex !== -1) {
-            if (focusableItems.current[activeIndex]) {
+            if (focusableItems.current && focusableItems.current[activeIndex]) {
                 focusableItems.current[activeIndex].focus();
             }
             updateTabIndex(activeIndex);
@@ -112,7 +112,7 @@ const Menu = ({
 
     const focusOnLastItem = () => {
         openMenu();
-        setActiveIndex(focusableItems.current.length - 1);
+        setActiveIndex(focusableItems.current && focusableItems.current.length - 1);
     };
 
     const closeMenu = () => {
@@ -237,7 +237,7 @@ const MenuList = ({ onKeyDown, onBlur, ...props }: MenuListProps) => {
     } = useMenuContext();
 
     const handleKeyDown = event => {
-        const count = focusableItems.current.length;
+        const count = focusableItems.current && focusableItems.current.length;
         let nextIndex;
         if (event.key === 'ArrowDown') {
             event.preventDefault();

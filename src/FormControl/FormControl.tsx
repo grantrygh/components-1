@@ -4,6 +4,9 @@
 
 import React, { createContext, forwardRef, useContext } from 'react';
 import { Box } from '../Box';
+import { FormErrorMessage } from '../FormErrorMessage';
+import { FormHelperText } from '../FormHelperText';
+import { FormLabel } from '../FormLabel';
 import { FormControlProps } from './types';
 
 const FormControlContext = createContext(null);
@@ -49,3 +52,18 @@ export const FormControl = forwardRef(
         );
     }
 );
+
+// template for input groups
+export const FormControlWrapper = (props: FormControlProps) => {
+    const { children, label, id, helperText, error, ...rest } = props;
+    return (
+        <FormControl {...rest}>
+            {label && <FormLabel htmlFor={id}>{label}</FormLabel>}
+
+            {children}
+
+            {helperText && <FormHelperText id={`${id}-help`}>{helperText}</FormHelperText>}
+            {error && <FormErrorMessage id={`${id}-error`}>{error}</FormErrorMessage>}
+        </FormControl>
+    );
+};

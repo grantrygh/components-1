@@ -2,6 +2,7 @@ import * as React from 'react';
 import { BoxProps } from '../Box/types';
 import { ICheckbox } from '../Checkbox/types';
 import { Omit } from '../common-types';
+import { FormControlProps } from '../FormControl/types';
 
 export interface ICheckboxGroup {
     /**
@@ -42,4 +43,4 @@ export interface ICheckboxGroup {
     size?: ICheckbox['size'];
 }
 
-export type CheckboxGroupProps = ICheckboxGroup & Omit<BoxProps, 'onChange' | 'size'>;
+export type CheckboxGroupProps = ICheckboxGroup & FormControlProps & Omit<BoxProps, 'onChange' | 'size'>;

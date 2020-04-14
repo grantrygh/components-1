@@ -95,7 +95,7 @@ const NumberInput = forwardRef(
         );
         return (
             <NumberInputContext.Provider value={{ ...context, size }}>
-                <Flex ref={ref} align="stretch" w={isFullWidth ? 'full' : null} pos="relative" {...rest}>
+                <Flex ref={ref} align="stretch" w={isFullWidth ? 'full' : null} pos="relative" {...rest} id={null}>
                     {_children}
                 </Flex>
             </NumberInputContext.Provider>
@@ -139,6 +139,7 @@ const NumberInputField = forwardRef(
                 name={name}
                 {...otherInputProps}
                 {...props}
+                id={name}
             />
         );
     }

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { BoxProps } from '../Box/types';
 import { Omit } from '../common-types';
+import { IFormControl } from '../FormControl/types';
 import { IRadio } from '../Radio/types';
 
 export interface IRadioGroup {
@@ -16,4 +17,4 @@ export interface IRadioGroup {
     isInline?: boolean;
 }
 
-export type RadioGroupProps = IRadioGroup & Omit<BoxProps, 'onChange'>;
+export type RadioGroupProps = IRadioGroup & IFormControl & Omit<BoxProps, 'onChange'>;

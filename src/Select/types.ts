@@ -10,8 +10,8 @@ export interface ISelect {
     options?: Array<{ label: string; value?: string; options?: Array<{ value: any; label: string }> }>;
 
     id?: string;
-    // name - generate an HTML input with this name, containing the current value
-    name: string;
+    // name - generate an HTML input with this name, containing the current value.
+    name?: string;
 
     // placeholder - change the text displayed when no option is selected
     placeholder?: string;

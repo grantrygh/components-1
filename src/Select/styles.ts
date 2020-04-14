@@ -7,9 +7,11 @@ export const selectStyle = ({ size }, theme) => ({
         //     ...provided,
         //     component overrides go here
         // }),
-        // container: (provided, props) => ({
-        //     ...provided,
-        // }),
+        container: (provided, props) => ({
+            ...provided,
+            width: '100%',
+            minWidth: theme.sizes.input.width,
+        }),
         control: (provided, { isFocused }) => {
             const stateColor = theme.colors.primary[500];
             return {
@@ -19,7 +21,6 @@ export const selectStyle = ({ size }, theme) => ({
                 borderBottomWidth: '1px',
                 borderColor: isFocused ? stateColor : theme.colors.border,
                 '&:hover': { borderColor: stateColor },
-                width: theme.sizes.input.width,
             };
         },
         dropdownIndicator: (provided, props) => ({

@@ -68,7 +68,7 @@ export const Checkbox = forwardRef(
 
         const onSwitchChange = v => {
             if (formOnChange && typeof formOnChange === 'function') {
-                formOnChange({ value: v.target.checked });
+                formOnChange(v, v.target.checked);
             }
             if (onChange) {
                 onChange(v);

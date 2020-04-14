@@ -13,6 +13,7 @@ import {
 } from 'react';
 import { Box } from '../Box';
 import { useFormField } from '../Form';
+import { FormControlWrapper } from '../FormControl';
 import { RadioGroupProps } from './types';
 
 export const RadioGroup = forwardRef(
@@ -105,9 +106,11 @@ export const RadioGroup = forwardRef(
         const spacingProps = isInline ? { mr: 'input.spacing.lg' } : { mb: 'input.spacing.lg' };
 
         return (
-            <Box ref={rootRef} role="radiogroup" {...spacingProps} {...rest}>
-                {clones}
-            </Box>
+            <FormControlWrapper {...rest} {...spacingProps}>
+                <Box ref={rootRef} role="radiogroup" {...rest}>
+                    {clones}
+                </Box>
+            </FormControlWrapper>
         );
     }
 );

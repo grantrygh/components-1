@@ -47,11 +47,11 @@ export const Switch = forwardRef(
         const rounded = switchStyleProps['rounded'] || 'full';
 
         const onSwitchChange = v => {
-            if (formOnChange && typeof formOnChange === 'function') {
-                formOnChange({ value: v.target.checked });
-            }
             if (onChange) {
                 onChange(v);
+            }
+            if (formOnChange && typeof formOnChange === 'function') {
+                formOnChange(v, v.target.checked);
             }
         };
 

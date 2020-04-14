@@ -33,12 +33,12 @@ export const Select = forwardRef((props: SelectProps, ref) => {
 
     // optionally allow custom onChange event along with passed Form onChange
     const hasOnChange = props.onChange || (formOnChange && typeof formOnChange === 'function');
-    const onChange = v => {
+    const onChange = e => {
         if (formOnChange && typeof formOnChange === 'function') {
-            formOnChange(v);
+            formOnChange(e, e.constructor === Array ? e.map(v => v.value) : e.value);
         }
         if (props.onChange) {
-            props.onChange(v);
+            props.onChange(e);
         }
     };
 

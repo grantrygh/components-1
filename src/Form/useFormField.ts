@@ -5,17 +5,20 @@ export function useFormField(props) {
     const { getFieldValue, onChange } = React.useContext(FormContext);
 
     const $onChange = React.useCallback(
-        e => {
+        (e, value = null) => {
             if (onChange) {
-                onChange({
-                    // support e.value to handle Select, and array constructor for isMulti Select, e for NumberInput
-                    value:
-                        (e.target && e.target.value) ||
-                        e.value ||
-                        (e.constructor === Array && e.map(v => v.value)) ||
-                        e,
-                    name: props.name,
-                });
+                if (value || typeof value === 'boolean') {
+                    onChange({
+                        value,
+                        name: props.name,
+                    });
+                } else {
+                    onChange({
+                        // support e for NumberInput (direct value)
+                        value: (e.target && e.target.value) || e,
+                        name: props.name,
+                    });
+                }
             }
         },
         [props.name]

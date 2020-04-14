@@ -93,7 +93,7 @@ stories.add('In Form', () => {
                     }
                 }}
             >
-                <Select placeholder="Select option" options={options} name="flavor" />
+                <Select placeholder="Select option" options={options} name="flavor" isMulti />
                 <Button type="submit">Submit</Button>
             </Form>
             {submittedValue && <Text>{submittedValue}</Text>}

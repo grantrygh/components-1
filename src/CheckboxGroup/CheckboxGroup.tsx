@@ -3,6 +3,7 @@ import { jsx } from '@emotion/core';
 import { useId } from '@reach/auto-id';
 import { Children, cloneElement, isValidElement, useRef, useState } from 'react';
 import { Box } from '../Box';
+import { FormControlWrapper } from '../FormControl';
 import { CheckboxGroupProps } from './types';
 
 export const CheckboxGroup = ({
@@ -76,8 +77,8 @@ export const CheckboxGroup = ({
     const spacingProps = isInline ? { mr: 'input.spacing.lg' } : { mb: 'input.spacing.lg' };
 
     return (
-        <Box role="group" {...spacingProps} {...rest}>
-            {clones}
-        </Box>
+        <FormControlWrapper {...spacingProps} {...rest}>
+            <Box role="group">{clones}</Box>
+        </FormControlWrapper>
     );
 };

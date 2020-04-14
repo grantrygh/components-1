@@ -8,14 +8,7 @@ export interface IInputGroup {
     children: React.ReactNode;
     isInline?: boolean;
 
-    // for form control
-
-    // input label for accessibility
-    label?: string;
-    // error message to be displayed when the InputGroup has isInvalid true
-    error?: string;
-    // show a helper text below the Input
-    helperText?: string;
+    name?: string;
 }
 
 export type InputGroupProps = IInputGroup & FormControlProps & BoxProps;

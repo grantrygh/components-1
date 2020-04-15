@@ -37,5 +37,9 @@ export const AlertIcon = props => {
         color: props.color || status,
     });
 
-    return <Icon mr={3} size={5} name={statusProps.icon} {...iconStyleProps} {...props} />;
+    return (
+        <Box {...iconStyleProps}>
+            <Icon mr={3} size={5} name={statusProps.icon} {...props} />
+        </Box>
+    );
 };

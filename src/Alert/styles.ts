@@ -66,11 +66,14 @@ const useAlertStyle = props => {
 export const useAlertIconStyle = ({ variant, color }) => {
     if (['left-accent', 'top-accent', 'subtle'].includes(variant)) {
         return {
+            height: '100%',
             color: `${color}.500`,
         };
     }
 
-    return {};
+    return {
+        height: '100%',
+    };
 };
 
 export default useAlertStyle;

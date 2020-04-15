@@ -43,7 +43,7 @@ export const buttonStyle = ({ color = 'button' }, theme) => ({
         },
         secondary: {
             color: `${color}.500`,
-            bg: 'transparent',
+            bg: 'secondaryButton',
             boxShadow: 'button',
             _hover: {
                 boxShadow: 'raised',

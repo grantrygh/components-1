@@ -241,6 +241,7 @@ const colors = {
     tooltip: neutral[9],
     button: brand.primary, // VARIANT: primary button bg , secondary & tertiary button text - uses .500
     buttonText: neutral[1], // primary button text
+    secondaryButton: 'transparent',
 
     inputFocus: brand.primary[500],
     inputHover: neutral[3],

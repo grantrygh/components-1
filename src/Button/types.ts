@@ -23,6 +23,9 @@ export interface IButton {
     variantColor?: string;
     /**
      * The variant of the button style to use.
+     * Primary - solid bolid
+     * Secondary - solid secondary
+     * Tertiary - outlined
      */
     variant?: 'primary' | 'secondary' | 'tertiary' | 'unstyled';
     /**

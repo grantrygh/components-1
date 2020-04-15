@@ -19,8 +19,19 @@ const baseStyleProps = {
     },
 };
 
-export const Link = forwardRef(({ isDisabled, isExternal, onClick, ...rest }: LinkProps, ref) => {
-    const externalProps = isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : null;
+export const Link = forwardRef(({ isDisabled, isExternal, onClick, href, ...rest }: LinkProps, ref) => {
+    function getHref() {
+        if (href && href.indexOf(window.location.origin) === 0) {
+            return href.replace(window.location.origin, '');
+        }
+        return href;
+    }
+
+    const linkHref = getHref();
+    const externalProps = isExternal
+        ? { href: linkHref, target: '_blank', rel: 'noopener noreferrer' }
+        : { href: linkHref };
+    // : { as: NavLink, to: linkHref };
 
     return (
         <PseudoBox

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
     AlertDialog,
     AlertDialogBody,
@@ -21,7 +21,7 @@ const SampleDialog = () => {
     const cancelRef = useRef();
 
     return (
-        <>
+        <React.Fragment>
             <Button onClick={onOpen}>Delete something</Button>
             <AlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose}>
                 <AlertDialogOverlay />
@@ -41,13 +41,13 @@ const SampleDialog = () => {
                     </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>
-        </>
+        </React.Fragment>
     );
 };
 
 stories.add('default', () => <SampleDialog />);
 
-const SampleDialog2 = () => {
+export const SampleDialog2 = () => {
     const [isOpen, setIsOpen] = useState(false);
     const onOpen = () => setIsOpen(true);
     const onClose = () => setIsOpen(false);

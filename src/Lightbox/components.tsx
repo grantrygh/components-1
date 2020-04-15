@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/core';
 import ChevronLeftIcon from 'mdi-react/ChevronLeftIcon';
 import ChevronRightIcon from 'mdi-react/ChevronRightIcon';
-import { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Lightbox } from '.';
 import { Box } from '../Box';
 import { Button } from '../Button';
@@ -236,14 +236,14 @@ const LightboxGalleryControls = () => {
     });
 
     return (
-        <>
+        <React.Fragment>
             <Button left={4} {...controlStyles} onClick={onPrev}>
                 <ChevronLeftIcon size={36} />
             </Button>
             <Button right={4} {...controlStyles} onClick={onNext}>
                 <ChevronRightIcon size={36} />
             </Button>
-        </>
+        </React.Fragment>
     );
 };
 

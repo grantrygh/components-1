@@ -15,7 +15,7 @@ export function useFormField(props) {
                 } else {
                     onChange({
                         // support e for NumberInput (direct value)
-                        value: (e.target && e.target.value) || e,
+                        value: e && e.target && e.target.value,
                         name: props.name,
                     });
                 }

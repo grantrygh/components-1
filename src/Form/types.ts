@@ -89,7 +89,7 @@ export interface FormProps {
      * @param {Object} value – form data object
      * @param {boolean} isValid - is form valid
      */
-    // onChange?: (args: formCallback) => void;
+    onChange?: (props: { name?: string; value?: any }) => void;
 
     /**
      * Debug mode

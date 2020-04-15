@@ -30,6 +30,7 @@ stories.add('Sample', () => {
                     e.preventDefault();
                     setFormValue(getFormValue());
                 }}
+                onChange={p => console.log(p)}
                 initialValue={{
                     first_name: 'testname',
                     gender: 'male',
@@ -100,7 +101,7 @@ stories.add('Sample', () => {
                     {Object.keys(formValue).map(key => {
                         return (
                             <Text>
-                                {key} : {formValue[key].toString()}
+                                {key} : {formValue[key] && formValue[key].toString()}
                             </Text>
                         );
                     })}

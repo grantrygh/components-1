@@ -62,7 +62,7 @@ const NumberInput = forwardRef(
                 onChange(e);
             }
             if (formField.onChange) {
-                formField.onChange(e);
+                formField.onChange(null, e);
             }
         };
 

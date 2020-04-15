@@ -242,6 +242,7 @@ const colors = {
     button: brand.primary, // VARIANT: primary button bg , secondary & tertiary button text - uses .500
     buttonText: neutral[1], // primary button text
     secondaryButton: 'transparent',
+    activeLink: brand.primary[500],
 
     inputFocus: brand.primary[500],
     inputHover: neutral[3],

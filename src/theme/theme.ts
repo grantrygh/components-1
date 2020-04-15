@@ -6,6 +6,7 @@ import typography from './typography';
 const space = {
     ...baseSizes,
     input: sizes.input,
+    canvas: sizes.canvas,
 };
 
 const shadows = {

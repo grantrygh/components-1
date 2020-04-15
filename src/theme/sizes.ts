@@ -57,11 +57,17 @@ const input = {
     },
 };
 
+const canvas = {
+    width: '300px',
+    spacing: baseSizes[5],
+};
+
 const sizes = {
     ...baseSizes,
     ...largeSizes,
     containers,
     input,
+    canvas,
 };
 
 export default sizes;

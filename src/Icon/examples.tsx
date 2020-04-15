@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, ThemeContext } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Icon } from '.';
 import { Flex } from '../Flex';
 import { Text } from '../Text';
@@ -12,7 +12,7 @@ const stories = storiesOf('Icons', module);
 const Icons = () => {
     const { icons: iconPaths } = useContext<{ icons?: any }>(ThemeContext);
     return (
-        <React.Fragment>
+        <>
             {Object.keys(iconPaths).map((icon: ThemeIcons) => (
                 <Flex
                     border="normal"
@@ -31,7 +31,7 @@ const Icons = () => {
                     </Text>
                 </Flex>
             ))}
-        </React.Fragment>
+        </>
     );
 };
 

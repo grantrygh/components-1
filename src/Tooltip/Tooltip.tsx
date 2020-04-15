@@ -110,7 +110,7 @@ export const Tooltip = ({
     const hasAriaLabel = ariaLabel != null;
 
     return (
-        <React.Fragment>
+        <>
             {clone}
 
             <Popper
@@ -132,6 +132,6 @@ export const Tooltip = ({
                 )}
                 {hasArrow && <PopperArrow />}
             </Popper>
-        </React.Fragment>
+        </>
     );
 };

@@ -2,11 +2,10 @@ import { useTheme } from '../ThemeProvider';
 
 export const accordionStyle = ({ isDisabled, isExpanded }, theme) => ({
     style: {
-        //
+        width: '100%',
     },
     item: {
-        borderTopWidth: '1px',
-        _last: { borderBottomWidth: '1px' },
+        //
     },
     header: {
         display: 'flex',
@@ -14,19 +13,18 @@ export const accordionStyle = ({ isDisabled, isExpanded }, theme) => ({
         width: '100%',
         transition: 'all 0.2s',
         _focus: { boxShadow: 'outline' },
-        _hover: { bg: 'blackAlpha.50' },
+        // _hover: { bg: 'blackAlpha.50' },
         _disabled: { opacity: '0.4', cursor: 'not-allowed' },
         outline: '0',
-        px: 4,
-        py: 2,
+        flex: 1,
     },
     panel: {
-        pt: 2,
-        px: 4,
-        pb: 5,
+        //
     },
     icon: {
-        size: '1.25em',
+        position: 'absolute',
+        right: 0,
+        size: 5,
         name: 'chevron-down',
         opacity: isDisabled ? 0.4 : 1,
         transform: isExpanded ? 'rotate(-180deg)' : null,

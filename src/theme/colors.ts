@@ -33,7 +33,7 @@ const brand = {
 };
 
 const neutral = {
-    1: '#FFF',
+    1: '#FFFFFF',
     2: '#FAFAFA',
     3: '#F5F5F5',
     4: '#F0F0F0',
@@ -45,7 +45,7 @@ const neutral = {
     10: '#262626',
     11: '#1F1F1F',
     12: '#141414',
-    13: '#000',
+    13: '#000000',
 };
 
 const states = {

@@ -1,50 +1,65 @@
 import { useTheme } from '../ThemeProvider';
 
-export const alertStyle = ({ color }, theme) => ({
-    style: {
-        display: 'flex',
-        alignItems: 'center',
-        position: 'relative',
-        overflow: 'hidden',
-        pl: 4,
-        pr: 4,
-        pt: 3,
-        pb: 3,
-    },
+export const alertStyle = ({ color, status }, { colors }) => {
+    const alertColor = color || status;
+    const bg = colors[alertColor][50] === colors['white'] ? colors[alertColor][100] : colors[alertColor][50];
+    console.log(colors[alertColor][50], colors['white'], colors[alertColor][50] === colors['white']);
+    return {
+        style: {
+            display: 'flex',
+            alignItems: 'center',
+            position: 'relative',
+            overflow: 'hidden',
+            rounded: 'radius',
+            p: 3,
+        },
 
-    variants: {
-        subtle: {
-            bg: `${color}.100`,
+        variants: {
+            subtle: {
+                bg,
+            },
+            solid: {
+                bg: `${alertColor}.500`,
+                color: 'white',
+            },
+            'left-accent': {
+                bg,
+                borderLeft: '2px',
+                borderColor: `${alertColor}.500`,
+                roundedTopLeft: 0,
+                roundedBottomLeft: 0,
+            },
+            'top-accent': {
+                bg,
+                borderTop: '2px',
+                borderColor: `${alertColor}.500`,
+                roundedTopLeft: 0,
+                roundedTopRight: 0,
+            },
         },
-        solid: {
-            bg: `${color}.400`,
-            color: 'white',
+        statuses: {
+            info: { icon: 'info', color: 'info' },
+            warning: { icon: 'warning-2', color: 'warning' },
+            success: { icon: 'check-circle', color: 'success' },
+            error: { icon: 'warning', color: 'error' },
         },
-        leftAccent: {
-            pl: 3,
-            bg: `${color}.100`,
-            borderLeft: '2px',
-            borderColor: `${color}.500`,
-        },
-        topAccent: {
-            pl: 2,
-            bg: `${color}.100`,
-            borderTop: '2px',
-            borderColor: `${color}.500`,
-        },
-    },
-});
+    };
+};
 
 const useAlertStyle = props => {
     const theme = useTheme();
     const styles = theme['styles'].alert ? theme['styles'].alert(props, theme) : alertStyle(props, theme);
 
-    return {
-        // base style
-        ...styles.style,
+    console.log(props.status, styles.statuses[props.status]);
 
-        // variant style
-        ...styles.variants[props.variant || 'leftAccent'],
+    return {
+        root: {
+            // base style
+            ...styles.style,
+            // variant style
+            ...styles.variants[props.variant || 'leftAccent'],
+        },
+        status: styles.statuses[props.status],
     };
 };
 

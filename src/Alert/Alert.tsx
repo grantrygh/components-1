@@ -5,22 +5,15 @@ import { Icon } from '../Icon';
 import useAlertStyle, { useAlertIconStyle } from './styles';
 import { AlertProps, IAlert } from './types';
 
-export const statuses = {
-    info: { icon: 'info', color: 'info' },
-    warning: { icon: 'warning-2', color: 'warning' },
-    success: { icon: 'check-circle', color: 'success' },
-    error: { icon: 'warning', color: 'error' },
-};
-
 const AlertContext = createContext<IAlert>({});
 
 /**
  * Alerts are used to communicate a state that affects a system, feature or page
  */
-export const Alert = ({ status = 'info', variant = 'subtle', ...rest }: AlertProps) => {
-    const alertStyleProps = useAlertStyle({
+export const Alert = ({ status = 'info', variant = 'left-accent', ...rest }: AlertProps) => {
+    const { root: alertStyleProps } = useAlertStyle({
         variant,
-        color: statuses[status] && statuses[status]['color'],
+        status,
     });
 
     const context = { status, variant };
@@ -38,10 +31,11 @@ export const AlertDescription = (props: BoxProps) => <Box {...props} />;
 
 export const AlertIcon = props => {
     const { status, variant } = useContext(AlertContext);
+    const { status: statusProps } = useAlertStyle({ variant, status });
     const iconStyleProps = useAlertIconStyle({
         variant,
-        color: statuses[status] && statuses[status]['color'],
+        color: props.color || status,
     });
 
-    return <Icon mr={3} size={5} name={statuses[status] && statuses[status]['icon']} {...iconStyleProps} {...props} />;
+    return <Icon mr={3} size={5} name={statusProps.icon} {...iconStyleProps} {...props} />;
 };

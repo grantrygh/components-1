@@ -106,7 +106,7 @@ export const RadioGroup = forwardRef(
         const spacingProps = isInline ? { mr: 'input.spacing.lg' } : { mb: 'input.spacing.lg' };
 
         return (
-            <FormControlWrapper {...rest} {...spacingProps}>
+            <FormControlWrapper id={name} {...rest} {...spacingProps}>
                 <Box ref={rootRef} role="radiogroup" {...rest}>
                     {clones}
                 </Box>

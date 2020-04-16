@@ -10,21 +10,29 @@ import useSelectStyle from './styles';
 import { SelectProps } from './types';
 
 const renderSelect = (props, ref) => {
-    const { loadOptions, onCreateOption } = props;
+    const { loadOptions, onCreateOption, id, ...rest } = props;
 
     if (loadOptions && onCreateOption) {
-        return <AsyncCreatableSelect loadOptions={loadOptions} onCreateOption={onCreateOption} ref={ref} {...props} />;
+        return (
+            <AsyncCreatableSelect
+                inputId={props.id}
+                loadOptions={loadOptions}
+                onCreateOption={onCreateOption}
+                ref={ref}
+                {...rest}
+            />
+        );
     }
 
     if (loadOptions) {
-        return <AsyncSelect loadOptions={loadOptions} ref={ref} {...props} />;
+        return <AsyncSelect inputId={props.id} loadOptions={loadOptions} ref={ref} {...rest} />;
     }
 
     if (onCreateOption) {
-        return <CreatableSelect onCreateOption={onCreateOption} ref={ref} {...props} />;
+        return <CreatableSelect inputId={props.id} onCreateOption={onCreateOption} ref={ref} {...rest} />;
     }
 
-    return <ReactSelect ref={ref} {...props} visible open />;
+    return <ReactSelect inputId={props.id} ref={ref} {...rest} visible open />;
 };
 
 export const Select = forwardRef((props: SelectProps, ref) => {

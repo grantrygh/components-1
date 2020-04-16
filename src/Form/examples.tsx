@@ -18,6 +18,7 @@ import {
     Text,
 } from '..';
 import { Box } from '../Box';
+import { ToggleButton, ToggleGroup } from '../ToggleGroup';
 
 const stories = storiesOf('Form', module);
 
@@ -32,6 +33,7 @@ stories.add('Sample', () => {
                 }}
                 onChange={p => console.log(p)}
                 initialValue={{
+                    cone: 'waffle',
                     first_name: 'testname',
                     gender: 'female',
                     age: 20,
@@ -56,6 +58,12 @@ stories.add('Sample', () => {
                     <Radio value="male">Male</Radio>
                     <Radio value="female">Female</Radio>
                 </RadioGroup>
+
+                <ToggleGroup label="Type of cone" name="cone">
+                    <ToggleButton value="regular">Regular</ToggleButton>
+                    <ToggleButton value="waffle">Waffle</ToggleButton>
+                    <ToggleButton value="dish">Dish</ToggleButton>
+                </ToggleGroup>
 
                 {/* <Select> should be wrapped in an <InputGroup> component to apply form controls and label */}
                 <InputGroup label="Ice cream flavor" name="flavor">
@@ -99,9 +107,10 @@ stories.add('Sample', () => {
                 <Box>
                     <Heading kind="h4" />
                     {Object.keys(formValue).map(key => {
+                        console.log(formValue);
                         return (
                             <Text>
-                                {key} : {formValue[key] && formValue[key].toString()}
+                                {key} : {formValue[key].toString()}
                             </Text>
                         );
                     })}

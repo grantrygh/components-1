@@ -33,10 +33,10 @@ stories.add('Sample', () => {
                 onChange={p => console.log(p)}
                 initialValue={{
                     first_name: 'testname',
-                    gender: 'male',
+                    gender: 'female',
                     age: 20,
-                    chocolate: true,
-                    caramel: false,
+                    chocolate: false,
+                    caramel: true,
                     flavor: 'mango',
                     lactose_intolerant: true,
                 }}
@@ -60,7 +60,7 @@ stories.add('Sample', () => {
                 {/* <Select> should be wrapped in an <InputGroup> component to apply form controls and label */}
                 <InputGroup label="Ice cream flavor" name="flavor">
                     <Select
-                        isMulti
+                        // isMulti
                         options={[
                             { value: 'chocolate', label: 'Chocolate' },
                             { value: 'vanilla', label: 'Vanilla' },
@@ -82,7 +82,7 @@ stories.add('Sample', () => {
                 </InputGroup>
 
                 {/* <CheckboxGroup> wrapped for form control and label. "name" should be passed to individual checkboxes, as multiple can be selected. */}
-                <CheckboxGroup name="checkboxGroup" label="Toppings">
+                <CheckboxGroup name="toppings" label="Toppings">
                     <Checkbox name="chocolate">Chocolate</Checkbox>
                     <Checkbox name="caramel">Caramel</Checkbox>
                 </CheckboxGroup>

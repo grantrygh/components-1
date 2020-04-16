@@ -22,17 +22,22 @@ export const InputGroup = ({ children, size = 'md', name, isInline, ...props }: 
                     }
 
                     if (child.type === InputLeftElement) {
-                        pl = `calc(${space.input[size]} + ${space.input['spacing']})`;
+                        pl = `calc(${space.input[size]} + ${space.input['spacing']['sm']})`;
                     }
                     if (child.type === InputRightElement) {
-                        pr = `calc(${space.input[size]} + ${space.input['spacing']})`;
+                        pr = `calc(${space.input[size]} + ${space.input['spacing']['sm']})`;
                     }
+
+                    const isElement = child.type === InputLeftElement || child.type === InputRightElement;
+
                     return cloneElement(child, {
                         size: child.props.size || size,
-                        pl: child.props.pl || pl,
-                        pr: child.props.pr || pr,
                         id: child.props.id || name,
                         name: child.props.name || name,
+                        ...(!isElement && {
+                            pl: child.props.pl || pl,
+                            pr: child.props.pr || pr,
+                        }),
                     });
                 })}
             </Box>

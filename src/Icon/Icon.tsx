@@ -16,7 +16,7 @@ const Svg = styled(Box)`
 // TODO: switch Icons to use mdi-react by default
 export const Icon = forwardRef(
     (
-        { size = '1em', name, color = 'currentColor', role = 'presentation', focusable = false, ...rest }: IconProps,
+        { size = '4', name, color = 'currentColor', role = 'presentation', focusable = false, ...rest }: IconProps,
         ref
     ) => {
         const { icons: iconPaths } = useContext<{ icons?: any }>(ThemeContext);

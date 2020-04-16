@@ -57,8 +57,6 @@ Navigation.Item = function NavItem(props: NavigationItemProps) {
         href,
     });
 
-    console.log(isSubmenuItem);
-
     return (
         <Flex as={href && Link} href={href} {...navItemStyleProps} {...props}>
             {(isActive || isLinkActive) && !isSubmenuItem && <Box {...activeBarStyleProps} />}

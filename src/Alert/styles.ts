@@ -3,7 +3,6 @@ import { useTheme } from '../ThemeProvider';
 export const alertStyle = ({ color, status }, { colors }) => {
     const alertColor = color || status;
     const bg = colors[alertColor][50] === colors['white'] ? colors[alertColor][100] : colors[alertColor][50];
-    console.log(colors[alertColor][50], colors['white'], colors[alertColor][50] === colors['white']);
     return {
         style: {
             display: 'flex',
@@ -49,8 +48,6 @@ export const alertStyle = ({ color, status }, { colors }) => {
 const useAlertStyle = props => {
     const theme = useTheme();
     const styles = theme['styles'].alert ? theme['styles'].alert(props, theme) : alertStyle(props, theme);
-
-    console.log(props.status, styles.statuses[props.status]);
 
     return {
         root: {

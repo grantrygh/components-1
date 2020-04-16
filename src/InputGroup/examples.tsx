@@ -1,12 +1,11 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
-import CheckIcon from 'mdi-react/CheckIcon';
-import PhoneIcon from 'mdi-react/PhoneIcon';
 import { useState } from 'react';
 import { InputGroup } from '.';
 import { Box } from '../Box';
 import { Button } from '../Button';
+import { Icon } from '../Icon';
 import { Input } from '../Input';
 import { InputLeftAddon, InputRightAddon } from '../InputAddon';
 import { InputLeftElement, InputRightElement } from '../InputElement';
@@ -43,22 +42,22 @@ stories.add('with icons', () => (
     <Box>
         <InputGroup size={size}>
             <InputLeftElement>
-                <PhoneIcon />
+                <Icon name="phone" />
             </InputLeftElement>
             <Input placeholder="Welcome" />
         </InputGroup>
         <InputGroup size={size}>
             <InputRightElement>
-                <CheckIcon />
+                <Icon name="check" />
             </InputRightElement>
             <Input placeholder="Welcome" />
         </InputGroup>
         <InputGroup>
             <InputLeftElement>
-                <PhoneIcon />
+                <Icon name="phone" />
             </InputLeftElement>
             <InputRightElement>
-                <CheckIcon />
+                <Icon name="check" />
             </InputRightElement>
             <Input placeholder="Welcome" />
         </InputGroup>

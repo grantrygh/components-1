@@ -43,10 +43,15 @@ export const CheckboxGroup = ({
     // If no name is passed, we'll generate a random, unique name
     const fallbackName = `checkbox-${useId()}`;
     const _name = name || fallbackName;
+    let firstChildName = null;
 
     const clones = Children.map(children, (child, index) => {
         if (!isValidElement(child)) {
             return null;
+        }
+
+        if (!firstChildName) {
+            firstChildName = child.props.name;
         }
 
         const isLastCheckbox = children.length === index + 1;
@@ -77,7 +82,7 @@ export const CheckboxGroup = ({
     const spacingProps = isInline ? { mr: 'input.spacing.lg' } : { mb: 'input.spacing.lg' };
 
     return (
-        <FormControlWrapper {...spacingProps} {...rest}>
+        <FormControlWrapper id={firstChildName} {...spacingProps} {...rest}>
             <Box role="group">{clones}</Box>
         </FormControlWrapper>
     );

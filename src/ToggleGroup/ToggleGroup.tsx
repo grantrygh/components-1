@@ -2,8 +2,9 @@
 import { jsx } from '@emotion/core';
 import { useId } from '@reach/auto-id';
 import React, { Children, cloneElement, useRef, useState } from 'react';
-import { Button } from '..';
+import { Button, FormControlWrapper } from '..';
 import { Box } from '../Box';
+import { useFormField } from '../Form';
 import useToggleGroupStyle from './styles';
 import { ToggleButtonProps, ToggleGroupProps } from './types';
 
@@ -17,6 +18,7 @@ export const ToggleButton = React.forwardRef((props: ToggleButtonProps, ref) => 
             ref={ref}
             aria-checked={isChecked}
             role="radio"
+            id={rest.value}
             isDisabled={isDisabled}
             {...toggleButtonStyleProps}
             {...rest}
@@ -35,8 +37,17 @@ export const ToggleGroup = ({
     isInline,
     ...rest
 }: ToggleGroupProps) => {
+    const fallbackName = `radio-${useId()}`;
+    const _name = name || fallbackName;
+    let firstChildName = null;
+
+    const { onChange: formOnChange, value: initialToggleValue } = useFormField({
+        name: _name,
+        onChange,
+    });
+
     const isControlled = controlledValue != null;
-    const [value, setValue] = useState(defaultValue || null);
+    const [value, setValue] = useState(defaultValue || initialToggleValue || null);
     const _value = isControlled ? controlledValue : value;
 
     const { root: toggleGroupStyleProps } = useToggleGroupStyle({});
@@ -49,7 +60,7 @@ export const ToggleGroup = ({
 
     const allValues = Children.map(children, child => child.props.value);
 
-    const updateIndex = index => {
+    const updateIndex = (index, event) => {
         const childValue = focusableValues[index];
         const _index = allValues.indexOf(childValue);
         allNodes.current[_index].focus();
@@ -59,6 +70,9 @@ export const ToggleGroup = ({
         }
         if (onChange) {
             onChange(childValue);
+        }
+        if (formOnChange) {
+            formOnChange(event, focusableValues[index]);
         }
     };
 
@@ -81,13 +95,13 @@ export const ToggleGroup = ({
             case 'ArrowRight':
             case 'ArrowDown': {
                 const nextIndex = (enabledCheckedIndex + 1) % count;
-                updateIndex(nextIndex);
+                updateIndex(nextIndex, event);
                 break;
             }
             case 'ArrowLeft':
             case 'ArrowUp': {
                 const nextIndex = (enabledCheckedIndex - 1 + count) % count;
-                updateIndex(nextIndex);
+                updateIndex(nextIndex, event);
                 break;
             }
             default:
@@ -95,25 +109,28 @@ export const ToggleGroup = ({
         }
     };
 
-    const fallbackName = `radio-${useId()}`;
-    const _name = name || fallbackName;
-
     const clones = Children.map(children, (child, index) => {
         const isFirstChild = index === 0;
+        if (isFirstChild) {
+            firstChildName = child.props.value;
+        }
 
         const isChecked = child.props.value === _value;
 
-        const handleClick = () => {
+        const handleClick = e => {
             if (!isControlled) {
                 setValue(child.props.value);
             }
             if (onChange) {
                 onChange(child.props.value);
             }
+            if (formOnChange) {
+                formOnChange(e);
+            }
         };
 
         const getTabIndex = () => {
-            // If a RadioGroup has no radio selected the first enabled radio should be focusable
+            // If a ToggleGroup has no toggle button selected, the first enabled toggle should be focusable
             if (_value == null) {
                 return isFirstChild ? 0 : -1;
             }
@@ -132,9 +149,13 @@ export const ToggleGroup = ({
         });
     });
 
+    const spacingProps = isInline ? { mr: 'input.spacing.lg' } : { mb: 'input.spacing.lg' };
+
     return (
-        <Box role="radiogroup" onKeyDown={handleKeyDown} {...toggleGroupStyleProps} {...rest}>
-            {clones}
-        </Box>
+        <FormControlWrapper id={firstChildName} {...spacingProps} {...rest}>
+            <Box role="radiogroup" onKeyDown={handleKeyDown} {...toggleGroupStyleProps} {...rest}>
+                {clones}
+            </Box>
+        </FormControlWrapper>
     );
 };

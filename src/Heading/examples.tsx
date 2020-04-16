@@ -7,8 +7,10 @@ const stories = storiesOf('Heading', module);
 
 stories.add('Default', () => (
     <>
-        {['2xl', 'xl', 'lg', 'md', 'sm', 'xs'].map((size: HeadingProps['size'], index) => (
-            <Heading size={size}>Heading {index + 1}</Heading>
+        {['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle'].map((kind: HeadingProps['kind'], index) => (
+            <Heading kind={kind}>
+                Heading {index + 1} ({kind})
+            </Heading>
         ))}
     </>
 ));

@@ -2,12 +2,12 @@
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import { Post } from '.';
-import Box from '../Box';
-import Button from '../Button';
-import Icon from '../Icon';
-import Menu, { MenuButton, MenuItem, MenuList } from '../Menu';
-import PostActions from '../PostActions';
-import ResponseBox from '../ReponseBox';
+import { Box } from '../Box';
+import { Button } from '../Button';
+import { Icon } from '../Icon';
+import { Menu, MenuButton, MenuItem, MenuList } from '../Menu';
+import { PostActions } from '../PostActions';
+import { ResponseBox } from '../ReponseBox';
 
 const stories = storiesOf('Post', module).addDecorator(story => (
     <Box maxWidth="800px" mx="auto" mt={8} p={3}>
@@ -160,7 +160,7 @@ stories.add('comments section - with actions', () => {
                     <PostActions
                         menu={
                             <Menu>
-                                <MenuButton as={Button} size="sm" variant="ghost">
+                                <MenuButton as={Button} size="sm" variant="secondary">
                                     <Icon name="settings" />
                                 </MenuButton>
 
@@ -176,8 +176,7 @@ stories.add('comments section - with actions', () => {
                                 mr={2}
                                 size="sm"
                                 onClick={action.onClick}
-                                variant="outline"
-                                color="blue.500"
+                                variant="tertiary"
                                 textTransform="uppercase"
                                 fontSize="xs"
                                 title={action.title}

@@ -1,11 +1,11 @@
 import update from 'immutability-helper';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { ThemeProvider } from '../../src';
 import Alert, { AlertDescription, AlertIcon, AlertTitle } from '../../src/Alert';
 import { alertStyle } from '../../src/Alert/styles';
-import Box from '../../src/Box';
-import CSSReset from '../../src/CSSReset';
-import ThemeProvider from '../../src/ThemeProvider';
+import { Box } from '../../src/Box';
+import { CSSReset } from '../../src/CSSReset';
 import theme from './theme';
 
 function AdminUI(props) {

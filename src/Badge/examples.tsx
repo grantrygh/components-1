@@ -2,8 +2,8 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { Badge } from '.';
-import Box from '../Box';
-import Icon from '../Icon';
+import { Box } from '../Box';
+import { Icon } from '../Icon';
 
 const stories = storiesOf('Badge', module);
 stories.addDecorator(withKnobs);
@@ -61,7 +61,7 @@ stories.add('Hexagonal Badges', () => {
                     {i}
                 </Badge>
             ))}
-            <Badge variantColor={'blue'} variant="hexagon" mr={2} size={60}>
+            <Badge variant="hexagon" mr={2} size={60}>
                 <Icon name="repeat-clock" />
             </Badge>
         </>

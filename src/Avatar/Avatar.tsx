@@ -1,14 +1,14 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import Box from '../Box';
-import { BoxProps } from '../Box/types';
+import { Box } from '../Box';
 import { useHasImageLoaded } from '../Image';
 import useAvatarStyle, { useAvatarBadgeStyle } from './styles';
-import { AvatarNameProps, AvatarProps } from './types';
+import { AvatarBadgeProps, AvatarNameProps, AvatarProps } from './types';
 
-export const AvatarBadge = (props: BoxProps) => {
+export const AvatarBadge = (props: AvatarBadgeProps) => {
     const avatarBadgeProps = useAvatarBadgeStyle({
         color: props.color,
+        borderColor: props.borderColor,
     });
 
     return <Box {...avatarBadgeProps} {...props} />;

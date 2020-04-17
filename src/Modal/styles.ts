@@ -2,7 +2,7 @@ import { useTheme } from '../ThemeProvider';
 
 export const modalStyle = ({ isCentered }, theme) => ({
     style: {
-        bg: 'modalBg',
+        bg: 'popoverBg',
         shadow: 'lg',
     },
     scrollBehavior: {

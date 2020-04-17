@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import AlertIcon from 'mdi-react/AlertIcon';
 import { FullTag } from '.';
-import Stack from '../Stack';
+import { Stack } from '../Stack';
 
 const stories = storiesOf('FullTag', module);
 

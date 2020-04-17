@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BoxProps } from '../Box/types';
-import { IButton } from '../Button';
+import { IButton } from '../Button/types';
 import { PopperProps } from '../Popper/types';
 import { PseudoBoxProps } from '../PseudoBox/types';
 

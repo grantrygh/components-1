@@ -2,9 +2,9 @@
 import { jsx } from '@emotion/core';
 import WarningIcon from 'mdi-react/WarningIcon';
 import { forwardRef } from 'react';
-import Flex from '../Flex';
+import { Flex } from '../Flex';
 import { useFormControl } from '../FormControl';
-import Text from '../Text';
+import { Text } from '../Text';
 import useFormErrorMessageStyle from './styles';
 import { FormErrorMessageProps } from './types';
 

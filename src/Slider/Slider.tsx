@@ -8,9 +8,9 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { createContext, forwardRef, RefObject, useCallback, useContext, useRef, useState } from 'react';
-import Box from '../Box';
-import PseudoBox from '../PseudoBox';
-import { useForkRef } from '../utils';
+import { Box } from '../Box';
+import { useForkRef } from '../hooks/useForkRef';
+import { PseudoBox } from '../PseudoBox';
 import useSliderStyle from './styles';
 import { SliderContextProps, SliderFilledTrackProps, SliderProps, SliderThumbProps, SliderTrackProps } from './types';
 import { clampValue, percentToValue, roundValueToStep, valueToPercent } from './utils';

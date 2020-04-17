@@ -5,6 +5,7 @@ export const inputAddonStyle = (props, theme) => ({
         bg: 'border',
         flex: '0 0 auto',
         whiteSpace: 'nowrap',
+        width: 'fit-content',
     },
     placement: {
         left: {

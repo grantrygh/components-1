@@ -12,19 +12,18 @@ import {
     PopoverHeader,
     PopoverTrigger,
 } from '.';
-import Avatar from '../Avatar';
-import Badge from '../Badge';
-import Box from '../Box';
-import Button from '../Button';
-import ButtonGroup from '../ButtonGroup';
+import { Avatar } from '../Avatar';
+import { Badge } from '../Badge';
+import { Box } from '../Box';
+import { Button } from '../Button';
+import { ButtonGroup } from '../ButtonGroup';
 import { DarkMode } from '../ColorModeProvider';
-import FormControl from '../FormControl';
-import FormLabel from '../FormLabel';
-import IconButton from '../IconButton';
-import Input from '../Input';
-import Link from '../Link';
-import Stack from '../Stack';
-import Text from '../Text';
+import { FormControl } from '../FormControl';
+import { FormLabel } from '../FormLabel';
+import { Input } from '../Input';
+import { Link } from '../Link';
+import { Stack } from '../Stack';
+import { Text } from '../Text';
 
 const stories = storiesOf('Popover', module);
 
@@ -61,7 +60,7 @@ const PortalEx = () => {
                         Are you sure you want to delete something? This action is permanent, and we're totally not just
                         flipping a field called "deleted" to "true" in our database, we're actually deleting something.
                     </Box>
-                    <Button mt={4} variantColor="blue" ref={initRef}>
+                    <Button mt={4} ref={initRef}>
                         Close
                     </Button>
                 </PopoverBody>
@@ -83,7 +82,7 @@ const PortalAndFocusLockEx = () => (
                 <PopoverHeader>Header</PopoverHeader>
                 <PopoverCloseButton />
                 <PopoverBody>
-                    <Button variantColor="blue">Close</Button>
+                    <Button>Close</Button>
                 </PopoverBody>
                 <PopoverFooter>This is the footer</PopoverFooter>
             </FocusLock>
@@ -117,13 +116,13 @@ function TwitterEx() {
     return (
         <Popover trigger="hover">
             <PopoverTrigger>
-                <Link href="#" color="blue.500">
+                <Link href="/" color="blue.500">
                     Hover to see @swyx profile
                 </Link>
             </PopoverTrigger>
 
             <PopoverContent bg="#15202b" color="white" width="400px">
-                <Card></Card>
+                <Card />
             </PopoverContent>
         </Popover>
     );
@@ -144,7 +143,9 @@ const FeedbackEx = () => (
             <PopoverBody>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore.
-                <Link color="blue.500"> Learn More</Link>
+                <Link href="/" color="blue.500">
+                    Learn More
+                </Link>
             </PopoverBody>
         </PopoverContent>
     </Popover>
@@ -170,8 +171,8 @@ const WalkthroughEx = () => (
             <PopoverFooter border="0" d="flex" alignItems="center" justifyContent="space-between" pb={4}>
                 <Box fontSize="sm">Step 2 of 4</Box>
                 <ButtonGroup size="sm">
-                    <Button variantColor="green">Setup Email</Button>
-                    <Button variantColor="blue">Next</Button>
+                    <Button variantColor="success">Setup Email</Button>
+                    <Button>Next</Button>
                 </ButtonGroup>
             </PopoverFooter>
         </PopoverContent>
@@ -192,8 +193,8 @@ const ConfirmationEx = () => (
             <PopoverBody>Are you sure you want to continue with your action?</PopoverBody>
             <PopoverFooter d="flex" justifyContent="flex-end">
                 <ButtonGroup size="sm">
-                    <Button variant="outline">Cancel</Button>
-                    <Button variantColor="red">Apply</Button>
+                    <Button variant="tertiary">Cancel</Button>
+                    <Button variantColor="danger">Apply</Button>
                 </ButtonGroup>
             </PopoverFooter>
         </PopoverContent>
@@ -218,8 +219,8 @@ const CustomTargetEx = () => {
                     <PopoverBody>Are you sure you want to continue with your action?</PopoverBody>
                     <PopoverFooter d="flex" justifyContent="flex-end">
                         <ButtonGroup size="sm">
-                            <Button variant="outline">Cancel</Button>
-                            <Button variantColor="red">Apply</Button>
+                            <Button variant="tertiary">Cancel</Button>
+                            <Button variantColor="danger">Apply</Button>
                         </ButtonGroup>
                     </PopoverFooter>
                 </PopoverContent>
@@ -262,7 +263,7 @@ const DialogForm = () => {
                 closeOnBlur={false}
             >
                 <PopoverTrigger>
-                    <IconButton size="sm" icon="edit" />
+                    <Button>Edit</Button>
                 </PopoverTrigger>
                 <PopoverContent p={5}>
                     <FocusLock returnFocus persistentFocus={false}>
@@ -270,7 +271,7 @@ const DialogForm = () => {
                         <PopoverCloseButton />
                         <Form initField={firstField} />
                         <ButtonGroup mt={5} d="flex" justifyContent="flex-end">
-                            <Button variant="outline">Cancel</Button>
+                            <Button variant="tertiary">Cancel</Button>
                             <Button isDisabled variantColor="teal">
                                 Save
                             </Button>

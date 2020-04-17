@@ -1,10 +1,10 @@
 import React, { createContext, createRef, useContext, useEffect, useState } from 'react';
-import Flex from '../Flex';
+import { Flex } from '../Flex';
 import useCanvasStyle from './styles';
 
 export const CanvasContext = createContext<any>(null);
 
-export default function CanvasContainer({ initialState = {}, ...props }) {
+export function CanvasContainer({ initialState = {}, ...props }) {
     const [panels, setPanels] = useState<any>({});
     const styles = useCanvasStyle(props);
 

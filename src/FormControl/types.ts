@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BoxProps } from '../Box/types';
 
-interface IFormControl {
+export interface IFormControl {
     /**
      * Content of the form control.
      */
@@ -20,6 +20,19 @@ interface IFormControl {
     isDisabled?: boolean;
 
     isReadOnly?: boolean;
+
+    /**
+     * Helper text to be display if FormControl contains <FormHelperText> child
+     */
+    helperText?: string;
+    /**
+     * Error message to be displayed if isInvalid is true and contains <FormErrorMessage> child
+     */
+    error?: string;
+    /**
+     * Form input label to be display if FormControl contains <FormLabel> child
+     */
+    label?: string;
 }
 
 export type FormControlProps = IFormControl & BoxProps;

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import styled from '@emotion/styled';
 import css from '@styled-system/css';
-import Box from '../Box';
+import { Box } from '../Box';
 import { transformAliasProps as tx } from '../Box/config';
 import { PseudoBoxProps } from './types';
 
@@ -41,7 +41,7 @@ const groupHover = '[role=group]:hover &';
  * <PseudoBox _hover={...} _focus={...}/>
  * ```
  */
-const PseudoBox = styled(Box)(
+export const PseudoBox = styled(Box)(
     ({
         _after,
         _focus,
@@ -96,7 +96,3 @@ const PseudoBox = styled(Box)(
         });
     }
 );
-
-PseudoBox.displayName = 'PseudoBox';
-
-export default PseudoBox;

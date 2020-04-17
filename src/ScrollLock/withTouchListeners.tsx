@@ -13,11 +13,13 @@ export default function withTouchListeners(WrappedComponent: ComponentType<any>)
 
             document.addEventListener('touchmove', preventTouchMove, listenerOptions);
         }
+
         componentWillUnmount() {
             if (!canUseDOM || !isTouchDevice()) return;
 
             document.removeEventListener('touchmove', preventTouchMove, listenerOptions);
         }
+
         render() {
             return <WrappedComponent {...this.props} />;
         }

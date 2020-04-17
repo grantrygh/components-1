@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { Children, cloneElement, forwardRef, isValidElement } from 'react';
-import Box from '../Box';
-import Link from '../Link';
+import { Box } from '../Box';
+import { Link } from '../Link';
 
 const BreadcrumbSeparator = forwardRef(({ spacing, ...props }, ref) => {
     return <Box ref={ref} role="presentation" as="span" mx={spacing} {...props} />;

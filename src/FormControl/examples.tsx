@@ -2,14 +2,11 @@
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import { FormControl } from '.';
-import Box from '../Box';
-import FormErrorMessage from '../FormErrorMessage';
+import { FormErrorMessage, Input, InputGroup, Select } from '..';
+import { Box } from '../Box';
 import { FormHelperText } from '../FormHelperText';
 import { FormLabel } from '../FormLabel';
-import Input from '../Input';
 import { InputLeftAddon } from '../InputAddon';
-import InputGroup from '../InputGroup';
-import Select from '../Select';
 
 const stories = storiesOf('FormControl', module).addDecorator(story => (
     <Box maxWidth="sm" mx="auto" mt={5}>
@@ -27,7 +24,7 @@ stories.add('Default', () => (
 stories.add('with select', () => (
     <FormControl isInvalid>
         <FormLabel htmlFor="fname">First name</FormLabel>
-        <Select id="fname" placeholder="First name" />
+        <Select id="fname" name="fname" placeholder="First name" />
     </FormControl>
 ));
 

@@ -1,3 +1,5 @@
+/* eslint-disable max-lines */
+
 import color from 'color';
 
 const generateShades = primary => {
@@ -31,7 +33,7 @@ const brand = {
 };
 
 const neutral = {
-    1: '#FFF',
+    1: '#FFFFFF',
     2: '#FAFAFA',
     3: '#F5F5F5',
     4: '#F0F0F0',
@@ -43,7 +45,7 @@ const neutral = {
     10: '#262626',
     11: '#1F1F1F',
     12: '#141414',
-    13: '#000',
+    13: '#000000',
 };
 
 const states = {
@@ -216,21 +218,36 @@ const colors = {
     current: 'currentColor',
 
     // Neutral Scale Design Colors
+    neutral,
     black: neutral[13],
     titleText: neutral[12],
     bodyText: neutral[9],
     faintText: neutral[7],
     disabled: neutral[5],
     border: neutral[3], // and divider
-    altBg: neutral[2],
     white: neutral[1],
 
-    // component specific
+    // page layout
+    navBg: neutral[2],
+    canvasBg: neutral[4],
+    pageBg: neutral[3],
     cardBg: neutral[1],
-    modalBg: neutral[2],
+    altBg: neutral[3],
     popoverBg: neutral[2],
+
+    // component specific
     progress: brand.primary[500],
-    track: neutral[3],
+    track: neutral[4],
+    tooltip: neutral[9],
+    button: brand.primary, // VARIANT: primary button bg , secondary & tertiary button text - uses .500
+    buttonText: neutral[1], // primary button text
+    secondaryButton: 'transparent',
+    tertiaryButton: 'transparent',
+    activeLink: brand.primary[500],
+
+    inputFocus: brand.primary[500],
+    inputHover: neutral[3],
+    inputBg: neutral[2],
 
     overlayBg: 'rgba(0, 0, 0, 0.2)',
 

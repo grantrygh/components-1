@@ -1,4 +1,4 @@
-import { ComponentType, PureComponent } from 'react';
+import React, { ComponentType, PureComponent } from 'react';
 import { getDocumentHeight, getPadding, injectStyles, insertStyleTag, makeStyleTag } from './utils';
 
 export default function withLockSheet(WrappedComponent: ComponentType<any>) {
@@ -7,6 +7,18 @@ export default function withLockSheet(WrappedComponent: ComponentType<any>) {
 
         componentDidMount() {
             this.addSheet();
+        }
+
+        componentWillUnmount() {
+            this.removeSheet();
+        }
+
+        removeSheet() {
+            if (!this.sheet) return;
+
+            // $FlowFixMe
+            this.sheet.parentNode.removeChild(this.sheet);
+            this.sheet = null;
         }
 
         addSheet = () => {
@@ -20,18 +32,6 @@ export default function withLockSheet(WrappedComponent: ComponentType<any>) {
 
             this.sheet = sheet;
         };
-
-        removeSheet() {
-            if (!this.sheet) return;
-
-            // $FlowFixMe
-            this.sheet.parentNode.removeChild(this.sheet);
-            this.sheet = null;
-        }
-
-        componentWillUnmount() {
-            this.removeSheet();
-        }
 
         getStyles = () => {
             const { accountForScrollbars } = this.props;

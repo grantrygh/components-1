@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
-import Box from '../Box';
-import Flex from '../Flex';
+import { Box } from '../Box';
+import { Flex } from '../Flex';
 import { Divider } from './Divider';
 
 const stories = storiesOf('Divider', module);

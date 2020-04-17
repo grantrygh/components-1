@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import Button from '../Button';
-import Icon from '../Icon';
+import { Button } from '../Button';
+import { Icon } from '../Icon';
 import { Menu, MenuButton, MenuDivider, MenuGroup, MenuItem, MenuList } from './Menu';
 import { MenuItemOption, MenuOptionGroup } from './MenuItemOption';
 

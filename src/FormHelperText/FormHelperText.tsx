@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/core';
 import { forwardRef } from 'react';
 import { useFormControl } from '../FormControl';
-import Text from '../Text';
+import { Text } from '../Text';
 import useFormHelperTextStyle from './styles';
 import { FormHelperTextProps } from './types';
 

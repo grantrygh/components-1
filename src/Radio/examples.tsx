@@ -1,8 +1,8 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { Radio } from '.';
-import Box from '../Box';
-import RadioGroup from '../RadioGroup';
+import { Box } from '../Box';
+import { RadioGroup } from '../RadioGroup';
 
 const stories = storiesOf('Radio', module);
 stories.addDecorator(story => {
@@ -24,8 +24,8 @@ stories.add('Default', () => (
     </RadioGroup>
 ));
 
-stories.add('Inline Radio (large) ', () => (
-    <RadioGroup isInline size="lg" defaultValue="male" onChange={(event, value) => console.log(value)}>
+stories.add('Inline Radio ', () => (
+    <RadioGroup isInline defaultValue="male" onChange={(event, value) => console.log(value)}>
         <Radio value="male">Male</Radio>
         <Radio value="female">Female</Radio>
     </RadioGroup>

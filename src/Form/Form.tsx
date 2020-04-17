@@ -21,13 +21,16 @@ const useFormFields = () => {
 };
 
 export function Form(props: FormProps) {
-    const { onSubmit } = props;
-    const [value, setValue] = React.useState({});
+    const { onSubmit, initialValue = {}, onChange: onFormChange } = props;
+    const [value, setValue] = React.useState(initialValue);
 
     const { fields, registerField } = useFormFields();
 
-    const onChange = React.useCallback(({ name, value }) => {
-        setValue(val => ({ ...val, [name]: value }));
+    const onChange = React.useCallback(({ name, value: changeValue }) => {
+        setValue(val => ({ ...val, [name]: changeValue }));
+        if (onFormChange) {
+            onFormChange({ name, value: changeValue });
+        }
     }, []);
 
     const getFormValue = () => value;

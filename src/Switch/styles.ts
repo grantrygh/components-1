@@ -1,6 +1,6 @@
 import { useTheme } from '../ThemeProvider';
 
-export const switchStyle = ({ color = 'primary', size = 'md' }, theme) => {
+export const switchStyle = ({ color = 'primary', size = 'md' }, { colors }) => {
     const sizes = {
         sm: {
             width: '1.5rem',
@@ -23,7 +23,7 @@ export const switchStyle = ({ color = 'primary', size = 'md' }, theme) => {
             width,
             rounded: 'full',
             justifyContent: 'flex-start',
-            bg: 'gray.300', // TODO: replace with common variable (among inputs / track color?)
+            bg: 'track',
             boxSizing: 'content-box',
             p: '3px',
             _checked: {

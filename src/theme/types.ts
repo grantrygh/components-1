@@ -11,6 +11,12 @@ interface Shadows {
     outline: string;
     inner: string;
     none: string;
+    card: string;
+    button: string;
+    menu: string;
+    raised: string;
+    toast: string;
+    modal: string;
 }
 
 export interface ColorHues {
@@ -51,6 +57,7 @@ interface Radii {
     md: string;
     lg: string;
     full: string;
+    radius: string;
 }
 
 interface Borders {
@@ -63,8 +70,34 @@ interface Borders {
 interface Colors {
     transparent: string;
     current: string;
+    // brand
+    primary: string;
+    secondary: ColorHues;
+    // states
+    success: ColorHues;
+    info: ColorHues;
+    warning: ColorHues;
+    error: ColorHues;
+    // neutral scale colors
     black: string;
+    titleText: string;
+    bodyText: string;
+    faintText: string;
+    disabled: string;
+    border: string;
+    altBg: string;
     white: string;
+    // component specific
+    navBg: string;
+    canvasBg: string;
+    pageBg: string;
+    tooltip: string;
+    overlayBg: string;
+    cardBg: string;
+    popoverBg: string;
+    progress: string;
+    track: string;
+    // palette
     whiteAlpha: ColorHues;
     blackAlpha: ColorHues;
     gray: ColorHues;
@@ -77,6 +110,7 @@ interface Colors {
     cyan: ColorHues;
     purple: ColorHues;
     pink: ColorHues;
+    // social
     linkedin: ColorHues;
     facebook: ColorHues;
     messenger: ColorHues;
@@ -136,6 +170,17 @@ type Sizes = BaseSizes &
     LargeSizes & {
         containers: Containers;
     };
+interface Inputs {
+    sm: string;
+    md: string;
+    lg: string;
+    width: string;
+    spacing: string;
+}
+
+type Space = BaseSizes & {
+    input: Inputs;
+};
 
 interface LetterSpacings {
     tighter: string;
@@ -213,7 +258,7 @@ export interface DefaultTheme extends Typography {
     colors: Colors;
     sizes: Sizes;
     shadows: Shadows;
-    space: BaseSizes;
+    space: Space;
     icons: Record<string, Icon>;
     styles: any;
 }
@@ -226,7 +271,7 @@ interface Icon {
 export type IconsType = Record<string, Icon>;
 
 export interface CustomTheme extends SS.Theme {
-    icons: IconsType;
+    icons?: IconsType;
 }
 
 export type ITheme = DefaultTheme;

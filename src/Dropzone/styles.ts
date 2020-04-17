@@ -1,6 +1,6 @@
 import { useTheme } from '../ThemeProvider';
 
-export const dropzoneStyle = ({ color = 'gray', disabled }, theme) => ({
+export const dropzoneStyle = ({ disabled }, theme) => ({
     style: {
         flex: '1',
         display: 'flex',
@@ -10,35 +10,29 @@ export const dropzoneStyle = ({ color = 'gray', disabled }, theme) => ({
         minHeight: '125px',
         padding: 4,
         borderWidth: 2,
-        borderRadius: 'md',
-        borderColor: `${color}.400`,
+        borderRadius: 'radius',
+        borderColor: `border`,
         borderStyle: 'dashed',
         transition: 'border 0.24s ease-in-out',
         width: '100%',
         boxSizing: 'border-box',
         _hover: !disabled && {
             cursor: 'pointer',
-            borderColor: theme.colors.statuses.info[500],
+            borderColor: 'info.500',
         },
     },
     states: {
         active: {
-            borderColor: theme.colors.statuses.info[500],
+            borderColor: 'info.500',
         },
         accept: {
-            borderColor: theme.colors.statuses.success[500],
+            borderColor: 'success.500',
         },
         reject: {
-            borderColor: theme.colors.statuses.danger[500],
+            borderColor: 'error.500',
         },
     },
 });
-
-export const useDropzoneTextStyle = ({ color = 'gray' }) => {
-    return {
-        color: `${color}.400`,
-    };
-};
 
 const useDropzoneStyle = props => {
     const theme = useTheme();

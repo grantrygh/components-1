@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { useId } from '@reach/auto-id';
 import { hideOthers } from 'aria-hidden';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
@@ -5,13 +6,15 @@ import exenv from 'exenv';
 import React, { createContext, forwardRef, useCallback, useContext, useEffect, useRef } from 'react';
 import FocusLock from 'react-focus-lock/dist/cjs';
 import { Transition } from 'react-spring/renderprops';
-import Box from '../Box';
+import { Box } from '../Box';
 import { BoxProps } from '../Box/types';
-import CloseButton from '../CloseButton';
+import { CloseButton } from '../CloseButton';
 import { CloseButtonProps } from '../CloseButton/types';
-import Flex from '../Flex';
-import Portal from '../Portal';
-import { getFocusables, useForkRef, wrapEvent } from '../utils';
+import { Flex } from '../Flex';
+import { useForkRef } from '../hooks/useForkRef';
+import { Portal } from '../Portal';
+import { getFocusables } from '../utils/getFocusables';
+import { wrapEvent } from '../utils/wrapEvent';
 import useModalStyle, { useModalWrapperStyle } from './styles';
 import { AriaHiderProps, ModalContentProps, ModalContextProps, ModalProps } from './types';
 
@@ -277,7 +280,7 @@ const ModalContent = React.forwardRef(({ onClick, children, zIndex, noStyles, ..
     );
 });
 
-const ModalHeader = forwardRef((props: BoxProps, ref) => {
+const ModalHeader = forwardRef((props: BoxProps & { onClose?: () => void }, ref) => {
     const { headerId } = useModalContext();
     return (
         <Box

@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import PseudoBox from '../PseudoBox';
-import Text from '../Text';
-import useDropzoneStyle, { useDropzoneTextStyle } from './styles';
+import { PseudoBox } from '../PseudoBox';
+import { Text } from '../Text';
+import useDropzoneStyle from './styles';
 import { DropzoneProps } from './types';
 
 export const Dropzone = (props: DropzoneProps) => {
@@ -28,12 +28,7 @@ export const Dropzone = (props: DropzoneProps) => {
 
     const dropzoneStyleProps = useDropzoneStyle({
         state: (isDragAccept && 'accept') || (isDragReject && 'reject') || (isDragActive && 'active'),
-        color: props.color,
         disabled,
-    });
-
-    const dropzoneTextStyleProps = useDropzoneTextStyle({
-        color: props.color,
     });
 
     let content = uploadMessage;
@@ -48,7 +43,7 @@ export const Dropzone = (props: DropzoneProps) => {
         // container
         <PseudoBox {...getRootProps()} disabled={disabled} {...dropzoneStyleProps} {...rest}>
             <input {...getInputProps()} />
-            <Text {...dropzoneTextStyleProps}>{content}</Text>
+            <Text color="faintText">{content}</Text>
         </PseudoBox>
     );
 };

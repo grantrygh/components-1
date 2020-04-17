@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import Box from '../Box';
-import Stack from '../Stack';
+import { Box } from '../Box';
+import { Stack } from '../Stack';
 import { Switch } from './Switch';
 
 const stories = storiesOf('Switch', module);
@@ -15,9 +15,9 @@ stories.addDecorator(story => {
 });
 
 stories.add('Default', () => (
-    <Stack inline>
-        <Switch size="sm" onChange={e => console.log(e.target.checked)} color="green" />
-        <Switch size="md" onChange={e => console.log(e.target.checked)} color="blue" />
-        <Switch size="lg" isDisabled onChange={e => console.log(e.target.checked)} color="cyan" />
+    <Stack isInline>
+        <Switch size="sm" onChange={e => console.log(e)} color="green" />
+        <Switch size="md" onChange={e => console.log(e)} color="blue" />
+        <Switch size="lg" isDisabled onChange={e => console.log(e)} color="cyan" />
     </Stack>
 ));

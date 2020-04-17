@@ -2,8 +2,8 @@
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import { Progress } from '.';
-import Box from '../Box';
-import Stack from '../Stack';
+import { Box } from '../Box';
+import { Stack } from '../Stack';
 
 const stories = storiesOf('Progress', module).addDecorator(story => (
     <Box maxWidth="400px" mx="auto" mt={8} p={3}>
@@ -16,23 +16,23 @@ stories.add('basic usage', () => {
 });
 
 stories.add('with theme color ', () => {
-    return <Progress color="pink" value={20} rounded="md" />;
+    return <Progress color="pink.500" value={20} rounded="md" />;
 });
 
 stories.add('with stripe', () => {
-    return <Progress color="green" hasStripe value={20} />;
+    return <Progress color="green.500" hasStripe value={20} />;
 });
 
 stories.add('with sizes', () => {
     return (
-        <Stack spacing={5}>
-            <Progress color="green" size="sm" value={20} />
-            <Progress color="green" size="md" value={20} />
-            <Progress color="green" size="lg" value={20} />
+        <Stack>
+            <Progress color="green.500" size="sm" value={20} />
+            <Progress color="green.500" size="md" value={20} />
+            <Progress color="green.500" size="lg" value={20} />
         </Stack>
     );
 });
 
 stories.add('with stripe animation', () => {
-    return <Progress color="green" hasStripe isAnimated value={20} />;
+    return <Progress color="green.500" hasStripe isAnimated value={20} />;
 });

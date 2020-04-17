@@ -1,14 +1,14 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { Children, cloneElement, isValidElement, useState } from 'react';
-import Avatar from '../Avatar';
-import Box from '../Box';
-import Button from '../Button';
-import Flex from '../Flex';
-import Icon from '../Icon';
+import { Avatar } from '../Avatar';
+import { Box } from '../Box';
+import { Button } from '../Button';
+import { Flex } from '../Flex';
+import { useWindowResize } from '../hooks/useWindowResize';
+import { Icon } from '../Icon';
 import { usePostActionsStyle } from '../PostActions/styles';
-import Text from '../Text';
-import { useWindowResize } from '../utils';
+import { Text } from '../Text';
 import usePostStyle from './styles';
 
 export const Post = props => {
@@ -60,7 +60,11 @@ export const Post = props => {
                 {replies && replies.length > 0 && (
                     <Box>
                         <Box py={2}>
-                            <Button onClick={() => setShowReplies(!showReplies)} {...actionStyleProps} variant="ghost">
+                            <Button
+                                onClick={() => setShowReplies(!showReplies)}
+                                {...actionStyleProps}
+                                variant="secondary"
+                            >
                                 {showReplies ? 'Hide' : 'View'} {replies.length}{' '}
                                 {replies.length === 1 ? 'reply' : 'replies'}
                                 <Icon name={showReplies ? 'chevron-up' : 'chevron-down'} />{' '}

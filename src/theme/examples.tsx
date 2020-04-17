@@ -1,5 +1,6 @@
 import { storiesOf } from '@storybook/react';
-import Box from '../Box';
+import React from 'react';
+import { Box } from '../Box';
 import { useTheme } from '../ThemeProvider';
 
 const stories = storiesOf('Theme', module);

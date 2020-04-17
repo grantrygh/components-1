@@ -14,11 +14,11 @@ export const statStyle = (props, theme) => ({
         types: {
             increase: {
                 name: 'triangle-up',
-                color: 'statuses.success.400',
+                color: 'success.500',
             },
             decrease: {
                 name: 'triangle-down',
-                color: 'statuses.danger.400',
+                color: 'error.500',
             },
         },
     },

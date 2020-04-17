@@ -43,10 +43,31 @@ const containers = {
     xl: '1280px',
 };
 
+const input = {
+    // Heights
+    lg: '2.75rem',
+    md: '2.25rem',
+    sm: '1.75rem',
+
+    // Widths
+    width: baseSizes[40],
+    spacing: {
+        sm: baseSizes[1], // spacing within input group (radio options, checkboxes)
+        lg: baseSizes[4], // spacing between input groups (vertically, horizontally)
+    },
+};
+
+const canvas = {
+    width: '300px',
+    spacing: baseSizes[5],
+};
+
 const sizes = {
     ...baseSizes,
     ...largeSizes,
     containers,
+    input,
+    canvas,
 };
 
 export default sizes;

@@ -2,9 +2,9 @@
 import { jsx } from '@emotion/core';
 import { useId } from '@reach/auto-id';
 import { Children, cloneElement, forwardRef, isValidElement, useRef, useState } from 'react';
-import Box from '../../Box';
-import Icon from '../../Icon';
-import PseudoBox from '../../PseudoBox';
+import { Box } from '../../Box';
+import { Icon } from '../../Icon';
+import { PseudoBox } from '../../PseudoBox';
 import { MenuGroup, useMenuContext } from '../Menu';
 import { useMenuItemStyle } from '../styles';
 import { MenuItemOptionProps, MenuOptionGroupProps } from './types';

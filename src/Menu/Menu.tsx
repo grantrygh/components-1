@@ -1,19 +1,21 @@
+/* eslint-disable max-lines */
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { useId } from '@reach/auto-id';
 import { createContext, forwardRef, useContext, useEffect, useRef, useState } from 'react';
-import Box from '../Box';
-import { useColorMode } from '../ColorModeProvider';
-import Divider from '../Divider';
-import Popper from '../Popper';
-import PseudoBox from '../PseudoBox';
-import Text from '../Text';
-import usePrevious from '../usePrevious';
-import { getFocusables, useForkRef, wrapEvent } from '../utils';
+import { Box } from '../Box';
+import { Divider } from '../Divider';
+import { useForkRef } from '../hooks/useForkRef';
+import { usePrevious } from '../hooks/usePrevious';
+import { Popper } from '../Popper';
+import { PseudoBox } from '../PseudoBox';
+import { Text } from '../Text';
+import { getFocusables } from '../utils/getFocusables';
+import { wrapEvent } from '../utils/wrapEvent';
 import { useMenuItemStyle, useMenuStyle } from './styles';
-import { MenuButtonProps, MenuGroupProps, MenuItemProps, MenuListProps, MenuProps } from './types';
+import { MenuButtonProps, MenuContextProps, MenuGroupProps, MenuItemProps, MenuListProps, MenuProps } from './types';
 
-const MenuContext = createContext({});
+const MenuContext = createContext<MenuContextProps>({});
 
 const Menu = ({
     children,
@@ -27,8 +29,6 @@ const Menu = ({
     defaultActiveIndex,
     placement,
 }: MenuProps) => {
-    const { colorMode } = useColorMode();
-
     const [activeIndex, setActiveIndex] = useState(defaultActiveIndex || -1);
     const [isOpen, setIsOpen] = useState(defaultIsOpen || false);
     const { current: isControlled } = useRef(isOpenProp != null);
@@ -57,7 +57,7 @@ const Menu = ({
     }, [_isOpen]);
 
     const updateTabIndex = index => {
-        if (focusableItems.current.length > 0) {
+        if (focusableItems.current && focusableItems.current.length > 0) {
             const nodeAtIndex = focusableItems.current[index];
             focusableItems.current.forEach(node => {
                 if (node !== nodeAtIndex) {
@@ -78,7 +78,7 @@ const Menu = ({
 
     useEffect(() => {
         if (activeIndex !== -1) {
-            if (focusableItems.current[activeIndex]) {
+            if (focusableItems.current && focusableItems.current[activeIndex]) {
                 focusableItems.current[activeIndex].focus();
             }
             updateTabIndex(activeIndex);
@@ -112,7 +112,7 @@ const Menu = ({
 
     const focusOnLastItem = () => {
         openMenu();
-        setActiveIndex(focusableItems.current.length - 1);
+        setActiveIndex(focusableItems.current && focusableItems.current.length - 1);
     };
 
     const closeMenu = () => {
@@ -145,7 +145,6 @@ const Menu = ({
         autoSelect,
         closeOnSelect,
         closeOnBlur,
-        colorMode,
     };
 
     return (
@@ -238,7 +237,7 @@ const MenuList = ({ onKeyDown, onBlur, ...props }: MenuListProps) => {
     } = useMenuContext();
 
     const handleKeyDown = event => {
-        const count = focusableItems.current.length;
+        const count = focusableItems.current && focusableItems.current.length;
         let nextIndex;
         if (event.key === 'ArrowDown') {
             event.preventDefault();

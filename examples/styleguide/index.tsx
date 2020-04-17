@@ -1,26 +1,34 @@
+import HomeIcon from 'mdi-react/HomeIcon';
 import MenuIcon from 'mdi-react/MenuIcon';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import {
-    Alert,
-    AlertDescription,
-    AlertIcon,
+    Accordion,
+    AccordionHeader,
+    AccordionIcon,
+    AccordionItem,
+    AccordionPanel,
+    Avatar,
+    Badge,
     Box,
     CSSReset,
-    Flex,
-    Heading,
     Icon,
     Input,
     InputGroup,
     InputLeftElement,
     Navigation,
+    Text,
     theme,
     ThemeProvider,
     UserDropdown,
 } from '../../src';
-import CanvasContainer, { CanvasContext, CanvasPanel } from '../../src/Canvas';
+import { CanvasContainer, CanvasContext, CanvasPanel } from '../../src/Canvas';
 import { Logo } from './components/Logo';
+
+const initialCanvasState = {
+    drawer: { overlay: false, inline: true },
+};
 
 function StyleGuide(props) {
     return (
@@ -35,86 +43,115 @@ function StyleGuide(props) {
                     />
                 </Helmet>
 
-                <CanvasContainer initialState={{ left: false, main: true }}>
-                    <CanvasPanel name="left" bg="#222" color="#eee" p="3" width="200px">
-                        Left CanvasPanel
+                <CanvasContainer initialState={initialCanvasState}>
+                    <CanvasPanel p="canvas.spacing" width="canvas.width" bg="canvasBg" name="left">
+                        {() => (
+                            <>
+                                <Navigation.Item href="/" exact>
+                                    <Navigation.ItemMedia icon={HomeIcon} />
+                                    <Navigation.ItemText>Home</Navigation.ItemText>
+                                </Navigation.Item>
+                                <Navigation.Item>
+                                    <Accordion allowToggle>
+                                        <AccordionItem>
+                                            <AccordionHeader>
+                                                <Navigation.Item href="/shop" exact={false} mb={0}>
+                                                    <Navigation.ItemMedia icon={HomeIcon} />
+                                                    <Navigation.ItemText>Shop</Navigation.ItemText>
+                                                </Navigation.Item>
+                                                <AccordionIcon />
+                                            </AccordionHeader>
+                                            <AccordionPanel>
+                                                <Navigation.Item href="/shop/sales" isSubmenuItem>
+                                                    <Navigation.ItemMedia />
+                                                    <Navigation.ItemText>Sales</Navigation.ItemText>
+                                                    <Navigation.ItemMeta>
+                                                        <Text>37</Text>
+                                                    </Navigation.ItemMeta>
+                                                </Navigation.Item>
+                                            </AccordionPanel>
+                                            <AccordionPanel>
+                                                <Navigation.Item href="/shop/products" isSubmenuItem>
+                                                    <Navigation.ItemMedia />
+                                                    <Navigation.ItemText>Product List</Navigation.ItemText>
+                                                    <Navigation.ItemMeta>8</Navigation.ItemMeta>
+                                                </Navigation.Item>
+                                            </AccordionPanel>
+                                        </AccordionItem>
+                                    </Accordion>
+                                </Navigation.Item>
+                                <Navigation.Item>
+                                    <Navigation.ItemMedia>
+                                        <Avatar size="sm" name="Uchiha Itachi" src="https://bit.ly/uchiha-itachi" />
+                                    </Navigation.ItemMedia>
+                                    <Navigation.ItemText>Uchiha Itachi</Navigation.ItemText>
+                                    <Navigation.ItemMeta>
+                                        <Badge variant="solid" variantColor="error">
+                                            3
+                                        </Badge>
+                                    </Navigation.ItemMeta>
+                                </Navigation.Item>
+                            </>
+                        )}
                     </CanvasPanel>
+                    <CanvasPanel name="afterLeft" p="canvas.spacing" bg="navBg" isVisible={false}>
+                        {() => <>Mini</>}
+                    </CanvasPanel>
+                    <CanvasPanel name="main">
+                        {() => (
+                            <>
+                                <Navigation>
+                                    <Navigation.Primary alignItems="center">
+                                        <CanvasContext.Consumer>
+                                            {({ togglePanel }) => {
+                                                return (
+                                                    <Box mr="2">
+                                                        <MenuIcon
+                                                            color="red"
+                                                            title="Overlay"
+                                                            onClick={() => {
+                                                                togglePanel('afterLeft');
+                                                            }}
+                                                        />
+                                                    </Box>
+                                                );
+                                            }}
+                                        </CanvasContext.Consumer>
+                                        <Logo />
+                                        <CanvasContext.Consumer>
+                                            {({ togglePanel }) => {
+                                                return (
+                                                    <Box mr="2">
+                                                        <MenuIcon
+                                                            title="Overlay"
+                                                            onClick={() => {
+                                                                togglePanel('right');
+                                                            }}
+                                                        />
+                                                    </Box>
+                                                );
+                                            }}
+                                        </CanvasContext.Consumer>
+                                    </Navigation.Primary>
 
-                    <CanvasPanel name="main" flex="1">
-                        <Navigation>
-                            <Navigation.Primary alignItems="center">
-                                <CanvasContext.Consumer>
-                                    {({ canvasState, toggleCanvas }) => {
-                                        return (
-                                            <Box mr="2">
-                                                <MenuIcon
-                                                    onClick={() => {
-                                                        toggleCanvas('left');
-                                                    }}
-                                                />
-                                            </Box>
-                                        );
-                                    }}
-                                </CanvasContext.Consumer>
-                                <Logo />
-                            </Navigation.Primary>
+                                    <Navigation.Secondary display={{ _: 'none', lg: 'flex' }}>
+                                        <InputGroup mb={0}>
+                                            <InputLeftElement>
+                                                <Icon name="search" color="gray.300" />
+                                            </InputLeftElement>
+                                            <Input bg="gray.50" size="md" placeholder="Search..." />
+                                        </InputGroup>
+                                    </Navigation.Secondary>
 
-                            <Navigation.Secondary display={{ _: 'none', lg: 'flex' }}>
-                                <InputGroup>
-                                    <InputLeftElement>
-                                        <Icon name="search" color="gray.300" />
-                                    </InputLeftElement>
-                                    <Input
-                                        width="300px"
-                                        icon="search"
-                                        borderRadius="5px"
-                                        bg="gray.50"
-                                        border="1px solid"
-                                        borderColor="#ddd"
-                                        height="2.5rem"
-                                        size="sm"
-                                        placeholder="Here is a sample placeholder"
-                                    />
-                                </InputGroup>
-                            </Navigation.Secondary>
-
-                            <Navigation.Tertiary>
-                                <UserDropdown />
-                            </Navigation.Tertiary>
-                        </Navigation>
-
-                        <Flex flexDirection="row">
-                            <Box width="100%" bg="white" p={10} m={4}>
-                                <Alert variant="leftAccent" status="success" maxWidth="sm" alignItems="start" mb={4}>
-                                    <AlertIcon />
-                                    <AlertDescription>Something just happened!</AlertDescription>
-                                </Alert>
-                                {/* <Heading kind="h5" mb="2">
-                                    Typography Scale
-                                </Heading> */}
-
-                                {/* <Heading kind="subtitle">
-                                    Root = 16px (1rem) &nbsp;&nbsp;&nbsp; Scale Ratio = 1.25
-                                </Heading> */}
-
-                                <Heading kind="h1">H1 Headline</Heading>
-                                <Heading kind="h2">H2 Headline</Heading>
-                                <Heading kind="h3">H3 Headline</Heading>
-
-                                <Box maxWidth="600px" as="p" mb="3">
-                                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                                    doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
-                                    veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                                </Box>
-                                <Box maxWidth="600px" as="p">
-                                    Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
-                                    consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro
-                                    quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
-                                    sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam
-                                    quaerat voluptatem.
-                                </Box>
-                            </Box>
-                        </Flex>
+                                    <Navigation.Tertiary>
+                                        <UserDropdown />
+                                    </Navigation.Tertiary>
+                                </Navigation>
+                            </>
+                        )}
+                    </CanvasPanel>
+                    <CanvasPanel name="right" p="canvasSpacing" bg="navBg" isVisible={false}>
+                        {() => <>Mini</>}
                     </CanvasPanel>
                 </CanvasContainer>
             </ThemeProvider>

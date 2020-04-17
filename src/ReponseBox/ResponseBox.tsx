@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { useState } from 'react';
-import Box from '../Box';
-import Button from '../Button';
-import Textarea from '../Textarea';
+import { Box } from '../Box';
+import { Button } from '../Button';
+import { Textarea } from '../Textarea';
 import useResponseBoxStyle from './styles';
 import { ResponseBoxProps } from './types';
 

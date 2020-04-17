@@ -11,9 +11,4 @@ export interface IAlert {
     variant?: 'subtle' | 'solid' | 'left-accent' | 'top-accent';
 }
 
-export interface IAlertContext {
-    status?: IAlert['status'];
-    variant?: string;
-}
-
 export type AlertProps = IAlert & BoxProps;

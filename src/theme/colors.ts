@@ -1,3 +1,5 @@
+/* eslint-disable max-lines */
+
 import color from 'color';
 
 const generateShades = primary => {
@@ -27,7 +29,23 @@ const generateShades = primary => {
 // use https://material.io/resources/color
 const brand = {
     primary: generateShades('#0069FF'),
-    secondary: generateShades('#3CD598'),
+    secondary: generateShades('#3DD598'),
+};
+
+const neutral = {
+    1: '#FFFFFF',
+    2: '#FAFAFA',
+    3: '#F5F5F5',
+    4: '#F0F0F0',
+    5: '#D9D9D9',
+    6: '#BFBFBF',
+    7: '#8C8C8C',
+    8: '#595959',
+    9: '#434343',
+    10: '#262626',
+    11: '#1F1F1F',
+    12: '#141414',
+    13: '#000000',
 };
 
 const states = {
@@ -198,16 +216,40 @@ const palette = {
 const colors = {
     transparent: 'transparent',
     current: 'currentColor',
-    black: '#000',
-    white: '#fff',
 
-    bodyText: '#333',
-    faintText: '#aaa',
+    // Neutral Scale Design Colors
+    neutral,
+    black: neutral[13],
+    titleText: neutral[12],
+    bodyText: neutral[9],
+    faintText: neutral[7],
+    disabled: neutral[5],
+    border: neutral[3], // and divider
+    white: neutral[1],
 
-    border: '#E2E2EA',
+    // page layout
+    navBg: neutral[2],
+    canvasBg: neutral[4],
+    pageBg: neutral[3],
+    cardBg: neutral[1],
+    altBg: neutral[3],
+    popoverBg: neutral[2],
 
-    altBg: '#EDF2F7', // ~ whiteAlpha.100 for dark
-    modalBg: '#fff', // gray.700 for dark
+    // component specific
+    progress: brand.primary[500],
+    track: neutral[4],
+    tooltip: neutral[9],
+    button: brand.primary, // VARIANT: primary button bg , secondary & tertiary button text - uses .500
+    buttonText: neutral[1], // primary button text
+    secondaryButton: 'transparent',
+    tertiaryButton: 'transparent',
+    activeLink: brand.primary[500],
+
+    inputFocus: brand.primary[500],
+    inputHover: neutral[3],
+    inputBg: neutral[2],
+
+    overlayBg: 'rgba(0, 0, 0, 0.2)',
 
     ...palette,
     ...brand,

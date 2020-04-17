@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import Box from '../Box';
-import Button from '../Button';
-import Heading from '../Heading';
-import Image from '../Image';
-import Link from '../Link';
-import Text from '../Text';
+import { Box } from '../Box';
+import { Button } from '../Button';
+import { Heading } from '../Heading';
+import { Image } from '../Image';
+import { Link } from '../Link';
+import { Text } from '../Text';
 import chrome_logo from './assets/chrome.png';
 import edge_logo from './assets/edge.png';
 import firefox_logo from './assets/firefox.png';
@@ -43,13 +43,11 @@ export const UpdateBrowser = ({ onClick, href, children, ...props }: UpdateBrows
     return (
         <Box {...updateBrowserStyleProps}>
             <Box display="table-cell" verticalAlign="middle">
-                <Heading fontSize="xl" lineHeight="48px">
-                    Please update your browser.
-                </Heading>
-                <Heading fontSize="sm">
+                <Heading kind="h2">Please update your browser.</Heading>
+                <Text fontSize="md">
                     Your browser isn't supported anymore. Update it to get the best experience and access to our latest
                     features.
-                </Heading>
+                </Text>
                 <Box w="100%" maxWidth="992px" margin="16px auto" textAlign="center">
                     {browsers.map(browser => (
                         <Link {...browserBoxStyleProps} href={browser.href} key={browser.name}>

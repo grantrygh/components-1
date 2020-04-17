@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import CanvasContainer from '../Canvas';
+import { CanvasContainer } from '../Canvas';
 
 const WrapperContext = createContext<any>({});
 

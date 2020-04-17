@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import Flex from '../Flex';
-import Stack from '../Stack';
-import Tag, { TagCloseButton, TagLabel } from '../Tag';
+import { Flex } from '../Flex';
+import { Stack } from '../Stack';
+import { Tag, TagCloseButton, TagLabel } from '../Tag';
 import useFullTagStyle, { useFullTagLabelStyle } from './styles';
 import { FullTagProps } from './types';
 

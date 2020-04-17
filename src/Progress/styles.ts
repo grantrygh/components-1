@@ -1,8 +1,8 @@
 import { useTheme } from '../ThemeProvider';
 
-export const progressStyle = ({ borderRadius, color, isIndeterminate }, theme) => ({
+export const progressStyle = ({ borderRadius = 'radius', color = 'progress', isIndeterminate }, theme) => ({
     style: {
-        bg: 'altBg',
+        bg: 'track',
         borderRadius,
         overflow: 'hidden',
     },
@@ -18,7 +18,7 @@ export const progressStyle = ({ borderRadius, color, isIndeterminate }, theme) =
         },
     },
     indicator: {
-        bg: `${color}.500`,
+        bg: color,
         borderRadius,
         ...(isIndeterminate && {
             width: '100%',

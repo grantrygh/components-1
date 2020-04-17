@@ -32,10 +32,16 @@ export interface IAvatar {
     src?: string;
 }
 
+export type AvatarProps = IAvatar & Omit<BoxProps, 'size'>;
+
 interface IAvatarName {
     name?: string;
 }
 
 export type AvatarNameProps = IAvatarName & BoxProps;
 
-export type AvatarProps = IAvatar & Omit<BoxProps, 'size'>;
+interface IAvatarBadge {
+    borderColor?: string;
+}
+
+export type AvatarBadgeProps = IAvatarBadge & Omit<BoxProps, 'borderColor'>;

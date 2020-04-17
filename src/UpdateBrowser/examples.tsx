@@ -1,8 +1,8 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { UpdateBrowser } from '.';
-import Box from '../Box';
-import Button from '../Button';
+import { Box } from '../Box';
+import { Button } from '../Button';
 
 const stories = storiesOf('UpdateBrowser', module);
 stories.addDecorator(story => {
@@ -15,7 +15,7 @@ stories.addDecorator(story => {
 
 stories.add('Default', () => (
     <UpdateBrowser href="#">
-        <Button variant="solid" color="blue">
+        <Button variant="primary" color="blue">
             Child
         </Button>
     </UpdateBrowser>

@@ -9,11 +9,13 @@ function reverseNumber(n, min, max) {
     return max + min - n;
 }
 
-const getKind = kind => ({
-    fontSize: scaleRatio ** kind * sizeBase,
-    lineHeight: '1.2',
-    mb: '0.4em',
-});
+const getKind = kind => {
+    return {
+        fontSize: scaleRatio ** kind * sizeBase,
+        lineHeight: '1.5',
+        // mb: '0.4em',
+    };
+};
 
 export const headingStyle: componentStyleDef<HeadingProps> = ({ kind }, theme) => ({
     scaleRatio,

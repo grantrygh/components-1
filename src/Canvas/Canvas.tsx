@@ -168,10 +168,17 @@ export const renderPanels = (panels = [], children = null) => {
         <Flex>
             {panels.map((canvas, i) => {
                 const { name, isMinified = false, render, ...rest } = canvas;
-                const isPanelMinified = i < lastIndex;
+                const isPanelMinified = canvas.isMinifiable && i < lastIndex;
 
                 return (
-                    <CanvasPanel name={name} isMinified={isPanelMinified} border="1px" borderColor="border" {...rest}>
+                    <CanvasPanel
+                        name={name}
+                        isMinified={isPanelMinified}
+                        borderRight="1px"
+                        borderColor="border"
+                        overflowY="hidden"
+                        {...rest}
+                    >
                         {props => (
                             <>
                                 {render({

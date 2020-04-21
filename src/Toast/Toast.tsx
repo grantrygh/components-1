@@ -42,8 +42,6 @@ export function useToast() {
                 duration,
             };
 
-            console.log('here', theme);
-
             if (render) {
                 return toaster.notify(
                     ({ onClose, id }) => <ThemeProvider>{render({ onClose, id })}</ThemeProvider>,

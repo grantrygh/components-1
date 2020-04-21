@@ -1,3 +1,4 @@
+import CartIcon from 'mdi-react/CartIcon';
 import HomeIcon from 'mdi-react/HomeIcon';
 import React from 'react';
 import {
@@ -22,7 +23,7 @@ const menuItems = [
     },
     {
         label: 'Shop',
-        icon: HomeIcon,
+        icon: CartIcon,
         href: '/shop',
         isAccordion: true,
         children: [

@@ -11,7 +11,7 @@ export const postStyle = (props, theme) => ({
         },
         avatar: {
             size: 'sm',
-            mr: 4,
+            mr: 'spacing',
         },
     },
 });

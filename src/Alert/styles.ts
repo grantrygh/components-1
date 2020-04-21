@@ -10,7 +10,7 @@ export const alertStyle = ({ color, status }, { colors }) => {
             position: 'relative',
             overflow: 'hidden',
             rounded: 'radius',
-            p: 3,
+            p: 'spacing-sm',
         },
 
         variants: {

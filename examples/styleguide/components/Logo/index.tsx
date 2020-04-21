@@ -5,7 +5,7 @@ import { Heading, Icon, Text } from '../../../../src';
 function Logo() {
     return (
         <Text display="inline-flex" alignItems="center">
-            <Icon size="5" color="primary.500" mr={2} name="check-circle" />
+            <Icon size="5" color="primary.500" mr="spacing-sm" name="check-circle" />
             <Heading as="span" kind="h4">
                 Stuff
             </Heading>

@@ -11,7 +11,7 @@ import { Icon } from '../Icon';
 const stories = storiesOf('Tabs', module).addDecorator(withKnobs);
 
 stories.addDecorator(story => (
-    <Box maxWidth="xl" mx="auto" mt={4}>
+    <Box maxWidth="xl" mx="auto" mt="spacing">
         {story()}
     </Box>
 ));
@@ -34,7 +34,7 @@ stories.add('Default', () => {
         <Tabs isFitted>
             <TabList>
                 <Tab>
-                    <Icon name="phone" size="1em" mr={2} />
+                    <Icon name="phone" size="1em" mr="spacing-sm" />
                     Settings
                 </Tab>
                 <Tab>Billings</Tab>
@@ -65,7 +65,7 @@ stories.add('Enclosed', () => {
         <Tabs variant="enclosed" isFitted variantColor="secondary">
             <TabList>
                 <Tab>
-                    <Icon name="phone" size="1em" mr={2} />
+                    <Icon name="phone" size="1em" mr="spacing-sm" />
                     Settings
                 </Tab>
                 <Tab>Billings</Tab>
@@ -88,7 +88,7 @@ stories.add('Enclosed Colored', () => {
         <Tabs variant="enclosed-colored" isFitted>
             <TabList>
                 <Tab>
-                    <Icon name="phone" size="1em" mr={2} />
+                    <Icon name="phone" size="1em" mr="spacing-sm" />
                     Settings
                 </Tab>
                 <Tab>Billings</Tab>
@@ -111,7 +111,7 @@ stories.add('Soft Rounded', () => {
         <Tabs variant="soft-rounded">
             <TabList>
                 <Tab>
-                    <Icon name="phone" size="1em" mr={2} />
+                    <Icon name="phone" size="1em" mr="spacing-sm" />
                     Settings
                 </Tab>
                 <Tab>Billings</Tab>
@@ -134,7 +134,7 @@ stories.add('Solid Rounded', () => {
         <Tabs variant="solid-rounded">
             <TabList>
                 <Tab>
-                    <Icon name="phone" size="1em" mr={2} />
+                    <Icon name="phone" size="1em" mr="spacing-sm" />
                     Settings
                 </Tab>
                 <Tab>Billings</Tab>

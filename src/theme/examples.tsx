@@ -11,7 +11,7 @@ stories.add('Spacing', () => {
         return (
             <Box>
                 {sizes.map(size => (
-                    <Box width={size} height={6} mb={2} bg="pink.100" />
+                    <Box width={size} height={6} mb="spacing-sm" bg="pink.100" />
                 ))}
             </Box>
         );

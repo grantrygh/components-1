@@ -60,7 +60,7 @@ const PortalEx = () => {
                         Are you sure you want to delete something? This action is permanent, and we're totally not just
                         flipping a field called "deleted" to "true" in our database, we're actually deleting something.
                     </Box>
-                    <Button mt={4} ref={initRef}>
+                    <Button mt="spacing" ref={initRef}>
                         Close
                     </Button>
                 </PopoverBody>

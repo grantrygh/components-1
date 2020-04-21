@@ -36,7 +36,7 @@ stories.add('Default', () => {
                         <ModalCloseButton onClick={close} position="absolute" top="8px" right="12px" />
 
                         <ModalBody pb={6}>
-                            <FormControl mb={4}>
+                            <FormControl mb="spacing">
                                 <FormLabel>First name</FormLabel>
                                 <Input ref={firstField} placeholder="Type here..." />
                             </FormControl>
@@ -297,7 +297,7 @@ stories.add('initial and final focus ref', () => {
         return (
             <>
                 <Button onClick={open}>Open Modal</Button>
-                <Button ml={4} ref={finalRef}>
+                <Button ml="spacing" ref={finalRef}>
                     I'll receive focus on close
                 </Button>
 
@@ -312,7 +312,7 @@ stories.add('initial and final focus ref', () => {
                                 <Input ref={initialRef} placeholder="First name" />
                             </FormControl>
 
-                            <FormControl mt={4}>
+                            <FormControl mt="spacing">
                                 <FormLabel>Last name</FormLabel>
                                 <Input placeholder="Last name" />
                             </FormControl>

@@ -173,7 +173,7 @@ stories.add('comments section - with actions', () => {
                     >
                         {actions.map(action => (
                             <Button
-                                mr={2}
+                                mr="spacing-sm"
                                 size="sm"
                                 onClick={action.onClick}
                                 variant="tertiary"

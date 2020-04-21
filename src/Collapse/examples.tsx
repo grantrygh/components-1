@@ -20,7 +20,7 @@ function Example() {
     return (
         <>
             <Button onClick={handleToggle}>Toggle</Button>
-            <Collapse mt={4} isOpen={show}>
+            <Collapse mt="spacing" isOpen={show}>
                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil
                 anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
             </Collapse>

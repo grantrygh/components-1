@@ -12,7 +12,7 @@ export const spinnerStyle = ({ color = 'primary.500', thickness = 2, emptyColor 
     },
     sizes: {
         xs: 3,
-        sm: 4,
+        sm: 'spacing',
         md: 6,
         lg: 8,
         xl: 12,

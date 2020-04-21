@@ -26,7 +26,7 @@ const Checkbox = props => {
             >
                 <Icon name="check" size="10px" />
             </ControlBox>
-            <Box as="span" ml={2} verticalAlign="center" userSelect="none">
+            <Box as="span" ml="spacing-sm" verticalAlign="center" userSelect="none">
                 This is a Checkbox
             </Box>
         </Box>
@@ -51,7 +51,7 @@ const Radio = props => {
             >
                 <Box size="8px" bg="white" rounded="full" />
             </ControlBox>
-            <Box as="span" ml={2} verticalAlign="center" userSelect="none">
+            <Box as="span" ml="spacing-sm" verticalAlign="center" userSelect="none">
                 This is a Radio
             </Box>
         </Box>

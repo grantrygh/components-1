@@ -1,4 +1,4 @@
-import FilterIcon from 'mdi-react/FilterIcon';
+import FilterOutlineIcon from 'mdi-react/FilterOutlineIcon';
 import React, { useContext, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import {
@@ -29,7 +29,7 @@ const notificationItems = {
     header: [
         {
             label: 'Filter Header',
-            icon: FilterIcon,
+            icon: FilterOutlineIcon,
             href: null,
         },
     ],

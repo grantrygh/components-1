@@ -1,8 +1,10 @@
+import BellOutlineIcon from 'mdi-react/BellOutlineIcon';
 import CartIcon from 'mdi-react/CartIcon';
+import ExternalLinkIcon from 'mdi-react/ExternalLinkIcon';
 import HomeIcon from 'mdi-react/HomeIcon';
 import React from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { Avatar, Badge, Box, CSSReset, Navigation, theme, ThemeProvider } from '../../../../src';
+import { Avatar, Badge, Box, CSSReset, Navigation, Stack, theme, ThemeProvider } from '../../../../src';
 import { CanvasWrapper } from '../../../../src/Canvas';
 import { CanvasMenu } from '../../../../src/CanvasMenu';
 import { PageFooter } from '../../../../src/Page';
@@ -59,6 +61,23 @@ const menuItems = {
     ],
 };
 
+const noitificationsItems = {
+    header: [
+        {
+            label: 'Notifications Header',
+            icon: BellOutlineIcon,
+            href: null,
+        },
+    ],
+    footer: [
+        {
+            label: 'Notifications Footer',
+            icon: ExternalLinkIcon,
+            href: '/notifications',
+            mb: 0,
+        },
+    ],
+};
 const initialCanvasState = {
     overview: {
         name: 'overview',
@@ -113,9 +132,17 @@ const initialCanvasState = {
         type: 'overlay',
         isMinifiable: false,
         isVisible: false,
-        render: componentProps => <Box>Notifications</Box>,
+        render: componentProps => (
+            <CanvasMenu items={noitificationsItems}>
+                <Stack>
+                    <Box>Notification</Box>
+                    <Box>Notification</Box>
+                    <Box>Notification</Box>
+                    <Box>Notification</Box>
+                </Stack>
+            </CanvasMenu>
+        ),
         bg: 'navBg',
-        width: '250px',
     },
 };
 

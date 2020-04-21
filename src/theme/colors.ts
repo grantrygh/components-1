@@ -224,7 +224,7 @@ const colors = {
     bodyText: neutral[9],
     faintText: neutral[7],
     disabled: neutral[5],
-    border: neutral[3], // and divider
+    border: neutral[4], // and divider
     white: neutral[1],
 
     // page layout

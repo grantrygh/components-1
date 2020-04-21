@@ -13,8 +13,9 @@ export interface INavigation {
 interface INavItem {
     href?: string;
     exact?: boolean;
-    isSubmenuItem?: boolean;
     isActive?: boolean;
+    isParent?: boolean;
+    isSubmenuItem?: boolean;
 }
 
 interface INavItemMedia {

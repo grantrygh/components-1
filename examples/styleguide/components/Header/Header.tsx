@@ -43,7 +43,7 @@ export const NavTertiary = () => (
                     <Box mr="2">
                         <NotificationsIcon
                             onClick={() => {
-                                togglePanel('filter');
+                                togglePanel('notifications');
                             }}
                         />
                     </Box>

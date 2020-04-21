@@ -56,7 +56,7 @@ export const buttonStyle = ({ color = 'button' }, theme) => ({
         },
         tertiary: {
             color: `${color}.500`,
-            bg: 'transparent',
+            bg: 'tertiaryButton',
             borderColor: `${color}.500`,
             _hover: {
                 bg: addOpacity(theme.colors[color][500], 0.06),

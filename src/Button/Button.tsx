@@ -59,7 +59,7 @@ export const Button = forwardRef(
             iconOnly,
         });
 
-        const asButton = href ? Link : 'button';
+        const asButton = href ? Link : Comp;
         return (
             <PseudoBox
                 disabled={_isDisabled}

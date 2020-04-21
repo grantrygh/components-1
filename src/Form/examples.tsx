@@ -107,7 +107,6 @@ stories.add('Sample', () => {
                 <Box>
                     <Heading kind="h4" />
                     {Object.keys(formValue).map(key => {
-                        console.log(formValue);
                         return (
                             <Text>
                                 {key} : {formValue[key].toString()}

@@ -3,11 +3,24 @@ import { useTheme } from '../ThemeProvider';
 export const textStyle = (props, theme) => ({
     style: {
         fontFamily: 'body',
+        color: 'bodyText',
+        fontWeight: 'normal',
     },
     kinds: {
-        body: {
-            color: 'bodyText',
+        small: {
+            fontSize: 'xs',
+            lineHeight: 'shorter',
         },
+        body: {
+            fontSize: 'sm',
+            lineHeight: 'base',
+        },
+        large: {
+            fontSize: 'md',
+            lineHeight: 'short',
+        },
+    },
+    state: {
         faint: {
             color: 'faintText',
         },
@@ -23,6 +36,8 @@ const useTextStyle = props => {
         ...styles.style,
 
         ...styles.kinds[props.kind],
+
+        ...styles.state[props.state],
     };
 };
 

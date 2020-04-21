@@ -8,8 +8,8 @@ export const navigationStyles: componentStyleDef<NavigationProps & NavigationIte
     { zIndices, sizes }
 ) => {
     const style: BoxProps = {
-        bg: 'white',
-        boxShadow: 'sm',
+        bg: 'navBg',
+        boxShadow: 'topNav',
         height: '4rem',
         px: '4',
     };

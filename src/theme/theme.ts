@@ -19,6 +19,7 @@ const shadows = {
     inner: 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',
     none: 'none',
     // design elevations
+    topNav: '0 2px 8px 0 rgba(38,38,38,0.08)',
     card: '0 0 1px 0 rgba(38,38,38,0.08), 0 0 2px 0 rgba(89,89,89,0.16)',
     pressed: '0 0 1px 0 rgba(38,38,38,0.08), 0 0.5px 2px 0 rgba(89,89,89,0.16)',
     button: '0 0 1px 0 rgba(38,38,38,0.04), 0 2px 4px 0 rgba(89,89,89,0.16)',

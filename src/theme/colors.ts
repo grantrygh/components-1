@@ -228,12 +228,12 @@ const colors = {
     white: neutral[1],
 
     // page layout
-    navBg: neutral[2],
-    canvasBg: neutral[4],
-    pageBg: neutral[3],
     cardBg: neutral[1],
-    altBg: neutral[3],
+    navBg: neutral[2],
     popoverBg: neutral[2],
+    pageBg: neutral[3],
+    altBg: neutral[3],
+    canvasBg: neutral[4],
 
     // component specific
     progress: brand.primary[500],

@@ -223,11 +223,13 @@ const ModalContent = React.forwardRef(({ onClick, children, zIndex, noStyles, ..
     const modalWrapperStyleProps = useModalWrapperStyle({
         scrollBehavior,
         isCentered,
+        noStyles,
     });
 
     const modalStyleProps = useModalStyle({
         scrollBehavior,
         isCentered,
+        noStyles,
     });
 
     return (

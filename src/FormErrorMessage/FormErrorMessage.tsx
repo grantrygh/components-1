@@ -27,7 +27,7 @@ export const FormErrorMessage = forwardRef(({ children, Icon, ...props }: FormEr
             {...props}
         >
             <IconTag aria-hidden />
-            <Text lineHeight="normal" ml={2}>
+            <Text kind="small" ml="spacing-sm">
                 {children}
             </Text>
         </Flex>

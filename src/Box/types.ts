@@ -98,7 +98,7 @@ interface ICustomConfig {
     borderRightWidth?: StyledSystem.ResponsiveValue<CSS['borderRightWidth']>;
 }
 
-type FontSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl';
+type FontSize = 'smallBody' | 'body' | 'largeBody' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl';
 
 interface IFontSize {
     fontSize?: StyledSystem.ResponsiveValue<FontSize> | StyledSystem.FontSizeProps['fontSize'];

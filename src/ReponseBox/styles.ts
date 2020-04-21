@@ -4,18 +4,16 @@ export const responseBoxStyle = ({ color = 'primary' }, theme) => ({
     style: {
         size: 'md',
         focusBorderColor: `${color}.500`,
-        my: 2,
+        my: 'spacing-sm',
     },
     cancel: {
         textTransform: 'uppercase',
-        fontSize: 'xs',
         size: 'sm',
         variant: 'ghost',
-        mr: 2,
+        mr: 'spacing-sm',
     },
     submit: {
         textTransform: 'uppercase',
-        fontSize: 'xs',
         size: 'sm',
         bg: `${color}.500`,
         color: 'white',

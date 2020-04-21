@@ -39,7 +39,6 @@ export const FullTag = ({
     // display: 'inline-block',
     //     px: 1,
     //     textTransform: 'uppercase',
-    //     fontSize: 'xs',
     //     borderRadius: 'sm',
     //     fontWeight: 'bold',
     //     whiteSpace: 'nowrap',

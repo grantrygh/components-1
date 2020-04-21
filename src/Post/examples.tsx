@@ -178,7 +178,6 @@ stories.add('comments section - with actions', () => {
                                 onClick={action.onClick}
                                 variant="tertiary"
                                 textTransform="uppercase"
-                                fontSize="xs"
                                 title={action.title}
                             >
                                 {action.title}

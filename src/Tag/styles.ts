@@ -6,7 +6,6 @@ export const tagStyle = (props, theme) => ({
         border: '1px',
         borderColor: 'border',
         fontWeight: 'medium',
-        fontSize: 'sm',
     },
     sizes: {
         sm: {

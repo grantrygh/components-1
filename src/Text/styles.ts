@@ -5,18 +5,19 @@ export const textStyle = (props, theme) => ({
         fontFamily: 'body',
         color: 'bodyText',
         fontWeight: 'normal',
+        display: 'block',
     },
     kinds: {
         small: {
-            fontSize: 'xs',
+            fontSize: 'smallBody',
             lineHeight: 'shorter',
         },
         body: {
-            fontSize: 'sm',
+            fontSize: 'body',
             lineHeight: 'base',
         },
         large: {
-            fontSize: 'md',
+            fontSize: 'largeBody',
             lineHeight: 'short',
         },
     },

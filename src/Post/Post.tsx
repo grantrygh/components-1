@@ -43,13 +43,17 @@ export const Post = props => {
     const actionStyleProps = usePostActionsStyle({});
 
     return (
-        <Flex w="100%" py={2} fontSize={['sm', 'md']}>
+        <Flex w="100%" py={2}>
             <Avatar name={author.name} src={author.avatar} {...postStyleProps.avatar} />
             <Box flexGrow="1">
                 <Box onMouseEnter={() => handleMouseAction(true)} onMouseLeave={() => handleMouseAction(false)}>
-                    <Flex align="center" justify="space-between" fontSize={['xs', 'sm']}>
-                        <Text {...postStyleProps.author}>{author.name}</Text>
-                        <Text {...postStyleProps.date}>{date}</Text>
+                    <Flex align="center" justify="space-between">
+                        <Text kind="small" {...postStyleProps.author}>
+                            {author.name}
+                        </Text>
+                        <Text kind="small" {...postStyleProps.date}>
+                            {date}
+                        </Text>
                     </Flex>
                     <Text my={2}>{message}</Text>
 

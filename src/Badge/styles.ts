@@ -4,7 +4,7 @@ export const badgeStyle = ({ color, size = 40 }, theme) => ({
     style: {
         display: 'inline-block',
         px: 1,
-        fontSize: 'xs',
+        fontSize: 'smallBody',
         borderRadius: 'radius',
         fontWeight: 'bold',
         whiteSpace: 'nowrap',
@@ -24,8 +24,7 @@ export const badgeStyle = ({ color, size = 40 }, theme) => ({
             boxShadow: 'inset 0 0 0px 1px' + theme.colors[color][500],
         },
         hexagon: {
-            fontSize: `${size}px`,
-            lineHeight: `${size}px`,
+            fontSize: `largeBody`,
             style: { fill: theme.colors[color][500] },
             display: 'inline-flex',
             alignItems: 'center',

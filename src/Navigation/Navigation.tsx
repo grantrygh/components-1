@@ -31,9 +31,7 @@ Navigation.Primary = function NavigationPrimary(props: BoxProps) {
             // TODO: probably a better way to handle these breakpoints
             display={['inline-flex', 'inline-flex', 'inline-flex', 'none']}
             align="center"
-            fontWeight="bold"
-            fontSize="4"
-            mr="3"
+            mr="spacing-sm"
             {...props}
         >
             {props.children}

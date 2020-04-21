@@ -7,6 +7,7 @@
 import React, { forwardRef } from 'react';
 import { Box } from '../Box';
 import { useFormControl } from '../FormControl';
+import { Text } from '../Text';
 import useFormLabelStyle from './styles';
 import { FormLabelProps } from './types';
 
@@ -26,9 +27,17 @@ export const FormLabel = forwardRef(({ children, ...props }: FormLabelProps, ref
         isDisabled: formControl.isDisabled,
     });
     return (
-        <Box ref={ref} verticalAlign="middle" display="inline-block" as="label" {...formLabelStyleProps} {...props}>
+        <Text
+            ref={ref}
+            kind="small"
+            verticalAlign="middle"
+            display="inline-block"
+            as="label"
+            {...formLabelStyleProps}
+            {...props}
+        >
             {children}
             {formControl.isRequired && <RequiredIndicator />}
-        </Box>
+        </Text>
     );
 });

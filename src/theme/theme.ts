@@ -5,6 +5,7 @@ import typography from './typography';
 
 const space = {
     ...baseSizes,
+    ...sizes.spacing,
     input: sizes.input,
     canvas: sizes.canvas,
 };

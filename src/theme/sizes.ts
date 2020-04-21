@@ -43,6 +43,11 @@ const containers = {
     xl: '1280px',
 };
 
+const spacing = {
+    'spacing-sm': baseSizes[2],
+    spacing: baseSizes[4],
+};
+
 const input = {
     // Heights
     lg: '2.75rem',
@@ -67,6 +72,7 @@ const canvas = {
 const sizes = {
     ...baseSizes,
     ...largeSizes,
+    spacing,
     containers,
     input,
     canvas,

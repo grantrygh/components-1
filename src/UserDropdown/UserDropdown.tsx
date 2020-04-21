@@ -12,20 +12,20 @@ export default function UserDropdown(props) {
     return (
         <Menu>
             <MenuButton as={Flex} tabIndex="0" fontWeight="semibold" direction="row" align="center" {...style}>
-                <Avatar size="sm" mr={{ lg: '2' }} />
+                <Avatar size="sm" mr={{ lg: 'spacing-sm' }} />
 
                 <Flex {...style.main}>
                     <Flex direction="column">
-                        <Text as="span" display="block" fontSize="sm" mb="-2px">
+                        <Text as="span" mb="-2px">
                             Austin Robertson
                         </Text>{' '}
-                        <Text as="span" display="block" fontSize="xs" color="faintText">
+                        <Text as="span" kind="small" state="faint">
                             Administrator
                         </Text>
                     </Flex>
 
                     <Flex>
-                        <Icon {...style.main} name="chevron-down" ml="2" size="6" />
+                        <Icon {...style.main} color="faintText" name="chevron-down" ml="spacing" size="6" />
                     </Flex>
                 </Flex>
             </MenuButton>

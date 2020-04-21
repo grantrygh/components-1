@@ -9,9 +9,7 @@ const stories = storiesOf('List', module);
 
 stories.add('Default', () => (
     <Box mb={6}>
-        <Text fontSize="sm" color="gray.600">
-            .list-disc
-        </Text>
+        <Text color="gray.600">.list-disc</Text>
         <List styleType="disc">
             <ListItem>Lorem ipsum dolor sit amet, consectetur adipisicing elit</ListItem>
             <ListItem>Assumenda, quia temporibus eveniet a libero incidunt suscipit</ListItem>
@@ -22,9 +20,7 @@ stories.add('Default', () => (
 
 stories.add('Ordered', () => (
     <Box mb={6}>
-        <Text fontSize="sm" color="gray.600">
-            .list-decimal
-        </Text>
+        <Text color="gray.600">.list-decimal</Text>
         <List styleType="decimal">
             <ListItem>Lorem ipsum dolor sit amet, consectetur adipisicing elit</ListItem>
             <ListItem>Assumenda, quia temporibus eveniet a libero incidunt suscipit</ListItem>
@@ -35,9 +31,7 @@ stories.add('Ordered', () => (
 
 stories.add('Unstyled', () => (
     <Box mb={6}>
-        <Text fontSize="sm" color="gray.600">
-            .list-none
-        </Text>
+        <Text color="gray.600">.list-none</Text>
         <List>
             <ListItem>Lorem ipsum dolor sit amet, consectetur adipisicing elit</ListItem>
             <ListItem>Assumenda, quia temporibus eveniet a libero incidunt suscipit</ListItem>
@@ -60,9 +54,7 @@ const SampleIcon = props => {
 
 stories.add('Unstyled with icon', () => (
     <Box mb={6}>
-        <Text fontSize="sm" color="gray.600">
-            .list-none
-        </Text>
+        <Text color="gray.600">.list-none</Text>
         <List spacing={3}>
             <ListItem>
                 <ListIcon icon={SampleIcon} color="green.500" />

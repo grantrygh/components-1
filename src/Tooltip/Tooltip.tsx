@@ -5,6 +5,7 @@ import React, { Children, cloneElement, MutableRefObject, useRef } from 'react';
 import { Box } from '../Box';
 import { useDisclosure } from '../hooks/useDisclosure';
 import { Popper, PopperArrow } from '../Popper';
+import { Text } from '../Text';
 import { VisuallyHidden } from '../VisuallyHidden';
 import useTooltipStyle from './styles';
 import { TooltipProps } from './types';
@@ -124,7 +125,7 @@ export const Tooltip = ({
                 {...tooltipStyleProps}
                 {...rest}
             >
-                {label}
+                {label && <Text>{label}</Text>}
                 {hasAriaLabel && (
                     <VisuallyHidden role="tooltip" id={tooltipId}>
                         {ariaLabel}

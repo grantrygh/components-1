@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
+import { Heading } from '..';
 import { Box } from './Box';
 
 const stories = storiesOf('Box', module);
@@ -18,9 +19,7 @@ stories.add('Generic', () => {
                 src="https://www.dropbox.com/s/nd8z3hxuo3ahauk/segun_adebayo.jpg?dl=1"
             />
             <Box textAlign={['left', 'center']}>
-                <Box as="h2" fontSize="lg" fontWeight="bold">
-                    Erin Lindford
-                </Box>
+                <Heading kind="h4">Erin Lindford</Heading>
                 <Box color="purple.500">Customer Support</Box>
                 <Box color="gray.600">erinlindford@example.com</Box>
                 <Box color="gray.600">(555) 765-4321</Box>
@@ -31,7 +30,7 @@ stories.add('Generic', () => {
 
 stories.add('Responsive Styles', () => {
     return (
-        <Box p={5} fontSize="sm" width={['full', 'full', '50%']} color="white" bg="green.500">
+        <Box p={5} width={['full', 'full', '50%']} color="white" bg="green.500">
             Box
         </Box>
     );

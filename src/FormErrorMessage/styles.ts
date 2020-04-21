@@ -3,8 +3,7 @@ import { useTheme } from '../ThemeProvider';
 export const formErrorMessageStyle = ({ color }, theme) => ({
     style: {
         color: 'error.500',
-        mt: 2,
-        fontSize: 'sm',
+        mt: 'spacing-sm',
         align: 'center',
     },
 });

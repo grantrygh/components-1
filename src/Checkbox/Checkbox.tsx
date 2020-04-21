@@ -8,6 +8,7 @@ import { ControlBox } from '../ControlBox';
 import { useFormField } from '../Form';
 import { useForkRef } from '../hooks/useForkRef';
 import { useVariantColorWarning } from '../hooks/useVariantColorWarning';
+import { Text } from '../Text';
 import { VisuallyHidden } from '../VisuallyHidden';
 import useCheckboxStyle from './styles';
 import { CheckboxProps } from './types';
@@ -101,7 +102,7 @@ export const Checkbox = forwardRef(
                 <ControlBox opacity={isReadOnly ? 0.8 : 1} {...rootStyleProps}>
                     <IconTag size={iconSize} color={iconColor} />
                 </ControlBox>
-                {children && <Box {...labelStyleProps}>{children}</Box>}
+                {children && <Text {...labelStyleProps}>{children}</Text>}
             </Box>
         );
     }

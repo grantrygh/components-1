@@ -148,5 +148,5 @@ export function Menu(props) {
 }
 
 export const TestMenu = props => {
-    return <>Initial state menu</>;
+    return <>Notifications</>;
 };

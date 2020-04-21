@@ -35,8 +35,8 @@ const initialCanvasState = {
             );
         },
     },
-    filter: {
-        name: 'filter',
+    notification: {
+        name: 'notifications',
         position: 'right',
         bg: 'navBg',
         isMinifiable: false,

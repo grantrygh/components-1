@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Box, Button } from '../../src';
 import { CanvasContext } from '../../src/Canvas';
-import { Page } from '../../src/Page';
+import { Page, PageContent } from '../../src/Page';
 import { AppShell } from './components/AppShell';
 
 function StyleGuide(props) {
@@ -24,18 +24,19 @@ function StyleGuide(props) {
 
     return (
         <Page>
-            <Box>this is the content</Box>
-            <Button onClick={() => togglePanel('menu')}>Toggle Minified Sidebar</Button>
+            <PageContent>
+                <Box>this is the content</Box>
+                <Button onClick={() => togglePanel('menu')}>Toggle Minified Sidebar</Button>
 
-            <Box mr="2">
-                <MenuIcon
-                    color="red"
-                    title="Overlay"
-                    onClick={() => {
-                        togglePanel('mini');
-                    }}
-                />
-            </Box>
+                <Box mr="2">
+                    <MenuIcon
+                        color="red"
+                        onClick={() => {
+                            togglePanel('mini');
+                        }}
+                    />
+                </Box>
+            </PageContent>
         </Page>
     );
 }

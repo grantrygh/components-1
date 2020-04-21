@@ -10,7 +10,16 @@ export default function Navigation(props) {
     const { root: style } = useNavigationStyle(props);
 
     return (
-        <Flex as="header" align="center" justify="space-between" direction="row" {...style} {...props}>
+        <Flex
+            as="header"
+            role="banner"
+            align="center"
+            justify="space-between"
+            direction="row"
+            boxShadow="topNav"
+            {...style}
+            {...props}
+        >
             {props.children}
         </Flex>
     );
@@ -18,7 +27,15 @@ export default function Navigation(props) {
 
 Navigation.Primary = function NavigationPrimary(props: BoxProps) {
     return (
-        <Flex minWidth={['none', '200px']} fontWeight="bold" fontSize="4" mr="3" {...props}>
+        <Flex
+            // TODO: probably a better way to handle these breakpoints
+            display={['inline-flex', 'inline-flex', 'inline-flex', 'none']}
+            align="center"
+            fontWeight="bold"
+            fontSize="4"
+            mr="3"
+            {...props}
+        >
             {props.children}
         </Flex>
     );
@@ -34,14 +51,14 @@ Navigation.Secondary = function NavigationSecondary(props: BoxProps) {
 
 Navigation.Tertiary = function NavigationTertiary(props: BoxProps) {
     return (
-        <Flex minWidth={['none', '200px']} justify="flex-end" ml="3" {...props}>
+        <Flex justify="flex-end" align="center" {...props}>
             {props.children}
         </Flex>
     );
 };
 
 Navigation.Item = function NavItem(props: NavigationItemProps) {
-    const { href, exact = true, isSubmenuItem, isActive } = props;
+    const { href, exact = true, isSubmenuItem, isActive, isParent, ...rest } = props;
 
     let isLinkActive = false;
     const path = window.location.pathname;
@@ -58,7 +75,7 @@ Navigation.Item = function NavItem(props: NavigationItemProps) {
     });
 
     return (
-        <Flex as={href && Link} href={href} {...navItemStyleProps} {...props}>
+        <Flex as={href && Link} href={!isParent ? href : undefined} {...navItemStyleProps} {...rest}>
             {(isActive || isLinkActive) && !isSubmenuItem && <Box {...activeBarStyleProps} />}
             {/* Navigation.ItemMedia | Navigation.ItemText | Navigation.ItemMeta */}
             {props.children}
@@ -69,7 +86,7 @@ Navigation.Item = function NavItem(props: NavigationItemProps) {
 Navigation.ItemMedia = function NavItemLeft(props: NavigationItemMediaProps) {
     const MdiIcon = props.icon;
     return (
-        <Box w="32px" mr={4}>
+        <Box w="32px" {...props}>
             {props.children || (MdiIcon && <MdiIcon color="currentColor" size={28} />) || null}
         </Box>
     );

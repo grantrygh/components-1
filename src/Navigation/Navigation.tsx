@@ -12,6 +12,7 @@ export default function Navigation(props) {
     return (
         <Flex
             as="header"
+            role="banner"
             align="center"
             justify="space-between"
             direction="row"

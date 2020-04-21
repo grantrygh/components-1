@@ -9,6 +9,7 @@ import {
     Avatar,
     Badge,
     Box,
+    Flex,
     Navigation,
 } from '../../../../src';
 import { LogoIcon, LogoText } from '../Logo';
@@ -112,8 +113,8 @@ export function Menu(props) {
     });
 
     return (
-        <>
-            {/* Top */}
+        <Flex as="nav" h="100%" direction="column">
+            {/* Menu Header */}
             <Box>
                 {renderNavItem({
                     media: <LogoIcon />,
@@ -133,7 +134,7 @@ export function Menu(props) {
                 })}
             </Box>
 
-            {/* Secondary navigation links at bottom */}
+            {/* Menu Footer */}
             <Box>
                 {secondaryItems.map(item => {
                     if (item.isAccordion) {
@@ -143,10 +144,6 @@ export function Menu(props) {
                     return renderNavItem(item);
                 })}
             </Box>
-        </>
+        </Flex>
     );
 }
-
-export const TestMenu = props => {
-    return <>Notifications</>;
-};

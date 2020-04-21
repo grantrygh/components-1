@@ -60,6 +60,8 @@ const input = {
 const canvas = {
     width: '300px',
     spacing: baseSizes[5],
+
+    breakpoint: 1024, // width at which inline canvases become overlays, and main page content takes full viewport width
 };
 
 const sizes = {

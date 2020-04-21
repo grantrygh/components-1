@@ -1,9 +1,10 @@
 import React from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { CSSReset, Navigation, theme, ThemeProvider } from '../../../../src';
+import { Box, CSSReset, Navigation, theme, ThemeProvider } from '../../../../src';
 import { CanvasWrapper } from '../../../../src/Canvas';
+import { PageFooter } from '../../../../src/Page';
 import { NavPrimary, NavSecondary, NavTertiary } from '../Header';
-import { Menu, TestMenu } from '../Menu';
+import { Menu } from '../Menu';
 
 const initialCanvasState = {
     menu: {
@@ -24,13 +25,18 @@ const initialCanvasState = {
         render: componentProps => {
             return (
                 <>
+                    {/* Header */}
                     <Navigation>
                         <NavPrimary />
                         <NavSecondary />
                         <NavTertiary />
                     </Navigation>
 
+                    {/* Main */}
                     {componentProps.children}
+
+                    {/* Footer */}
+                    <PageFooter>Footer</PageFooter>
                 </>
             );
         },
@@ -42,7 +48,7 @@ const initialCanvasState = {
         isMinifiable: false,
         isVisible: false,
         width: '250px',
-        render: componentProps => <TestMenu {...componentProps} />,
+        render: componentProps => <Box>Notifications</Box>,
         type: 'overlay',
     },
 };
@@ -60,11 +66,7 @@ export const AppShell = props => {
                         rel="stylesheet"
                     />
                 </Helmet>
-                <CanvasWrapper initialCanvasState={initialCanvasState}>
-                    {/* <Box overflow="hidden" maxWidth="100vw"> */}
-                    {children}
-                    {/* </Box> */}
-                </CanvasWrapper>
+                <CanvasWrapper initialCanvasState={initialCanvasState}>{children}</CanvasWrapper>
             </ThemeProvider>
         </HelmetProvider>
     );

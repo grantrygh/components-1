@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import React, { createContext, createRef, useContext, useEffect, useState } from 'react';
-import { Box } from '..';
+import { Box, useTheme } from '..';
 import { Flex } from '../Flex';
 import { useWindowResize } from '../hooks/useWindowResize';
 import { ModalOverlay } from '../Modal';
@@ -25,9 +25,10 @@ const getPanels = panels => {
 
 export function CanvasContainer(props) {
     const [panels, setPanels] = useState<any>({});
+    const { sizes } = useTheme();
 
     const { windowWidth } = useWindowResize();
-    const isMobile = windowWidth < 1024;
+    const isMobile = windowWidth < sizes.canvas.breakpoint;
 
     const styles = useCanvasStyle({
         ...props,

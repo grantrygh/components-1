@@ -7,8 +7,8 @@ import { AppShell } from './components/AppShell';
 import { FilterMenuForm } from './components/FilterMenuForm';
 
 function StyleGuide(props) {
-    const { panels, togglePanel, setPanel } = useContext(CanvasContext);
     const [formValue, setFormValue] = useState(null);
+    const { togglePanel, setPanel } = useContext(CanvasContext);
 
     useEffect(() => {
         setPanel('filter', () => ({

@@ -91,7 +91,11 @@ Navigation.ItemMedia = function NavItemLeft(props: NavigationItemMediaProps) {
 };
 
 Navigation.ItemText = function NavItemText(props: BoxProps) {
-    return <Box flex="1">{props.children}</Box>;
+    return (
+        <Box flex="1" minW={100}>
+            {props.children}
+        </Box>
+    );
 };
 
 Navigation.ItemMeta = function NavItemRight(props: BoxProps) {

@@ -5,6 +5,7 @@ import { Box } from '../Box';
 import useCheckboxStyle from '../Checkbox/styles';
 import { ControlBox } from '../ControlBox';
 import { useFormField } from '../Form';
+import { Text } from '../Text';
 import { VisuallyHidden } from '../VisuallyHidden';
 import useSwitchStyle from './styles';
 import { SwitchProps } from './types';
@@ -77,7 +78,7 @@ export const Switch = forwardRef(
                 <ControlBox {...switchStyleProps}>
                     <Box bg="white" transition="transform 250ms" rounded={rounded} size={height} />
                 </ControlBox>
-                {children && <Box {...labelStyleProps}>{children}</Box>}
+                {children && <Text {...labelStyleProps}>{children}</Text>}
             </Box>
         );
     }

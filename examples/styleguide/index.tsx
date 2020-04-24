@@ -28,7 +28,7 @@ function StyleGuide(props) {
             name: 'messages',
             position: 'right',
             ranges: {
-                isOverlay: [0, 999],
+                isOverlay: [0, 9999],
                 allowMinify: false,
                 defaultVisible: false,
                 defaultMinified: false,

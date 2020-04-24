@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import React, { createContext, createRef, useContext, useEffect, useState } from 'react';
-import { Box } from '..';
+import { Box, useTheme } from '..';
 import { Flex } from '../Flex';
 import { useWindowResize } from '../hooks/useWindowResize';
 import { ModalOverlay } from '../Modal';
@@ -24,7 +24,7 @@ const getPanels = panels => {
 };
 
 const isWithinRange = (width, range) => {
-    if (width && range && range.length > 1 && width >= range[0] && width < range[1]) {
+    if (width && range?.length === 2 && width >= range[0] && width < range[1]) {
         return true;
     }
     return false;
@@ -32,6 +32,7 @@ const isWithinRange = (width, range) => {
 
 export function CanvasContainer(props) {
     const [panels, setPanels] = useState<any>({});
+    const { zIndices } = useTheme();
 
     const styles = useCanvasStyle({
         ...props,
@@ -94,8 +95,17 @@ export function CanvasContainer(props) {
             }),
         };
 
+        /** TODO: We're going to want to rework canvas visibility and zIndex layering a bit based on whether the canvas was opened by default, or manually
+         * If opened manually, the canvas should be opened as an overlay when scaling down width to within the isOverlay range
+         * If canvas was opened by default, likely do not show the overlay as opened upon scaling
+         * This avoids having possible multiple canvas open ( and needing to be closed ) on mobile
+         * Also limit to 1 canvas open.
+         * There also needs to be some tracker on currently open canvases. For example, if notifications canvas is open and viewport scales down, then
+         * the notifications overlay should be open on mobile, and not the filter ovleray that was previously expanded inline.
+         * */
+
         return (
-            <Flex zIndex={(isVisible && isOverlay ? 1300 : 1) + zIndex} flexGrow={name === 'main' && 1}>
+            <Flex zIndex={(isVisible && isOverlay ? zIndices.modal : 1) + zIndex} flexGrow={name === 'main' && 1}>
                 <MotionPanel key={panel.name} initial={animateTo} animate={animateTo} {...panelStyleProps}>
                     <Flex ref={ref} direction="column" height="100%" p={name !== 'main' && p} {...panelProps}>
                         {panel.render({

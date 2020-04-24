@@ -44,7 +44,7 @@ export const UpdateBrowser = ({ onClick, href, children, ...props }: UpdateBrows
         <Box {...updateBrowserStyleProps}>
             <Box display="table-cell" verticalAlign="middle">
                 <Heading kind="h2">Please update your browser.</Heading>
-                <Text fontSize="md">
+                <Text kind="large">
                     Your browser isn't supported anymore. Update it to get the best experience and access to our latest
                     features.
                 </Text>

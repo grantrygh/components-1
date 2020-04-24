@@ -9,16 +9,5 @@ export const Code = ({ variantColor = 'gray', ...props }: CodeProps) => {
     useVariantColorWarning('Code', variantColor);
     const badgeStyle = useBadgeStyle({ variant: 'subtle', color: variantColor });
 
-    return (
-        <Box
-            as="code"
-            display="inline-block"
-            fontFamily="mono"
-            fontSize="sm"
-            px="0.2em"
-            rounded="sm"
-            {...badgeStyle}
-            {...props}
-        />
-    );
+    return <Box as="code" display="inline-block" fontFamily="mono" rounded="radius" {...badgeStyle} {...props} />;
 };

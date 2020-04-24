@@ -24,17 +24,12 @@ export const statStyle = (props, theme) => ({
     },
     label: {
         fontWeight: 'medium',
-        fontSize: 'sm',
     },
     help: {
-        fontSize: 'sm',
-        opacity: 0.8,
-        mb: 2,
+        mb: 'spacing-sm',
     },
     number: {
-        fontSize: '2xl',
         verticalAlign: 'baseline',
-        fontWeight: 'semibold',
     },
     group: {
         wrap: 'wrap',

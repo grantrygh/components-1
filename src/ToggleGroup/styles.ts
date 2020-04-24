@@ -6,6 +6,7 @@ export const toggleGroupStyle = ({ isChecked }, theme) => ({
         border: '1px',
         borderColor: 'border',
         borderRadius: 'lg',
+        d: 'inline-flex',
     },
     toggleButton: {
         variant: isChecked ? 'primary' : 'secondary',

@@ -17,7 +17,7 @@ stories.add('Default', () => {
     return (
         <Alert>
             <AlertIcon />
-            <AlertTitle display="inline-block" mr={2}>
+            <AlertTitle display="inline-block" mr="spacing-sm">
                 Basic Alert
             </AlertTitle>
             <CloseButton position="absolute" right="8px" top="8px" />
@@ -53,7 +53,7 @@ stories.add('Solid', () => {
     return (
         <Alert status="error" variant="solid" justifyContent="center">
             <AlertIcon />
-            <AlertTitle display="inline-block" mr={2}>
+            <AlertTitle display="inline-block" mr="spacing-sm">
                 Your browser is outdated!
             </AlertTitle>
             <AlertDescription display="inline-block">Your Chakra experience may be degraded.</AlertDescription>

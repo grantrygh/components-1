@@ -60,7 +60,7 @@ const PortalEx = () => {
                         Are you sure you want to delete something? This action is permanent, and we're totally not just
                         flipping a field called "deleted" to "true" in our database, we're actually deleting something.
                     </Box>
-                    <Button mt={4} ref={initRef}>
+                    <Button mt="spacing" ref={initRef}>
                         Close
                     </Button>
                 </PopoverBody>
@@ -100,13 +100,11 @@ function Card() {
                     name="swyx"
                     src="https://pbs.twimg.com/profile_images/990728399873232896/CMPn3IxT_reasonably_small.jpg"
                 />
-                <Text mt={4} fontWeight="bold">
+                <Text mt="spacing" fontWeight="bold">
                     swyx
-                    <Badge ml={3} fontSize="xs">
-                        Follows you
-                    </Badge>
+                    <Badge ml="spacing-sm">Follows you</Badge>
                 </Text>
-                <Text mt={3}>Infinite Builder working on DX @Netlify. Helping people #LearnInPublic</Text>
+                <Text mt="spacing-sm">Infinite Builder working on DX @Netlify. Helping people #LearnInPublic</Text>
             </Box>
         </DarkMode>
     );
@@ -169,7 +167,7 @@ const WalkthroughEx = () => (
                 dolore.
             </PopoverBody>
             <PopoverFooter border="0" d="flex" alignItems="center" justifyContent="space-between" pb={4}>
-                <Box fontSize="sm">Step 2 of 4</Box>
+                <Text>Step 2 of 4</Text>
                 <ButtonGroup size="sm">
                     <Button variantColor="success">Setup Email</Button>
                     <Button>Next</Button>

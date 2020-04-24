@@ -103,7 +103,7 @@ export const MenuItemOption = forwardRef(
                     opacity={isChecked ? 1 : 0}
                     color="currentColor"
                     size="1em"
-                    ml="1rem"
+                    ml="spacing"
                     mr="-4px"
                     aria-hidden
                     data-menuitem-icon=""

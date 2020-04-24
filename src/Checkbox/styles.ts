@@ -36,7 +36,6 @@ export const checkboxStyle = ({ color, type, isDisabled, isFullWidth, isChild, s
     },
     label: {
         ml: 2,
-        fontSize: size,
         userSelect: 'none',
         color: isDisabled && 'disabled',
     },

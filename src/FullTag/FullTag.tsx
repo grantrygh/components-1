@@ -39,7 +39,6 @@ export const FullTag = ({
     // display: 'inline-block',
     //     px: 1,
     //     textTransform: 'uppercase',
-    //     fontSize: 'xs',
     //     borderRadius: 'sm',
     //     fontWeight: 'bold',
     //     whiteSpace: 'nowrap',
@@ -57,13 +56,13 @@ export const FullTag = ({
             >
                 {children}
             </Flex>
-            <Stack pl={4} pr={8}>
-                <TagLabel mb={0} marginBottom={0} pb="2px">
+            <Stack pl="spacing" pr={8}>
+                <TagLabel mb={0} marginBottom={0} pb="spacing-sm">
                     {label}
                 </TagLabel>
                 {subLabel && <TagLabel fontSize="xs">{subLabel}</TagLabel>}
             </Stack>
-            {onClose && <TagCloseButton mr={2} onClick={onClose} />}
+            {onClose && <TagCloseButton mr="spacing-sm" onClick={onClose} />}
         </Tag>
     );
 };

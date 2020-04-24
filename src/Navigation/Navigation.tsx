@@ -31,9 +31,7 @@ Navigation.Primary = function NavigationPrimary(props: BoxProps) {
             // TODO: probably a better way to handle these breakpoints
             display={['inline-flex', 'inline-flex', 'inline-flex', 'none']}
             align="center"
-            fontWeight="bold"
-            fontSize="4"
-            mr="3"
+            mr="spacing-sm"
             {...props}
         >
             {props.children}
@@ -58,7 +56,7 @@ Navigation.Tertiary = function NavigationTertiary(props: BoxProps) {
 };
 
 Navigation.Item = function NavItem(props: NavigationItemProps) {
-    const { href, exact = true, isSubmenuItem, isActive, isParent, ...rest } = props;
+    const { href, exact = true, isSubmenuItem, isActive, isParent, isMinified, ...rest } = props;
 
     let isLinkActive = false;
     const path = window.location.pathname;
@@ -75,7 +73,12 @@ Navigation.Item = function NavItem(props: NavigationItemProps) {
     });
 
     return (
-        <Flex as={href && Link} href={!isParent ? href : undefined} {...navItemStyleProps} {...rest}>
+        <Flex
+            as={href && Link}
+            href={!isParent || (isParent && isMinified) ? href : undefined}
+            {...navItemStyleProps}
+            {...rest}
+        >
             {(isActive || isLinkActive) && !isSubmenuItem && <Box {...activeBarStyleProps} />}
             {/* Navigation.ItemMedia | Navigation.ItemText | Navigation.ItemMeta */}
             {props.children}
@@ -93,7 +96,11 @@ Navigation.ItemMedia = function NavItemLeft(props: NavigationItemMediaProps) {
 };
 
 Navigation.ItemText = function NavItemText(props: BoxProps) {
-    return <Box flex="1">{props.children}</Box>;
+    return (
+        <Box flex="1" minW={100}>
+            {props.children}
+        </Box>
+    );
 };
 
 Navigation.ItemMeta = function NavItemRight(props: BoxProps) {

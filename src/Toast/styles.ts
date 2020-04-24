@@ -6,7 +6,7 @@ export const toastStyle = ({ color }, theme) => ({
         boxShadow: 'toast',
         rounded: 'md',
         alignItems: 'start',
-        m: 2,
+        m: 'spacing-sm',
         pr: 8,
     },
 });

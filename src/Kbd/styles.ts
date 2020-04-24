@@ -3,14 +3,12 @@ import { useTheme } from '../ThemeProvider';
 export const kbdStyle = ({ color }, theme) => ({
     style: {
         bg: '',
-        rounded: 'md',
+        rounded: 'radius',
         border: '1px',
         borderColor: 'inherit',
         borderBottomWidth: '3px',
-        fontSize: '0.8em',
         fontWeight: 'bold',
-        lineHeight: 'normal',
-        px: '0.4em',
+        px: 'spacing-sm',
         whiteSpace: 'nowrap',
     },
 });

@@ -66,7 +66,7 @@ stories.add('with custom element', () => {
                 size="xs"
                 name="Segun Adebayo"
                 ml={-1}
-                mr={2}
+                mr="spacing-sm"
             />
             <TagLabel>Segun</TagLabel>
         </Tag>

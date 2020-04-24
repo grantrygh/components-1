@@ -1,5 +1,6 @@
 import { MdiReactIconComponentType } from 'mdi-react';
 import { BoxProps } from '../Box/types';
+import { FlexProps } from '../Flex/types';
 
 export interface INavigation {
     logo?: string;
@@ -16,12 +17,13 @@ interface INavItem {
     isActive?: boolean;
     isParent?: boolean;
     isSubmenuItem?: boolean;
+    isMinified?: boolean;
 }
 
-interface INavItemMedia {
+export interface INavItemMedia {
     icon?: MdiReactIconComponentType;
 }
 
 export type NavigationProps = INavigation & BoxProps;
-export type NavigationItemProps = INavItem & BoxProps;
+export type NavigationItemProps = INavItem & FlexProps;
 export type NavigationItemMediaProps = INavItemMedia & BoxProps;

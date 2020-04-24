@@ -26,7 +26,7 @@ const Icons = () => {
                     alignItems="center"
                 >
                     <Icon name={icon} size="24px" />
-                    <Text mt="input.spacing.sm" fontSize="sm" textAlign="center">
+                    <Text mt="input.spacing.sm" textAlign="center">
                         {icon}
                     </Text>
                 </Flex>

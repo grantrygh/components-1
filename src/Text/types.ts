@@ -1,5 +1,6 @@
 import { BoxProps } from '../Box/types';
 
 export type TextProps = BoxProps & {
-    kind?: 'body' | 'faint';
+    kind?: 'small' | 'body' | 'large';
+    state?: 'normal' | 'faint';
 };

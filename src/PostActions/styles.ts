@@ -3,10 +3,9 @@ import { useTheme } from '../ThemeProvider';
 // Provides standard style to the action buttons themselves
 export const postActionsStyle = ({ color = 'blue' }, theme) => ({
     style: {
-        mr: 2,
+        mr: 'spacing-sm',
         size: 'sm',
         textTransform: 'uppercase',
-        fontSize: 'xs',
         variant: 'outline',
         color: `${color}.500`,
     },

@@ -2,10 +2,7 @@ import { useTheme } from '../ThemeProvider';
 
 export const formHelperTextStyle = ({ color }, theme) => ({
     style: {
-        color: 'faintText',
-        lineHeight: 'normal',
-        fontSize: 'sm',
-        mt: 2,
+        mt: 'spacing-sm',
     },
 });
 

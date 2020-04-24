@@ -6,6 +6,7 @@ import { Box } from '../Box';
 import useCheckboxStyle from '../Checkbox/styles';
 import { ControlBox } from '../ControlBox';
 import { useVariantColorWarning } from '../hooks/useVariantColorWarning';
+import { Text } from '../Text';
 import { RadioProps } from './types';
 
 export const Radio = forwardRef(
@@ -63,7 +64,7 @@ export const Radio = forwardRef(
                 <ControlBox {...rootStyleProps} type="radio" rounded="full">
                     <Box bg="currentColor" as="span" rounded="full" size="50%" />
                 </ControlBox>
-                {children && <Box {...labelStyleProps}>{children}</Box>}
+                {children && <Text {...labelStyleProps}>{children}</Text>}
             </Box>
         );
     }

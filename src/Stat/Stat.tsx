@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react';
 import { Box } from '../Box';
 import { Flex } from '../Flex';
+import { Heading } from '../Heading';
 import { Icon } from '../Icon';
 import { Text } from '../Text';
 import useStatStyle from './styles';
@@ -13,12 +14,12 @@ const StatLabel = forwardRef((props: StatLabelProps, ref) => {
 
 const StatHelpText = forwardRef((props: StatHelpTextProps, ref) => {
     const { help: helpStyleProps } = useStatStyle({});
-    return <Text ref={ref} {...helpStyleProps} {...props} />;
+    return <Text ref={ref} state="faint" {...helpStyleProps} {...props} />;
 });
 
 const StatNumber = (props: StatNumberProps) => {
     const { number: numberStyleProps } = useStatStyle({});
-    return <Text {...numberStyleProps} {...props} />;
+    return <Heading kind="h4" {...numberStyleProps} {...props} />;
 };
 
 const StatArrow = forwardRef(({ type = 'increase', 'aria-label': ariaLabel, ...rest }: StatArrowProps, ref) => {

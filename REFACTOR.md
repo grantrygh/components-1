@@ -25,9 +25,9 @@
 import { Button } from '@audentio/stuff';
 
 const heroStlyes = {
-    m: 1,
-    mt: 3,
-    p: 2,
+    m: 'spacing-sm',
+    mt: 'spacing-sm',
+    p: 'spacing-sm',
     size: 32,
     color: 'blue.200',
 };
@@ -37,7 +37,7 @@ if (Math.random() > 0.4) {
 }
 
 const MyCustomBox = (
-    <Box {...heroStyles} pl={3}>
+    <Box {...heroStyles} pl="spacing-sm">
         <Button>CTA</Button>
     </Box>
 );

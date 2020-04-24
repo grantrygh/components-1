@@ -29,14 +29,11 @@ export const tabStyle = ({ color = 'primary' }, theme) => ({
     sizes: {
         sm: {
             padding: '0.25rem 1rem',
-            fontSize: 'sm',
         },
         md: {
-            fontSize: 'md',
             padding: '0.5rem 1rem',
         },
         lg: {
-            fontSize: 'lg',
             padding: '0.75rem 1rem',
         },
     },
@@ -44,6 +41,7 @@ export const tabStyle = ({ color = 'primary' }, theme) => ({
         line: {
             borderBottom: '2px',
             borderColor: 'transparent',
+            borderRadius: 0,
             mb: '-2px',
             _selected: {
                 // const _color = { light: `${color}.600`, dark: `${color}.300` };

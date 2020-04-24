@@ -54,8 +54,8 @@ stories.add('Reverse direction prop', () => (
 function Feature({ title, desc, ...rest }) {
     return (
         <Box p={5} shadow="md" borderWidth="1px" flex="1" rounded="md" {...rest}>
-            <Heading fontSize="xl">{title}</Heading>
-            <Text mt={4}>{desc}</Text>
+            <Heading kind="h4">{title}</Heading>
+            <Text mt="spacing">{desc}</Text>
         </Box>
     );
 }

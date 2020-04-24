@@ -11,6 +11,7 @@ import { BoxProps } from '../Box/types';
 import { CloseButton } from '../CloseButton';
 import { CloseButtonProps } from '../CloseButton/types';
 import { Flex } from '../Flex';
+import { Heading } from '../Heading';
 import { useForkRef } from '../hooks/useForkRef';
 import { Portal } from '../Portal';
 import { getFocusables } from '../utils/getFocusables';
@@ -284,23 +285,11 @@ const ModalContent = React.forwardRef(({ onClick, children, zIndex, noStyles, ..
 
 const ModalHeader = forwardRef((props: BoxProps & { onClose?: () => void }, ref) => {
     const { headerId } = useModalContext();
-    return (
-        <Box
-            ref={ref}
-            px={6}
-            py={4}
-            id={headerId}
-            as="header"
-            position="relative"
-            fontSize="xl"
-            fontWeight="semibold"
-            {...props}
-        />
-    );
+    return <Heading kind="h4" ref={ref} p="spacing" id={headerId} as="header" position="relative" {...props} />;
 });
 
 const ModalFooter = forwardRef((props: BoxProps, ref) => (
-    <Flex justify="flex-end" ref={ref} px={6} py={4} as="footer" {...props} />
+    <Flex justify="flex-end" ref={ref} p="spacing" as="footer" {...props} />
 ));
 
 const ModalBody = forwardRef((props: BoxProps, ref) => {
@@ -311,7 +300,7 @@ const ModalBody = forwardRef((props: BoxProps, ref) => {
         style = { overflowY: 'auto' };
     }
 
-    return <Box ref={ref} id={bodyId} px={6} py={2} flex="1" {...style} {...props} />;
+    return <Box ref={ref} id={bodyId} p="spacing" flex="1" {...style} {...props} />;
 });
 
 const ModalCloseButton = forwardRef((props: CloseButtonProps, ref) => {

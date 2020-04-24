@@ -388,7 +388,7 @@ const MenuDivider = forwardRef((props, ref) => <Divider ref={ref} orientation="h
 const MenuGroup = forwardRef(({ children, title, ...rest }: MenuGroupProps, ref) => (
     <Box ref={ref} role="group">
         {title && (
-            <Text mx={4} my={2} fontWeight="semibold" fontSize="sm" {...rest}>
+            <Text mx="spacing" my="spacing-sm" fontWeight="semibold" {...rest}>
                 {title}
             </Text>
         )}

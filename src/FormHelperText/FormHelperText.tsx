@@ -12,6 +12,8 @@ export const FormHelperText = forwardRef((props: FormHelperTextProps, ref) => {
 
     return (
         <Text
+            kind="small"
+            state="faint"
             ref={ref}
             id={formControl.id ? `${formControl.id}-help-text` : null}
             {...formHelperTextStyleProps}

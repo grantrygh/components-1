@@ -3,15 +3,8 @@ import { useTheme } from '../ThemeProvider';
 
 export const fullTagStyle = ({ color }, theme) => ({
     style: {
-        // display: 'inline-block',
-        // px: 1,
-        // fontSize: 'xs',
-        // borderRadius: 'sm',
-        // fontWeight: 'bold',
-        // whiteSpace: 'nowrap',
-        // verticalAlign: 'middle',
+        //
     },
-
     variants: {
         subtle: {
             bg: `${color}.100`,

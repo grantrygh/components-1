@@ -6,7 +6,7 @@ import { ExpandingTextarea, Textarea } from '.';
 const stories = storiesOf('Textarea', module);
 
 stories.add('Default', () => (
-    <Textarea maxWidth="sm" mx="auto" mt={2} placeholder="Here is a sample placeholder" size="md" />
+    <Textarea maxWidth="sm" mx="auto" mt="spacing-sm" placeholder="Here is a sample placeholder" size="md" />
 ));
 
 stories.add('Expanding', () => (

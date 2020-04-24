@@ -14,7 +14,7 @@ export const videoStyle = (props, theme) => ({
         zIndex: 100,
         maxWidth: '350px',
         maxHeight: '200px',
-        bottom: 4,
+        bottom: 'spacing',
         right: 4,
         position: 'fixed',
         borderRadius: 2,

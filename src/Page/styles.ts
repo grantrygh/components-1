@@ -6,7 +6,7 @@ const pageStyle = (props, theme) => ({
         //
     },
     content: {
-        p: 4,
+        p: 'spacing',
         flex: 1,
     },
     footer: {

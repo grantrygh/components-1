@@ -21,7 +21,7 @@ stories.add('Solid Badges', () => {
     return (
         <>
             {['gray', 'green', 'red', 'orange', 'purple', 'teal'].map(color => (
-                <Badge variantColor={color} variant="solid" mr={2}>
+                <Badge variantColor={color} variant="solid" mr="spacing-sm">
                     {color}
                 </Badge>
             ))}
@@ -33,7 +33,7 @@ stories.add('Subtle Badges', () => {
     return (
         <>
             {['gray', 'green', 'red', 'orange', 'purple', 'teal'].map(color => (
-                <Badge variantColor={color} mr={2}>
+                <Badge variantColor={color} mr="spacing-sm">
                     {color}
                 </Badge>
             ))}
@@ -45,7 +45,7 @@ stories.add('Outline Badges', () => {
     return (
         <>
             {['gray', 'green', 'red', 'orange', 'purple', 'teal'].map(color => (
-                <Badge variantColor={color} variant="outline" mr={2}>
+                <Badge variantColor={color} variant="outline" mr="spacing-sm">
                     {color}
                 </Badge>
             ))}
@@ -57,11 +57,11 @@ stories.add('Hexagonal Badges', () => {
     return (
         <>
             {['gray', 'green', 'red', 'orange', 'purple', 'teal'].map((color, i) => (
-                <Badge variantColor={color} variant="hexagon" mr={2} size={60}>
+                <Badge variantColor={color} variant="hexagon" mr="spacing-sm" size={60}>
                     {i}
                 </Badge>
             ))}
-            <Badge variant="hexagon" mr={2} size={60}>
+            <Badge variant="hexagon" mr="spacing-sm" size={60}>
                 <Icon name="repeat-clock" />
             </Badge>
         </>

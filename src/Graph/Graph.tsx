@@ -37,7 +37,7 @@ const renderLegendText = (value, entry, index, items) => {
     return <Text d="inline-block">{items[index]?.title}</Text>;
 };
 
-export const BarGraph = ({ data, items = [], height = 250, ...props }: BarGraphProps) => {
+export const BarGraph = ({ data, items = [], height = 300, ...props }: BarGraphProps) => {
     const {
         root: rootStyleProps,
         graph: graphStyle,
@@ -67,7 +67,7 @@ export const BarGraph = ({ data, items = [], height = 250, ...props }: BarGraphP
     );
 };
 
-export const AreaGraph = ({ data, items = [], ...props }: AreaGraphProps) => {
+export const AreaGraph = ({ data, items = [], height = 300, ...props }: AreaGraphProps) => {
     const { windowWidth } = useWindowResize();
     const {
         root: rootStyleProps,
@@ -80,12 +80,7 @@ export const AreaGraph = ({ data, items = [], ...props }: AreaGraphProps) => {
     });
 
     return (
-        <ResponsiveContainer
-            width="99%"
-            // TODO: handle responsive widths differently
-            height={(windowWidth < 600 && 250) || (windowWidth < 1000 && 300) || 375}
-            debounce={1}
-        >
+        <ResponsiveContainer width="99%" height={height} debounce={1}>
             <AreaChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }} {...rootStyleProps} {...props}>
                 <defs>
                     {items.map((item, index) => {

@@ -4,24 +4,26 @@ import { useTheme } from '../ThemeProvider';
 function canvasPanelStyle({ type, isInline, isOverlay }, theme) {}
 
 export const canvasStyle: componentStyleDef = ({ isMobile }, { sizes }) => {
-    const getPanelStyle = ({ width = sizes.canvas.width, position, isOverlay, bg = 'canvasBg', name }) => ({
+    const getPanelStyle = ({ width = sizes.canvas.width, position, isOverlay, bg = 'canvasBg', name, zIndex }) => ({
         variants: {
             visible: {
                 width: isMobile ? '100vw' : width,
                 display: 'block',
+                zIndex: 2,
             },
             minified: {
                 width: 'fit-content',
                 display: 'block',
+                zIndex: 2,
             },
             hidden: {
                 width: 0,
+                zIndex: 0,
                 transitionEnd: {
                     display: 'none',
                 },
             },
         },
-        zIndex: isOverlay && 'modal',
         position: isOverlay && 'absolute',
         left: position === 'left' && 0,
         right: position === 'right' && 0,

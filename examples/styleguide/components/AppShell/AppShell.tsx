@@ -78,15 +78,17 @@ const noitificationsItems = {
         },
     ],
 };
+
 const initialCanvasState = {
     overview: {
         name: 'overview',
         position: 'left',
-        type: 'inline',
-        isMinifiable: false,
-        isMinified: true,
-        isVisible: true,
-        isStackable: true,
+        ranges: {
+            defaultVisible: [768, 9999],
+            isOverlay: [0, 768], // --> type is Overlay and not visible by default
+            allowMinify: [768, 9999], // --> isMinifiable
+            defaultMinified: [0, 9999], // --> isMinified
+        },
         render: componentProps => <Box />,
         bg: 'primary.500',
         width: 72,
@@ -95,17 +97,17 @@ const initialCanvasState = {
     menu: {
         name: 'menu',
         position: 'left',
-        type: 'inline',
-        isMinifiable: true,
-        isMinified: false,
-        isVisible: true,
-        isStackable: true,
+        ranges: {
+            defaultVisible: [1024, 9999],
+            isOverlay: [0, 1024],
+            allowMinify: [1024, 9999],
+            defaultMinified: false,
+        },
         render: componentProps => <CanvasMenu as="nav" items={menuItems} {...componentProps} />,
         bg: 'canvasBg',
     },
     main: {
-        name: 'main',
-        isMinifiable: false,
+        name: 'main', // Main section is always visible, inline, and non-minifiable
         render: componentProps => {
             return (
                 <>
@@ -129,9 +131,12 @@ const initialCanvasState = {
     notification: {
         name: 'notifications',
         position: 'right',
-        type: 'overlay',
-        isMinifiable: false,
-        isVisible: false,
+        ranges: {
+            defaultVisible: false,
+            isOverlay: [0, 9999],
+            allowMinify: false,
+            defaultMinified: false,
+        },
         render: componentProps => (
             <CanvasMenu items={noitificationsItems}>
                 <Stack>

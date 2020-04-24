@@ -4,14 +4,15 @@ import { useTheme } from '../ThemeProvider';
 import { NavigationItemProps, NavigationProps } from './types';
 
 export const navigationStyles: componentStyleDef<NavigationProps & NavigationItemProps> = (
-    { isSticky, isActive, isSubmenuItem },
+    { isSticky = true, isActive, isSubmenuItem },
     { zIndices, sizes }
 ) => {
     const style: BoxProps = {
         bg: 'navBg',
         boxShadow: 'topNav',
-        height: '4rem',
-        px: '4',
+        minHeight: 16,
+        height: 16,
+        px: 'spacing',
     };
 
     if (isSticky) {

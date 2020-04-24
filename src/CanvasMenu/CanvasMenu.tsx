@@ -39,6 +39,7 @@ export function CanvasMenu(props: CanvasMenuProps) {
                                 ...accProps,
                                 mb: 0,
                                 isParent: true,
+                                isMinified,
                             })}
                             {!isMinified && <AccordionIcon />}
                         </AccordionHeader>

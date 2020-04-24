@@ -17,6 +17,7 @@ interface INavItem {
     isActive?: boolean;
     isParent?: boolean;
     isSubmenuItem?: boolean;
+    isMinified?: boolean;
 }
 
 export interface INavItemMedia {

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Box, Button, ButtonGroup, Heading, Text } from '../../src';
+import { Box, Button, ButtonGroup, Flex, Heading, Text } from '../../src';
 import { CanvasContext } from '../../src/Canvas';
 import { Page, PageContent } from '../../src/Page';
 import { AppShell } from './components/AppShell';
@@ -14,10 +14,25 @@ function StyleGuide(props) {
         setPanel('filter', () => ({
             name: 'filter',
             position: 'left',
-            type: 'inline',
-            isMinifiable: false,
-            isVisible: false,
-            isStackable: true,
+            ranges: {
+                isOverlay: [0, 1024],
+                allowMinify: false,
+                defaultVisible: false,
+                defaultMinified: false,
+            },
+            render: componentProps => <FilterMenuForm onSubmit={val => setFormValue(val)} />,
+            bg: 'navBg',
+        }));
+
+        setPanel('messages', () => ({
+            name: 'messages',
+            position: 'right',
+            ranges: {
+                isOverlay: [0, 9999],
+                allowMinify: false,
+                defaultVisible: false,
+                defaultMinified: false,
+            },
             render: componentProps => <FilterMenuForm onSubmit={val => setFormValue(val)} />,
             bg: 'navBg',
         }));
@@ -26,10 +41,14 @@ function StyleGuide(props) {
     return (
         <Page>
             <PageContent>
-                <ButtonGroup>
+                <ButtonGroup w="100%">
                     <Button onClick={() => togglePanel('menu')}>Toggle Navigation Menu Canvas</Button>
                     <Button onClick={() => togglePanel('filter')}>Toggle Filter Canvas</Button>
                 </ButtonGroup>
+
+                <Flex justify="flex-end" w="100%">
+                    <Button onClick={() => togglePanel('messages')}>Toggle Message Canvas</Button>
+                </Flex>
 
                 {formValue && (
                     <Box>
@@ -43,6 +62,10 @@ function StyleGuide(props) {
                         })}
                     </Box>
                 )}
+
+                <Flex h={1500} w={50} bg="track" align="center">
+                    for testing sticky header
+                </Flex>
             </PageContent>
         </Page>
     );

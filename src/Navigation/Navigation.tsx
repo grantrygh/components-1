@@ -56,7 +56,7 @@ Navigation.Tertiary = function NavigationTertiary(props: BoxProps) {
 };
 
 Navigation.Item = function NavItem(props: NavigationItemProps) {
-    const { href, exact = true, isSubmenuItem, isActive, isParent, ...rest } = props;
+    const { href, exact = true, isSubmenuItem, isActive, isParent, isMinified, ...rest } = props;
 
     let isLinkActive = false;
     const path = window.location.pathname;
@@ -73,7 +73,12 @@ Navigation.Item = function NavItem(props: NavigationItemProps) {
     });
 
     return (
-        <Flex as={href && Link} href={!isParent ? href : undefined} {...navItemStyleProps} {...rest}>
+        <Flex
+            as={href && Link}
+            href={!isParent || (isParent && isMinified) ? href : undefined}
+            {...navItemStyleProps}
+            {...rest}
+        >
             {(isActive || isLinkActive) && !isSubmenuItem && <Box {...activeBarStyleProps} />}
             {/* Navigation.ItemMedia | Navigation.ItemText | Navigation.ItemMeta */}
             {props.children}

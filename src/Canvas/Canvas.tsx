@@ -195,9 +195,8 @@ export const renderPanels = ({ panels = [], children = null, windowWidth = 0 }) 
                 return (
                     <CanvasPanel
                         name={name}
-                        borderRight="1px"
+                        borderRight={name !== 'main' && '1px'}
                         borderColor="border"
-                        overflowY="auto"
                         windowWidth={windowWidth}
                         {...rest}
                     >

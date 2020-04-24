@@ -4,7 +4,7 @@ import ExternalLinkIcon from 'mdi-react/ExternalLinkIcon';
 import HomeIcon from 'mdi-react/HomeIcon';
 import React from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { Avatar, Badge, Box, CSSReset, Navigation, Stack, theme, ThemeProvider } from '../../../../src';
+import { Avatar, Badge, Box, CSSReset, Flex, Navigation, Stack, theme, ThemeProvider } from '../../../../src';
 import { CanvasWrapper } from '../../../../src/Canvas';
 import { CanvasMenu } from '../../../../src/CanvasMenu';
 import { PageFooter } from '../../../../src/Page';
@@ -61,7 +61,7 @@ const menuItems = {
     ],
 };
 
-const noitificationsItems = {
+const notificationsItems = {
     header: [
         {
             label: 'Notifications Header',
@@ -118,11 +118,13 @@ const initialCanvasState = {
                         <NavTertiary />
                     </Navigation>
 
-                    {/* Main */}
-                    {componentProps.children}
+                    <Flex direction="column" overflowY="auto">
+                        {/* Main */}
+                        {componentProps.children}
 
-                    {/* Footer */}
-                    <PageFooter>Footer</PageFooter>
+                        {/* Footer */}
+                        <PageFooter>Footer</PageFooter>
+                    </Flex>
                 </>
             );
         },
@@ -138,7 +140,7 @@ const initialCanvasState = {
             defaultMinified: false,
         },
         render: componentProps => (
-            <CanvasMenu items={noitificationsItems}>
+            <CanvasMenu items={notificationsItems}>
                 <Stack>
                     <Box>Notification</Box>
                     <Box>Notification</Box>

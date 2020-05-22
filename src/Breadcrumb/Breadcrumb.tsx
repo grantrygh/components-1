@@ -1,10 +1,11 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
+import { BoxProps } from 'Box/types';
 import { LinkProps } from 'Link/types';
 import { Children, cloneElement, forwardRef, isValidElement } from 'react';
 import { Box } from '../Box';
 import { Link } from '../Link';
-import { BreadcrumbProps } from './types';
+import { BreadcrumbItemProps, BreadcrumbProps } from './types';
 
 const BreadcrumbSeparator = forwardRef((props: BoxProps, ref) => {
     return (
@@ -16,7 +17,7 @@ const BreadcrumbSeparator = forwardRef((props: BoxProps, ref) => {
 
 const Span = forwardRef((props, ref) => <Box ref={ref} as="span" {...props} />);
 
-const BreadcrumbLink = forwardRef(({ isCurrentPage, ...props }: LinkProps, ref) => {
+const BreadcrumbLink = forwardRef(({ isCurrentPage, ...props }: LinkProps & { isCurrentPage?: boolean }, ref) => {
     const Comp = isCurrentPage ? Span : Link;
 
     return <Comp ref={ref} aria-current={isCurrentPage ? 'page' : null} {...props} />;

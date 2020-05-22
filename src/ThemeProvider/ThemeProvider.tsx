@@ -13,6 +13,8 @@ interface IThemeProvider {
 // TODO: check into providerTheme type tslint error when ITHemeProvider is used
 // @ts-ignore
 export const ThemeProvider = ({ theme: providerTheme, children }: IThemeProvider) => {
+    // needs more work still to override existing styles, but still allow dependencies.
+    // i.e, "button" color prop depends on primary, so passing a different primary color should change all props dependent on primary
     const emotionTheme = baseTheme(providerTheme);
     return <EmotionThemeProvider theme={emotionTheme as ThemeType}>{children}</EmotionThemeProvider>;
 };

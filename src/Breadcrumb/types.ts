@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as StyledSystem from 'styled-system';
 import { BoxProps } from '../Box/types';
-import { LinkProps } from '../Link';
 
 interface IBreadcrumb {
     children?: React.ReactNode;
@@ -19,16 +18,7 @@ interface IBreadcrumb {
     spacing?: StyledSystem.MarginProps['margin'];
 }
 
-type BreadcrumbProps = BoxProps & IBreadcrumb;
-declare const Breadcrumb: React.FC<BreadcrumbProps>;
-export default Breadcrumb;
-
-/////////////////////////////////////////////////////////////
-
-export const BreadcrumbSeparator: React.FC<BoxProps>;
-export const BreadcrumbLink: React.FC<LinkProps>;
-
-/////////////////////////////////////////////////////////////
+export type BreadcrumbProps = BoxProps & IBreadcrumb;
 
 export type BreadcrumbItemProps = BreadcrumbProps & {
     /**
@@ -36,6 +26,5 @@ export type BreadcrumbItemProps = BreadcrumbProps & {
      * `aria-current=page` and renders a `span`
      */
     isCurrentPage?: boolean;
+    isLastChild?: boolean;
 };
-
-export const BreadcrumbItem: React.FC<BreadcrumbItemProps>;

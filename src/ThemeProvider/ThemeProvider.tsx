@@ -2,7 +2,7 @@
 import { jsx, ThemeContext } from '@emotion/core';
 import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming';
 import { useContext } from 'react';
-import theme from '../theme';
+import { baseTheme, theme, ThemeType } from '../theme';
 import { ITheme } from '../theme/types';
 
 interface IThemeProvider {
@@ -12,8 +12,9 @@ interface IThemeProvider {
 
 // TODO: check into providerTheme type tslint error when ITHemeProvider is used
 // @ts-ignore
-export const ThemeProvider = ({ theme: providerTheme = theme, children }: IThemeProvider) => {
-    return <EmotionThemeProvider theme={providerTheme}>{children}</EmotionThemeProvider>;
+export const ThemeProvider = ({ theme: providerTheme, children }: IThemeProvider) => {
+    const emotionTheme = baseTheme(providerTheme);
+    return <EmotionThemeProvider theme={emotionTheme as ThemeType}>{children}</EmotionThemeProvider>;
 };
 
 export function useTheme(): ITheme {

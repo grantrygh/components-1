@@ -67,7 +67,7 @@ interface Borders {
     '4px': StringOrNumber;
 }
 
-interface Colors {
+export interface Colors {
     transparent: string;
     current: string;
     // brand
@@ -79,6 +79,7 @@ interface Colors {
     warning: ColorHues;
     error: ColorHues;
     // neutral scale colors
+    neutral: ColorHues;
     black: string;
     titleText: string;
     bodyText: string;

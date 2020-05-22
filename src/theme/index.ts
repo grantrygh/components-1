@@ -1,1 +1,2 @@
-export { default } from './theme';
+export * from './colors-utils';
+export * from './theme';

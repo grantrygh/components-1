@@ -93,24 +93,27 @@ const borders = {
 //   none: 0
 // };
 
-const theme = {
-    breakpoints,
-    zIndices,
-    radii,
-    opacity,
-    borders,
-    colors,
-    ...typography,
-    sizes,
-    shadows,
-    space,
-    icons,
+export const baseTheme = (providedTheme = {}) => {
+    const colorScheme = colors(providedTheme);
+    return {
+        breakpoints,
+        zIndices,
+        radii,
+        opacity,
+        borders,
+        colors: colorScheme,
+        ...typography,
+        sizes,
+        shadows,
+        space,
+        icons,
 
-    // component styles
-    // add to this in custom theme to override component styling
-    styles: {},
+        // component styles
+        // add to this in custom theme to override component styling
+        styles: {},
+    };
 };
 
-export type ThemeType = typeof theme;
+export const theme = baseTheme({});
 
-export default theme;
+export type ThemeType = typeof theme;

@@ -63,3 +63,26 @@ export const generateStripe = ({ size = '1rem', color = 'rgba(255, 255, 255, 0.1
     );
     background-size: ${size} ${size};
 `;
+
+export const generateShades = primary => {
+    const p = Color(primary);
+
+    const shades = {
+        50: p.lighten(0.8),
+        100: p.lighten(0.4),
+        200: p.lighten(0.3),
+        300: p.lighten(0.2),
+        400: p.lighten(0.1),
+        500: p,
+        600: p.darken(0.1),
+        700: p.darken(0.2),
+        800: p.darken(0.3),
+        900: p.darken(0.4),
+    };
+
+    for (const key in shades) {
+        shades[key] = shades[key].hex();
+    }
+
+    return shades;
+};

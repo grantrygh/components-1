@@ -6,7 +6,6 @@ import { Children, cloneElement, createContext, useContext, useEffect, useRef, u
 import { Box } from '../Box';
 import { BoxProps } from '../Box/types';
 import { CloseButton } from '../CloseButton';
-import { useColorMode } from '../ColorModeProvider';
 import { usePrevious } from '../hooks/usePrevious';
 import { Popper, PopperArrow } from '../Popper';
 import { wrapEvent } from '../utils/wrapEvent';
@@ -122,9 +121,6 @@ const PopoverContent = ({
 
     const popoverContentStyleProps = usePopoverStyle({});
 
-    const { colorMode } = useColorMode();
-    const bg = colorMode === 'light' ? 'white' : 'gray.700';
-
     let eventHandlers = {};
     let roleProps = {};
 
@@ -173,7 +169,6 @@ const PopoverContent = ({
             aria-label={ariaLabel}
             anchorEl={referenceRef.current}
             ref={popoverRef}
-            bg={bg}
             id={popoverId}
             aria-hidden={!isOpen}
             position="relative"

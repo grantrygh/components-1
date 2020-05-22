@@ -6,7 +6,7 @@ import Link from '../Link';
 import useNavigationStyle from './styles';
 import { NavigationItemMediaProps, NavigationItemProps } from './types';
 
-export default function Navigation(props) {
+export function Navigation(props) {
     const { root: style } = useNavigationStyle(props);
 
     return (

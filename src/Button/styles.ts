@@ -112,6 +112,8 @@ const useButtonStyle = props => {
     const theme = useTheme();
     const styles = theme['styles'].button ? theme['styles'].button(props, theme) : buttonStyle(props, theme);
 
+    console.log('button style theme', theme);
+
     return {
         // base style
         ...styles.style,

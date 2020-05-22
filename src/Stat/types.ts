@@ -1,6 +1,6 @@
 import { BoxProps } from '../Box/types';
-import { FlexProps } from '../Flex';
-import { IconProps } from '../Icon';
+import { FlexProps } from '../Flex/types';
+import { IconProps } from '../Icon/types';
 
 export type StatLabelProps = BoxProps;
 

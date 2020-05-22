@@ -60,7 +60,7 @@ interface IMenuGroup {
 }
 export type MenuGroupProps = IMenuGroup & BoxProps;
 
-interface IMenuContext {
+export interface IMenuContext {
     activeIndex?: number;
     isOpen?: boolean;
     focusAtIndex?: (index: number) => void;

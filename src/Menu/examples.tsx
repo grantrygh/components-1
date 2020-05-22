@@ -71,7 +71,7 @@ stories.add('MenuItem Radio', () => (
 function CustomMenu() {
     return (
         <Menu>
-            <MenuButton as={Button} rightIcon="chevron-down">
+            <MenuButton as={Button}>
                 <Icon name="settings" />
             </MenuButton>
             <MenuList>

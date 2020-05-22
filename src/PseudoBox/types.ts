@@ -1,6 +1,6 @@
 import { BoxProps } from '../Box/types';
 
-interface IPseudoBoxProps {
+export interface IPseudoBoxProps {
     /**
      * Styles for CSS selector `&:after`
      *

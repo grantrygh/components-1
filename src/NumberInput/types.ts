@@ -5,8 +5,6 @@ import { UseNumberInputProps } from '../hooks/useNumberInput/types';
 import { InputProps } from '../Input/types';
 import { PseudoBoxProps } from '../PseudoBox';
 
-type InputAttributes = React.InputHTMLAttributes<HTMLInputElement>;
-
 export interface INumberInput extends UseNumberInputProps {
     isFullWidth?: boolean;
     size?: InputProps['size'];

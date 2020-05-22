@@ -1,5 +1,5 @@
 import { useTheme } from 'emotion-theming';
-import { componentStyleDef } from '../theme/types';
+import { componentStyleDef, DefaultTheme } from '../theme/types';
 import { UpdateBrowserProps } from './types';
 
 export const updateBrowserStyle: componentStyleDef<UpdateBrowserProps> = () => ({
@@ -10,7 +10,7 @@ export const updateBrowserStyle: componentStyleDef<UpdateBrowserProps> = () => (
         top: 0,
         width: '100%',
         height: '100%',
-        textAlign: 'center',
+        textAlign: 'center' as const,
         display: 'table',
     },
 });
@@ -22,13 +22,13 @@ const browserBoxStyle = {
     margin: '16px',
     height: '175px',
     width: '200px',
-    textAlign: 'center',
+    textAlign: 'center' as const,
     display: 'inline-block',
-    boxSizing: 'border-box',
+    boxSizing: 'border-box' as const,
 };
 
 const useUpdateBrowserStyle = props => {
-    const theme = useTheme();
+    const theme = useTheme() as DefaultTheme;
     const styles = theme['styles'].updateBrowser
         ? theme['styles'].updateBrowser(props, theme)
         : updateBrowserStyle(props, theme);

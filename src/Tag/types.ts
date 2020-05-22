@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IBadge } from '../Badge/types';
 import { BoxProps } from '../Box/types';
 import { Omit } from '../common-types';
-import { IconProps } from '../Icon';
+import { IconProps } from '../Icon/types';
 import { PseudoBoxProps } from '../PseudoBox';
 
 export interface ITag {

@@ -55,7 +55,7 @@ export function camelToKebab(str: string): string {
 }
 
 export function parse(val: number | string): string {
-    return isNaN(val) ? val : `${val}px`;
+    return isNaN(Number(val)) ? `${val}` : `${val}px`;
 }
 
 // Take a list of functions and return a function that applies the list of

@@ -1,4 +1,4 @@
-import { InputProps } from '../Input';
+import { InputProps } from '../Input/types';
 
 export type TextareaProps = InputProps<HTMLTextAreaElement>;
 

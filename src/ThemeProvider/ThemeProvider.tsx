@@ -12,7 +12,7 @@ interface IThemeProvider {
 
 // TODO: check into providerTheme type tslint error when ITHemeProvider is used
 // @ts-ignore
-export const ThemeProvider = ({ theme: providerTheme = theme, children }) => {
+export const ThemeProvider = ({ theme: providerTheme = theme, children }: IThemeProvider) => {
     return <EmotionThemeProvider theme={providerTheme}>{children}</EmotionThemeProvider>;
 };
 

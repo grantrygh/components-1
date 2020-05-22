@@ -1,4 +1,4 @@
-import { FlexProps } from '../Flex';
+import { FlexProps } from '../Flex/types';
 
 interface IUserDropdown {
     variant?: 'full' | 'compact';

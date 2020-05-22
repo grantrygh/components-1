@@ -49,7 +49,7 @@ export const navigationStyles: componentStyleDef<NavigationProps & NavigationIte
 
 export default function useNavigationStyle(props) {
     const theme = useTheme();
-    const styles = theme.navigation ? theme.navigation(props, theme) : navigationStyles(props, theme);
+    const styles = theme?.navigation ? theme.navigation(props, theme) : navigationStyles(props, theme);
 
     return {
         root: styles.style,

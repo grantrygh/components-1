@@ -8,7 +8,7 @@ type CSS = React.CSSProperties;
 type borderRadius = StyledSystem.BorderRadiusProps['borderRadius'];
 type borderColor = StyledSystem.BorderColorProps['borderColor'];
 
-interface ICustomConfig {
+export interface ICustomConfig {
     // Custom borderRadius alias
     rounded?: borderRadius;
     roundedTop?: borderRadius;
@@ -100,35 +100,35 @@ interface ICustomConfig {
 
 type FontSize = 'smallBody' | 'body' | 'largeBody' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl';
 
-interface IFontSize {
+export interface IFontSize {
     fontSize?: StyledSystem.ResponsiveValue<FontSize> | StyledSystem.FontSizeProps['fontSize'];
 }
 
 type FontWeight = 'hairline' | 'thin' | 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold' | 'black';
 
-interface IFontWeight {
+export interface IFontWeight {
     fontWeight?: StyledSystem.ResponsiveValue<FontWeight> | StyledSystem.FontWeightProps['fontWeight'];
 }
 
 type LineHeight = 'none' | 'shorter' | 'short' | 'normal' | 'tall' | 'taller';
 
-interface ILineHeight {
+export interface ILineHeight {
     lineHeight?: StyledSystem.ResponsiveValue<LineHeight> | StyledSystem.LineHeightProps['lineHeight'];
 }
 
 type LetterSpacing = 'tighter' | 'tight' | 'normal' | 'wide' | 'wider' | 'widest';
 
-interface ILetterSpacing {
+export interface ILetterSpacing {
     letterSpacing?: StyledSystem.ResponsiveValue<LetterSpacing> | StyledSystem.LetterSpacingProps['letterSpacing'];
 }
 
-interface As {
+export interface As {
     as?: React.ElementType;
 }
 
 type TypographyProps = Omit<StyledSystem.TypographyProps, 'fontWeight' | 'lineHeight' | 'fontSize' | 'letterSpacing'>;
 
-interface Truncated {
+export interface Truncated {
     /**
      * If `true`, the text will be truncated
      */

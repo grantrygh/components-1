@@ -3,6 +3,7 @@ import React from 'react';
 import { Avatar, AvatarBadge } from '.';
 import { AvatarGroup } from '..';
 import { Box } from '../Box';
+import { IAvatar } from './types';
 
 const stories = storiesOf('Avatar', module);
 stories.addDecorator(story => (
@@ -13,7 +14,7 @@ stories.addDecorator(story => (
 
 stories.add('Default', () => (
     <>
-        {['xs', 'sm', 'md', 'lg', 'xl', '2xl'].map(size => (
+        {['xs', 'sm', 'md', 'lg', 'xl', '2xl'].map((size: IAvatar['size']) => (
             <Avatar mr="spacing-sm" size={size} name="Uchiha Itachi" src="https://bit.ly/uchiha-itachi">
                 <AvatarBadge size="1.25em" />
             </Avatar>

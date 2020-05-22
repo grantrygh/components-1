@@ -166,10 +166,40 @@ interface Containers {
     xl: string;
 }
 
+interface Spacing {
+    'spacing-sm': string;
+    spacing: string;
+}
+
+interface Input {
+    // Heights
+    lg: string;
+    md: string;
+    sm: string;
+
+    // Widths
+    width: string;
+    spacing: {
+        sm: string; // spacing within input group (radio options, checkboxes)
+        lg: string; // spacing between input groups (vertically, horizontally)
+    };
+}
+
+interface Canvas {
+    width: string;
+    spacing: string;
+
+    breakpoint: number; // width at which inline canvases become overlays, and main page content takes full viewport width
+}
+
 type Sizes = BaseSizes &
     LargeSizes & {
         containers: Containers;
+        spacing: Spacing;
+        input: Input;
+        canvas: Canvas;
     };
+
 interface Inputs {
     sm: string;
     md: string;
@@ -250,6 +280,7 @@ interface Opacity {
 }
 
 export interface DefaultTheme extends Typography {
+    navigation: any;
     breakpoints: Breakpoints;
     zIndices: ZIndices;
     radii: Radii;

@@ -4,13 +4,14 @@ import { storiesOf } from '@storybook/react';
 import { Tag, TagCloseButton, TagIcon, TagLabel } from '.';
 import { Avatar } from '../Avatar';
 import { Stack } from '../Stack';
+import { ITag } from './types';
 
 const stories = storiesOf('Tag', module);
 
 stories.add('Default', () => {
     return (
-        <Stack align="center" spacing={4} isInline>
-            {['sm', 'md', 'lg'].map(size => (
+        <Stack align="center" isInline>
+            {['sm', 'md', 'lg'].map((size: ITag['size']) => (
                 <Tag size={size} variant="outline">
                     Default
                 </Tag>
@@ -21,8 +22,8 @@ stories.add('Default', () => {
 
 stories.add('with left icon', () => {
     return (
-        <Stack align="center" spacing={4} isInline>
-            {['sm', 'md', 'lg'].map(size => (
+        <Stack align="center" isInline>
+            {['sm', 'md', 'lg'].map((size: ITag['size']) => (
                 <Tag size={size} variantColor="cyan" rounded="sm">
                     <TagIcon icon="add" size="12px" />
                     <TagLabel>Green</TagLabel>
@@ -34,8 +35,8 @@ stories.add('with left icon', () => {
 
 stories.add('with right icon', () => {
     return (
-        <Stack align="center" spacing={4} isInline>
-            {['sm', 'md', 'lg'].map(size => (
+        <Stack align="center" isInline>
+            {['sm', 'md', 'lg'].map((size: ITag['size']) => (
                 <Tag size={size} variantColor="cyan">
                     <TagLabel>Green</TagLabel>
                     <TagIcon icon="check" size="12px" />
@@ -47,8 +48,8 @@ stories.add('with right icon', () => {
 
 stories.add('with close button', () => {
     return (
-        <Stack align="center" spacing={4} isInline>
-            {['sm', 'md', 'lg'].map(size => (
+        <Stack align="center" isInline>
+            {['sm', 'md', 'lg'].map((size: ITag['size']) => (
                 <Tag size={size} variant="outline">
                     <TagLabel>Green</TagLabel>
                     <TagCloseButton />

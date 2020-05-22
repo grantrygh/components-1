@@ -3,7 +3,7 @@ interface OneChildrenElement {
     children?: any;
 }
 
-interface IScrollLock extends OneChildrenElement {
+export interface IScrollLock extends OneChildrenElement {
     // whether or not to replace the void left by now absent scrollbars with padding
     accountForScrollbars: boolean;
     // whether or not the lock is active

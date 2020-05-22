@@ -31,10 +31,10 @@ export const FullTag = ({
         // display: 'flex',
     };
 
-    const iconStyle = {
-        size: '24px',
-        // color: 'white',
-    };
+    // const iconStyle = {
+    //     size: '24px',
+    //     // color: 'white',
+    // };
 
     // display: 'inline-block',
     //     px: 1,

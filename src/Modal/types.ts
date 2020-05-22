@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BoxProps } from '../Box/types';
 
-type ModalSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | 'full';
+export type ModalSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | 'full';
 
 export interface IModal {
     container?: React.RefObject<HTMLElement>;
@@ -99,7 +99,7 @@ export interface IModal {
 
 export type ModalProps = IModal;
 
-interface IModalContent {
+export interface IModalContent {
     onClick?: React.KeyboardEventHandler<HTMLElement>;
     zIndex?: BoxProps['zIndex'];
     children: React.ReactNode;
@@ -108,7 +108,7 @@ interface IModalContent {
 
 export type ModalContentProps = IModalContent & BoxProps;
 
-interface IModalContext {
+export interface IModalContext {
     contentRef?: React.MutableRefObject<any>;
     bodyId?: string;
     headerId?: string;
@@ -119,7 +119,7 @@ interface IModalContext {
 
 export type ModalContextProps = IModalContext & Omit<ModalProps, 'children'>;
 
-interface IAriaHider {
+export interface IAriaHider {
     isOpen?: boolean;
     id?: string;
     enableInert?: boolean;

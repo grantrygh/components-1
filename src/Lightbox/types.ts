@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface ILightbox {
+export interface ILightbox {
     /**
      *  If `true`, the lightbox will be displayed
      */
@@ -21,7 +21,7 @@ interface ILightbox {
     children: any;
 }
 
-interface ILightboxMedia {
+export interface ILightboxMedia {
     /**
      *  media item src
      */
@@ -38,7 +38,7 @@ interface ILightboxMedia {
     children?: any;
 }
 
-interface IGalleryProps {
+export interface IGalleryProps {
     register: (media) => void;
     unregister: (media) => void;
     setActiveItem: (media) => void;

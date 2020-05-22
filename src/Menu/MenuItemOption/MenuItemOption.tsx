@@ -131,9 +131,7 @@ export const MenuOptionGroup = ({
     const [value, setValue] = useState(defaultValue || '');
     const { current: isControlled } = useRef(valueProp != null);
 
-    const derivedValue = isControlled ? valueProp : value;
-
-    console.log('OPTION DERIVED VALUE');
+    const derivedValue = (isControlled ? valueProp : value) as string[];
 
     const handleChange = _value => {
         if (type === 'radio') {

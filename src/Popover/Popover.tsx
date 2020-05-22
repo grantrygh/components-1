@@ -182,6 +182,7 @@ const PopoverContent = ({
             aria-describedby={bodyId}
             {...roleProps}
             {...eventHandlers}
+            {...popoverContentStyleProps}
             {...props}
         />
     );

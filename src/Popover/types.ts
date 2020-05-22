@@ -103,7 +103,7 @@ interface IPopover {
 }
 export type PopoverProps = IPopover & PopoverChildren;
 
-interface IPopoverTrigger {
+export interface IPopoverTrigger {
     children: React.ReactElement;
 }
 export type PopoverTriggerProps = IPopoverTrigger;
@@ -126,4 +126,4 @@ export type PopoverContentProps = IPopoverContent & PopperProps;
 interface IPopoverCloseButton {
     onClick?: React.MouseEventHandler<HTMLElement>;
 }
-export type PopoverCloseButtonProps = PseudoBoxProps & IPopoverCloseButton;
+export type PopoverCloseButtonProps = Omit<PseudoBoxProps, 'size'> & IPopoverCloseButton;

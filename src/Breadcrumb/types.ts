@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as StyledSystem from 'styled-system';
 import { BoxProps } from '../Box/types';
 
-interface IBreadcrumb {
+export interface IBreadcrumb {
     children?: React.ReactNode;
     /**
      * The visual separator between each breadcrumb item

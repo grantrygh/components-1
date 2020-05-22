@@ -1,4 +1,4 @@
-import { system, get } from 'styled-system';
+import { get, system } from 'styled-system';
 
 const isNumber = n => typeof n === 'number' && !isNaN(n);
 const getWidth = (n, scale) => get(scale, n, !isNumber(n) || n > 1 ? n : n * 100 + '%');
@@ -131,6 +131,10 @@ export const config = {
     outline: true,
     float: true,
     willChange: true,
+    bgAttachment: null,
+    textDecor: null,
+    listStylePos: null,
+    listStyleImg: null,
 };
 
 config.bgAttachment = config.backgroundAttachment;
@@ -138,6 +142,7 @@ config.textDecor = config.textDecoration;
 config.listStylePos = config.listStylePosition;
 config.listStyleImg = config.listStyleImage;
 
+// @ts-ignore
 const extraConfig = system(config);
 
 export default extraConfig;
@@ -147,7 +152,7 @@ export default extraConfig;
 // Transform the custom alias to a format that styled-system CSS supports
 const transformAlias = (prop, propValue) => {
     const configKeys = Object.keys(config);
-    let result = {};
+    const result = {};
 
     if (configKeys.includes(prop)) {
         const { properties, property } = config[prop];

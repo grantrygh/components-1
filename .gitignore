@@ -12,6 +12,11 @@ package-lock.json
 /coverage
 stats.json
 /.cache
+*/
+!src
+!jest
+
+lib
 
 # Logs and temporary files
 *.log

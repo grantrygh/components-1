@@ -1,8 +1,6 @@
 import { componentStyleDef } from '../theme/types';
 import { useTheme } from '../ThemeProvider';
 
-function canvasPanelStyle({ type, isInline, isOverlay }, theme) {}
-
 export const canvasStyle: componentStyleDef = ({ isMobile }, { sizes }) => {
     const getPanelStyle = ({ width = sizes.canvas.width, position, isOverlay, bg = 'canvasBg', name, zIndex }) => ({
         variants: {

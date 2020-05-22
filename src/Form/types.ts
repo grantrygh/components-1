@@ -10,6 +10,7 @@ export type FormContextType = {
     getFormValue: Function;
     getFieldValue: Function;
     onChange: Function;
+    registerField: Function;
 };
 
 export interface FormFieldProps {

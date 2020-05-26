@@ -8,6 +8,9 @@ export const formLabelStyle = ({ isDisabled }, theme) => ({
         fontWeight: 'medium',
         textAlign: 'left',
         cursor: 'pointer',
+        kind: 'small',
+        verticalAlign: 'middle',
+        display: 'block',
     },
     requiredIndicator: {
         color: 'error.500',

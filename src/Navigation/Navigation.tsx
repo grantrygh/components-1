@@ -27,13 +27,7 @@ export function Navigation(props) {
 
 Navigation.Primary = function NavigationPrimary(props: BoxProps) {
     return (
-        <Flex
-            // TODO: probably a better way to handle these breakpoints
-            display={['inline-flex', 'inline-flex', 'inline-flex', 'none']}
-            align="center"
-            mr="spacing-sm"
-            {...props}
-        >
+        <Flex display="inline-flex" align="center" mr="spacing-sm" {...props}>
             {props.children}
         </Flex>
     );

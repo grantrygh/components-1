@@ -1,7 +1,7 @@
 import BellOutlineIcon from 'mdi-react/BellOutlineIcon';
 import MenuIcon from 'mdi-react/MenuIcon';
 import React from 'react';
-import { Box, Icon, Input, InputGroup, InputLeftElement, Navigation, UserDropdown } from '../../../../src';
+import { Box, Icon, Input, InputGroup, InputLeftElement, Navigation } from '../../../../src';
 import { CanvasContext } from '../../../../src/Canvas';
 import { Logo } from '../Logo';
 import useHeaderStyle from './styles';
@@ -67,7 +67,6 @@ export const NavTertiary = () => {
                     );
                 }}
             </CanvasContext.Consumer>
-            <UserDropdown />
         </Navigation.Tertiary>
     );
 };

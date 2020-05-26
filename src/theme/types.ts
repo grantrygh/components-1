@@ -32,7 +32,9 @@ export interface ColorHues {
     900: string;
 }
 
-type Breakpoints = string[] | { sm: string; md: string; lg: string; xl: string };
+type Breakpoints =
+    | string[]
+    | { sm: string; md: string; lg: string; xl: string; stripped: { sm: number; md: number; lg: number; xl: number } };
 
 type StringOrNumber = string | number;
 interface ZIndices {

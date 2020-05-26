@@ -30,13 +30,19 @@ const shadows = {
     modal: '0 2px 8px 0 rgba(38,38,38,0.08), 0 20px 32px 0 rgba(89,89,89,0.24)',
 };
 
-const breakpoints = ['30em', '48em', '62em', '80em'];
+const breakpoints = ['480px', '768px', '992px', '1280px'];
 
 // aliases
 breakpoints['sm'] = breakpoints[0];
 breakpoints['md'] = breakpoints[1];
 breakpoints['lg'] = breakpoints[2];
 breakpoints['xl'] = breakpoints[3];
+breakpoints['stripped'] = {
+    sm: parseInt(breakpoints[0], 10),
+    md: parseInt(breakpoints[1], 10),
+    lg: parseInt(breakpoints[2], 10),
+    xl: parseInt(breakpoints[3], 10),
+};
 
 const zIndices = {
     hide: -1,

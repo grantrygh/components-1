@@ -2,6 +2,7 @@ import React from 'react';
 import { Box } from '../Box';
 import { BoxProps } from '../Box/types';
 import { Flex } from '../Flex';
+import { useRouter } from '../hooks/useRouter';
 import Link from '../Link';
 import useNavigationStyle from './styles';
 import { NavigationItemMediaProps, NavigationItemProps } from './types';
@@ -51,9 +52,10 @@ Navigation.Tertiary = function NavigationTertiary(props: BoxProps) {
 
 Navigation.Item = function NavItem(props: NavigationItemProps) {
     const { href, exact = true, isSubmenuItem, isActive, isParent, isMinified, ...rest } = props;
+    const { location } = useRouter();
 
     let isLinkActive = false;
-    const path = window.location.pathname;
+    const path = location.pathname;
     if (href && href === path && exact) {
         isLinkActive = true;
     } else if (href && path.indexOf(href) > -1 && !exact) {

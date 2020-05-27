@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import { NavLink } from 'react-router-dom';
 import { PseudoBox } from '../PseudoBox';
 import { LinkProps } from './types';
 
@@ -29,13 +30,12 @@ export const Link = forwardRef(({ isDisabled, isExternal, onClick, href, ...rest
 
     const linkHref = getHref();
     const externalProps = isExternal
-        ? { href: linkHref, target: '_blank', rel: 'noopener noreferrer' }
-        : { href: linkHref };
-    // : { as: NavLink, to: linkHref };
+        ? { as: 'a', href: linkHref, target: '_blank', rel: 'noopener noreferrer' }
+        : { as: NavLink, to: linkHref };
 
     return (
         <PseudoBox
-            as="a"
+            href={linkHref}
             ref={ref}
             tabIndex={isDisabled ? -1 : undefined}
             aria-disabled={isDisabled}

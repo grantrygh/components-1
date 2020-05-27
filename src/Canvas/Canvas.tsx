@@ -132,23 +132,20 @@ export function CanvasContainer(props) {
     );
 }
 
-// TODO: implement panel type override to overlay if there isn't enough space
-// const getPanelType = (panels, props) => {
-//     const panel = panels[props.name];
-
-//     if (!panel) return null;
-
-//     return panel.type;
-// };
-
 export function CanvasPanel({ name, children, type = 'inline', ranges, windowWidth, ...rest }) {
     const { setPanel, updatePanel } = useContext(CanvasContext);
     const ref = createRef();
 
-    const isVisible = name === 'main' ? true : isWithinRange(windowWidth, ranges?.defaultVisible);
     const isOverlay = isWithinRange(windowWidth, ranges?.isOverlay);
     const isMinifiable = !isOverlay && isWithinRange(windowWidth, ranges?.allowMinify);
     const isMinified = isMinifiable && isWithinRange(windowWidth, ranges?.defaultMinified);
+
+    let isVisible = false;
+    if (isOverlay && ranges.defaultVisible) {
+        isVisible = false;
+    } else {
+        isVisible = name === 'main' ? true : isWithinRange(windowWidth, ranges?.defaultVisible);
+    }
 
     useEffect(() => {
         // Set the canvas panel's default vales
@@ -188,15 +185,6 @@ export function CanvasPanel({ name, children, type = 'inline', ranges, windowWid
 }
 
 export const renderPanels = ({ panels = [], children = null, windowWidth = 0 }) => {
-    /**
-     * if an earlier index and a later one is not minified, the former should be minified by default
-     * get the reversed index of the last non-minified panel
-     */
-    // const panelsCopy = [...panels];
-    // const minifiedPanels = panelsCopy.reverse().findIndex(p => !p.isMinified && p.isVisible);
-    // get the index of the last non-minified
-    // const lastIndex = minifiedPanels > -1 && panels.length - minifiedPanels - 1;
-
     return (
         <Flex>
             {panels.map((canvas, i) => {

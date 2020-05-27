@@ -18,7 +18,7 @@ function StyleGuide(props) {
             ranges: {
                 isOverlay: [0, 1024],
                 allowMinify: false,
-                defaultVisible: false,
+                defaultVisible: [0, 9999],
                 defaultMinified: false,
             },
             render: componentProps => <FilterMenuForm onSubmit={val => setFormValue(val)} />,

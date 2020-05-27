@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { Box, Button, ButtonGroup, Flex, Heading, Text } from '../../src';
 import { CanvasContext } from '../../src/Canvas';
 import { Page, PageContent } from '../../src/Page';
@@ -72,8 +73,10 @@ function StyleGuide(props) {
 }
 
 ReactDOM.render(
-    <AppShell>
-        <StyleGuide />
-    </AppShell>,
+    <BrowserRouter>
+        <AppShell>
+            <StyleGuide />
+        </AppShell>
+    </BrowserRouter>,
     document.getElementById('root')
 );

@@ -55,7 +55,7 @@ Navigation.Item = function NavItem(props: NavigationItemProps) {
     const { location } = useRouter();
 
     let isLinkActive = false;
-    const path = location.pathname;
+    const path = location?.pathname;
     if (href && href === path && exact) {
         isLinkActive = true;
     } else if (href && path.indexOf(href) > -1 && !exact) {

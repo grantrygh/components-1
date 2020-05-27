@@ -110,6 +110,7 @@ export function CanvasContainer(props) {
                     <Flex ref={ref} direction="column" height="100%" p={name !== 'main' && p} {...panelProps}>
                         {panel.render({
                             isMinified: panelProps.isMinified,
+                            isVisible,
                         })}
                     </Flex>
                 </MotionPanel>

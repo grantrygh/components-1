@@ -3,7 +3,7 @@ import { Accordion, AccordionHeader, AccordionIcon, AccordionItem, AccordionPane
 import { CanvasMenuProps, NavItemProps } from './types';
 
 export function CanvasMenu(props: CanvasMenuProps) {
-    const { isMinified, items = {}, as = 'aside', children } = props;
+    const { isMinified, isVisible, items = {}, as = 'aside', children } = props;
 
     const renderNavItem = ({
         label,
@@ -17,14 +17,15 @@ export function CanvasMenu(props: CanvasMenuProps) {
         if (isMinified && rest.isSubmenuItem) {
             return null;
         }
+        const showFullItem = !isMinified && isVisible;
 
         return (
             <Navigation.Item href={href} exact={!isAccordion} {...rest}>
                 <Navigation.ItemMedia icon={icon} mr={!isMinified && 4}>
                     {media}
                 </Navigation.ItemMedia>
-                {!isMinified && <Navigation.ItemText>{label}</Navigation.ItemText>}
-                {meta && !isMinified && <Navigation.ItemMeta>{meta}</Navigation.ItemMeta>}
+                {showFullItem && <Navigation.ItemText>{label}</Navigation.ItemText>}
+                {meta && showFullItem && <Navigation.ItemMeta>{meta}</Navigation.ItemMeta>}
             </Navigation.Item>
         );
     };

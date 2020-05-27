@@ -14,6 +14,7 @@ export type NavItemProps = INavItem & NavigationItemProps;
 
 interface ICanvasMenu {
     isMinified?: boolean;
+    isVisible?: boolean;
     items?: {
         header?: Array<NavItemProps>;
         content?: Array<NavItemProps>;

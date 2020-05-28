@@ -21,7 +21,10 @@ const spin = keyframes`
  * RECOMMENDED: Add `aria-busy="true"` to the component that triggered the loading state while the spinner is shown.
  */
 export const Spinner = forwardRef(
-    ({ size, label = 'Loading...', thickness, speed = '0.5s', color, emptyColor, ...props }: SpinnerProps, ref) => {
+    (
+        { size = 'sm', label = 'Loading...', thickness, speed = '0.5s', color, emptyColor, ...props }: SpinnerProps,
+        ref
+    ) => {
         const spinnerStyleProps = useSpinnerStyle({
             size,
             thickness,

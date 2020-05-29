@@ -133,59 +133,7 @@ export function CanvasContainer(props) {
     );
 }
 
-export function CanvasPanel({ name, children, type = 'inline', ranges, windowWidth, ...rest }) {
-    const { setPanel, updatePanel } = useContext(CanvasContext);
-    const ref = createRef();
-
-    const isOverlay = isWithinRange(windowWidth, ranges?.isOverlay);
-    const isMinifiable = !isOverlay && isWithinRange(windowWidth, ranges?.allowMinify);
-    const isMinified = isMinifiable && isWithinRange(windowWidth, ranges?.defaultMinified);
-
-    let isVisible = false;
-    if (isOverlay && ranges.defaultVisible) {
-        isVisible = false;
-    } else {
-        isVisible = name === 'main' ? true : isWithinRange(windowWidth, ranges?.defaultVisible);
-    }
-
-    useEffect(() => {
-        // Set the canvas panel's default vales
-
-        setPanel(name, () => ({
-            name,
-            ref,
-            render: children,
-            type,
-            ranges,
-            ...rest,
-        }));
-
-        // remove panel
-        return () => {
-            setPanel(name, () => null);
-        };
-    }, []);
-
-    useEffect(() => {
-        updatePanel(name, { isMinifiable });
-    }, [isMinifiable]);
-
-    useEffect(() => {
-        updatePanel(name, { isMinified });
-    }, [isMinified]);
-
-    useEffect(() => {
-        updatePanel(name, { isVisible });
-    }, [isVisible]);
-
-    useEffect(() => {
-        updatePanel(name, { isOverlay });
-    }, [isOverlay]);
-
-    return null;
-}
-
-export const renderPanels = ({ panels = [], children = null, windowWidth = 0 }) => {
+const renderPanels = ({ panels = [], children = null, windowWidth = 0 }) => {
     return (
         <Flex>
             {panels.map((canvas, i) => {
@@ -248,3 +196,57 @@ export const CanvasWrapper = props => {
         </CanvasContainer>
     );
 };
+
+export function CanvasPanel({ name, children, type = 'inline', ranges, windowWidth, ...rest }) {
+    const { setPanel, updatePanel } = useContext(CanvasContext);
+    const ref = createRef();
+
+    const currentWindowWidth = Math.max(1, windowWidth);
+
+    const isOverlay = isWithinRange(currentWindowWidth, ranges?.isOverlay);
+    const isMinifiable = !isOverlay && isWithinRange(currentWindowWidth, ranges?.allowMinify);
+    const isMinified = isMinifiable && isWithinRange(currentWindowWidth, ranges?.defaultMinified);
+
+    let isVisible = false;
+    if (isOverlay && ranges.defaultVisible) {
+        isVisible = false;
+    } else {
+        isVisible = name === 'main' ? true : isWithinRange(currentWindowWidth, ranges?.defaultVisible);
+    }
+
+    useEffect(() => {
+        // Set the canvas panel's default vales
+
+        setPanel(name, () => ({
+            name,
+            ref,
+            render: children,
+            type,
+            ranges,
+            ...rest,
+        }));
+
+        // remove panel
+        return () => {
+            setPanel(name, () => null);
+        };
+    }, []);
+
+    useEffect(() => {
+        updatePanel(name, { isMinifiable });
+    }, [isMinifiable]);
+
+    useEffect(() => {
+        updatePanel(name, { isMinified });
+    }, [isMinified]);
+
+    useEffect(() => {
+        updatePanel(name, { isVisible });
+    }, [isVisible]);
+
+    useEffect(() => {
+        updatePanel(name, { isOverlay });
+    }, [isOverlay]);
+
+    return null;
+}

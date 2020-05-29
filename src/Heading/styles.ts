@@ -13,6 +13,7 @@ const getKind = kind => {
     return {
         fontSize: scaleRatio ** kind * sizeBase,
         lineHeight: '1.5',
+        color: 'titleText',
         // mb: '0.4em',
     };
 };

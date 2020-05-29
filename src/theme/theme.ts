@@ -10,24 +10,41 @@ const space = {
     canvas: sizes.canvas,
 };
 
-const shadows = {
-    sm: '0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px 0 rgba(0, 0, 0, 0.04)',
-    md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-    lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-    xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-    '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-    outline: '0 0 0 3px rgba(192, 213, 245, 0.6)',
-    inner: 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',
-    none: 'none',
-    // design elevations
-    topNav: '0 2px 8px 0 rgba(38,38,38,0.08)',
-    card: '0 0 1px 0 rgba(38,38,38,0.08), 0 0 2px 0 rgba(89,89,89,0.16)',
-    pressed: '0 0 1px 0 rgba(38,38,38,0.08), 0 0.5px 2px 0 rgba(89,89,89,0.16)',
-    button: '0 0 1px 0 rgba(38,38,38,0.04), 0 2px 4px 0 rgba(89,89,89,0.16)',
-    menu: '0 0 2px 0 rgba(38,38,38,0.04), 0 4px 8px 0 rgba(89,89,89,0.16)',
-    raised: '0 2px 4px 0 rgba(38,38,38,0.04), 0 8px 16px 0 rgba(89,89,89,0.16)',
-    toast: '0 2px 8px 0 rgba(38,38,38,0.04), 0 16px 24px 0 rgba(89,89,89,0.16)',
-    modal: '0 2px 8px 0 rgba(38,38,38,0.08), 0 20px 32px 0 rgba(89,89,89,0.24)',
+const shadows = mode => {
+    const modes = {
+        light: {
+            topNav: '0 2px 8px 0 rgba(38,38,38,0.08)',
+            card: '0 0 1px 0 rgba(38,38,38,0.08), 0 0 2px 0 rgba(89,89,89,0.16)',
+            pressed: '0 0 1px 0 rgba(38,38,38,0.08), 0 0.5px 2px 0 rgba(89,89,89,0.16)',
+            button: '0 0 1px 0 rgba(38,38,38,0.04), 0 2px 4px 0 rgba(89,89,89,0.16)',
+            menu: '0 0 2px 0 rgba(38,38,38,0.04), 0 4px 8px 0 rgba(89,89,89,0.16)',
+            raised: '0 2px 4px 0 rgba(38,38,38,0.04), 0 8px 16px 0 rgba(89,89,89,0.16)',
+            toast: '0 2px 8px 0 rgba(38,38,38,0.04), 0 16px 24px 0 rgba(89,89,89,0.16)',
+            modal: '0 2px 8px 0 rgba(38,38,38,0.08), 0 20px 32px 0 rgba(89,89,89,0.24)',
+        },
+        dark: {
+            topNav: '0 2px 8px 0 rgba(0,0,0,0.08)',
+            card: '0 0 1px 0 rgba(0,0,0,0.08), 0 0 2px 0 rgba(0,0,0,0.16)',
+            pressed: '0 0 1px 0 rgba(0,0,0,0.08), 0 0.5px 2px 0 rgba(0,0,0,0.16)',
+            button: '0 0 1px 0 rgba(0,0,0,0.04), 0 2px 4px 0 rgba(0,0,0,0.16)',
+            menu: '0 0 2px 0 rgba(0,0,0,0.04), 0 4px 8px 0 rgba(0,0,0,0.16)',
+            raised: '0 2px 4px 0 rgba(0,0,0,0.04), 0 8px 16px 0 rgba(0,0,0,0.16)',
+            toast: '0 2px 8px 0 rgba(0,0,0,0.04), 0 16px 24px 0 rgba(0,0,0,0.16)',
+            modal: '0 2px 8px 0 rgba(0,0,0,0.08), 0 20px 32px 0 rgba(0,0,0,0.24)',
+        },
+    };
+    return {
+        sm: '0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px 0 rgba(0, 0, 0, 0.04)',
+        md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+        lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+        xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+        '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+        outline: '0 0 0 3px rgba(192, 213, 245, 0.6)',
+        inner: 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',
+        none: 'none',
+        // design elevations
+        ...modes[mode],
+    };
 };
 
 const breakpoints = ['480px', '768px', '992px', '1280px'];
@@ -99,8 +116,10 @@ const borders = {
 //   none: 0
 // };
 
-export const baseTheme = (providedTheme = {}) => {
-    const colorScheme = colors(providedTheme);
+export const baseTheme = ({ providedTheme = {}, mode = 'light' }) => {
+    const colorScheme = colors(providedTheme, mode);
+    const shadowScheme = shadows(mode);
+
     return {
         breakpoints,
         zIndices,
@@ -110,7 +129,7 @@ export const baseTheme = (providedTheme = {}) => {
         colors: colorScheme,
         ...typography,
         sizes,
-        shadows,
+        shadows: shadowScheme,
         space,
         icons,
 

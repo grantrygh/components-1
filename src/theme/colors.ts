@@ -191,10 +191,58 @@ const palette = {
     },
 };
 
-const colors = ({ colors: providedColors = {} as Colors }) => {
+const colors = (providedTheme, mode) => {
+    const providedColors = providedTheme?.colors as Colors;
     const primary = providedColors?.primary || brand.primary;
     const secondary = providedColors?.secondary || brand.secondary;
     const neutral = providedColors?.neutral || neutralScheme;
+
+    const modes = {
+        light: {
+            titleText: neutral[12],
+            bodyText: neutral[9],
+            faintText: neutral[7],
+            disabled: neutral[5],
+            border: neutral[4], // and divider
+
+            // page layout
+            cardBg: neutral[1],
+            navBg: neutral[2],
+            popoverBg: neutral[2],
+            pageBg: neutral[3],
+            altBg: neutral[3],
+            canvasBg: neutral[4],
+
+            // component specific
+            track: neutral[4],
+            tooltip: neutral[9],
+
+            inputHover: neutral[3],
+            inputBg: neutral[2],
+        },
+        dark: {
+            titleText: neutral[1],
+            bodyText: neutral[6],
+            faintText: neutral[7],
+            disabled: neutral[8],
+            border: neutral[10], // and divider
+
+            // page layout
+            cardBg: neutral[11],
+            navBg: neutral[11],
+            popoverBg: neutral[10],
+            pageBg: neutral[12],
+            altBg: neutral[9],
+            canvasBg: neutral[13],
+
+            // component specific
+            track: neutral[4],
+            tooltip: neutral[9],
+
+            inputHover: neutral[3],
+            inputBg: neutral[2],
+        },
+    };
 
     return {
         transparent: 'transparent',
@@ -209,26 +257,15 @@ const colors = ({ colors: providedColors = {} as Colors }) => {
         // Neutral Scale Design Colors
         neutral,
 
-        black: neutral[13],
-        titleText: neutral[12],
-        bodyText: neutral[9],
-        faintText: neutral[7],
-        disabled: neutral[5],
-        border: neutral[4], // and divider
-        white: neutral[1],
+        // Theme-type specific
+        ...modes[mode],
 
-        // page layout
-        cardBg: neutral[1],
-        navBg: neutral[2],
-        popoverBg: neutral[2],
-        pageBg: neutral[3],
-        altBg: neutral[3],
-        canvasBg: neutral[4],
+        black: neutral[13],
+        white: neutral[1],
 
         // component specific
         progress: primary[500],
-        track: neutral[4],
-        tooltip: neutral[9],
+
         button: primary, // VARIANT: primary button bg , secondary & tertiary button text - uses .500
         buttonText: neutral[1], // primary button text
         secondaryButton: 'transparent',
@@ -236,8 +273,6 @@ const colors = ({ colors: providedColors = {} as Colors }) => {
         activeLink: primary[500],
 
         inputFocus: primary[500],
-        inputHover: neutral[3],
-        inputBg: neutral[2],
 
         overlayBg: 'rgba(0, 0, 0, 0.2)',
 

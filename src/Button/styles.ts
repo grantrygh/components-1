@@ -69,6 +69,7 @@ export const buttonStyle = ({ color = 'button' }, theme) => ({
         unstyled: {
             color: `${color}.500`,
             bg: 'transparent',
+            px: 0,
             _active: {
                 bg: 'border',
                 dataActive: 'true',

@@ -14,7 +14,7 @@
     "storybook:server": "http-server storybook-build",
     "cy": "cypress run",
     "cy:open": "cypress open",
-    "build": "tsc -d && copyfiles src/**/*.scss -u 1 . &&  copyfiles src/**/**/*.scss -u 1 .",
+    "build": "tsc -d -w",
     "release": "release-it",
     "jest": "./node_modules/.bin/jest",
     "snyk-protect": "snyk protect"

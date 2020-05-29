@@ -62,6 +62,10 @@ export function CanvasContainer(props) {
     const togglePanel = name => {
         setPanels($prev => {
             const panel = $prev[name];
+            if (!panel) {
+                return null;
+            }
+
             return {
                 ...$prev,
                 [name]: {

@@ -1,7 +1,8 @@
+import MenuIcon from 'mdi-react/MenuIcon';
 import React, { useContext, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { Box, Button, ButtonGroup, Flex, Heading, Text } from '../../src';
+import { Box, Button, ButtonGroup, Flex, Heading, Text, useColorMode } from '../../src';
 import { CanvasContext } from '../../src/Canvas';
 import { Page, PageContent } from '../../src/Page';
 import { AppShell } from './components/AppShell';
@@ -10,6 +11,7 @@ import { FilterMenuForm } from './components/FilterMenuForm';
 function StyleGuide(props) {
     const [formValue, setFormValue] = useState(null);
     const { togglePanel, setPanel } = useContext(CanvasContext);
+    const { mode, setMode } = useColorMode();
 
     useEffect(() => {
         setPanel('filter', () => ({
@@ -45,6 +47,15 @@ function StyleGuide(props) {
                 <ButtonGroup w="100%">
                     <Button onClick={() => togglePanel('menu')}>Toggle Navigation Menu Canvas</Button>
                     <Button onClick={() => togglePanel('filter')}>Toggle Filter Canvas</Button>
+                    <Button
+                        variant="tertiary"
+                        onClick={() => {
+                            setMode(mode === 'light' ? 'dark' : 'light');
+                        }}
+                        leftIcon={MenuIcon}
+                    >
+                        Switch to {mode === 'light' ? 'dark' : 'light'} mode
+                    </Button>
                 </ButtonGroup>
 
                 <Flex justify="flex-end" w="100%">

@@ -5,7 +5,7 @@ import { NavigationItemProps, NavigationProps } from './types';
 
 export const navigationStyles: componentStyleDef<NavigationProps & NavigationItemProps> = (
     { isSticky = true, isActive, isSubmenuItem },
-    { zIndices, sizes }
+    { zIndices, sizes, colors }
 ) => {
     const style: BoxProps = {
         bg: 'navBg',
@@ -44,6 +44,10 @@ export const navigationStyles: componentStyleDef<NavigationProps & NavigationIte
             backgroundColor: 'primary.500',
             left: `-${sizes.canvas.spacing}`,
         },
+        navItemMedia: {
+            _even: { path: { fill: isActive ? colors.primary[500] : colors.bodyText } },
+            _odd: { path: { fill: isActive ? colors.primary[500] : colors.bodyText } },
+        },
     };
 };
 
@@ -55,5 +59,6 @@ export default function useNavigationStyle(props) {
         root: styles.style,
         navItem: styles.navItem,
         activeBar: styles.activeBar,
+        navItemMedia: styles.navItemMedia,
     };
 }

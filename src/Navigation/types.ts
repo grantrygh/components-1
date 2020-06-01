@@ -22,6 +22,7 @@ interface INavItem {
 
 export interface INavItemMedia {
     icon?: MdiReactIconComponentType;
+    isActive?: boolean;
 }
 
 export type NavigationProps = INavigation & BoxProps;

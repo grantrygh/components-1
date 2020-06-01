@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Children, cloneElement } from 'react';
 import { Box } from '../Box';
 import { BoxProps } from '../Box/types';
 import { Flex } from '../Flex';
 import { useRouter } from '../hooks/useRouter';
 import Link from '../Link';
+import { PseudoBox } from '../PseudoBox';
 import useNavigationStyle from './styles';
 import { NavigationItemMediaProps, NavigationItemProps } from './types';
 
@@ -77,17 +78,30 @@ Navigation.Item = function NavItem(props: NavigationItemProps) {
         >
             {(isActive || isLinkActive) && !isSubmenuItem && <Box {...activeBarStyleProps} />}
             {/* Navigation.ItemMedia | Navigation.ItemText | Navigation.ItemMeta */}
-            {props.children}
+            {Children.map(props.children, (child, index) => {
+                if (child) {
+                    return cloneElement(child as any, {
+                        isActive: isLinkActive,
+                    });
+                }
+                return null;
+            })}
         </Flex>
     );
 };
 
 Navigation.ItemMedia = function NavItemLeft(props: NavigationItemMediaProps) {
-    const MdiIcon = props.icon;
+    const { icon, isActive } = props;
+    const MdiIcon = icon;
+
+    const { navItemMedia: navItemMediaStyleProps } = useNavigationStyle({
+        isActive,
+    });
+
     return (
-        <Box w="32px" {...props}>
+        <PseudoBox w="32px" {...navItemMediaStyleProps} {...props}>
             {props.children || (MdiIcon && <MdiIcon color="currentColor" size={28} />) || null}
-        </Box>
+        </PseudoBox>
     );
 };
 

@@ -7,6 +7,7 @@ import { CanvasContext } from '../../src/Canvas';
 import { Page, PageContent } from '../../src/Page';
 import { AppShell } from './components/AppShell';
 import { FilterMenuForm } from './components/FilterMenuForm';
+import { HomeTable } from './components/HomeTable';
 
 function StyleGuide(props) {
     const [formValue, setFormValue] = useState(null);
@@ -74,6 +75,8 @@ function StyleGuide(props) {
                         })}
                     </Box>
                 )}
+
+                <HomeTable />
 
                 <Flex h={1500} w={50} align="center">
                     for testing sticky header

@@ -5,7 +5,7 @@ export const checkboxStyle = ({ color, type, isDisabled, isFullWidth, isChild, s
         userSelect: 'none',
         border: '2px',
         rounded: '2px',
-        borderColor: 'inherit',
+        borderColor: 'track',
         transition: 'background-color 120ms, box-shadow 250ms',
         color: 'white',
         _checked: {
@@ -37,7 +37,7 @@ export const checkboxStyle = ({ color, type, isDisabled, isFullWidth, isChild, s
     label: {
         ml: 2,
         userSelect: 'none',
-        color: isDisabled && 'disabled',
+        color: isDisabled ? 'disabled' : 'bodyText',
     },
     container: {
         display: 'inline-flex',

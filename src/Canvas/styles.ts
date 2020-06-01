@@ -34,6 +34,7 @@ export const canvasStyle: componentStyleDef = ({ isMobile }, { sizes }) => {
         style: {
             minHeight: '100vh',
             flexDirection: 'row',
+            color: 'bodyText',
         },
         panel: {
             height: '100vh',

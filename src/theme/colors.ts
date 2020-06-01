@@ -216,6 +216,7 @@ const colors = (providedTheme, mode) => {
             // component specific
             track: neutral[4],
             tooltip: neutral[9],
+            selectControlHover: primary[50],
 
             inputHover: neutral[3],
             inputBg: neutral[2],
@@ -236,8 +237,9 @@ const colors = (providedTheme, mode) => {
             canvasBg: neutral[13],
 
             // component specific
-            track: neutral[4],
+            track: neutral[8],
             tooltip: neutral[9],
+            selectControlHover: neutral[9],
 
             inputHover: neutral[3],
             inputBg: neutral[2],

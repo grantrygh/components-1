@@ -37,6 +37,7 @@ const numberInputStyle = ({ size, isDisabled }, theme) => ({
         right: 0,
         height: 'calc(100% - 2px)',
         zIndex: 1,
+        color: 'bodyText',
     },
 });
 

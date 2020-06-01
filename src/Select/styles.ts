@@ -1,6 +1,6 @@
 import { useTheme } from '../ThemeProvider';
 
-export const selectStyle = ({ size }, theme) => ({
+export const selectStyle = ({ size }, { colors, sizes }) => ({
     style: {
         // !IMPORTANT: To override any component style, uncomment and add overrides below provided. some properties can be changed in the theme object below
         // clearIndicator: (provided, props) => ({
@@ -10,16 +10,16 @@ export const selectStyle = ({ size }, theme) => ({
         container: (provided, props) => ({
             ...provided,
             width: '100%',
-            minWidth: theme.sizes.input.width,
+            minWidth: sizes.input.width,
         }),
         control: (provided, { isFocused }) => {
-            const stateColor = theme.colors.primary[500];
+            const stateColor = colors.primary[500];
             return {
                 ...provided,
+                backgroundColor: 'transparent',
                 boxShadow: 'none',
-                borderWidth: 0,
-                borderBottomWidth: '1px',
-                borderColor: isFocused ? stateColor : theme.colors.border,
+                borderWidth: '1px',
+                borderColor: isFocused ? stateColor : colors.border,
                 '&:hover': { borderColor: stateColor },
             };
         },
@@ -55,9 +55,11 @@ export const selectStyle = ({ size }, theme) => ({
         // loadingMessage: (provided, props) => ({
         //     ...provided,
         // }),
-        // menu: (provided, props) => ({
-        //     ...provided,
-        // }),
+        menu: (provided, props) => ({
+            ...provided,
+            backgroundColor: colors.popoverBg,
+            color: colors.bodyText,
+        }),
         // menuList: (provided, props) => ({
         //     ...provided,
         // }),
@@ -82,9 +84,10 @@ export const selectStyle = ({ size }, theme) => ({
         // placeholder: (provided, props) => ({
         //     ...provided,
         // }),
-        // singleValue: (provided, props) => ({
-        //     ...provided,
-        // }),
+        singleValue: (provided, props) => ({
+            ...provided,
+            color: colors.bodyText,
+        }),
         valueContainer: (provided, props) => ({
             ...provided,
             padding: '1px 8px',
@@ -95,27 +98,27 @@ export const selectStyle = ({ size }, theme) => ({
             // borderRadius: theme.radii.radius,
         },
         colors: {
-            danger: theme.colors.error[500],
-            dangerLight: theme.colors.error[200],
-            neutral0: theme.colors.neutral[1],
-            neutral5: theme.colors.neutral[3],
-            neutral10: theme.colors.neutral[4],
-            neutral20: theme.colors.neutral[5], // border and dropdown indicator
-            neutral30: theme.colors.neutral[6],
-            neutral40: theme.colors.neutral[7],
-            neutral50: theme.colors.neutral[8],
-            neutral60: theme.colors.neutral[9],
-            neutral70: theme.colors.neutral[10],
-            neutral80: theme.colors.neutral[11],
-            neutral90: theme.colors.neutral[12],
-            primary: theme.colors.primary[500],
-            primary25: theme.colors.primary[50],
-            primary50: theme.colors.primary[200],
-            primary75: theme.colors.primary[300],
+            danger: colors.error[500],
+            dangerLight: colors.error[200],
+            neutral0: colors.neutral[1],
+            neutral5: colors.neutral[3],
+            neutral10: colors.neutral[4],
+            neutral20: colors.neutral[5], // border and dropdown indicator
+            neutral30: colors.neutral[6],
+            neutral40: colors.neutral[7],
+            neutral50: colors.neutral[8],
+            neutral60: colors.neutral[9],
+            neutral70: colors.neutral[10],
+            neutral80: colors.neutral[11],
+            neutral90: colors.neutral[12],
+            primary: colors.primary[500],
+            primary25: colors.selectControlHover,
+            primary50: colors.primary[200],
+            primary75: colors.primary[300],
         },
         spacing: {
             // baseUnit: 4,
-            controlHeight: theme.sizes.input[size],
+            controlHeight: sizes.input[size],
             // menuGutter: 8,
         },
     },

@@ -202,6 +202,7 @@ const colors = (providedTheme, mode) => {
             titleText: neutral[12],
             bodyText: neutral[9],
             faintText: neutral[7],
+            tableHeadingBg: neutral[2],
             disabled: neutral[5],
             border: neutral[4], // and divider
 
@@ -225,6 +226,7 @@ const colors = (providedTheme, mode) => {
             titleText: neutral[1],
             bodyText: neutral[6],
             faintText: neutral[7],
+            tableHeadingBg: neutral[10],
             disabled: neutral[8],
             border: neutral[10], // and divider
 

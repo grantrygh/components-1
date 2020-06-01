@@ -75,7 +75,7 @@ function StyleGuide(props) {
                     </Box>
                 )}
 
-                <Flex h={1500} w={50} bg="track" align="center">
+                <Flex h={1500} w={50} align="center">
                     for testing sticky header
                 </Flex>
             </PageContent>

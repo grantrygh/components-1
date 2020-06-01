@@ -31,7 +31,7 @@ const isWithinRange = (width, range) => {
 };
 
 export function CanvasContainer(props) {
-    const [panels, setPanels] = useState<any>({});
+    const [panels, setPanels] = useState<any>(props.initialCanvasState);
     const { zIndices } = useTheme();
 
     const styles = useCanvasStyle({
@@ -172,10 +172,10 @@ export const CanvasWrapper = props => {
     const { windowWidth } = useWindowResize();
 
     return (
-        <CanvasContainer>
+        <CanvasContainer initialCanvasState={initialCanvasState}>
             <CanvasContext.Consumer>
                 {({ panels }) => {
-                    const canvasPanels = Object.keys(panels).length > 0 ? panels : initialCanvasState;
+                    const canvasPanels = Object.keys(panels).length > 0 && panels;
 
                     const { leftPanels, rightPanels, mainPanel } = getPanels(canvasPanels);
 

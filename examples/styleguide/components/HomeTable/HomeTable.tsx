@@ -66,7 +66,7 @@ export const HomeTable = () => {
     );
 
     const cursor = {
-        total: 9,
+        total: 24,
         currentPage: page,
         perPage,
     };

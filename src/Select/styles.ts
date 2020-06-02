@@ -10,7 +10,7 @@ export const selectStyle = ({ size }, { colors, sizes }) => ({
         container: (provided, props) => ({
             ...provided,
             width: '100%',
-            minWidth: sizes.input.width,
+            minWidth: '6rem',
         }),
         control: (provided, { isFocused }) => {
             const stateColor = colors.primary[500];

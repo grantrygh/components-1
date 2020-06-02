@@ -20,7 +20,7 @@ import {
     TableRowProps,
 } from './types';
 
-export const Table = React.forwardRef((props: TableProps, ref) => {
+export const Table = (props: TableProps, ref) => {
     const { rows, renderRow, renderHeader, afterRows, loading, onPageChange, onPerPageChange, cursor, height } = props;
 
     const { table: tableStyleProps, container: containerStyleProps, footer: footerStyleProps } = useTableStyle({
@@ -31,7 +31,7 @@ export const Table = React.forwardRef((props: TableProps, ref) => {
 
     return (
         <Box {...containerStyleProps}>
-            <Box ref={ref} as="table" {...tableStyleProps} {...props}>
+            <Box as="table" {...tableStyleProps}>
                 {header}
 
                 <Box as="tbody">{rows.map((row, index) => renderRow(row))}</Box>
@@ -48,7 +48,7 @@ export const Table = React.forwardRef((props: TableProps, ref) => {
             </Box>
         </Box>
     );
-});
+};
 
 const spring = {
     type: 'spring',
@@ -60,7 +60,7 @@ export const Tr = ({ id, ...props }: TableRowProps) => {
     const { row: rowStyleProps } = useTableStyle({});
     return (
         <motion.tr key={id} layoutTransition={spring}>
-            <Box {...rowStyleProps} {...props} />
+            <Box as="td" {...rowStyleProps} {...props} />
         </motion.tr>
     );
 };
@@ -70,12 +70,13 @@ export const Td = (props: TableCellProps) => {
     return <Box as="td" {...cellStyleProps} {...props} />;
 };
 
-export const Th = ({ id, sorting, onSort, ...props }: TableCellProps) => {
+export const Th = React.forwardRef(({ id, sorting, onSort, ...props }: TableCellProps, ref) => {
     const { cell: cellStyleProps, headerCell: headerCellStyleProps } = useTableStyle({ sortable: id && onSort });
     const showIcon = sorting.id === id;
     return (
         <PseudoBox
             as="th"
+            ref={ref}
             onClick={() => {
                 if (id && onSort) {
                     onSort({ id, direction: sorting.direction === 'ascending' ? 'descending' : 'ascending' });
@@ -93,7 +94,7 @@ export const Th = ({ id, sorting, onSort, ...props }: TableCellProps) => {
             )}
         </PseudoBox>
     );
-};
+});
 
 export const TableHeader = React.forwardRef((props: TableHeaderProps, ref) => {
     const { children, sticky, sorting, onSort, ...rest } = props;
@@ -116,7 +117,11 @@ export const TableHeader = React.forwardRef((props: TableHeaderProps, ref) => {
     );
 });
 
-const TableFooter = ({ ...props }: TableFooterProps) => <Box as="tfoot" {...props} />;
+const TableFooter = ({ ...props }: TableFooterProps) => (
+    <Box as="tfoot" {...props}>
+        {props.children}
+    </Box>
+);
 
 const TablePagination = ({ loading, onPageChange, onPerPageChange, cursor, ...props }: TablePaginationProps) => {
     const { total, perPage, currentPage } = cursor;

@@ -54,14 +54,18 @@ export interface ITablePagination {
 export interface ITableCell {
     sorting?: {
         id: string;
-        direction: 'ascending' | 'descending';
+        direction: 'asc' | 'desc';
     };
-    onSort?: (args: { id: string; direction: 'ascending' | 'descending' }) => void;
+    onSort?: (args: { id: string; direction: 'asc' | 'desc' }) => void;
+}
+
+export interface ITableRow {
+    asComponent?: any;
+    expandedContent?: any;
 }
 
 export type TableProps = ITable & ITablePagination;
-
-export type TableRowProps = BoxProps & React.HTMLProps<HTMLTableRowElement>;
+export type TableRowProps = BoxProps & ITableRow & React.HTMLProps<HTMLTableRowElement>;
 export type TableCellProps = BoxProps & ITableCell & React.HTMLProps<HTMLTableCellElement>;
 export type TableHeadCellProps = BoxProps & React.HTMLProps<HTMLTableHeaderCellElement>;
 export type TableFooterProps = BoxProps;

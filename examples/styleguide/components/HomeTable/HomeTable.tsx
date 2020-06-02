@@ -1,8 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Avatar } from '../../../../src/Avatar';
 import { Box } from '../../../../src/Box';
-import { Table, TableHeader, Td, Th, Tr } from '../../../../src/Table';
+import { Flex } from '../../../../src/Flex';
+import { Heading } from '../../../../src/Heading';
+import { AnimatedTr, Table, TableHeader, Td, Th } from '../../../../src/Table';
+import { Text } from '../../../../src/Text';
 
 export const HomeTable = () => {
+    const tableRef = useRef();
+    const tableWidth = tableRef && tableRef.current?.getBoundingClientRect()?.width;
+
     const initialRows = [
         {
             first_name: 'Charlie',
@@ -17,7 +24,7 @@ export const HomeTable = () => {
             last_name: 'Hotel',
         },
         {
-            first_name: 'Alpha',
+            first_name: 'Alpha Alpha Alpha',
             last_name: 'Gulf',
         },
     ];
@@ -27,18 +34,23 @@ export const HomeTable = () => {
     const [perPage, setPerPage] = useState(4);
     const [sorting, setSorting] = useState({
         id: 'first_name',
-        direction: 'ascending',
+        direction: 'asc',
     });
 
-    // This would be handled by changing graphql prop - just using as an example here
+    // These would be handled through graphQL - just using as an example here
+    const cursor = {
+        total: 24,
+        currentPage: page,
+        perPage,
+    };
     const onSort = ({ id, direction }) => {
         setSorting({ id, direction });
         const sortedRows = rows.sort((a, b) => {
             if (a[id] < b[id]) {
-                return direction === 'ascending' ? -1 : 1;
+                return direction === 'asc' ? -1 : 1;
             }
             if (a[id] > b[id]) {
-                return direction === 'ascending' ? 1 : -1;
+                return direction === 'asc' ? 1 : -1;
             }
             return 0;
         });
@@ -50,29 +62,94 @@ export const HomeTable = () => {
 
     const renderRow = props => {
         const { first_name, last_name } = props;
+
+        if (tableWidth < 768) {
+            return (
+                <AnimatedTr
+                    key={first_name}
+                    expandedContent={
+                        <Box>
+                            <Heading kind="h6">Collapsed content</Heading>
+                            <Text>
+                                "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson
+                                ad squid. Nihilanim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
+                                sapiente ea proident."
+                            </Text>
+                            <Text>Date joined: January 30, 2020</Text>
+                            <Text>Status: Pending</Text>
+                        </Box>
+                    }
+                >
+                    <Td>
+                        <Flex align="center">
+                            <Avatar
+                                name="Uchiha Sasuke"
+                                size="sm"
+                                mr={2}
+                                src="https://vignette.wikia.nocookie.net/naruto/images/2/21/Sasuke_Part_1.png/revision/latest?cb=20170716092103"
+                            />
+                            {first_name}
+                        </Flex>
+                    </Td>
+                    <Td>{last_name}</Td>
+                </AnimatedTr>
+            );
+        }
+
         return (
-            <Tr key={first_name}>
-                <Td>{first_name}</Td>
+            <AnimatedTr
+                key={first_name}
+                expandedContent={
+                    <Box>
+                        <Heading kind="h6">Collapsed content</Heading>
+                        <Text>
+                            "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                            squid. Nihilanim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente
+                            ea proident."
+                        </Text>
+                    </Box>
+                }
+            >
+                <Td>
+                    <Flex align="center">
+                        <Avatar
+                            name="Uchiha Sasuke"
+                            size="sm"
+                            mr={2}
+                            src="https://vignette.wikia.nocookie.net/naruto/images/2/21/Sasuke_Part_1.png/revision/latest?cb=20170716092103"
+                        />
+                        {first_name}
+                    </Flex>
+                </Td>
                 <Td>{last_name}</Td>
-            </Tr>
+                <Td>January 30, 2020</Td>
+                <Td>Pending</Td>
+            </AnimatedTr>
         );
     };
 
-    const renderHeader = () => (
-        <TableHeader sorting={sorting} onSort={onSort}>
-            <Th id="first_name">First name</Th>
-            <Th id="last_name">Last name</Th>
-        </TableHeader>
-    );
+    const renderHeader = () => {
+        if (tableWidth < 768) {
+            return (
+                <TableHeader sorting={sorting} onSort={onSort}>
+                    <Th id="first_name">First name</Th>
+                    <Th id="last_name">Last name</Th>
+                </TableHeader>
+            );
+        }
 
-    const cursor = {
-        total: 24,
-        currentPage: page,
-        perPage,
+        return (
+            <TableHeader sorting={sorting} onSort={onSort}>
+                <Th id="first_name">First name</Th>
+                <Th id="last_name">Last name</Th>
+                <Th>Date joined</Th>
+                <Th>Status</Th>
+            </TableHeader>
+        );
     };
 
     return (
-        <Box>
+        <Box ref={tableRef}>
             <Table
                 rows={rows}
                 renderRow={renderRow}

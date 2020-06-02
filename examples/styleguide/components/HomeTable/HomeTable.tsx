@@ -23,6 +23,8 @@ export const HomeTable = () => {
     ];
 
     const [rows, setRows] = useState(initialRows);
+    const [page, setPage] = useState(1);
+    const [perPage, setPerPage] = useState(4);
     const [sorting, setSorting] = useState({
         id: 'first_name',
         direction: 'ascending',
@@ -65,8 +67,8 @@ export const HomeTable = () => {
 
     const cursor = {
         total: 9,
-        currentPage: 2,
-        perPage: 4,
+        currentPage: page,
+        perPage,
     };
 
     return (
@@ -76,8 +78,8 @@ export const HomeTable = () => {
                 renderRow={renderRow}
                 renderHeader={renderHeader}
                 cursor={cursor}
-                onPageChange={page => console.log('page: ', page)}
-                onPerPageChange={perPage => console.log('per page: ', perPage)}
+                onPageChange={current => setPage(current)}
+                onPerPageChange={numRows => setPerPage(numRows)}
             />
         </Box>
     );

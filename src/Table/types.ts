@@ -59,15 +59,24 @@ export interface ITablePagination {
 }
 
 export interface ITableCell {
+    // current sort data for table
     sorting?: {
         id: string;
         direction: 'asc' | 'desc';
     };
+
+    // callback fired when cell header is clicked. leave null to disable sorting for that cell.
     onSort?: (args: { id: string; direction: 'asc' | 'desc' }) => void;
+
+    // Passed to flex-grow
+    span?: number;
 }
 
 export interface ITableRow {
+    // render row as a different component. used by AnimatedTr to pass motion.tr
     asComponent?: any;
+
+    // any content to be shown upon un-collapsing the row. leave null to disable row collapsing
     expandedContent?: any;
 }
 

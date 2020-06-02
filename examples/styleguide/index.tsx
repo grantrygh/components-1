@@ -27,25 +27,12 @@ function StyleGuide(props) {
             render: componentProps => <FilterMenuForm onSubmit={val => setFormValue(val)} />,
             bg: 'navBg',
         }));
-
-        setPanel('messages', () => ({
-            name: 'messages',
-            position: 'right',
-            ranges: {
-                isOverlay: [0, 9999],
-                allowMinify: false,
-                defaultVisible: false,
-                defaultMinified: false,
-            },
-            render: componentProps => <FilterMenuForm onSubmit={val => setFormValue(val)} />,
-            bg: 'navBg',
-        }));
     }, []);
 
     return (
         <Page>
             <PageContent>
-                <ButtonGroup w="100%">
+                <ButtonGroup w="100%" mb={4}>
                     <Button onClick={() => togglePanel('menu')}>Toggle Navigation Menu Canvas</Button>
                     <Button onClick={() => togglePanel('filter')}>Toggle Filter Canvas</Button>
                     <Button
@@ -58,10 +45,6 @@ function StyleGuide(props) {
                         Switch to {mode === 'light' ? 'dark' : 'light'} mode
                     </Button>
                 </ButtonGroup>
-
-                <Flex justify="flex-end" w="100%">
-                    <Button onClick={() => togglePanel('messages')}>Toggle Message Canvas</Button>
-                </Flex>
 
                 {formValue && (
                     <Box>

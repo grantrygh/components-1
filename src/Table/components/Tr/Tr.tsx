@@ -1,4 +1,6 @@
+import { Button } from 'Button';
 import { Collapse } from 'Collapse';
+import { Flex } from 'Flex';
 import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
 import React from 'react';
 import { Box } from '../../../Box';
@@ -36,11 +38,18 @@ export const Tr = (props: TableRowProps) => {
             >
                 {props.children}
                 {expandedContent && (
-                    <td>
-                        <Box position="absolute" right={4} top={4}>
-                            <ChevronDownIcon onClick={handleExpand} />
-                        </Box>
-                    </td>
+                    <Box as="td">
+                        <Flex align="center" position="absolute" right={4} h="100%">
+                            <Button
+                                onClick={handleExpand}
+                                size="sm"
+                                variant="unstyled"
+                                leftIcon={ChevronDownIcon}
+                                color="faintText"
+                                iconOnly
+                            />
+                        </Flex>
+                    </Box>
                 )}
             </RowComponent>
             <ExpandedRow expanded={expanded} {...props} />

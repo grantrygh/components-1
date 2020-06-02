@@ -33,8 +33,8 @@ function StyleGuide(props) {
         <Page>
             <PageContent>
                 <ButtonGroup w="100%" mb={4}>
-                    <Button onClick={() => togglePanel('menu')}>Toggle Navigation Menu Canvas</Button>
-                    <Button onClick={() => togglePanel('filter')}>Toggle Filter Canvas</Button>
+                    <Button onClick={() => togglePanel('menu')}>Toggle Navigation Menu</Button>
+                    <Button onClick={() => togglePanel('filter')}>Toggle Filters</Button>
                     <Button
                         variant="tertiary"
                         onClick={() => {

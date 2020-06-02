@@ -45,7 +45,7 @@ const NumberInput = forwardRef(
             isReadOnly,
             isInvalid,
             isDisabled,
-            isFullWidth,
+            isFullWidth = true,
             size,
             children,
             ...rest

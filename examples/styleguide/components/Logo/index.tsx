@@ -1,15 +1,15 @@
 import React from 'react';
-import { Heading, Icon, Text } from '../../../../src';
+import { Flex, Heading, Icon } from '../../../../src';
 
 // This will be replaced by actual brand svgs
 function Logo() {
     return (
-        <Text display="inline-flex" alignItems="center">
+        <Flex display={['inline-flex', 'inline-flex', 'none']} alignItems="center">
             <Icon size="5" color="primary.500" mr="spacing-sm" name="check-circle" />
             <Heading as="span" kind="h4">
                 Stuff
             </Heading>
-        </Text>
+        </Flex>
     );
 }
 

@@ -9,6 +9,7 @@ import { PseudoBox } from '../../../PseudoBox';
 import { Select } from '../../../Select';
 import { Spinner } from '../../../Spinner';
 import { TablePaginationProps } from '../../types';
+import { Td } from '../Td';
 import { Tr } from '../Tr';
 
 export const TablePagination = ({ loading, onPageChange, onPerPageChange, cursor, ...props }: TablePaginationProps) => {
@@ -39,58 +40,60 @@ export const TablePagination = ({ loading, onPageChange, onPerPageChange, cursor
 
     return (
         <Tr {...props}>
-            <Flex align="center" justify="flex-end" w="100%">
-                {loading && <Spinner />}
+            <Td p={0} borderWidth={0}>
+                <Flex align="center" justify="flex-end" w="100%">
+                    {loading && <Spinner />}
 
-                {onPerPageChange && (
-                    <Flex mr={4}>
-                        <Select
-                            placeholder={`${perPage} rows`}
-                            onChange={v => onPerPageChange(Number(v.value))}
-                            options={options}
-                            name="rows"
-                            size="sm"
-                            menuPosition="fixed"
+                    {onPerPageChange && (
+                        <Flex mr={4}>
+                            <Select
+                                placeholder={`${perPage} rows`}
+                                onChange={v => onPerPageChange(Number(v.value))}
+                                options={options}
+                                name="rows"
+                                size="sm"
+                                menuPosition="fixed"
+                            />
+                        </Flex>
+                    )}
+
+                    <PseudoBox {...(currentPage === 1 ? disabled : enabled)}>
+                        <PageFirstIcon
+                            onClick={() => {
+                                onPageChange(1);
+                            }}
                         />
-                    </Flex>
-                )}
+                    </PseudoBox>
 
-                <PseudoBox {...(currentPage === 1 ? disabled : enabled)}>
-                    <PageFirstIcon
-                        onClick={() => {
-                            onPageChange(1);
-                        }}
-                    />
-                </PseudoBox>
+                    <PseudoBox {...(currentPage === 1 ? disabled : enabled)}>
+                        <ChevronLeftIcon
+                            onClick={() => {
+                                onPageChange(currentPage - 1);
+                            }}
+                        />
+                    </PseudoBox>
 
-                <PseudoBox {...(currentPage === 1 ? disabled : enabled)}>
-                    <ChevronLeftIcon
-                        onClick={() => {
-                            onPageChange(currentPage - 1);
-                        }}
-                    />
-                </PseudoBox>
+                    <Box mx={4} fontSize="body">
+                        {(currentPage - 1) * perPage + 1}-{currentPage * perPage} of {total}
+                    </Box>
 
-                <Box mx={4} fontSize="body">
-                    {(currentPage - 1) * perPage + 1}-{currentPage * perPage} of {total}
-                </Box>
+                    <PseudoBox {...(currentPage === lastPage ? disabled : enabled)}>
+                        <ChevronRightIcon
+                            onClick={() => {
+                                onPageChange(cursor.currentPage + 1);
+                            }}
+                        />
+                    </PseudoBox>
 
-                <PseudoBox {...(currentPage === lastPage ? disabled : enabled)}>
-                    <ChevronRightIcon
-                        onClick={() => {
-                            onPageChange(cursor.currentPage + 1);
-                        }}
-                    />
-                </PseudoBox>
-
-                <PseudoBox {...(currentPage === lastPage ? disabled : enabled)}>
-                    <PageLastIcon
-                        onClick={() => {
-                            onPageChange(lastPage);
-                        }}
-                    />
-                </PseudoBox>
-            </Flex>
+                    <PseudoBox {...(currentPage === lastPage ? disabled : enabled)}>
+                        <PageLastIcon
+                            onClick={() => {
+                                onPageChange(lastPage);
+                            }}
+                        />
+                    </PseudoBox>
+                </Flex>
+            </Td>
         </Tr>
     );
 };

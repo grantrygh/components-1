@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { useEffect, useState } from 'react';
 import { Box } from '../Box';
 import { Table, TableHeader, Td, Th, Tr } from '../Table';
+import { ITableCell } from './types';
 
 const stories = storiesOf('Table', module);
 
@@ -30,18 +31,18 @@ stories.add('Default', () => {
     const [rows, setRows] = useState(initialRows);
     const [sorting, setSorting] = useState({
         id: 'first_name',
-        direction: 'ascending',
-    });
+        direction: 'asc',
+    } as ITableCell['sorting']);
 
     // This would be handled by changing graphql prop - just using as an example here
     const onSort = ({ id, direction }) => {
         setSorting({ id, direction });
         const sortedRows = rows.sort((a, b) => {
             if (a[id] < b[id]) {
-                return direction === 'ascending' ? -1 : 1;
+                return direction === 'asc' ? -1 : 1;
             }
             if (a[id] > b[id]) {
-                return direction === 'ascending' ? 1 : -1;
+                return direction === 'asc' ? 1 : -1;
             }
             return 0;
         });

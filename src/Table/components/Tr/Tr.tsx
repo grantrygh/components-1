@@ -1,12 +1,18 @@
+import { Collapse } from 'Collapse';
+import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
 import React from 'react';
 import { Box } from '../../../Box';
-import { Button } from '../../../Button';
-import { Collapse } from '../../../Collapse';
+import { useTheme } from '../../../ThemeProvider';
 import useTableStyle from '../../styles';
 import { TableRowProps } from '../../types';
+import { Td } from '../Td';
 
-export const Tr = ({ id, expandedContent, asComponent, ...props }: TableRowProps) => {
-    const { row: rowStyleProps } = useTableStyle({});
+export const Tr = (props: TableRowProps) => {
+    const { colors } = useTheme();
+    const { expandedContent, asComponent } = props;
+    const { row: rowStyleProps } = useTableStyle({
+        expandedContent,
+    });
     const [expanded, setExpanded] = React.useState(false);
 
     const handleExpand = () => setExpanded(!expanded);
@@ -15,23 +21,44 @@ export const Tr = ({ id, expandedContent, asComponent, ...props }: TableRowProps
 
     return (
         <>
-            <RowComponent {...rowProps} {...props}>
-                <Box as="td" {...rowStyleProps} />
+            <RowComponent
+                style={
+                    // needed to apply styles to motion component while keeping correct table structure
+                    asComponent && {
+                        ...rowStyleProps,
+                        borderColor: colors.border,
+                    }
+                }
+                {...rowProps}
+                {...rowStyleProps}
+                {...props}
+            >
+                {props.children}
                 {expandedContent && (
                     <td>
-                        <Button onClick={handleExpand}>Toggle</Button>
+                        <Box position="absolute" right={4} top={4}>
+                            <ChevronDownIcon onClick={handleExpand} />
+                        </Box>
                     </td>
                 )}
             </RowComponent>
-            {expandedContent && (
-                <tr>
-                    <td>
-                        <Collapse mt="spacing" isOpen={expanded}>
-                            {expandedContent}
-                        </Collapse>
-                    </td>
-                </tr>
-            )}
+            <ExpandedRow expanded={expanded} {...props} />
         </>
+    );
+};
+
+const ExpandedRow = props => {
+    const { expandedContent, expanded } = props;
+    if (!expandedContent) {
+        return null;
+    }
+    return (
+        <Tr {...props} expandedContent={null} borderBottomWidth={1}>
+            <Td py={0}>
+                <Collapse mt={2} mb={4} isOpen={expanded}>
+                    {expandedContent}
+                </Collapse>
+            </Td>
+        </Tr>
     );
 };

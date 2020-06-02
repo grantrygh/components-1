@@ -5,5 +5,9 @@ import { TableCellProps } from '../../types';
 
 export const Td = (props: TableCellProps) => {
     const { cell: cellStyleProps } = useTableStyle({});
-    return <Box as="td" {...cellStyleProps} {...props} />;
+    return (
+        <Box as="td" {...cellStyleProps} {...props}>
+            {props.children}
+        </Box>
+    );
 };

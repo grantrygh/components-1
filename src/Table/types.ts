@@ -49,6 +49,13 @@ export interface ITablePagination {
     onPerPageChange?: (perPage: number) => void;
 
     loading?: boolean;
+
+    /**
+     * Do not wait for width to be measured
+     * (this may flash mobile rows if you have any)
+     * Safe to use if you only use one row layout
+     */
+    renderImmediately?: boolean;
 }
 
 export interface ITableCell {

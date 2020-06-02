@@ -11,4 +11,4 @@ const spring = {
 
 export const AnimatedTr = (
     props: TableRowProps & { layoutTransition?: { type?: string; damping?: number; stiffness?: number } }
-) => <Tr asComponent={motion.tr} key={props.id} layoutTransition={props.layoutTransition || spring} {...props} />;
+) => <Tr asComponent={motion.tr} layoutTransition={props.layoutTransition || spring} {...props} />;

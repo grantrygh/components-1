@@ -1,6 +1,6 @@
 import { useTheme } from '../ThemeProvider';
 
-export const tableStyle = ({ height, sticky, sortable }, theme) => ({
+export const tableStyle = ({ height, sticky, sortable, expandedContent }, theme) => ({
     style: {
         color: 'bodyText',
         width: '100%',
@@ -12,18 +12,22 @@ export const tableStyle = ({ height, sticky, sortable }, theme) => ({
     container: {
         maxHeight: height,
         overflowY: height && 'auto',
-        overflowX: 'hidden',
+        overflowX: 'auto',
         position: 'relative',
     },
     row: {
         display: 'flex',
+        width: '100%',
+        position: 'relative',
+        borderBottomWidth: expandedContent ? 0 : '1px',
+        borderColor: 'border',
     },
     cell: {
         flex: 1,
         textAlign: 'left',
         p: 4,
-        borderBottom: '1px',
-        borderColor: 'border',
+        display: 'inline-flex',
+        alignItems: 'center',
     },
     headerRow: {
         position: sticky && 'sticky',

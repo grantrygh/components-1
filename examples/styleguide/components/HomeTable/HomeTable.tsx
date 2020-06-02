@@ -1,4 +1,3 @@
-import { shuffle } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { Box } from '../../../../src/Box';
 import { Table, TableHeader, Td, Th, Tr } from '../../../../src/Table';
@@ -6,49 +5,67 @@ import { Table, TableHeader, Td, Th, Tr } from '../../../../src/Table';
 export const HomeTable = () => {
     const initialRows = [
         {
-            name: 'First',
-            last: 'First Last Name',
+            first_name: 'Charlie',
+            last_name: 'Foxtrot',
         },
         {
-            name: 'Second',
-            last: 'Second Last Name',
+            first_name: 'Bravo',
+            last_name: 'Echo',
         },
         {
-            name: 'Third',
-            last: 'Third Last Name',
+            first_name: 'Delta',
+            last_name: 'Hotel',
         },
         {
-            name: 'Fourth',
-            last: 'Fourth Last Name',
+            first_name: 'Alpha',
+            last_name: 'Gulf',
         },
     ];
 
     const [rows, setRows] = useState(initialRows);
+    const [sorting, setSorting] = useState({
+        id: 'first_name',
+        direction: 'ascending',
+    });
 
+    // This would be handled by changing graphql prop - just using as an example here
+    const onSort = ({ id, direction }) => {
+        setSorting({ id, direction });
+        const sortedRows = rows.sort((a, b) => {
+            if (a[id] < b[id]) {
+                return direction === 'ascending' ? -1 : 1;
+            }
+            if (a[id] > b[id]) {
+                return direction === 'ascending' ? 1 : -1;
+            }
+            return 0;
+        });
+        setRows(sortedRows);
+    };
     useEffect(() => {
-        setTimeout(() => setRows(shuffle(rows)), 5000);
-    }, [rows]);
+        onSort(sorting);
+    }, []);
 
     const renderRow = props => {
-        const { name, last } = props;
+        const { first_name, last_name } = props;
         return (
-            <Tr key={name}>
-                <Td>{name}</Td>
-                <Td>{last}</Td>
+            <Tr key={first_name}>
+                <Td>{first_name}</Td>
+                <Td>{last_name}</Td>
             </Tr>
         );
     };
 
     const renderHeader = () => (
-        <TableHeader>
-            <Th>First</Th>
-            <Th>Last</Th>
+        <TableHeader sorting={sorting} onSort={onSort}>
+            <Th id="first_name">First name</Th>
+            <Th id="last_name">Last name</Th>
         </TableHeader>
     );
 
     const cursor = {
-        total: 8,
-        currentPage: 1,
+        total: 9,
+        currentPage: 2,
         perPage: 4,
     };
 

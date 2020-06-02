@@ -1,6 +1,6 @@
 import { useTheme } from '../ThemeProvider';
 
-export const tableStyle = ({ height, sticky }, theme) => ({
+export const tableStyle = ({ height, sticky, sortable }, theme) => ({
     style: {
         color: 'bodyText',
         width: '100%',
@@ -35,6 +35,7 @@ export const tableStyle = ({ height, sticky }, theme) => ({
         display: 'flex',
         alignItems: 'center',
         position: 'relative',
+        cursor: sortable && 'pointer',
     },
     header: {
         color: 'titleText',

@@ -51,11 +51,19 @@ export interface ITablePagination {
     loading?: boolean;
 }
 
+export interface ITableCell {
+    sorting?: {
+        id: string;
+        direction: 'ascending' | 'descending';
+    };
+    onSort?: (args: { id: string; direction: 'ascending' | 'descending' }) => void;
+}
+
 export type TableProps = ITable & ITablePagination;
 
 export type TableRowProps = BoxProps & React.HTMLProps<HTMLTableRowElement>;
-export type TableCellProps = BoxProps & React.HTMLProps<HTMLTableCellElement>;
+export type TableCellProps = BoxProps & ITableCell & React.HTMLProps<HTMLTableCellElement>;
 export type TableHeadCellProps = BoxProps & React.HTMLProps<HTMLTableHeaderCellElement>;
 export type TableFooterProps = BoxProps;
-export type TableHeaderProps = BoxProps & { sticky?: boolean };
+export type TableHeaderProps = BoxProps & ITableCell & { sticky?: boolean };
 export type TablePaginationProps = ITablePagination;

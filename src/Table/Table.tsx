@@ -5,7 +5,7 @@ import ChevronLeftIcon from 'mdi-react/ChevronLeftIcon';
 import ChevronRightIcon from 'mdi-react/ChevronRightIcon';
 import PageFirstIcon from 'mdi-react/PageFirstIcon';
 import PageLastIcon from 'mdi-react/PageLastIcon';
-import React from 'react';
+import React, { Children, cloneElement } from 'react';
 import { Box } from '../Box';
 import { PseudoBox } from '../PseudoBox';
 import { Select } from '../Select';
@@ -21,18 +21,6 @@ import {
 } from './types';
 
 export const Table = React.forwardRef((props: TableProps, ref) => {
-    /* <Table />
-<TableBody />
-<TableCell />
-<TableContainer />
-<TableFooter />
-<TableHead />
-<TablePagination />
-<TableRow />
-<TableSortLabel /> */
-
-    const emailRef = React.createRef();
-
     const { rows, renderRow, renderHeader, afterRows, loading, onPageChange, onPerPageChange, cursor, height } = props;
 
     const { table: tableStyleProps, container: containerStyleProps, footer: footerStyleProps } = useTableStyle({
@@ -46,7 +34,7 @@ export const Table = React.forwardRef((props: TableProps, ref) => {
             <Box ref={ref} as="table" {...tableStyleProps} {...props}>
                 {header}
 
-                <Box as="tbody">{rows.map((row, index) => renderRow(row, index))}</Box>
+                <Box as="tbody">{rows.map((row, index) => renderRow(row))}</Box>
                 <TableFooter>
                     {afterRows}
                     <TablePagination
@@ -64,7 +52,7 @@ export const Table = React.forwardRef((props: TableProps, ref) => {
 
 const spring = {
     type: 'spring',
-    damping: 20,
+    damping: 50,
     stiffness: 300,
 };
 
@@ -82,26 +70,48 @@ export const Td = (props: TableCellProps) => {
     return <Box as="td" {...cellStyleProps} {...props} />;
 };
 
-export const Th = ({ ...props }: TableCellProps) => {
-    const { cell: cellStyleProps, headerCell: headerCellStyleProps } = useTableStyle({});
+export const Th = ({ id, sorting, onSort, ...props }: TableCellProps) => {
+    const { cell: cellStyleProps, headerCell: headerCellStyleProps } = useTableStyle({ sortable: id && onSort });
+    const showIcon = sorting.id === id;
     return (
-        <PseudoBox as="th" {...cellStyleProps} {...headerCellStyleProps} {...props}>
-            {props.children}
-            <Box ml={1}>
-                <ArrowUpIcon size={16} />
-            </Box>
+        <PseudoBox
+            as="th"
+            onClick={() => {
+                if (id && onSort) {
+                    onSort({ id, direction: sorting.direction === 'ascending' ? 'descending' : 'ascending' });
+                }
+            }}
+            {...cellStyleProps}
+            {...headerCellStyleProps}
+            {...props}
+        >
+            <Box>{props.children}</Box>
+            {showIcon && (
+                <Box ml={1} transform={`rotate(${sorting.direction === 'ascending' ? 0 : 180}deg)`} transition="0.2s">
+                    <ArrowUpIcon size={16} />
+                </Box>
+            )}
         </PseudoBox>
     );
 };
 
 export const TableHeader = React.forwardRef((props: TableHeaderProps, ref) => {
-    // export const TableHeader = ({ children, ...props }: TableFooterProps) => {
-    const { children, sticky, ...rest } = props;
+    const { children, sticky, sorting, onSort, ...rest } = props;
     const { header: headerStyleProps, headerRow: headerRowStyleProps } = useTableStyle({ sticky });
 
     return (
-        <Box as="thead" {...headerStyleProps} {...rest}>
-            <Tr {...headerRowStyleProps}>{children}</Tr>
+        <Box ref={ref} as="thead" {...headerStyleProps} {...rest}>
+            <Tr {...headerRowStyleProps}>
+                {Children.map(children, (child, index) => {
+                    if (child) {
+                        return cloneElement(child as any, {
+                            sorting,
+                            onSort,
+                        });
+                    }
+                    return null;
+                })}
+            </Tr>
         </Box>
     );
 });
@@ -169,7 +179,7 @@ const TablePagination = ({ loading, onPageChange, onPerPageChange, cursor, ...pr
                 </PseudoBox>
 
                 <Box mx={4} fontSize="body">
-                    {currentPage * perPage}-{(currentPage + 1) * perPage} of {total}
+                    {(currentPage - 1) * perPage + 1}-{currentPage * perPage} of {total}
                 </Box>
 
                 <PseudoBox {...(currentPage === lastPage ? disabled : enabled)}>

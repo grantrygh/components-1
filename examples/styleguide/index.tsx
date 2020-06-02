@@ -32,7 +32,7 @@ function StyleGuide(props) {
     return (
         <Page>
             <PageContent>
-                <ButtonGroup w="100%" mb={4}>
+                <ButtonGroup w="100%" mb="spacing">
                     <Button onClick={() => togglePanel('menu')}>Toggle Navigation Menu</Button>
                     <Button onClick={() => togglePanel('filter')}>Toggle Filters</Button>
                     <Button

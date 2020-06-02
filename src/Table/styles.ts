@@ -1,6 +1,6 @@
 import { useTheme } from '../ThemeProvider';
 
-export const tableStyle = ({ height, sticky, sortable, expandedContent }, theme) => ({
+export const tableStyle = ({ height, sticky, sortable, expandedContent }, { colors }) => ({
     style: {
         color: 'bodyText',
         width: '100%',
@@ -21,6 +21,10 @@ export const tableStyle = ({ height, sticky, sortable, expandedContent }, theme)
         position: 'relative',
         borderBottomWidth: expandedContent ? 0 : '1px',
         borderColor: 'border',
+    },
+    expandedRow: {
+        backgroundColor: colors.tableHeadingBg,
+        boxShadow: 'inset 0 3px 6px -3px rgba(0, 0, 0, .2)',
     },
     cell: {
         flex: 1,
@@ -61,6 +65,7 @@ const useTableStyle = props => {
         table: styles.style,
         container: styles.container,
         row: styles.row,
+        expandedRow: styles.expandedRow,
         cell: styles.cell,
         headerCell: styles.headerCell,
         headerRow: styles.headerRow,

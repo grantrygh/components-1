@@ -26,6 +26,7 @@ export const Tr = (props: TableRowProps) => {
                     // needed to apply styles to motion component while keeping correct table structure
                     asComponent && {
                         ...rowStyleProps,
+                        ...props,
                         borderColor: colors.border,
                     }
                 }
@@ -49,13 +50,14 @@ export const Tr = (props: TableRowProps) => {
 
 const ExpandedRow = props => {
     const { expandedContent, expanded } = props;
+    const { expandedRow: expandedRowStyleProps } = useTableStyle({});
     if (!expandedContent) {
         return null;
     }
     return (
-        <Tr {...props} expandedContent={null} borderBottomWidth={1}>
+        <Tr {...expandedRowStyleProps} {...props} expandedContent={null} borderBottomWidth={1}>
             <Td py={0}>
-                <Collapse mt={2} mb={4} isOpen={expanded}>
+                <Collapse my="spacing" isOpen={expanded}>
                     {expandedContent}
                 </Collapse>
             </Td>

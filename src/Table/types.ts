@@ -71,14 +71,14 @@ export interface ITableRow {
     expandedContent?: any;
 }
 
-interface ITableContextProps {
+export interface ITableContextProps {
     width?: number;
 }
 
 interface ITableProviderChild {
     width: number;
 }
-interface ITableProviderProps {
+export interface ITableProviderProps {
     children: (args: ITableProviderChild) => React.ReactNode;
 }
 

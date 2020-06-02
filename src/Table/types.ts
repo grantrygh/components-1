@@ -71,6 +71,19 @@ export interface ITableRow {
     expandedContent?: any;
 }
 
+interface ITableContextProps {
+    width?: number;
+}
+
+interface ITableProviderChild {
+    width: number;
+}
+interface ITableProviderProps {
+    children: (args: ITableProviderChild) => React.ReactNode;
+}
+
+export type TableContextProps = ITableContextProps;
+export type TableProviderProps = ITableProviderProps;
 export type TableProps = ITable & ITablePagination;
 export type TableRowProps = BoxProps & ITableRow & React.HTMLProps<HTMLTableRowElement>;
 export type TableCellProps = BoxProps & ITableCell & React.HTMLProps<HTMLTableCellElement>;

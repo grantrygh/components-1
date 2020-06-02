@@ -1,9 +1,32 @@
-import { useWindowResize } from 'hooks/useWindowResize';
-import React from 'react';
+import React, { createContext, useContext, useRef } from 'react';
 import { Box } from '../Box';
 import { TablePagination } from './components/TablePagination';
 import useTableStyle from './styles';
-import { TableProps } from './types';
+import { TableContextProps, TableProps, TableProviderProps } from './types';
+
+const TableContext = createContext<TableContextProps>({});
+export const useTableContext = () => {
+    const context = useContext(TableContext);
+    if (context == null) {
+        throw new Error('This component must be used within the `TableProvider` ');
+    }
+    return context;
+};
+
+export const TableProvider = React.forwardRef((props: TableProviderProps, ref) => {
+    const tableRef = useRef<HTMLDivElement>(null);
+    const tableWidth = tableRef && tableRef.current?.getBoundingClientRect()?.width;
+
+    return (
+        <TableContext.Provider value={{ width: tableWidth }}>
+            <Box ref={tableRef}>
+                {props.children({
+                    width: tableWidth,
+                })}
+            </Box>
+        </TableContext.Provider>
+    );
+});
 
 export const Table = (props: TableProps, ref) => {
     const {
@@ -18,13 +41,15 @@ export const Table = (props: TableProps, ref) => {
         height,
         renderImmediately = true,
     } = props;
-    const { windowWidth } = useWindowResize();
+
+    const tableContext = useTableContext();
+    const width = tableContext?.width;
 
     const { table: tableStyleProps, container: containerStyleProps, footer: footerStyleProps } = useTableStyle({
         height,
     });
 
-    if (!windowWidth && __BROWSER__ && !renderImmediately) {
+    if (!width && __BROWSER__ && !renderImmediately) {
         return null;
     }
 

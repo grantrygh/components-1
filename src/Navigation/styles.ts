@@ -1,10 +1,10 @@
 import { BoxProps } from '../Box/types';
 import { componentStyleDef } from '../theme/types';
 import { useTheme } from '../ThemeProvider';
-import { NavigationItemProps, NavigationProps } from './types';
+import { INavItemMedia, NavigationItemProps, NavigationProps } from './types';
 
-export const navigationStyles: componentStyleDef<NavigationProps & NavigationItemProps> = (
-    { isSticky = true, isActive, isSubmenuItem },
+export const navigationStyles: componentStyleDef<NavigationProps & NavigationItemProps & INavItemMedia> = (
+    { isSticky = true, isActive, isSubmenuItem, unstyled },
     { zIndices, sizes, colors }
 ) => {
     const style: BoxProps = {
@@ -45,8 +45,8 @@ export const navigationStyles: componentStyleDef<NavigationProps & NavigationIte
             left: `-${sizes.canvas.spacing}`,
         },
         navItemMedia: {
-            _even: { path: { fill: isActive ? colors.primary[500] : colors.bodyText } },
-            _odd: { path: { fill: isActive ? colors.primary[500] : colors.bodyText } },
+            _even: !unstyled && { path: { fill: isActive ? colors.primary[500] : colors.bodyText } },
+            _odd: !unstyled && { path: { fill: isActive ? colors.primary[500] : colors.bodyText } },
         },
     };
 };

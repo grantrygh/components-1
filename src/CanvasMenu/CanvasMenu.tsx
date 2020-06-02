@@ -12,6 +12,7 @@ export function CanvasMenu(props: CanvasMenuProps) {
         media = null,
         meta = null,
         isAccordion = false,
+        unstyled,
         ...rest
     }: NavItemProps) => {
         if (isMinified && rest.isSubmenuItem) {
@@ -21,7 +22,7 @@ export function CanvasMenu(props: CanvasMenuProps) {
 
         return (
             <Navigation.Item href={href} exact={!isAccordion} {...rest}>
-                <Navigation.ItemMedia icon={icon} mr={!isMinified && 4}>
+                <Navigation.ItemMedia icon={icon} mr={!isMinified && 4} unstyled={unstyled}>
                     {media}
                 </Navigation.ItemMedia>
                 {showFullItem && <Navigation.ItemText>{label}</Navigation.ItemText>}
@@ -68,6 +69,7 @@ export function CanvasMenu(props: CanvasMenuProps) {
                         renderNavItem({
                             ...item,
                             align: 'start',
+                            unstyled: true,
                         })
                     )}
                 </Box>

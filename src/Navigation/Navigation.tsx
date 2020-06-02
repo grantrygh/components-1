@@ -93,11 +93,12 @@ Navigation.Item = function NavItem(props: NavigationItemProps) {
 };
 
 Navigation.ItemMedia = function NavItemLeft(props: NavigationItemMediaProps) {
-    const { icon, isActive } = props;
+    const { icon, isActive, unstyled } = props;
     const MdiIcon = icon;
 
     const { navItemMedia: navItemMediaStyleProps } = useNavigationStyle({
         isActive,
+        unstyled,
     });
 
     return (

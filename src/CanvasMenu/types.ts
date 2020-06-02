@@ -8,6 +8,9 @@ interface INavItem {
     icon?: INavItemMedia['icon'];
     media?: React.ReactNode;
     meta?: React.ReactNode;
+
+    // set true to avoid any alterations to navItemMedia svg paths
+    unstyled?: boolean;
 }
 
 export type NavItemProps = INavItem & NavigationItemProps;

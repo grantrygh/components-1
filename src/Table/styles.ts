@@ -1,6 +1,6 @@
 import { useTheme } from '../ThemeProvider';
 
-export const tableStyle = ({ height, sticky, sortable, expandedContent }, { colors }) => ({
+export const tableStyle = ({ height, sticky, sortable, expandedContent, span = 1 }, { colors }) => ({
     style: {
         color: 'bodyText',
         width: '100%',
@@ -27,7 +27,7 @@ export const tableStyle = ({ height, sticky, sortable, expandedContent }, { colo
         boxShadow: 'inset 0 3px 6px -3px rgba(0, 0, 0, .2)',
     },
     cell: {
-        flex: 1,
+        flex: span,
         textAlign: 'left',
         p: 4,
         display: 'inline-flex',

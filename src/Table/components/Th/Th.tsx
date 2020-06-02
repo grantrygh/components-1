@@ -5,8 +5,8 @@ import { PseudoBox } from '../../../PseudoBox';
 import useTableStyle from '../../styles';
 import { TableCellProps } from '../../types';
 
-export const Th = React.forwardRef(({ id, sorting, onSort, ...props }: TableCellProps, ref) => {
-    const { cell: cellStyleProps, headerCell: headerCellStyleProps } = useTableStyle({ sortable: id && onSort });
+export const Th = React.forwardRef(({ id, sorting, onSort, span, ...props }: TableCellProps, ref) => {
+    const { cell: cellStyleProps, headerCell: headerCellStyleProps } = useTableStyle({ sortable: id && onSort, span });
     const showIcon = sorting.id === id;
     return (
         <PseudoBox

@@ -110,7 +110,7 @@ export const HomeTable = () => {
                                 </Box>
                             }
                         >
-                            <Td>
+                            <Td span={2}>
                                 <Flex align="center">
                                     <Avatar
                                         name="Uchiha Sasuke"
@@ -140,7 +140,9 @@ export const HomeTable = () => {
 
                     return (
                         <TableHeader sorting={sorting} onSort={onSort}>
-                            <Th id="first_name">First name</Th>
+                            <Th id="first_name" span={2}>
+                                First name
+                            </Th>
                             <Th id="last_name">Last name</Th>
                             <Th>Date joined</Th>
                             <Th>Status</Th>

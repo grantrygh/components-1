@@ -4,7 +4,9 @@ import useTableStyle from '../../styles';
 import { TableCellProps } from '../../types';
 
 export const Td = (props: TableCellProps) => {
-    const { cell: cellStyleProps } = useTableStyle({});
+    const { cell: cellStyleProps } = useTableStyle({
+        span: props.span,
+    });
     return (
         <Box as="td" {...cellStyleProps} {...props}>
             {props.children}

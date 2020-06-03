@@ -246,7 +246,7 @@ const colors = (providedTheme, mode) => {
             pageBg: neutral[12],
             altBg: neutral[9],
             canvasBg: neutral[13],
-            overlay: 'rgba(80,80,80,0.4)',
+            overlay: 'rgba(58,58,58,0.5)',
 
             // component specific
             track: neutral[8],

@@ -24,9 +24,9 @@ export const ButtonGroup = ({
             size: size || child.props.size,
             variantColor: child.props.variantColor || variantColor,
             variant: child.props.variant || variant,
-            my: 'spacing-xs',
+            my: 'spacing-sm',
 
-            ...(!isLast && !isAttached && { mr: 'spacing-xs' }),
+            ...(!isLast && !isAttached && { mr: 'spacing-sm' }),
             ...(isFirst && isAttached && { roundedRight: 0 }),
             ...(isLast && isAttached && { roundedLeft: 0 }),
             ...(!isLast && isAttached && { borderRight: 0 }),

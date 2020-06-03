@@ -14,6 +14,7 @@ export const collapseStyle = (
                 opacity: 0,
                 transform: 'translateY(-0.625rem)',
             },
+            width: '100%',
         },
     },
 });

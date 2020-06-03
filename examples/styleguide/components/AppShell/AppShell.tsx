@@ -1,83 +1,12 @@
-import BellOutlineIcon from 'mdi-react/BellOutlineIcon';
-import CartIcon from 'mdi-react/CartIcon';
-import ExternalLinkIcon from 'mdi-react/ExternalLinkIcon';
-import HomeIcon from 'mdi-react/HomeIcon';
 import React from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { Avatar, Badge, Box, CSSReset, Flex, Navigation, Stack, theme, ThemeProvider, useTheme } from '../../../../src';
+import { Box, CSSReset, Flex, Navigation, theme, ThemeProvider, useTheme } from '../../../../src';
 import { CanvasWrapper } from '../../../../src/Canvas';
 import { CanvasMenu } from '../../../../src/CanvasMenu';
 import { PageFooter } from '../../../../src/Page';
 import { NavPrimary, NavSecondary, NavTertiary } from '../Header';
-import { LogoIcon, LogoText } from '../Logo';
-
-const menuItems = {
-    header: [
-        {
-            label: <LogoText />,
-            media: <LogoIcon />,
-            href: null,
-        },
-    ],
-    content: [
-        {
-            label: 'Home',
-            icon: HomeIcon,
-            href: '/',
-        },
-        {
-            label: 'Shop',
-            icon: CartIcon,
-            href: '/shop',
-            isAccordion: true,
-            children: [
-                {
-                    label: 'Sales',
-                    icon: null,
-                    href: '/shop/sales',
-                    meta: 37,
-                },
-                {
-                    label: 'Product List',
-                    icon: null,
-                    href: '/shop/products',
-                    meta: 8,
-                },
-            ],
-        },
-    ],
-    footer: [
-        {
-            label: 'Uchiha Itachi',
-            media: <Avatar size="sm" name="Uchiha Itachi" src="https://bit.ly/uchiha-itachi" />,
-            href: '/profile',
-            meta: (
-                <Badge variant="solid" variantColor="error">
-                    3
-                </Badge>
-            ),
-            mb: 0,
-        },
-    ],
-};
-
-const notificationsItems = {
-    header: [
-        {
-            label: 'Notifications Header',
-            icon: BellOutlineIcon,
-            href: null,
-        },
-    ],
-    footer: [
-        {
-            label: 'Notifications Footer',
-            icon: ExternalLinkIcon,
-            href: '/notifications',
-            mb: 0,
-        },
-    ],
-};
+import { NotificationsPanel } from '../NotificationsPanel';
+import { menuItems } from './menu';
 
 export const AppShellBase = props => {
     const { children } = props;
@@ -143,16 +72,7 @@ export const AppShellBase = props => {
                 allowMinify: false,
                 defaultMinified: false,
             },
-            render: componentProps => (
-                <CanvasMenu items={notificationsItems}>
-                    <Stack>
-                        <Box>Notification</Box>
-                        <Box>Notification</Box>
-                        <Box>Notification</Box>
-                        <Box>Notification</Box>
-                    </Stack>
-                </CanvasMenu>
-            ),
+            render: componentProps => <NotificationsPanel {...componentProps} />,
             bg: 'navBg',
         },
     };

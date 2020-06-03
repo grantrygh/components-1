@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Avatar } from '../../../../src/Avatar';
 import { Box } from '../../../../src/Box';
+import { Button } from '../../../../src/Button';
+import { ButtonGroup } from '../../../../src/ButtonGroup';
 import { Flex } from '../../../../src/Flex';
 import { Heading } from '../../../../src/Heading';
+import { Stack } from '../../../../src/Stack';
 import { AnimatedTr, Table, TableHeader, TableProvider, Td, Th } from '../../../../src/Table';
 import { Text } from '../../../../src/Text';
 
@@ -69,14 +72,30 @@ export const HomeTable = () => {
                                 key={first_name}
                                 expandedContent={
                                     <Box>
-                                        <Heading kind="h6">Collapsed content</Heading>
-                                        <Text>
-                                            "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                                            richardson ad squid. Nihilanim keffiyeh helvetica, craft beer labore wes
-                                            anderson cred nesciunt sapiente ea proident."
-                                        </Text>
-                                        <Text>Date joined: January 30, 2020</Text>
-                                        <Text>Status: Pending</Text>
+                                        <Flex>
+                                            <Avatar
+                                                name="Uchiha Sasuke"
+                                                size="lg"
+                                                mr={4}
+                                                src="https://vignette.wikia.nocookie.net/naruto/images/2/21/Sasuke_Part_1.png/revision/latest?cb=20170716092103"
+                                            />
+                                            <Stack>
+                                                <Heading kind="h6">{first_name}</Heading>
+                                                <Text maxW={600}>
+                                                    "Anim pariatur cliche reprehenderit, enim eiusmod high life
+                                                    accusamus terry richardson ad squid. Nihilanim keffiyeh helvetica,
+                                                    craft beer labore wes anderson cred nesciunt sapiente ea proident."
+                                                </Text>
+                                                <Text>Date joined: January 30, 2020</Text>
+                                                <Text>Status: Pending</Text>
+                                                <ButtonGroup>
+                                                    <Button>Edit</Button>
+                                                    <Button variant="primary" variantColor="error">
+                                                        Delete
+                                                    </Button>
+                                                </ButtonGroup>
+                                            </Stack>
+                                        </Flex>
                                     </Box>
                                 }
                             >
@@ -100,14 +119,30 @@ export const HomeTable = () => {
                         <AnimatedTr
                             key={first_name}
                             expandedContent={
-                                <Box>
-                                    <Heading kind="h6">Collapsed content</Heading>
-                                    <Text>
-                                        "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                                        richardson ad squid. Nihilanim keffiyeh helvetica, craft beer labore wes
-                                        anderson cred nesciunt sapiente ea proident."
-                                    </Text>
-                                </Box>
+                                <Flex align="center" justify="space-between">
+                                    <Flex>
+                                        <Avatar
+                                            name="Uchiha Sasuke"
+                                            size="lg"
+                                            mr={4}
+                                            src="https://vignette.wikia.nocookie.net/naruto/images/2/21/Sasuke_Part_1.png/revision/latest?cb=20170716092103"
+                                        />
+                                        <Stack mb={0}>
+                                            <Heading kind="h6">{first_name}</Heading>
+                                            <Text maxW={600}>
+                                                "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+                                                terry richardson ad squid. Nihilanim keffiyeh helvetica, craft beer
+                                                labore wes anderson cred nesciunt sapiente ea proident."
+                                            </Text>
+                                        </Stack>
+                                    </Flex>
+                                    <ButtonGroup>
+                                        <Button>Edit</Button>
+                                        <Button variant="primary" variantColor="error">
+                                            Delete
+                                        </Button>
+                                    </ButtonGroup>
+                                </Flex>
                             }
                         >
                             <Td span={2}>

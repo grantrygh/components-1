@@ -14,6 +14,13 @@ export const tableStyle = ({ height, sticky, sortable, expandedContent, span = 1
         overflowY: height && 'auto',
         overflowX: 'auto',
         position: 'relative',
+        _scrollbar: {
+            width: '0.4em',
+            height: '0.4em',
+        },
+        _thumb: {
+            backgroundColor: colors.track,
+        },
     },
     row: {
         display: 'flex',

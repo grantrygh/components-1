@@ -189,7 +189,7 @@ const ModalOverlay = React.forwardRef((props: BoxProps, ref) => {
     return (
         <Box
             pos="fixed"
-            bg="rgba(0,0,0,0.4)"
+            bg="overlay"
             left="0"
             top="0"
             w="100vw"
@@ -236,6 +236,8 @@ const ModalContent = React.forwardRef(({ onClick, children, zIndex, noStyles, ..
     return (
         <Box
             pos="fixed"
+            d="flex"
+            alignItems="center"
             left="0"
             top="0"
             w="100%"
@@ -257,7 +259,7 @@ const ModalContent = React.forwardRef(({ onClick, children, zIndex, noStyles, ..
             }}
             {...modalWrapperStyleProps}
         >
-            <Box
+            <Flex
                 ref={_contentRef}
                 as="section"
                 role="dialog"
@@ -270,7 +272,6 @@ const ModalContent = React.forwardRef(({ onClick, children, zIndex, noStyles, ..
                 {...(addAriaDescribedby && { 'aria-describedby': bodyId })}
                 {...(addAriaLabelledby && { 'aria-labelledby': headerId })}
                 pos="relative"
-                d="flex"
                 flexDir="column"
                 zIndex={zIndex || 'modal'}
                 onClick={wrapEvent(onClick, event => event.stopPropagation())}
@@ -278,7 +279,7 @@ const ModalContent = React.forwardRef(({ onClick, children, zIndex, noStyles, ..
                 {...props}
             >
                 {children}
-            </Box>
+            </Flex>
         </Box>
     );
 });
@@ -300,7 +301,7 @@ const ModalBody = forwardRef((props: BoxProps, ref) => {
         style = { overflowY: 'auto' };
     }
 
-    return <Box ref={ref} id={bodyId} p="spacing" flex="1" {...style} {...props} />;
+    return <Box ref={ref} id={bodyId} p="spacing" flex="1" color="bodyText" {...style} {...props} />;
 });
 
 const ModalCloseButton = forwardRef((props: CloseButtonProps, ref) => {

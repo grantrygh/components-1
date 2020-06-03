@@ -4,6 +4,7 @@ export const modalStyle = ({ isCentered }, theme) => ({
     style: {
         bg: 'popoverBg',
         shadow: 'lg',
+        m: 4,
     },
     scrollBehavior: {
         inside: {
@@ -15,18 +16,14 @@ export const modalStyle = ({ isCentered }, theme) => ({
             top: 0,
         },
     },
-    props: {
-        ...(!isCentered && { top: 16, mx: 'auto' }),
-    },
 });
 
 export const modalWrapperStyle = ({ isCentered }, theme) => ({
     style: {},
     scrollBehavior: {
         inside: {
-            maxHeight: 'calc(100vh - 8rem)',
+            maxHeight: '100vh',
             overflow: 'hidden',
-            top: 16,
         },
         outside: {
             overflowY: 'auto',

@@ -197,6 +197,7 @@ const colors = (providedTheme, mode) => {
     let secondary = providedColors?.secondary || brand.secondary;
     // A large number of components use {color}.500 to support palette colors
     // To support better dark theme contrast value, regenerate brand colors based on a lighter shade - .300 will become the new .500
+    // TODO: could be an issue with this if using dark theme as the base mode, and wanting to use the passed primary.500 value
     const colorVariant = mode === 'light' ? 500 : 300;
     if (mode === 'dark') {
         primary = generateShades(primary[colorVariant]);
@@ -220,9 +221,10 @@ const colors = (providedTheme, mode) => {
             pageBg: neutral[3],
             altBg: neutral[3],
             canvasBg: neutral[4],
+            overlay: 'rgba(0,0,0,0.4)',
 
             // component specific
-            track: neutral[4],
+            track: neutral[5],
             tooltip: neutral[9],
             selectControlHover: primary[50],
 
@@ -244,6 +246,7 @@ const colors = (providedTheme, mode) => {
             pageBg: neutral[12],
             altBg: neutral[9],
             canvasBg: neutral[13],
+            overlay: 'rgba(80,80,80,0.4)',
 
             // component specific
             track: neutral[8],

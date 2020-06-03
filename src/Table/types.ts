@@ -26,6 +26,13 @@ export interface ITable {
 
     // max height on table container will be set, and use auto scroll
     height?: number;
+
+    /**
+     * Do not wait for width to be measured
+     * (this may flash mobile rows if you have any)
+     * Safe to use if you only use one row layout
+     */
+    renderImmediately?: boolean;
 }
 
 export interface ITablePagination {
@@ -44,18 +51,11 @@ export interface ITablePagination {
     onPageChange?: (page: number) => void;
 
     /**
-     * Callback for user modification of perPage
+     * content to be displayed next to pagination cursors
      */
-    onPerPageChange?: (perPage: number) => void;
+    children?: React.ReactNode;
 
     loading?: boolean;
-
-    /**
-     * Do not wait for width to be measured
-     * (this may flash mobile rows if you have any)
-     * Safe to use if you only use one row layout
-     */
-    renderImmediately?: boolean;
 }
 
 export interface ITableCell {

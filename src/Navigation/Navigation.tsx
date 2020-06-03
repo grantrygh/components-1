@@ -68,7 +68,7 @@ Navigation.Item = function NavItem(props: NavigationItemProps) {
     const { navItem: navItemStyleProps, activeBar: activeBarStyleProps } = useNavigationStyle({
         isActive: isActive || isLinkActive,
         isSubmenuItem,
-        href,
+        clickable: !!(href || props.onClick),
     });
 
     return (

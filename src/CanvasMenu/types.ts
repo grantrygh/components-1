@@ -5,6 +5,7 @@ interface INavItem {
     isAccordion?: boolean;
     label?: React.ReactNode;
     href?: string;
+    onClick?: () => void;
     icon?: INavItemMedia['icon'];
     media?: React.ReactNode;
     meta?: React.ReactNode;

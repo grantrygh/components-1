@@ -3,7 +3,7 @@ import { componentStyleDef } from '../theme/types';
 import { useTheme } from '../ThemeProvider';
 import { INavItemMedia, NavigationItemProps, NavigationProps } from './types';
 
-export const navigationStyles: componentStyleDef<NavigationProps & NavigationItemProps & INavItemMedia> = (
+export const navigationStyle: componentStyleDef<NavigationProps & NavigationItemProps & INavItemMedia> = (
     { isSticky = true, isActive, isSubmenuItem, clickable, unstyled },
     { zIndices, sizes, colors }
 ) => {
@@ -54,7 +54,9 @@ export const navigationStyles: componentStyleDef<NavigationProps & NavigationIte
 
 export default function useNavigationStyle(props) {
     const theme = useTheme();
-    const styles = theme?.navigation ? theme.navigation(props, theme) : navigationStyles(props, theme);
+    const styles = theme['styles'].navigation
+        ? theme['styles'].navigation(props, theme)
+        : navigationStyle(props, theme);
 
     return {
         root: styles.style,

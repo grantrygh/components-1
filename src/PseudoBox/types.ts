@@ -126,6 +126,21 @@ export interface IPseudoBoxProps {
      * Useful for inputs
      */
     _placeholder?: BoxProps;
+
+    /**
+     * Styles for CSS Selector `&::-webkit-scrollbar`
+     */
+    _scrollbar?: BoxProps;
+
+    /**
+     * Styles for CSS Selector `&::-webkit-scrollbar-track`
+     */
+    _track?: BoxProps;
+
+    /**
+     * Styles for CSS Selector `&::-webkit-scrollbar-thumb`
+     */
+    _thumb?: BoxProps;
 }
 
 export type PseudoBoxProps = IPseudoBoxProps & BoxProps;

@@ -52,7 +52,7 @@ Navigation.Tertiary = function NavigationTertiary(props: BoxProps) {
 };
 
 Navigation.Item = function NavItem(props: NavigationItemProps) {
-    const { href, exact = true, isSubmenuItem, isActive, isParent, isMinified, ...rest } = props;
+    const { href, exact = true, isSubmenuItem, isActive, isParent, isMinified, onClick, ...rest } = props;
     const { location } = useRouter();
 
     let isLinkActive = false;
@@ -68,7 +68,7 @@ Navigation.Item = function NavItem(props: NavigationItemProps) {
     const { navItem: navItemStyleProps, activeBar: activeBarStyleProps } = useNavigationStyle({
         isActive: isActive || isLinkActive,
         isSubmenuItem,
-        clickable: !!(href || props.onClick),
+        clickable: !!(href || onClick),
     });
 
     return (

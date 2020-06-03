@@ -1,4 +1,4 @@
-// import * as StyledSystem from "styled-system";
+/* eslint-disable max-lines */
 import * as SS from 'styled-system';
 import { Omit } from '../common-types';
 
@@ -34,7 +34,13 @@ export interface ColorHues {
 
 type Breakpoints =
     | string[]
-    | { sm: string; md: string; lg: string; xl: string; stripped: { sm: number; md: number; lg: number; xl: number } };
+    | {
+          sm: string;
+          md: string;
+          lg: string;
+          xl: string;
+          stripped: { sm: number; md: number; lg: number; xl: number };
+      };
 
 type StringOrNumber = string | number;
 interface ZIndices {
@@ -171,6 +177,7 @@ interface Containers {
 }
 
 interface Spacing {
+    'spacing-xs': string;
     'spacing-sm': string;
     spacing: string;
 }
@@ -183,10 +190,6 @@ interface Input {
 
     // Widths
     width: string;
-    spacing: {
-        sm: string; // spacing within input group (radio options, checkboxes)
-        lg: string; // spacing between input groups (vertically, horizontally)
-    };
 }
 
 interface Canvas {
@@ -284,7 +287,6 @@ interface Opacity {
 }
 
 export interface DefaultTheme extends Typography {
-    navigation: any;
     breakpoints: Breakpoints;
     zIndices: ZIndices;
     radii: Radii;

@@ -66,7 +66,7 @@ export const RadioGroup = forwardRef(
             }
 
             const isLastRadio = children.length === index + 1;
-            const spacingProps = isInline ? { mr: 'input.spacing.lg' } : { mb: 'input.spacing.sm' };
+            const spacingProps = isInline ? { mr: 'spacing' } : { mb: 'spacing-xs' };
             const isChecked = child.props.value === _value ? true : undefined;
 
             return (
@@ -103,7 +103,7 @@ export const RadioGroup = forwardRef(
             []
         );
 
-        const spacingProps = isInline ? { mr: 'input.spacing.lg' } : { mb: 'input.spacing.lg' };
+        const spacingProps = isInline ? { mr: 'spacing' } : { mb: 'spacing' };
 
         return (
             <FormControlWrapper id={name} {...rest} {...spacingProps}>

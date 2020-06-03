@@ -2,8 +2,8 @@ import { useTheme } from '../ThemeProvider';
 
 export const formLabelStyle = ({ isDisabled }, theme) => ({
     style: {
-        pr: 'input.spacing.sm',
-        pb: 'input.spacing.sm',
+        pr: 'spacing-xs',
+        pb: 'spacing-xs',
         color: isDisabled ? 'disabled' : 'faintText',
         fontWeight: 'medium',
         textAlign: 'left',

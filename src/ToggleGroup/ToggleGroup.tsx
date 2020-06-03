@@ -145,7 +145,7 @@ export const ToggleGroup = ({
         });
     });
 
-    const spacingProps = isInline ? { mr: 'input.spacing.lg' } : { mb: 'input.spacing.lg' };
+    const spacingProps = isInline ? { mr: 'spacing' } : { mb: 'spacing' };
 
     return (
         <FormControlWrapper {...spacingProps} {...rest}>

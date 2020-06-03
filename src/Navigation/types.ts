@@ -18,6 +18,7 @@ interface INavItem {
     isParent?: boolean;
     isSubmenuItem?: boolean;
     isMinified?: boolean;
+    clickable?: boolean;
 }
 
 export interface INavItemMedia {

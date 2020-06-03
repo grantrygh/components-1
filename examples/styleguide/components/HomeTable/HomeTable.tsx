@@ -192,7 +192,6 @@ export const HomeTable = () => {
                         renderHeader={renderHeader}
                         cursor={cursor}
                         onPageChange={current => setPage(current)}
-                        onPerPageChange={numRows => setPerPage(numRows)}
                     />
                 );
             }}

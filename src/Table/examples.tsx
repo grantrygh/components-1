@@ -83,7 +83,6 @@ stories.add('Default', () => {
                 renderHeader={renderHeader}
                 cursor={cursor}
                 onPageChange={page => console.log('page: ', page)}
-                onPerPageChange={perPage => console.log('per page: ', perPage)}
             />
         </Box>
     );

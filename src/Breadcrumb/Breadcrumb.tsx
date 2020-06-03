@@ -9,7 +9,7 @@ import { BreadcrumbItemProps, BreadcrumbProps } from './types';
 
 const BreadcrumbSeparator = forwardRef((props: BoxProps, ref) => {
     return (
-        <Box ref={ref} role="presentation" as="span" mx="input.spacing.sm" {...props}>
+        <Box ref={ref} role="presentation" as="span" mx="spacing-xs" {...props}>
             {props.children}
         </Box>
     );

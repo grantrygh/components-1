@@ -8,6 +8,7 @@ const pageStyle = (props, theme) => ({
     content: {
         p: 'spacing',
         flex: 1,
+        bg: 'pageBg',
     },
     footer: {
         //

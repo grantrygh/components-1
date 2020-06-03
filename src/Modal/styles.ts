@@ -5,6 +5,7 @@ export const modalStyle = ({ isCentered }, theme) => ({
         bg: 'popoverBg',
         shadow: 'lg',
         m: 4,
+        mx: [4, 'auto'],
     },
     scrollBehavior: {
         inside: {

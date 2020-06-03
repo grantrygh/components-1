@@ -75,6 +75,7 @@ Navigation.Item = function NavItem(props: NavigationItemProps) {
         <Flex
             as={href && Link}
             href={!isParent || (isParent && isMinified) ? href : undefined}
+            onClick={onClick}
             {...navItemStyleProps}
             {...rest}
         >

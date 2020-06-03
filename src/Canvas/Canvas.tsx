@@ -109,7 +109,7 @@ export function CanvasContainer(props) {
          * */
 
         return (
-            <Flex zIndex={(isVisible && isOverlay ? zIndices.modal : 1) + zIndex} flexGrow={name === 'main' && 1}>
+            <Flex zIndex={(isVisible && isOverlay ? zIndices.panel : 1) + zIndex} flexGrow={name === 'main' && 1}>
                 <MotionPanel key={panel.name} initial={animateTo} animate={animateTo} {...panelStyleProps}>
                     <Flex ref={ref} direction="column" height="100%" p={name !== 'main' && p} {...panelProps}>
                         {panel.render({

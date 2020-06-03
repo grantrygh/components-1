@@ -45,6 +45,7 @@ interface ZIndices {
     dropdown: number;
     sticky: number;
     banner: number;
+    panel: number;
     overlay: number;
     modal: number;
     popover: number;

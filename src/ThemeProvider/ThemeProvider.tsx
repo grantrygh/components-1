@@ -12,14 +12,20 @@ interface IThemeProvider {
 }
 
 interface IColorModeProvider {
-    defaultMode?: 'light' | 'dark';
+    defaultMode?: IThemeProvider['defaultMode'];
     children?: React.ReactNode;
 }
 
 export const ColorModeContext = createContext<any>(null);
 
 export const ColorModeProvider = ({ children, defaultMode }: IColorModeProvider) => {
-    const [mode, setMode] = useState(defaultMode);
+    const [mode, updateMode] = useState(defaultMode);
+    const setMode = newMode => {
+        updateMode(newMode);
+        if (__BROWSER__ && localStorage) {
+            localStorage.setItem('themeMode', newMode); // save theme selection
+        }
+    };
     const context = { mode, setMode };
     return <ColorModeContext.Provider value={context}>{children}</ColorModeContext.Provider>;
 };
@@ -51,11 +57,16 @@ const BaseThemeProvider = ({ theme: providedTheme, children }: IThemeProvider) =
     return <EmotionThemeProvider theme={emotionTheme as ThemeType}>{children}</EmotionThemeProvider>;
 };
 
-export const ThemeProvider = ({ theme: providedTheme, children, defaultMode = 'light' }: IThemeProvider) => (
-    <ColorModeProvider defaultMode={defaultMode}>
-        <BaseThemeProvider theme={providedTheme}>{children}</BaseThemeProvider>
-    </ColorModeProvider>
-);
+export const ThemeProvider = ({ theme: providedTheme, children, defaultMode }: IThemeProvider) => {
+    const mode = (defaultMode ||
+        (__BROWSER__ && localStorage?.getItem('themeMode')) ||
+        'light') as IColorModeProvider['defaultMode'];
+    return (
+        <ColorModeProvider defaultMode={mode}>
+            <BaseThemeProvider theme={providedTheme}>{children}</BaseThemeProvider>
+        </ColorModeProvider>
+    );
+};
 
 export function useTheme(): ITheme {
     const _theme = useContext(ThemeContext);

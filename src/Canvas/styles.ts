@@ -38,8 +38,9 @@ export const canvasStyle: componentStyleDef = ({ isMobile }, { sizes }) => {
             color: 'bodyText',
             fontSize: 'body',
             fontFamily: 'body',
-            lineHeight: 'normal',
+            lineHeight: 'base',
             letterSpacing: 'normal',
+            fontWeight: 'normal',
         },
         panel: {
             height: '100vh',

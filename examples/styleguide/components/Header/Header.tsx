@@ -2,30 +2,25 @@ import BellOutlineIcon from 'mdi-react/BellOutlineIcon';
 import MenuIcon from 'mdi-react/MenuIcon';
 import React from 'react';
 import { Box, Icon, Input, InputGroup, InputLeftElement, Navigation } from '../../../../src';
-import { CanvasContext } from '../../../../src/Canvas';
+import { useCanvasContext } from '../../../../src/Canvas';
 import { Logo } from '../Logo';
 import useHeaderStyle from './styles';
 
 export const NavPrimary = () => {
+    const { togglePanel } = useCanvasContext();
     const { headerSection: primaryStyle } = useHeaderStyle({
         kind: 'primary',
     });
 
     return (
         <Navigation.Primary>
-            <CanvasContext.Consumer>
-                {({ togglePanel }) => {
-                    return (
-                        <Box {...primaryStyle.icon}>
-                            <MenuIcon
-                                onClick={() => {
-                                    togglePanel('menu');
-                                }}
-                            />
-                        </Box>
-                    );
-                }}
-            </CanvasContext.Consumer>
+            <Box {...primaryStyle.icon}>
+                <MenuIcon
+                    onClick={() => {
+                        togglePanel('menu');
+                    }}
+                />
+            </Box>
             <Logo />
         </Navigation.Primary>
     );
@@ -48,25 +43,20 @@ export const NavSecondary = () => {
 };
 
 export const NavTertiary = () => {
+    const { togglePanel } = useCanvasContext();
     const { headerSection: tertiaryStyle } = useHeaderStyle({
         kind: 'tertiary',
     });
 
     return (
         <Navigation.Tertiary>
-            <CanvasContext.Consumer>
-                {({ togglePanel }) => {
-                    return (
-                        <Box {...tertiaryStyle.icon}>
-                            <BellOutlineIcon
-                                onClick={() => {
-                                    togglePanel('notifications');
-                                }}
-                            />
-                        </Box>
-                    );
-                }}
-            </CanvasContext.Consumer>
+            <Box {...tertiaryStyle.icon}>
+                <BellOutlineIcon
+                    onClick={() => {
+                        togglePanel('notifications');
+                    }}
+                />
+            </Box>
         </Navigation.Tertiary>
     );
 };

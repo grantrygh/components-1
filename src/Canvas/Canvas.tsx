@@ -5,6 +5,7 @@ import { Flex } from '../Flex';
 import { useWindowResize } from '../hooks/useWindowResize';
 import { ModalOverlay } from '../Modal';
 import useCanvasStyle from './styles';
+import { CanvasWrapperProps } from './types';
 
 const CanvasContext = createContext<any>(null);
 
@@ -175,7 +176,7 @@ const renderPanels = ({ panels = [], children = null, windowWidth = 0 }) => {
     );
 };
 
-export const CanvasWrapper = props => {
+export const CanvasWrapper = (props: CanvasWrapperProps) => {
     const { initialCanvasState, children } = props;
     const { windowWidth } = useWindowResize();
 

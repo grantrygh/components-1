@@ -12,46 +12,51 @@ Any global panels can be passed in to the CanvasWrapper upon initialization, suc
 It is required that the main panel be name "main".
 
 ```jsx
-const initialCanvasState = {
-    menu: {
-        name: 'menu',
-        position: 'left',
-        ranges: {
-            defaultVisible: [breakpoints.stripped.md, 9999],
-            isOverlay: [0, breakpoints.stripped.md],
-            allowMinify: [breakpoints.stripped.md, 9999],
-            defaultMinified: [breakpoints.stripped.md, breakpoints.stripped.lg],
-        },
-        render: componentProps => <CanvasMenu as="nav" items={menuItems} {...componentProps} />,
-        bg: 'canvasBg',
-    },
-    main: {
-        name: 'main', // Main section is always visible, inline, and non-minifiable
-        render: componentProps => {
-            return (
-                <>
-                    {/* Header */}
-                    <Navigation>
-                        <NavPrimary />
-                        <NavSecondary />
-                        <NavTertiary />
-                    </Navigation>
+export const AppShell = props => {
+    const { children } = props;
+    const { breakpoints } = useTheme();
 
-                    <Flex direction="column" overflowY="auto" h="100%">
-                        {/* Main */}
-                        {componentProps.children}
-
-                        {/* Footer */}
-                        <PageFooter>Footer</PageFooter>
-                    </Flex>
-                </>
-            );
+    const initialCanvasState = {
+        menu: {
+            name: 'menu',
+            position: 'left',
+            ranges: {
+                defaultVisible: [breakpoints.stripped.md, 9999],
+                isOverlay: [0, breakpoints.stripped.md],
+                allowMinify: [breakpoints.stripped.md, 9999],
+                defaultMinified: [breakpoints.stripped.md, breakpoints.stripped.lg],
+            },
+            render: componentProps => <CanvasMenu as="nav" items={menuItems} {...componentProps} />,
+            bg: 'canvasBg',
         },
-        bg: 'pageBg',
-    },
+        main: {
+            name: 'main', // Main section is always visible, inline, and non-minifiable
+            render: componentProps => {
+                return (
+                    <>
+                        {/* Header */}
+                        <Navigation>
+                            <NavPrimary />
+                            <NavSecondary />
+                            <NavTertiary />
+                        </Navigation>
+
+                        <Flex direction="column" overflowY="auto" h="100%">
+                            {/* Main */}
+                            {componentProps.children}
+
+                            {/* Footer */}
+                            <PageFooter>Footer</PageFooter>
+                        </Flex>
+                    </>
+                );
+            },
+            bg: 'pageBg',
+        },
+    };
+
+    return <CanvasWrapper initialCanvasState={initialCanvasState}>{children}</CanvasWrapper>;
 };
-
-<CanvasWrapper initialCanvasState={initialCanvasState}>{children}</CanvasWrapper>;
 ```
 
 #### 2. Adding a new panel at the route level

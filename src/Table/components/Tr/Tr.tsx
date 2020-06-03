@@ -39,7 +39,14 @@ export const Tr = (props: TableRowProps) => {
                 {props.children}
                 {expandedContent && (
                     <Box as="td">
-                        <Flex align="center" position="absolute" right={4} h="100%">
+                        <Flex
+                            align="center"
+                            position="absolute"
+                            right={4}
+                            h="100%"
+                            transform={expanded && 'rotate(180deg)'}
+                            transition="0.2s"
+                        >
                             <Button
                                 onClick={handleExpand}
                                 size="sm"

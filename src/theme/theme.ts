@@ -47,18 +47,20 @@ const shadows = mode => {
     };
 };
 
-const breakpoints = ['480px', '768px', '992px', '1280px'];
-
-// aliases
-breakpoints['sm'] = breakpoints[0];
-breakpoints['md'] = breakpoints[1];
-breakpoints['lg'] = breakpoints[2];
-breakpoints['xl'] = breakpoints[3];
-breakpoints['stripped'] = {
-    sm: parseInt(breakpoints[0], 10),
-    md: parseInt(breakpoints[1], 10),
-    lg: parseInt(breakpoints[2], 10),
-    xl: parseInt(breakpoints[3], 10),
+const basis = ['480px', '768px', '992px', '1280px'];
+const breakpoints = {
+    basis,
+    // aliases
+    sm: basis[0],
+    md: basis[1],
+    lg: basis[2],
+    xl: basis[3],
+    stripped: {
+        sm: parseInt(basis[0], 10),
+        md: parseInt(basis[1], 10),
+        lg: parseInt(basis[2], 10),
+        xl: parseInt(basis[3], 10),
+    },
 };
 
 const zIndices = {
@@ -122,7 +124,8 @@ export const baseTheme = ({ providedTheme = {}, mode = 'light' }) => {
     const shadowScheme = shadows(mode);
 
     return {
-        breakpoints,
+        breakpoints: breakpoints['basis'], // emotion theme needs to be passed an string array of breakpoints
+        breakpoint: breakpoints,
         zIndices,
         radii,
         opacity,

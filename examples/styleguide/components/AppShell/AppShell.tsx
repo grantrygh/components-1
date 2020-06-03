@@ -10,16 +10,16 @@ import { menuItems } from './menu';
 
 export const AppShellBase = props => {
     const { children } = props;
-    const { breakpoints } = useTheme();
+    const { breakpoint } = useTheme();
 
     const initialCanvasState = {
         overview: {
             name: 'overview',
             position: 'left',
             ranges: {
-                defaultVisible: [breakpoints.stripped.md, 9999],
-                isOverlay: [0, breakpoints.stripped.md], // --> type is Overlay and not visible by default
-                allowMinify: [breakpoints.stripped.md, 9999], // --> isMinifiable
+                defaultVisible: [breakpoint.stripped.md, 9999],
+                isOverlay: [0, breakpoint.stripped.md], // --> type is Overlay and not visible by default
+                allowMinify: [breakpoint.stripped.md, 9999], // --> isMinifiable
                 defaultMinified: [0, 9999], // --> isMinified
             },
             render: componentProps => <Box />,
@@ -31,10 +31,10 @@ export const AppShellBase = props => {
             name: 'menu',
             position: 'left',
             ranges: {
-                defaultVisible: [breakpoints.stripped.md, 9999],
-                isOverlay: [0, breakpoints.stripped.md],
-                allowMinify: [breakpoints.stripped.md, 9999],
-                defaultMinified: [breakpoints.stripped.md, breakpoints.stripped.lg],
+                defaultVisible: [breakpoint.stripped.md, 9999],
+                isOverlay: [0, breakpoint.stripped.md],
+                allowMinify: [breakpoint.stripped.md, 9999],
+                defaultMinified: [breakpoint.stripped.md, breakpoint.stripped.lg],
             },
             render: componentProps => <CanvasMenu as="nav" items={menuItems} {...componentProps} />,
             bg: 'canvasBg',

@@ -32,15 +32,14 @@ export interface ColorHues {
     900: string;
 }
 
-type Breakpoints =
-    | string[]
-    | {
-          sm: string;
-          md: string;
-          lg: string;
-          xl: string;
-          stripped: { sm: number; md: number; lg: number; xl: number };
-      };
+type Breakpoints = {
+    basis: string[];
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
+    stripped: { sm: number; md: number; lg: number; xl: number };
+};
 
 type StringOrNumber = string | number;
 interface ZIndices {
@@ -195,8 +194,6 @@ interface Input {
 interface Canvas {
     width: string;
     spacing: string;
-
-    breakpoint: number; // width at which inline canvases become overlays, and main page content takes full viewport width
 }
 
 type Sizes = BaseSizes &
@@ -212,7 +209,6 @@ interface Inputs {
     md: string;
     lg: string;
     width: string;
-    spacing: string;
 }
 
 type Space = BaseSizes & {
@@ -257,9 +253,9 @@ interface Fonts {
 }
 
 interface FontSizes {
-    xs: string;
-    sm: string;
-    md: string;
+    smallBody: string;
+    body: string;
+    largeBody: string;
     lg: string;
     xl: string;
     '2xl': string;
@@ -287,7 +283,8 @@ interface Opacity {
 }
 
 export interface DefaultTheme extends Typography {
-    breakpoints: Breakpoints;
+    breakpoints: Breakpoints['basis'];
+    breakpoint: Breakpoints;
     zIndices: ZIndices;
     radii: Radii;
     opacity: Opacity;

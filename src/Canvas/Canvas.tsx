@@ -6,7 +6,15 @@ import { useWindowResize } from '../hooks/useWindowResize';
 import { ModalOverlay } from '../Modal';
 import useCanvasStyle from './styles';
 
-export const CanvasContext = createContext<any>(null);
+const CanvasContext = createContext<any>(null);
+
+export const useCanvasContext = () => {
+    const context = useContext(CanvasContext);
+    if (context == null) {
+        throw new Error('This component must be used within the `CanvasWrapper` ');
+    }
+    return context;
+};
 
 const MotionPanel = motion.custom(Box);
 
@@ -202,7 +210,7 @@ export const CanvasWrapper = props => {
 };
 
 export function CanvasPanel({ name, children, type = 'inline', ranges, windowWidth, ...rest }) {
-    const { setPanel, updatePanel } = useContext(CanvasContext);
+    const { setPanel, updatePanel } = useCanvasContext();
     const ref = createRef();
 
     const currentWindowWidth = Math.max(1, windowWidth);

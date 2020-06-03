@@ -1,9 +1,9 @@
 import MenuIcon from 'mdi-react/MenuIcon';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Box, Button, ButtonGroup, Flex, Heading, Text, useColorMode } from '../../src';
-import { CanvasContext } from '../../src/Canvas';
+import { useCanvasContext } from '../../src/Canvas';
 import { Page, PageContent } from '../../src/Page';
 import { AppShell } from './components/AppShell';
 import { FilterMenuForm } from './components/FilterMenuForm';
@@ -11,7 +11,7 @@ import { HomeTable } from './components/HomeTable';
 
 function StyleGuide(props) {
     const [formValue, setFormValue] = useState(null);
-    const { togglePanel, setPanel } = useContext(CanvasContext);
+    const { togglePanel, setPanel } = useCanvasContext();
     const { mode, setMode } = useColorMode();
 
     useEffect(() => {

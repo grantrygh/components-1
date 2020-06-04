@@ -215,7 +215,7 @@ const CustomTargetEx = () => {
                     <PopoverFooter d="flex" justifyContent="flex-end">
                         <ButtonGroup size="sm">
                             <Button variant="tertiary">Cancel</Button>
-                            <Button variantColor="danger">Apply</Button>
+                            <Button variantColor="error">Apply</Button>
                         </ButtonGroup>
                     </PopoverFooter>
                 </PopoverContent>

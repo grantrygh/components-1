@@ -2,7 +2,7 @@ import { useTheme } from '../ThemeProvider';
 
 export const popoverStyle = (props, theme) => ({
     style: {
-        bg: 'white', // dark - 'gray.700'
+        bg: 'popoverBg',
         borderWidth: '1px',
         width: '100%',
         display: 'flex',

@@ -10,6 +10,7 @@ export const Stack = ({
     direction,
     isInline = false,
     isReversed = false,
+    spacing = 'spacing-xs',
     children,
     align,
     justify,
@@ -45,8 +46,8 @@ export const Stack = ({
             {validChildrenArray.map((child, index) => {
                 const isLastChild = validChildrenArray.length === index + 1;
                 const spacingProps = _isInline
-                    ? { [_isReversed ? 'ml' : 'mr']: isLastChild ? null : 'spacing-xs' }
-                    : { [_isReversed ? 'mt' : 'mb']: isLastChild ? null : 'spacing-xs' };
+                    ? { [_isReversed ? 'ml' : 'mr']: isLastChild ? null : spacing }
+                    : { [_isReversed ? 'mt' : 'mb']: isLastChild ? null : spacing };
 
                 if (shouldWrapChildren) {
                     return (

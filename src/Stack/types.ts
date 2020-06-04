@@ -32,6 +32,8 @@ interface IStack {
      * `display: inline-block`, and the `Box` will take the spacing props
      */
     shouldWrapChildren?: boolean;
+
+    spacing?: number | string;
 }
 
 export type StackProps = IStack & BoxProps;

@@ -23,6 +23,7 @@ export const tableStyle = ({ height, sticky, sortable, expandedContent, span = 1
         },
     },
     row: {
+        display: 'flex',
         width: '100%',
         position: 'relative',
         borderBottomWidth: expandedContent ? 0 : '1px',
@@ -36,6 +37,8 @@ export const tableStyle = ({ height, sticky, sortable, expandedContent, span = 1
         flex: span,
         textAlign: 'left',
         p: 4,
+        display: 'inline-flex',
+        alignItems: 'center',
     },
     headerRow: {
         position: sticky && 'sticky',

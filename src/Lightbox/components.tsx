@@ -7,9 +7,9 @@ import { Lightbox } from '.';
 import { Box } from '../Box';
 import { Button } from '../Button';
 import { Flex } from '../Flex';
+import { Grid } from '../Grid';
 import { Image } from '../Image';
 import { Link } from '../Link';
-import { SimpleGrid } from '../SimpleGrid';
 import { Scale } from '../Transition';
 import { Video } from '../Video';
 import useLightboxStyle from './styles';
@@ -219,9 +219,9 @@ const LightboxGallery = () => {
 
                 {/* gallery thumbnails */}
                 <Flex justify="center" align="center" height="8rem">
-                    <SimpleGrid columns={[3, null, numItems >= 5 ? 5 : 3]} spacing="10px">
+                    <Grid columns={[3, null, numItems >= 5 ? 5 : 3]} spacing="spacing-sm">
                         {generateThumbnails()}
-                    </SimpleGrid>
+                    </Grid>
                 </Flex>
             </Flex>
         </Lightbox>

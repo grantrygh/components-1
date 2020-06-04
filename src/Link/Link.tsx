@@ -11,7 +11,7 @@ const baseStyleProps = {
     color: 'bodyText',
     _hover: { textDecoration: 'underline' },
     _focus: {
-        boxShadow: 'outline',
+        color: 'titleText',
     },
     _disabled: {
         opacity: '0.4',

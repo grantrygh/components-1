@@ -2,7 +2,7 @@ import MenuIcon from 'mdi-react/MenuIcon';
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { Box, Button, ButtonGroup, Flex, Heading, Text, useColorMode } from '../../src';
+import { Box, Button, ButtonGroup, Flex, Heading, Icon, Tab, TabList, Tabs, Text, useColorMode } from '../../src';
 import { useCanvasContext } from '../../src/Canvas';
 import { Page, PageContent } from '../../src/Page';
 import { AppShell } from './components/AppShell';
@@ -32,6 +32,17 @@ function StyleGuide(props) {
     return (
         <Page>
             <PageContent>
+                <Tabs>
+                    <TabList>
+                        <Tab>
+                            <Icon name="phone" size="1em" mr="spacing-sm" />
+                            Settings
+                        </Tab>
+                        <Tab>Billings</Tab>
+                        <Tab>Preferences</Tab>
+                        <Tab isDisabled>Shut Down</Tab>
+                    </TabList>
+                </Tabs>
                 <ButtonGroup w="100%" mb="spacing">
                     <Button onClick={() => togglePanel('menu')}>Toggle Navigation Menu</Button>
                     <Button onClick={() => togglePanel('filter')}>Toggle Filters</Button>

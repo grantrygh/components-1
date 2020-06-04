@@ -3,6 +3,8 @@ import { FullGrid } from '../FullGrid';
 import { GridProps } from './types';
 import { countToColumns, widthToColumns } from './utils';
 
+// A simplified version of <FullGrid> which can be used in most cases.
+
 export const Grid = forwardRef(
     (
         {

@@ -1,3 +1,4 @@
+import { PseudoBox } from 'PseudoBox';
 import React, { createContext, useContext, useRef } from 'react';
 import { Box } from '../Box';
 import { TablePagination } from './components/TablePagination';
@@ -36,10 +37,10 @@ export const Table = (props: TableProps, ref) => {
         afterRows,
         loading,
         onPageChange,
-        onPerPageChange,
         cursor,
         height,
         renderImmediately = true,
+        animated,
     } = props;
 
     const tableContext = useTableContext();
@@ -60,23 +61,16 @@ export const Table = (props: TableProps, ref) => {
     const header: any = renderHeader();
 
     return (
-        <Box {...containerStyleProps}>
+        <PseudoBox {...containerStyleProps}>
             <Box as="table" {...tableStyleProps}>
                 {header}
 
                 <Box as="tbody">{rows.map((row, index) => renderRow(row))}</Box>
-
-                <Box as="tfoot" {...props}>
-                    {afterRows}
-                    <TablePagination
-                        loading={loading}
-                        onPageChange={onPageChange}
-                        onPerPageChange={onPerPageChange}
-                        cursor={cursor}
-                        {...footerStyleProps}
-                    />
-                </Box>
             </Box>
-        </Box>
+            <Box {...props}>
+                {afterRows}
+                <TablePagination loading={loading} onPageChange={onPageChange} cursor={cursor} {...footerStyleProps} />
+            </Box>
+        </PseudoBox>
     );
 };

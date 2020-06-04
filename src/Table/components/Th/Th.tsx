@@ -1,3 +1,4 @@
+import { Flex } from 'Flex';
 import ArrowUpIcon from 'mdi-react/ArrowUpIcon';
 import React from 'react';
 import { Box } from '../../../Box';
@@ -18,15 +19,16 @@ export const Th = React.forwardRef(({ id, sorting, onSort, span, ...props }: Tab
                 }
             }}
             {...cellStyleProps}
-            {...headerCellStyleProps}
             {...props}
         >
-            <Box>{props.children}</Box>
-            {showIcon && (
-                <Box ml={1} transform={`rotate(${sorting.direction === 'asc' ? 0 : 180}deg)`} transition="0.2s">
-                    <ArrowUpIcon size={16} />
-                </Box>
-            )}
+            <Flex {...headerCellStyleProps}>
+                <Box>{props.children}</Box>
+                {showIcon && (
+                    <Box ml={1} transform={`rotate(${sorting.direction === 'asc' ? 0 : 180}deg)`} transition="0.2s">
+                        <ArrowUpIcon size={16} />
+                    </Box>
+                )}
+            </Flex>
         </PseudoBox>
     );
 });

@@ -1,19 +1,28 @@
-import * as StyledSystem from 'styled-system';
+import * as React from 'react';
+import { GridProps as SSGridProps, ResponsiveValue } from 'styled-system';
 import { BoxProps } from '../Box/types';
 
-export interface IGrid {
-    templateColumns?: StyledSystem.GridTemplateColumnsProps['gridTemplateColumns'];
-    gap?: StyledSystem.GridGapProps['gridGap'];
-    rowGap?: StyledSystem.GridRowGapProps['gridRowGap'];
-    columnGap?: StyledSystem.GridColumnGapProps['gridColumnGap'];
-    autoFlow?: StyledSystem.GridAutoFlowProps['gridAutoFlow'];
-    autoRows?: StyledSystem.GridAutoRowsProps['gridAutoRows'];
-    autoColumns?: StyledSystem.GridAutoColumnsProps['gridAutoColumns'];
-    templateRows?: StyledSystem.GridTemplateRowsProps['gridTemplateRows'];
-    templateAreas?: StyledSystem.GridTemplateAreasProps['gridTemplateAreas'];
-    area?: StyledSystem.GridAreaProps['gridArea'];
-    column?: StyledSystem.GridColumnProps['gridColumn'];
-    row?: StyledSystem.GridRowProps['gridRow'];
+interface IGrid {
+    /**
+     * The width at which child elements will break into columns. Pass a number for pixel values or a string for any other valid CSS length.
+     */
+    minChildWidth?: ResponsiveValue<React.CSSProperties['minWidth']>;
+    /**
+     * The number of columns
+     */
+    columns?: ResponsiveValue<number>;
+    /**
+     * The gap between the grid items
+     */
+    spacing?: SSGridProps['gridGap'];
+    /**
+     * The column gap between the grid items
+     */
+    spacingX?: SSGridProps['gridGap'];
+    /**
+     * The row gap between the grid items
+     */
+    spacingY?: SSGridProps['gridGap'];
 }
 
 export type GridProps = BoxProps & IGrid;

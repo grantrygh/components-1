@@ -1,44 +1,44 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
-import { SimpleGrid } from '.';
+import { Grid } from '.';
 import { Box } from '../Box';
-import { Grid } from '../Grid';
+import { FullGrid } from '../FullGrid';
 
-const stories = storiesOf('SimpleGrid', module);
+const stories = storiesOf('Grid', module);
 
 stories.add('with columns', () => (
-    <SimpleGrid columns={[2, null, 3]} spacing="40px">
+    <Grid columns={[2, null, 3]} spacing="spacing">
         <Box bg="tomato" height="200px" />
         <Box bg="tomato" height="200px" />
         <Box bg="tomato" height="200px" />
         <Box bg="tomato" height="200px" />
         <Box bg="tomato" height="200px" />
-    </SimpleGrid>
+    </Grid>
 ));
 
 stories.add('with autofit and min child width', () => (
-    <SimpleGrid minChildWidth="300px" spacing="40px">
+    <Grid minChildWidth="300px" spacing="spacing-xs">
         <Box bg="tomato" height="200px" />
         <Box bg="tomato" height="200px" />
         <Box bg="tomato" height="200px" />
         <Box bg="tomato" height="200px" />
         <Box bg="tomato" height="200px" />
-    </SimpleGrid>
+    </Grid>
 ));
 
 stories.add('responsive columns', () => (
-    <Grid templateColumns={{ base: '1fr', sm: '1fr 1fr 1fr' }} columnGap="40px">
+    <FullGrid templateColumns={{ base: '1fr', sm: '1fr 1fr 1fr' }} columnGap="40px">
         <Box bg="tomato" height="200px" />
         <Box bg="tomato" height="200px" />
         <Box bg="tomato" height="200px" />
-    </Grid>
+    </FullGrid>
 ));
 
 stories.add('responsive columns 2', () => (
-    <Grid templateColumns={['1fr', '1fr 1fr 1fr']} columnGap="40px">
+    <FullGrid templateColumns={['1fr', '1fr 1fr 1fr']} columnGap="40px">
         <Box bg="tomato" height="200px" />
         <Box bg="tomato" height="200px" />
         <Box bg="tomato" height="200px" />
-    </Grid>
+    </FullGrid>
 ));

@@ -1,42 +1,31 @@
 import React, { forwardRef } from 'react';
-import { Box } from '../Box';
+import { FullGrid } from '../FullGrid';
 import { GridProps } from './types';
+import { countToColumns, widthToColumns } from './utils';
 
 export const Grid = forwardRef(
     (
         {
-            gap,
-            rowGap,
-            columnGap,
-            autoFlow,
-            autoRows,
-            autoColumns,
-            templateRows,
-            templateColumns,
-            templateAreas,
-            area,
-            column,
-            row,
+            columns,
+            spacingX = 'spacing',
+            spacingY = 'spacing',
+            spacing = 'spacing',
+            minChildWidth,
             ...props
         }: GridProps,
         ref
-    ) => (
-        <Box
-            ref={ref}
-            display="grid"
-            gridArea={area}
-            gridTemplateAreas={templateAreas}
-            gridGap={gap}
-            gridRowGap={rowGap}
-            gridColumnGap={columnGap}
-            gridAutoColumns={autoColumns}
-            gridColumn={column}
-            gridRow={row}
-            gridAutoFlow={autoFlow}
-            gridAutoRows={autoRows}
-            gridTemplateRows={templateRows}
-            gridTemplateColumns={templateColumns}
-            {...props}
-        />
-    )
+    ) => {
+        const templateColumns = minChildWidth ? widthToColumns(minChildWidth) : countToColumns(columns);
+
+        return (
+            <FullGrid
+                ref={ref}
+                gap={spacing}
+                columnGap={spacingX}
+                rowGap={spacingY}
+                templateColumns={templateColumns}
+                {...props}
+            />
+        );
+    }
 );

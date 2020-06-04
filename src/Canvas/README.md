@@ -64,7 +64,7 @@ export const AppShell = props => {
 Set the new panel inside a useEffect hook in the Route to avoid being called on re-renders.
 
 ```jsx
-const { togglePanel, setPanel } = useCanvasContext();
+const { setPanel } = useCanvasContext();
 
 useEffect(() => {
     setPanel('filter', () => ({
@@ -84,10 +84,20 @@ useEffect(() => {
 
 #### 3. Updating an existing panel at the route level
 
+To toggle the panels display state, use togglePanel(); This will switch between the visible state and, if the panel is within the allowMinify range - the minified state, otherwise the hidden state. Overlay panels will always show full width, not minified.
+
+```jsx
+const { togglePanel } = useCanvasContext();
+
+togglePanel('menu');
+```
+
+To change more properties than just the display state, use updatePanel();
+
 ```jsx
 const { updatePanel } = useCanvasContext();
 
-updatePanel('filter', { isVisible: true, isMinified: true });
+updatePanel('menu', { isVisible: true, isMinified: true, bg: 'black' });
 ```
 
 ## Panel Props
@@ -106,6 +116,26 @@ When setting the panel through initialCanvasState or setPanel(), there are a few
 
     These breakpoint ranges should be in the form [min, max] as numbers. Boolean 'false' can also be passed instead to always disable the property (for instance, to never allow a canvas to be minfied, or never show as an overlay). Alternatively, a range of [0, 9999] can be used to always be set as true.
 
+-   `BoxProps` - Any other emotion css property - such as background color (bg), padding (p), and width (w) - can also be passed here to be applied to the canvas panel.
+
+When the panel is rendered, the defined breakpoint ranges use the current window width to generate a few more properties.
+
+-   `isMinifiable`
+-   `isMinified`
+-   `isOverlay`
+-   `isVisible`
+
+If needed, these can be updated on a route level basis when using updatePanel().
+
+## Canvas Context
+
+```jsx
+const { togglePanel, updatePanel, setPanel, panels } = useCanvasContext();
 ```
 
-```
+The following are exposed using the useCanvasContext() hook.
+
+-   `setPanel()` - Used to define a new panel.
+-   `togglePanel()` - Toggle the display state of an existing panel.
+-   `updatePanel()` - Used to update the full property list of a panel.
+-   `panels` - Object that contains the list of all panels and their properties.

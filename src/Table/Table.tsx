@@ -40,7 +40,6 @@ export const Table = (props: TableProps, ref) => {
         cursor,
         height,
         renderImmediately = true,
-        animated,
     } = props;
 
     const tableContext = useTableContext();

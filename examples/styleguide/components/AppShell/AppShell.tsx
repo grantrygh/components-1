@@ -1,9 +1,10 @@
 import React from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { Box, CSSReset, Flex, Navigation, theme, ThemeProvider, useTheme } from '../../../../src';
+import { CSSReset, Flex, Navigation, theme, ThemeProvider, useTheme } from '../../../../src';
 import { CanvasWrapper } from '../../../../src/Canvas';
 import { CanvasMenu } from '../../../../src/CanvasMenu';
 import { PageFooter } from '../../../../src/Page';
+import { GroupSidebar } from '../GroupSidebar';
 import { NavPrimary, NavSecondary, NavTertiary } from '../Header';
 import { NotificationsPanel } from '../NotificationsPanel';
 import { menuItems } from './menu';
@@ -22,10 +23,11 @@ export const AppShellBase = props => {
                 allowMinify: [breakpoint.stripped.md, 9999], // --> isMinifiable
                 defaultMinified: [0, 9999], // --> isMinified
             },
-            render: componentProps => <Box />,
+            render: componentProps => <GroupSidebar {...componentProps} />,
             bg: 'primary.500',
             width: 72,
             borderRight: 0,
+            p: 4,
         },
         menu: {
             name: 'menu',

@@ -3,7 +3,7 @@ import { Box } from '../Box';
 import { BoxProps } from '../Box/types';
 import { Flex } from '../Flex';
 import { useRouter } from '../hooks/useRouter';
-import Link from '../Link';
+import { Link } from '../Link';
 import { PseudoBox } from '../PseudoBox';
 import useNavigationStyle from './styles';
 import { NavigationItemMediaProps, NavigationItemProps } from './types';

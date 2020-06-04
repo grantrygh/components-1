@@ -1,7 +1,9 @@
 import React, { createContext, useContext } from 'react';
 import { Box } from '../Box';
 import { BoxProps } from '../Box/types';
+import { Heading } from '../Heading';
 import { Icon } from '../Icon';
+import { Text } from '../Text';
 import useAlertStyle, { useAlertIconStyle } from './styles';
 import { AlertProps, IAlert } from './types';
 
@@ -25,9 +27,9 @@ export const Alert = ({ status = 'info', variant = 'left-accent', ...rest }: Ale
     );
 };
 
-export const AlertTitle = (props: BoxProps) => <Box fontWeight="bold" lineHeight="normal" {...props} />;
+export const AlertTitle = (props: BoxProps) => <Heading kind="h6" {...props} />;
 
-export const AlertDescription = (props: BoxProps) => <Box {...props} />;
+export const AlertDescription = (props: BoxProps) => <Text {...props} />;
 
 export const AlertIcon = props => {
     const { status, variant } = useContext(AlertContext);

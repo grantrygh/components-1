@@ -16,7 +16,7 @@ export const Toast = ({ status, variant, id, title, isClosable, onClose, descrip
             <AlertIcon />
             <Box flex="1">
                 {title && <AlertTitle>{title}</AlertTitle>}
-                {description && <AlertDescription>{description}</AlertDescription>}
+                {description && <AlertDescription color="titleText">{description}</AlertDescription>}
             </Box>
             {isClosable && <CloseButton size="sm" onClick={onClose} position="absolute" right="4px" top="4px" />}
         </Alert>
@@ -34,7 +34,7 @@ export function useToast() {
             title,
             description,
             status,
-            variant = 'solid',
+            variant = 'top-accent',
             isClosable,
         }: useToastOptions) => {
             const options = {
@@ -44,14 +44,14 @@ export function useToast() {
 
             if (render) {
                 return toaster.notify(
-                    ({ onClose, id }) => <ThemeProvider>{render({ onClose, id })}</ThemeProvider>,
+                    ({ onClose, id }) => <ThemeProvider defaultMode="light">{render({ onClose, id })}</ThemeProvider>,
                     options
                 );
             }
 
             toaster.notify(
                 ({ onClose, id }) => (
-                    <ThemeProvider>
+                    <ThemeProvider defaultMode="light">
                         <Toast
                             {...{
                                 onClose,

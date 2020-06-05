@@ -131,16 +131,21 @@ export const baseTheme = ({ providedTheme = {}, mode = 'light' }) => {
         radii,
         opacity,
         borders,
-        colors: colorScheme,
         ...typography,
         sizes,
-        shadows: shadowScheme,
         space,
         icons,
 
         // component styles
         // add to this in custom theme to override component styling
         styles: {},
+
+        // custom theme
+        ...providedTheme,
+
+        // colors and shadows merge in with default theme
+        colors: colorScheme,
+        shadows: shadowScheme,
     };
 };
 

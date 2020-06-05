@@ -193,17 +193,17 @@ const palette = {
 
 const colors = (providedTheme, mode) => {
     const providedColors = providedTheme?.colors as Colors;
-    let primary = providedColors?.primary || brand.primary;
-    let secondary = providedColors?.secondary || brand.secondary;
+    const primary = (providedColors && providedColors[mode]?.primary) || brand.primary;
+    const secondary = (providedColors && providedColors[mode]?.secondary) || brand.secondary;
     // A large number of components use {color}.500 to support palette colors
     // To support better dark theme contrast value, regenerate brand colors based on a lighter shade - .300 will become the new .500
     // TODO: could be an issue with this if using dark theme as the base mode, and wanting to use the passed primary.500 value
-    const colorVariant = mode === 'light' ? 500 : 300;
-    if (mode === 'dark') {
-        primary = generateShades(primary[colorVariant]);
-        secondary = generateShades(secondary[colorVariant]);
-    }
-    const neutral = providedColors?.neutral || neutralScheme;
+    // const colorVariant = mode === 'light' ? 500 : 300;
+    // if (mode === 'dark') {
+    //     primary = generateShades(primary[colorVariant]);
+    //     secondary = generateShades(secondary[colorVariant]);
+    // }
+    const neutral = (providedColors && providedColors[mode]?.neutral) || neutralScheme;
 
     const modes = {
         light: {
@@ -366,7 +366,7 @@ const colors = (providedTheme, mode) => {
             900: '#003f5e',
         },
 
-        ...providedColors,
+        ...((providedColors && providedColors[mode]) || {}),
     };
 };
 

@@ -29,7 +29,12 @@ import { generateShades, theme as defaultTheme, ThemeType } from '@audentio/stuf
 export const theme: ThemeType = {
     ...defaultTheme,
     colors: {
-        //  color overrides - see below
+        light: {
+            //  light color overrides - see below
+        },
+        dark: {
+            //  dark color overrides - see below
+        },
     },
     fonts: {
         ...defaultTheme.fonts,
@@ -65,7 +70,7 @@ List of theme color variables to override:
     -   `buttonText` - used for primary button text
     -   `secondaryButton` - secondary button (shadowed) background. defaults to transparent
     -   `tertiaryButton` - tertiary button (outlined) background. defaults to transparent
-    -   `tableHeadingBg` - used for table header and footer backgrounds
+    -   `tableHeadingBg` - used for table header, table footer, and expanded row backgrounds
     -   `track` - background for slider, switches, progress ocmponents
     -   `tooltip` - tooltip background
     -   `selectControlHover` - background for a hovered menu item within the select menu
@@ -93,24 +98,26 @@ return (
 
 This allows finer control over how components are styled. Within the styles key of the theme object, add each component. Component's default's styles can be imported if not all styles need to be changed.
 
-For example, to change the style of `<AvatarGroup />`.
+For example, to change the style of `<Button />`.
 
 ```jsx
-import { avatarGroupStyle } from '@audentio/stuff/AvatarGroup/styles';
+import { buttonStyle } from '@audentio/stuff/Button/styles';
 export const theme: ThemeType = {
     colors: {
         //  ...
     },
     styles: {
-        //  override component styles
-        avatarGroup: ({ color, size }, theme) => ({
-            style: {
-                ...avatarGroupStyle
-                borderColor: '#000',
-                bg: 'blue.200',
-                borderWidth: '1px',
-            },
-        }),
+        button: (props, theme) => {
+            const btnStyle = buttonStyle(props, theme);
+            return {
+                ...btnStyle,
+                style: {
+                    ...btnStyle.style,
+                    textTransform: 'uppercase',
+                },
+            };
+        },
+        //  ... override component styles
     },
 };
 ```

@@ -6,7 +6,7 @@ import { ButtonGroup } from '../../../../src/ButtonGroup';
 import { Flex } from '../../../../src/Flex';
 import { Heading } from '../../../../src/Heading';
 import { Stack } from '../../../../src/Stack';
-import { AnimatedTr, Table, TableHeader, TableProvider, Td, Th } from '../../../../src/Table';
+import { Table, TableHeader, TableProvider, Td, Th, Tr } from '../../../../src/Table';
 import { Text } from '../../../../src/Text';
 
 export const HomeTable = () => {
@@ -68,7 +68,7 @@ export const HomeTable = () => {
 
                     if (width < 768) {
                         return (
-                            <AnimatedTr
+                            <Tr
                                 key={first_name}
                                 expandedContent={
                                     <Box>
@@ -111,12 +111,12 @@ export const HomeTable = () => {
                                     </Flex>
                                 </Td>
                                 <Td>{last_name}</Td>
-                            </AnimatedTr>
+                            </Tr>
                         );
                     }
 
                     return (
-                        <AnimatedTr
+                        <Tr
                             key={first_name}
                             expandedContent={
                                 <Flex align="center" justify="space-between">
@@ -159,7 +159,7 @@ export const HomeTable = () => {
                             <Td>{last_name}</Td>
                             <Td>January 30, 2020</Td>
                             <Td>Pending</Td>
-                        </AnimatedTr>
+                        </Tr>
                     );
                 };
 

@@ -284,7 +284,7 @@ const colors = (providedTheme, mode) => {
         buttonText: neutral[1],
         secondaryButton: 'transparent',
         tertiaryButton: 'transparent',
-        activeLink: modes[mode].titleText,
+        activeLink: primary[500],
 
         inputFocus: primary[500],
 

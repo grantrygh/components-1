@@ -1,7 +1,7 @@
 import BellOutlineIcon from 'mdi-react/BellOutlineIcon';
 import MenuIcon from 'mdi-react/MenuIcon';
 import React from 'react';
-import { Box, Icon, Input, InputGroup, InputLeftElement, Navigation } from '../../../../src';
+import { Button, Icon, Input, InputGroup, InputLeftElement, Navigation } from '../../../../src';
 import { useCanvasContext } from '../../../../src/Canvas';
 import { Logo } from '../Logo';
 import useHeaderStyle from './styles';
@@ -14,13 +14,15 @@ export const NavPrimary = () => {
 
     return (
         <Navigation.Primary>
-            <Box {...primaryStyle.icon}>
-                <MenuIcon
-                    onClick={() => {
-                        togglePanel('menu');
-                    }}
-                />
-            </Box>
+            <Button
+                onClick={() => {
+                    togglePanel('menu');
+                }}
+                iconOnly
+                leftIcon={MenuIcon}
+                variant="unstyled"
+                {...primaryStyle.icon}
+            />
             <Logo />
         </Navigation.Primary>
     );
@@ -50,13 +52,15 @@ export const NavTertiary = () => {
 
     return (
         <Navigation.Tertiary>
-            <Box {...tertiaryStyle.icon}>
-                <BellOutlineIcon
-                    onClick={() => {
-                        togglePanel('notifications');
-                    }}
-                />
-            </Box>
+            <Button
+                onClick={() => {
+                    togglePanel('notifications');
+                }}
+                iconOnly
+                leftIcon={BellOutlineIcon}
+                variant="unstyled"
+                {...tertiaryStyle.icon}
+            />
         </Navigation.Tertiary>
     );
 };

@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx, ThemeContext } from '@emotion/core';
-import { ColorModeProvider, IColorModeProvider, useColorMode } from 'ColorModeProvider';
 import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming';
 import { useContext } from 'react';
+import { ColorModeProvider, IColorModeProvider, useColorMode } from '../ColorModeProvider';
 import { baseTheme, theme, ThemeType } from '../theme';
 import { ITheme } from '../theme/types';
 

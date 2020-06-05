@@ -36,46 +36,4 @@ stories.add('Responsive Styles', () => {
     );
 });
 
-stories.add('Cards', () => (
-    <Box maxWidth="340px" mx="auto">
-        <Box mt={5} boxShadow="0 0 0 1px #e3e8ee" height="16">
-            This is a box
-        </Box>
-        <br />
-        <Box
-            mt={5}
-            boxShadow="0 2px 5px 0 rgba(60,66,87, 0.1),
-      0 1px 1px 0 rgba(0, 0, 0, .07)"
-            height="16"
-        >
-            This is a box
-        </Box>
-        <br />
-        <Box
-            mt={5}
-            boxShadow="0 7px 14px 0 rgba(60,66,87, 0.1),
-      0 3px 6px 0 rgba(0, 0, 0, .07)"
-            height="16"
-        >
-            This is a box
-        </Box>
-        <Box
-            mt={5}
-            boxShadow="0 15px 35px 0 rgba(60,66,87, 0.1),
-      0 5px 15px 0 rgba(0, 0, 0, .07)"
-            height="16"
-        >
-            This is a box
-        </Box>
-        <Box
-            mt={5}
-            boxShadow="0 50px 100px 0 rgba(60,66,87, 0.1),
-      0 15px 35px 0 rgba(60,66,87, 0.1), 0 5px 15px 0 rgba(0, 0, 0, .07)"
-            height="16"
-        >
-            This is a box
-        </Box>
-    </Box>
-));
-
 stories.add('responsive test', () => <Box h="500px" bg="red.500" w={{ sm: '500px', md: '1000px' }} />);

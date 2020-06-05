@@ -36,7 +36,7 @@ export function CanvasMenu(props: CanvasMenuProps) {
             <Navigation.Item>
                 <Accordion allowToggle>
                     <AccordionItem>
-                        <AccordionHeader>
+                        <AccordionHeader py={0} borderBottomWidth={0}>
                             {renderNavItem({
                                 ...accProps,
                                 mb: 0,
@@ -47,7 +47,7 @@ export function CanvasMenu(props: CanvasMenuProps) {
                         </AccordionHeader>
                         {accProps.children &&
                             accProps.children.map(child => (
-                                <AccordionPanel>
+                                <AccordionPanel p={0}>
                                     {renderNavItem({
                                         ...child,
                                         isSubmenuItem: true,

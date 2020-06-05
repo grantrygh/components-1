@@ -62,7 +62,10 @@ export const theme: ThemeType = {
         // activeLink: modes[mode].titleText,
         // overlayBg: 'rgba(0, 0, 0, 0.2)',
     },
-    fonts: { ...defaultTheme.fonts, heading: 'Poppins' },
+    fonts: {
+        ...defaultTheme.fonts,
+        // heading: 'Poppins',
+    },
     styles: {
         // override component styles here
     },

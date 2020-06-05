@@ -284,7 +284,7 @@ const colors = (providedTheme, mode) => {
         buttonText: neutral[1], // primary button text
         secondaryButton: 'transparent',
         tertiaryButton: 'transparent',
-        activeLink: primary[500],
+        activeLink: modes[mode].titleText,
 
         inputFocus: primary[500],
 
@@ -367,6 +367,8 @@ const colors = (providedTheme, mode) => {
             800: '#005885',
             900: '#003f5e',
         },
+
+        ...providedColors,
     };
 };
 

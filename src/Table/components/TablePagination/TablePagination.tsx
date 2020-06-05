@@ -5,7 +5,7 @@ import PageFirstIcon from 'mdi-react/PageFirstIcon';
 import PageLastIcon from 'mdi-react/PageLastIcon';
 import React from 'react';
 import { Box } from '../../../Box';
-import { PseudoBox } from '../../../PseudoBox';
+import { Button } from '../../../Button';
 import { Spinner } from '../../../Spinner';
 import { TablePaginationProps } from '../../types';
 
@@ -34,42 +34,54 @@ export const TablePagination = ({ loading, onPageChange, cursor, children, ...pr
 
             {children}
 
-            <Flex whiteSpace="nowrap">
-                <PseudoBox {...(currentPage === 1 ? disabled : enabled)}>
-                    <PageFirstIcon
-                        onClick={() => {
-                            onPageChange(1);
-                        }}
-                    />
-                </PseudoBox>
+            <Flex whiteSpace="nowrap" align="center">
+                <Button
+                    onClick={() => {
+                        onPageChange(1);
+                    }}
+                    iconOnly
+                    leftIcon={PageFirstIcon}
+                    variant="unstyled"
+                    ariaLabel="First page"
+                    isDisabled={currentPage === 1}
+                />
 
-                <PseudoBox {...(currentPage === 1 ? disabled : enabled)}>
-                    <ChevronLeftIcon
-                        onClick={() => {
-                            onPageChange(currentPage - 1);
-                        }}
-                    />
-                </PseudoBox>
+                <Button
+                    onClick={() => {
+                        onPageChange(currentPage - 1);
+                    }}
+                    iconOnly
+                    leftIcon={ChevronLeftIcon}
+                    variant="unstyled"
+                    ariaLabel="Previous page"
+                    isDisabled={currentPage === 1}
+                />
 
                 <Box mx={4} fontSize="body">
                     {(currentPage - 1) * perPage + 1}-{currentPage * perPage} of {total}
                 </Box>
 
-                <PseudoBox {...(currentPage === lastPage ? disabled : enabled)}>
-                    <ChevronRightIcon
-                        onClick={() => {
-                            onPageChange(cursor.currentPage + 1);
-                        }}
-                    />
-                </PseudoBox>
+                <Button
+                    onClick={() => {
+                        onPageChange(cursor.currentPage + 1);
+                    }}
+                    iconOnly
+                    leftIcon={ChevronRightIcon}
+                    variant="unstyled"
+                    ariaLabel="Next page"
+                    isDisabled={currentPage === lastPage}
+                />
 
-                <PseudoBox {...(currentPage === lastPage ? disabled : enabled)}>
-                    <PageLastIcon
-                        onClick={() => {
-                            onPageChange(lastPage);
-                        }}
-                    />
-                </PseudoBox>
+                <Button
+                    onClick={() => {
+                        onPageChange(lastPage);
+                    }}
+                    iconOnly
+                    leftIcon={PageLastIcon}
+                    variant="unstyled"
+                    ariaLabel="Last page"
+                    isDisabled={currentPage === lastPage}
+                />
             </Flex>
         </Flex>
     );

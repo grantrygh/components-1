@@ -21,6 +21,7 @@ export const NavPrimary = () => {
                 iconOnly
                 leftIcon={MenuIcon}
                 variant="unstyled"
+                ariaLabel="Toggle menu"
                 {...primaryStyle.icon}
             />
             <Logo />
@@ -59,6 +60,7 @@ export const NavTertiary = () => {
                 iconOnly
                 leftIcon={BellOutlineIcon}
                 variant="unstyled"
+                ariaLabel="Toggle notifications"
                 {...tertiaryStyle.icon}
             />
         </Navigation.Tertiary>

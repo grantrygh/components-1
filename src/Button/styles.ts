@@ -1,7 +1,7 @@
 import { addBlack, addOpacity, addWhite } from '../theme/colors-utils';
 import { useTheme } from '../ThemeProvider';
 
-export const buttonStyle = ({ color = 'button' }, theme) => ({
+export const buttonStyle = ({ color = 'button', variant }, theme) => ({
     style: {
         px: 6,
         borderRadius: 'radius',
@@ -95,7 +95,7 @@ export const buttonStyle = ({ color = 'button' }, theme) => ({
             opacity: '40%',
             cursor: 'not-allowed',
             boxShadow: 'none',
-            bg: 'disabled',
+            bg: variant === 'unstyled' ? 'transparent' : 'disabled',
             color: 'bodyText',
             border: 0,
         },

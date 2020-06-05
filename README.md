@@ -19,7 +19,7 @@ https://docs.google.com/document/d/1-Hx6xVAyWfU5cdJ5T3hrOgk1Xq8pmpGlq-2JNDiV3HI/
 Things to note:
 
 1. Any key in the default theme can be overridden, and the default theme can be imported to be extended.
-2. Colors will be merged in by default, and therefore does not require extending the default themehouse.
+2. Colors will be merged in by default, and therefore does not require extending the default theme.
 3. Brand colors, as well as a few others, are objects that contain multiple shades of the base color. When passing a new brand color, they must be sent within the generateShades() function.
 4. For more control of the theme, individual components can also be re-styled.
 

@@ -29,48 +29,51 @@ import { generateShades, theme as defaultTheme, ThemeType } from '@audentio/stuf
 export const theme: ThemeType = {
     ...defaultTheme,
     colors: {
-        // Brand colors
-        // primary: generateShades('green'),
-        // secondary: generateShades('green'),
-        // Typography
-        // titleText: neutral[1],
-        // bodyText: neutral[6],
-        // faintText: neutral[7],
-        // disabled: neutral[8],
-        // Page layout
-        // cardBg: neutral[11],
-        // navBg: neutral[11],
-        // popoverBg: neutral[10],
-        // pageBg: neutral[12],
-        // altBg: neutral[9],
-        // canvasBg: neutral[13],
-        // border: neutral[10], // and divider
-        // overlay: 'rgba(0,0,0,0.6)',
-        // Component-specific
-        // button: primary, // primary button bg. secondary & tertiary button text - uses .500
-        // buttonText: neutral[1], // primary button text
-        // secondaryButton: 'transparent',
-        // tertiaryButton: 'transparent',
-        // tableHeadingBg: neutral[10],
-        // track: neutral[8],
-        // tooltip: neutral[9],
-        // selectControlHover: neutral[9],
-        // inputHover: neutral[3],
-        // inputFocus: primary[500],
-        // inputBg: neutral[2],
-        // progress: primary[500],
-        // activeLink: modes[mode].titleText,
-        // overlayBg: 'rgba(0, 0, 0, 0.2)',
+        //  color overrides - see below
     },
     fonts: {
         ...defaultTheme.fonts,
-        // heading: 'Poppins',
+        //  heading: 'Poppins',
     },
     styles: {
         // override component styles here
     },
 };
 ```
+
+List of theme color variables to override:
+
+-   Brand colors : use generateShades(color)
+    -   `primary` - main brand color
+    -   `secondary` - complementary brand color
+-   Typography
+    -   `titleText` - used for headings
+    -   `bodyText` - default color for text
+    -   `faintText` - used for subtle text
+    -   `disabled` - disabled inputs, buttons, etc
+-   Page layout
+    -   `cardBg` - card background,
+    -   `navBg` - navigation header background
+    -   `popoverBg` - popover menu background
+    -   `pageBg` - "main" canvas page background
+    -   `altBg` - used for alternating sections, table rows, etc, background
+    -   `canvasBg` - canvas background,
+    -   `border` - used for borders and dividers
+    -   `overlay` - used along with modals, overlay canvases
+-   Components
+    -   `button` - used for primary button background, as well as secondary & tertiary button text color
+    -   `buttonText` - used for primary button text
+    -   `secondaryButton` - secondary button (shadowed) background. defaults to transparent
+    -   `tertiaryButton` - tertiary button (outlined) background. defaults to transparent
+    -   `tableHeadingBg` - used for table header and footer backgrounds
+    -   `track` - background for slider, switches, progress ocmponents
+    -   `tooltip` - tooltip background
+    -   `selectControlHover` - background for a hovered menu item within the select menu
+    -   `inputHover` - input background when hovered
+    -   `inputFocus` - input border color when focused
+    -   `inputBg` - 'filled' variant input background
+    -   `progress` - default background for progress component indicator
+    -   `activeLink` - color when a link is active
 
 #### 2. Using the theme object
 
@@ -96,10 +99,10 @@ For example, to change the style of `<AvatarGroup />`.
 import { avatarGroupStyle } from '@audentio/stuff/AvatarGroup/styles';
 export const theme: ThemeType = {
     colors: {
-        // ...
+        //  ...
     },
     styles: {
-        // override component styles here
+        //  override component styles
         avatarGroup: ({ color, size }, theme) => ({
             style: {
                 ...avatarGroupStyle

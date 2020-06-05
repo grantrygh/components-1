@@ -237,7 +237,7 @@ const colors = (providedTheme, mode) => {
             faintText: neutral[7],
             tableHeadingBg: neutral[10],
             disabled: neutral[8],
-            border: neutral[10], // and divider
+            border: neutral[10],
 
             // page layout
             cardBg: neutral[11],
@@ -280,15 +280,13 @@ const colors = (providedTheme, mode) => {
         // component specific
         progress: primary[500],
 
-        button: primary, // VARIANT: primary button bg , secondary & tertiary button text - uses .500
-        buttonText: neutral[1], // primary button text
+        button: primary,
+        buttonText: neutral[1],
         secondaryButton: 'transparent',
         tertiaryButton: 'transparent',
         activeLink: modes[mode].titleText,
 
         inputFocus: primary[500],
-
-        overlayBg: 'rgba(0, 0, 0, 0.2)',
 
         linkedin: {
             50: '#E8F4F9',

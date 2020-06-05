@@ -101,7 +101,6 @@ export interface Colors {
     canvasBg: string;
     pageBg: string;
     tooltip: string;
-    overlayBg: string;
     cardBg: string;
     popoverBg: string;
     progress: string;

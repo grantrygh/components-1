@@ -70,17 +70,37 @@ List of theme color variables to override:
 
 Wrap your project in the ThemeProvider HOC and pass in your newly created theme object.
 
+Optionally, a default color mode can be passed as well, defining the default color scheme used. Defaults to 'light'.
+
 ```jsx
 import { ThemeProvider } from '@audentio/stuff/ThemeProvider';
 
 return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme} defaultMode="dark">
         <AppShell {...props} />
     </ThemeProvider>
 );
 ```
 
-#### 3. (Optional) Overriding a component's style
+#### 3. (Optional) Switching color modes
+
+To toggle between 'light' and 'dark' modes, or a custom mode, call the useColorMode() hook;
+
+```jsx
+const { mode, setMode } = useColorMode();
+
+return (
+    <Button
+        onClick={() => {
+            setMode(mode === 'light' ? 'dark' : 'light');
+        }}
+    >
+        <Text> Switch to {mode === 'light' ? 'dark' : 'light'} mode</Text>
+    </Button>
+);
+```
+
+#### 4. (Optional) Overriding a component's style
 
 This allows finer control over how components are styled. Within the styles key of the theme object, add each component. Component's default's styles can be imported if not all styles need to be changed.
 

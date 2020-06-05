@@ -1,46 +1,15 @@
 /** @jsx jsx */
 import { jsx, ThemeContext } from '@emotion/core';
+import { ColorModeProvider, IColorModeProvider, useColorMode } from 'ColorModeProvider';
 import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming';
-import { createContext, useContext, useState } from 'react';
+import { useContext } from 'react';
 import { baseTheme, theme, ThemeType } from '../theme';
 import { ITheme } from '../theme/types';
 
-interface IThemeProvider {
+export interface IThemeProvider {
     theme?: ITheme;
     children?: React.ReactNode;
     defaultMode?: 'light' | 'dark';
-}
-
-interface IColorModeProvider {
-    defaultMode?: IThemeProvider['defaultMode'];
-    children?: React.ReactNode;
-}
-
-export const ColorModeContext = createContext<any>(null);
-
-export const ColorModeProvider = ({ children, defaultMode }: IColorModeProvider) => {
-    const [mode, updateMode] = useState(defaultMode);
-    const setMode = newMode => {
-        updateMode(newMode);
-        if (__BROWSER__ && localStorage) {
-            localStorage.setItem('themeMode', newMode); // save theme selection
-        }
-    };
-    const context = { mode, setMode };
-    return <ColorModeContext.Provider value={context}>{children}</ColorModeContext.Provider>;
-};
-
-export function useColorMode() {
-    const _colorMode = useContext(ColorModeContext);
-
-    if (_colorMode === undefined) {
-        // will use light theme by default
-        console.log('useColorMode must be used within a ColorModeProvider');
-        return null;
-    }
-
-    // @ts-ignore
-    return _colorMode;
 }
 
 // TODO: check into providerTheme type tslint error when ITHemeProvider is used
@@ -48,12 +17,15 @@ export function useColorMode() {
 const BaseThemeProvider = ({ theme: providedTheme, children }: IThemeProvider) => {
     const colorMode = useColorMode();
 
+    console.log('base theme', providedTheme);
+
     // needs more work still to override existing styles, but still allow dependencies.
     // i.e, "button" color prop depends on primary, so passing a different primary color should change all props dependent on primary
     const emotionTheme = baseTheme({
         providedTheme,
         mode: colorMode?.mode,
     });
+    console.log('passed', emotionTheme);
     return <EmotionThemeProvider theme={emotionTheme as ThemeType}>{children}</EmotionThemeProvider>;
 };
 

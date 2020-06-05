@@ -64,10 +64,10 @@ export const AppShell = props => {
 Set the new panel inside a useEffect hook in the Route to avoid being called on re-renders.
 
 ```jsx
-const { setPanel } = useCanvasContext();
+const { addPanel, removePanel } = useCanvasContext();
 
 useEffect(() => {
-    setPanel('filter', () => ({
+    addPanel('filter', () => ({
         name: 'filter',
         position: 'left',
         ranges: {
@@ -79,6 +79,9 @@ useEffect(() => {
         render: componentProps => <FilterMenuForm onSubmit={val => setFormValue(val)} />,
         bg: 'navBg',
     }));
+
+    // (Optional) Delete the panel upon un-render
+    return () => removePanel('filter');
 }, []);
 ```
 
@@ -102,7 +105,7 @@ updatePanel('menu', { isVisible: true, isMinified: true, bg: 'black' });
 
 ## Panel Props
 
-When setting the panel through initialCanvasState or setPanel(), there are a few canvas specific props that can be passed
+When setting the panel through initialCanvasState or addPanel(), there are a few canvas specific props that can be passed
 
 -   `name` - Required. Unique name used for setting and updating panels.
 -   `position` - Optional. Pass 'left' or 'right' to define where the panel shows as an inline or overlay panel.
@@ -130,12 +133,13 @@ If needed, these can be updated on a route level basis when using updatePanel().
 ## Canvas Context
 
 ```jsx
-const { togglePanel, updatePanel, setPanel, panels } = useCanvasContext();
+const { togglePanel, updatePanel, addPanel, removePanel, panels } = useCanvasContext();
 ```
 
 The following are exposed using the useCanvasContext() hook.
 
--   `setPanel()` - Used to define a new panel.
+-   `addPanel()` - Used to define a new panel.
+-   `removePanel()` - Used to hide and delete a panel (useful for panels that only show on a specific route).
 -   `togglePanel()` - Toggle the display state of an existing panel.
 -   `updatePanel()` - Used to update the full property list of a panel.
 -   `panels` - Object that contains the list of all panels and their properties.

@@ -20,7 +20,9 @@ export const useCanvasContext = () => {
 const MotionPanel = motion.custom(Box);
 
 const getPanels = panels => {
-    const panelList = Object.keys(panels).map(panelKey => panels[panelKey]);
+    const panelList = Object.keys(panels)
+        .map(panelKey => panels[panelKey])
+        .filter(p => p);
     const leftPanels = panelList.filter(panel => panel.position === 'left');
     const rightPanels = panelList.filter(panel => panel.position === 'right');
     const mainPanel = panelList.filter(panel => panel.name === 'main');
@@ -59,15 +61,6 @@ export function CanvasContainer(props) {
         });
     };
 
-    const setPanel = (name, update) => {
-        setPanels($prev => {
-            return {
-                ...$prev,
-                [name]: update($prev[name] || {}),
-            };
-        });
-    };
-
     const togglePanel = name => {
         setPanels($prev => {
             const panel = $prev[name];
@@ -86,6 +79,39 @@ export function CanvasContainer(props) {
                 },
             };
         });
+    };
+
+    const addPanel = (name, update) => {
+        setPanels($prev => {
+            return {
+                ...$prev,
+                [name]: update($prev[name] || {}),
+            };
+        });
+    };
+
+    const removePanel = name => {
+        const deletePanel = () => {
+            setPanels($prev => {
+                if (name !== 'main') {
+                    const newPanelList = { ...$prev };
+                    delete newPanelList[name];
+                    return newPanelList;
+                }
+                return {
+                    ...$prev,
+                };
+            });
+        };
+
+        // TODO: look into cleaner way of doing this
+        // Hide the panel first to keep close animation, then delete from the panels object.
+        updatePanel(name, {
+            isVisible: false,
+        });
+        setTimeout(() => {
+            deletePanel();
+        }, 400);
     };
 
     const renderPanel = (panel, i) => {
@@ -135,7 +161,7 @@ export function CanvasContainer(props) {
     const { leftPanels, rightPanels, mainPanel } = getPanels(panels);
 
     return (
-        <CanvasContext.Provider value={{ panels, setPanel, setPanels, updatePanel, togglePanel }}>
+        <CanvasContext.Provider value={{ panels, addPanel, setPanels, updatePanel, togglePanel, removePanel }}>
             <Flex {...styles.style}>
                 {props.children}
                 {leftPanels.map((panel, i) => renderPanel(panel, i))}
@@ -211,7 +237,7 @@ export const CanvasWrapper = (props: CanvasWrapperProps) => {
 };
 
 export function CanvasPanel({ name, children, type = 'inline', ranges, windowWidth, ...rest }) {
-    const { setPanel, updatePanel } = useCanvasContext();
+    const { addPanel, removePanel, updatePanel } = useCanvasContext();
     const ref = createRef();
 
     const currentWindowWidth = Math.max(1, windowWidth);
@@ -230,7 +256,7 @@ export function CanvasPanel({ name, children, type = 'inline', ranges, windowWid
     useEffect(() => {
         // Set the canvas panel's default vales
 
-        setPanel(name, () => ({
+        addPanel(name, () => ({
             name,
             ref,
             render: children,
@@ -241,7 +267,7 @@ export function CanvasPanel({ name, children, type = 'inline', ranges, windowWid
 
         // remove panel
         return () => {
-            setPanel(name, () => null);
+            removePanel(name);
         };
     }, []);
 

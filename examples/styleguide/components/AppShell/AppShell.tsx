@@ -1,9 +1,10 @@
 import React from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { CSSReset, Flex, Navigation, theme, ThemeProvider, useTheme } from '../../../../src';
+import { CSSReset, Flex, Navigation, ThemeProvider, useTheme } from '../../../../src';
 import { CanvasWrapper } from '../../../../src/Canvas';
 import { CanvasMenu } from '../../../../src/CanvasMenu';
 import { PageFooter } from '../../../../src/Page';
+import { styleguideTheme } from '../../theme';
 import { GroupSidebar } from '../GroupSidebar';
 import { NavPrimary, NavSecondary, NavTertiary } from '../Header';
 import { NotificationsPanel } from '../NotificationsPanel';
@@ -95,7 +96,7 @@ export const AppShellBase = props => {
 };
 
 export const AppShell = props => (
-    <ThemeProvider theme={{ ...theme, fonts: { ...theme.fonts, heading: 'Poppins' } }}>
+    <ThemeProvider theme={styleguideTheme}>
         <AppShellBase {...props} />
     </ThemeProvider>
 );

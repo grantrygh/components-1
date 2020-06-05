@@ -57,6 +57,8 @@ export interface ISelect {
     isLoading?: boolean;
 
     label?: React.ReactNode;
+
+    border?: 'full' | 'underline' | 'unstyled';
 }
 
 export type SelectProps = ISelect & SelectComponentsProps;

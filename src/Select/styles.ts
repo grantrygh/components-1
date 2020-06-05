@@ -1,6 +1,6 @@
 import { useTheme } from '../ThemeProvider';
 
-export const selectStyle = ({ size }, { colors, sizes }) => ({
+export const selectStyle = ({ size, border }, { colors, sizes }) => ({
     style: {
         // !IMPORTANT: To override any component style, uncomment and add overrides below provided. some properties can be changed in the theme object below
         // clearIndicator: (provided, props) => ({
@@ -18,7 +18,8 @@ export const selectStyle = ({ size }, { colors, sizes }) => ({
                 ...provided,
                 backgroundColor: 'transparent',
                 boxShadow: 'none',
-                borderWidth: '1px',
+                borderWidth: border === 'full' && '1px',
+                borderBottomWidth: border === 'underline' && '1px',
                 borderColor: isFocused ? stateColor : colors.border,
                 '&:hover': { borderColor: stateColor },
             };

@@ -76,14 +76,15 @@ export const theme: ThemeType = {
 
 Wrap your project in the ThemeProvider HOC and pass in your newly created theme object.
 
-````jsx
+```jsx
 import { ThemeProvider } from '@audentio/stuff/ThemeProvider';
 
-<ThemeProvider theme={theme}>
+return (
+    <ThemeProvider theme={theme}>
         <AppShell {...props} />
     </ThemeProvider>
-    ```
-````
+);
+```
 
 #### 3. (Optional) Overriding a component's style
 

@@ -8,7 +8,7 @@ export const popoverStyle = (props, theme) => ({
         display: 'flex',
         flexDirection: 'column',
         rounded: 'md',
-        shadow: 'sm',
+        shadow: 'menu',
         maxWidth: 'xs',
         modifiers: { offset: { enabled: true, offset: `0, 4` } },
         _focus: { outline: 0, shadow: 'outline' },

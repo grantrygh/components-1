@@ -32,7 +32,7 @@ function StyleGuide(props) {
     return (
         <Page>
             <PageContent>
-                <Tabs>
+                <Tabs size="lg">
                     <TabList>
                         <Tab>
                             <Icon name="phone" size="1em" mr="spacing-sm" />

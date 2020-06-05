@@ -3,7 +3,7 @@ import { useTheme } from '../ThemeProvider';
 export const modalStyle = ({ isCentered }, theme) => ({
     style: {
         bg: 'popoverBg',
-        shadow: 'lg',
+        shadow: 'modal',
         m: 4,
         mx: [4, 'auto'],
     },

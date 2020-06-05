@@ -16,18 +16,6 @@ export const TablePagination = ({ loading, onPageChange, cursor, children, ...pr
 
     if (!cursor || totalPages <= 1 || !onPageChange) return null;
 
-    const disabled = {
-        pointerEvents: 'none',
-        color: 'faintText',
-    };
-
-    const enabled = {
-        cursor: 'pointer',
-        _hover: {
-            color: 'titleText',
-        },
-    };
-
     return (
         <Flex align="center" justify="flex-end" w="100%" {...props}>
             {loading && <Spinner />}

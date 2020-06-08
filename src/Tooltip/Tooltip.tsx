@@ -36,6 +36,7 @@ export const Tooltip = ({
     isOpen: controlledIsOpen,
     onOpen: onOpenProp,
     onClose: onCloseProp,
+    showTooltip,
     ...rest
 }: TooltipProps) => {
     const { isOpen, onClose, onOpen } = useDisclosure(defaultIsOpen || false);
@@ -87,7 +88,6 @@ export const Tooltip = ({
     });
 
     const referenceProps = {
-        ref: referenceRef,
         onMouseEnter: wrapEvent(children, 'onMouseEnter', handleOpen),
         onMouseLeave: wrapEvent(children, 'onMouseLeave', handleClose),
         onClick: handleClick,
@@ -100,18 +100,24 @@ export const Tooltip = ({
 
     if (typeof children === 'string' || shouldWrapChildren) {
         clone = (
-            <Box as="span" tabIndex="0" {...referenceProps}>
+            <Box as="span" tabIndex="0" ref={referenceRef} {...referenceProps}>
                 {children}
             </Box>
         );
     } else {
-        clone = cloneElement(Children.only(children) as React.ReactElement, referenceProps);
+        clone = (
+            <Box ref={referenceRef}>{cloneElement(Children.only(children) as React.ReactElement, referenceProps)}</Box>
+        );
     }
 
     const hasAriaLabel = ariaLabel != null;
 
+    if (!showTooltip) {
+        return children;
+    }
+
     return (
-        <>
+        <React.Fragment>
             {clone}
 
             <Popper
@@ -133,6 +139,6 @@ export const Tooltip = ({
                 )}
                 {hasArrow && <PopperArrow />}
             </Popper>
-        </>
+        </React.Fragment>
     );
 };

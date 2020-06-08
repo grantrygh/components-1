@@ -49,6 +49,9 @@ export interface ITooltip {
      * Function called when the tooltip hides.
      */
     onClose?: () => void;
+
+    // If set to false, will just return children without tooltip popper.
+    showTooltip?: boolean;
 }
 
 export type TooltipProps = ITooltip & BoxProps;

@@ -3,7 +3,7 @@ import { INavItemMedia, NavigationItemProps } from '../Navigation/types';
 
 interface INavItem {
     isAccordion?: boolean;
-    label?: React.ReactNode;
+    label?: string;
     href?: string;
     onClick?: () => void;
     icon?: INavItemMedia['icon'];

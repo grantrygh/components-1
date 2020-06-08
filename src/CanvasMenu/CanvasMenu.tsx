@@ -1,6 +1,6 @@
 import React from 'react';
 import { Accordion, AccordionHeader, AccordionIcon, AccordionItem, AccordionPanel, Box, Flex, Navigation } from '..';
-import { Tooltip } from '../../src/Tooltip';
+import { Tooltip } from '../Tooltip';
 import { CanvasMenuProps, NavItemProps } from './types';
 
 export function CanvasMenu(props: CanvasMenuProps) {

@@ -350,7 +350,7 @@ const MenuItem = forwardRef(
                         event.preventDefault();
                         return;
                     }
-                    if (focusableItems && focusableItems.current.length > 0) {
+                    if (focusableItems?.current && focusableItems.current.length > 0) {
                         const nextIndex = focusableItems.current.indexOf(event.currentTarget);
                         focusAtIndex(nextIndex);
                     }

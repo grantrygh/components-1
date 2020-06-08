@@ -1,4 +1,3 @@
-import React from 'react';
 import { BoxProps } from '../Box/types';
 import { PopperProps } from '../Popper/types';
 
@@ -19,7 +18,7 @@ export interface ITooltip {
     /**
      * The `ReactNode` to be used as the trigger of the tooltip.
      */
-    children: React.ReactElement | string;
+    children: any;
     /**
      * If `true` display an arrow tip on the tooltip.
      */

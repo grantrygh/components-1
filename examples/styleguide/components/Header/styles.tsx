@@ -24,7 +24,7 @@ export const HeaderStyle = (props, theme) => ({
         },
         tertiary: {
             icon: {
-                mr: 'spacing',
+                mr: 'spacing-sm',
                 color: 'faintText',
                 cursor: 'pointer',
             },

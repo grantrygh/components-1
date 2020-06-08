@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { Box } from 'Box';
 import { forwardRef } from 'react';
 import ReactSelect from 'react-select';
 import AsyncSelect from 'react-select/async';
 import AsyncCreatableSelect from 'react-select/async-creatable';
 import CreatableSelect from 'react-select/creatable';
+import { Box } from '../Box';
 import { useFormField } from '../Form';
 import useSelectStyle from './styles';
 import { SelectProps } from './types';

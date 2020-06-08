@@ -5,6 +5,7 @@ import { Select } from '.';
 import { Box } from '../Box';
 import { Button } from '../Button';
 import { Form } from '../Form';
+import { InputGroup } from '../InputGroup';
 import { Stack } from '../Stack';
 
 const stories = storiesOf('Select', module);
@@ -28,9 +29,11 @@ stories.add('Default', () => <Select placeholder="Select option" options={option
 stories.add('sizes', () => (
     <Box>
         <Stack>
-            {['sm', 'md', 'lg'].map(size => (
-                <Select key={size} placeholder="Placeholder" name="size" />
-            ))}
+            <InputGroup>
+                {['sm', 'md', 'lg'].map(size => (
+                    <Select key={size} size={size} placeholder="Placeholder" name="size" />
+                ))}
+            </InputGroup>
         </Stack>
     </Box>
 ));
@@ -71,7 +74,31 @@ stories.add('Variations', () => {
                     onChange={v => console.log('custom', v)}
                     onCreateOption={c => console.log('create', c)}
                 />
-                <Button type="submit">Submit</Button>For
+
+                <Select
+                    options={options}
+                    name="flavor1"
+                    placeholder="Full border"
+                    onChange={v => console.log('custom', v)}
+                    border="full"
+                />
+
+                <Select
+                    options={options}
+                    name="flavor1"
+                    placeholder="Underlined"
+                    onChange={v => console.log('custom', v)}
+                    border="underline"
+                />
+
+                <Select
+                    options={options}
+                    name="flavor1"
+                    placeholder="No border"
+                    onChange={v => console.log('custom', v)}
+                    border="unstyled"
+                />
+                <Button type="submit">Submit</Button>
             </Form>
         </Box>
     );

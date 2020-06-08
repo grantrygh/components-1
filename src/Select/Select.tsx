@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import React, { forwardRef } from 'react';
+import { Box } from 'Box';
+import { forwardRef } from 'react';
 import ReactSelect from 'react-select';
 import AsyncSelect from 'react-select/async';
 import AsyncCreatableSelect from 'react-select/async-creatable';
@@ -87,5 +88,5 @@ export const Select = forwardRef((props: SelectProps, ref) => {
         }),
     };
 
-    return <React.Fragment>{renderSelect(selectProps, ref)}</React.Fragment>;
+    return <Box>{renderSelect(selectProps, ref)}</Box>;
 });

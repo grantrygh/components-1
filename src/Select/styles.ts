@@ -21,6 +21,7 @@ export const selectStyle = ({ size, border }, { colors, sizes }) => ({
                 borderWidth: border === 'full' && '1px',
                 borderBottomWidth: border === 'underline' && '1px',
                 borderColor: isFocused ? stateColor : colors.border,
+                rounded: border === 'underline' && 0,
                 '&:hover': { borderColor: stateColor },
             };
         },
@@ -96,7 +97,7 @@ export const selectStyle = ({ size, border }, { colors, sizes }) => ({
     },
     theme: {
         root: {
-            // borderRadius: theme.radii.radius,
+            // borderRadius: 0,
         },
         colors: {
             danger: colors.error[500],

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Accordion, AccordionHeader, AccordionIcon, AccordionItem, AccordionPanel, Box, Flex, Navigation } from '..';
+import { Tooltip } from '../../src/Tooltip';
 import { CanvasMenuProps, NavItemProps } from './types';
 
 export function CanvasMenu(props: CanvasMenuProps) {
@@ -22,9 +23,11 @@ export function CanvasMenu(props: CanvasMenuProps) {
 
         return (
             <Navigation.Item href={href} exact={!isAccordion} {...rest}>
-                <Navigation.ItemMedia icon={icon} mr={!isMinified && 4} unstyled={unstyled}>
-                    {media}
-                </Navigation.ItemMedia>
+                <Tooltip label={label} placement="right" closeOnClick showTooltip={isMinified}>
+                    <Navigation.ItemMedia icon={icon} mr={!isMinified && 4} unstyled={unstyled}>
+                        {media}
+                    </Navigation.ItemMedia>
+                </Tooltip>
                 {showFullItem && <Navigation.ItemText>{label}</Navigation.ItemText>}
                 {meta && showFullItem && <Navigation.ItemMeta>{meta}</Navigation.ItemMeta>}
             </Navigation.Item>

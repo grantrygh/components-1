@@ -4,6 +4,7 @@ import { Button, ButtonGroup, Flex, Icon, Tab, TabList, Tabs } from '../../../..
 import { useCanvasContext } from '../../../../src/Canvas';
 import { useColorMode } from '../../../../src/ColorModeProvider';
 import { Page, PageContent } from '../../../../src/Page';
+import { TabPanel, TabPanels } from '../../../../src/Tabs';
 import { HomeTable } from '../../components/HomeTable/HomeTable';
 
 export function Home(props) {
@@ -19,31 +20,34 @@ export function Home(props) {
                     <TabList>
                         <Tab>
                             <Icon name="phone" size="1em" mr="spacing-sm" />
-                            Settings
+                            Table
                         </Tab>
-                        <Tab>Billings</Tab>
-                        <Tab>Preferences</Tab>
-                        <Tab isDisabled>Shut Down</Tab>
+                        <Tab>Toggles</Tab>
                     </TabList>
+                    <TabPanels>
+                        <TabPanel>
+                            <HomeTable />
+
+                            <Flex h={1500} w={50} align="center">
+                                for testing sticky header
+                            </Flex>
+                        </TabPanel>
+                        <TabPanel>
+                            <ButtonGroup w="100%" mb="spacing">
+                                <Button onClick={() => togglePanel('menu')}>Toggle Navigation Menu</Button>
+                                <Button
+                                    variant="tertiary"
+                                    onClick={() => {
+                                        setMode(mode === 'light' ? 'dark' : 'light');
+                                    }}
+                                    leftIcon={MenuIcon}
+                                >
+                                    Switch to {mode === 'light' ? 'dark' : 'light'} mode
+                                </Button>
+                            </ButtonGroup>
+                        </TabPanel>
+                    </TabPanels>
                 </Tabs>
-                <ButtonGroup w="100%" mb="spacing">
-                    <Button onClick={() => togglePanel('menu')}>Toggle Navigation Menu</Button>
-                    <Button
-                        variant="tertiary"
-                        onClick={() => {
-                            setMode(mode === 'light' ? 'dark' : 'light');
-                        }}
-                        leftIcon={MenuIcon}
-                    >
-                        Switch to {mode === 'light' ? 'dark' : 'light'} mode
-                    </Button>
-                </ButtonGroup>
-
-                <HomeTable />
-
-                <Flex h={1500} w={50} align="center">
-                    for testing sticky header
-                </Flex>
             </PageContent>
         </Page>
     );

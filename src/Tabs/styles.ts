@@ -9,6 +9,7 @@ export const tabStyle = ({ color = 'button' }, theme) => ({
         justifyContent: 'center',
         transition: 'all 0.2s',
         color: 'faintText',
+        whiteSpace: 'nowrap',
         _focus: {
             zIndex: '1',
             boxShadow: 'outline',
@@ -134,7 +135,7 @@ export const tabListStyle = ({ align = 'start' }, theme) => ({
         horizontal: {
             alignItems: 'center',
             justifyContent: alignments[align],
-            maxWidth: 'full',
+            minWidth: 'fit-content',
         },
         vertical: {
             flexDirection: 'column',
@@ -142,7 +143,7 @@ export const tabListStyle = ({ align = 'start' }, theme) => ({
     },
     variants: {
         line: {
-            borderBottom: '2px',
+            //
         },
         enclosed: {
             mb: '-1px',

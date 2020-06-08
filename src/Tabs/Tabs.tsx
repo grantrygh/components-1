@@ -77,6 +77,8 @@ const TabList = forwardRef((props: TabListProps, ref) => {
         align,
     });
 
+    const tabListRef: RefObject<HTMLDivElement> = useRef();
+    const tabContainerRef: RefObject<HTMLDivElement> = useRef();
     const allNodes = useRef([]);
 
     const focusableIndexes = Children.map(children, (child, index) => {
@@ -143,6 +145,42 @@ const TabList = forwardRef((props: TabListProps, ref) => {
             onManualTabChange(index);
             onChangeTab(index);
 
+            // smart tab scrolling to center active tab
+            const currentTab = allNodes.current[index].getBoundingClientRect();
+            const tabListProps = tabListRef?.current?.getBoundingClientRect();
+            const containerProps = tabContainerRef?.current;
+            if (containerProps && tabListProps && currentTab) {
+                const tabCenter = currentTab && (currentTab.left + currentTab.right) / 2;
+                const screenCenter =
+                    (containerProps && Number((containerProps.clientWidth + tabListRef?.current?.scrollLeft) / 2)) || 0;
+                const scrolledLeft = containerProps?.scrollLeft || 0;
+
+                // If the selected tab is at the beginning of the list, scroll all the way left
+                if (tabCenter + scrolledLeft < screenCenter) {
+                    containerProps.scrollTo({
+                        left: 0,
+                        behavior: 'smooth',
+                    });
+                }
+
+                // If the selected tab is at the end of the list, scroll all the way right
+                if (tabCenter + scrolledLeft > tabListProps.width - screenCenter) {
+                    containerProps.scrollTo({
+                        left: tabListProps.width - screenCenter,
+                        behavior: 'smooth',
+                    });
+                }
+
+                // if the selected tab is to the right of center, scroll right
+                if (tabListRef && tabListRef.current) {
+                    containerProps.scrollTo({
+                        left: scrolledLeft + (tabCenter - screenCenter),
+                        behavior: 'smooth',
+                    });
+                }
+            }
+            //
+
             if (child.props.onClick) {
                 child.props.onClick(event);
             }
@@ -164,16 +202,18 @@ const TabList = forwardRef((props: TabListProps, ref) => {
     });
 
     return (
-        <Flex
-            onKeyDown={handleKeyDown}
-            ref={ref}
-            role="tablist"
-            aria-orientation={orientation}
-            {...tabListStyleProps}
-            {...rest}
-        >
-            {clones}
-        </Flex>
+        <PseudoBox ref={tabContainerRef} overflowX="auto" _scrollbar={{ display: 'none' }}>
+            <Flex
+                onKeyDown={handleKeyDown}
+                ref={tabListRef}
+                role="tablist"
+                aria-orientation={orientation}
+                {...tabListStyleProps}
+                {...rest}
+            >
+                {clones}
+            </Flex>
+        </PseudoBox>
     );
 });
 

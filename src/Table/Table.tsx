@@ -1,5 +1,5 @@
 import { PseudoBox } from 'PseudoBox';
-import React, { createContext, useContext, useRef } from 'react';
+import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { Box } from '../Box';
 import { TablePagination } from './components/TablePagination';
 import useTableStyle from './styles';
@@ -16,7 +16,12 @@ export const useTableContext = () => {
 
 export const TableProvider = React.forwardRef((props: TableProviderProps, ref) => {
     const tableRef = useRef<HTMLDivElement>(null);
-    const tableWidth = tableRef && tableRef.current?.getBoundingClientRect()?.width;
+    const tableRefWidth = tableRef && tableRef.current?.getBoundingClientRect()?.width;
+    const [tableWidth, setTableWidth] = useState(tableRefWidth);
+
+    useEffect(() => {
+        setTableWidth(tableRefWidth);
+    }, [tableRefWidth]);
 
     return (
         <TableContext.Provider value={{ width: tableWidth }}>

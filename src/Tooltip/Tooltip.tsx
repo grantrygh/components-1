@@ -112,33 +112,31 @@ export const Tooltip = ({
 
     const hasAriaLabel = ariaLabel != null;
 
-    if (!showTooltip) {
-        return children;
-    }
-
     return (
         <React.Fragment>
             {clone}
 
-            <Popper
-                usePortal
-                isOpen={_isOpen}
-                modifiers={{ offset: { enabled: true, offset: `0, 8` } }}
-                anchorEl={referenceRef.current}
-                hasArrow={hasArrow}
-                id={hasAriaLabel ? undefined : tooltipId}
-                role={hasAriaLabel ? undefined : 'tooltip'}
-                {...tooltipStyleProps}
-                {...rest}
-            >
-                {label && <Text>{label}</Text>}
-                {hasAriaLabel && (
-                    <VisuallyHidden role="tooltip" id={tooltipId}>
-                        {ariaLabel}
-                    </VisuallyHidden>
-                )}
-                {hasArrow && <PopperArrow />}
-            </Popper>
+            {showTooltip && (
+                <Popper
+                    usePortal
+                    isOpen={_isOpen}
+                    modifiers={{ offset: { enabled: true, offset: `0, 8` } }}
+                    anchorEl={referenceRef.current}
+                    hasArrow={hasArrow}
+                    id={hasAriaLabel ? undefined : tooltipId}
+                    role={hasAriaLabel ? undefined : 'tooltip'}
+                    {...tooltipStyleProps}
+                    {...rest}
+                >
+                    {label && <Text>{label}</Text>}
+                    {hasAriaLabel && (
+                        <VisuallyHidden role="tooltip" id={tooltipId}>
+                            {ariaLabel}
+                        </VisuallyHidden>
+                    )}
+                    {hasArrow && <PopperArrow />}
+                </Popper>
+            )}
         </React.Fragment>
     );
 };

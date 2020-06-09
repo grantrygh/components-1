@@ -68,7 +68,7 @@ const NavTertiary = () => {
             />
 
             {/* "left" | "right" | "auto-start" | "auto" | "auto-end" | "top-start" | "top" | "top-end" | "right-start" | "right-end" | "bottom-end" | "bottom" | "bottom-start" | "left-end" | "left-start" */}
-            <Menu placement="right">
+            <Menu placement="bottom">
                 <MenuButton as={Button} variant="unstyled" iconOnly>
                     <Avatar size="sm" name="Uchiha Itachi" src="https://bit.ly/uchiha-itachi">
                         <AvatarBadge size="1.25em" />

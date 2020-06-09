@@ -117,7 +117,18 @@ export function CanvasContainer(props) {
     const renderPanel = (panel, i) => {
         if (!panel || !(panel && panel.render)) return null;
 
-        const { name, ref, children, isVisible, type, bg, isOverlay, p = 'canvas.spacing', ...panelProps } = panel;
+        const {
+            name,
+            ref,
+            children,
+            isVisible,
+            type,
+            bg,
+            isOverlay,
+            p = 'canvas.spacing',
+            renderProps,
+            ...panelProps
+        } = panel;
 
         const animateTo = (isVisible && (panelProps.isMinified ? 'minified' : 'visible')) || 'hidden';
         const zIndex = Object.keys(panels).length - i;
@@ -150,6 +161,7 @@ export function CanvasContainer(props) {
                         {panel.render({
                             isMinified: panelProps.isMinified,
                             isVisible,
+                            ...renderProps,
                         })}
                     </Flex>
                 </MotionPanel>
@@ -176,7 +188,7 @@ const renderPanels = ({ panels = [], children = null, windowWidth = 0 }) => {
     return (
         <Flex>
             {panels.map((canvas, i) => {
-                const { name, render, ...rest } = canvas;
+                const { name, render, renderProps, ...rest } = canvas;
 
                 return (
                     <CanvasPanel
@@ -191,6 +203,7 @@ const renderPanels = ({ panels = [], children = null, windowWidth = 0 }) => {
                                 {/* pass props to the component which the panel renders */}
                                 {render({
                                     children: name === 'main' && children,
+                                    renderProps,
                                     ...props,
                                 })}
                             </>

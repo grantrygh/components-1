@@ -1,12 +1,10 @@
 import React from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { CSSReset, Flex, Navigation, ThemeProvider, useTheme } from '../../../../src';
+import { CSSReset, ThemeProvider, useTheme } from '../../../../src';
 import { CanvasWrapper } from '../../../../src/Canvas';
 import { CanvasMenu } from '../../../../src/CanvasMenu';
-import { PageFooter } from '../../../../src/Page';
 import { styleguideTheme } from '../../theme';
 import { GroupSidebar } from '../GroupSidebar';
-import { NavPrimary, NavSecondary, NavTertiary } from '../Header';
 import { NotificationsPanel } from '../NotificationsPanel';
 import { menuItems } from './menu';
 
@@ -24,7 +22,7 @@ export const AppShellBase = props => {
                 allowMinify: [breakpoint.stripped.md, 9999], // --> isMinifiable
                 defaultMinified: [0, 9999], // --> isMinified
             },
-            render: componentProps => <GroupSidebar {...componentProps} />,
+            render: renderProps => <GroupSidebar {...renderProps} />,
             bg: 'primary.500',
             width: 72,
             borderRight: 0,
@@ -39,30 +37,13 @@ export const AppShellBase = props => {
                 allowMinify: [breakpoint.stripped.md, 9999],
                 defaultMinified: [breakpoint.stripped.md, breakpoint.stripped.lg],
             },
-            render: componentProps => <CanvasMenu as="nav" items={menuItems} {...componentProps} />,
+            render: renderProps => <CanvasMenu as="nav" items={menuItems} {...renderProps} />,
             bg: 'canvasBg',
         },
         main: {
             name: 'main', // Main section is always visible, inline, and non-minifiable
-            render: componentProps => {
-                return (
-                    <>
-                        {/* Header */}
-                        <Navigation>
-                            <NavPrimary />
-                            <NavSecondary />
-                            <NavTertiary />
-                        </Navigation>
-
-                        <Flex direction="column" overflowY="auto" h="100%">
-                            {/* Main */}
-                            {componentProps.children}
-
-                            {/* Footer */}
-                            <PageFooter>Footer</PageFooter>
-                        </Flex>
-                    </>
-                );
+            render: renderProps => {
+                return renderProps.children;
             },
             bg: 'pageBg',
         },
@@ -75,7 +56,7 @@ export const AppShellBase = props => {
                 allowMinify: false,
                 defaultMinified: false,
             },
-            render: componentProps => <NotificationsPanel {...componentProps} />,
+            render: renderProps => <NotificationsPanel {...renderProps} />,
             bg: 'navBg',
         },
     };

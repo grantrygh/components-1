@@ -114,7 +114,6 @@ export const Popper = forwardRef(
             const handlePopperUpdate = data => {
                 setPlacement(data.placement);
             };
-
             const popper = new PopperJS(getAnchorEl(anchorEl), popperNode, {
                 placement: rtlPlacement,
                 ...popperOptions,
@@ -193,9 +192,11 @@ export const Popper = forwardRef(
 
         return (
             <Portal isDisabled={!usePortal} container={container}>
-                <PseudoBox ref={handleRef} pos="absolute" {...popperStyleProps} {...rest}>
-                    {typeof children === 'function' ? children(childProps) : children}
-                </PseudoBox>
+                <Box ref={tooltipRef}>
+                    <PseudoBox ref={handleRef} pos="absolute" {...popperStyleProps} {...rest}>
+                        {typeof children === 'function' ? children(childProps) : children}
+                    </PseudoBox>
+                </Box>
             </Portal>
         );
     }

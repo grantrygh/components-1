@@ -6,6 +6,7 @@ export const menuStyle = (props, theme) => ({
         borderWidth: '1px',
         borderColor: 'border',
         bg: 'popoverBg',
+        fontSize: 'body',
         shadow: 'menu',
         py: 2,
         minW: '3xs',

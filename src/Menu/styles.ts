@@ -4,7 +4,8 @@ export const menuStyle = (props, theme) => ({
     style: {
         color: 'inherit',
         borderWidth: '1px',
-        bg: '#fff',
+        borderColor: 'border',
+        bg: 'popoverBg',
         shadow: 'menu',
         py: 2,
         minW: '3xs',
@@ -47,7 +48,7 @@ export const menuItemStyle = (props, theme) => ({
         userSelect: 'none',
         transition: 'background-color 220ms, color 220ms',
         _active: {
-            bg: 'gray.200',
+            bg: 'altBg',
         },
         _focus: {
             bg: 'altBg',

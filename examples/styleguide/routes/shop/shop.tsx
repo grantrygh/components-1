@@ -14,7 +14,6 @@ export function Shop(props) {
 
     useEffect(() => {
         addPanel('filter', () => ({
-            name: 'filter',
             position: 'left',
             ranges: {
                 isOverlay: [0, 1024],

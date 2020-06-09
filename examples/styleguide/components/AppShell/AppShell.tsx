@@ -14,7 +14,6 @@ export const AppShellBase = props => {
 
     const initialCanvasState = {
         overview: {
-            name: 'overview',
             position: 'left',
             ranges: {
                 defaultVisible: [breakpoint.stripped.md, 9999],
@@ -29,7 +28,6 @@ export const AppShellBase = props => {
             p: 4,
         },
         menu: {
-            name: 'menu',
             position: 'left',
             ranges: {
                 defaultVisible: [breakpoint.stripped.md, 9999],
@@ -41,14 +39,13 @@ export const AppShellBase = props => {
             bg: 'canvasBg',
         },
         main: {
-            name: 'main', // Main section is always visible, inline, and non-minifiable
+            // Main section is always visible, inline, and non-minifiable
             render: renderProps => {
                 return renderProps.children;
             },
             bg: 'pageBg',
         },
-        notification: {
-            name: 'notifications',
+        notifications: {
             position: 'right',
             ranges: {
                 defaultVisible: false,

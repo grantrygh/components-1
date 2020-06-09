@@ -21,7 +21,7 @@ const MotionPanel = motion.custom(Box);
 
 const getPanels = panels => {
     const panelList = Object.keys(panels)
-        .map(panelKey => panels[panelKey])
+        .map(panelKey => ({ ...panels[panelKey], name: panelKey }))
         .filter(p => p);
     const leftPanels = panelList.filter(panel => panel.position === 'left');
     const rightPanels = panelList.filter(panel => panel.position === 'right');
@@ -145,18 +145,13 @@ export function CanvasContainer(props) {
             }),
         };
 
-        /** TODO: We're going to want to rework canvas visibility and zIndex layering a bit based on whether the canvas was opened by default, or manually
-         * If opened manually, the canvas should be opened as an overlay when scaling down width to within the isOverlay range
-         * If canvas was opened by default, likely do not show the overlay as opened upon scaling
-         * This avoids having possible multiple canvas open ( and needing to be closed ) on mobile
-         * Also limit to 1 canvas open.
-         * There also needs to be some tracker on currently open canvases. For example, if notifications canvas is open and viewport scales down, then
-         * the notifications overlay should be open on mobile, and not the filter ovleray that was previously expanded inline.
-         * */
-
         return (
-            <Flex zIndex={(isVisible && isOverlay ? zIndices.panel : 1) + zIndex} flexGrow={name === 'main' && 1}>
-                <MotionPanel key={panel.name} initial={animateTo} animate={animateTo} {...panelStyleProps}>
+            <Flex
+                zIndex={(isVisible && isOverlay ? zIndices.panel : 1) + zIndex}
+                flexGrow={name === 'main' && 1}
+                key={name}
+            >
+                <MotionPanel key={`motion-${panel.name}`} initial={animateTo} animate={animateTo} {...panelStyleProps}>
                     <Flex ref={ref} direction="column" height="100%" p={name !== 'main' && p} {...panelProps}>
                         {panel.render({
                             isMinified: panelProps.isMinified,
@@ -271,8 +266,7 @@ export function CanvasPanel({ name, children, type = 'inline', ranges, windowWid
     }
 
     useEffect(() => {
-        // Set the canvas panel's default vales
-
+        // Set the canvas panel's default values
         addPanel(name, () => ({
             name,
             ref,

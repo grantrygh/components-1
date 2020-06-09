@@ -225,6 +225,10 @@ export const CanvasWrapper = (props: CanvasWrapperProps) => {
                 {({ panels }) => {
                     const canvasPanels = Object.keys(panels).length > 0 && panels;
 
+                    if (!canvasPanels) {
+                        return children;
+                    }
+
                     const { leftPanels, rightPanels, mainPanel } = getPanels(canvasPanels);
 
                     return (

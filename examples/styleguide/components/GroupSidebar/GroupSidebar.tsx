@@ -65,7 +65,11 @@ export const GroupSidebar = props => {
         <Stack spacing={4}>
             {iconList.map(icon => {
                 // const Media = getGroupIcon(icon.id)
-                return <PseudoBox {...boxProps}>{getGroupIcon(icon.id)}</PseudoBox>;
+                return (
+                    <PseudoBox {...boxProps} key={icon.id}>
+                        {getGroupIcon(icon.id)}
+                    </PseudoBox>
+                );
             })}
         </Stack>
     );

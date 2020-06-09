@@ -22,7 +22,7 @@ export function CanvasMenu(props: CanvasMenuProps) {
         const showFullItem = !isMinified && isVisible;
 
         return (
-            <Navigation.Item href={href} exact={!isAccordion} {...rest}>
+            <Navigation.Item href={href} exact={!isAccordion} key={label + href} {...rest}>
                 <Tooltip label={label} placement="right" closeOnClick showTooltip={isMinified}>
                     <Navigation.ItemMedia icon={icon} mr={!isMinified && 4} unstyled={unstyled}>
                         {media}
@@ -36,7 +36,7 @@ export function CanvasMenu(props: CanvasMenuProps) {
 
     const renderAccordion = accProps => {
         return (
-            <Navigation.Item>
+            <Navigation.Item key={accProps.children}>
                 <Accordion allowToggle>
                     <AccordionItem>
                         <AccordionHeader py={0} borderBottomWidth={0}>

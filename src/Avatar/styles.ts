@@ -29,7 +29,7 @@ export const avatarSizes = {
     full: 'full',
 };
 
-export const avatarStyle: componentStyleDef<AvatarProps> = ({ size, showBorder }, theme) => ({
+export const avatarStyle: componentStyleDef<AvatarProps> = ({ size, showBorder, name }, theme) => ({
     style: {
         display: 'inline-flex',
         verticalAlign: 'top',

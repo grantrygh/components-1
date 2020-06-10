@@ -17,15 +17,12 @@ export interface IThemeProvider {
 const BaseThemeProvider = ({ theme: providedTheme, children }: IThemeProvider) => {
     const colorMode = useColorMode();
 
-    console.log('base theme', providedTheme);
-
     // needs more work still to override existing styles, but still allow dependencies.
     // i.e, "button" color prop depends on primary, so passing a different primary color should change all props dependent on primary
     const emotionTheme = baseTheme({
         providedTheme,
         mode: colorMode?.mode,
     });
-    console.log('passed', emotionTheme);
     return <EmotionThemeProvider theme={emotionTheme as ThemeType}>{children}</EmotionThemeProvider>;
 };
 

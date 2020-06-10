@@ -370,6 +370,4 @@ const colors = (providedTheme, mode) => {
     };
 };
 
-console.log(states.success);
-
 export default colors;

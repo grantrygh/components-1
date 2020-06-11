@@ -106,6 +106,7 @@ export const buttonStyle = ({ color = 'button', variant }, theme) => ({
     iconOnly: {
         borderRadius: 'full',
         px: 0,
+        color: 'faintText',
     },
 });
 

@@ -12,7 +12,8 @@ export const navigationStyle: componentStyleDef<NavigationProps & NavigationItem
         boxShadow: 'topNav',
         minHeight: 16,
         height: 16,
-        px: 'spacing',
+        width: '100%',
+        px: ['spacing', 'spacing', 'spacing-lg'],
     };
 
     if (isSticky) {

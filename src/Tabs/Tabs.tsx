@@ -358,7 +358,7 @@ const Tabs = forwardRef(
 
         return (
             <TabContext.Provider value={context}>
-                <Box ref={ref} {...props}>
+                <Box ref={ref} w="100%" {...props}>
                     {children}
                 </Box>
             </TabContext.Provider>

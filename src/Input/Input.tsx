@@ -10,7 +10,7 @@ import { InputProps } from './types';
 export const Input = forwardRef((props: InputProps, ref) => {
     const {
         size = 'md',
-        variant = 'outline',
+        variant = 'filled',
         as = 'input',
         'aria-label': ariaLabel,
         'aria-describedby': ariaDescribedby,

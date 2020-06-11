@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import React, { createContext, createRef, useContext, useEffect, useState } from 'react';
 import { Box, useTheme } from '..';
 import { Flex } from '../Flex';
+import { useRouter } from '../hooks/useRouter';
 import { useWindowResize } from '../hooks/useWindowResize';
 import { ModalOverlay } from '../Modal';
 import useCanvasStyle from './styles';
@@ -250,6 +251,7 @@ export const CanvasWrapper = (props: CanvasWrapperProps) => {
 
 export function CanvasPanel({ name, children, type = 'inline', ranges, windowWidth, ...rest }) {
     const { addPanel, removePanel, updatePanel } = useCanvasContext();
+    const { location } = useRouter();
     const ref = createRef();
 
     const currentWindowWidth = Math.max(1, windowWidth);
@@ -297,6 +299,15 @@ export function CanvasPanel({ name, children, type = 'inline', ranges, windowWid
     useEffect(() => {
         updatePanel(name, { isOverlay });
     }, [isOverlay]);
+
+    useEffect(() => {
+        // when a link is clicked and route changes, close overlay canvases
+        if (isOverlay) {
+            updatePanel(name, {
+                isVisible: false,
+            });
+        }
+    }, [location.pathname]);
 
     return null;
 }

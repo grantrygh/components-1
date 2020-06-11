@@ -71,8 +71,10 @@ export function CanvasMenu(props: CanvasMenuProps) {
                     {items.header.map(item =>
                         renderNavItem({
                             ...item,
-                            align: 'start',
+                            align: 'center',
                             unstyled: true,
+                            minH: null,
+                            pb: 'spacing',
                         })
                     )}
                 </Box>
@@ -84,6 +86,11 @@ export function CanvasMenu(props: CanvasMenuProps) {
                 {/* Main navigation links (if any) */}
                 {items?.content?.length > 0 &&
                     items.content.map(item => {
+                        // allows for passing and rendering components, rather than menu item objects
+                        if (!item || (!item?.label && !item?.media && !item?.icon)) {
+                            return item;
+                        }
+
                         if (item.isAccordion) {
                             return renderAccordion(item);
                         }

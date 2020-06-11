@@ -22,6 +22,24 @@ export const addBlack = (color, opacity) =>
 
 export const isDarkColor = color => Color(color).isDark();
 
+export const intensify = (color, factor = 0.2, mode = 'light') => {
+    const p = Color(color);
+
+    if (mode === 'light') {
+        return p.darken(factor);
+    }
+    return p.lighten(factor);
+};
+
+export const diminish = (color, factor = 0.2, mode = 'light') => {
+    const p = Color(color);
+
+    if (mode === 'light') {
+        return p.lighten(factor);
+    }
+    return p.darken(factor);
+};
+
 export const generateAlphaColors = color => ({
     900: addOpacity(color, 0.92),
     800: addOpacity(color, 0.8),

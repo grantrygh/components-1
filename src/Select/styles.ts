@@ -10,7 +10,7 @@ export const selectStyle = ({ size, border }, { colors, sizes }) => ({
         container: (provided, props) => ({
             ...provided,
             width: '100%',
-            minWidth: '6rem',
+            minWidth: '10rem',
         }),
         control: (provided, { isFocused }) => {
             const stateColor = colors.primary[500];
@@ -92,7 +92,7 @@ export const selectStyle = ({ size, border }, { colors, sizes }) => ({
         }),
         valueContainer: (provided, props) => ({
             ...provided,
-            padding: '1px 8px',
+            padding: border === 'underline' ? '1px 0' : '1px 8px',
         }),
     },
     theme: {
@@ -108,10 +108,10 @@ export const selectStyle = ({ size, border }, { colors, sizes }) => ({
             neutral20: colors.neutral[5], // border and dropdown indicator
             neutral30: colors.neutral[6],
             neutral40: colors.neutral[7],
-            neutral50: colors.neutral[8],
+            neutral50: colors.faintText,
             neutral60: colors.neutral[9],
             neutral70: colors.neutral[10],
-            neutral80: colors.neutral[11],
+            neutral80: colors.bodyText,
             neutral90: colors.neutral[12],
             primary: colors.primary[500],
             primary25: colors.selectControlHover,

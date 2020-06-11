@@ -5,5 +5,3 @@ import { IModal } from '../Modal/types';
 export interface IAlertDialog extends Omit<IModal, 'initialFocusRef'> {
     leastDestructiveRef: React.RefObject<HTMLElement>;
 }
-
-export type AlertDialogProps = IAlertDialog;

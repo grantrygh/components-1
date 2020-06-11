@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 import { forwardRef } from 'react';
 import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '../Modal';
 import { ModalContentProps } from '../Modal/types';
-import { AlertDialogProps } from './types';
+import { IAlertDialog } from './types';
 
 const formatIds = id => ({
     content: `alert-dialog-${id}`,
@@ -11,7 +11,7 @@ const formatIds = id => ({
     body: `alert-dialog-${id}-desc`,
 });
 
-const AlertDialog = ({ leastDestructiveRef, children, ...props }: AlertDialogProps) => (
+const AlertDialog = ({ leastDestructiveRef, children, ...props }: IAlertDialog) => (
     <Modal formatIds={formatIds} initialFocusRef={leastDestructiveRef} {...props}>
         {children}
     </Modal>

@@ -27,8 +27,8 @@ const BaseThemeProvider = ({ theme: providedTheme, children }: IThemeProvider) =
 };
 
 export const ThemeProvider = ({ theme: providedTheme, children, defaultMode }: IThemeProvider) => {
-    const mode = (defaultMode ||
-        (__BROWSER__ && localStorage?.getItem('themeMode')) ||
+    const mode = ((__BROWSER__ && localStorage?.getItem('themeMode')) ||
+        defaultMode ||
         'light') as IColorModeProvider['defaultMode'];
     return (
         <ColorModeProvider defaultMode={mode}>

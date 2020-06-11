@@ -178,6 +178,7 @@ interface Spacing {
     'spacing-xs': string;
     'spacing-sm': string;
     spacing: string;
+    'spacing-lg': string;
 }
 
 interface Input {

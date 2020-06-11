@@ -10,7 +10,7 @@ const space = {
     canvas: sizes.canvas,
 };
 
-const shadows = mode => {
+const shadows = (providedTheme, mode) => {
     const modes = {
         light: {
             topNav: '0 2px 8px 0 rgba(38,38,38,0.08)',
@@ -45,6 +45,8 @@ const shadows = mode => {
         none: 'none',
         // design elevations
         ...modes[mode],
+
+        ...((providedTheme?.shadows && providedTheme.shadows[mode]) || {}),
     };
 };
 
@@ -122,7 +124,7 @@ const borders = {
 
 export const baseTheme = ({ providedTheme = {}, mode = 'light' }) => {
     const colorScheme = colors(providedTheme, mode);
-    const shadowScheme = shadows(mode);
+    const shadowScheme = shadows(providedTheme, mode);
 
     return {
         breakpoints: breakpoints['basis'], // emotion theme needs to be passed an string array of breakpoints

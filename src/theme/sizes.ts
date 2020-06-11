@@ -47,6 +47,7 @@ const spacing = {
     'spacing-xs': baseSizes[1],
     'spacing-sm': baseSizes[2],
     spacing: baseSizes[4],
+    'spacing-lg': baseSizes[6],
 };
 
 const input = {

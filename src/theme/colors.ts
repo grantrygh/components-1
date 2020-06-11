@@ -253,8 +253,8 @@ const colors = (providedTheme, mode) => {
             tooltip: neutral[9],
             selectControlHover: neutral[9],
 
-            inputHover: neutral[3],
-            inputBg: neutral[2],
+            inputHover: neutral[8],
+            inputBg: neutral[9],
         },
     };
 

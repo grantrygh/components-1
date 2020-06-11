@@ -6,7 +6,7 @@ import { Header } from '../Header';
 // Defined at project level to fully support custom page layouts
 
 const contentStyle = {
-    p: 'spacing',
+    p: ['spacing', 'spacing', 'spacing-lg'],
     flex: 1,
     bg: 'pageBg',
 };

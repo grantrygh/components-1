@@ -23,8 +23,8 @@ export const Grid = forwardRef(
             <FullGrid
                 ref={ref}
                 gap={spacing}
-                columnGap={spacingX}
-                rowGap={spacingY}
+                columnGap={spacing || spacingX}
+                rowGap={spacing || spacingY}
                 templateColumns={templateColumns}
                 {...props}
             />

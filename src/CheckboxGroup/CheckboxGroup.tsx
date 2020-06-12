@@ -55,7 +55,7 @@ export const CheckboxGroup = ({
         }
 
         const isLastCheckbox = children.length === index + 1;
-        const spacingProps = isInline ? { mr: 'input.spacing.sm' } : { mb: 'input.spacing.sm' };
+        const spacingProps = isInline ? { mr: 'spacing-xs' } : { mb: 'spacing-xs' };
 
         const defCheckboxName = `${_name}-${index}`;
 
@@ -79,7 +79,7 @@ export const CheckboxGroup = ({
         );
     });
 
-    const spacingProps = isInline ? { mr: 'input.spacing.lg' } : { mb: 'input.spacing.lg' };
+    const spacingProps = isInline ? { mr: 'spacing' } : { mb: 'spacing' };
 
     return (
         <FormControlWrapper id={firstChildName} {...spacingProps} {...rest}>

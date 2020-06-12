@@ -26,16 +26,9 @@ export const FormLabel = forwardRef(({ children, ...props }: FormLabelProps, ref
     const { root: formLabelStyleProps } = useFormLabelStyle({
         isDisabled: formControl.isDisabled,
     });
+
     return (
-        <Text
-            ref={ref}
-            kind="small"
-            verticalAlign="middle"
-            display="inline-block"
-            as="label"
-            {...formLabelStyleProps}
-            {...props}
-        >
+        <Text ref={ref} as="label" {...formLabelStyleProps} {...props}>
             {children}
             {formControl.isRequired && <RequiredIndicator />}
         </Text>

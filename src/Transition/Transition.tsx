@@ -52,7 +52,7 @@ export const Slide = ({ in: inProp, children, duration, from, finalHeight, final
     );
 };
 
-export const Scale = ({ in: inProp, initialScale, duration, children, ...rest }: ScaleProps) => {
+export const Scale = ({ in: inProp, initialScale, duration, children, ...rest }: ScaleProps): any => {
     const { scale } = useTransitionStyle({});
     const scaleInitialScale = initialScale || scale.initialScale;
     const scaleDuration = duration || scale.duration;

@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { useId } from '@reach/auto-id';
+import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
 import { Children, cloneElement, createContext, forwardRef, isValidElement, useContext, useRef, useState } from 'react';
 import { Box } from '../Box';
 import { Collapse } from '../Collapse';
 import { CollapseProps } from '../Collapse/types';
-import { Icon } from '../Icon';
 import { IconProps } from '../Icon/types';
 import { PseudoBox } from '../PseudoBox';
 import useAccordionStyle from './styles';
@@ -207,7 +207,11 @@ const AccordionIcon = (props: IconProps) => {
         isDisabled,
         isExpanded,
     });
-    return <Icon aria-hidden focusable={false} {...accordionIconStyleProps} {...props} />;
+    return (
+        <Box {...accordionIconStyleProps} {...props}>
+            <ChevronDownIcon />
+        </Box>
+    );
 };
 
 export { Accordion, AccordionItem, AccordionIcon, AccordionHeader, AccordionPanel };

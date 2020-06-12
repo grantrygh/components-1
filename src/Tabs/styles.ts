@@ -1,13 +1,15 @@
 /** @jsx jsx */
 import { useTheme } from '../ThemeProvider';
 
-export const tabStyle = ({ color = 'primary' }, theme) => ({
+export const tabStyle = ({ color = 'button' }, theme) => ({
     style: {
         display: 'flex',
         cursor: 'pointer',
         alignItems: 'center',
         justifyContent: 'center',
         transition: 'all 0.2s',
+        color: 'faintText',
+        whiteSpace: 'nowrap',
         _focus: {
             zIndex: '1',
             boxShadow: 'outline',
@@ -34,7 +36,7 @@ export const tabStyle = ({ color = 'primary' }, theme) => ({
             padding: '0.5rem 1rem',
         },
         lg: {
-            padding: '0.75rem 1rem',
+            padding: '0.75rem 1.25rem',
         },
     },
     variants: {
@@ -42,14 +44,13 @@ export const tabStyle = ({ color = 'primary' }, theme) => ({
             borderBottom: '2px',
             borderColor: 'transparent',
             borderRadius: 0,
-            mb: '-2px',
             _selected: {
-                // const _color = { light: `${color}.600`, dark: `${color}.300` };
-                color: `${color}.600`,
-                borderColor: 'currentColor',
-            },
-            _active: {
-                bg: 'gray.200',
+                color: 'titleText',
+                borderColor: `${color}.500`,
+                boxShadow: 'none',
+                svg: {
+                    color: `${color}.500`,
+                },
             },
             _disabled: {
                 opacity: 0.4,
@@ -62,27 +63,22 @@ export const tabStyle = ({ color = 'primary' }, theme) => ({
             borderColor: 'transparent',
             mb: '-1px',
             _selected: {
-                // { light: `${color}.600`, dark: `${color}.300` };
-                color: `${color}.600`,
+                color: `${color}.500`,
                 borderColor: 'inherit',
-                // { light: '#fff', dark: theme.colors.gray[800] };
-                borderBottomColor: 'white',
+                borderBottomColor: 'transparent',
             },
         },
         'enclosed-colored': {
             border: '1px',
             borderColor: 'inherit',
-            //  { light: 'gray.50', dark: 'whiteAlpha.50' };
             bg: 'gray.50',
             mb: '-1px',
             _notLast: {
                 mr: '-1px',
             },
             _selected: {
-                //  { light: `#fff`, dark: `gray.800` };
                 bg: 'white',
-                // { light: `${color}.600`, dark: `${color}.300` };
-                color: `${color}.600`,
+                color: `${color}.500`,
                 borderColor: 'inherit',
                 borderTopColor: 'currentColor',
                 borderBottomColor: 'transparent',
@@ -91,7 +87,7 @@ export const tabStyle = ({ color = 'primary' }, theme) => ({
         'soft-rounded': {
             rounded: 'full',
             fontWeight: 'semibold',
-            color: 'gray.600',
+            color: 'gray.500',
             _selected: {
                 color: `${color}.700`,
                 bg: `${color}.100`,
@@ -100,13 +96,10 @@ export const tabStyle = ({ color = 'primary' }, theme) => ({
         'solid-rounded': {
             rounded: 'full',
             fontWeight: 'semibold',
-            // { light: 'gray.600', dark: 'inherit' };
-            color: 'gray.600',
+            color: 'gray.500',
             _selected: {
-                // { light: `#fff`, dark: `gray.800` };
                 color: 'white',
-                // { light: `${color}.600`, dark: `${color}.300` };
-                bg: `${color}.600`,
+                bg: `${color}.500`,
             },
         },
         unstyled: {
@@ -135,12 +128,14 @@ const alignments = {
 };
 
 export const tabListStyle = ({ align = 'start' }, theme) => ({
-    style: {},
+    style: {
+        borderColor: 'transparent',
+    },
     orientation: {
         horizontal: {
             alignItems: 'center',
             justifyContent: alignments[align],
-            maxWidth: 'full',
+            minWidth: 'fit-content',
         },
         vertical: {
             flexDirection: 'column',
@@ -148,18 +143,15 @@ export const tabListStyle = ({ align = 'start' }, theme) => ({
     },
     variants: {
         line: {
-            borderBottom: '2px',
-            borderColor: 'inherit',
+            //
         },
         enclosed: {
             mb: '-1px',
             borderBottom: '1px',
-            borderColor: 'inherit',
         },
         'enclosed-colored': {
             mb: '-1px',
             borderBottom: '1px',
-            borderColor: 'inherit',
         },
         'soft-rounded': {
             // unstyled
@@ -178,9 +170,9 @@ export const useTabListStyle = props => {
     const styles = theme['styles'].tabList ? theme['styles'].tabList(props, theme) : tabListStyle(props, theme);
 
     return {
-        ...styles.style,
         ...styles.orientation[props.orientation],
         ...styles.variants[props.variant],
+        ...styles.style,
     };
 };
 

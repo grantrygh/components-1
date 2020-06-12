@@ -88,4 +88,4 @@ module.exports = {
             presets: server_presets(),
         },
     },
-}
+};

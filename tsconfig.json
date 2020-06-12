@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "lib": ["es2015", "es2017", "dom"],
+        "moduleResolution": "node",
+        "jsx": "preserve",
+        "baseUrl": "src",
+        "rootDir": "src",
+        "outDir": ".",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "sourceMap": true,
+        "noUnusedLocals": true,
+        "allowSyntheticDefaultImports": true,
+        "noErrorTruncation": false,
+        "skipLibCheck": true,
+        "paths": {
+            "*": ["*", "src/*"]
+        }
+        // "esModuleInterop": true
+    },
+    "typeAcquisition": {
+        "enable": true
+    },
+    "include": ["src"],
+    "exclude": ["node_modules", "src/**/*.test.tsx"]
+}

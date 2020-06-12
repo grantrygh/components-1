@@ -1,3 +1,4 @@
+import { SelectComponentsProps } from 'react-select/src/Select';
 import { IInput } from '../Input/types';
 
 // see https://react-select.com/props for full props list
@@ -56,6 +57,8 @@ export interface ISelect {
     isLoading?: boolean;
 
     label?: React.ReactNode;
+
+    border?: 'full' | 'underline' | 'unstyled';
 }
 
-export type SelectProps = ISelect;
+export type SelectProps = ISelect & SelectComponentsProps;

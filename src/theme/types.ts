@@ -1,4 +1,4 @@
-// import * as StyledSystem from "styled-system";
+/* eslint-disable max-lines */
 import * as SS from 'styled-system';
 import { Omit } from '../common-types';
 
@@ -32,7 +32,14 @@ export interface ColorHues {
     900: string;
 }
 
-type Breakpoints = string[] | { sm: string; md: string; lg: string; xl: string };
+type Breakpoints = {
+    basis: string[];
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
+    stripped: { sm: number; md: number; lg: number; xl: number };
+};
 
 type StringOrNumber = string | number;
 interface ZIndices {
@@ -43,6 +50,7 @@ interface ZIndices {
     dropdown: number;
     sticky: number;
     banner: number;
+    panel: number;
     overlay: number;
     modal: number;
     popover: number;
@@ -67,7 +75,7 @@ interface Borders {
     '4px': StringOrNumber;
 }
 
-interface Colors {
+export interface Colors {
     transparent: string;
     current: string;
     // brand
@@ -79,6 +87,7 @@ interface Colors {
     warning: ColorHues;
     error: ColorHues;
     // neutral scale colors
+    neutral: ColorHues;
     black: string;
     titleText: string;
     bodyText: string;
@@ -92,7 +101,6 @@ interface Colors {
     canvasBg: string;
     pageBg: string;
     tooltip: string;
-    overlayBg: string;
     cardBg: string;
     popoverBg: string;
     progress: string;
@@ -166,16 +174,41 @@ interface Containers {
     xl: string;
 }
 
+interface Spacing {
+    'spacing-xs': string;
+    'spacing-sm': string;
+    spacing: string;
+    'spacing-lg': string;
+}
+
+interface Input {
+    // Heights
+    lg: string;
+    md: string;
+    sm: string;
+
+    // Widths
+    width: string;
+}
+
+interface Canvas {
+    width: string;
+    spacing: string;
+}
+
 type Sizes = BaseSizes &
     LargeSizes & {
         containers: Containers;
+        spacing: Spacing;
+        input: Input;
+        canvas: Canvas;
     };
+
 interface Inputs {
     sm: string;
     md: string;
     lg: string;
     width: string;
-    spacing: string;
 }
 
 type Space = BaseSizes & {
@@ -220,9 +253,9 @@ interface Fonts {
 }
 
 interface FontSizes {
-    xs: string;
-    sm: string;
-    md: string;
+    smallBody: string;
+    body: string;
+    largeBody: string;
     lg: string;
     xl: string;
     '2xl': string;
@@ -250,7 +283,8 @@ interface Opacity {
 }
 
 export interface DefaultTheme extends Typography {
-    breakpoints: Breakpoints;
+    breakpoints: Breakpoints['basis'];
+    breakpoint: Breakpoints;
     zIndices: ZIndices;
     radii: Radii;
     opacity: Opacity;

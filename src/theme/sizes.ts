@@ -44,8 +44,10 @@ const containers = {
 };
 
 const spacing = {
+    'spacing-xs': baseSizes[1],
     'spacing-sm': baseSizes[2],
     spacing: baseSizes[4],
+    'spacing-lg': baseSizes[6],
 };
 
 const input = {
@@ -56,17 +58,11 @@ const input = {
 
     // Widths
     width: baseSizes[40],
-    spacing: {
-        sm: baseSizes[1], // spacing within input group (radio options, checkboxes)
-        lg: baseSizes[4], // spacing between input groups (vertically, horizontally)
-    },
 };
 
 const canvas = {
     width: '300px',
     spacing: baseSizes[5],
-
-    breakpoint: 1024, // width at which inline canvases become overlays, and main page content takes full viewport width
 };
 
 const sizes = {

@@ -10,8 +10,12 @@ export const accordionStyle = ({ isDisabled, isExpanded }, theme) => ({
     header: {
         display: 'flex',
         alignItems: 'center',
+        position: 'relative',
         width: '100%',
+        py: 'spacing',
         transition: 'all 0.2s',
+        borderBottom: '1px',
+        borderColor: 'border',
         _focus: { boxShadow: 'outline' },
         // _hover: { bg: 'blackAlpha.50' },
         _disabled: { opacity: '0.4', cursor: 'not-allowed' },
@@ -19,13 +23,11 @@ export const accordionStyle = ({ isDisabled, isExpanded }, theme) => ({
         flex: 1,
     },
     panel: {
-        //
+        p: 'spacing',
     },
     icon: {
         position: 'absolute',
         right: 0,
-        size: 5,
-        name: 'chevron-down',
         opacity: isDisabled ? 0.4 : 1,
         transform: isExpanded ? 'rotate(-180deg)' : null,
         transition: 'transform 0.2s',

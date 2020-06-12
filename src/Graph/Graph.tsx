@@ -13,7 +13,6 @@ import {
 } from 'recharts';
 import { Box } from '../Box';
 import { Heading } from '../Heading';
-import { useWindowResize } from '../hooks/useWindowResize';
 import { Text } from '../Text';
 import useGraphStyle from './styles';
 import { AreaGraphProps, BarGraphProps } from './types';
@@ -68,7 +67,6 @@ export const BarGraph = ({ data, items = [], height = 300, ...props }: BarGraphP
 };
 
 export const AreaGraph = ({ data, items = [], height = 300, ...props }: AreaGraphProps) => {
-    const { windowWidth } = useWindowResize();
     const {
         root: rootStyleProps,
         graph: graphStyle,

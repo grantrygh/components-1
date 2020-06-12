@@ -14,6 +14,7 @@ export interface ILink {
      * Action to perform when clicked
      */
     onClick?: React.MouseEventHandler<HTMLAnchorElement>;
+    variant?: string;
 }
 
 export type LinkProps = ILink & PseudoBoxProps & React.HTMLProps<HTMLAnchorElement>;

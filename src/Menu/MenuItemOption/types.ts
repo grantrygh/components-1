@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { TLengthStyledSystem } from 'styled-system';
 import { PseudoBoxProps } from '../../PseudoBox/types';
 import { MenuGroupProps } from '../types';
 
@@ -9,7 +10,7 @@ interface IMenuOptionGroup {
     type?: 'radio' | 'checkbox';
     name?: string;
     title?: string;
-    value?: stringOrNumber;
+    value?: string | number | (string[] & TLengthStyledSystem[]);
     defaultValue?: stringOrNumber;
     onChange?: (value: stringOrNumber) => void;
 }

@@ -7,9 +7,7 @@ export const HeaderStyle = (props, theme) => ({
     kinds: {
         primary: {
             icon: {
-                mr: 'spacing',
                 color: 'faintText',
-                cursor: 'pointer',
             },
         },
         secondary: {
@@ -26,7 +24,7 @@ export const HeaderStyle = (props, theme) => ({
         },
         tertiary: {
             icon: {
-                mr: 'spacing',
+                mr: 'spacing-sm',
                 color: 'faintText',
                 cursor: 'pointer',
             },

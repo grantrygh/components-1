@@ -1,7 +1,7 @@
 import { addBlack, addOpacity, addWhite } from '../theme/colors-utils';
 import { useTheme } from '../ThemeProvider';
 
-export const buttonStyle = ({ color = 'button' }, theme) => ({
+export const buttonStyle = ({ color = 'button', variant }, theme) => ({
     style: {
         px: 6,
         borderRadius: 'radius',
@@ -32,11 +32,11 @@ export const buttonStyle = ({ color = 'button' }, theme) => ({
             bg: `${color}.500`,
             boxShadow: 'button',
             _hover: {
-                bg: addWhite(theme.colors[color][500], 0.12),
+                bg: theme.colors[color] && addWhite(theme.colors[color][500], 0.12),
                 boxShadow: 'raised',
             },
             _active: {
-                bg: addBlack(theme.colors[color][500], 0.12),
+                bg: theme.colors[color] && addBlack(theme.colors[color][500], 0.12),
                 boxShadow: 'pressed',
                 dataActive: 'true',
             },
@@ -59,16 +59,17 @@ export const buttonStyle = ({ color = 'button' }, theme) => ({
             bg: 'tertiaryButton',
             borderColor: `${color}.500`,
             _hover: {
-                bg: addOpacity(theme.colors[color][500], 0.06),
+                bg: theme.colors[color] && addOpacity(theme.colors[color][500], 0.06),
             },
             _active: {
-                bg: addOpacity(theme.colors[color][500], 0.12),
+                bg: theme.colors[color] && addOpacity(theme.colors[color][500], 0.12),
                 dataActive: 'true',
             },
         },
         unstyled: {
             color: `${color}.500`,
             bg: 'transparent',
+            px: 0,
             _active: {
                 bg: 'border',
                 dataActive: 'true',
@@ -94,7 +95,7 @@ export const buttonStyle = ({ color = 'button' }, theme) => ({
             opacity: '40%',
             cursor: 'not-allowed',
             boxShadow: 'none',
-            bg: 'disabled',
+            bg: variant === 'unstyled' ? 'transparent' : 'disabled',
             color: 'bodyText',
             border: 0,
         },
@@ -105,6 +106,7 @@ export const buttonStyle = ({ color = 'button' }, theme) => ({
     iconOnly: {
         borderRadius: 'full',
         px: 0,
+        color: 'faintText',
     },
 });
 

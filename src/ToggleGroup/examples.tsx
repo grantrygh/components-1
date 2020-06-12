@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { ToggleButton, ToggleGroup } from '.';
 import { Box } from '..';
 
-const stories = storiesOf('Toggle Button Group', module);
+const stories = storiesOf('ToggleButtonGroup', module);
 
 stories.addDecorator(story => (
     <Box maxWidth="lg" mt="40px" mx="auto">

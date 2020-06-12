@@ -1,18 +1,19 @@
 import { BoxProps } from '../Box/types';
 import { componentStyleDef } from '../theme/types';
 import { useTheme } from '../ThemeProvider';
-import { NavigationItemProps, NavigationProps } from './types';
+import { INavItemMedia, NavigationItemProps, NavigationProps } from './types';
 
-export const navigationStyles: componentStyleDef<NavigationProps & NavigationItemProps> = (
-    { isSticky = true, isActive, isSubmenuItem },
-    { zIndices, sizes }
+export const navigationStyle: componentStyleDef<NavigationProps & NavigationItemProps & INavItemMedia> = (
+    { isSticky = true, isActive, isSubmenuItem, clickable, unstyled },
+    { zIndices, sizes, colors }
 ) => {
     const style: BoxProps = {
         bg: 'navBg',
         boxShadow: 'topNav',
         minHeight: 16,
         height: 16,
-        px: 'spacing',
+        width: '100%',
+        px: ['spacing', 'spacing', 'spacing-lg'],
     };
 
     if (isSticky) {
@@ -32,6 +33,7 @@ export const navigationStyles: componentStyleDef<NavigationProps & NavigationIte
             position: 'relative',
             color: isActive && 'activeLink',
             fontWeight: isActive && !isSubmenuItem && 'bold',
+            cursor: clickable && 'pointer',
         },
         activeBar: {
             position: 'absolute',
@@ -44,16 +46,23 @@ export const navigationStyles: componentStyleDef<NavigationProps & NavigationIte
             backgroundColor: 'primary.500',
             left: `-${sizes.canvas.spacing}`,
         },
+        navItemMedia: {
+            _even: !unstyled && { path: { fill: isActive ? colors.primary[500] : colors.bodyText } },
+            _odd: !unstyled && { path: { fill: isActive ? colors.primary[500] : colors.bodyText } },
+        },
     };
 };
 
 export default function useNavigationStyle(props) {
     const theme = useTheme();
-    const styles = theme.navigation ? theme.navigation(props, theme) : navigationStyles(props, theme);
+    const styles = theme['styles'].navigation
+        ? theme['styles'].navigation(props, theme)
+        : navigationStyle(props, theme);
 
     return {
         root: styles.style,
         navItem: styles.navItem,
         activeBar: styles.activeBar,
+        navItemMedia: styles.navItemMedia,
     };
 }

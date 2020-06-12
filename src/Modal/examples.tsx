@@ -71,7 +71,7 @@ stories.add('with slide transition', () => {
                 </Button>
                 <SlideIn offset="10px" in={isOpen}>
                     {styles => (
-                        <Modal isOpen={true} onClose={() => setIsOpen(false)} finalFocusRef={btnRef}>
+                        <Modal isOpen onClose={() => setIsOpen(false)} finalFocusRef={btnRef}>
                             <ModalOverlay opacity={styles.opacity} />
                             <ModalContent {...styles} pb={5}>
                                 <ModalHeader>Login now</ModalHeader>
@@ -102,12 +102,7 @@ stories.add('with preserve scrollbar', () => {
                 <Lorem count={5} />
                 <SlideIn offset="10px" in={isOpen}>
                     {styles => (
-                        <Modal
-                            isOpen={true}
-                            onClose={() => setIsOpen(false)}
-                            finalFocusRef={btnRef}
-                            preserveScrollBarGap
-                        >
+                        <Modal isOpen onClose={() => setIsOpen(false)} finalFocusRef={btnRef} preserveScrollBarGap>
                             <ModalOverlay opacity={styles.opacity} />
                             <ModalContent {...styles} pb={5}>
                                 <ModalHeader>Login now</ModalHeader>
@@ -137,7 +132,7 @@ stories.add('with scale transition', () => {
                 </Button>
                 <Scale in={isOpen}>
                     {styles => (
-                        <Modal isOpen={true} onClose={() => setIsOpen(false)} finalFocusRef={btnRef}>
+                        <Modal isOpen onClose={() => setIsOpen(false)} finalFocusRef={btnRef}>
                             <ModalOverlay opacity={styles.opacity} />
                             <ModalContent {...styles} pb={5}>
                                 <ModalHeader>Login now</ModalHeader>

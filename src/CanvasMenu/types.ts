@@ -3,17 +3,22 @@ import { INavItemMedia, NavigationItemProps } from '../Navigation/types';
 
 interface INavItem {
     isAccordion?: boolean;
-    label?: React.ReactNode;
+    label?: string;
     href?: string;
+    onClick?: () => void;
     icon?: INavItemMedia['icon'];
     media?: React.ReactNode;
     meta?: React.ReactNode;
+
+    // set true to avoid any alterations to navItemMedia svg paths
+    unstyled?: boolean;
 }
 
 export type NavItemProps = INavItem & NavigationItemProps;
 
 interface ICanvasMenu {
     isMinified?: boolean;
+    isVisible?: boolean;
     items?: {
         header?: Array<NavItemProps>;
         content?: Array<NavItemProps>;

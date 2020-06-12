@@ -11,7 +11,7 @@ export const InputGroup = ({ children, size = 'md', name, isInline, ...props }: 
     const { space } = useTheme();
     let pl = null;
     let pr = null;
-    const spacingProps = isInline ? { mr: 'input.spacing.lg' } : { mb: 'input.spacing.lg' };
+    const spacingProps = isInline ? { mr: 'spacing' } : { mb: 'spacing' };
 
     return (
         <FormControlWrapper id={name} {...spacingProps} {...props}>
@@ -22,10 +22,10 @@ export const InputGroup = ({ children, size = 'md', name, isInline, ...props }: 
                     }
 
                     if (child.type === InputLeftElement) {
-                        pl = `calc(${space.input[size]} + ${space.input['spacing']['sm']})`;
+                        pl = `calc(${space.input[size]} + ${space['spacing-xs']})`;
                     }
                     if (child.type === InputRightElement) {
-                        pr = `calc(${space.input[size]} + ${space.input['spacing']['sm']})`;
+                        pr = `calc(${space.input[size]} + ${space['spacing-xs']})`;
                     }
 
                     const isElement = child.type === InputLeftElement || child.type === InputRightElement;

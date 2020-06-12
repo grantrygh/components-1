@@ -66,6 +66,11 @@ export interface IButton {
      * If added, Button will be rendered as a Link.
      */
     href?: string;
+
+    /**
+     * aria-label to be applied for assistive technologies. use when iconOnly button
+     */
+    ariaLabel?: string;
 }
 
 export type ButtonProps = IButton & Omit<PseudoBoxProps, 'size'>;

@@ -17,7 +17,6 @@ import { Badge } from '../Badge';
 import { Box } from '../Box';
 import { Button } from '../Button';
 import { ButtonGroup } from '../ButtonGroup';
-import { DarkMode } from '../ColorModeProvider';
 import { FormControl } from '../FormControl';
 import { FormLabel } from '../FormLabel';
 import { Input } from '../Input';
@@ -94,19 +93,17 @@ stories.add('with focus lock', () => <PortalAndFocusLockEx />);
 
 function Card() {
     return (
-        <DarkMode>
-            <Box p={5}>
-                <Avatar
-                    name="swyx"
-                    src="https://pbs.twimg.com/profile_images/990728399873232896/CMPn3IxT_reasonably_small.jpg"
-                />
-                <Text mt="spacing" fontWeight="bold">
-                    swyx
-                    <Badge ml="spacing-sm">Follows you</Badge>
-                </Text>
-                <Text mt="spacing-sm">Infinite Builder working on DX @Netlify. Helping people #LearnInPublic</Text>
-            </Box>
-        </DarkMode>
+        <Box p={5}>
+            <Avatar
+                name="swyx"
+                src="https://pbs.twimg.com/profile_images/990728399873232896/CMPn3IxT_reasonably_small.jpg"
+            />
+            <Text mt="spacing" fontWeight="bold">
+                swyx
+                <Badge ml="spacing-sm">Follows you</Badge>
+            </Text>
+            <Text mt="spacing-sm">Infinite Builder working on DX @Netlify. Helping people #LearnInPublic</Text>
+        </Box>
     );
 }
 
@@ -192,7 +189,7 @@ const ConfirmationEx = () => (
             <PopoverFooter d="flex" justifyContent="flex-end">
                 <ButtonGroup size="sm">
                     <Button variant="tertiary">Cancel</Button>
-                    <Button variantColor="danger">Apply</Button>
+                    <Button variantColor="error">Apply</Button>
                 </ButtonGroup>
             </PopoverFooter>
         </PopoverContent>
@@ -218,7 +215,7 @@ const CustomTargetEx = () => {
                     <PopoverFooter d="flex" justifyContent="flex-end">
                         <ButtonGroup size="sm">
                             <Button variant="tertiary">Cancel</Button>
-                            <Button variantColor="danger">Apply</Button>
+                            <Button variantColor="error">Apply</Button>
                         </ButtonGroup>
                     </PopoverFooter>
                 </PopoverContent>

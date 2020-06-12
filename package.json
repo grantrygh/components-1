@@ -1,5 +1,5 @@
 {
-  "name": "blocks",
+  "name": "@audentio/stuff",
   "version": "1.0.0",
   "description": "React component library by Audentio",
   "main": "index.js",
@@ -13,7 +13,11 @@
     "storybook:build": "build-storybook -c .storybook -o storybook-build",
     "storybook:server": "http-server storybook-build",
     "cy": "cypress run",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "build": "tsc -d -w",
+    "release": "release-it",
+    "jest": "./node_modules/.bin/jest",
+    "snyk-protect": "snyk protect"
   },
   "repository": {
     "type": "git",
@@ -29,6 +33,11 @@
     "url": "https://github.com/Audentio/components/issues"
   },
   "homepage": "https://github.com/Audentio/components#readme",
+  "release-it": {
+    "git": {
+      "pushRepo": "git@github.com:Audentio/components.git"
+    }
+  },
   "devDependencies": {
     "@audentio/eslint-config-standard": "^2.3.0",
     "@audentio/utils": "^4.4.1",
@@ -57,12 +66,12 @@
     "babel-plugin-transform-imports": "^2.0.0",
     "body-scroll-lock": "^2.6.4",
     "color": "3.1.2",
+    "copyfiles": "^2.2.0",
     "cypress": "^4.0.2",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-react-hooks": "^2.5.1",
     "exenv": "^1.2.2",
     "framer-motion": "^1.10.3",
-    "helmet": "^3.21.3",
     "immutability-helper": "^3.0.1",
     "intersection-observer": "^0.7.0",
     "jest": "^25.1.0",
@@ -73,6 +82,7 @@
     "react-dropzone": "^10.2.1",
     "react-focus-lock": "^2.2.1",
     "react-lorem-component": "^0.13.0",
+    "react-router-dom": "^5.2.0",
     "react-select": "^3.1.0",
     "react-spring": "^8.0.27",
     "recharts": "^1.8.5",
@@ -89,6 +99,8 @@
   },
   "dependencies": {
     "fast-async": "^6.3.8",
-    "http-server": "^0.12.1"
-  }
+    "http-server": "^0.12.1",
+    "snyk": "^1.290.1"
+  },
+  "snyk": true
 }

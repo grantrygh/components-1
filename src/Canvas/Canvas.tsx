@@ -2,16 +2,28 @@ import { motion } from 'framer-motion';
 import React, { createContext, createRef, useContext, useEffect, useState } from 'react';
 import { Box, useTheme } from '..';
 import { Flex } from '../Flex';
+import { useRouter } from '../hooks/useRouter';
 import { useWindowResize } from '../hooks/useWindowResize';
 import { ModalOverlay } from '../Modal';
 import useCanvasStyle from './styles';
+import { CanvasWrapperProps } from './types';
 
-export const CanvasContext = createContext<any>(null);
+const CanvasContext = createContext<any>(null);
+
+export const useCanvasContext = () => {
+    const context = useContext(CanvasContext);
+    if (context == null) {
+        throw new Error('This component must be used within the `CanvasWrapper` ');
+    }
+    return context;
+};
 
 const MotionPanel = motion.custom(Box);
 
 const getPanels = panels => {
-    const panelList = Object.keys(panels).map(panelKey => panels[panelKey]);
+    const panelList = Object.keys(panels)
+        .map(panelKey => ({ ...panels[panelKey], name: panelKey }))
+        .filter(p => p);
     const leftPanels = panelList.filter(panel => panel.position === 'left');
     const rightPanels = panelList.filter(panel => panel.position === 'right');
     const mainPanel = panelList.filter(panel => panel.name === 'main');
@@ -31,7 +43,7 @@ const isWithinRange = (width, range) => {
 };
 
 export function CanvasContainer(props) {
-    const [panels, setPanels] = useState<any>({});
+    const [panels, setPanels] = useState<any>(props.initialCanvasState);
     const { zIndices } = useTheme();
 
     const styles = useCanvasStyle({
@@ -50,18 +62,13 @@ export function CanvasContainer(props) {
         });
     };
 
-    const setPanel = (name, update) => {
-        setPanels($prev => {
-            return {
-                ...$prev,
-                [name]: update($prev[name] || {}),
-            };
-        });
-    };
-
     const togglePanel = name => {
         setPanels($prev => {
             const panel = $prev[name];
+            if (!panel) {
+                return null;
+            }
+
             return {
                 ...$prev,
                 [name]: {
@@ -75,10 +82,54 @@ export function CanvasContainer(props) {
         });
     };
 
+    const addPanel = (name, update) => {
+        setPanels($prev => {
+            return {
+                ...$prev,
+                [name]: update($prev[name] || {}),
+            };
+        });
+    };
+
+    const removePanel = name => {
+        const deletePanel = () => {
+            setPanels($prev => {
+                if (name !== 'main') {
+                    const newPanelList = { ...$prev };
+                    delete newPanelList[name];
+                    return newPanelList;
+                }
+                return {
+                    ...$prev,
+                };
+            });
+        };
+
+        // TODO: look into cleaner way of doing this
+        // Hide the panel first to keep close animation, then delete from the panels object.
+        updatePanel(name, {
+            isVisible: false,
+        });
+        setTimeout(() => {
+            deletePanel();
+        }, 400);
+    };
+
     const renderPanel = (panel, i) => {
         if (!panel || !(panel && panel.render)) return null;
 
-        const { name, ref, children, isVisible, type, bg, isOverlay, p = 'canvas.spacing', ...panelProps } = panel;
+        const {
+            name,
+            ref,
+            children,
+            isVisible,
+            type,
+            bg,
+            isOverlay,
+            p = 'canvas.spacing',
+            renderProps,
+            ...panelProps
+        } = panel;
 
         const animateTo = (isVisible && (panelProps.isMinified ? 'minified' : 'visible')) || 'hidden';
         const zIndex = Object.keys(panels).length - i;
@@ -95,21 +146,18 @@ export function CanvasContainer(props) {
             }),
         };
 
-        /** TODO: We're going to want to rework canvas visibility and zIndex layering a bit based on whether the canvas was opened by default, or manually
-         * If opened manually, the canvas should be opened as an overlay when scaling down width to within the isOverlay range
-         * If canvas was opened by default, likely do not show the overlay as opened upon scaling
-         * This avoids having possible multiple canvas open ( and needing to be closed ) on mobile
-         * Also limit to 1 canvas open.
-         * There also needs to be some tracker on currently open canvases. For example, if notifications canvas is open and viewport scales down, then
-         * the notifications overlay should be open on mobile, and not the filter ovleray that was previously expanded inline.
-         * */
-
         return (
-            <Flex zIndex={(isVisible && isOverlay ? zIndices.modal : 1) + zIndex} flexGrow={name === 'main' && 1}>
-                <MotionPanel key={panel.name} initial={animateTo} animate={animateTo} {...panelStyleProps}>
+            <Flex
+                zIndex={(isVisible && isOverlay ? zIndices.panel : 1) + zIndex}
+                flexGrow={name === 'main' && 1}
+                key={name}
+            >
+                <MotionPanel key={`motion-${panel.name}`} initial={animateTo} animate={animateTo} {...panelStyleProps}>
                     <Flex ref={ref} direction="column" height="100%" p={name !== 'main' && p} {...panelProps}>
                         {panel.render({
                             isMinified: panelProps.isMinified,
+                            isVisible,
+                            ...renderProps,
                         })}
                     </Flex>
                 </MotionPanel>
@@ -121,7 +169,7 @@ export function CanvasContainer(props) {
     const { leftPanels, rightPanels, mainPanel } = getPanels(panels);
 
     return (
-        <CanvasContext.Provider value={{ panels, setPanel, setPanels, updatePanel, togglePanel }}>
+        <CanvasContext.Provider value={{ panels, addPanel, setPanels, updatePanel, togglePanel, removePanel }}>
             <Flex {...styles.style}>
                 {props.children}
                 {leftPanels.map((panel, i) => renderPanel(panel, i))}
@@ -132,75 +180,11 @@ export function CanvasContainer(props) {
     );
 }
 
-// TODO: implement panel type override to overlay if there isn't enough space
-// const getPanelType = (panels, props) => {
-//     const panel = panels[props.name];
-
-//     if (!panel) return null;
-
-//     return panel.type;
-// };
-
-export function CanvasPanel({ name, children, type = 'inline', ranges, windowWidth, ...rest }) {
-    const { setPanel, updatePanel } = useContext(CanvasContext);
-    const ref = createRef();
-
-    const isVisible = name === 'main' ? true : isWithinRange(windowWidth, ranges?.defaultVisible);
-    const isOverlay = isWithinRange(windowWidth, ranges?.isOverlay);
-    const isMinifiable = !isOverlay && isWithinRange(windowWidth, ranges?.allowMinify);
-    const isMinified = isMinifiable && isWithinRange(windowWidth, ranges?.defaultMinified);
-
-    useEffect(() => {
-        // Set the canvas panel's default vales
-
-        setPanel(name, () => ({
-            name,
-            ref,
-            render: children,
-            type,
-            ranges,
-            ...rest,
-        }));
-
-        // remove panel
-        return () => {
-            setPanel(name, () => null);
-        };
-    }, []);
-
-    useEffect(() => {
-        updatePanel(name, { isMinifiable });
-    }, [isMinifiable]);
-
-    useEffect(() => {
-        updatePanel(name, { isMinified });
-    }, [isMinified]);
-
-    useEffect(() => {
-        updatePanel(name, { isVisible });
-    }, [isVisible]);
-
-    useEffect(() => {
-        updatePanel(name, { isOverlay });
-    }, [isOverlay]);
-
-    return null;
-}
-
-export const renderPanels = ({ panels = [], children = null, windowWidth = 0 }) => {
-    /**
-     * if an earlier index and a later one is not minified, the former should be minified by default
-     * get the reversed index of the last non-minified panel
-     */
-    // const panelsCopy = [...panels];
-    // const minifiedPanels = panelsCopy.reverse().findIndex(p => !p.isMinified && p.isVisible);
-    // get the index of the last non-minified
-    // const lastIndex = minifiedPanels > -1 && panels.length - minifiedPanels - 1;
-
+const renderPanels = ({ panels = [], children = null, windowWidth = 0 }) => {
     return (
         <Flex>
             {panels.map((canvas, i) => {
-                const { name, render, ...rest } = canvas;
+                const { name, render, renderProps, ...rest } = canvas;
 
                 return (
                     <CanvasPanel
@@ -215,6 +199,7 @@ export const renderPanels = ({ panels = [], children = null, windowWidth = 0 }) 
                                 {/* pass props to the component which the panel renders */}
                                 {render({
                                     children: name === 'main' && children,
+                                    renderProps,
                                     ...props,
                                 })}
                             </>
@@ -226,15 +211,19 @@ export const renderPanels = ({ panels = [], children = null, windowWidth = 0 }) 
     );
 };
 
-export const CanvasWrapper = props => {
+export const CanvasWrapper = (props: CanvasWrapperProps) => {
     const { initialCanvasState, children } = props;
     const { windowWidth } = useWindowResize();
 
     return (
-        <CanvasContainer>
+        <CanvasContainer initialCanvasState={initialCanvasState}>
             <CanvasContext.Consumer>
                 {({ panels }) => {
-                    const canvasPanels = Object.keys(panels).length > 0 ? panels : initialCanvasState;
+                    const canvasPanels = Object.keys(panels).length > 0 && panels;
+
+                    if (!canvasPanels) {
+                        return children;
+                    }
 
                     const { leftPanels, rightPanels, mainPanel } = getPanels(canvasPanels);
 
@@ -259,3 +248,66 @@ export const CanvasWrapper = props => {
         </CanvasContainer>
     );
 };
+
+export function CanvasPanel({ name, children, type = 'inline', ranges, windowWidth, ...rest }) {
+    const { addPanel, removePanel, updatePanel } = useCanvasContext();
+    const { location } = useRouter();
+    const ref = createRef();
+
+    const currentWindowWidth = Math.max(1, windowWidth);
+
+    const isOverlay = isWithinRange(currentWindowWidth, ranges?.isOverlay);
+    const isMinifiable = !isOverlay && isWithinRange(currentWindowWidth, ranges?.allowMinify);
+    const isMinified = isMinifiable && isWithinRange(currentWindowWidth, ranges?.defaultMinified);
+
+    let isVisible = false;
+    if (isOverlay && ranges.defaultVisible) {
+        isVisible = false;
+    } else {
+        isVisible = name === 'main' ? true : isWithinRange(currentWindowWidth, ranges?.defaultVisible);
+    }
+
+    useEffect(() => {
+        // Set the canvas panel's default values
+        addPanel(name, () => ({
+            name,
+            ref,
+            render: children,
+            type,
+            ranges,
+            ...rest,
+        }));
+
+        // remove panel
+        return () => {
+            removePanel(name);
+        };
+    }, []);
+
+    useEffect(() => {
+        updatePanel(name, { isMinifiable });
+    }, [isMinifiable]);
+
+    useEffect(() => {
+        updatePanel(name, { isMinified });
+    }, [isMinified]);
+
+    useEffect(() => {
+        updatePanel(name, { isVisible });
+    }, [isVisible]);
+
+    useEffect(() => {
+        updatePanel(name, { isOverlay });
+    }, [isOverlay]);
+
+    useEffect(() => {
+        // when a link is clicked and route changes, close overlay canvases
+        if (isOverlay) {
+            updatePanel(name, {
+                isVisible: false,
+            });
+        }
+    }, [location.pathname]);
+
+    return null;
+}

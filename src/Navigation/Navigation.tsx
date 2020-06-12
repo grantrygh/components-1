@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { Children, cloneElement } from 'react';
 import { Box } from '../Box';
 import { BoxProps } from '../Box/types';
 import { Flex } from '../Flex';
-import Link from '../Link';
+import { useRouter } from '../hooks/useRouter';
+import { Link } from '../Link';
+import { PseudoBox } from '../PseudoBox';
 import useNavigationStyle from './styles';
 import { NavigationItemMediaProps, NavigationItemProps } from './types';
 
-export default function Navigation(props) {
+export function Navigation(props) {
     const { root: style } = useNavigationStyle(props);
 
     return (
@@ -27,13 +29,7 @@ export default function Navigation(props) {
 
 Navigation.Primary = function NavigationPrimary(props: BoxProps) {
     return (
-        <Flex
-            // TODO: probably a better way to handle these breakpoints
-            display={['inline-flex', 'inline-flex', 'inline-flex', 'none']}
-            align="center"
-            mr="spacing-sm"
-            {...props}
-        >
+        <Flex display="inline-flex" align="center" mr="spacing-sm" {...props}>
             {props.children}
         </Flex>
     );
@@ -56,10 +52,13 @@ Navigation.Tertiary = function NavigationTertiary(props: BoxProps) {
 };
 
 Navigation.Item = function NavItem(props: NavigationItemProps) {
-    const { href, exact = true, isSubmenuItem, isActive, isParent, isMinified, ...rest } = props;
+    const { href, exact = true, isSubmenuItem, isActive, isParent, isMinified, onClick, ...rest } = props;
+    const { location } = useRouter();
 
     let isLinkActive = false;
-    const path = window.location.pathname;
+    const pathname = location?.pathname;
+    const path = `${pathname}${location.search}`;
+
     if (href && href === path && exact) {
         isLinkActive = true;
     } else if (href && path.indexOf(href) > -1 && !exact) {
@@ -69,35 +68,50 @@ Navigation.Item = function NavItem(props: NavigationItemProps) {
     const { navItem: navItemStyleProps, activeBar: activeBarStyleProps } = useNavigationStyle({
         isActive: isActive || isLinkActive,
         isSubmenuItem,
-        href,
+        clickable: !!(href || onClick),
     });
 
     return (
         <Flex
             as={href && Link}
             href={!isParent || (isParent && isMinified) ? href : undefined}
+            onClick={onClick}
             {...navItemStyleProps}
             {...rest}
         >
             {(isActive || isLinkActive) && !isSubmenuItem && <Box {...activeBarStyleProps} />}
             {/* Navigation.ItemMedia | Navigation.ItemText | Navigation.ItemMeta */}
-            {props.children}
+            {Children.map(props.children, (child, index) => {
+                if (child) {
+                    return cloneElement(child as any, {
+                        isActive: isLinkActive,
+                    });
+                }
+                return null;
+            })}
         </Flex>
     );
 };
 
 Navigation.ItemMedia = function NavItemLeft(props: NavigationItemMediaProps) {
-    const MdiIcon = props.icon;
+    const { icon, isActive, unstyled } = props;
+    const MdiIcon = icon;
+
+    const { navItemMedia: navItemMediaStyleProps } = useNavigationStyle({
+        isActive,
+        unstyled,
+    });
+
     return (
-        <Box w="32px" {...props}>
+        <PseudoBox w="32px" {...navItemMediaStyleProps} {...props}>
             {props.children || (MdiIcon && <MdiIcon color="currentColor" size={28} />) || null}
-        </Box>
+        </PseudoBox>
     );
 };
 
 Navigation.ItemText = function NavItemText(props: BoxProps) {
     return (
-        <Box flex="1" minW={100}>
+        <Box flex="1" whiteSpace="nowrap">
             {props.children}
         </Box>
     );

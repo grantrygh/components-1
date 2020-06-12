@@ -67,6 +67,9 @@ export const PseudoBox = styled(Box)(
         _mixed,
         _odd,
         _even,
+        _scrollbar,
+        _track,
+        _thumb,
     }: PseudoBoxProps) => {
         return css({
             [hover]: tx(_hover),
@@ -93,6 +96,9 @@ export const PseudoBox = styled(Box)(
             '&:after': tx(_after),
             '&:focus-within': tx(_focusWithin),
             '&::placeholder': _placeholder,
+            '&::-webkit-scrollbar': _scrollbar,
+            '&::-webkit-scrollbar-track': _track,
+            '&::-webkit-scrollbar-thumb': _thumb,
         });
     }
 );

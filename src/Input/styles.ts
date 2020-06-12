@@ -18,7 +18,7 @@ export const inputStyle = ({ isFullWidth = true }, theme) => ({
         appearance: 'none',
         borderRadius: 'radius',
         boxSizing: 'border-box',
-        px: 'input.spacing.lg',
+        px: 'spacing',
         width: isFullWidth ? 'full' : 'input.width',
     },
     sizes: {

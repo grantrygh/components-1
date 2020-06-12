@@ -37,7 +37,7 @@ const renderSelect = (props, ref) => {
 
 export const Select = forwardRef((props: SelectProps, ref) => {
     const { onChange: formOnChange, value: initialSelectValue } = useFormField(props);
-    const { size = 'md', options = [] } = props;
+    const { size = 'md', options = [], border = 'full' } = props;
 
     // optionally allow custom onChange event along with passed Form onChange
     const hasOnChange = props.onChange || (formOnChange && typeof formOnChange === 'function');
@@ -52,6 +52,7 @@ export const Select = forwardRef((props: SelectProps, ref) => {
 
     const { root: selectStyleProps, theme: selectTheme } = useSelectStyle({
         size,
+        border,
     });
 
     // Handle default value

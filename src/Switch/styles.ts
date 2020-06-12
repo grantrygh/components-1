@@ -25,6 +25,7 @@ export const switchStyle = ({ color = 'primary', size = 'md' }, { colors }) => {
             justifyContent: 'flex-start',
             bg: 'track',
             boxSizing: 'content-box',
+            color: 'bodyText',
             p: '3px',
             _checked: {
                 bg: `${color}.500`,

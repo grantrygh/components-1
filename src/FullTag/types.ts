@@ -1,6 +1,6 @@
 import { IBadge } from '../Badge/types';
 
-interface IFullTag {
+export interface IFullTag {
     /**
      * circular features
      */

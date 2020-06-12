@@ -10,6 +10,7 @@ export const Stack = ({
     direction,
     isInline = false,
     isReversed = false,
+    spacing = 'spacing-xs',
     children,
     align,
     justify,
@@ -38,15 +39,15 @@ export const Stack = ({
 
     const validChildrenArray = Children.toArray(children).filter(isValidElement);
 
-    const stackSpacingProps = _direction === 'row' ? { mr: 'input.spacing.lg' } : { mb: 'input.spacing.lg' };
+    const stackSpacingProps = _direction === 'row' ? { mr: 'spacing' } : { mb: 'spacing' };
 
     return (
         <Flex align={align} justify={justify} direction={_direction} {...stackSpacingProps} {...rest}>
             {validChildrenArray.map((child, index) => {
                 const isLastChild = validChildrenArray.length === index + 1;
                 const spacingProps = _isInline
-                    ? { [_isReversed ? 'ml' : 'mr']: isLastChild ? null : 'input.spacing.sm' }
-                    : { [_isReversed ? 'mt' : 'mb']: isLastChild ? null : 'input.spacing.sm' };
+                    ? { [_isReversed ? 'ml' : 'mr']: isLastChild ? null : spacing }
+                    : { [_isReversed ? 'mt' : 'mb']: isLastChild ? null : spacing };
 
                 if (shouldWrapChildren) {
                     return (

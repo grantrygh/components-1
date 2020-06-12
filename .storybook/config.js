@@ -2,7 +2,6 @@ import { addDecorator, configure } from '@storybook/react';
 import React, { useState } from 'react';
 import { Box } from '../src/Box';
 import { Button } from '../src/Button';
-import { DarkMode, LightMode } from '../src/ColorModeProvider';
 import { CSSReset } from '../src/CSSReset';
 import { ThemeProvider } from '../src/ThemeProvider';
 
@@ -17,7 +16,7 @@ const storyStyle = {
         pageBg: 'white',
         switchTo: {
             label: 'Dark',
-            value: DarkMode,
+            value: 'dark',
         },
         buttonBg: 'black',
         buttonColor: 'white',
@@ -26,7 +25,7 @@ const storyStyle = {
         pageBg: 'gray.800',
         switchTo: {
             label: 'Light',
-            value: LightMode,
+            value: 'light',
         },
         buttonBg: 'white',
         buttonColor: 'black',
@@ -34,30 +33,29 @@ const storyStyle = {
 };
 
 const AppProvider = ({ children }) => {
-    const [CurrentColorMode, setCurrentColorMode] = useState(() => LightMode);
-    const color = CurrentColorMode().props.value;
-    const story = storyStyle[color];
+    const [currentColorMode, setCurrentColorMode] = useState('light');
+    const story = storyStyle[currentColorMode];
 
     return (
         <ThemeProvider>
             <CSSReset />
-            <CurrentColorMode>
-                <Box position="fixed" right={4} top={4} zIndex={1}>
-                    <Button
-                        onClick={() => {
-                            setCurrentColorMode(() => story.switchTo.value);
-                        }}
-                        size="sm"
-                        bg={story.buttonBg}
-                        color={story.buttonColor}
-                    >
-                        Switch to {story.switchTo.label} mode
-                    </Button>
-                </Box>
-                <Box bg={story.pageBg} minHeight="100vh">
-                    {children}
-                </Box>
-            </CurrentColorMode>
+            {/* <CurrentColorMode> */}
+            <Box position="fixed" right={4} top={4} zIndex={1}>
+                <Button
+                    onClick={() => {
+                        setCurrentColorMode(story.switchTo.value);
+                    }}
+                    size="sm"
+                    bg={story.buttonBg}
+                    color={story.buttonColor}
+                >
+                    Switch to {story.switchTo.label} mode
+                </Button>
+            </Box>
+            <Box bg={story.pageBg} minHeight="100vh">
+                {children}
+            </Box>
+            {/* </CurrentColorMode> */}
         </ThemeProvider>
     );
 };

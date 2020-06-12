@@ -1,7 +1,7 @@
 import { BoxProps } from '../Box/types';
 import { Omit } from '../common-types';
 
-export interface ISpinnerProps {
+export interface ISpinner {
     /**
      * The size of the spinner
      */
@@ -37,4 +37,4 @@ export interface ISpinnerProps {
     label?: string;
 }
 
-export type SpinnerProps = Omit<BoxProps, 'size'> & ISpinnerProps;
+export type SpinnerProps = Omit<BoxProps, 'size'> & ISpinner;

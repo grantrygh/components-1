@@ -24,15 +24,13 @@ export const List = forwardRef(({ styleType = 'none', stylePos = 'inside', child
 ));
 
 export const ListItem = forwardRef((props: ListItemProps, ref) => (
-    <PseudoBox ref={ref} as="li" mb="input.spacing.sm" {...props} />
+    <PseudoBox ref={ref} as="li" mb="spacing-xs" {...props} />
 ));
 
 export const ListIcon = ({ icon, ...props }: ListIconProps) => {
     if (typeof icon === 'string') {
-        return <Icon name={icon} mr="input.spacing.lg" {...props} />;
+        return <Icon name={icon} mr="spacing" {...props} />;
     }
 
-    return (
-        <Box as={icon} d="inline" focusable="false" size="1em" color="currentColor" mr="input.spacing.lg" {...props} />
-    );
+    return <Box as={icon} d="inline" focusable="false" size="1em" color="currentColor" mr="spacing" {...props} />;
 };

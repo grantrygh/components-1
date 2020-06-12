@@ -2,13 +2,13 @@ import { useTheme } from '../ThemeProvider';
 
 export const popoverStyle = (props, theme) => ({
     style: {
-        bg: 'white', // dark - 'gray.700'
+        bg: 'popoverBg',
         borderWidth: '1px',
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
         rounded: 'md',
-        shadow: 'sm',
+        shadow: 'menu',
         maxWidth: 'xs',
         modifiers: { offset: { enabled: true, offset: `0, 4` } },
         _focus: { outline: 0, shadow: 'outline' },

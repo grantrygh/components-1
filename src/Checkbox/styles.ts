@@ -5,7 +5,7 @@ export const checkboxStyle = ({ color, type, isDisabled, isFullWidth, isChild, s
         userSelect: 'none',
         border: '2px',
         rounded: '2px',
-        borderColor: 'inherit',
+        borderColor: 'track',
         transition: 'background-color 120ms, box-shadow 250ms',
         color: 'white',
         _checked: {
@@ -35,9 +35,10 @@ export const checkboxStyle = ({ color, type, isDisabled, isFullWidth, isChild, s
         sm: type === 'radio' ? 3 : 'auto',
     },
     label: {
-        ml: 2,
+        ml: 'spacing-sm',
         userSelect: 'none',
-        color: isDisabled && 'disabled',
+        color: isDisabled ? 'disabled' : 'bodyText',
+        whiteSpace: 'nowrap',
     },
     container: {
         display: 'inline-flex',
@@ -45,7 +46,7 @@ export const checkboxStyle = ({ color, type, isDisabled, isFullWidth, isChild, s
         alignItems: 'center',
         width: isFullWidth ? 'full' : undefined,
         cursor: isDisabled ? 'not-allowed' : 'pointer',
-        ml: isChild ? 6 : 0,
+        ml: isChild ? 'spacing-lg' : 0,
     },
 });
 

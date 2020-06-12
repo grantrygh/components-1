@@ -22,6 +22,24 @@ export const addBlack = (color, opacity) =>
 
 export const isDarkColor = color => Color(color).isDark();
 
+export const intensify = (color, factor = 0.2, mode = 'light') => {
+    const p = Color(color);
+
+    if (mode === 'light') {
+        return p.darken(factor);
+    }
+    return p.lighten(factor);
+};
+
+export const diminish = (color, factor = 0.2, mode = 'light') => {
+    const p = Color(color);
+
+    if (mode === 'light') {
+        return p.lighten(factor);
+    }
+    return p.darken(factor);
+};
+
 export const generateAlphaColors = color => ({
     900: addOpacity(color, 0.92),
     800: addOpacity(color, 0.8),
@@ -46,7 +64,7 @@ export const colorEmphasis = (color, emphasis) => {
         case 'lowest':
             return generateAlphaColors(color)[300];
         default:
-            return;
+            return null;
     }
 };
 
@@ -63,3 +81,26 @@ export const generateStripe = ({ size = '1rem', color = 'rgba(255, 255, 255, 0.1
     );
     background-size: ${size} ${size};
 `;
+
+export const generateShades = primary => {
+    const p = Color(primary);
+
+    const shades = {
+        50: p.lighten(0.8),
+        100: p.lighten(0.4),
+        200: p.lighten(0.3),
+        300: p.lighten(0.2),
+        400: p.lighten(0.1),
+        500: p,
+        600: p.darken(0.1),
+        700: p.darken(0.2),
+        800: p.darken(0.3),
+        900: p.darken(0.4),
+    };
+
+    for (const key in shades) {
+        shades[key] = shades[key].hex();
+    }
+
+    return shades;
+};

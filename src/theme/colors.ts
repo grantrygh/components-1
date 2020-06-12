@@ -1,29 +1,7 @@
 /* eslint-disable max-lines */
 
-import color from 'color';
-
-const generateShades = primary => {
-    const p = color(primary);
-
-    const shades = {
-        50: p.lighten(0.8),
-        100: p.lighten(0.4),
-        200: p.lighten(0.3),
-        300: p.lighten(0.2),
-        400: p.lighten(0.1),
-        500: p,
-        600: p.darken(0.1),
-        700: p.darken(0.2),
-        800: p.darken(0.3),
-        900: p.darken(0.4),
-    };
-
-    for (const key in shades) {
-        shades[key] = shades[key].hex();
-    }
-
-    return shades;
-};
+import { generateShades } from './colors-utils';
+import { Colors } from './types';
 
 // brand colors
 // use https://material.io/resources/color
@@ -32,7 +10,7 @@ const brand = {
     secondary: generateShades('#3DD598'),
 };
 
-const neutral = {
+const neutralScheme = {
     1: '#FFFFFF',
     2: '#FAFAFA',
     3: '#F5F5F5',
@@ -213,127 +191,183 @@ const palette = {
     },
 };
 
-const colors = {
-    transparent: 'transparent',
-    current: 'currentColor',
+const colors = (providedTheme, mode) => {
+    const providedColors = providedTheme?.colors as Colors;
+    const primary = (providedColors && providedColors[mode]?.primary) || brand.primary;
+    const secondary = (providedColors && providedColors[mode]?.secondary) || brand.secondary;
+    // A large number of components use {color}.500 to support palette colors
+    // To support better dark theme contrast value, regenerate brand colors based on a lighter shade - .300 will become the new .500
+    // TODO: could be an issue with this if using dark theme as the base mode, and wanting to use the passed primary.500 value
+    // const colorVariant = mode === 'light' ? 500 : 300;
+    // if (mode === 'dark') {
+    //     primary = generateShades(primary[colorVariant]);
+    //     secondary = generateShades(secondary[colorVariant]);
+    // }
+    const neutral = (providedColors && providedColors[mode]?.neutral) || neutralScheme;
 
-    // Neutral Scale Design Colors
-    neutral,
-    black: neutral[13],
-    titleText: neutral[12],
-    bodyText: neutral[9],
-    faintText: neutral[7],
-    disabled: neutral[5],
-    border: neutral[4], // and divider
-    white: neutral[1],
+    const modes = {
+        light: {
+            titleText: neutral[12],
+            bodyText: neutral[9],
+            faintText: neutral[7],
+            tableHeadingBg: neutral[2],
+            disabled: neutral[5],
+            border: neutral[4], // and divider
 
-    // page layout
-    cardBg: neutral[1],
-    navBg: neutral[2],
-    popoverBg: neutral[2],
-    pageBg: neutral[3],
-    altBg: neutral[3],
-    canvasBg: neutral[4],
+            // page layout
+            cardBg: neutral[1],
+            navBg: neutral[2],
+            popoverBg: neutral[2],
+            pageBg: neutral[3],
+            altBg: neutral[3],
+            canvasBg: neutral[4],
+            overlay: 'rgba(0,0,0,0.4)',
 
-    // component specific
-    progress: brand.primary[500],
-    track: neutral[4],
-    tooltip: neutral[9],
-    button: brand.primary, // VARIANT: primary button bg , secondary & tertiary button text - uses .500
-    buttonText: neutral[1], // primary button text
-    secondaryButton: 'transparent',
-    tertiaryButton: 'transparent',
-    activeLink: brand.primary[500],
+            // component specific
+            track: neutral[5],
+            tooltip: neutral[2],
+            selectControlHover: primary[50],
 
-    inputFocus: brand.primary[500],
-    inputHover: neutral[3],
-    inputBg: neutral[2],
+            inputHover: neutral[3],
+            inputBg: neutral[2],
+        },
+        dark: {
+            titleText: neutral[1],
+            bodyText: neutral[6],
+            faintText: neutral[7],
+            tableHeadingBg: neutral[10],
+            disabled: neutral[8],
+            border: neutral[10],
 
-    overlayBg: 'rgba(0, 0, 0, 0.2)',
+            // page layout
+            cardBg: neutral[11],
+            navBg: neutral[11],
+            popoverBg: neutral[10],
+            pageBg: neutral[12],
+            altBg: neutral[9],
+            canvasBg: neutral[13],
+            overlay: 'rgba(0,0,0,0.6)',
 
-    ...palette,
-    ...brand,
-    ...states,
+            // component specific
+            track: neutral[8],
+            tooltip: neutral[9],
+            selectControlHover: neutral[9],
 
-    linkedin: {
-        50: '#E8F4F9',
-        100: '#CFEDFB',
-        200: '#9BDAF3',
-        300: '#68C7EC',
-        400: '#34B3E4',
-        500: '#00A0DC',
-        600: '#008CC9',
-        700: '#0077B5',
-        800: '#005E93',
-        900: '#004471',
-    },
+            inputHover: neutral[8],
+            inputBg: neutral[9],
+        },
+    };
 
-    facebook: {
-        50: '#E8F4F9',
-        100: '#D9DEE9',
-        200: '#B7C2DA',
-        300: '#6482C0',
-        400: '#4267B2',
-        500: '#385898',
-        600: '#314E89',
-        700: '#29487D',
-        800: '#223B67',
-        900: '#1E355B',
-    },
+    return {
+        transparent: 'transparent',
+        current: 'currentColor',
 
-    messenger: {
-        50: '#D0E6FF',
-        100: '#B9DAFF',
-        200: '#A2CDFF',
-        300: '#7AB8FF',
-        400: '#2E90FF',
-        500: '#0078FF',
-        600: '#0063D1',
-        700: '#0052AC',
-        800: '#003C7E',
-        900: '#002C5C',
-    },
+        ...palette,
+        ...states,
 
-    whatsapp: {
-        50: '#e2f7f4',
-        100: '#c3f0e9',
-        200: '#a0e7dc',
-        300: '#76dccd',
-        400: '#43cfba',
-        500: '#00BFA5',
-        600: '#00ac92',
-        700: '#009780',
-        800: '#007d6a',
-        900: '#005a4c',
-    },
+        primary,
+        secondary,
 
-    twitter: {
-        50: '#e5f4fd',
-        100: '#c8e9fb',
-        200: '#a8dcfa',
-        300: '#83cdf7',
-        400: '#57bbf5',
-        500: '#1DA1F2',
-        600: '#1a94da',
-        700: '#1681bf',
-        800: '#136b9e',
-        900: '#0d4d71',
-    },
+        // Neutral Scale Design Colors
+        neutral,
 
-    telegram: {
-        50: '#e3f2f9',
-        100: '#c5e4f3',
-        200: '#a2d4ec',
-        300: '#7ac1e4',
-        400: '#47a9da',
-        500: '#0088CC',
-        600: '#007ab8',
-        700: '#006ba1',
-        800: '#005885',
-        900: '#003f5e',
-    },
+        // Theme-type specific
+        ...modes[mode],
+
+        black: neutral[13],
+        white: neutral[1],
+
+        // component specific
+        progress: primary[500],
+
+        button: primary,
+        buttonText: neutral[1],
+        secondaryButton: 'transparent',
+        tertiaryButton: 'transparent',
+        activeLink: primary[500],
+
+        inputFocus: primary[500],
+
+        linkedin: {
+            50: '#E8F4F9',
+            100: '#CFEDFB',
+            200: '#9BDAF3',
+            300: '#68C7EC',
+            400: '#34B3E4',
+            500: '#00A0DC',
+            600: '#008CC9',
+            700: '#0077B5',
+            800: '#005E93',
+            900: '#004471',
+        },
+
+        facebook: {
+            50: '#E8F4F9',
+            100: '#D9DEE9',
+            200: '#B7C2DA',
+            300: '#6482C0',
+            400: '#4267B2',
+            500: '#385898',
+            600: '#314E89',
+            700: '#29487D',
+            800: '#223B67',
+            900: '#1E355B',
+        },
+
+        messenger: {
+            50: '#D0E6FF',
+            100: '#B9DAFF',
+            200: '#A2CDFF',
+            300: '#7AB8FF',
+            400: '#2E90FF',
+            500: '#0078FF',
+            600: '#0063D1',
+            700: '#0052AC',
+            800: '#003C7E',
+            900: '#002C5C',
+        },
+
+        whatsapp: {
+            50: '#e2f7f4',
+            100: '#c3f0e9',
+            200: '#a0e7dc',
+            300: '#76dccd',
+            400: '#43cfba',
+            500: '#00BFA5',
+            600: '#00ac92',
+            700: '#009780',
+            800: '#007d6a',
+            900: '#005a4c',
+        },
+
+        twitter: {
+            50: '#e5f4fd',
+            100: '#c8e9fb',
+            200: '#a8dcfa',
+            300: '#83cdf7',
+            400: '#57bbf5',
+            500: '#1DA1F2',
+            600: '#1a94da',
+            700: '#1681bf',
+            800: '#136b9e',
+            900: '#0d4d71',
+        },
+
+        telegram: {
+            50: '#e3f2f9',
+            100: '#c5e4f3',
+            200: '#a2d4ec',
+            300: '#7ac1e4',
+            400: '#47a9da',
+            500: '#0088CC',
+            600: '#007ab8',
+            700: '#006ba1',
+            800: '#005885',
+            900: '#003f5e',
+        },
+
+        ...((providedColors && providedColors[mode]) || {}),
+    };
 };
-
-console.log(states.success);
 
 export default colors;

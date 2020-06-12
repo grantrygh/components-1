@@ -18,15 +18,15 @@ const Icons = () => {
                     border="normal"
                     borderColor="gray.100"
                     minWidth="100px"
-                    p="input.spacing.sm"
-                    mr="input.spacing.sm"
-                    mb="input.spacing.sm"
+                    p="spacing-xs"
+                    mr="spacing-xs"
+                    mb="spacing-xs"
                     display="inline-flex"
                     flexDirection="column"
                     alignItems="center"
                 >
                     <Icon name={icon} size="24px" />
-                    <Text mt="input.spacing.sm" textAlign="center">
+                    <Text mt="spacing-xs" textAlign="center">
                         {icon}
                     </Text>
                 </Flex>

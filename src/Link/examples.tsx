@@ -6,10 +6,14 @@ const stories = storiesOf('Link', module);
 
 stories.add('Default', () => (
     <div>
-        <Link variant="nice-border">Home</Link>
+        <Link variant="nice-border" href="/">
+            Home
+        </Link>
         <br />
-        <Link variant="nice-bg">Docs</Link>
+        <Link variant="nice-bg" href="/">
+            Docs
+        </Link>
         <br />
-        <Link>Reference</Link>
+        <Link href="/">Reference</Link>
     </div>
 ));

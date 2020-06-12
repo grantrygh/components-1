@@ -10,42 +10,71 @@ const space = {
     canvas: sizes.canvas,
 };
 
-const shadows = {
-    sm: '0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px 0 rgba(0, 0, 0, 0.04)',
-    md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-    lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-    xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-    '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-    outline: '0 0 0 3px rgba(192, 213, 245, 0.6)',
-    inner: 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',
-    none: 'none',
-    // design elevations
-    topNav: '0 2px 8px 0 rgba(38,38,38,0.08)',
-    card: '0 0 1px 0 rgba(38,38,38,0.08), 0 0 2px 0 rgba(89,89,89,0.16)',
-    pressed: '0 0 1px 0 rgba(38,38,38,0.08), 0 0.5px 2px 0 rgba(89,89,89,0.16)',
-    button: '0 0 1px 0 rgba(38,38,38,0.04), 0 2px 4px 0 rgba(89,89,89,0.16)',
-    menu: '0 0 2px 0 rgba(38,38,38,0.04), 0 4px 8px 0 rgba(89,89,89,0.16)',
-    raised: '0 2px 4px 0 rgba(38,38,38,0.04), 0 8px 16px 0 rgba(89,89,89,0.16)',
-    toast: '0 2px 8px 0 rgba(38,38,38,0.04), 0 16px 24px 0 rgba(89,89,89,0.16)',
-    modal: '0 2px 8px 0 rgba(38,38,38,0.08), 0 20px 32px 0 rgba(89,89,89,0.24)',
+const shadows = (providedTheme, mode) => {
+    const modes = {
+        light: {
+            topNav: '0 2px 8px 0 rgba(38,38,38,0.08)',
+            card: '0 0 1px 0 rgba(38,38,38,0.08), 0 0 2px 0 rgba(89,89,89,0.16)',
+            pressed: '0 0 1px 0 rgba(38,38,38,0.08), 0 0.5px 2px 0 rgba(89,89,89,0.16)',
+            button: '0 0 1px 0 rgba(38,38,38,0.04), 0 2px 4px 0 rgba(89,89,89,0.16)',
+            menu: '0 0 2px 0 rgba(38,38,38,0.04), 0 4px 8px 0 rgba(89,89,89,0.16)',
+            raised: '0 2px 4px 0 rgba(38,38,38,0.04), 0 8px 16px 0 rgba(89,89,89,0.16)',
+            toast: '0 2px 8px 0 rgba(38,38,38,0.04), 0 16px 24px 0 rgba(89,89,89,0.16)',
+            modal: '0 2px 8px 0 rgba(38,38,38,0.08), 0 20px 32px 0 rgba(89,89,89,0.24)',
+            outline: '0 0 0 3px rgba(192, 213, 245, 0.6)',
+        },
+        dark: {
+            topNav: '0 2px 8px 0 rgba(0,0,0,0.08)',
+            card: '0 0 1px 0 rgba(0,0,0,0.08), 0 0 2px 0 rgba(0,0,0,0.16)',
+            pressed: '0 0 1px 0 rgba(0,0,0,0.08), 0 0.5px 2px 0 rgba(0,0,0,0.16)',
+            button: '0 0 1px 0 rgba(0,0,0,0.04), 0 2px 4px 0 rgba(0,0,0,0.16)',
+            menu: '0 0 2px 0 rgba(0,0,0,0.04), 0 4px 8px 0 rgba(0,0,0,0.16)',
+            raised: '0 2px 4px 0 rgba(0,0,0,0.04), 0 8px 16px 0 rgba(0,0,0,0.16)',
+            toast: '0 2px 8px 0 rgba(0,0,0,0.04), 0 16px 24px 0 rgba(0,0,0,0.16)',
+            modal: '0 2px 8px 0 rgba(0,0,0,0.08), 0 20px 32px 0 rgba(0,0,0,0.24)',
+            outline: '0 0 0 3px rgba(142, 163, 195, 0.25)',
+        },
+    };
+    return {
+        sm: '0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px 0 rgba(0, 0, 0, 0.04)',
+        md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+        lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+        xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+        '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+        inner: 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',
+        none: 'none',
+        // design elevations
+        ...modes[mode],
+
+        ...((providedTheme?.shadows && providedTheme.shadows[mode]) || {}),
+    };
 };
 
-const breakpoints = ['30em', '48em', '62em', '80em'];
-
-// aliases
-breakpoints['sm'] = breakpoints[0];
-breakpoints['md'] = breakpoints[1];
-breakpoints['lg'] = breakpoints[2];
-breakpoints['xl'] = breakpoints[3];
+const basis = ['480px', '768px', '992px', '1280px'];
+const breakpoints = {
+    basis,
+    // aliases
+    sm: basis[0],
+    md: basis[1],
+    lg: basis[2],
+    xl: basis[3],
+    stripped: {
+        sm: parseInt(basis[0], 10),
+        md: parseInt(basis[1], 10),
+        lg: parseInt(basis[2], 10),
+        xl: parseInt(basis[3], 10),
+    },
+};
 
 const zIndices = {
     hide: -1,
     auto: 'auto',
     base: 0,
     docked: 10,
-    dropdown: 1000,
-    sticky: 1100,
-    banner: 1200,
+    dropdown: 900,
+    sticky: 1000,
+    banner: 1100,
+    panel: 1200,
     overlay: 1300,
     modal: 1400,
     popover: 1500,
@@ -93,24 +122,35 @@ const borders = {
 //   none: 0
 // };
 
-const theme = {
-    breakpoints,
-    zIndices,
-    radii,
-    opacity,
-    borders,
-    colors,
-    ...typography,
-    sizes,
-    shadows,
-    space,
-    icons,
+export const baseTheme = ({ providedTheme = {}, mode = 'light' }) => {
+    const colorScheme = colors(providedTheme, mode);
+    const shadowScheme = shadows(providedTheme, mode);
 
-    // component styles
-    // add to this in custom theme to override component styling
-    styles: {},
+    return {
+        breakpoints: breakpoints['basis'], // emotion theme needs to be passed an string array of breakpoints
+        breakpoint: breakpoints,
+        zIndices,
+        radii,
+        opacity,
+        borders,
+        ...typography,
+        sizes,
+        space,
+        icons,
+
+        // component styles
+        // add to this in custom theme to override component styling
+        styles: {},
+
+        // custom theme
+        ...providedTheme,
+
+        // colors and shadows merge in with default theme
+        colors: colorScheme,
+        shadows: shadowScheme,
+    };
 };
 
-export type ThemeType = typeof theme;
+export const theme = baseTheme({});
 
-export default theme;
+export type ThemeType = typeof theme;

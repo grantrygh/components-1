@@ -4,13 +4,15 @@ export const menuStyle = (props, theme) => ({
     style: {
         color: 'inherit',
         borderWidth: '1px',
-        bg: '#fff',
-        shadow: 'sm',
+        borderColor: 'border',
+        bg: 'popoverBg',
+        fontSize: 'body',
+        shadow: 'menu',
         py: 2,
         minW: '3xs',
         rounded: 'md',
         tabIndex: 1,
-        zIndex: 1,
+        zIndex: 'popover',
         _focus: { outline: 0 },
     },
 });
@@ -47,10 +49,10 @@ export const menuItemStyle = (props, theme) => ({
         userSelect: 'none',
         transition: 'background-color 220ms, color 220ms',
         _active: {
-            bg: 'gray.200',
+            bg: 'selectControlHover',
         },
         _focus: {
-            bg: 'altBg',
+            bg: 'selectControlHover',
             outline: 0,
         },
         _disabled: {

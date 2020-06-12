@@ -10,8 +10,9 @@ export const tooltipStyle = ({ placement = 'auto' }, theme) => ({
         bg: 'tooltip',
         shadow: 'menu',
         pointerEvents: 'none',
-        color: 'white',
         maxW: '320px',
+        zIndex: 'tooltip',
+        color: 'titleText',
     },
 });
 

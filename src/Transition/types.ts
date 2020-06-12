@@ -1,31 +1,30 @@
-import * as React from 'react';
-import { TransitionProps } from 'react-spring/renderprops';
 import { BoxProps } from '../Box/types';
 
-interface ISlideIn {
+export interface ISlideIn {
     in: boolean;
     offset?: string;
     duration?: number;
-    children: (styles: Object) => React.ReactNode;
+    children: any;
 }
 
-export type SlideInProps = ISlideIn & TransitionProps<boolean>;
+export type SlideInProps = ISlideIn;
 
 interface IScale {
     in: boolean;
     initialScale?: number;
     duration?: number;
-    children: (styles: Object) => React.ReactNode;
+    children: any;
 }
 
-export type ScaleProps = IScale & Partial<TransitionProps<boolean>>;
+export type ScaleProps = IScale & BoxProps;
 
-interface ISlide {
+export interface ISlide {
     in: boolean;
     finalHeight?: BoxProps['height'];
     finalWidth?: BoxProps['maxWidth'];
     duration?: number;
     from: 'bottom' | 'top' | 'left' | 'right';
+    children: any;
 }
 
-export type SlideProps = ISlide & TransitionProps<boolean>;
+export type SlideProps = ISlide;

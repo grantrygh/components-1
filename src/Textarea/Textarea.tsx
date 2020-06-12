@@ -37,13 +37,12 @@ export const ExpandingTextarea = forwardRef(
 
         return (
             <Textarea
-                rows="1"
                 onInput={handleInput}
                 css={{
                     height: height || 0,
                     resize: 'none',
                     overflow: 'hidden',
-                    minHeight,
+                    minHeight: minHeight as string,
                 }}
                 ref={textareaRef}
                 {...props}

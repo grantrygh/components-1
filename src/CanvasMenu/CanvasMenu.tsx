@@ -1,9 +1,10 @@
 import React from 'react';
 import { Accordion, AccordionHeader, AccordionIcon, AccordionItem, AccordionPanel, Box, Flex, Navigation } from '..';
+import { Tooltip } from '../Tooltip';
 import { CanvasMenuProps, NavItemProps } from './types';
 
 export function CanvasMenu(props: CanvasMenuProps) {
-    const { isMinified, items = {}, as = 'aside', children } = props;
+    const { isMinified, isVisible, items = {}, as = 'aside', children } = props;
 
     const renderNavItem = ({
         label,
@@ -12,29 +13,33 @@ export function CanvasMenu(props: CanvasMenuProps) {
         media = null,
         meta = null,
         isAccordion = false,
+        unstyled,
         ...rest
     }: NavItemProps) => {
         if (isMinified && rest.isSubmenuItem) {
             return null;
         }
+        const showFullItem = !isMinified && isVisible;
 
         return (
-            <Navigation.Item href={href} exact={!isAccordion} {...rest}>
-                <Navigation.ItemMedia icon={icon} mr={!isMinified && 4}>
-                    {media}
-                </Navigation.ItemMedia>
-                {!isMinified && <Navigation.ItemText>{label}</Navigation.ItemText>}
-                {meta && !isMinified && <Navigation.ItemMeta>{meta}</Navigation.ItemMeta>}
+            <Navigation.Item href={href} exact={!isAccordion} key={label + href} {...rest}>
+                <Tooltip label={label} placement="right" closeOnClick showTooltip={isMinified}>
+                    <Navigation.ItemMedia icon={icon} mr={!isMinified && 4} unstyled={unstyled}>
+                        {media}
+                    </Navigation.ItemMedia>
+                </Tooltip>
+                {showFullItem && <Navigation.ItemText>{label}</Navigation.ItemText>}
+                {meta && showFullItem && <Navigation.ItemMeta>{meta}</Navigation.ItemMeta>}
             </Navigation.Item>
         );
     };
 
     const renderAccordion = accProps => {
         return (
-            <Navigation.Item>
+            <Navigation.Item key={accProps.children}>
                 <Accordion allowToggle>
                     <AccordionItem>
-                        <AccordionHeader>
+                        <AccordionHeader py={0} borderBottomWidth={0}>
                             {renderNavItem({
                                 ...accProps,
                                 mb: 0,
@@ -45,7 +50,7 @@ export function CanvasMenu(props: CanvasMenuProps) {
                         </AccordionHeader>
                         {accProps.children &&
                             accProps.children.map(child => (
-                                <AccordionPanel>
+                                <AccordionPanel p={0}>
                                     {renderNavItem({
                                         ...child,
                                         isSubmenuItem: true,
@@ -66,7 +71,10 @@ export function CanvasMenu(props: CanvasMenuProps) {
                     {items.header.map(item =>
                         renderNavItem({
                             ...item,
-                            align: 'start',
+                            align: 'center',
+                            unstyled: true,
+                            minH: null,
+                            pb: 'spacing',
                         })
                     )}
                 </Box>
@@ -78,6 +86,11 @@ export function CanvasMenu(props: CanvasMenuProps) {
                 {/* Main navigation links (if any) */}
                 {items?.content?.length > 0 &&
                     items.content.map(item => {
+                        // allows for passing and rendering components, rather than menu item objects
+                        if (!item || (!item?.label && !item?.media && !item?.icon)) {
+                            return item;
+                        }
+
                         if (item.isAccordion) {
                             return renderAccordion(item);
                         }

@@ -8,6 +8,7 @@ const space = {
     ...sizes.spacing,
     input: sizes.input,
     canvas: sizes.canvas,
+    header: sizes.header,
 };
 
 const shadows = (providedTheme, mode) => {

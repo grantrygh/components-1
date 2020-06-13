@@ -10,8 +10,8 @@ export const navigationStyle: componentStyleDef<NavigationProps & NavigationItem
     const style: BoxProps = {
         bg: 'navBg',
         boxShadow: 'topNav',
-        minHeight: 16,
-        height: 16,
+        minHeight: 'header',
+        height: 'header',
         width: '100%',
         px: ['spacing', 'spacing', 'spacing-lg'],
     };

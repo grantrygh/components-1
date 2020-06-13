@@ -65,6 +65,8 @@ const canvas = {
     spacing: baseSizes[5],
 };
 
+const header = baseSizes[16];
+
 const sizes = {
     ...baseSizes,
     ...largeSizes,
@@ -72,6 +74,7 @@ const sizes = {
     containers,
     input,
     canvas,
+    header,
 };
 
 export default sizes;

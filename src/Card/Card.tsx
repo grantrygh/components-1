@@ -1,8 +1,12 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { Box } from '../Box';
+import { PseudoBox } from '../PseudoBox';
+import useCardStyle from './styles';
 import { CardProps } from './types';
 
 export const Card = ({ raised, ...rest }: CardProps) => {
-    return <Box shadow={raised ? 'raised' : 'card'} p="spacing" {...rest} />;
+    const cardStyleProps = useCardStyle({
+        raised,
+    });
+    return <PseudoBox {...cardStyleProps} {...rest} />;
 };

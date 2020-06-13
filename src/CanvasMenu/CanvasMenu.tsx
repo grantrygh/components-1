@@ -12,6 +12,7 @@ export function CanvasMenu(props: CanvasMenuProps) {
         icon = null,
         media = null,
         meta = null,
+        exact = true,
         isAccordion = false,
         unstyled,
         ...rest
@@ -22,7 +23,7 @@ export function CanvasMenu(props: CanvasMenuProps) {
         const showFullItem = !isMinified && isVisible;
 
         return (
-            <Navigation.Item href={href} exact={!isAccordion} key={label + href} {...rest}>
+            <Navigation.Item href={href} exact={isAccordion ? false : exact} key={label + href} {...rest}>
                 <Tooltip label={label} placement="right" closeOnClick showTooltip={isMinified}>
                     <Navigation.ItemMedia icon={icon} mr={!isMinified && 4} unstyled={unstyled}>
                         {media}

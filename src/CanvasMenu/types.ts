@@ -10,6 +10,8 @@ interface INavItem {
     media?: React.ReactNode;
     meta?: React.ReactNode;
 
+    exact?: boolean;
+
     // set true to avoid any alterations to navItemMedia svg paths
     unstyled?: boolean;
 }

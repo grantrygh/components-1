@@ -44,6 +44,7 @@ const groupHover = '[role=group]:hover &';
 export const PseudoBox = styled(Box)(
     ({
         _after,
+        _hoverAfter,
         _focus,
         _selected,
         _focusWithin,
@@ -56,6 +57,7 @@ export const PseudoBox = styled(Box)(
         _expanded,
         _visited,
         _before,
+        _hoverBefore,
         _readOnly,
         _first,
         _notFirst,
@@ -93,7 +95,9 @@ export const PseudoBox = styled(Box)(
             [pressed]: tx(_pressed),
             [groupHover]: tx(_groupHover),
             '&:before': tx(_before),
+            '&:hover:before': tx(_hoverBefore),
             '&:after': tx(_after),
+            '&:hover:after': tx(_hoverAfter),
             '&:focus-within': tx(_focusWithin),
             '&::placeholder': _placeholder,
             '&::-webkit-scrollbar': _scrollbar,

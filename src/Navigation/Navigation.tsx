@@ -52,7 +52,7 @@ Navigation.Tertiary = function NavigationTertiary(props: BoxProps) {
 };
 
 Navigation.Item = function NavItem(props: NavigationItemProps) {
-    const { href, exact = true, isSubmenuItem, isActive, isParent, isMinified, onClick, ...rest } = props;
+    const { href, exact, isSubmenuItem, isActive, isParent, isMinified, onClick, ...rest } = props;
     const { location } = useRouter();
 
     let isLinkActive = false;

@@ -141,6 +141,16 @@ export interface IPseudoBoxProps {
      * Styles for CSS Selector `&::-webkit-scrollbar-thumb`
      */
     _thumb?: BoxProps;
+
+    /**
+     * Styles for CSS Selector `&:hover:after`
+     */
+    _hoverAfter?: BoxProps;
+
+    /**
+     * Styles for CSS Selector `&:hover:before`
+     */
+    _hoverBefore?: BoxProps;
 }
 
 export type PseudoBoxProps = IPseudoBoxProps & BoxProps;

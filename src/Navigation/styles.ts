@@ -47,6 +47,7 @@ export const navigationStyle: componentStyleDef<NavigationProps & NavigationItem
             left: `-${sizes.canvas.spacing}`,
         },
         navItemMedia: {
+            textAlign: 'center',
             _even: !unstyled && { path: { fill: isActive ? colors.primary[500] : colors.bodyText } },
             _odd: !unstyled && { path: { fill: isActive ? colors.primary[500] : colors.bodyText } },
         },

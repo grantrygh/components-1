@@ -3,7 +3,8 @@ import { useTheme } from '../ThemeProvider';
 export const badgeStyle = ({ color, size = 40 }, theme) => ({
     style: {
         display: 'inline-block',
-        px: 1,
+        py: 'spacing-xs',
+        px: 'spacing-sm',
         fontSize: 'smallBody',
         borderRadius: 'radius',
         fontWeight: 'bold',

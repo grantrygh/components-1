@@ -58,14 +58,13 @@ export const tabStyle = ({ color = 'button' }, theme) => ({
             },
         },
         enclosed: {
-            roundedTop: 'md',
-            border: '1px',
+            rounded: 'radius',
+            border: '2px',
             borderColor: 'transparent',
-            mb: '-1px',
             _selected: {
                 color: `${color}.500`,
-                borderColor: 'inherit',
-                borderBottomColor: 'transparent',
+                borderColor: `${color}.500`,
+                opacity: 1,
             },
         },
         'enclosed-colored': {
@@ -127,7 +126,7 @@ const alignments = {
     start: 'flex-start',
 };
 
-export const tabListStyle = ({ align = 'start' }, theme) => ({
+export const tabListStyle = ({ align = 'start', showScrollbar }, { colors }) => ({
     style: {
         borderColor: 'transparent',
     },
@@ -163,6 +162,21 @@ export const tabListStyle = ({ align = 'start' }, theme) => ({
             // unstyled
         },
     },
+    container: {
+        overflowX: 'auto',
+        _scrollbar: {
+            width: '0.4em',
+            height: '0.4em',
+            display: !showScrollbar && 'none',
+        },
+        _thumb: {
+            backgroundColor: colors.thumb,
+            marginTop: 8,
+        },
+        _track: {
+            backgroundColor: colors.track,
+        },
+    },
 });
 
 export const useTabListStyle = props => {
@@ -170,9 +184,12 @@ export const useTabListStyle = props => {
     const styles = theme['styles'].tabList ? theme['styles'].tabList(props, theme) : tabListStyle(props, theme);
 
     return {
-        ...styles.orientation[props.orientation],
-        ...styles.variants[props.variant],
-        ...styles.style,
+        root: {
+            ...styles.orientation[props.orientation],
+            ...styles.variants[props.variant],
+            ...styles.style,
+        },
+        container: styles.container,
     };
 };
 

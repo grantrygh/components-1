@@ -7,6 +7,7 @@ export const cardStyle = ({ raised }, theme) => ({
         rounded: 'radius',
         p: 'spacing',
         overflow: 'hidden',
+        bg: 'cardBg',
     },
 });
 

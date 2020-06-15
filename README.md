@@ -58,6 +58,7 @@ List of theme color variables to override:
     -   `tertiaryButton` - tertiary button (outlined) background. defaults to transparent
     -   `tableHeadingBg` - used for table header, table footer, and expanded row backgrounds
     -   `track` - background for slider, switches, progress ocmponents
+    -   `thumb` - custom scrollbar thumb background - used for tabs and table
     -   `tooltip` - tooltip background
     -   `selectControlHover` - background for a hovered menu item within the select menu
     -   `inputHover` - input background when hovered

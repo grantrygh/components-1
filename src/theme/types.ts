@@ -105,6 +105,7 @@ export interface Colors {
     popoverBg: string;
     progress: string;
     track: string;
+    thumb: string;
     // palette
     whiteAlpha: ColorHues;
     blackAlpha: ColorHues;
@@ -213,6 +214,7 @@ interface Inputs {
 
 type Space = BaseSizes & {
     input: Inputs;
+    header: string;
 };
 
 interface LetterSpacings {

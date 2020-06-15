@@ -225,6 +225,7 @@ const colors = (providedTheme, mode) => {
 
             // component specific
             track: neutral[5],
+            thumb: neutral[6],
             tooltip: neutral[2],
             selectControlHover: primary[50],
 
@@ -250,6 +251,7 @@ const colors = (providedTheme, mode) => {
 
             // component specific
             track: neutral[8],
+            thumb: neutral[7],
             tooltip: neutral[9],
             selectControlHover: neutral[9],
 

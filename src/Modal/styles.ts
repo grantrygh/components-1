@@ -4,8 +4,13 @@ export const modalStyle = ({ isCentered }, theme) => ({
     style: {
         bg: 'popoverBg',
         shadow: 'modal',
-        m: 4,
-        mx: [4, 'auto'],
+        m: 'spacing',
+        mx: ['spacing', 'auto'],
+        w: '100%',
+        outline: 0,
+        pos: 'relative',
+        flexDir: 'column',
+        p: 0,
     },
     scrollBehavior: {
         inside: {

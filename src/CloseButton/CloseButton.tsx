@@ -9,7 +9,7 @@ export const CloseButton = ({
     size = 'md',
     type = 'button',
     isDisabled,
-    color,
+    color = 'faintText',
     'aria-label': ariaLabel = 'Close',
     ...rest
 }: CloseButtonProps) => {

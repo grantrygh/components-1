@@ -11,6 +11,10 @@ import {
     Radio,
     RadioGroup,
     Select,
+    Slider,
+    SliderFilledTrack,
+    SliderThumb,
+    SliderTrack,
     Switch,
     ToggleGroup,
 } from '../../../../src';
@@ -50,6 +54,7 @@ export const FilterMenuForm = ({ onSubmit }) => {
                         caramel: true,
                         flavor: 'mango',
                         lactose_intolerant: true,
+                        slider: 40,
                     }}
                 >
                     {/* <Input> should be wrapped by an <InputGroup> for form controls, label, and support for InputLeftElement, etc (see InputGroup) */}
@@ -108,6 +113,12 @@ export const FilterMenuForm = ({ onSubmit }) => {
                     <InputGroup name="lactose_intolerant">
                         <Switch>I'm lactose intolerant</Switch>
                     </InputGroup>
+
+                    <Slider name="slider" id="sliderId" size="md">
+                        <SliderFilledTrack />
+                        <SliderTrack />
+                        <SliderThumb />
+                    </Slider>
 
                     <Button type="submit">Filter</Button>
                 </Form>

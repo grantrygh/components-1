@@ -7,11 +7,12 @@
 
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
+import { useFormField } from 'Form';
 import { createContext, forwardRef, RefObject, useCallback, useContext, useRef, useState } from 'react';
 import { Box } from '../Box';
 import { useForkRef } from '../hooks/useForkRef';
 import { PseudoBox } from '../PseudoBox';
-import useSliderStyle from './styles';
+import useSliderStyle, { sizes } from './styles';
 import { SliderContextProps, SliderFilledTrackProps, SliderProps, SliderThumbProps, SliderTrackProps } from './types';
 import { clampValue, percentToValue, roundValueToStep, valueToPercent } from './utils';
 
@@ -63,7 +64,15 @@ export const SliderThumb = forwardRef((props: SliderThumbProps, ref) => {
             onKeyDown={onKeyDown}
             {...thumbStyleProps}
             {...props}
-        />
+        >
+            <Box
+                w={sizes[size]?.innerThumb}
+                h={sizes[size]?.innerThumb}
+                bg="primary.500"
+                rounded="full"
+                zIndex="base"
+            />
+        </PseudoBox>
     );
 });
 
@@ -104,7 +113,7 @@ export const Slider = forwardRef(
             'aria-valuetext': ariaValueText,
             orientation = 'horizontal',
             getAriaValueText,
-            size,
+            size = 'md',
             color,
             name,
             id,
@@ -113,8 +122,12 @@ export const Slider = forwardRef(
         }: SliderProps,
         ref
     ) => {
+        const { onChange: formOnChange, value: initialSliderValue } = useFormField({
+            name,
+            onChange,
+        });
         const { current: isControlled } = useRef(controlledValue != null);
-        const [value, setValue] = useState(defaultValue || 0);
+        const [value, setValue] = useState(defaultValue || initialSliderValue || 0);
 
         const _value = isControlled ? controlledValue : value;
         const actualValue = clampValue(_value, min, max);
@@ -153,6 +166,9 @@ export const Slider = forwardRef(
                 }
                 if (onChange) {
                     onChange(newValue);
+                }
+                if (formOnChange && typeof formOnChange === 'function') {
+                    formOnChange(null, newValue);
                 }
             },
             [isControlled, onChange]

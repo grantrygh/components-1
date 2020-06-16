@@ -7,9 +7,9 @@
 
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { useFormField } from 'Form';
 import { createContext, forwardRef, RefObject, useCallback, useContext, useRef, useState } from 'react';
 import { Box } from '../Box';
+import { useFormField } from '../Form';
 import { useForkRef } from '../hooks/useForkRef';
 import { PseudoBox } from '../PseudoBox';
 import useSliderStyle, { sizes } from './styles';

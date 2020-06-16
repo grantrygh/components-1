@@ -5,7 +5,7 @@ export const styleguideTheme: ThemeType = {
     colors: {
         // dark: {
         //     primary: generateShades('#35BDE4'),
-        //     tableHeadingBg: '#24252A',
+        //     tableHeaderBg: '#24252A',
         //     border: 'rgba(255,255,255,0.12)',
         //     cardBg: '#36383F',
         //     navBg: '#36383F',

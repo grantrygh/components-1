@@ -5,6 +5,7 @@ interface IImage {
      * The path to the image source
      */
     src?: string;
+    srcSet?: string;
     /**
      * In event there was an error loading the `src`, specify a fallback
      * In most cases, this can be an avatar or image placeholder
@@ -40,4 +41,4 @@ interface IImage {
     withLightbox?: boolean;
 }
 
-export type ImageProps = IImage & BoxProps;
+export type ImageProps = IImage & BoxProps & Partial<HTMLImageElement>;

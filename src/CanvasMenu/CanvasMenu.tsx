@@ -65,7 +65,7 @@ export function CanvasMenu(props: CanvasMenuProps) {
     };
 
     return (
-        <Flex as={as} h="100%" direction="column">
+        <Flex as={as} flex={1} direction="column">
             {/* CanvasMenu Header */}
             {items?.header?.length > 0 && (
                 <Box>

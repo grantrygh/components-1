@@ -61,7 +61,7 @@ const Modal = ({
     closeOnOverlayClick = true,
     useInert = true,
     scrollBehavior = 'outside',
-    isCentered,
+    isCentered = true,
     addAriaLabels = true,
     preserveScrollBarGap,
     formatIds = id => ({
@@ -237,7 +237,7 @@ const ModalContent = React.forwardRef(({ onClick, children, zIndex, noStyles, ..
         <Box
             pos="fixed"
             d="flex"
-            alignItems="center"
+            // alignItems="center"
             left="0"
             top="0"
             w="100%"
@@ -286,8 +286,10 @@ const ModalHeader = forwardRef((props: BoxProps & { onClose?: () => void }, ref)
     return (
         <Flex
             justify="space-between"
+            align="center"
             ref={ref}
-            p="spacing-lg"
+            px="spacing-lg"
+            py="spacing"
             id={headerId}
             as="header"
             position="relative"
@@ -297,7 +299,7 @@ const ModalHeader = forwardRef((props: BoxProps & { onClose?: () => void }, ref)
 });
 
 const ModalFooter = forwardRef((props: BoxProps, ref) => (
-    <Flex justify="flex-end" ref={ref} p="spacing-lg" as="footer" {...props} />
+    <Flex justify="flex-end" ref={ref} px="spacing-lg" py="spacing" as="footer" {...props} />
 ));
 
 const ModalBody = forwardRef((props: BoxProps, ref) => {
@@ -308,7 +310,7 @@ const ModalBody = forwardRef((props: BoxProps, ref) => {
         style = { overflowY: 'auto' };
     }
 
-    return <Box ref={ref} id={bodyId} p="spacing-lg" flex="1" color="bodyText" {...style} {...props} />;
+    return <Box ref={ref} id={bodyId} px="spacing-lg" py="spacing" flex="1" color="bodyText" {...style} {...props} />;
 });
 
 const ModalCloseButton = forwardRef((props: CloseButtonProps, ref) => {

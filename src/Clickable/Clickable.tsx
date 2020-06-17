@@ -4,15 +4,8 @@ import { Box } from '../Box';
 import { useRouter } from '../hooks/useRouter';
 import { ClickableProps } from './types';
 
-export const Clickable = ({
-    onClick,
-    href,
-    element: Element = Box,
-    staticContext,
-    innerRef,
-    ...props
-}: ClickableProps) => {
-    const { history, location } = useRouter();
+export const Clickable = ({ onClick, href, as, staticContext, innerRef, ...props }: ClickableProps) => {
+    const { history } = useRouter();
 
     const handleClick = (e: React.MouseEvent<HTMLElement>): void => {
         if (onClick) {
@@ -48,5 +41,5 @@ export const Clickable = ({
 
         // don't do anything if a nested anchor or button was clicked
     };
-    return <Element onClick={handleClick} ref={innerRef} cursor={(href || onClick) && 'pointer'} {...props} />;
+    return <Box as={as} onClick={handleClick} ref={innerRef} cursor={(href || onClick) && 'pointer'} {...props} />;
 };

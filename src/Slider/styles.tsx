@@ -4,12 +4,12 @@ import { useTheme } from '../ThemeProvider';
 
 export const sizes = {
     lg: {
-        thumb: '20px',
+        thumb: '24px',
         trackHeight: '4px',
-        innerThumb: '4px',
+        innerThumb: '6px',
     },
     md: {
-        thumb: '16px',
+        thumb: '18px',
         trackHeight: '4px',
         innerThumb: '2px',
     },
@@ -60,7 +60,7 @@ export const sliderStyle = ({ color: fillColor = 'primary', size = 'md', trackPe
             bg: `${fillColor}.500`,
             width: `${trackPercent}%`,
             rounded: 'radius',
-            zIndex: '1',
+            zIndex: 1,
         },
         thumb: {
             ...centerProps,

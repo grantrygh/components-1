@@ -36,7 +36,7 @@ export const Tooltip = ({
     isOpen: controlledIsOpen,
     onOpen: onOpenProp,
     onClose: onCloseProp,
-    showTooltip,
+    showTooltip = true,
     ...rest
 }: TooltipProps) => {
     const { isOpen, onClose, onOpen } = useDisclosure(defaultIsOpen || false);
@@ -128,7 +128,7 @@ export const Tooltip = ({
                     {...tooltipStyleProps}
                     {...rest}
                 >
-                    {label && <Text>{label}</Text>}
+                    {label && (typeof label === 'string' ? <Text>{label}</Text> : <Box>{label}</Box>)}
                     {hasAriaLabel && (
                         <VisuallyHidden role="tooltip" id={tooltipId}>
                             {ariaLabel}

@@ -50,7 +50,7 @@ export const inputStyle = ({ isFullWidth = true }, theme) => ({
         },
         filled: {
             border: '1px',
-            borderColor: 'transparent',
+            borderColor: 'border',
             bg: 'inputBg',
             _hover: {
                 bg: 'inputHover',

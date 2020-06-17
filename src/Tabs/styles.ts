@@ -46,6 +46,7 @@ export const tabStyle = ({ color = 'button' }, theme) => ({
             borderRadius: 0,
             _selected: {
                 color: 'titleText',
+                opacity: 1,
                 borderColor: `${color}.500`,
                 boxShadow: 'none',
                 svg: {

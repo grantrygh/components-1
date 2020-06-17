@@ -9,7 +9,7 @@ const baseStyleProps = {
     textDecoration: 'none',
     outline: 'none',
     color: 'bodyText',
-    _hover: { textDecoration: 'underline' },
+    _hover: { color: 'titleText' },
     _focus: {
         boxShadow: 'outline',
     },

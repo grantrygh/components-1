@@ -4,8 +4,8 @@ export interface IClickable {
     onClick?: (e) => void;
     href?: string;
 
-    /* HTML element to use. div by default */
-    element?: any;
+    /* component or HTML element to use. Box by default */
+    as?: any;
 
     innerRef?: any;
     staticContext?: any;

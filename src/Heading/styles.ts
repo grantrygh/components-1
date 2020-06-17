@@ -10,8 +10,9 @@ function reverseNumber(n, min, max) {
 }
 
 const getKind = kind => {
+    const fontSize = scaleRatio ** kind * sizeBase;
     return {
-        fontSize: scaleRatio ** kind * sizeBase,
+        fontSize: [0.8 * fontSize, 0.9 * fontSize, fontSize],
         lineHeight: '1.5',
         color: 'titleText',
         // mb: '0.4em',

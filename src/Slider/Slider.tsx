@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /**
  * Slider Component
  *
@@ -9,7 +10,9 @@
 import { jsx } from '@emotion/core';
 import { createContext, forwardRef, RefObject, useCallback, useContext, useRef, useState } from 'react';
 import { Box } from '../Box';
+import { Flex } from '../Flex';
 import { useFormField } from '../Form';
+import { Heading } from '../Heading';
 import { useForkRef } from '../hooks/useForkRef';
 import { PseudoBox } from '../PseudoBox';
 import useSliderStyle, { sizes } from './styles';
@@ -65,13 +68,15 @@ export const SliderThumb = forwardRef((props: SliderThumbProps, ref) => {
             {...thumbStyleProps}
             {...props}
         >
-            <Box
-                w={sizes[size]?.innerThumb}
-                h={sizes[size]?.innerThumb}
-                bg="primary.500"
-                rounded="full"
-                zIndex="base"
-            />
+            {props.children || (
+                <Box
+                    w={sizes[size]?.innerThumb}
+                    h={sizes[size]?.innerThumb}
+                    bg="primary.500"
+                    rounded="full"
+                    zIndex="base"
+                />
+            )}
         </PseudoBox>
     );
 });
@@ -108,6 +113,7 @@ export const Slider = forwardRef(
             max = 100,
             min = 0,
             step = 1,
+            showValue,
             'aria-labelledby': ariaLabelledBy,
             'aria-label': ariaLabel,
             'aria-valuetext': ariaValueText,
@@ -281,28 +287,35 @@ export const Slider = forwardRef(
 
         return (
             <SliderContext.Provider value={context}>
-                <Box
-                    role="presentation"
-                    tabIndex="-1"
-                    onMouseDown={handleMouseDown}
-                    onTouchStart={handleMouseDown}
-                    onMouseLeave={handleMouseUp}
-                    onTouchEnd={handleMouseUp}
-                    onBlur={event => {
-                        handleMouseUp();
-                        if (onBlur) {
-                            onBlur(event);
-                        }
-                    }}
-                    aria-disabled={isDisabled}
-                    ref={ref}
-                    css={{ touchAction: 'none' }}
-                    {...rootStyleProps}
-                    {...rest}
-                >
-                    {children}
-                    <input type="hidden" value={actualValue} name={name} id={id} />
-                </Box>
+                <Flex align="center">
+                    <Box
+                        role="presentation"
+                        tabIndex="-1"
+                        onMouseDown={handleMouseDown}
+                        onTouchStart={handleMouseDown}
+                        onMouseLeave={handleMouseUp}
+                        onTouchEnd={handleMouseUp}
+                        onBlur={event => {
+                            handleMouseUp();
+                            if (onBlur) {
+                                onBlur(event);
+                            }
+                        }}
+                        aria-disabled={isDisabled}
+                        ref={ref}
+                        css={{ touchAction: 'none' }}
+                        {...rootStyleProps}
+                        {...rest}
+                    >
+                        {children}
+                        <input type="hidden" value={actualValue} name={name} id={id} />
+                    </Box>
+                    {showValue && (
+                        <Flex pl="spacing" minW="50px" justify="flex-end">
+                            <Heading kind="h6">{actualValue}</Heading>
+                        </Flex>
+                    )}
+                </Flex>
             </SliderContext.Provider>
         );
     }

@@ -65,6 +65,7 @@ export const Button = forwardRef(
                 disabled={_isDisabled}
                 aria-disabled={_isDisabled}
                 ref={ref}
+                href={href}
                 as={asButton}
                 type={type}
                 {...buttonStyleProps}

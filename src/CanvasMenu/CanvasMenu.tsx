@@ -89,6 +89,10 @@ export function CanvasMenu(props: CanvasMenuProps) {
                     items.content.map(item => {
                         // allows for passing and rendering components, rather than menu item objects
                         if (!item || (!item?.label && !item?.media && !item?.icon)) {
+                            if (item && typeof item === 'function') {
+                                const itemCopy = item as Function;
+                                return itemCopy({ isMinified, isVisible });
+                            }
                             return item;
                         }
 

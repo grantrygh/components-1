@@ -8,12 +8,12 @@ export const dividerStyle = (props, theme) => ({
         horizontal: {
             borderBottom: '1px',
             width: 'auto',
-            my: 3,
+            my: 'spacing-sm',
         },
         vertical: {
             borderLeft: '1px',
             height: 'auto',
-            mx: 3,
+            mx: 'spacing-sm',
         },
     },
 });

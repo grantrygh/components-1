@@ -35,7 +35,7 @@ export const inputStyle = ({ isFullWidth = true }, theme) => ({
     variants: {
         flushed: {
             borderBottom: '1px',
-            borderColor: 'inherit',
+            borderColor: 'border',
             rounded: 0,
             px: undefined,
             bg: 'transparent',

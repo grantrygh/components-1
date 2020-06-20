@@ -16,7 +16,7 @@ export const selectStyle = ({ size, border }, { colors, sizes }) => ({
             const stateColor = colors.primary[500];
             return {
                 ...provided,
-                backgroundColor: 'transparent',
+                backgroundColor: colors.inputBg,
                 boxShadow: 'none',
                 borderWidth: border === 'full' && '1px',
                 borderBottomWidth: border === 'underline' && '1px',

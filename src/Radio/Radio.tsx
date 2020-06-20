@@ -25,6 +25,7 @@ export const Radio = forwardRef(
             isDisabled,
             isInvalid,
             onChange,
+            renderCustomControl,
             onBlur,
             onFocus,
             children,
@@ -61,9 +62,14 @@ export const Radio = forwardRef(
                     checked={isChecked}
                     disabled={isDisabled}
                 />
-                <ControlBox {...rootStyleProps} type="radio" rounded="full">
-                    <Box bg="currentColor" as="span" rounded="full" size="50%" />
-                </ControlBox>
+                {renderCustomControl ? (
+                    renderCustomControl({ isChecked, type: 'radio', ...rootStyleProps })
+                ) : (
+                    <ControlBox {...rootStyleProps} type="radio" rounded="full">
+                        <Box bg="currentColor" as="span" rounded="full" size="50%" />
+                    </ControlBox>
+                )}
+
                 {children && <Text {...labelStyleProps}>{children}</Text>}
             </Box>
         );

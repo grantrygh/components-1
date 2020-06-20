@@ -10,12 +10,10 @@ function reverseNumber(n, min, max) {
 }
 
 const getKind = kind => {
-    const fontSize = scaleRatio ** kind * sizeBase;
     return {
-        fontSize: [0.8 * fontSize, 0.9 * fontSize, fontSize],
+        fontSize: `calc(${sizeBase + kind}px + ${0.2 * kind}vw)`,
         lineHeight: '1.5',
         color: 'titleText',
-        // mb: '0.4em',
     };
 };
 

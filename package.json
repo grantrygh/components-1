@@ -81,6 +81,7 @@
     "react-animate-height": "2.0.9",
     "react-dropzone": "^10.2.1",
     "react-focus-lock": "^2.2.1",
+    "react-intersection-observer": "^8.26.2",
     "react-lorem-component": "^0.13.0",
     "react-router-dom": "^5.2.0",
     "react-select": "^3.1.0",

@@ -99,12 +99,17 @@ const Modal = ({
 
     useEffect(() => {
         const dialogNode = contentRef.current;
-        if (isOpen && blockScrollOnMount) {
+        if (isOpen && blockScrollOnMount && __BROWSER__) {
             disableBodyScroll(dialogNode, {
                 reserveScrollBarGap: preserveScrollBarGap,
             });
         }
-        return () => enableBodyScroll(dialogNode);
+        return () => {
+            if (__BROWSER__) {
+                return enableBodyScroll(dialogNode);
+            }
+            return null;
+        };
     }, [isOpen, blockScrollOnMount, preserveScrollBarGap]);
 
     useEffect(() => {

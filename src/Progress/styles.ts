@@ -1,6 +1,6 @@
 import { useTheme } from '../ThemeProvider';
 
-export const progressStyle = ({ borderRadius = 'radius', color = 'progress', isIndeterminate }, theme) => ({
+export const progressStyle = ({ borderRadius = 'radius', startColor, endColor, isIndeterminate }, { colors }) => ({
     style: {
         bg: 'track',
         borderRadius,
@@ -18,7 +18,9 @@ export const progressStyle = ({ borderRadius = 'radius', color = 'progress', isI
         },
     },
     indicator: {
-        bg: color,
+        background: !endColor
+            ? startColor || colors.progress
+            : `linear-gradient(90deg, ${startColor || colors.progress} 0%, ${endColor} 100%)`,
         borderRadius,
         ...(isIndeterminate && {
             width: '100%',

@@ -1,17 +1,17 @@
 import { useTheme } from '../ThemeProvider';
 
-export const dividerStyle = (props, theme) => ({
+export const dividerStyle = ({ size }, theme) => ({
     style: {
         borderColor: 'border',
     },
     orientation: {
         horizontal: {
-            borderBottom: '1px',
+            borderBottom: `${size}px`,
             width: 'auto',
             my: 'spacing-sm',
         },
         vertical: {
-            borderLeft: '1px',
+            borderLeft: `${size}px`,
             height: 'auto',
             mx: 'spacing-sm',
         },

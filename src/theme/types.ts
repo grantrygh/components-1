@@ -72,6 +72,7 @@ interface Borders {
     none: StringOrNumber;
     '1px': StringOrNumber;
     '2px': StringOrNumber;
+    '3px': StringOrNumber;
     '4px': StringOrNumber;
 }
 

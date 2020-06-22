@@ -11,12 +11,12 @@ export const sizes = {
     md: {
         thumb: '18px',
         trackHeight: '4px',
-        innerThumb: '2px',
+        innerThumb: '4px',
     },
     sm: {
         thumb: '14px',
         trackHeight: '2px',
-        innerThumb: 0,
+        innerThumb: '2px',
     },
 };
 

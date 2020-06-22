@@ -1,18 +1,14 @@
+import UploadIcon from 'mdi-react/UploadIcon';
 import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { Box } from '../Box';
 import { PseudoBox } from '../PseudoBox';
 import { Text } from '../Text';
 import useDropzoneStyle from './styles';
 import { DropzoneProps } from './types';
 
 export const Dropzone = (props: DropzoneProps) => {
-    const {
-        disabled,
-        disabledMessage,
-        uploadMessage = 'Drag a file here to upload, or click to select a file.',
-        accept = [],
-        ...rest
-    } = props;
+    const { disabled, disabledMessage, uploadMessage = 'Drag or click to upload images', accept = [], ...rest } = props;
 
     const onDrop = useCallback(acceptedFiles => {
         if (acceptedFiles && acceptedFiles[0]) {
@@ -43,6 +39,9 @@ export const Dropzone = (props: DropzoneProps) => {
         // container
         <PseudoBox {...getRootProps()} disabled={disabled} {...dropzoneStyleProps} {...rest}>
             <input {...getInputProps()} />
+            <Box mb="spacing-xs">
+                <UploadIcon />
+            </Box>
             <Text color="faintText">{content}</Text>
         </PseudoBox>
     );

@@ -145,8 +145,6 @@ export const StepperItem = ({
         buttonSize: button,
     });
 
-    console.log('is item active', isActive ? 'true' : 'false', children);
-
     return (
         <>
             <Clickable onClick={onClick} {...outerStyleProps}>

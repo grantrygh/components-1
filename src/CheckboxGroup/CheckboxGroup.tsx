@@ -83,7 +83,9 @@ export const CheckboxGroup = ({
 
     return (
         <FormControlWrapper id={firstChildName} {...spacingProps} {...rest}>
-            <Box role="group">{clones}</Box>
+            <Box role="group" {...rest}>
+                {clones}
+            </Box>
         </FormControlWrapper>
     );
 };

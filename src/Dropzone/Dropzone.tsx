@@ -11,9 +11,11 @@ export const Dropzone = (props: DropzoneProps) => {
     const { disabled, disabledMessage, uploadMessage = 'Drag or click to upload images', accept = [], ...rest } = props;
 
     const onDrop = useCallback(acceptedFiles => {
-        if (acceptedFiles && acceptedFiles[0]) {
-            const fileUrl = window?.URL.createObjectURL(acceptedFiles[0]);
-            props.dropEvent(acceptedFiles[0], fileUrl);
+        if (acceptedFiles && acceptedFiles.length > 0) {
+            acceptedFiles.forEach(file => {
+                const fileUrl = window?.URL.createObjectURL(file);
+                props.dropEvent(file, fileUrl);
+            });
         }
     }, []);
 

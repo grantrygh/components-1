@@ -2,7 +2,7 @@ import { BoxProps } from '../Box/types';
 
 interface IDropzone {
     // event handler when a file is dropped
-    dropEvent: (file?: File) => Promise<void> | void;
+    dropEvent: (file?: File, fileUrl?: string) => Promise<void> | void;
 
     // disable dropzone events
     disabled?: boolean;

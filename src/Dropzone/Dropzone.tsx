@@ -12,7 +12,8 @@ export const Dropzone = (props: DropzoneProps) => {
 
     const onDrop = useCallback(acceptedFiles => {
         if (acceptedFiles && acceptedFiles[0]) {
-            props.dropEvent(acceptedFiles[0]);
+            const fileUrl = window?.URL.createObjectURL(acceptedFiles[0]);
+            props.dropEvent(acceptedFiles[0], fileUrl);
         }
     }, []);
 

@@ -1,26 +1,22 @@
-import React, { cloneElement, useCallback, useState } from 'react';
+import React, { cloneElement, useCallback, useEffect, useState } from 'react';
 import Cropper from 'react-easy-crop';
 import { Box } from '../Box';
 import { Button } from '../Button';
 import { ButtonGroup } from '../ButtonGroup';
+import { Heading } from '../Heading';
 import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '../Modal';
 import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from '../Slider';
-import { Stepper, StepperItem } from '../Stepper';
 import getCroppedImg from './CropImage';
 import useImageCropStyle from './styles';
 
-export const ImageCrop = ({ src, aspect = 4 / 3, setCroppedImage, trigger }) => {
-    const [isOpen, setIsOpen] = useState(false);
+export const ImageCrop = ({ src, aspect = 4 / 3, setCroppedImage, trigger, open = false, onClose }) => {
+    const [isOpen, setIsOpen] = useState(open);
     const [crop, setCrop] = useState({ x: 0, y: 0 });
     const [rotation, setRotation] = useState(0);
     const [zoom, setZoom] = useState(1);
     const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
 
     const { root: containerStyleProps, controls: controlsStyleProps } = useImageCropStyle(null);
-
-    const [activeStep, setActiveStep] = useState(0);
-    const [completed, setCompleted] = useState({});
-    const steps = ['Upload', 'Crop Image'];
 
     const onCropComplete = useCallback((croppedArea, croppedAreaPixelsNew) => {
         setCroppedAreaPixels(croppedAreaPixelsNew);
@@ -37,6 +33,9 @@ export const ImageCrop = ({ src, aspect = 4 / 3, setCroppedImage, trigger }) => 
 
     const closeModal = () => {
         setIsOpen(false);
+        if (onClose) {
+            onClose();
+        }
     };
 
     const closeWithSave = () => {
@@ -44,22 +43,9 @@ export const ImageCrop = ({ src, aspect = 4 / 3, setCroppedImage, trigger }) => 
         closeModal();
     };
 
-    const handleComplete = () => {
-        const newCompleted = completed;
-        newCompleted[activeStep] = true;
-        setCompleted(newCompleted);
-    };
-
-    const handleNext = () => {
-        if (activeStep === steps.length - 1) {
-            closeWithSave();
-        } else {
-            handleComplete();
-            setActiveStep(activeStep + 1);
-        }
-    };
-
-    console.log('the active step', activeStep);
+    useEffect(() => {
+        setIsOpen(open);
+    }, [open]);
 
     return (
         <>
@@ -67,16 +53,7 @@ export const ImageCrop = ({ src, aspect = 4 / 3, setCroppedImage, trigger }) => 
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>
-                        <Stepper
-                            activeStep={activeStep}
-                            completed={completed}
-                            setActiveStep={setActiveStep}
-                            steps={steps}
-                        >
-                            {steps.map((step, i) => {
-                                return <StepperItem>{step}</StepperItem>;
-                            })}
-                        </Stepper>
+                        <Heading kind="h5">Crop Image</Heading>
                     </ModalHeader>
 
                     <ModalCloseButton onClick={closeModal} position="absolute" top="8px" right="12px" />
@@ -116,9 +93,7 @@ export const ImageCrop = ({ src, aspect = 4 / 3, setCroppedImage, trigger }) => 
                             <Button variant="tertiary" onClick={closeModal}>
                                 Cancel
                             </Button>
-                            <Button onClick={handleNext}>
-                                {activeStep === steps.length - 1 ? 'Finish' : 'Continue'}
-                            </Button>
+                            <Button onClick={closeWithSave}>Finish</Button>
                         </ButtonGroup>
                     </ModalFooter>
                 </ModalContent>

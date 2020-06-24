@@ -18,7 +18,7 @@ export const progressStyle = ({ borderRadius = 'radius', startColor, endColor, i
         },
     },
     indicator: {
-        background: !endColor
+        [endColor ? 'background' : 'bg']: !endColor
             ? startColor || colors.progress
             : `linear-gradient(90deg, ${startColor || colors.progress} 0%, ${endColor} 100%)`,
         borderRadius,

@@ -6,7 +6,7 @@ export const cardStyle = ({ raised }, theme) => ({
         shadow: raised ? 'raised' : 'card',
         rounded: 'radius',
         p: ['spacing-sm', 'spacing'],
-        // overflow: 'hidden',
+        overflow: 'hidden',
         bg: 'cardBg',
     },
 });

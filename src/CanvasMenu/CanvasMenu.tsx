@@ -64,13 +64,30 @@ export function CanvasMenu(props: CanvasMenuProps) {
         );
     };
 
+    const renderItem = item => {
+        // allows for passing and rendering components, rather than menu item objects
+        if (!item || (!item?.label && !item?.media && !item?.icon)) {
+            if (item && typeof item === 'function') {
+                const itemCopy = item as Function;
+                return itemCopy({ isMinified, isVisible });
+            }
+            return item;
+        }
+
+        if (item.isAccordion) {
+            return renderAccordion(item);
+        }
+
+        return renderNavItem(item);
+    };
+
     return (
         <Flex as={as} flex={1} direction="column">
             {/* CanvasMenu Header */}
             {items?.header?.length > 0 && (
                 <Box>
                     {items.header.map(item =>
-                        renderNavItem({
+                        renderItem({
                             ...item,
                             align: 'center',
                             unstyled: true,
@@ -87,20 +104,7 @@ export function CanvasMenu(props: CanvasMenuProps) {
                 {/* Main navigation links (if any) */}
                 {items?.content?.length > 0 &&
                     items.content.map(item => {
-                        // allows for passing and rendering components, rather than menu item objects
-                        if (!item || (!item?.label && !item?.media && !item?.icon)) {
-                            if (item && typeof item === 'function') {
-                                const itemCopy = item as Function;
-                                return itemCopy({ isMinified, isVisible });
-                            }
-                            return item;
-                        }
-
-                        if (item.isAccordion) {
-                            return renderAccordion(item);
-                        }
-
-                        return renderNavItem(item);
+                        return renderItem(item);
                     })}
 
                 {children}

@@ -9,9 +9,10 @@ import useToggleGroupStyle from './styles';
 import { ToggleButtonProps, ToggleGroupProps } from './types';
 
 export const ToggleButton = React.forwardRef((props: ToggleButtonProps, ref) => {
-    const { isChecked, isDisabled, children, ...rest } = props;
+    const { isChecked, isDisabled, isFullWidth, children, ...rest } = props;
     const { toggleButton: toggleButtonStyleProps } = useToggleGroupStyle({
         isChecked,
+        isFullWidth,
     });
     return (
         <Button
@@ -33,6 +34,7 @@ export const ToggleGroup = ({
     children,
     defaultValue,
     value: controlledValue,
+    isFullWidth,
     onChange,
     isInline,
     ...rest
@@ -49,7 +51,9 @@ export const ToggleGroup = ({
     const [value, setValue] = useState(defaultValue || initialToggleValue || null);
     const _value = isControlled ? controlledValue : value;
 
-    const { root: toggleGroupStyleProps } = useToggleGroupStyle({});
+    const { root: toggleGroupStyleProps } = useToggleGroupStyle({
+        isFullWidth,
+    });
 
     const allNodes = useRef([]);
 
@@ -142,6 +146,7 @@ export const ToggleGroup = ({
             onClick: handleClick,
             tabIndex: getTabIndex(),
             isChecked,
+            isFullWidth,
         });
     });
 

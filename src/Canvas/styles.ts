@@ -27,7 +27,7 @@ export const canvasStyle: componentStyleDef = ({ isMobile }, { sizes }) => {
         right: position === 'right' && 0,
         flexGrow: name === 'main' && '1',
         bg,
-        maxWidth: name !== 'main' && width,
+        maxWidth: name !== 'main' && `min(${width}px, 90%)`,
     });
 
     return {

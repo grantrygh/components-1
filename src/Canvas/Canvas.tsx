@@ -137,7 +137,7 @@ export function CanvasContainer(props) {
         const panelStyleProps = {
             ...styles.panel,
             ...styles.getPanelStyle({
-                width: panelProps.width,
+                width: panelProps.width || panelProps.w,
                 position: panelProps.position,
                 bg,
                 isOverlay,
@@ -160,6 +160,7 @@ export function CanvasContainer(props) {
                         h="fit-content"
                         p={name !== 'main' && p}
                         {...panelProps}
+                        width="100%"
                     >
                         {panel.render({
                             isMinified: panelProps.isMinified,

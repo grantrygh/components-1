@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 import { useId } from '@reach/auto-id';
 import { hideOthers } from 'aria-hidden';
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+// import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import exenv from 'exenv';
 import React, { createContext, forwardRef, useCallback, useContext, useEffect, useRef } from 'react';
 import FocusLock from 'react-focus-lock/dist/cjs';
@@ -97,20 +97,21 @@ const Modal = ({
         addAriaDescribedby = addAriaLabels;
     }
 
-    useEffect(() => {
-        const dialogNode = contentRef.current;
-        if (isOpen && blockScrollOnMount && __BROWSER__) {
-            disableBodyScroll(dialogNode, {
-                reserveScrollBarGap: preserveScrollBarGap,
-            });
-        }
-        return () => {
-            if (__BROWSER__) {
-                return enableBodyScroll(dialogNode);
-            }
-            return null;
-        };
-    }, [isOpen, blockScrollOnMount, preserveScrollBarGap]);
+    // body-scroll-lock package broken on ssr
+    // useEffect(() => {
+    // const dialogNode = contentRef.current;
+    // if (isOpen && blockScrollOnMount && __BROWSER__) {
+    //     disableBodyScroll(dialogNode, {
+    //         reserveScrollBarGap: preserveScrollBarGap,
+    //     });
+    // }
+    // return () => {
+    //     if (__BROWSER__) {
+    //         return enableBodyScroll(dialogNode);
+    //     }
+    //     return null;
+    // };
+    // }, [isOpen, blockScrollOnMount, preserveScrollBarGap]);
 
     useEffect(() => {
         const func = event => {

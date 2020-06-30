@@ -26,6 +26,10 @@ export const stepperStyle = (
             root: {
                 display: 'flex',
                 position: 'relative',
+                p: [0, 0],
+                alignItems: 'flex-start',
+                justifyContent: 'flex-start',
+                border: 0,
             },
             orientation: {
                 horizontal: {

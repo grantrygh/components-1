@@ -25,7 +25,8 @@ export const navigationStyle: componentStyleDef<NavigationProps & NavigationItem
     return {
         style,
         navItem: {
-            align: 'center',
+            display: 'flex',
+            alignItems: 'center',
             flex: 1,
             minHeight: 50,
             mb: !isSubmenuItem && 3,

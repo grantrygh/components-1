@@ -10,6 +10,7 @@ export const badgeStyle = ({ color, size = 40 }, theme) => ({
         fontWeight: 'bold',
         whiteSpace: 'nowrap',
         verticalAlign: 'middle',
+        width: 'fit-content',
     },
     variants: {
         subtle: {

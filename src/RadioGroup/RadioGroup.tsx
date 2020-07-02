@@ -25,6 +25,7 @@ export const RadioGroup = forwardRef(
             size,
             defaultValue,
             isInline,
+            skipFormChange,
             value: valueProp,
             children,
             ...rest
@@ -55,7 +56,7 @@ export const RadioGroup = forwardRef(
                 onChange(event, event.target.value);
             }
 
-            if (formOnChange && typeof formOnChange === 'function') {
+            if (formOnChange && typeof formOnChange === 'function' && !skipFormChange) {
                 formOnChange(event);
             }
         };

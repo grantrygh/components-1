@@ -3,6 +3,7 @@ import { useTheme } from '../ThemeProvider';
 export const alertStyle = ({ color, status }, { colors }) => {
     const alertColor = color || status;
     const bg = colors[alertColor][50] === colors['white'] ? colors[alertColor][100] : colors[alertColor][50];
+    console.log('alert', colors);
     return {
         style: {
             display: 'flex',
@@ -22,14 +23,16 @@ export const alertStyle = ({ color, status }, { colors }) => {
                 color: 'white',
             },
             'left-accent': {
-                bg,
+                bg: colors.pageBg,
+                color: colors.titleText,
                 borderLeft: '2px',
                 borderColor: `${alertColor}.500`,
                 roundedTopLeft: 0,
                 roundedBottomLeft: 0,
             },
             'top-accent': {
-                bg,
+                bg: colors.pageBg,
+                color: colors.titleText,
                 borderTop: '2px',
                 borderColor: `${alertColor}.500`,
                 roundedTopLeft: 0,

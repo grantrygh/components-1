@@ -3,7 +3,6 @@ import { useTheme } from '../ThemeProvider';
 export const alertStyle = ({ color, status }, { colors }) => {
     const alertColor = color || status;
     const bg = colors[alertColor][50] === colors['white'] ? colors[alertColor][100] : colors[alertColor][50];
-    console.log('alert', colors);
     return {
         style: {
             display: 'flex',

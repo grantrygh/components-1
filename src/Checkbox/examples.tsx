@@ -2,8 +2,11 @@ import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { Checkbox } from '.';
 import { Box } from '../Box';
+import { Button } from '../Button';
 import { CheckboxGroup } from '../CheckboxGroup';
+import { Form } from '../Form';
 import { FormErrorMessage } from '../FormErrorMessage';
+import { Text } from '../Text';
 
 const stories = storiesOf('Checkbox', module);
 
@@ -91,3 +94,37 @@ function IndeterminateExample() {
 }
 
 stories.add('indeterminate checkbox', () => <IndeterminateExample />);
+
+stories.add('(Form) - Parent key', () => {
+    return (
+        <Form
+            onSubmit={(e, { getFormValue }) => {
+                e.preventDefault();
+                console.log(getFormValue());
+            }}
+        >
+            <Text>Checkbox values will be contained within a single form key array.</Text>
+            <CheckboxGroup name="flavors">
+                <Checkbox name="chocolate">Chocolate</Checkbox>
+                <Checkbox name="vanilla">Vanilla</Checkbox>
+            </CheckboxGroup>
+            <Button type="submit">submit</Button>
+        </Form>
+    );
+});
+
+stories.add('(Form) - Individual keys', () => (
+    <Form
+        onSubmit={(e, { getFormValue }) => {
+            e.preventDefault();
+            console.log(getFormValue());
+        }}
+    >
+        <Text>Checkbox values will each have their own key.</Text>
+        <CheckboxGroup>
+            <Checkbox name="chocolate">Chocolate</Checkbox>
+            <Checkbox name="vanilla">Vanilla</Checkbox>
+        </CheckboxGroup>
+        <Button type="submit">submit</Button>
+    </Form>
+));

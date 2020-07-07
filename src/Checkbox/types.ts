@@ -80,6 +80,12 @@ export interface ICheckbox {
      * allows using a custom component rather than the default checkbox
      */
     renderCustomControl?: (args: any) => React.ReactNode;
+
+    /**
+     * option to not include single checkbox from including value in form
+     * used in cases with CheckboxGroup, where child checkbox values are added to the parent CheckboxGroup array value
+     */
+    skipFormChange?: boolean;
 }
 
 export type CheckboxProps = ICheckbox &

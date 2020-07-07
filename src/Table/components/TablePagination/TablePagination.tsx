@@ -1,4 +1,3 @@
-import { Flex } from 'Flex';
 import ChevronLeftIcon from 'mdi-react/ChevronLeftIcon';
 import ChevronRightIcon from 'mdi-react/ChevronRightIcon';
 import PageFirstIcon from 'mdi-react/PageFirstIcon';
@@ -6,6 +5,7 @@ import PageLastIcon from 'mdi-react/PageLastIcon';
 import React from 'react';
 import { Box } from '../../../Box';
 import { Button } from '../../../Button';
+import { Flex } from '../../../Flex';
 import { Spinner } from '../../../Spinner';
 import { TablePaginationProps } from '../../types';
 

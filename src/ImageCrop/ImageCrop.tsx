@@ -8,8 +8,17 @@ import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHea
 import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from '../Slider';
 import getCroppedImg from './CropImage';
 import useImageCropStyle from './styles';
+import { ImageCropProps } from './types';
 
-export const ImageCrop = ({ src, aspect = 4 / 3, setCroppedImage, trigger, open = false, onClose }) => {
+export const ImageCrop = ({
+    src,
+    aspect = 4 / 3,
+    setCroppedImage,
+    trigger,
+    open = false,
+    onClose,
+    imageType = 'jpeg',
+}: ImageCropProps) => {
     const [isOpen, setIsOpen] = useState(open);
     const [crop, setCrop] = useState({ x: 0, y: 0 });
     const [rotation, setRotation] = useState(0);
@@ -24,8 +33,10 @@ export const ImageCrop = ({ src, aspect = 4 / 3, setCroppedImage, trigger, open 
 
     const makeCroppedImage = useCallback(async () => {
         try {
-            const croppedImage = await getCroppedImg(src, croppedAreaPixels, rotation);
-            setCroppedImage(croppedImage);
+            const croppedImage = await getCroppedImg(src, croppedAreaPixels, rotation, imageType);
+            if (setCroppedImage) {
+                setCroppedImage(croppedImage);
+            }
         } catch (e) {
             console.error(e);
         }

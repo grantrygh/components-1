@@ -1,6 +1,6 @@
 import { useTheme } from '../ThemeProvider';
 
-export const dividerStyle = ({ size }, theme) => ({
+export const dividerStyle = ({ size = 1 }, theme) => ({
     style: {
         borderColor: 'border',
     },

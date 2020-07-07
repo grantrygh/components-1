@@ -1,6 +1,6 @@
 import { useTheme } from '../ThemeProvider';
 
-export const selectStyle = ({ size, border }, { colors, sizes }) => ({
+export const selectStyle = ({ size, border }, { colors, sizes, zIndices }) => ({
     style: {
         // !IMPORTANT: To override any component style, uncomment and add overrides below provided. some properties can be changed in the theme object below
         // clearIndicator: (provided, props) => ({
@@ -61,6 +61,7 @@ export const selectStyle = ({ size, border }, { colors, sizes }) => ({
             ...provided,
             backgroundColor: colors.popoverBg,
             color: colors.bodyText,
+            zIndex: zIndices.dropdown,
         }),
         // menuList: (provided, props) => ({
         //     ...provided,

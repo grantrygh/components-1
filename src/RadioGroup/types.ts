@@ -15,6 +15,10 @@ export interface IRadioGroup {
     variantColor?: IRadio['variantColor'];
     onChange?: (event: React.ChangeEvent<HTMLInputElement>, value: IRadio['value']) => void;
     isInline?: boolean;
+
+    // don't update the form field value.
+    // Used in cases where just the functionality is needed, or handled externally, rather than storing value in the form.
+    skipFormChange?: boolean;
 }
 
 export type RadioGroupProps = IRadioGroup & IFormControl & Omit<BoxProps, 'onChange'>;

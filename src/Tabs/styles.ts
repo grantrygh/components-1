@@ -30,13 +30,13 @@ export const tabStyle = ({ color = 'button' }, theme) => ({
     },
     sizes: {
         sm: {
-            padding: '0.25rem 1rem',
+            padding: [1, '0.25rem 1rem'],
         },
         md: {
-            padding: '0.5rem 1rem',
+            padding: [2, '0.5rem 1rem'],
         },
         lg: {
-            padding: '0.75rem 1.25rem',
+            padding: [3, '0.75rem 1.25rem'],
         },
     },
     variants: {

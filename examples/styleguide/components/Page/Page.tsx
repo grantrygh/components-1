@@ -40,7 +40,7 @@ export const Page = (props: IPage) => {
                 <PageContent>{children}</PageContent>
 
                 {/* Footer */}
-                <PageFooter>Footer</PageFooter>
+                <PageFooter>{/* content */}</PageFooter>
             </Flex>
         </>
     );

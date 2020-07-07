@@ -114,11 +114,7 @@ export function CanvasMenu(props: CanvasMenuProps) {
             {items?.footer?.length > 0 && (
                 <Box>
                     {items.footer.map(item => {
-                        if (item.isAccordion) {
-                            return renderAccordion(item);
-                        }
-
-                        return renderNavItem(item);
+                        return renderItem(item);
                     })}
                 </Box>
             )}

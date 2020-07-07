@@ -27,7 +27,6 @@ const NavPrimary = ({ title }) => {
                 {...primaryStyle.icon}
             />
             <Logo />
-            {title}
         </Navigation.Primary>
     );
 };

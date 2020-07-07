@@ -368,7 +368,7 @@ const colors = (providedTheme, mode) => {
             900: '#003f5e',
         },
 
-        ...((providedColors && providedColors[mode]) || {}),
+        ...((providedColors && providedColors[mode] ? providedColors[mode] : providedColors) || {}),
     };
 };
 

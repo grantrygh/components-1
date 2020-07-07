@@ -30,7 +30,7 @@ export const tableStyle = ({ height, sticky, sortable, expandedContent, span = 1
         borderColor: 'border',
     },
     expandedRow: {
-        backgroundColor: colors.tableHeadingBg,
+        backgroundColor: colors.tableHeaderBg,
         boxShadow: 'inset 0 3px 6px -3px rgba(0, 0, 0, .2)',
     },
     cell: {
@@ -43,7 +43,7 @@ export const tableStyle = ({ height, sticky, sortable, expandedContent, span = 1
     headerRow: {
         position: sticky && 'sticky',
         top: 0,
-        bg: 'tableHeadingBg',
+        bg: 'tableHeaderBg',
         zIndex: 'docked',
     },
     headerCell: {
@@ -54,12 +54,12 @@ export const tableStyle = ({ height, sticky, sortable, expandedContent, span = 1
     },
     header: {
         color: 'titleText',
-        bg: 'tableHeadingBg',
+        bg: 'tableHeaderBg',
         fontWeight: 'semibold',
     },
     footer: {
         p: 4,
-        bg: 'tableHeadingBg',
+        bg: 'tableHeaderBg',
     },
 });
 

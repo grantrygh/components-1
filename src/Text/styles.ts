@@ -25,6 +25,9 @@ export const textStyle = (props, theme) => ({
         faint: {
             color: 'faintText',
         },
+        emphasis: {
+            color: 'titleText',
+        },
     },
 });
 

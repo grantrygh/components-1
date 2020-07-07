@@ -41,7 +41,7 @@ export const checkboxStyle = ({ color, type, isDisabled, isFullWidth, isChild, s
         whiteSpace: 'nowrap',
     },
     container: {
-        display: 'inline-flex',
+        display: 'flex',
         verticalAlign: 'top',
         alignItems: 'center',
         width: isFullWidth ? 'full' : undefined,

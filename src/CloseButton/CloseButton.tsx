@@ -6,10 +6,10 @@ import useCloseButtonStyle from './styles';
 import { CloseButtonProps } from './types';
 
 export const CloseButton = ({
-    size = 'md',
+    size = 'sm',
     type = 'button',
     isDisabled,
-    color,
+    color = 'faintText',
     'aria-label': ariaLabel = 'Close',
     ...rest
 }: CloseButtonProps) => {

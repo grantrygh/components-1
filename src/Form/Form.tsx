@@ -21,20 +21,31 @@ const useFormFields = () => {
 };
 
 export function Form(props: FormProps) {
-    const { onSubmit, initialValue = {}, onChange: onFormChange } = props;
+    const { onSubmit, initialValue = {}, onChange: onFormChange, ...rest } = props;
     const [value, setValue] = React.useState(initialValue);
 
     const { fields, registerField } = useFormFields();
 
-    const onChange = React.useCallback(({ name, value: changeValue }) => {
-        setValue(val => ({ ...val, [name]: changeValue }));
+    const onChange = React.useCallback(data => {
+        // supports a single {name: value} or an array of {name: value} pairs
+        const { name, value: changeValue } = data;
+        if (Array.isArray(data)) {
+            const newValues = {};
+            data.forEach(item => {
+                newValues[item.name] = item.value;
+            });
+            setValue(val => ({ ...val, ...newValues }));
+        } else {
+            setValue(val => ({ ...val, [name]: changeValue }));
+        }
         if (onFormChange) {
-            onFormChange({ name, value: changeValue });
+            onFormChange(data);
         }
     }, []);
 
     const getFormValue = () => value;
     const getFieldValue = name => value[name] || '';
+    const clearForm = () => setValue(initialValue);
 
     const formOnSubmit = React.useCallback(
         e => {
@@ -44,8 +55,10 @@ export function Form(props: FormProps) {
     );
 
     return (
-        <FormContext.Provider value={{ fields, registerField, getFormValue, getFieldValue, onChange }}>
-            <form onSubmit={formOnSubmit}>{props.children}</form>
+        <FormContext.Provider value={{ fields, registerField, getFormValue, getFieldValue, onChange, clearForm }}>
+            <form onSubmit={formOnSubmit} {...rest}>
+                {props.children}
+            </form>
         </FormContext.Provider>
     );
 }

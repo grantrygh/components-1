@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /**
  * Slider Component
  *
@@ -9,9 +10,12 @@
 import { jsx } from '@emotion/core';
 import { createContext, forwardRef, RefObject, useCallback, useContext, useRef, useState } from 'react';
 import { Box } from '../Box';
+import { Flex } from '../Flex';
+import { useFormField } from '../Form';
+import { Heading } from '../Heading';
 import { useForkRef } from '../hooks/useForkRef';
 import { PseudoBox } from '../PseudoBox';
-import useSliderStyle from './styles';
+import useSliderStyle, { sizes } from './styles';
 import { SliderContextProps, SliderFilledTrackProps, SliderProps, SliderThumbProps, SliderTrackProps } from './types';
 import { clampValue, percentToValue, roundValueToStep, valueToPercent } from './utils';
 
@@ -63,7 +67,17 @@ export const SliderThumb = forwardRef((props: SliderThumbProps, ref) => {
             onKeyDown={onKeyDown}
             {...thumbStyleProps}
             {...props}
-        />
+        >
+            {props.children || (
+                <Box
+                    w={sizes[size]?.innerThumb}
+                    h={sizes[size]?.innerThumb}
+                    bg="primary.500"
+                    rounded="full"
+                    zIndex="base"
+                />
+            )}
+        </PseudoBox>
     );
 });
 
@@ -99,12 +113,13 @@ export const Slider = forwardRef(
             max = 100,
             min = 0,
             step = 1,
+            showValue,
             'aria-labelledby': ariaLabelledBy,
             'aria-label': ariaLabel,
             'aria-valuetext': ariaValueText,
             orientation = 'horizontal',
             getAriaValueText,
-            size,
+            size = 'md',
             color,
             name,
             id,
@@ -113,8 +128,12 @@ export const Slider = forwardRef(
         }: SliderProps,
         ref
     ) => {
+        const { onChange: formOnChange, value: initialSliderValue } = useFormField({
+            name,
+            onChange,
+        });
         const { current: isControlled } = useRef(controlledValue != null);
-        const [value, setValue] = useState(defaultValue || 0);
+        const [value, setValue] = useState(defaultValue || initialSliderValue || 0);
 
         const _value = isControlled ? controlledValue : value;
         const actualValue = clampValue(_value, min, max);
@@ -153,6 +172,9 @@ export const Slider = forwardRef(
                 }
                 if (onChange) {
                     onChange(newValue);
+                }
+                if (formOnChange && typeof formOnChange === 'function') {
+                    formOnChange(null, newValue);
                 }
             },
             [isControlled, onChange]
@@ -265,28 +287,35 @@ export const Slider = forwardRef(
 
         return (
             <SliderContext.Provider value={context}>
-                <Box
-                    role="presentation"
-                    tabIndex="-1"
-                    onMouseDown={handleMouseDown}
-                    onTouchStart={handleMouseDown}
-                    onMouseLeave={handleMouseUp}
-                    onTouchEnd={handleMouseUp}
-                    onBlur={event => {
-                        handleMouseUp();
-                        if (onBlur) {
-                            onBlur(event);
-                        }
-                    }}
-                    aria-disabled={isDisabled}
-                    ref={ref}
-                    css={{ touchAction: 'none' }}
-                    {...rootStyleProps}
-                    {...rest}
-                >
-                    {children}
-                    <input type="hidden" value={actualValue} name={name} id={id} />
-                </Box>
+                <Flex align="center">
+                    <Box
+                        role="presentation"
+                        tabIndex="-1"
+                        onMouseDown={handleMouseDown}
+                        onTouchStart={handleMouseDown}
+                        onMouseLeave={handleMouseUp}
+                        onTouchEnd={handleMouseUp}
+                        onBlur={event => {
+                            handleMouseUp();
+                            if (onBlur) {
+                                onBlur(event);
+                            }
+                        }}
+                        aria-disabled={isDisabled}
+                        ref={ref}
+                        css={{ touchAction: 'none' }}
+                        {...rootStyleProps}
+                        {...rest}
+                    >
+                        {children}
+                        <input type="hidden" value={actualValue} name={name} id={id} />
+                    </Box>
+                    {showValue && (
+                        <Flex pl="spacing" minW="50px" justify="flex-end">
+                            <Heading kind="h6">{actualValue}</Heading>
+                        </Flex>
+                    )}
+                </Flex>
             </SliderContext.Provider>
         );
     }

@@ -72,6 +72,7 @@ interface Borders {
     none: StringOrNumber;
     '1px': StringOrNumber;
     '2px': StringOrNumber;
+    '3px': StringOrNumber;
     '4px': StringOrNumber;
 }
 
@@ -105,6 +106,7 @@ export interface Colors {
     popoverBg: string;
     progress: string;
     track: string;
+    thumb: string;
     // palette
     whiteAlpha: ColorHues;
     blackAlpha: ColorHues;
@@ -213,6 +215,7 @@ interface Inputs {
 
 type Space = BaseSizes & {
     input: Inputs;
+    header: string;
 };
 
 interface LetterSpacings {

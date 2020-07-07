@@ -2,6 +2,7 @@
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import { useState } from 'react';
+import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from 'Slider';
 import { Form } from '.';
 import {
     Button,
@@ -99,6 +100,12 @@ stories.add('Sample', () => {
                 <InputGroup name="lactose_intolerant">
                     <Switch>I'm lactose intolerant</Switch>
                 </InputGroup>
+
+                <Slider name="slider" id="sliderId">
+                    <SliderFilledTrack />
+                    <SliderTrack />
+                    <SliderThumb />
+                </Slider>
 
                 <Button type="submit">Submit</Button>
             </Form>

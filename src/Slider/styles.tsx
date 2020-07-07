@@ -2,18 +2,21 @@
 import color from 'color';
 import { useTheme } from '../ThemeProvider';
 
-const sizes = {
+export const sizes = {
     lg: {
-        thumb: '16px',
+        thumb: '24px',
         trackHeight: '4px',
+        innerThumb: '6px',
     },
     md: {
-        thumb: '14px',
+        thumb: '18px',
         trackHeight: '4px',
+        innerThumb: '4px',
     },
     sm: {
-        thumb: '10px',
+        thumb: '14px',
         trackHeight: '2px',
+        innerThumb: '2px',
     },
 };
 
@@ -56,11 +59,11 @@ export const sliderStyle = ({ color: fillColor = 'primary', size = 'md', trackPe
             height: trackHeight,
             bg: `${fillColor}.500`,
             width: `${trackPercent}%`,
-            rounded: 'sm',
+            rounded: 'radius',
+            zIndex: 1,
         },
         thumb: {
             ...centerProps,
-            zIndex: 1,
             size: thumbSize,
             rounded: 'full',
             bg: 'white',
@@ -69,6 +72,7 @@ export const sliderStyle = ({ color: fillColor = 'primary', size = 'md', trackPe
             border: '1px',
             borderColor: 'border',
             transition: 'transform 0.2s',
+            zIndex: 2,
             _focus: {
                 boxShadow: 'outline',
             },

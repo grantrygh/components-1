@@ -8,6 +8,7 @@ export const toastStyle = ({ color }, theme) => ({
         alignItems: 'start',
         m: 'spacing-sm',
         pr: 8,
+        zIndex: 'toast',
     },
 });
 

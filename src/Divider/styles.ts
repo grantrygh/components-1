@@ -1,19 +1,19 @@
 import { useTheme } from '../ThemeProvider';
 
-export const dividerStyle = (props, theme) => ({
+export const dividerStyle = ({ size = 1 }, theme) => ({
     style: {
         borderColor: 'border',
     },
     orientation: {
         horizontal: {
-            borderBottom: '1px',
+            borderBottom: `${size}px`,
             width: 'auto',
-            my: 3,
+            my: 'spacing-sm',
         },
         vertical: {
-            borderLeft: '1px',
+            borderLeft: `${size}px`,
             height: 'auto',
-            mx: 3,
+            mx: 'spacing-sm',
         },
     },
 });

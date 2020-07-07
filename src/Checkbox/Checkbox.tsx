@@ -33,6 +33,8 @@ export const Checkbox = forwardRef(
             onBlur,
             onFocus,
             isIndeterminate,
+            renderCustomControl,
+            skipFormChange,
             children,
             iconColor,
             iconSize = '12px',
@@ -68,7 +70,7 @@ export const Checkbox = forwardRef(
         }, [isIndeterminate, _ref]);
 
         const onSwitchChange = v => {
-            if (formOnChange && typeof formOnChange === 'function') {
+            if (!skipFormChange && formOnChange && typeof formOnChange === 'function') {
                 formOnChange(v, v.target.checked);
             }
             if (onChange) {
@@ -99,9 +101,13 @@ export const Checkbox = forwardRef(
                     aria-invalid={isInvalid}
                     aria-checked={isIndeterminate ? 'mixed' : isChecked}
                 />
-                <ControlBox opacity={isReadOnly ? 0.8 : 1} {...rootStyleProps}>
-                    <IconTag size={iconSize} color={iconColor} />
-                </ControlBox>
+                {renderCustomControl ? (
+                    renderCustomControl({ isChecked, ...rootStyleProps })
+                ) : (
+                    <ControlBox opacity={isReadOnly ? 0.8 : 1} {...rootStyleProps}>
+                        <IconTag size={iconSize} color={iconColor} />
+                    </ControlBox>
+                )}
                 {children && <Text {...labelStyleProps}>{children}</Text>}
             </Box>
         );

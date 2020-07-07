@@ -5,8 +5,9 @@ export const cardStyle = ({ raised }, theme) => ({
         borderColor: 'border',
         shadow: raised ? 'raised' : 'card',
         rounded: 'radius',
-        p: 'spacing',
+        p: ['spacing-sm', 'spacing'],
         overflow: 'hidden',
+        bg: 'cardBg',
     },
 });
 

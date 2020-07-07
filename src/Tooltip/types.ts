@@ -14,7 +14,7 @@ export interface ITooltip {
     /**
      * The label of the tooltip.
      */
-    label?: string;
+    label?: string | any;
     /**
      * The `ReactNode` to be used as the trigger of the tooltip.
      */

@@ -71,9 +71,10 @@ Navigation.Item = function NavItem(props: NavigationItemProps) {
         clickable: !!(href || onClick),
     });
 
+    const NavElement = href ? Link : Flex;
+
     return (
-        <Flex
-            as={href && Link}
+        <NavElement
             href={!isParent || (isParent && isMinified) ? href : undefined}
             onClick={onClick}
             {...navItemStyleProps}
@@ -89,7 +90,7 @@ Navigation.Item = function NavItem(props: NavigationItemProps) {
                 }
                 return null;
             })}
-        </Flex>
+        </NavElement>
     );
 };
 

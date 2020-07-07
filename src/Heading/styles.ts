@@ -11,10 +11,9 @@ function reverseNumber(n, min, max) {
 
 const getKind = kind => {
     return {
-        fontSize: scaleRatio ** kind * sizeBase,
+        fontSize: `calc(${sizeBase + kind}px + ${0.2 * kind}vw)`,
         lineHeight: '1.5',
         color: 'titleText',
-        // mb: '0.4em',
     };
 };
 

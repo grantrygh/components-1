@@ -210,7 +210,7 @@ const colors = (providedTheme, mode) => {
             titleText: neutral[12],
             bodyText: neutral[9],
             faintText: neutral[7],
-            tableHeadingBg: neutral[2],
+            tableHeaderBg: neutral[2],
             disabled: neutral[5],
             border: neutral[4], // and divider
 
@@ -225,6 +225,7 @@ const colors = (providedTheme, mode) => {
 
             // component specific
             track: neutral[5],
+            thumb: neutral[6],
             tooltip: neutral[2],
             selectControlHover: primary[50],
 
@@ -235,7 +236,7 @@ const colors = (providedTheme, mode) => {
             titleText: neutral[1],
             bodyText: neutral[6],
             faintText: neutral[7],
-            tableHeadingBg: neutral[10],
+            tableHeaderBg: neutral[10],
             disabled: neutral[8],
             border: neutral[10],
 
@@ -250,6 +251,7 @@ const colors = (providedTheme, mode) => {
 
             // component specific
             track: neutral[8],
+            thumb: neutral[7],
             tooltip: neutral[9],
             selectControlHover: neutral[9],
 
@@ -366,7 +368,7 @@ const colors = (providedTheme, mode) => {
             900: '#003f5e',
         },
 
-        ...((providedColors && providedColors[mode]) || {}),
+        ...((providedColors && providedColors[mode] ? providedColors[mode] : providedColors) || {}),
     };
 };
 

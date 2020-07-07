@@ -1,17 +1,17 @@
 /* eslint-disable max-lines */
 import { useId } from '@reach/auto-id';
 import { hideOthers } from 'aria-hidden';
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+// import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import exenv from 'exenv';
 import React, { createContext, forwardRef, useCallback, useContext, useEffect, useRef } from 'react';
 import FocusLock from 'react-focus-lock/dist/cjs';
 import { Transition } from 'react-spring/renderprops';
 import { Box } from '../Box';
 import { BoxProps } from '../Box/types';
+import { Card } from '../Card';
 import { CloseButton } from '../CloseButton';
 import { CloseButtonProps } from '../CloseButton/types';
 import { Flex } from '../Flex';
-import { Heading } from '../Heading';
 import { useForkRef } from '../hooks/useForkRef';
 import { Portal } from '../Portal';
 import { getFocusables } from '../utils/getFocusables';
@@ -61,7 +61,7 @@ const Modal = ({
     closeOnOverlayClick = true,
     useInert = true,
     scrollBehavior = 'outside',
-    isCentered,
+    isCentered = true,
     addAriaLabels = true,
     preserveScrollBarGap,
     formatIds = id => ({
@@ -97,15 +97,21 @@ const Modal = ({
         addAriaDescribedby = addAriaLabels;
     }
 
-    useEffect(() => {
-        const dialogNode = contentRef.current;
-        if (isOpen && blockScrollOnMount) {
-            disableBodyScroll(dialogNode, {
-                reserveScrollBarGap: preserveScrollBarGap,
-            });
-        }
-        return () => enableBodyScroll(dialogNode);
-    }, [isOpen, blockScrollOnMount, preserveScrollBarGap]);
+    // body-scroll-lock package broken on ssr
+    // useEffect(() => {
+    // const dialogNode = contentRef.current;
+    // if (isOpen && blockScrollOnMount && __BROWSER__) {
+    //     disableBodyScroll(dialogNode, {
+    //         reserveScrollBarGap: preserveScrollBarGap,
+    //     });
+    // }
+    // return () => {
+    //     if (__BROWSER__) {
+    //         return enableBodyScroll(dialogNode);
+    //     }
+    //     return null;
+    // };
+    // }, [isOpen, blockScrollOnMount, preserveScrollBarGap]);
 
     useEffect(() => {
         const func = event => {
@@ -237,7 +243,7 @@ const ModalContent = React.forwardRef(({ onClick, children, zIndex, noStyles, ..
         <Box
             pos="fixed"
             d="flex"
-            alignItems="center"
+            // alignItems="center"
             left="0"
             top="0"
             w="100%"
@@ -259,38 +265,47 @@ const ModalContent = React.forwardRef(({ onClick, children, zIndex, noStyles, ..
             }}
             {...modalWrapperStyleProps}
         >
-            <Flex
+            <Card
+                d="flex"
                 ref={_contentRef}
                 as="section"
                 role="dialog"
                 aria-modal="true"
                 tabIndex={-1}
-                outline={0}
                 maxWidth={size}
-                w="100%"
                 id={contentId}
                 {...(addAriaDescribedby && { 'aria-describedby': bodyId })}
                 {...(addAriaLabelledby && { 'aria-labelledby': headerId })}
-                pos="relative"
-                flexDir="column"
                 zIndex={zIndex || 'modal'}
                 onClick={wrapEvent(onClick, event => event.stopPropagation())}
                 {...modalStyleProps}
                 {...props}
             >
                 {children}
-            </Flex>
+            </Card>
         </Box>
     );
 });
 
 const ModalHeader = forwardRef((props: BoxProps & { onClose?: () => void }, ref) => {
     const { headerId } = useModalContext();
-    return <Heading kind="h4" ref={ref} p="spacing" id={headerId} as="header" position="relative" {...props} />;
+    return (
+        <Flex
+            justify="space-between"
+            align="center"
+            ref={ref}
+            px="spacing-lg"
+            py="spacing"
+            id={headerId}
+            as="header"
+            position="relative"
+            {...props}
+        />
+    );
 });
 
 const ModalFooter = forwardRef((props: BoxProps, ref) => (
-    <Flex justify="flex-end" ref={ref} p="spacing" as="footer" {...props} />
+    <Flex justify="flex-end" ref={ref} px="spacing-lg" py="spacing" as="footer" {...props} />
 ));
 
 const ModalBody = forwardRef((props: BoxProps, ref) => {
@@ -301,7 +316,7 @@ const ModalBody = forwardRef((props: BoxProps, ref) => {
         style = { overflowY: 'auto' };
     }
 
-    return <Box ref={ref} id={bodyId} p="spacing" flex="1" color="bodyText" {...style} {...props} />;
+    return <Box ref={ref} id={bodyId} px="spacing-lg" py="spacing" flex="1" color="bodyText" {...style} {...props} />;
 });
 
 const ModalCloseButton = forwardRef((props: CloseButtonProps, ref) => {

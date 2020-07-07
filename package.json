@@ -1,6 +1,6 @@
 {
   "name": "@audentio/stuff",
-  "version": "1.0.0",
+  "version": "0.1.1",
   "description": "React component library by Audentio",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "storybook:server": "http-server storybook-build",
     "cy": "cypress run",
     "cy:open": "cypress open",
-    "build": "tsc -d -w",
+    "build": "tsc -d",
     "release": "release-it",
     "jest": "./node_modules/.bin/jest",
     "snyk-protect": "snyk protect"

@@ -2,7 +2,6 @@
 import { jsx } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import { useState } from 'react';
-import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from 'Slider';
 import { Form } from '.';
 import {
     Button,
@@ -19,6 +18,7 @@ import {
     Text,
 } from '..';
 import { Box } from '../Box';
+import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from '../Slider';
 import { ToggleButton, ToggleGroup } from '../ToggleGroup';
 
 const stories = storiesOf('Form', module);

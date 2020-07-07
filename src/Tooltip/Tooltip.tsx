@@ -100,7 +100,7 @@ export const Tooltip = ({
 
     if (typeof children === 'string' || shouldWrapChildren) {
         clone = (
-            <Box as="span" tabIndex="0" ref={referenceRef} {...referenceProps}>
+            <Box as="span" tabIndex={0} ref={referenceRef} {...referenceProps}>
                 {children}
             </Box>
         );

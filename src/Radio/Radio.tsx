@@ -1,6 +1,4 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
-import { forwardRef } from 'react';
+import { forwardRef, RefObject } from 'react';
 import { VisuallyHidden } from '..';
 import { Box } from '../Box';
 import useCheckboxStyle from '../Checkbox/styles';
@@ -30,7 +28,7 @@ export const Radio = forwardRef(
             children,
             ...rest
         }: RadioProps,
-        ref
+        ref: RefObject<HTMLInputElement>
     ) => {
         // Wrong usage of `variantColor` prop is quite common
         // Let's add a warning hook that validates the passed variantColor

@@ -17,7 +17,7 @@ const Svg = styled(Box)`
 export const Icon = forwardRef(
     (
         { size = '4', name, color = 'currentColor', role = 'presentation', focusable = false, ...rest }: IconProps,
-        ref
+        ref: any
     ) => {
         const { icons: iconPaths } = useContext<{ icons?: any }>(ThemeContext);
 

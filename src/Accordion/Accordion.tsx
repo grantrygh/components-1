@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
 import { useId } from '@reach/auto-id';
 import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
 import { Children, cloneElement, createContext, forwardRef, isValidElement, useContext, useRef, useState } from 'react';

@@ -22,9 +22,10 @@ export const TagCloseButton = ({ isDisabled, ...props }: TagCloseButtonProps) =>
         outline="none"
         ml={1}
         mr={-1}
-        opacity="0.35"
+        opacity={0.35}
         disabled={isDisabled}
         _disabled={{
+            // @ts-ignore
             opacity: '40%',
             cursor: 'not-allowed',
             boxShadow: 'none',
@@ -34,10 +35,10 @@ export const TagCloseButton = ({ isDisabled, ...props }: TagCloseButtonProps) =>
             bg: 'rgba(0, 0, 0, 0.14)',
         }}
         _hover={{
-            opacity: '0.8',
+            opacity: 0.8,
         }}
         _active={{
-            opacity: '1',
+            opacity: 1,
         }}
         {...props}
     >

@@ -25,5 +25,5 @@
         "enable": true
     },
     "include": ["src"],
-    "exclude": ["node_modules", "src/**/*.test.tsx"]
+    "exclude": ["node_modules", "src/**/*.test.tsx", "src/**/*examples.tsx"]
 }

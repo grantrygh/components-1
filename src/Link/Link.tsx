@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { forwardRef, RefObject } from 'react';
 import { NavLink } from 'react-router-dom';
 import { PseudoBox } from '../PseudoBox';
 import { LinkProps } from './types';
@@ -20,7 +20,7 @@ const baseStyleProps = {
     },
 };
 
-export const Link = forwardRef(({ isDisabled, isExternal, onClick, href, ...rest }: LinkProps, ref) => {
+export const Link = forwardRef(({ isDisabled, isExternal, onClick, href, ...rest }: LinkProps, ref: RefObject<any>) => {
     function getHref() {
         if (href && href.indexOf(window?.location.origin) === 0) {
             return href.replace(window?.location.origin, '');
@@ -35,6 +35,7 @@ export const Link = forwardRef(({ isDisabled, isExternal, onClick, href, ...rest
             : { as: NavLink, to: linkHref };
 
     return (
+        // @ts-ignore
         <PseudoBox
             ref={ref}
             tabIndex={isDisabled ? -1 : undefined}

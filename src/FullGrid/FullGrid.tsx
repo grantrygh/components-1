@@ -19,7 +19,7 @@ export const FullGrid = forwardRef(
             row,
             ...props
         }: FullGridProps,
-        ref
+        ref: any
     ) => (
         <Box
             ref={ref}

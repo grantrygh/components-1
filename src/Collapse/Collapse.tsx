@@ -19,7 +19,7 @@ export const Collapse = forwardRef(
             endingHeight,
             ...rest
         }: CollapseProps,
-        ref
+        ref: any
     ) => {
         const collapseStyleProps = useCollapseStyle({
             duration,

@@ -7,7 +7,7 @@ import { Box } from '../Box';
 import { Link } from '../Link';
 import { BreadcrumbItemProps, BreadcrumbProps } from './types';
 
-const BreadcrumbSeparator = forwardRef((props: BoxProps, ref) => {
+const BreadcrumbSeparator = forwardRef((props: BoxProps, ref: any) => {
     return (
         <Box ref={ref} role="presentation" as="span" mx="spacing-xs" {...props}>
             {props.children}
@@ -15,7 +15,7 @@ const BreadcrumbSeparator = forwardRef((props: BoxProps, ref) => {
     );
 });
 
-const Span = forwardRef((props, ref) => <Box ref={ref} as="span" {...props} />);
+const Span = forwardRef((props, ref: any) => <Box ref={ref} as="span" {...props} />);
 
 const BreadcrumbLink = forwardRef(({ isCurrentPage, ...props }: LinkProps & { isCurrentPage?: boolean }, ref) => {
     const Comp = isCurrentPage ? Span : Link;

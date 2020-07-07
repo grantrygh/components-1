@@ -1,6 +1,4 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
-import { forwardRef } from 'react';
+import { forwardRef, RefObject } from 'react';
 import { Box } from '../Box';
 import useCheckboxStyle from '../Checkbox/styles';
 import { ControlBox } from '../ControlBox';
@@ -29,7 +27,7 @@ export const Switch = forwardRef(
             children,
             ...rest
         }: SwitchProps,
-        ref
+        ref: RefObject<HTMLDivElement>
     ) => {
         const { onChange: formOnChange, value: initialSwitchValue } = useFormField({
             name,

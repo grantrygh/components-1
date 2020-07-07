@@ -217,29 +217,31 @@ const TabList = forwardRef((props: TabListProps, ref) => {
     );
 });
 
-const TabPanel = forwardRef(({ children, isSelected, selectedPanelRef, id, ...rest }: TabPanelProps, ref) => {
-    return (
-        <Box
-            ref={node => {
-                if (isSelected) {
-                    assignRef(selectedPanelRef, node);
-                }
-                assignRef(ref, node);
-            }}
-            role="tabpanel"
-            tabIndex={-1}
-            aria-labelledby={`tab:${id}`}
-            hidden={!isSelected}
-            id={`panel:${id}`}
-            outline={0}
-            {...rest}
-        >
-            {children}
-        </Box>
-    );
-});
+const TabPanel = forwardRef(
+    ({ children, isSelected, selectedPanelRef, id, ...rest }: TabPanelProps, ref: RefObject<HTMLDivElement>) => {
+        return (
+            <Box
+                ref={node => {
+                    if (isSelected) {
+                        assignRef(selectedPanelRef, node);
+                    }
+                    assignRef(ref, node);
+                }}
+                role="tabpanel"
+                tabIndex={-1}
+                aria-labelledby={`tab:${id}`}
+                hidden={!isSelected}
+                id={`panel:${id}`}
+                outline={0}
+                {...rest}
+            >
+                {children}
+            </Box>
+        );
+    }
+);
 
-const TabPanels = forwardRef(({ children, ...rest }: TabPanelProps, ref) => {
+const TabPanels = forwardRef(({ children, ...rest }: TabPanelProps, ref: RefObject<HTMLDivElement>) => {
     const { index: selectedIndex, selectedPanelRef, id, isManual, manualIndex } = useContext(TabContext);
 
     const clones = Children.map(children, (child, index) => {
@@ -255,7 +257,7 @@ const TabPanels = forwardRef(({ children, ...rest }: TabPanelProps, ref) => {
     });
 
     return (
-        <Box tabIndex="-1" ref={ref} {...rest}>
+        <Box tabIndex={-1} ref={ref} {...rest}>
             {clones}
         </Box>
     );
@@ -277,7 +279,7 @@ const Tabs = forwardRef(
             isFitted,
             ...props
         }: TabsProps,
-        ref
+        ref: RefObject<HTMLDivElement>
     ) => {
         // Wrong usage of `variantColor` prop is quite common
         // Let's add a warning hook that validates the passed variantColor
@@ -357,6 +359,7 @@ const Tabs = forwardRef(
         };
 
         return (
+            // @ts-ignore
             <TabContext.Provider value={context}>
                 <Box ref={ref} w="100%" {...props}>
                     {children}

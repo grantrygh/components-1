@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import { useId } from '@reach/auto-id';
-import { createContext, forwardRef, useContext, useEffect, useRef, useState } from 'react';
+import { createContext, forwardRef, RefObject, useContext, useEffect, useRef, useState } from 'react';
 import { Box } from '../Box';
 import { Divider } from '../Divider';
 import { useForkRef } from '../hooks/useForkRef';
@@ -164,58 +164,60 @@ export function useMenuContext() {
 
 //
 
-const PseudoButton = forwardRef((props, ref) => <PseudoBox ref={ref} as="button" {...props} />);
+const PseudoButton = forwardRef((props, ref: RefObject<any>) => <PseudoBox ref={ref} as="button" {...props} />);
 
 //
 
-const MenuButton = forwardRef(({ onClick, onKeyDown, as: Comp = PseudoButton, ...rest }: MenuButtonProps, ref) => {
-    // @ts-ignore
-    const {
-        isOpen,
-        focusOnLastItem,
-        focusOnFirstItem,
-        closeMenu,
-        menuId,
-        buttonId,
-        autoSelect,
-        openMenu,
-        buttonRef,
-    } = useMenuContext();
+const MenuButton = forwardRef(
+    ({ onClick, onKeyDown, as: Comp = PseudoButton, ...rest }: MenuButtonProps, ref: RefObject<any>) => {
+        // @ts-ignore
+        const {
+            isOpen,
+            focusOnLastItem,
+            focusOnFirstItem,
+            closeMenu,
+            menuId,
+            buttonId,
+            autoSelect,
+            openMenu,
+            buttonRef,
+        } = useMenuContext();
 
-    const menuButtonRef = useForkRef(buttonRef, ref);
+        const menuButtonRef = useForkRef(buttonRef, ref);
 
-    return (
-        <Comp
-            aria-haspopup="menu"
-            aria-expanded={isOpen}
-            aria-controls={menuId}
-            id={buttonId}
-            role="button"
-            ref={menuButtonRef}
-            onClick={wrapEvent(onClick, () => {
-                if (isOpen) {
-                    closeMenu();
-                } else if (autoSelect) {
-                    focusOnFirstItem();
-                } else {
-                    openMenu();
-                }
-            })}
-            onKeyDown={wrapEvent(onKeyDown, event => {
-                if (event.key === 'ArrowDown') {
-                    event.preventDefault();
-                    focusOnFirstItem();
-                }
+        return (
+            <Comp
+                aria-haspopup="menu"
+                aria-expanded={isOpen}
+                aria-controls={menuId}
+                id={buttonId}
+                role="button"
+                ref={menuButtonRef}
+                onClick={wrapEvent(onClick, () => {
+                    if (isOpen) {
+                        closeMenu();
+                    } else if (autoSelect) {
+                        focusOnFirstItem();
+                    } else {
+                        openMenu();
+                    }
+                })}
+                onKeyDown={wrapEvent(onKeyDown, event => {
+                    if (event.key === 'ArrowDown') {
+                        event.preventDefault();
+                        focusOnFirstItem();
+                    }
 
-                if (event.key === 'ArrowUp') {
-                    event.preventDefault();
-                    focusOnLastItem();
-                }
-            })}
-            {...rest}
-        />
-    );
-});
+                    if (event.key === 'ArrowUp') {
+                        event.preventDefault();
+                        focusOnLastItem();
+                    }
+                })}
+                {...rest}
+            />
+        );
+    }
+);
 
 //
 
@@ -385,7 +387,7 @@ const MenuDivider = forwardRef((props, ref) => <Divider ref={ref} orientation="h
 
 //
 
-const MenuGroup = forwardRef(({ children, title, ...rest }: MenuGroupProps, ref) => (
+const MenuGroup = forwardRef<any, MenuGroupProps>(({ children, title, ...rest }, ref) => (
     <Box ref={ref} role="group">
         {title && (
             <Text mx="spacing" my="spacing-sm" fontWeight="semibold" {...rest}>

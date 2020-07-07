@@ -5,6 +5,10 @@ declare module '*.scss' {
     export default obj;
 }
 
+// declare module 'react' {
+//     const forwardRef: ((props: T) => {  })
+// }
+
 declare const __image__: string;
 
 declare module '*.png' {

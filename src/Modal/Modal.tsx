@@ -3,7 +3,7 @@ import { useId } from '@reach/auto-id';
 import { hideOthers } from 'aria-hidden';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import exenv from 'exenv';
-import React, { createContext, forwardRef, useCallback, useContext, useEffect, useRef } from 'react';
+import React, { createContext, forwardRef, RefObject, useCallback, useContext, useEffect, useRef } from 'react';
 import FocusLock from 'react-focus-lock/dist/cjs';
 import { Transition } from 'react-spring/renderprops';
 import { Box } from '../Box';
@@ -185,7 +185,7 @@ const Modal = ({
     );
 };
 
-const ModalOverlay = React.forwardRef((props: BoxProps, ref) => {
+const ModalOverlay = React.forwardRef((props: BoxProps, ref: RefObject<HTMLDivElement>) => {
     return (
         <Box
             pos="fixed"
@@ -293,7 +293,7 @@ const ModalFooter = forwardRef((props: BoxProps, ref) => (
     <Flex justify="flex-end" ref={ref} p="spacing" as="footer" {...props} />
 ));
 
-const ModalBody = forwardRef((props: BoxProps, ref) => {
+const ModalBody = forwardRef((props: BoxProps, ref: RefObject<HTMLDivElement>) => {
     const { bodyId, scrollBehavior } = useModalContext();
 
     let style = {};
@@ -304,7 +304,7 @@ const ModalBody = forwardRef((props: BoxProps, ref) => {
     return <Box ref={ref} id={bodyId} p="spacing" flex="1" color="bodyText" {...style} {...props} />;
 });
 
-const ModalCloseButton = forwardRef((props: CloseButtonProps, ref) => {
+const ModalCloseButton = forwardRef((props: CloseButtonProps, ref: RefObject<any>) => {
     const { onClose } = useModalContext();
     return <CloseButton ref={ref} onClick={onClose} position="absolute" top="8px" right="12px" {...props} />;
 });

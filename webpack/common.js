@@ -55,12 +55,12 @@ const loaders = {
         ],
     },
 
-    css: ({ __DEV__, __BROWSER__, useStyleLoader, postcss_plugins }) => ({
+    css: ({ __DEV__, __BROWSER__, postcss_plugins }) => ({
         test: /\.css$/,
         use: ['style-loader', css_loader(__DEV__), postcss_loader(postcss_plugins)],
     }),
 
-    scss: ({ __DEV__, __BROWSER__, useStyleLoader, sass_resources, postcss_plugins }) => ({
+    scss: ({ __DEV__, __BROWSER__, sass_resources, postcss_plugins }) => ({
         test: /\.scss$/,
         use: [
             'style-loader',

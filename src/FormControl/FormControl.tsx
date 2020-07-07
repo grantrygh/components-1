@@ -37,7 +37,7 @@ export const useFormControl = props => {
 };
 
 export const FormControl = forwardRef(
-    ({ isInvalid, isRequired, isDisabled, isReadOnly, ...rest }: FormControlProps, ref) => {
+    ({ isInvalid, isRequired, isDisabled, isReadOnly, ...rest }: FormControlProps, ref: any) => {
         const context = {
             isRequired,
             isDisabled,

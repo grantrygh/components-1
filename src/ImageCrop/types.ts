@@ -9,7 +9,7 @@ export interface IImageCrop {
     aspect?: number;
 
     // optional trigger for handling the crop modal.
-    trigger?: React.ReactNode;
+    trigger?: React.ReactElement;
 
     // default state for showing the crop modal.
     open?: boolean;

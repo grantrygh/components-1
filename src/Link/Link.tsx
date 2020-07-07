@@ -1,3 +1,4 @@
+import { isExternalUrl } from '@audentio/utils/src/isExternalUrl';
 import React, { forwardRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { PseudoBox } from '../PseudoBox';
@@ -20,7 +21,7 @@ const baseStyleProps = {
     },
 };
 
-export const Link = forwardRef(({ isDisabled, isExternal, onClick, href, ...rest }: LinkProps, ref) => {
+export const Link = forwardRef(({ isDisabled, onClick, href, ...rest }: LinkProps, ref) => {
     function getHref() {
         if (href && href.indexOf(window?.location.origin) === 0) {
             return href.replace(window?.location.origin, '');
@@ -29,6 +30,8 @@ export const Link = forwardRef(({ isDisabled, isExternal, onClick, href, ...rest
     }
 
     const linkHref = getHref();
+    const isExternal = isExternalUrl(linkHref);
+
     const externalProps =
         isExternal || !linkHref
             ? { as: 'a', href: linkHref, target: '_blank', rel: 'noopener noreferrer' }

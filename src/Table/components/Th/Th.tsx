@@ -1,7 +1,7 @@
-import { Flex } from 'Flex';
 import ArrowUpIcon from 'mdi-react/ArrowUpIcon';
 import React from 'react';
 import { Box } from '../../../Box';
+import { Flex } from '../../../Flex';
 import { PseudoBox } from '../../../PseudoBox';
 import useTableStyle from '../../styles';
 import { TableCellProps } from '../../types';

@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-import { BoxProps } from 'Box/types';
-import { LinkProps } from 'Link/types';
 import { Children, cloneElement, forwardRef, isValidElement } from 'react';
 import { Box } from '../Box';
+import { BoxProps } from '../Box/types';
 import { Link } from '../Link';
+import { LinkProps } from '../Link/types';
 import { BreadcrumbItemProps, BreadcrumbProps } from './types';
 
 const BreadcrumbSeparator = forwardRef((props: BoxProps, ref) => {

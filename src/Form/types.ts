@@ -1,6 +1,6 @@
 // import { Schema } from 'yup';
 
-import { BoxProps } from 'Box/types';
+import { BoxProps } from '../Box/types';
 
 export interface FormValue {
     [key: string]: any;

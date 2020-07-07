@@ -1,6 +1,5 @@
-/** @jsx jsx */
-import { jsx, keyframes } from '@emotion/core';
-import { forwardRef } from 'react';
+import { keyframes } from '@emotion/core';
+import React, { forwardRef } from 'react';
 import { Box } from '../Box';
 import { VisuallyHidden } from '../VisuallyHidden';
 import useSpinnerStyle from './styles';

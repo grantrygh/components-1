@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import { useTheme } from '../ThemeProvider';
 
 export const tabStyle = ({ color = 'button' }, theme) => ({

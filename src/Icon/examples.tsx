@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { jsx, ThemeContext } from '@emotion/core';
+import { ThemeContext } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
 import { useContext } from 'react';
 import { Icon } from '.';

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
 import { BoxProps } from 'Box/types';
 import { LinkProps } from 'Link/types';
 import { Children, cloneElement, forwardRef, isValidElement } from 'react';

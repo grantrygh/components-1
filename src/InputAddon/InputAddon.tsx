@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
 import { Box } from '../Box';
 import useInputStyle from '../Input/styles';
 import useInputAddonStyle from './styles';

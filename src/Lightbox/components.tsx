@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
 import ChevronLeftIcon from 'mdi-react/ChevronLeftIcon';
 import ChevronRightIcon from 'mdi-react/ChevronRightIcon';
 import React, { createContext, useContext, useEffect, useState } from 'react';

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
 import { useCallback } from 'react';
 import toaster from 'toasted-notes';
 import { Alert, AlertDescription, AlertIcon, AlertTitle } from '../Alert';

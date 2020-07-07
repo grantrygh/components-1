@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
 import { PseudoBox } from '../PseudoBox';
 import useCardStyle from './styles';
 import { CardProps } from './types';

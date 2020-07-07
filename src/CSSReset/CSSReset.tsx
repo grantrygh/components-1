@@ -1,5 +1,5 @@
-/** @jsx jsx */
-import { css, Global, jsx } from '@emotion/core';
+import { css, Global } from '@emotion/core';
+import React from 'react';
 import { tailwindPreflight } from './preflight';
 import { CSSResetProps } from './types';
 

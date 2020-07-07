@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
+
 import { storiesOf } from '@storybook/react';
 import { Grid } from '.';
 import { Box } from '../Box';

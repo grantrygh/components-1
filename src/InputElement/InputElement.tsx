@@ -1,6 +1,4 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
-import { forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import { Box } from '../Box';
 import useInputElementStyle from './styles';
 import { InputElementProps, InputLeftElementProps, InputRightElementProps } from './types';

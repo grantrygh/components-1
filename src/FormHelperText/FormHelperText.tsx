@@ -1,6 +1,4 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
-import { forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import { useFormControl } from '../FormControl';
 import { Text } from '../Text';
 import useFormHelperTextStyle from './styles';

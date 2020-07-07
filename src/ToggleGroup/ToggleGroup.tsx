@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
 import { useId } from '@reach/auto-id';
 import React, { Children, cloneElement, useRef, useState } from 'react';
 import { Button, FormControlWrapper } from '..';

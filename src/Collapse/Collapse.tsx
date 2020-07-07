@@ -1,6 +1,4 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
-import { forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import AnimateHeight from 'react-animate-height';
 import { Box } from '../Box';
 import useCollapseStyle from './styles';

@@ -1,6 +1,6 @@
 import HomeIcon from 'mdi-react/HomeIcon';
 import React from 'react';
-import { PseudoBox } from '../../../../PseudoBox';
+import { PseudoBox } from 'src/PseudoBox';
 import { Stack, useTheme } from '../../../../src';
 import { AudentioAgency, AudentioCommunity, AudentioGaming, Nova, Themehouse } from './icons';
 

@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
 import CheckBoldIcon from 'mdi-react/CheckBoldIcon';
 import MinusIcon from 'mdi-react/MinusIcon';
 import { forwardRef, useEffect, useRef } from 'react';

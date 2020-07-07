@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import color from 'color';
 import { useTheme } from '../ThemeProvider';
 

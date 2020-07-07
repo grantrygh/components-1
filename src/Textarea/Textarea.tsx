@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
 import { forwardRef, RefObject, useLayoutEffect, useRef, useState } from 'react';
 import { Input } from '../Input';
 import useTextareaStyle from './styles';

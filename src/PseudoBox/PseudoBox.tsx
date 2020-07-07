@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import styled from '@emotion/styled';
 import css from '@styled-system/css';
 import { Box } from '../Box';

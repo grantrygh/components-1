@@ -5,8 +5,6 @@
  * Original source: https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Slider/Slider.js
  */
 
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
 import { createContext, forwardRef, RefObject, useCallback, useContext, useRef, useState } from 'react';
 import { Box } from '../Box';
 import { useForkRef } from '../hooks/useForkRef';

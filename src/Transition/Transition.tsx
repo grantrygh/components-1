@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
 import { Transition } from 'react-spring/renderprops.cjs';
 import useTransitionStyle from './styles';
 import { ScaleProps, SlideInProps, SlideProps } from './types';

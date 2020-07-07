@@ -5,7 +5,7 @@
         "lib": ["es2015", "es2017", "dom"],
         "moduleResolution": "node",
         "jsx": "preserve",
-        "baseUrl": "src",
+        "baseUrl": ".",
         "allowJs": true,
         "rootDir": "src",
         "outDir": "lib",
@@ -17,6 +17,7 @@
         "noErrorTruncation": false,
         "skipLibCheck": true,
         "paths": {
+            "components/*": ["*", "src/*"],
             "*": ["*", "src/*"]
         }
         // "esModuleInterop": true

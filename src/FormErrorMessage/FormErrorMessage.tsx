@@ -1,7 +1,5 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
 import WarningIcon from 'mdi-react/WarningIcon';
-import { forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import { Flex } from '../Flex';
 import { useFormControl } from '../FormControl';
 import { Text } from '../Text';

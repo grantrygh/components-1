@@ -1,6 +1,4 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
-import { Children, cloneElement, isValidElement } from 'react';
+import React, { Children, cloneElement, isValidElement } from 'react';
 import { InputLeftElement, InputRightElement } from '..';
 import { Box } from '../Box';
 import { FormControlWrapper } from '../FormControl';

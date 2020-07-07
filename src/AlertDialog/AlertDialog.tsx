@@ -1,6 +1,4 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
-import { forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '../Modal';
 import { ModalContentProps } from '../Modal/types';
 import { IAlertDialog } from './types';

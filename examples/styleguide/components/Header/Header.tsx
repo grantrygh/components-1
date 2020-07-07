@@ -1,8 +1,8 @@
 import BellOutlineIcon from 'mdi-react/BellOutlineIcon';
 import MenuIcon from 'mdi-react/MenuIcon';
 import React from 'react';
-import { Avatar, AvatarBadge } from '../../../../Avatar';
-import { Menu, MenuButton, MenuDivider, MenuItem, MenuList } from '../../../../Menu';
+import { Avatar, AvatarBadge } from 'src/Avatar';
+import { Menu, MenuButton, MenuDivider, MenuItem, MenuList } from 'src/Menu';
 import { Button, Icon, Input, InputGroup, InputLeftElement, Navigation } from '../../../../src';
 import { useCanvasContext } from '../../../../src/Canvas';
 import { Logo } from '../Logo';

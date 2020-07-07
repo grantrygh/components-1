@@ -1,7 +1,6 @@
-/** @jsx jsx */
-import { jsx, ThemeContext } from '@emotion/core';
+import { ThemeContext } from '@emotion/core';
 import styled from '@emotion/styled';
-import { forwardRef, useContext } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import { Box } from '../Box';
 import { IconProps } from './types';
 

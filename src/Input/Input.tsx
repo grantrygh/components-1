@@ -1,6 +1,4 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
-import { forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import { useFormField } from '../Form';
 import { useFormControl } from '../FormControl';
 import { PseudoBox } from '../PseudoBox';

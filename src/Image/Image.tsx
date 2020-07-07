@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
 import { forwardRef, useEffect, useRef, useState } from 'react';
 import { Box } from '../Box';
 import { LightboxMedia } from '../Lightbox';

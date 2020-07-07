@@ -1,8 +1,7 @@
 /* eslint-disable max-lines */
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
+
 import { useId } from '@reach/auto-id';
-import {
+import React, {
     Children,
     cloneElement,
     createContext,

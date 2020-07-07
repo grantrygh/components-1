@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
 import { Flex } from '../Flex';
 import { Stack } from '../Stack';
 import { Tag, TagCloseButton, TagLabel } from '../Tag';

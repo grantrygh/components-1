@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
 import React, { forwardRef } from 'react';
 import { Box } from '../Box';
 import { useVariantColorWarning } from '../hooks/useVariantColorWarning';

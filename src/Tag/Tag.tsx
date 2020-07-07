@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
 import CloseIcon from 'mdi-react/CloseIcon';
 import useBadgeStyle from '../Badge/styles';
 import { Box } from '../Box';

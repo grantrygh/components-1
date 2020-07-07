@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
 import React, { forwardRef } from 'react';
 import ReactSelect from 'react-select';
 import AsyncSelect from 'react-select/async';

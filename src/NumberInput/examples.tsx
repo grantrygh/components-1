@@ -1,5 +1,3 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
 import { action } from '@storybook/addon-actions';
 import { storiesOf } from '@storybook/react';
 import { useState } from 'react';

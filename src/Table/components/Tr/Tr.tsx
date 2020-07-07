@@ -1,9 +1,9 @@
-import { Button } from 'Button';
-import { Collapse } from 'Collapse';
-import { Flex } from 'Flex';
 import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
 import React from 'react';
 import { Box } from '../../../Box';
+import { Button } from '../../../Button';
+import { Collapse } from '../../../Collapse';
+import { Flex } from '../../../Flex';
 import { useTheme } from '../../../ThemeProvider';
 import useTableStyle from '../../styles';
 import { TableRowProps } from '../../types';

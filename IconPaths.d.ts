@@ -1,4 +1,3 @@
-/// <reference types="react" />
 declare const iconPaths: {
     copy: {
         path: JSX.Element;

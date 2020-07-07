@@ -1,6 +1,6 @@
-import { PseudoBox } from 'PseudoBox';
 import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { Box } from '../Box';
+import { PseudoBox } from '../PseudoBox';
 import { TablePagination } from './components/TablePagination';
 import useTableStyle from './styles';
 import { TableContextProps, TableProps, TableProviderProps } from './types';

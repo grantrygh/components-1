@@ -51,7 +51,7 @@ const shadows = (providedTheme, mode) => {
     };
 };
 
-const basis = ['480px', '768px', '992px', '1280px'];
+const basis = ['480px', '768px', '992px', '1280px', '1600px'];
 const breakpoints = {
     basis,
     // aliases
@@ -59,11 +59,13 @@ const breakpoints = {
     md: basis[1],
     lg: basis[2],
     xl: basis[3],
+    hd: basis[4],
     stripped: {
         sm: parseInt(basis[0], 10),
         md: parseInt(basis[1], 10),
         lg: parseInt(basis[2], 10),
         xl: parseInt(basis[3], 10),
+        hd: parseInt(basis[4], 10),
     },
 };
 
@@ -110,6 +112,7 @@ const borders = {
     none: 0,
     '1px': '1px solid',
     '2px': '2px solid',
+    '3px': '3px solid',
     '4px': '4px solid',
 };
 

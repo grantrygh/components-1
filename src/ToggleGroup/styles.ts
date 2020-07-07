@@ -1,8 +1,8 @@
 import { useTheme } from '../ThemeProvider';
 
-export const toggleGroupStyle = ({ isChecked }, theme) => ({
+export const toggleGroupStyle = ({ isChecked, isFullWidth }, theme) => ({
     style: {
-        width: 'fit-content',
+        width: isFullWidth ? '100%' : 'fit-content',
         border: '1px',
         borderColor: 'border',
         borderRadius: 'lg',
@@ -14,6 +14,7 @@ export const toggleGroupStyle = ({ isChecked }, theme) => ({
         boxShadow: 0,
         _focus: null,
         _hover: null,
+        flex: isFullWidth && 1,
     },
 });
 

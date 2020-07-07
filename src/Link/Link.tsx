@@ -1,4 +1,5 @@
-import React, { forwardRef, RefObject } from 'react';
+import { isExternalUrl } from '@audentio/utils/src/isExternalUrl';
+import React, { forwardRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { PseudoBox } from '../PseudoBox';
 import { LinkProps } from './types';
@@ -9,7 +10,7 @@ const baseStyleProps = {
     textDecoration: 'none',
     outline: 'none',
     color: 'bodyText',
-    _hover: { textDecoration: 'underline' },
+    _hover: { color: 'titleText' },
     _focus: {
         boxShadow: 'outline',
     },
@@ -20,7 +21,7 @@ const baseStyleProps = {
     },
 };
 
-export const Link = forwardRef(({ isDisabled, isExternal, onClick, href, ...rest }: LinkProps, ref: RefObject<any>) => {
+export const Link = forwardRef(({ isDisabled, onClick, href, ...rest }: LinkProps, ref: any) => {
     function getHref() {
         if (href && href.indexOf(window?.location.origin) === 0) {
             return href.replace(window?.location.origin, '');
@@ -29,6 +30,8 @@ export const Link = forwardRef(({ isDisabled, isExternal, onClick, href, ...rest
     }
 
     const linkHref = getHref();
+    const isExternal = isExternalUrl(linkHref);
+
     const externalProps =
         isExternal || !linkHref
             ? { as: 'a', href: linkHref, target: '_blank', rel: 'noopener noreferrer' }

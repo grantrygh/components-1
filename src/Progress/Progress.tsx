@@ -2,6 +2,7 @@ import { css, keyframes } from '@emotion/core';
 import { Box } from '../Box';
 import { valueToPercent } from '../Slider/utils';
 import { generateStripe } from '../theme/colors-utils';
+import { AnimatedProgressIndicator } from './AnimatedProgressIndicator';
 import useProgressStyle, { useProgressIndicatorStyle } from './styles';
 import { ProgressProps } from './types';
 
@@ -38,7 +39,8 @@ const ProgressTrack = props => {
 };
 
 export const Progress = ({
-    color,
+    color: startColor,
+    endColor,
     value,
     min = 0,
     max = 100,
@@ -59,7 +61,8 @@ export const Progress = ({
     });
 
     const indicatorStyleProps = useProgressIndicatorStyle({
-        color,
+        startColor,
+        endColor,
         borderRadius: _borderRadius,
         isIndeterminate,
     });
@@ -67,6 +70,7 @@ export const Progress = ({
     return (
         <ProgressTrack {...trackStyleProps} {...rest}>
             <ProgressIndicator
+                as={isAnimated && AnimatedProgressIndicator}
                 min={min}
                 max={max}
                 value={value}

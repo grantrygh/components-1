@@ -56,6 +56,11 @@ export interface ITabs {
      * @see http://chakra-ui.com/theme#colors
      */
     variantColor?: string;
+
+    /**
+     * If enabled, display scrollbar when there is overflow. Defaults to hiding.
+     */
+    showScrollbar?: boolean;
 }
 
 export type TabsProps = ITabs & Omit<BoxProps, 'onChange' | 'size'>;

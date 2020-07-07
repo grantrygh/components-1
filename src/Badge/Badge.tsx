@@ -31,7 +31,7 @@ export const Badge = forwardRef(
         }
 
         return (
-            <Box ref={ref} textTransform="uppercase" {...badgeStyleProps} {...props} size={size}>
+            <Box ref={ref} textTransform="uppercase" size={size} {...badgeStyleProps} {...props}>
                 {child}
             </Box>
         );

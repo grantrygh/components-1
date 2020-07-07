@@ -61,6 +61,11 @@ export interface IRadio {
     onBlur?: React.FocusEventHandler<HTMLInputElement>;
     onFocus?: React.FocusEventHandler<HTMLInputElement>;
     children?: React.ReactNode;
+
+    /**
+     * Allows rendering a custom component rather than the default radio box
+     */
+    renderCustomControl?: (args: any) => React.ReactNode;
 }
 
 export type RadioProps = IRadio &

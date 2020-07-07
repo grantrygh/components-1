@@ -59,10 +59,10 @@ export const FormControlWrapper = (props: FormControlProps) => {
     return (
         <FormControl {...rest}>
             {label && <FormLabel htmlFor={id}>{label}</FormLabel>}
-
             {children}
 
             {helperText && <FormHelperText id={`${id}-help`}>{helperText}</FormHelperText>}
+
             {error && <FormErrorMessage id={`${id}-error`}>{error}</FormErrorMessage>}
         </FormControl>
     );

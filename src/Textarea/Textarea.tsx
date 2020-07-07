@@ -9,7 +9,7 @@ export const Textarea = forwardRef((props: TextareaProps, ref) => {
 });
 
 export const ExpandingTextarea = forwardRef(
-    ({ minHeight = '40px', onInput, ...props }: ExpandingTextareaProps, ref: RefObject<HTMLTextAreaElement>) => {
+    ({ minHeight = '8rem', onInput, ...props }: ExpandingTextareaProps, ref: RefObject<HTMLTextAreaElement>) => {
         const [height, setHeight] = useState(null);
         const ownRef = useRef<HTMLTextAreaElement>();
 

@@ -9,7 +9,7 @@
 #### 1. Initialization
 
 Any global panels can be passed in to the CanvasWrapper upon initialization, such as the main panel and navigation menu.
-It is required that the main panel be name "main".
+It is required that the main panel be named "main".
 
 ```jsx
 export const AppShell = props => {
@@ -18,7 +18,6 @@ export const AppShell = props => {
 
     const initialCanvasState = {
         menu: {
-            name: 'menu',
             position: 'left',
             ranges: {
                 defaultVisible: [breakpoints.stripped.md, 9999],
@@ -30,26 +29,9 @@ export const AppShell = props => {
             bg: 'canvasBg',
         },
         main: {
-            name: 'main', // Main section is always visible, inline, and non-minifiable
-            render: componentProps => {
-                return (
-                    <>
-                        {/* Header */}
-                        <Navigation>
-                            <NavPrimary />
-                            <NavSecondary />
-                            <NavTertiary />
-                        </Navigation>
-
-                        <Flex direction="column" overflowY="auto" h="100%">
-                            {/* Main */}
-                            {componentProps.children}
-
-                            {/* Footer */}
-                            <PageFooter>Footer</PageFooter>
-                        </Flex>
-                    </>
-                );
+            // Main section is always visible, inline, and non-minifiable
+            render: renderProps => {
+                return renderProps.children;
             },
             bg: 'pageBg',
         },
@@ -68,7 +50,6 @@ const { addPanel, removePanel } = useCanvasContext();
 
 useEffect(() => {
     addPanel('filter', () => ({
-        name: 'filter',
         position: 'left',
         ranges: {
             isOverlay: [0, 1024],
@@ -107,7 +88,6 @@ updatePanel('menu', { isVisible: true, isMinified: true, bg: 'black' });
 
 When setting the panel through initialCanvasState or addPanel(), there are a few canvas specific props that can be passed
 
--   `name` - Required. Unique name used for setting and updating panels.
 -   `position` - Optional. Pass 'left' or 'right' to define where the panel shows as an inline or overlay panel.
 -   `render` - Required. Function that gets called to render the panel's contents.
 -   `ranges` - Required. Object that contains the following item breakpoint ranges, used for setting display properties.

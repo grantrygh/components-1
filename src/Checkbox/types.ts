@@ -75,6 +75,11 @@ export interface ICheckbox {
 
     iconColor?: string;
     iconSize?: string;
+
+    /**
+     * allows using a custom component rather than the default checkbox
+     */
+    renderCustomControl?: (args: any) => React.ReactNode;
 }
 
 export type CheckboxProps = ICheckbox &

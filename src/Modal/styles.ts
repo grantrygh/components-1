@@ -4,8 +4,14 @@ export const modalStyle = ({ isCentered }, theme) => ({
     style: {
         bg: 'popoverBg',
         shadow: 'modal',
-        m: 4,
-        mx: [4, 'auto'],
+        overflow: 'auto',
+        m: 'spacing',
+        mx: ['spacing', 'auto'],
+        w: '100%',
+        outline: 0,
+        pos: 'relative',
+        flexDir: 'column',
+        p: 0,
     },
     scrollBehavior: {
         inside: {
@@ -13,7 +19,7 @@ export const modalStyle = ({ isCentered }, theme) => ({
             top: 0,
         },
         outside: {
-            my: 16,
+            my: [4, 16],
             top: 0,
         },
     },
@@ -24,7 +30,7 @@ export const modalWrapperStyle = ({ isCentered }, theme) => ({
     scrollBehavior: {
         inside: {
             maxHeight: '100vh',
-            overflow: 'hidden',
+            overflow: 'auto',
         },
         outside: {
             overflowY: 'auto',
@@ -34,7 +40,7 @@ export const modalWrapperStyle = ({ isCentered }, theme) => ({
     props: {
         ...(isCentered && {
             display: 'flex',
-            alignItems: 'center',
+            alignItems: [null, 'center'],
             justifyContent: 'center',
         }),
     },

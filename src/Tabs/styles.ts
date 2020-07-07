@@ -29,13 +29,13 @@ export const tabStyle = ({ color = 'button' }, theme) => ({
     },
     sizes: {
         sm: {
-            padding: '0.25rem 1rem',
+            padding: [1, '0.25rem 1rem'],
         },
         md: {
-            padding: '0.5rem 1rem',
+            padding: [2, '0.5rem 1rem'],
         },
         lg: {
-            padding: '0.75rem 1.25rem',
+            padding: [3, '0.75rem 1.25rem'],
         },
     },
     variants: {
@@ -45,6 +45,7 @@ export const tabStyle = ({ color = 'button' }, theme) => ({
             borderRadius: 0,
             _selected: {
                 color: 'titleText',
+                opacity: 1,
                 borderColor: `${color}.500`,
                 boxShadow: 'none',
                 svg: {
@@ -57,14 +58,13 @@ export const tabStyle = ({ color = 'button' }, theme) => ({
             },
         },
         enclosed: {
-            roundedTop: 'md',
-            border: '1px',
+            rounded: 'radius',
+            border: '2px',
             borderColor: 'transparent',
-            mb: '-1px',
             _selected: {
                 color: `${color}.500`,
-                borderColor: 'inherit',
-                borderBottomColor: 'transparent',
+                borderColor: `${color}.500`,
+                opacity: 1,
             },
         },
         'enclosed-colored': {
@@ -126,7 +126,7 @@ const alignments = {
     start: 'flex-start',
 };
 
-export const tabListStyle = ({ align = 'start' }, theme) => ({
+export const tabListStyle = ({ align = 'start', showScrollbar }, { colors }) => ({
     style: {
         borderColor: 'transparent',
     },
@@ -162,6 +162,21 @@ export const tabListStyle = ({ align = 'start' }, theme) => ({
             // unstyled
         },
     },
+    container: {
+        overflowX: 'auto',
+        _scrollbar: {
+            width: '0.4em',
+            height: '0.4em',
+            display: !showScrollbar && 'none',
+        },
+        _thumb: {
+            backgroundColor: colors.thumb,
+            marginTop: 8,
+        },
+        _track: {
+            backgroundColor: colors.track,
+        },
+    },
 });
 
 export const useTabListStyle = props => {
@@ -169,9 +184,12 @@ export const useTabListStyle = props => {
     const styles = theme['styles'].tabList ? theme['styles'].tabList(props, theme) : tabListStyle(props, theme);
 
     return {
-        ...styles.orientation[props.orientation],
-        ...styles.variants[props.variant],
-        ...styles.style,
+        root: {
+            ...styles.orientation[props.orientation],
+            ...styles.variants[props.variant],
+            ...styles.style,
+        },
+        container: styles.container,
     };
 };
 

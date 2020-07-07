@@ -12,6 +12,9 @@ export interface IToggleGroup {
     value?: IRadio['value'];
     onChange?: (value: IRadio['value']) => void;
     isInline?: boolean;
+
+    // 100% width and toggle buttons flex
+    isFullWidth?: boolean;
 }
 
 export type ToggleGroupProps = Omit<BoxProps, 'onChange'> & IToggleGroup & IFormControl;

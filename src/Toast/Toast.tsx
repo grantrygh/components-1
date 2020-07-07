@@ -3,6 +3,7 @@ import toaster from 'toasted-notes';
 import { Alert, AlertDescription, AlertIcon, AlertTitle } from '../Alert';
 import { Box } from '../Box';
 import { CloseButton } from '../CloseButton';
+import { useColorMode } from '../ColorModeProvider';
 import { ThemeProvider, useTheme } from '../ThemeProvider';
 import useToastStyle from './styles';
 import { ToastProps, useToastOptions } from './types';
@@ -23,6 +24,7 @@ export const Toast = ({ status, variant, id, title, isClosable, onClose, descrip
 
 export function useToast() {
     const theme = useTheme();
+    const { mode } = useColorMode();
 
     const notify = useCallback(
         ({
@@ -42,14 +44,18 @@ export function useToast() {
 
             if (render) {
                 return toaster.notify(
-                    ({ onClose, id }) => <ThemeProvider defaultMode="light">{render({ onClose, id })}</ThemeProvider>,
+                    ({ onClose, id }) => (
+                        <ThemeProvider defaultMode={mode} theme={theme}>
+                            {render({ onClose, id })}
+                        </ThemeProvider>
+                    ),
                     options
                 );
             }
 
             toaster.notify(
                 ({ onClose, id }) => (
-                    <ThemeProvider defaultMode="light">
+                    <ThemeProvider defaultMode={mode} theme={theme}>
                         <Toast
                             {...{
                                 onClose,

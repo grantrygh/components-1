@@ -22,14 +22,16 @@ export const alertStyle = ({ color, status }, { colors }) => {
                 color: 'white',
             },
             'left-accent': {
-                bg,
+                bg: colors.pageBg,
+                color: colors.titleText,
                 borderLeft: '2px',
                 borderColor: `${alertColor}.500`,
                 roundedTopLeft: 0,
                 roundedBottomLeft: 0,
             },
             'top-accent': {
-                bg,
+                bg: colors.pageBg,
+                color: colors.titleText,
                 borderTop: '2px',
                 borderColor: `${alertColor}.500`,
                 roundedTopLeft: 0,

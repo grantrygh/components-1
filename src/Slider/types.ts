@@ -27,6 +27,11 @@ interface ISlider {
     id?: string;
     onChange?: (newValue: number) => void;
     children?: React.ReactNode;
+
+    /**
+     * will display the current slider value next to the slider
+     */
+    showValue?: boolean;
 }
 
 interface ISliderContext {

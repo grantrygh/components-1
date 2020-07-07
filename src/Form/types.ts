@@ -1,5 +1,7 @@
 // import { Schema } from 'yup';
 
+import { BoxProps } from 'Box/types';
+
 export interface FormValue {
     [key: string]: any;
 }
@@ -11,6 +13,7 @@ export type FormContextType = {
     getFieldValue: Function;
     onChange: Function;
     registerField: Function;
+    clearForm: Function;
 };
 
 export interface FormFieldProps {
@@ -32,7 +35,7 @@ export interface FormFieldProps {
     skipOnSubmit?: boolean;
 }
 
-export interface FormProps {
+export interface IForm {
     children: React.ReactNode;
 
     /**
@@ -114,6 +117,8 @@ export interface FormProps {
      */
     buttonTypeName?: string;
 }
+
+export type FormProps = IForm & BoxProps;
 
 export interface FormErrors {
     // formFieldName: [errorValue, [errorStrings]]

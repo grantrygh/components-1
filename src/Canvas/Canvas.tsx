@@ -137,7 +137,7 @@ export function CanvasContainer(props) {
         const panelStyleProps = {
             ...styles.panel,
             ...styles.getPanelStyle({
-                width: panelProps.width,
+                width: panelProps.width || panelProps.w,
                 position: panelProps.position,
                 bg,
                 isOverlay,
@@ -153,7 +153,15 @@ export function CanvasContainer(props) {
                 key={name}
             >
                 <MotionPanel key={`motion-${panel.name}`} initial={animateTo} animate={animateTo} {...panelStyleProps}>
-                    <Flex ref={ref} direction="column" height="100%" p={name !== 'main' && p} {...panelProps}>
+                    <Flex
+                        ref={ref}
+                        direction="column"
+                        minH="100%"
+                        h="fit-content"
+                        p={name !== 'main' && p}
+                        {...panelProps}
+                        width="100%"
+                    >
                         {panel.render({
                             isMinified: panelProps.isMinified,
                             isVisible,
@@ -250,7 +258,7 @@ export const CanvasWrapper = (props: CanvasWrapperProps) => {
 };
 
 export function CanvasPanel({ name, children, type = 'inline', ranges, windowWidth, ...rest }) {
-    const { addPanel, removePanel, updatePanel } = useCanvasContext();
+    const { updatePanel } = useCanvasContext();
     const { location } = useRouter();
     const ref = createRef();
 
@@ -269,36 +277,29 @@ export function CanvasPanel({ name, children, type = 'inline', ranges, windowWid
 
     useEffect(() => {
         // Set the canvas panel's default values
-        addPanel(name, () => ({
+        updatePanel(name, {
             name,
             ref,
             render: children,
             type,
             ranges,
             ...rest,
-        }));
+        });
 
         // remove panel
-        return () => {
-            removePanel(name);
-        };
+        // return () => {
+        //     removePanel(name);
+        // };
     }, []);
 
     useEffect(() => {
-        updatePanel(name, { isMinifiable });
-    }, [isMinifiable]);
-
-    useEffect(() => {
-        updatePanel(name, { isMinified });
-    }, [isMinified]);
-
-    useEffect(() => {
-        updatePanel(name, { isVisible });
-    }, [isVisible]);
-
-    useEffect(() => {
-        updatePanel(name, { isOverlay });
-    }, [isOverlay]);
+        updatePanel(name, {
+            isMinifiable,
+            isMinified,
+            isVisible,
+            isOverlay,
+        });
+    }, [isMinifiable, isMinified, isVisible, isOverlay]);
 
     useEffect(() => {
         // when a link is clicked and route changes, close overlay canvases

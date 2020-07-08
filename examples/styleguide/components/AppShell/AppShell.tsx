@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { CSSReset, ThemeProvider, useTheme } from '../../../../src';
+import { CSSReset, generateShades, Input, ThemeProvider, useTheme } from '../../../../src';
 import { CanvasWrapper } from '../../../../src/Canvas';
 import { CanvasMenu } from '../../../../src/CanvasMenu';
 import { styleguideTheme } from '../../theme';
@@ -73,8 +73,55 @@ export const AppShellBase = props => {
     );
 };
 
-export const AppShell = props => (
-    <ThemeProvider theme={styleguideTheme}>
-        <AppShellBase {...props} />
-    </ThemeProvider>
-);
+export const AppShell = props => {
+    const [style, setStyle] = useState(styleguideTheme);
+
+    const setPrimaryColor = color => {
+        setStyle({
+            ...styleguideTheme,
+            colors: {
+                ...styleguideTheme.colors,
+                dark: {
+                    ...styleguideTheme.colors.dark,
+                    primary: generateShades(color),
+                },
+            },
+        });
+    };
+
+    const setBackgroundColor = color => {
+        setStyle({
+            ...styleguideTheme,
+            colors: {
+                ...styleguideTheme.colors,
+                dark: {
+                    ...styleguideTheme.colors.dark,
+                    pageBg: color,
+                },
+            },
+        });
+    };
+
+    return (
+        <ThemeProvider theme={style}>
+            <AppShellBase {...props} />
+            <div style={{ position: 'fixed', bottom: '50px', right: '50px', zIndex: 1000 }}>
+                <Input
+                    type="color"
+                    // value={style?.colors?.dark?.primary['500']}
+                    onChange={e => {
+                        setPrimaryColor(e.target.value);
+                    }}
+                />
+
+                <Input
+                    type="color"
+                    // value={style?.colors?.dark?.primary['500']}
+                    onChange={e => {
+                        setBackgroundColor(e.target.value);
+                    }}
+                />
+            </div>
+        </ThemeProvider>
+    );
+};

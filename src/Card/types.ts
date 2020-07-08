@@ -1,4 +1,4 @@
-import { BoxProps } from 'Box/types';
+import { BoxProps } from '../Box/types';
 
 interface ICard {
     raised?: boolean;

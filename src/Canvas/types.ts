@@ -1,5 +1,5 @@
-import { BoxProps } from 'Box/types';
 import React from 'react';
+import { BoxProps } from '../Box/types';
 
 type CanvasState = { [key: string]: boolean };
 

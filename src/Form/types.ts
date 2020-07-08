@@ -1,6 +1,6 @@
 // import { Schema } from 'yup';
 
-import { BoxProps } from 'Box/types';
+import { BoxProps } from '../Box/types';
 
 export interface FormValue {
     [key: string]: any;
@@ -118,7 +118,7 @@ export interface IForm {
     buttonTypeName?: string;
 }
 
-export type FormProps = IForm & BoxProps;
+export type FormProps = IForm & Omit<BoxProps, 'onSubmit'>;
 
 export interface FormErrors {
     // formFieldName: [errorValue, [errorStrings]]

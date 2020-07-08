@@ -32,6 +32,7 @@ export const Checkbox = forwardRef(
             onFocus,
             isIndeterminate,
             renderCustomControl,
+            skipFormChange,
             children,
             iconColor,
             iconSize = '12px',
@@ -67,7 +68,7 @@ export const Checkbox = forwardRef(
         }, [isIndeterminate, _ref]);
 
         const onSwitchChange = v => {
-            if (formOnChange && typeof formOnChange === 'function') {
+            if (!skipFormChange && formOnChange && typeof formOnChange === 'function') {
                 formOnChange(v, v.target.checked);
             }
             if (onChange) {

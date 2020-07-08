@@ -3,7 +3,7 @@ import { Box } from '../Box';
 import useDividerStyle from './styles';
 import { DividerProps } from './types';
 
-export const Divider = forwardRef(({ orientation = 'horizontal', size = 1, ...props }: DividerProps, ref) => {
+export const Divider = forwardRef(({ orientation = 'horizontal', size, ...props }: DividerProps, ref) => {
     const borderStyleProps = useDividerStyle({
         orientation,
         size,

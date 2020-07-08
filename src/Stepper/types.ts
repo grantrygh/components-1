@@ -1,4 +1,4 @@
-import { BoxProps } from 'Box/types';
+import { BoxProps } from '../Box/types';
 
 interface IStepper {
     // Array of steps in the steper

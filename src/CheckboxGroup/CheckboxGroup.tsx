@@ -1,6 +1,7 @@
 import { useId } from '@reach/auto-id';
 import { Children, cloneElement, isValidElement, useRef, useState } from 'react';
 import { Box } from '../Box';
+import { useFormField } from '../Form';
 import { FormControlWrapper } from '../FormControl';
 import { CheckboxGroupProps } from './types';
 
@@ -15,8 +16,12 @@ export const CheckboxGroup = ({
     children,
     ...rest
 }: CheckboxGroupProps) => {
-    const [values, setValues] = useState(defaultValue || []);
+    const { onChange: formOnChange, value: initialCheckboxGroupValues } = useFormField({
+        name,
+        onChange,
+    });
 
+    const [values, setValues] = useState(defaultValue || initialCheckboxGroupValues || []);
     const { current: isControlled } = useRef(valueProp != null);
     const _values = isControlled ? valueProp : values;
 
@@ -30,6 +35,10 @@ export const CheckboxGroup = ({
             newValues = _values.filter(val => val !== boxName);
         }
 
+        // If CheckboxGroup is passed a name, child checkbox values are contained within one array.
+        if (name && formOnChange) {
+            formOnChange(null, newValues);
+        }
         if (!isControlled) {
             setValues(newValues);
         }
@@ -69,9 +78,11 @@ export const CheckboxGroup = ({
                             child.props.onChange(e);
                         }
                     },
-                    isChecked: child.props.isChild
-                        ? _values.includes(child.props.name || defCheckboxName)
-                        : child.props.isChecked,
+                    isChecked:
+                        child.props.isChild || name
+                            ? _values.includes(child.props.name || defCheckboxName)
+                            : child.props.isChecked,
+                    skipFormChange: !!name,
                 })}
             </Box>
         );

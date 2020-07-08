@@ -19,7 +19,8 @@
         "build:babel": "babel src --out-dir lib --extensions '.ts,.tsx,.js' --source-maps",
         "release": "release-it",
         "jest": "./node_modules/.bin/jest",
-        "snyk-protect": "snyk protect"
+        "snyk-protect": "snyk protect",
+        "prepublishOnly": "npm run build"
     },
     "repository": {
         "type": "git",

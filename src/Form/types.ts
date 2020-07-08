@@ -14,6 +14,9 @@ export type FormContextType = {
     onChange: Function;
     registerField: Function;
     clearForm: Function;
+
+    // object to be spread as props on all fields
+    context: { [key: string]: any };
 };
 
 export interface FormFieldProps {
@@ -108,7 +111,6 @@ export interface IForm {
     // generally server-side errors
     errors?: FormErrors;
 
-    formless?: boolean;
     handleDots?: boolean;
 
     /**
@@ -116,6 +118,18 @@ export interface IForm {
      * @default - button
      */
     buttonTypeName?: string;
+
+    /**
+     * just in case you need the default behaviour
+     * defaults to true
+     */
+    preventDefaultSubmit?: boolean;
+
+    /**
+     * pass an object here and its keys will be passed to all input elements
+     * useful for things like server-side errors
+     */
+    context?: { [key: string]: any };
 }
 
 export type FormProps = IForm & Omit<BoxProps, 'onSubmit'>;

@@ -21,9 +21,16 @@ const useFormFields = () => {
 };
 
 export function Form(props: FormProps) {
-    const { onSubmit, initialValue = {}, onChange: onFormChange, ...rest } = props;
-    const [value, setValue] = React.useState(initialValue);
+    const {
+        onSubmit,
+        initialValue = {},
+        onChange: onFormChange,
+        context,
+        preventDefaultSubmit = true,
+        ...rest
+    } = props;
 
+    const [value, setValue] = React.useState(initialValue);
     const { fields, registerField } = useFormFields();
 
     const onChange = React.useCallback(data => {
@@ -49,13 +56,19 @@ export function Form(props: FormProps) {
 
     const formOnSubmit = React.useCallback(
         e => {
+            if (preventDefaultSubmit) {
+                e.preventDefault();
+            }
+
             onSubmit(e, { getFormValue });
         },
         [value]
     );
 
     return (
-        <FormContext.Provider value={{ fields, registerField, getFormValue, getFieldValue, onChange, clearForm }}>
+        <FormContext.Provider
+            value={{ fields, registerField, getFormValue, getFieldValue, onChange, clearForm, context }}
+        >
             <form onSubmit={formOnSubmit} {...rest}>
                 {props.children}
             </form>

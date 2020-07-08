@@ -15,7 +15,7 @@ stats.json
 !src
 !jest
 
-lib
+/lib
 
 # Logs and temporary files
 *.log

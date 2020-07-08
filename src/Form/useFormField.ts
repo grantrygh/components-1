@@ -2,7 +2,7 @@ import React from 'react';
 import { FormContext } from './context';
 
 export function useFormField(props) {
-    const { getFieldValue, onChange } = React.useContext(FormContext);
+    const { getFieldValue, onChange, context, clearForm } = React.useContext(FormContext);
 
     const $onChange = React.useCallback(
         (e, value = null) => {
@@ -25,6 +25,8 @@ export function useFormField(props) {
     );
 
     return {
+        clearForm,
+        context,
         onChange: $onChange,
         value: getFieldValue && getFieldValue(props.name),
     };

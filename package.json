@@ -35,6 +35,11 @@
     "url": "https://github.com/Audentio/components/issues"
   },
   "homepage": "https://github.com/Audentio/components#readme",
+  "release-it": {
+    "git": {
+      "pushRepo": "git@github.com:Audentio/components.git"
+    }
+  },
   "devDependencies": {
     "@audentio/eslint-config-standard": "^2.3.0",
     

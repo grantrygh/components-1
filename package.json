@@ -40,6 +40,9 @@
             "pushRepo": "git@github.com:Audentio/components.git"
         }
     },
+    "publishConfig": {
+        "access": "public"
+    },
     "devDependencies": {
         "@audentio/eslint-config-standard": "^2.3.0",
         "@babel/cli": "^7.10.4",

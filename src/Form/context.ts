@@ -8,5 +8,5 @@ export const FormContext = createContext<FormContextType>({
     getFieldValue: () => {},
     onChange: () => {},
     clearForm: () => {},
-    contect: {},
+    context: {},
 });

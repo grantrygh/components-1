@@ -35,14 +35,9 @@
     "url": "https://github.com/Audentio/components/issues"
   },
   "homepage": "https://github.com/Audentio/components#readme",
-  "release-it": {
-    "git": {
-      "pushRepo": "git@github.com:Audentio/components.git"
-    }
-  },
   "devDependencies": {
     "@audentio/eslint-config-standard": "^2.3.0",
-    "@audentio/utils": "^4.4.1",
+    
     "@babel/cli": "^7.10.4",
     "@babel/core": "^7.8.4",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
@@ -52,15 +47,13 @@
     "@babel/preset-react": "^7.8.3",
     "@babel/preset-typescript": "^7.8.3",
     "@babel/runtime": "^7.8.4",
-    "@reach/auto-id": "0.2.0",
     "@storybook/addon-actions": "^5.3.9",
     "@storybook/addon-info": "^5.3.9",
     "@storybook/addon-knobs": "^5.3.13",
     "@storybook/addon-storysource": "^5.3.9",
     "@storybook/addon-viewport": "^5.3.9",
     "@storybook/react": "^5.3.9",
-    "@styled-system/css": "5.1.5",
-    "@styled-system/should-forward-prop": "5.1.5",
+    
     "@types/recharts": "^1.8.9",
     "@types/styled-system": "5.1.9",
     "babel-jest": "^26.1.0",
@@ -82,7 +75,11 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
+    "@audentio/utils": "^4.4.1",
+    "@styled-system/css": "5.1.5",
+    "@styled-system/should-forward-prop": "5.1.5",
     "aria-hidden": "^1.1.1",
+    "@reach/auto-id": "0.2.0",
     "body-scroll-lock": "^2.6.4",
     "color": "3.1.2",
     "exenv": "^1.2.2",

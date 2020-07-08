@@ -36,20 +36,20 @@ const plugins = () => [
     ['@babel/plugin-proposal-decorators', { legacy: true }],
     ['@babel/plugin-proposal-class-properties', { loose: false }],
     '@babel/plugin-syntax-dynamic-import',
-    [
-        'module:fast-async',
-        {
-            env: {
-                log: false,
-            },
-            compiler: {
-                promises: false,
-                generators: false,
-            },
-            runtimePattern: null,
-            useRuntimeModule: false,
-        },
-    ],
+    // [
+    //     'module:fast-async',
+    //     {
+    //         env: {
+    //             log: false,
+    //         },
+    //         compiler: {
+    //             promises: false,
+    //             generators: false,
+    //         },
+    //         runtimePattern: null,
+    //         useRuntimeModule: false,
+    //     },
+    // ],
     [
         'transform-imports',
         {

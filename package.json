@@ -1,6 +1,6 @@
 {
     "name": "@audentio/stuff",
-    "version": "0.1.12",
+    "version": "0.1.13",
     "description": "React component library by Audentio",
     "main": "lib/index.js",
     "scripts": {

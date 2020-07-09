@@ -2,7 +2,7 @@
     "name": "@audentio/stuff",
     "version": "0.1.10",
     "description": "React component library by Audentio",
-    "main": "index.js",
+    "main": "lib/index.js",
     "scripts": {
         "test": "jest --passWithNoTests",
         "start": "yarn example:styleguide",

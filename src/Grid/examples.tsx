@@ -1,5 +1,5 @@
-
 import { storiesOf } from '@storybook/react';
+import React from 'react';
 import { Grid } from '.';
 import { Box } from '../Box';
 import { FullGrid } from '../FullGrid';

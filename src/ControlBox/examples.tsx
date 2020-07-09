@@ -1,4 +1,5 @@
 import { storiesOf } from '@storybook/react';
+import React from 'react';
 import { ControlBox } from '.';
 import { Box } from '../Box';
 import { Icon } from '../Icon';

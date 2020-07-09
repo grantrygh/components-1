@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box } from '../Box';
 import { Table, TableHeader, Td, Th, Tr } from '../Table';
 import { ITableCell } from './types';

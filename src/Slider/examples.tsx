@@ -1,4 +1,5 @@
 import { storiesOf } from '@storybook/react';
+import React from 'react';
 import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from '.';
 import { Box } from '../Box';
 

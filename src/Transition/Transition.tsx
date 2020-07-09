@@ -1,3 +1,4 @@
+import React from 'react';
 import { Transition } from 'react-spring/renderprops.cjs';
 import useTransitionStyle from './styles';
 import { ScaleProps, SlideInProps, SlideProps } from './types';

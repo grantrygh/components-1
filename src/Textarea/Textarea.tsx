@@ -1,4 +1,4 @@
-import { forwardRef, RefObject, useLayoutEffect, useRef, useState } from 'react';
+import React, { forwardRef, RefObject, useLayoutEffect, useRef, useState } from 'react';
 import { Input } from '../Input';
 import useTextareaStyle from './styles';
 import { ExpandingTextareaProps, TextareaProps } from './types';

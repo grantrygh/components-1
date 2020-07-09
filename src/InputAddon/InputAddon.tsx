@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box } from '../Box';
 import useInputStyle from '../Input/styles';
 import useInputAddonStyle from './styles';

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box } from '../Box';
 import { Modal, ModalCloseButton, ModalContent, ModalOverlay } from '../Modal';
 import { useTheme } from '../ThemeProvider';

@@ -1,4 +1,5 @@
 import { storiesOf } from '@storybook/react';
+import React from 'react';
 import { Image } from '.';
 
 const stories = storiesOf('Image', module);

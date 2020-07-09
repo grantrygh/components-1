@@ -1,5 +1,5 @@
 import { storiesOf } from '@storybook/react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { InputGroup } from '.';
 import { Box } from '../Box';
 import { Button } from '../Button';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { BoxProps } from '../Box/types';
 import { Omit } from '../common-types';
 import { FlexProps } from '../Flex/types';

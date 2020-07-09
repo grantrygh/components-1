@@ -1,6 +1,6 @@
 import { ThemeContext } from '@emotion/core';
 import { storiesOf } from '@storybook/react';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { Icon } from '.';
 import { Flex } from '../Flex';
 import { Text } from '../Text';

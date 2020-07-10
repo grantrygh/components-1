@@ -196,7 +196,14 @@ const LightboxGallery = () => {
         <Lightbox isOpen={!!activeItem} onClose={() => setActiveItem(null)} onKeyDown={onKeyDown} showControls>
             <Flex direction="column" h="100%">
                 {/* gallery active image */}
-                <Flex flex={1} align="center" justify="center" maxHeight="calc(100vh - 8rem - 48px)" pos="relative">
+                <Flex
+                    flex={1}
+                    align="center"
+                    justify="center"
+                    maxHeight="calc(100vh - 8rem - 48px)"
+                    pos="relative"
+                    onClick={() => setActiveItem(null)}
+                >
                     {media.map(mi => (
                         <Scale
                             in={activeItem.src === mi.src}

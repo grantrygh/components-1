@@ -30,7 +30,7 @@ export const Lightbox = (props: LightboxProps) => {
                         <ModalOverlay bg="transparent" onKeyDown={onKeyDown}>
                             <ModalCloseButton zIndex={zIndices.modal + 1} color="white" />
                             {showControls && <LightboxGalleryControls />}
-                            <ModalContent {...styles} shadow={0} bg="transparent" h="100%" my={0} pt="48px">
+                            <ModalContent {...styles} shadow={0} bg="transparent" h="100%" my={0} pt="48px" pb="sm">
                                 {children}
                             </ModalContent>
                         </ModalOverlay>

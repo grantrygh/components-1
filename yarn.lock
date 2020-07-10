@@ -17,12 +17,14 @@
     eslint-plugin-react "^7.14.3"
     snyk "^1.198.0"
 
-"@audentio/utils@^4.4.1":
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/@audentio/utils/-/utils-4.4.1.tgz#3a6117fba72a22f7f29c85c831a66297b74b1242"
-  integrity sha512-z/7lzBfUf1ZiIFSBBKQZWbqgX9lv0cnn327F9nIfdqnCKhGoH90t7T+MXySswMInQMp8dPD8SHUXqhvJlQN06w==
+"@audentio/utils@^4.4.2":
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/@audentio/utils/-/utils-4.4.2.tgz#ae66768ca4779441da2db2e7220916900e59eebf"
+  integrity sha512-INTAmiOzrEq+x2QBvnrbQlpQs2v54DpCt3kJzHOK+agupEZybCkNrd3XRWLqZB+oYWUPgWWxrZrvhqvrB/yTIQ==
   dependencies:
     query-string "^6.10.1"
+    react "^16.13.1"
+    react-ga "^3.1.2"
     yup "^0.28.1"
 
 "@babel/cli@^7.10.4":
@@ -1162,7 +1164,7 @@
     "@emotion/serialize" "^0.11.15"
     "@emotion/utils" "0.11.3"
 
-"@emotion/styled@^10.0.17":
+"@emotion/styled@^10.0.17", "@emotion/styled@^10.0.27":
   version "10.0.27"
   resolved "https://registry.yarnpkg.com/@emotion/styled/-/styled-10.0.27.tgz#12cb67e91f7ad7431e1875b1d83a94b814133eaf"
   integrity sha512-iK/8Sh7+NLJzyp9a5+vIQIXTYxfT4yB/OJbjzQanB2RZpvmzBQOHZWhpAMZWYEKRNNbsD6WfBw5sVWkb6WzS/Q==
@@ -12686,6 +12688,11 @@ react-focus-lock@^2.1.0, react-focus-lock@^2.2.1:
     react-clientside-effect "^1.2.2"
     use-callback-ref "^1.2.1"
     use-sidecar "^1.0.1"
+
+react-ga@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/react-ga/-/react-ga-3.1.2.tgz#e13f211c51a2e5c401ea69cf094b9501fe3c51ce"
+  integrity sha512-OJrMqaHEHbodm+XsnjA6ISBEHTwvpFrxco65mctzl/v3CASMSLSyUkFqz9yYrPDKGBUfNQzKCjuMJwctjlWBbw==
 
 react-helmet-async@^1.0.2:
   version "1.0.6"

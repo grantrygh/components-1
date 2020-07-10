@@ -1,4 +1,4 @@
-import { isExternalUrl } from '@audentio/utils/src/isExternalUrl';
+import { isExternalUrl } from '@audentio/utils/lib/isExternalUrl';
 import React from 'react';
 import { Box } from '../Box';
 import { useRouter } from '../hooks/useRouter';

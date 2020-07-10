@@ -184,7 +184,16 @@ const LightboxGallery = () => {
             }
 
             list.push(
-                <Link onClick={() => setActiveItem(media[itemIndex])} w={90} h={90} {...(i === 0 ? activeStyle : {})}>
+                <Link
+                    onClick={e => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setActiveItem(media[itemIndex]);
+                    }}
+                    w={90}
+                    h={90}
+                    {...(i === 0 ? activeStyle : {})}
+                >
                     <Image src={thumbnail} h="full" w="full" />
                 </Link>
             );
@@ -194,16 +203,9 @@ const LightboxGallery = () => {
 
     return (
         <Lightbox isOpen={!!activeItem} onClose={() => setActiveItem(null)} onKeyDown={onKeyDown} showControls>
-            <Flex direction="column" h="100%">
+            <Flex direction="column" h="100%" onClick={() => setActiveItem(null)}>
                 {/* gallery active image */}
-                <Flex
-                    flex={1}
-                    align="center"
-                    justify="center"
-                    maxHeight="calc(100vh - 8rem - 48px)"
-                    pos="relative"
-                    onClick={() => setActiveItem(null)}
-                >
+                <Flex flex={1} align="center" justify="center" maxHeight="calc(100vh - 8rem - 48px)" pos="relative">
                     {media.map(mi => (
                         <Scale
                             in={activeItem.src === mi.src}

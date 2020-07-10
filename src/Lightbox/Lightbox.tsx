@@ -15,7 +15,14 @@ export const Lightbox = (props: LightboxProps) => {
             <SlideIn offset="10px" in={isOpen}>
                 {/* @ts-ignore */}
                 {styles => (
-                    <Modal isOpen={isOpen} onClose={onClose} preserveScrollBarGap isCentered blockScrollOnMount>
+                    <Modal
+                        isOpen={isOpen}
+                        onClose={onClose}
+                        preserveScrollBarGap
+                        isCentered
+                        blockScrollOnMount
+                        size="100%"
+                    >
                         {/* solid background ModalOverlay */}
                         <ModalOverlay opacity={1} backgroundColor="rgba(11,11,11,0.9)" />
 

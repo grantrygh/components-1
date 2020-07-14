@@ -203,7 +203,7 @@ const LightboxGallery = () => {
 
     return (
         <Lightbox isOpen={!!activeItem} onClose={() => setActiveItem(null)} onKeyDown={onKeyDown} showControls>
-            <Flex direction="column" h="100%" onClick={() => setActiveItem(null)}>
+            <Flex direction="column" h="90%" onClick={() => setActiveItem(null)}>
                 {/* gallery active image */}
                 <Flex flex={1} align="center" justify="center" maxHeight="calc(100vh - 8rem - 48px)" pos="relative">
                     {media.map(mi => (
@@ -225,7 +225,7 @@ const LightboxGallery = () => {
                 </Flex>
 
                 {/* gallery thumbnails */}
-                <Flex justify="center" align="center" height="8rem">
+                <Flex justify="center" align="center" height="8rem" mt="spacing">
                     <Grid columns={[3, null, numItems >= 5 ? 5 : 3]} spacing="spacing-sm">
                         {generateThumbnails()}
                     </Grid>

@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import React, { createContext, createRef, useContext, useEffect, useState } from 'react';
-import { Box, useTheme } from '..';
 import { Flex } from '../Flex';
 import { useRouter } from '../hooks/useRouter';
 import { useWindowResize } from '../hooks/useWindowResize';
 import { ModalOverlay } from '../Modal';
+import { PseudoBox } from '../PseudoBox';
+import { useTheme } from '../ThemeProvider';
 import useCanvasStyle from './styles';
 import { CanvasWrapperProps } from './types';
 
@@ -18,7 +19,7 @@ export const useCanvasContext = () => {
     return context;
 };
 
-const MotionPanel = motion.custom(Box);
+const MotionPanel = motion.custom(PseudoBox);
 
 const getPanels = panels => {
     const panelList = Object.keys(panels)
@@ -152,7 +153,13 @@ export function CanvasContainer(props) {
                 flexGrow={name === 'main' && 1}
                 key={name}
             >
-                <MotionPanel key={`motion-${panel.name}`} initial={animateTo} animate={animateTo} {...panelStyleProps}>
+                <MotionPanel
+                    key={`motion-${panel.name}`}
+                    initial={animateTo}
+                    animate={animateTo}
+                    {...panelStyleProps}
+                    // _track={{ backgroundColor: 'black' }}
+                >
                     <Flex
                         ref={ref}
                         direction="column"
@@ -188,7 +195,7 @@ export function CanvasContainer(props) {
     );
 }
 
-const renderPanels = ({ panels = [], children = null, windowWidth = 0 }) => {
+const renderPanels = ({ panels = [], children = null, windowWidth = 0, ...renderPanelsProps }) => {
     return (
         <Flex>
             {panels.map((canvas, i) => {
@@ -200,6 +207,7 @@ const renderPanels = ({ panels = [], children = null, windowWidth = 0 }) => {
                         borderRight={name !== 'main' && '1px'}
                         borderColor="border"
                         windowWidth={windowWidth}
+                        {...renderPanelsProps}
                         {...rest}
                     >
                         {props => (

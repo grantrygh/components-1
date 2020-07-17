@@ -1,7 +1,7 @@
 import { componentStyleDef } from '../theme/types';
 import { useTheme } from '../ThemeProvider';
 
-export const canvasStyle: componentStyleDef = ({ isMobile }, { sizes }) => {
+export const canvasStyle: componentStyleDef = ({ isMobile }, { sizes, colors }) => {
     const getPanelStyle = ({ width = sizes.canvas.width, position, isOverlay, bg = 'canvasBg', name, zIndex }) => ({
         variants: {
             visible: {
@@ -46,6 +46,15 @@ export const canvasStyle: componentStyleDef = ({ isMobile }, { sizes }) => {
             height: '100vh',
             overflowX: 'hidden',
             direction: 'column',
+            // _scrollbar: {
+            //     backgroundColor: colors.scrollbar,
+            // },
+            // _track: {
+            //     backgroundColor: colors.scrollTrack,
+            // },
+            // _thumb: {
+            //     backgroundColor: colors.scrollThumb,
+            // },
             transition: { type: 'spring', damping: 50, stiffness: 200 },
             // transition: { type: 'spring', damping: 50, stiffness: 1 },
         },

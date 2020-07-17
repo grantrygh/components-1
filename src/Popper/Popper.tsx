@@ -22,10 +22,8 @@ import { createChainedFunction } from '../utils/createChainedFunction';
 import { setRef } from '../utils/setRef';
 import usePopperStyle from './styles';
 import { PopperArrowProps, PopperProps } from './types';
+import PopperJS from './util';
 
-const PopperImport = require('popper.js');
-
-const PopperJS = PopperImport.default;
 /**
  * Flips placement if in <body dir="rtl" />
  * @param {string} placement

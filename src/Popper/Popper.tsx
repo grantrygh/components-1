@@ -5,7 +5,6 @@
  * Original source: https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Popper/Popper.js
  */
 
-import PopperJS from 'popper.js';
 import React, {
     forwardRef,
     useCallback,
@@ -23,6 +22,7 @@ import { createChainedFunction } from '../utils/createChainedFunction';
 import { setRef } from '../utils/setRef';
 import usePopperStyle from './styles';
 import { PopperArrowProps, PopperProps } from './types';
+import PopperJS from './util';
 
 /**
  * Flips placement if in <body dir="rtl" />

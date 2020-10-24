@@ -115,6 +115,7 @@ export const config = {
     listStyleType: true,
     listStylePosition: true,
     listStyleImage: true,
+    columnCount: true,
     fill: {
         property: 'fill',
         scale: 'colors',

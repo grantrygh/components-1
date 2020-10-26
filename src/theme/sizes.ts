@@ -52,6 +52,7 @@ const spacing = {
 
 const input = {
     // Heights
+    xl: '3.25rem',
     lg: '2.75rem',
     md: '2.25rem',
     sm: '1.75rem',

@@ -32,6 +32,7 @@ export const buttonStyle = ({ color = 'button', variant }, theme) => ({
             bg: `${color}.500`,
             boxShadow: 'button',
             _hover: {
+                color: 'buttonText',
                 bg: theme.colors[color] && addWhite(theme.colors[color][500], 0.12),
                 boxShadow: 'raised',
             },

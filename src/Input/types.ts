@@ -3,7 +3,7 @@ import { Omit } from '../common-types';
 import { PseudoBoxProps } from '../PseudoBox';
 
 type Variant = 'outline' | 'unstyled' | 'flushed' | 'filled';
-type Size = 'sm' | 'md' | 'lg';
+type Size = 'sm' | 'md' | 'lg' | 'xl';
 
 export interface IInput<T = HTMLInputElement> {
     /**

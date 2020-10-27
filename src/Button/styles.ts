@@ -78,9 +78,15 @@ export const buttonStyle = ({ color = 'button', variant }, theme) => ({
         },
     },
     sizes: {
+        xl: {
+            height: 'input.xl',
+            minWidth: 'input.xl',
+            fontSize: 'body'
+        },
         lg: {
             height: 'input.lg',
             minWidth: 'input.lg',
+            fontSize: 'body'
         },
         md: {
             height: 'input.md',

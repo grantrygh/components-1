@@ -58,6 +58,9 @@ export const stepperStyle = (
                 borderColor: 'white',
             }),
         },
+        check: {
+            color: 'titleText',
+        },
         divider: {
             base: {
                 background: isCompleted
@@ -71,7 +74,7 @@ export const stepperStyle = (
             orientation: {
                 horizontal: {
                     height: `${size}px`,
-                    width: `calc(100% + ${themeSpacing.spacing})`,
+                    width: `calc(100% + 1rem)`,
                     position: 'absolute',
                     top: 0,
                     left: buttonSize,
@@ -106,6 +109,7 @@ const useStepperStyle = props => {
             ...styles.divider.base,
             ...styles.divider.orientation[props.orientation],
         },
+        check: styles.check,
     };
 };
 

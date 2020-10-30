@@ -24,11 +24,13 @@ export function CanvasMenu(props: CanvasMenuProps) {
 
         return (
             <Navigation.Item href={href} exact={isAccordion ? false : exact} key={label + href} {...rest}>
-                <Tooltip label={label} placement="right" closeOnClick showTooltip={isMinified}>
-                    <Navigation.ItemMedia icon={icon} mr={!isMinified && 4} unstyled={unstyled}>
-                        {media}
-                    </Navigation.ItemMedia>
-                </Tooltip>
+                {media && (
+                    <Tooltip label={label} placement="right" closeOnClick showTooltip={isMinified}>
+                        <Navigation.ItemMedia icon={icon} mr={!isMinified && 4} unstyled={unstyled}>
+                            {media}
+                        </Navigation.ItemMedia>
+                    </Tooltip>
+                )}
                 {showFullItem && <Navigation.ItemText>{label}</Navigation.ItemText>}
                 {meta && showFullItem && <Navigation.ItemMeta>{meta}</Navigation.ItemMeta>}
             </Navigation.Item>

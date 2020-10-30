@@ -27,7 +27,8 @@ export const canvasStyle: componentStyleDef = ({ isMobile }, { sizes, colors }) 
         right: position === 'right' && 0,
         flexGrow: name === 'main' && '1',
         bg,
-        maxWidth: name !== 'main' && `min(${width}px, 90vw)`,
+        maxWidth: name !== 'main' && `min(${width}, 90vw)`,
+        overflowX: name !== 'main' && 'hidden',
     });
 
     return {
@@ -44,7 +45,6 @@ export const canvasStyle: componentStyleDef = ({ isMobile }, { sizes, colors }) 
         },
         panel: {
             height: '100vh',
-            overflowX: 'hidden',
             direction: 'column',
             // _scrollbar: {
             //     backgroundColor: colors.scrollbar,

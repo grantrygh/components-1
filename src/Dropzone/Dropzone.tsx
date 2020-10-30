@@ -8,7 +8,14 @@ import useDropzoneStyle from './styles';
 import { DropzoneProps } from './types';
 
 export const Dropzone = (props: DropzoneProps) => {
-    const { disabled, disabledMessage, uploadMessage = 'Drag or click to upload images', accept = [], ...rest } = props;
+    const {
+        disabled,
+        disabledMessage,
+        uploadMessage = 'Drag or click to upload images',
+        accept = [],
+        showIcon = true,
+        ...rest
+    } = props;
 
     const onDrop = useCallback(acceptedFiles => {
         if (acceptedFiles && acceptedFiles.length > 0) {
@@ -42,9 +49,11 @@ export const Dropzone = (props: DropzoneProps) => {
         // container
         <PseudoBox {...getRootProps()} disabled={disabled} {...dropzoneStyleProps} {...rest}>
             <input {...getInputProps()} />
-            <Box mb="spacing-xs">
-                <UploadIcon />
-            </Box>
+            {showIcon && (
+                <Box mb="spacing-xs">
+                    <UploadIcon />
+                </Box>
+            )}
             <Text color="faintText">{content}</Text>
         </PseudoBox>
     );

@@ -35,6 +35,9 @@ export interface ICanvasWrapper {
         main: Omit<IPanelChild, 'name | position | ranges'> & { name: 'main' | string } & BoxProps;
         [panelName: string]: IPanelChild & BoxProps;
     };
+
+    // optional. to render a header above panels, rather than part of the page panel itself.
+    header?: React.ReactNode;
 }
 
 export type CanvasWrapperProps = ICanvasWrapper;

@@ -73,7 +73,14 @@ export const Table = (props: TableProps, ref) => {
             </Box>
             <Box {...props}>
                 {afterRows}
-                <TablePagination loading={loading} onPageChange={onPageChange} cursor={cursor} {...footerStyleProps} />
+                {cursor && onPageChange && (
+                    <TablePagination
+                        loading={loading}
+                        onPageChange={onPageChange}
+                        cursor={cursor}
+                        {...footerStyleProps}
+                    />
+                )}
             </Box>
         </PseudoBox>
     );

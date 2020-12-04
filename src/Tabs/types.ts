@@ -106,14 +106,23 @@ export interface ITabPanels {
 
 export type TabPanelsProps = ITabPanels & BoxProps;
 
-export type TabProps = PseudoBoxProps &
-    React.ButtonHTMLAttributes<any> & {
-        isDisabled?: boolean;
-        isSelected?: boolean;
-    };
+export interface ITab {
+    href?: string;
+    exact?: boolean;
+
+    isDisabled?: boolean;
+    isSelected?: boolean;
+    pathname?: string;
+
+    // optional params to only be applied if tab is active
+    activeProps?: Object;
+}
+
+export type TabProps = ITab & PseudoBoxProps & React.ButtonHTMLAttributes<any>;
 
 interface ITabContext {
     id?: string;
+
     manualIndex?: number;
     onChangeTab?: (index: number) => void;
     onManualTabChange?: (index: number) => void;

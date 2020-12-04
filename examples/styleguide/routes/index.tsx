@@ -7,7 +7,7 @@ function Routes() {
     return (
         <AppShell>
             <Switch>
-                <Route exact path="/" component={require('./home').default} />
+                <Route exact path={['/', '/toggles']} component={require('./home').default} />
                 <Route path="/shop" component={require('./shop').default} />
             </Switch>
         </AppShell>

@@ -129,6 +129,8 @@ export function CanvasContainer(props) {
             isOverlay,
             p = 'canvas.spacing',
             renderProps,
+            overflow,
+            overflowY,
             ...panelProps
         } = panel;
 
@@ -152,6 +154,8 @@ export function CanvasContainer(props) {
                 zIndex={(isVisible && isOverlay ? zIndices.panel : 1) + zIndex}
                 flexGrow={name === 'main' && 1}
                 key={name}
+                overflow={overflow}
+                overflowY={overflowY}
             >
                 <MotionPanel
                     key={`motion-${panel.name}`}

@@ -32,6 +32,7 @@ export const buttonStyle = ({ color = 'button', variant }, theme) => ({
             bg: `${color}.500`,
             boxShadow: 'button',
             _hover: {
+                color: 'buttonText',
                 bg: theme.colors[color] && addWhite(theme.colors[color][500], 0.12),
                 boxShadow: 'raised',
             },
@@ -77,9 +78,15 @@ export const buttonStyle = ({ color = 'button', variant }, theme) => ({
         },
     },
     sizes: {
+        xl: {
+            height: 'input.xl',
+            minWidth: 'input.xl',
+            fontSize: 'body'
+        },
         lg: {
             height: 'input.lg',
             minWidth: 'input.lg',
+            fontSize: 'body'
         },
         md: {
             height: 'input.md',

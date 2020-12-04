@@ -55,9 +55,10 @@ export const navigationStyle: componentStyleDef<NavigationProps & NavigationItem
     };
 };
 
-export default function useNavigationStyle(props) {
+export default function useNavigationStyle(props = {}) {
     const theme = useTheme();
-    const styles = theme['styles'].navigation
+
+    const styles = theme?.['styles']?.navigation
         ? theme['styles'].navigation(props, theme)
         : navigationStyle(props, theme);
 

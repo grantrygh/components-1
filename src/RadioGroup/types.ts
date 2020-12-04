@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { BoxProps } from '../Box/types';
 import { Omit } from '../common-types';
+import { FormFieldProps } from '../Form/types';
 import { IFormControl } from '../FormControl/types';
 import { IRadio } from '../Radio/types';
 
@@ -21,4 +22,4 @@ export interface IRadioGroup {
     skipFormChange?: boolean;
 }
 
-export type RadioGroupProps = IRadioGroup & IFormControl & Omit<BoxProps, 'onChange'>;
+export type RadioGroupProps = IRadioGroup & IFormControl & FormFieldProps & Omit<BoxProps, 'onChange'>;

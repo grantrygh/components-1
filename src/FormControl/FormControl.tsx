@@ -56,8 +56,9 @@ export const FormControl = forwardRef(
 // template for input groups
 export const FormControlWrapper = (props: FormControlProps) => {
     const { children, label, id, helperText, error, ...rest } = props;
+
     return (
-        <FormControl {...rest}>
+        <FormControl isInvalid={!!error} {...rest}>
             {label && <FormLabel htmlFor={id}>{label}</FormLabel>}
             {children}
 

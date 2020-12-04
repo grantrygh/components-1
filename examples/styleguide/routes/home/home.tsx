@@ -1,6 +1,6 @@
 import MenuIcon from 'mdi-react/MenuIcon';
 import React from 'react';
-import { Button, ButtonGroup, Flex, Icon, Tab, TabList, Tabs } from '../../../../src';
+import { Button, ButtonGroup, Icon, Tab, TabList, Tabs } from '../../../../src';
 import { useCanvasContext } from '../../../../src/Canvas';
 import { useColorMode } from '../../../../src/ColorModeProvider';
 import { TabPanel, TabPanels } from '../../../../src/Tabs';
@@ -25,9 +25,9 @@ export function Home(props) {
                     <TabPanel>
                         <HomeTable />
 
-                        <Flex h={1500} w={50} align="center">
+                        {/* <Flex h={1500} w={50} align="center">
                             for testing sticky header
-                        </Flex>
+                        </Flex> */}
                     </TabPanel>
                     <TabPanel>
                         <ButtonGroup w="100%" mb="spacing">

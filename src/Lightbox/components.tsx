@@ -90,7 +90,7 @@ const useGalleryContext = () => {
     return context;
 };
 
-const LightboxMedia = ({ src, type, cover, children }: LightboxMediaProps) => {
+const LightboxMedia = ({ src, type, cover, children, ...rest }: LightboxMediaProps) => {
     const context = useGalleryContext();
     const media = {
         src,
@@ -114,6 +114,7 @@ const LightboxMedia = ({ src, type, cover, children }: LightboxMediaProps) => {
                 context.setActiveItem(media);
             }}
             cursor="pointer"
+            {...rest}
         >
             {children}
         </Box>

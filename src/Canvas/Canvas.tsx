@@ -129,6 +129,8 @@ export function CanvasContainer(props) {
             isOverlay,
             p = 'canvas.spacing',
             renderProps,
+            overflow,
+            overflowY,
             ...panelProps
         } = panel;
 
@@ -152,6 +154,8 @@ export function CanvasContainer(props) {
                 zIndex={(isVisible && isOverlay ? zIndices.panel : 1) + zIndex}
                 flexGrow={name === 'main' && 1}
                 key={name}
+                overflow={overflow}
+                overflowY={overflowY}
             >
                 <MotionPanel
                     key={`motion-${panel.name}`}
@@ -185,6 +189,7 @@ export function CanvasContainer(props) {
 
     return (
         <CanvasContext.Provider value={{ panels, addPanel, setPanels, updatePanel, togglePanel, removePanel }}>
+            {props.header}
             <Flex {...styles.style}>
                 {props.children}
                 {leftPanels.map((panel, i) => renderPanel(panel, i))}
@@ -232,7 +237,7 @@ export const CanvasWrapper = (props: CanvasWrapperProps) => {
     const { windowWidth } = useWindowResize();
 
     return (
-        <CanvasContainer initialCanvasState={initialCanvasState}>
+        <CanvasContainer initialCanvasState={initialCanvasState} header={props.header}>
             <CanvasContext.Consumer>
                 {({ panels }) => {
                     const canvasPanels = Object.keys(panels).length > 0 && panels;

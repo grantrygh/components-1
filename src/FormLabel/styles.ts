@@ -15,6 +15,7 @@ export const formLabelStyle = ({ isDisabled }, theme) => ({
     },
     requiredIndicator: {
         color: 'error.500',
+        ml: 'spacing-sm',
     },
 });
 

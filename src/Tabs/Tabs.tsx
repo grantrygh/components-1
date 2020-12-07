@@ -9,12 +9,15 @@ import React, {
     isValidElement,
     RefObject,
     useContext,
+    useEffect,
     useRef,
     useState,
 } from 'react';
 import { Box } from '../Box';
 import { Flex } from '../Flex';
+import { useRouter } from '../hooks/useRouter';
 import { useVariantColorWarning } from '../hooks/useVariantColorWarning';
+import { Link } from '../Link';
 import { PseudoBox } from '../PseudoBox';
 import { assignRef } from '../utils/assignRef';
 import useTabStyle, { useTabListStyle } from './styles';
@@ -23,7 +26,15 @@ import { TabContextProps, TabListProps, TabPanelProps, TabProps, TabsProps } fro
 export const TabContext = createContext<TabContextProps>({});
 
 const Tab = forwardRef((props: TabProps, ref) => {
-    const { isSelected, isDisabled, id, ...rest } = props;
+    const { href, exact = true, onClick, pathname, isSelected, isDisabled, id, activeProps, ...rest } = props;
+
+    useEffect(() => {
+        if (href) {
+            if (((exact && href === pathname) || (!exact && pathname.indexOf(href) > -1)) && !isSelected) {
+                onClick(null);
+            }
+        }
+    }, [pathname]);
 
     const { orientation, variant, isFitted, color, size } = useContext(TabContext);
 
@@ -42,14 +53,17 @@ const Tab = forwardRef((props: TabProps, ref) => {
             tabIndex={isSelected ? 0 : -1}
             id={`tab:${id}`}
             outline="none"
-            as="button"
+            as={href ? Link : 'button'}
+            href={href}
             type="button"
             disabled={isDisabled}
             aria-selected={isSelected}
             aria-disabled={isDisabled}
             aria-controls={`panel:${id}`}
+            onClick={onClick}
             {...tabStyleProps}
             {...rest}
+            {...(isSelected ? activeProps : {})}
         />
     );
 });
@@ -70,6 +84,8 @@ const TabList = forwardRef((props: TabListProps, ref) => {
         variant,
         align,
     } = useContext(TabContext);
+
+    const { location } = useRouter();
 
     const { root: tabListStyleProps, container: tabListContainerStyleProps } = useTabListStyle({
         orientation,
@@ -203,6 +219,7 @@ const TabList = forwardRef((props: TabListProps, ref) => {
                 isSelected,
                 onClick: handleClick,
                 id: `${id}-${index}`,
+                pathname: location?.pathname,
             });
         }
 

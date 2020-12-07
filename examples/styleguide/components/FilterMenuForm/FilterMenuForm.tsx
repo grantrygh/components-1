@@ -1,5 +1,6 @@
 import FilterOutlineIcon from 'mdi-react/FilterOutlineIcon';
 import React from 'react';
+import { string } from 'yup';
 import {
     Box,
     Button,
@@ -44,7 +45,10 @@ export const FilterMenuForm = ({ onSubmit }) => {
                             onSubmit(getFormValue());
                         }
                     }}
-                    onChange={p => console.log(p)}
+                    errors={{
+                        first_name: ['This field is errored for testing'],
+                    }}
+                    // onChange={p => console.log(p)}
                     initialValue={{
                         cone: 'waffle',
                         first_name: 'testname',
@@ -58,7 +62,13 @@ export const FilterMenuForm = ({ onSubmit }) => {
                     }}
                 >
                     {/* <Input> should be wrapped by an <InputGroup> for form controls, label, and support for InputLeftElement, etc (see InputGroup) */}
-                    <InputGroup label="First Name" name="first_name">
+                    <InputGroup
+                        label="First Name"
+                        name="first_name"
+                        schema={string()
+                            .email('Must be a valid e-mail address.')
+                            .required('Please enter your first name.')}
+                    >
                         <Input />
                     </InputGroup>
 
@@ -80,7 +90,11 @@ export const FilterMenuForm = ({ onSubmit }) => {
                     </ToggleGroup>
 
                     {/* <Select> should be wrapped in an <InputGroup> component to apply form controls and label */}
-                    <InputGroup label="Ice cream flavor" name="flavor">
+                    <InputGroup
+                        label="Ice cream flavor"
+                        name="flavor"
+                        schema={string().required('Please enter your first name.')}
+                    >
                         <Select
                             // isMulti
                             options={[

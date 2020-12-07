@@ -86,6 +86,9 @@ export interface ICustomConfig {
     listStyleImg?: StyledSystem.ResponsiveValue<CSS['listStyleImage']>;
     listStylePos?: StyledSystem.ResponsiveValue<CSS['listStylePosition']>;
 
+    // Column properties
+    columnCount?: StyledSystem.ResponsiveValue<CSS['columnCount']>;
+
     // Outline prop
     outline?: StyledSystem.ResponsiveValue<CSS['outline']>;
     float?: StyledSystem.ResponsiveValue<CSS['float']>;

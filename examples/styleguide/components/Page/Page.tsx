@@ -32,7 +32,7 @@ export const Page = (props: IPage) => {
 
             {/* Include header here for scrollbar to exclude header and be limited to body content/ */}
 
-            <Flex direction="column" overflowY="auto" h="100%">
+            <Flex direction="column" h="100%">
                 {/* Header */}
                 <Header title={title} transparent={transparent} />
 

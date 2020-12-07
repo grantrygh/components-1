@@ -4,7 +4,7 @@ import { useTheme } from '../ThemeProvider';
 import { INavItemMedia, NavigationItemProps, NavigationProps } from './types';
 
 export const navigationStyle: componentStyleDef<NavigationProps & NavigationItemProps & INavItemMedia> = (
-    { isSticky = true, isActive, isSubmenuItem, clickable, unstyled },
+    { isSticky = false, isActive, isSubmenuItem, clickable, unstyled },
     { zIndices, sizes, colors }
 ) => {
     const style: BoxProps = {

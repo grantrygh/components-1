@@ -48,7 +48,7 @@ export const FilterMenuForm = ({ onSubmit }) => {
                     errors={{
                         first_name: ['This field is errored for testing'],
                     }}
-                    // onChange={p => console.log(p)}
+                    onChange={p => console.log(p)}
                     initialValue={{
                         cone: 'waffle',
                         first_name: 'testname',
@@ -56,7 +56,7 @@ export const FilterMenuForm = ({ onSubmit }) => {
                         age: 20,
                         chocolate: false,
                         caramel: true,
-                        flavor: 'mango',
+                        flavor: ['mango', 'strawberry'],
                         lactose_intolerant: true,
                         slider: 40,
                     }}
@@ -96,7 +96,7 @@ export const FilterMenuForm = ({ onSubmit }) => {
                         schema={string().required('Please enter your first name.')}
                     >
                         <Select
-                            // isMulti
+                            isMulti
                             options={[
                                 { value: 'chocolate', label: 'Chocolate' },
                                 { value: 'vanilla', label: 'Vanilla' },

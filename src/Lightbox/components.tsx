@@ -1,16 +1,8 @@
-import ChevronLeftIcon from 'mdi-react/ChevronLeftIcon';
-import ChevronRightIcon from 'mdi-react/ChevronRightIcon';
+import lightboxTheme from '!file-loader!react-image-lightbox/style.css'; /* eslint-disable-line import/no-webpack-loader-syntax, import/order  */
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { Lightbox } from '.';
+import { Helmet } from 'react-helmet-async';
+import ReactLightbox from 'react-image-lightbox';
 import { Box } from '../Box';
-import { Button } from '../Button';
-import { Flex } from '../Flex';
-import { Grid } from '../Grid';
-import { Image } from '../Image';
-import { Link } from '../Link';
-import { Scale } from '../Transition';
-import { Video } from '../Video';
-import useLightboxStyle from './styles';
 import { GalleryProps, LightboxMediaProps } from './types';
 
 /**
@@ -72,12 +64,27 @@ const LightboxGalleryProvider = props => {
         }
     };
 
-    const context = { register, unregister, media: mediaList, activeItem, activeIndex, setActiveItem, onPrev, onNext };
+    const context = {
+        register,
+        unregister,
+        media: mediaList,
+        activeItem,
+        activeIndex,
+        setActiveItem,
+        onPrev,
+        onNext,
+        showThumbnails: props.showThumbnails,
+    };
+
+    const LightboxTheme = String(lightboxTheme);
 
     return (
         <GalleryContext.Provider value={context}>
             {props.children}
             <LightboxGallery />
+            <Helmet>
+                <link rel="stylesheet" type="text/css" href={LightboxTheme} />
+            </Helmet>
         </GalleryContext.Provider>
     );
 };
@@ -121,138 +128,32 @@ const LightboxMedia = ({ src, type, cover, children, ...rest }: LightboxMediaPro
     );
 };
 
-// Lightbox with image gallery as content
+// still uses context and self-adding images
+// Switch to use lightbox library - no need to reinvent the wheel
 const LightboxGallery = () => {
     const context = useGalleryContext();
     const { activeItem, activeIndex, media, setActiveItem, onPrev, onNext } = context;
-    const numItems = media.length;
 
-    if (!activeItem) {
-        return null;
+    if (activeItem && media?.length > 0) {
+        const current = media[activeIndex]?.src;
+        const next = media[(activeIndex + 1) % media.length]?.src;
+        const prev = media[(activeIndex + media.length - 1) % media.length]?.src;
+        return (
+            <ReactLightbox
+                mainSrc={current}
+                // mainSrcThumbnail={current}
+                nextSrc={next}
+                // nextSrcThumbnail={next}
+                prevSrc={prev}
+                // prevSrcThumbnail={prev}
+                onCloseRequest={() => setActiveItem(null)}
+                onMovePrevRequest={() => onPrev()}
+                onMoveNextRequest={() => onNext()}
+            />
+        );
     }
 
-    const activeStyle = {
-        opacity: 0.5,
-    };
-
-    const onKeyDown = event => {
-        if (event.key === 'ArrowLeft') {
-            event.preventDefault();
-            onPrev();
-        }
-
-        if (event.key === 'ArrowRight') {
-            event.preventDefault();
-            onNext();
-        }
-    };
-
-    const MediaTag = activeItem && activeItem.type === 'video' ? Video : Image;
-    const mediaStyles = {
-        video: {
-            full: true,
-            maxWidth: 'calc(100% - 16rem)',
-            maxHeight: '100%',
-        },
-        image: {
-            full: true,
-            maxWidth: 'calc(100% - 16rem)',
-            maxHeight: '100%',
-        },
-    };
-
-    const generateThumbnails = () => {
-        const list = [];
-        const start = numItems > 4 ? 2 : 1;
-        // show thumbnails 2 above and below current index
-        for (let i = -start; i <= start; i++) {
-            let itemIndex = activeIndex + i;
-            if (itemIndex < 0) {
-                itemIndex += numItems;
-            } else if (itemIndex >= numItems) {
-                itemIndex -= numItems;
-            }
-
-            const thumb = media[itemIndex];
-            // use passed cover as media thumbnail image
-            let thumbnail = thumb.cover;
-
-            // if the media item is a video and has no passed cover, check if YT thumb is available
-            if (!thumbnail && thumb.type === 'video') {
-                const re = new RegExp('(/|%3D|v=)([0-9A-z-_]{11})([%#?&]|$)');
-                const ytId = thumb.src.match(re) && thumb.src.match(re)[2];
-                thumbnail = ytId ? `https://img.youtube.com/vi/${ytId}/sddefault.jpg` : null;
-            }
-
-            list.push(
-                <Link
-                    onClick={e => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        setActiveItem(media[itemIndex]);
-                    }}
-                    w={90}
-                    h={90}
-                    {...(i === 0 ? activeStyle : {})}
-                >
-                    <Image src={thumbnail} h="full" w="full" />
-                </Link>
-            );
-        }
-        return list;
-    };
-
-    return (
-        <Lightbox isOpen={!!activeItem} onClose={() => setActiveItem(null)} onKeyDown={onKeyDown} showControls>
-            <Flex direction="column" h="90%" onClick={() => setActiveItem(null)}>
-                {/* gallery active image */}
-                <Flex flex={1} align="center" justify="center" maxHeight="calc(100vh - 8rem - 48px)" pos="relative">
-                    {media.map(mi => (
-                        <Scale
-                            in={activeItem.src === mi.src}
-                            initialScale={1}
-                            position="absolute"
-                            top={0}
-                            right={0}
-                            left={0}
-                            bottom={0}
-                            margin="auto"
-                        >
-                            {styles => {
-                                return <MediaTag src={mi.src} {...mediaStyles[activeItem.type]} {...styles} />;
-                            }}
-                        </Scale>
-                    ))}
-                </Flex>
-
-                {/* gallery thumbnails */}
-                <Flex justify="center" align="center" height="8rem" mt="spacing">
-                    <Grid columns={[3, null, numItems >= 5 ? 5 : 3]} spacing="spacing-sm">
-                        {generateThumbnails()}
-                    </Grid>
-                </Flex>
-            </Flex>
-        </Lightbox>
-    );
+    return null;
 };
 
-const LightboxGalleryControls = () => {
-    const { onPrev, onNext } = useGalleryContext();
-
-    const { controlStyles } = useLightboxStyle({
-        color: 'white',
-    });
-
-    return (
-        <React.Fragment>
-            <Button left={4} {...controlStyles} onClick={onPrev}>
-                <ChevronLeftIcon size={36} />
-            </Button>
-            <Button right={4} {...controlStyles} onClick={onNext}>
-                <ChevronRightIcon size={36} />
-            </Button>
-        </React.Fragment>
-    );
-};
-
-export { LightboxGalleryProvider, LightboxGalleryControls, LightboxMedia, useGalleryContext };
+export { LightboxGalleryProvider, LightboxMedia, useGalleryContext };

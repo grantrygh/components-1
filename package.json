@@ -71,6 +71,7 @@
         "eslint-plugin-react-hooks": "^4.0.6",
         "jest": "^26.1.0",
         "jimp": "^0.14.0",
+        "react-image-lightbox": "^5.1.1",
         "release-it": "^13.6.4",
         "responsive-loader": "^1.2.0",
         "stylelint": "^13.2.0",

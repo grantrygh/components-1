@@ -40,8 +40,8 @@ export function CanvasMenu(props: CanvasMenuProps) {
     const renderAccordion = accProps => {
         return (
             <Navigation.Item key={accProps.children}>
-                <Accordion allowToggle>
-                    <AccordionItem>
+                <Accordion allowToggle defaultIndex={-1}>
+                    <AccordionItem defaultIsOpen={false}>
                         <AccordionHeader py={0} borderBottomWidth={0}>
                             {renderNavItem({
                                 ...accProps,
@@ -89,13 +89,17 @@ export function CanvasMenu(props: CanvasMenuProps) {
             {items?.header?.length > 0 && (
                 <Box>
                     {items.header.map(item =>
-                        renderItem({
-                            ...item,
-                            align: 'center',
-                            unstyled: true,
-                            minH: null,
-                            pb: 'spacing',
-                        })
+                        renderItem(
+                            typeof item === 'function'
+                                ? item
+                                : {
+                                      ...item,
+                                      align: 'center',
+                                      unstyled: true,
+                                      minH: null,
+                                      pb: 'spacing',
+                                  }
+                        )
                     )}
                 </Box>
             )}

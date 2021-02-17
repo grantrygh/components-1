@@ -8,16 +8,15 @@ import { TableCellProps } from '../../types';
 
 export const Th = React.forwardRef(({ id, sorting, onSort, span, ...props }: TableCellProps, ref) => {
     const { cell: cellStyleProps, headerCell: headerCellStyleProps } = useTableStyle({ sortable: id && onSort, span });
-    const allowSorting = sorting && onSort && typeof onSort === 'function';
+    const allowSorting = id && sorting && onSort && typeof onSort === 'function';
     const showIcon = sorting?.id === id;
-    const sortProps =
-        allowSorting && showIcon
-            ? {
-                  onClick: () => {
-                      onSort({ id, direction: sorting.direction === 'asc' ? 'desc' : 'asc' });
-                  },
-              }
-            : {};
+    const sortProps = allowSorting
+        ? {
+              onClick: () => {
+                  onSort({ id, direction: sorting.direction === 'asc' ? 'desc' : 'asc' });
+              },
+          }
+        : {};
     return (
         <PseudoBox as="th" ref={ref} {...sortProps} {...cellStyleProps} {...props}>
             <Flex {...headerCellStyleProps}>

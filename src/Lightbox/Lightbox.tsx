@@ -4,7 +4,7 @@ import { useGalleryContext } from './components';
 
 // still uses context and self-adding images
 // Switch to use lightbox library - no need to reinvent the wheel
-export const LightboxGallery = () => {
+export const Lightbox = () => {
     const context = useGalleryContext();
     const { activeItem, activeIndex, media, setActiveItem, onPrev, onNext } = context;
 

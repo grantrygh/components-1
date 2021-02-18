@@ -2,7 +2,7 @@ import lightboxTheme from '!file-loader!react-image-lightbox/style.css'; /* esli
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Box } from '../Box';
-import { LightboxGallery } from './Lightbox';
+import { Lightbox } from './Lightbox';
 import { GalleryProps, LightboxMediaProps } from './types';
 
 /**
@@ -81,7 +81,7 @@ const LightboxGalleryProvider = (props) => {
     return (
         <GalleryContext.Provider value={context}>
             {props.children}
-            <LightboxGallery />
+            <Lightbox />
             <Helmet>
                 <link rel="stylesheet" type="text/css" href={LightboxTheme} />
             </Helmet>

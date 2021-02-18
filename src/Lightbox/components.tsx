@@ -1,8 +1,8 @@
 import lightboxTheme from '!file-loader!react-image-lightbox/style.css'; /* eslint-disable-line import/no-webpack-loader-syntax, import/order  */
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import ReactLightbox from 'react-image-lightbox';
 import { Box } from '../Box';
+import { LightboxGallery } from './Lightbox';
 import { GalleryProps, LightboxMediaProps } from './types';
 
 /**
@@ -18,9 +18,9 @@ import { GalleryProps, LightboxMediaProps } from './types';
  */
 
 const GalleryContext = createContext<GalleryProps>({
-    register: media => null,
-    unregister: media => null,
-    setActiveItem: media => null,
+    register: (media) => null,
+    unregister: (media) => null,
+    setActiveItem: (media) => null,
     onNext: () => null,
     onPrev: () => null,
     media: [],
@@ -33,19 +33,19 @@ const GalleryContext = createContext<GalleryProps>({
 });
 
 // context provider hoc
-const LightboxGalleryProvider = props => {
+const LightboxGalleryProvider = (props) => {
     const [activeItem, setActiveItem] = useState(null);
     const [mediaList, setMediaList] = useState([]);
     const media = [];
-    const activeIndex = mediaList.findIndex(i => i.src === (activeItem && activeItem.src));
+    const activeIndex = mediaList.findIndex((i) => i.src === (activeItem && activeItem.src));
     const numMedia = mediaList.length;
 
-    const register = mediaItem => {
+    const register = (mediaItem) => {
         media.push(mediaItem);
         setMediaList(media);
     };
-    const unregister = mediaItem => {
-        setMediaList(mediaList.filter(item => item.src !== mediaItem.src));
+    const unregister = (mediaItem) => {
+        setMediaList(mediaList.filter((item) => item.src !== mediaItem.src));
     };
 
     const onNext = () => {
@@ -126,34 +126,6 @@ const LightboxMedia = ({ src, type, cover, children, ...rest }: LightboxMediaPro
             {children}
         </Box>
     );
-};
-
-// still uses context and self-adding images
-// Switch to use lightbox library - no need to reinvent the wheel
-const LightboxGallery = () => {
-    const context = useGalleryContext();
-    const { activeItem, activeIndex, media, setActiveItem, onPrev, onNext } = context;
-
-    if (activeItem && media?.length > 0) {
-        const current = media[activeIndex]?.src;
-        const next = media[(activeIndex + 1) % media.length]?.src;
-        const prev = media[(activeIndex + media.length - 1) % media.length]?.src;
-        return (
-            <ReactLightbox
-                mainSrc={current}
-                // mainSrcThumbnail={current}
-                nextSrc={next}
-                // nextSrcThumbnail={next}
-                prevSrc={prev}
-                // prevSrcThumbnail={prev}
-                onCloseRequest={() => setActiveItem(null)}
-                onMovePrevRequest={() => onPrev()}
-                onMoveNextRequest={() => onNext()}
-            />
-        );
-    }
-
-    return null;
 };
 
 export { LightboxGalleryProvider, LightboxMedia, useGalleryContext };

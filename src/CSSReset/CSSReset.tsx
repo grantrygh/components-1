@@ -29,6 +29,13 @@ export const CSSReset = ({ config }: CSSResetProps) => {
                 font-family: ${theme.fonts.sans};
             }
 
+            html,
+            body,
+            #root {
+                width: 100%;
+                height: 100%;
+            }
+
             /**
             * Allow adding a border to an element by just adding a border-width.
             */

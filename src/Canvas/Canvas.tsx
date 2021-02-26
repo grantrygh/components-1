@@ -168,7 +168,7 @@ export function CanvasContainer(props) {
                         ref={ref}
                         direction="column"
                         minH="100%"
-                        h="fit-content"
+                        h="100%"
                         p={name !== 'main' && p}
                         {...panelProps}
                         width="100%"

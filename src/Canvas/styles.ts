@@ -34,7 +34,7 @@ export const canvasStyle: componentStyleDef = ({ isMobile }, { sizes, colors }) 
 
     return {
         style: {
-            minHeight: '100vh',
+            minHeight: '100%',
             flexDirection: 'row',
             // set global typography here in canvas container. setting in <Page> will not apply to all canvas panels, just 'main'.
             color: 'bodyText',
@@ -45,7 +45,7 @@ export const canvasStyle: componentStyleDef = ({ isMobile }, { sizes, colors }) 
             fontWeight: 'normal',
         },
         panel: {
-            height: '100vh',
+            height: '100%',
             direction: 'column',
             // _scrollbar: {
             //     backgroundColor: colors.scrollbar,

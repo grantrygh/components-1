@@ -78,7 +78,7 @@ export function Form(props: FormProps) {
             const onValidate = ({ isValid: isSubmitValid, errors: submitErrors }) => {
                 if (isSubmitValid) {
                     if (onSubmit) {
-                        onSubmit(e, { getFormValue });
+                        onSubmit(e, { getFormValue, clearForm });
                     }
                 } else {
                     setErrors(submitErrors);

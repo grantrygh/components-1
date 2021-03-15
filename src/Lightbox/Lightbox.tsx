@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactLightbox from 'react-image-lightbox';
 import { useGalleryContext } from './components';
 
@@ -7,6 +7,16 @@ import { useGalleryContext } from './components';
 export const Lightbox = () => {
     const context = useGalleryContext();
     const { activeItem, activeIndex, media, setActiveItem, onPrev, onNext } = context;
+
+    useEffect(() => {
+        if (activeItem && media?.length > 0) {
+            document.body.style.overflow = 'hidden';
+            return () => {
+                document.body.style.overflow = 'unset';
+            };
+        }
+        return () => null;
+    }, [activeItem, media?.length]);
 
     if (activeItem && media?.length > 0) {
         const current = media[activeIndex]?.src;

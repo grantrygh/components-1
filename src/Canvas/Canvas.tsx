@@ -163,6 +163,8 @@ export function CanvasContainer(props) {
                     initial={animateTo}
                     animate={animateTo}
                     {...panelStyleProps}
+                    transition={{ type: 'spring', duration: 0.5, bounce: 0 }}
+
                     // _track={{ backgroundColor: 'black' }}
                 >
                     <Flex

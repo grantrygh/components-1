@@ -141,6 +141,7 @@ export function CanvasContainer(props) {
             ...styles.panel,
             ...styles.getPanelStyle({
                 width: panelProps.width || panelProps.w,
+                minifiedWidth: panelProps.minifiedWidth,
                 position: panelProps.position,
                 bg,
                 isOverlay,
@@ -162,6 +163,8 @@ export function CanvasContainer(props) {
                     initial={animateTo}
                     animate={animateTo}
                     {...panelStyleProps}
+                    transition={{ type: 'spring', duration: 0.5, bounce: 0 }}
+
                     // _track={{ backgroundColor: 'black' }}
                 >
                     <Flex

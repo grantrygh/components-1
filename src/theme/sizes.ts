@@ -62,6 +62,7 @@ const input = {
 };
 
 const canvas = {
+    minifiedWidth: '100px',
     width: '300px',
     spacing: baseSizes[5],
 };

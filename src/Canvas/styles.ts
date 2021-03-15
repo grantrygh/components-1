@@ -2,7 +2,15 @@ import { componentStyleDef } from '../theme/types';
 import { useTheme } from '../ThemeProvider';
 
 export const canvasStyle: componentStyleDef = ({ isMobile }, { sizes, colors }) => {
-    const getPanelStyle = ({ width = sizes.canvas.width, position, isOverlay, bg = 'canvasBg', name, zIndex }) => ({
+    const getPanelStyle = ({
+        width = sizes.canvas.width,
+        minifiedWidth = sizes.canvas.minifiedWidth,
+        position,
+        isOverlay,
+        bg = 'canvasBg',
+        name,
+        zIndex,
+    }) => ({
         variants: {
             visible: {
                 width: isMobile ? '100vw' : width,
@@ -10,7 +18,7 @@ export const canvasStyle: componentStyleDef = ({ isMobile }, { sizes, colors }) 
                 zIndex: 2,
             },
             minified: {
-                width: 'fit-content',
+                width: minifiedWidth,
                 display: 'block',
                 zIndex: 2,
             },

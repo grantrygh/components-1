@@ -46,7 +46,8 @@ export const canvasStyle: componentStyleDef = ({ isMobile }, { sizes, colors }) 
         },
         panel: {
             height: '100%',
-            direction: 'column',
+            maxHeight: '100vh',
+            flexDirection: 'column',
             // _scrollbar: {
             //     backgroundColor: colors.scrollbar,
             // },

@@ -141,6 +141,7 @@ export function CanvasContainer(props) {
             ...styles.panel,
             ...styles.getPanelStyle({
                 width: panelProps.width || panelProps.w,
+                minifiedWidth: panelProps.minifiedWidth,
                 position: panelProps.position,
                 bg,
                 isOverlay,

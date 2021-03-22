@@ -135,7 +135,7 @@ export function CanvasContainer(props) {
         } = panel;
 
         const animateTo = (isVisible && (panelProps.isMinified ? 'minified' : 'visible')) || 'hidden';
-        const zIndex = Object.keys(panels).length - i;
+        const zIndex = i;
 
         const panelStyleProps = {
             ...styles.panel,
@@ -253,18 +253,21 @@ export const CanvasWrapper = (props: CanvasWrapperProps) => {
 
                     return (
                         <>
-                            {renderPanels({
-                                panels: leftPanels,
-                                windowWidth,
-                            })}
-                            {renderPanels({
-                                panels: mainPanel,
-                                children,
-                            })}
-                            {renderPanels({
-                                panels: rightPanels,
-                                windowWidth,
-                            })}
+                            {leftPanels?.length > 0 &&
+                                renderPanels({
+                                    panels: leftPanels,
+                                    windowWidth,
+                                })}
+                            {mainPanel?.length > 0 &&
+                                renderPanels({
+                                    panels: mainPanel,
+                                    children,
+                                })}
+                            {rightPanels?.length > 0 &&
+                                renderPanels({
+                                    panels: rightPanels,
+                                    windowWidth,
+                                })}
                         </>
                     );
                 }}

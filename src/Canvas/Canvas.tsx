@@ -195,9 +195,9 @@ export function CanvasContainer(props) {
             {props.header}
             <Flex {...styles.style}>
                 {props.children}
-                {leftPanels.map((panel, i) => renderPanel(panel, i))}
+                {leftPanels.sort((a, b) => a.priority - b.priority).map((panel, i) => renderPanel(panel, i))}
                 {mainPanel.map((panel, i) => renderPanel(panel, i + leftPanels.length))}
-                {rightPanels.map((panel, i) => renderPanel(panel, i))}
+                {rightPanels.sort((a, b) => a.priority - b.priority).map((panel, i) => renderPanel(panel, i))}
             </Flex>
         </CanvasContext.Provider>
     );

@@ -135,7 +135,7 @@ export function CanvasContainer(props) {
         } = panel;
 
         const animateTo = (isVisible && (panelProps.isMinified ? 'minified' : 'visible')) || 'hidden';
-        const zIndex = Object.keys(panels).length - i;
+        const zIndex = i;
 
         const panelStyleProps = {
             ...styles.panel,
@@ -195,9 +195,9 @@ export function CanvasContainer(props) {
             {props.header}
             <Flex {...styles.style}>
                 {props.children}
-                {leftPanels.map((panel, i) => renderPanel(panel, i))}
+                {leftPanels.sort((a, b) => a.priority - b.priority).map((panel, i) => renderPanel(panel, i))}
                 {mainPanel.map((panel, i) => renderPanel(panel, i + leftPanels.length))}
-                {rightPanels.map((panel, i) => renderPanel(panel, i))}
+                {rightPanels.sort((a, b) => a.priority - b.priority).map((panel, i) => renderPanel(panel, i))}
             </Flex>
         </CanvasContext.Provider>
     );
@@ -253,18 +253,21 @@ export const CanvasWrapper = (props: CanvasWrapperProps) => {
 
                     return (
                         <>
-                            {renderPanels({
-                                panels: leftPanels,
-                                windowWidth,
-                            })}
-                            {renderPanels({
-                                panels: mainPanel,
-                                children,
-                            })}
-                            {renderPanels({
-                                panels: rightPanels,
-                                windowWidth,
-                            })}
+                            {leftPanels?.length > 0 &&
+                                renderPanels({
+                                    panels: leftPanels,
+                                    windowWidth,
+                                })}
+                            {mainPanel?.length > 0 &&
+                                renderPanels({
+                                    panels: mainPanel,
+                                    children,
+                                })}
+                            {rightPanels?.length > 0 &&
+                                renderPanels({
+                                    panels: rightPanels,
+                                    windowWidth,
+                                })}
                         </>
                     );
                 }}

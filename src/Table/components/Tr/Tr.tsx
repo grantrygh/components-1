@@ -35,23 +35,25 @@ export const Tr = (props: TableRowProps) => {
                 {...rowProps}
                 {...rowStyleProps}
                 {...props}
+                {...(expandedContent ? { onClick: handleExpand, cursor: 'pointer' } : {})}
             >
                 {props.children}
                 {expandedContent && (
                     <Box as="td">
-                        <Flex
-                            align="center"
-                            position="absolute"
-                            right={4}
-                            h="100%"
-                            transform={expanded && 'rotate(180deg)'}
-                            transition="0.2s"
-                        >
+                        <Flex align="center" pr="spacing" h="100%">
                             <Button
                                 onClick={handleExpand}
                                 size="sm"
                                 variant="unstyled"
-                                leftIcon={ChevronDownIcon}
+                                leftIcon={() => (
+                                    <Box
+                                        transform={expanded ? 'rotate(180deg)' : 'rotate(0deg)'}
+                                        transition="0.2s"
+                                        willChange="rotate"
+                                    >
+                                        <ChevronDownIcon />
+                                    </Box>
+                                )}
                                 color="faintText"
                                 iconOnly
                             />

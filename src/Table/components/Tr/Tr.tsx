@@ -39,7 +39,7 @@ export const Tr = (props: TableRowProps) => {
             >
                 {props.children}
                 {expandedContent && (
-                    <Box as="td">
+                    <Td flex={0} pr={0}>
                         <Flex align="center" pr="spacing" h="100%">
                             <Button
                                 onClick={handleExpand}
@@ -58,7 +58,7 @@ export const Tr = (props: TableRowProps) => {
                                 iconOnly
                             />
                         </Flex>
-                    </Box>
+                    </Td>
                 )}
             </RowComponent>
             <ExpandedRow expanded={expanded} {...props} />

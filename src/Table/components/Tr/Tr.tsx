@@ -35,31 +35,35 @@ export const Tr = (props: TableRowProps) => {
                 {...rowProps}
                 {...rowStyleProps}
                 {...props}
+                flexDirection="column"
             >
-                {props.children}
-                {expandedContent && (
-                    <Box as="td">
-                        <Flex
-                            align="center"
-                            position="absolute"
-                            right={4}
-                            h="100%"
-                            transform={expanded && 'rotate(180deg)'}
-                            transition="0.2s"
-                        >
-                            <Button
-                                onClick={handleExpand}
-                                size="sm"
-                                variant="unstyled"
-                                leftIcon={ChevronDownIcon}
-                                color="faintText"
-                                iconOnly
-                            />
-                        </Flex>
-                    </Box>
-                )}
+                <Box {...rowStyleProps} {...(expandedContent ? { onClick: handleExpand, cursor: 'pointer' } : {})}>
+                    {props.children}
+                    {expandedContent && (
+                        <Td flex={0} pr={0}>
+                            <Flex align="center" pr="spacing" h="100%">
+                                <Button
+                                    onClick={handleExpand}
+                                    size="sm"
+                                    variant="unstyled"
+                                    leftIcon={() => (
+                                        <Box
+                                            transform={expanded ? 'rotate(180deg)' : 'rotate(0deg)'}
+                                            transition="0.2s"
+                                            willChange="rotate"
+                                        >
+                                            <ChevronDownIcon />
+                                        </Box>
+                                    )}
+                                    color="faintText"
+                                    iconOnly
+                                />
+                            </Flex>
+                        </Td>
+                    )}
+                </Box>
+                <ExpandedRow expanded={expanded} {...props} />
             </RowComponent>
-            <ExpandedRow expanded={expanded} {...props} />
         </>
     );
 };
@@ -67,16 +71,22 @@ export const Tr = (props: TableRowProps) => {
 const ExpandedRow = props => {
     const { expandedContent, expanded } = props;
     const { expandedRow: expandedRowStyleProps } = useTableStyle({});
-    if (!expandedContent) {
+    if (!expandedContent || !expanded) {
         return null;
     }
     return (
-        <Tr {...expandedRowStyleProps} {...props} expandedContent={null} borderBottomWidth={1}>
+        <Flex
+            {...expandedRowStyleProps}
+            {...props}
+            expandedContent={null}
+            borderBottomWidth={expanded ? 1 : 0}
+            borderColor="border"
+        >
             <Td py={0}>
                 <Collapse my="spacing" isOpen={expanded}>
                     {expandedContent}
                 </Collapse>
             </Td>
-        </Tr>
+        </Flex>
     );
 };

@@ -45,7 +45,7 @@ export const avatarStyle: componentStyleDef<AvatarProps> = ({ size, showBorder, 
             borderColor: 'white',
         }),
         fontSize: `calc(${theme.sizes[avatarSizes[size]]} / 2.5)`,
-        lineHeight: avatarSizes[size],
+        // lineHeight: avatarSizes[size],
     },
 });
 

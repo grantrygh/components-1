@@ -1,4 +1,5 @@
-import React, { forwardRef, RefObject, useLayoutEffect, useRef, useState } from 'react';
+import React, { forwardRef, RefObject } from 'react';
+import TextareaAutosize from 'react-textarea-autosize';
 import { Input } from '../Input';
 import useTextareaStyle from './styles';
 import { ExpandingTextareaProps, TextareaProps } from './types';
@@ -9,40 +10,13 @@ export const Textarea = forwardRef((props: TextareaProps, ref) => {
 });
 
 export const ExpandingTextarea = forwardRef(
-    ({ minHeight = '8rem', onInput, ...props }: ExpandingTextareaProps, ref: RefObject<HTMLTextAreaElement>) => {
-        const [height, setHeight] = useState(null);
-        const ownRef = useRef<HTMLTextAreaElement>();
-
-        const textareaRef = ref || ownRef;
-
-        useLayoutEffect(() => {
-            if (textareaRef.current) {
-                setHeight(textareaRef.current.scrollHeight);
-            }
-        }, [textareaRef]);
-
-        const handleInput = event => {
-            if (textareaRef.current) {
-                setTimeout(() => {
-                    // setHeight('auto');
-                    setHeight(textareaRef.current.scrollHeight);
-                }, 0);
-            }
-            if (onInput) {
-                onInput(event);
-            }
-        };
-
+    ({ minHeight = '8rem', ...props }: ExpandingTextareaProps, ref: RefObject<HTMLTextAreaElement>) => {
         return (
             <Textarea
-                onInput={handleInput}
-                css={{
-                    height: height || 0,
-                    resize: 'none',
-                    overflow: 'hidden',
-                    minHeight: minHeight as string,
-                }}
-                ref={textareaRef}
+                as={TextareaAutosize}
+                resize="none"
+                overflow="hidden"
+                minHeight={minHeight as string}
                 {...props}
             />
         );

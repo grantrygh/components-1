@@ -69,7 +69,7 @@ const Tab = forwardRef((props: TabProps, ref) => {
 });
 
 const TabList = forwardRef((props: TabListProps, ref) => {
-    const { children, onKeyDown, onClick, containerStyle, ...rest } = props;
+    const { children, onKeyDown, onClick, containerStyle = {}, ...rest } = props;
 
     const {
         id,

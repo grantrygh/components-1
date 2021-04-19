@@ -69,7 +69,7 @@ const Tab = forwardRef((props: TabProps, ref) => {
 });
 
 const TabList = forwardRef((props: TabListProps, ref) => {
-    const { children, onKeyDown, onClick, ...rest } = props;
+    const { children, onKeyDown, onClick, containerStyle = {}, ...rest } = props;
 
     const {
         id,
@@ -227,7 +227,7 @@ const TabList = forwardRef((props: TabListProps, ref) => {
     });
 
     return (
-        <PseudoBox ref={tabContainerRef} {...tabListContainerStyleProps}>
+        <PseudoBox ref={tabContainerRef} {...tabListContainerStyleProps} {...containerStyle}>
             <Flex
                 onKeyDown={handleKeyDown}
                 ref={tabListRef}

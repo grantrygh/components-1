@@ -1,4 +1,5 @@
 import { storiesOf } from '@storybook/react';
+import React from 'react';
 import { Tag, TagCloseButton, TagIcon, TagLabel } from '.';
 import { Avatar } from '../Avatar';
 import { Stack } from '../Stack';

@@ -143,7 +143,7 @@ export const StepperItem = React.forwardRef(
     ) => {
         const { button, divider } = sizeProps[size];
 
-        const { item: itemStyleProps, outer: outerStyleProps } = useStepperStyle({
+        const { item: itemStyleProps, outer: outerStyleProps, check: checkStyleProps } = useStepperStyle({
             size,
             isCompleted,
             orientation,
@@ -160,7 +160,7 @@ export const StepperItem = React.forwardRef(
                         // borderColor={!isCompleted ? 'border' : 'secondary'}
                     >
                         {isCompleted && !isActive && (
-                            <Box color="titleText">
+                            <Box {...checkStyleProps}>
                                 <CheckIcon size={12} />
                             </Box>
                         )}

@@ -1,4 +1,5 @@
 import { storiesOf } from '@storybook/react';
+import React from 'react';
 import { CircularProgress, CircularProgressLabel } from '.';
 
 const stories = storiesOf('Circular progress', module);

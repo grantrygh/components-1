@@ -1,4 +1,4 @@
-import { isExternalUrl } from '@audentio/utils/src/isExternalUrl';
+import { isExternalUrl } from '@audentio/utils/lib/isExternalUrl';
 import React, { forwardRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { PseudoBox } from '../PseudoBox';

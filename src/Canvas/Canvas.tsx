@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import React, { createContext, createRef, useContext, useEffect, useState } from 'react';
-import { Box, useTheme } from '..';
 import { Flex } from '../Flex';
 import { useRouter } from '../hooks/useRouter';
 import { useWindowResize } from '../hooks/useWindowResize';
 import { ModalOverlay } from '../Modal';
+import { PseudoBox } from '../PseudoBox';
+import { useTheme } from '../ThemeProvider';
 import useCanvasStyle from './styles';
 import { CanvasWrapperProps } from './types';
 
@@ -18,7 +19,7 @@ export const useCanvasContext = () => {
     return context;
 };
 
-const MotionPanel = motion.custom(Box);
+const MotionPanel = motion.custom(PseudoBox);
 
 const getPanels = panels => {
     const panelList = Object.keys(panels)
@@ -128,16 +129,19 @@ export function CanvasContainer(props) {
             isOverlay,
             p = 'canvas.spacing',
             renderProps,
+            overflow,
+            overflowY,
             ...panelProps
         } = panel;
 
         const animateTo = (isVisible && (panelProps.isMinified ? 'minified' : 'visible')) || 'hidden';
-        const zIndex = Object.keys(panels).length - i;
+        const zIndex = i;
 
         const panelStyleProps = {
             ...styles.panel,
             ...styles.getPanelStyle({
                 width: panelProps.width || panelProps.w,
+                minifiedWidth: panelProps.minifiedWidth,
                 position: panelProps.position,
                 bg,
                 isOverlay,
@@ -151,13 +155,23 @@ export function CanvasContainer(props) {
                 zIndex={(isVisible && isOverlay ? zIndices.panel : 1) + zIndex}
                 flexGrow={name === 'main' && 1}
                 key={name}
+                overflow={overflow}
+                overflowY={overflowY}
             >
-                <MotionPanel key={`motion-${panel.name}`} initial={animateTo} animate={animateTo} {...panelStyleProps}>
+                <MotionPanel
+                    key={`motion-${panel.name}`}
+                    initial={animateTo}
+                    animate={animateTo}
+                    {...panelStyleProps}
+                    transition={{ type: 'spring', duration: 0.5, bounce: 0 }}
+
+                    // _track={{ backgroundColor: 'black' }}
+                >
                     <Flex
                         ref={ref}
                         direction="column"
                         minH="100%"
-                        h="fit-content"
+                        h="100%"
                         p={name !== 'main' && p}
                         {...panelProps}
                         width="100%"
@@ -178,17 +192,18 @@ export function CanvasContainer(props) {
 
     return (
         <CanvasContext.Provider value={{ panels, addPanel, setPanels, updatePanel, togglePanel, removePanel }}>
+            {props.header}
             <Flex {...styles.style}>
                 {props.children}
-                {leftPanels.map((panel, i) => renderPanel(panel, i))}
+                {leftPanels.sort((a, b) => a.priority - b.priority).map((panel, i) => renderPanel(panel, i))}
                 {mainPanel.map((panel, i) => renderPanel(panel, i + leftPanels.length))}
-                {rightPanels.map((panel, i) => renderPanel(panel, i))}
+                {rightPanels.sort((a, b) => a.priority - b.priority).map((panel, i) => renderPanel(panel, i))}
             </Flex>
         </CanvasContext.Provider>
     );
 }
 
-const renderPanels = ({ panels = [], children = null, windowWidth = 0 }) => {
+const renderPanels = ({ panels = [], children = null, windowWidth = 0, ...renderPanelsProps }) => {
     return (
         <Flex>
             {panels.map((canvas, i) => {
@@ -200,6 +215,7 @@ const renderPanels = ({ panels = [], children = null, windowWidth = 0 }) => {
                         borderRight={name !== 'main' && '1px'}
                         borderColor="border"
                         windowWidth={windowWidth}
+                        {...renderPanelsProps}
                         {...rest}
                     >
                         {props => (
@@ -224,7 +240,7 @@ export const CanvasWrapper = (props: CanvasWrapperProps) => {
     const { windowWidth } = useWindowResize();
 
     return (
-        <CanvasContainer initialCanvasState={initialCanvasState}>
+        <CanvasContainer initialCanvasState={initialCanvasState} header={props.header}>
             <CanvasContext.Consumer>
                 {({ panels }) => {
                     const canvasPanels = Object.keys(panels).length > 0 && panels;
@@ -237,18 +253,21 @@ export const CanvasWrapper = (props: CanvasWrapperProps) => {
 
                     return (
                         <>
-                            {renderPanels({
-                                panels: leftPanels,
-                                windowWidth,
-                            })}
-                            {renderPanels({
-                                panels: mainPanel,
-                                children,
-                            })}
-                            {renderPanels({
-                                panels: rightPanels,
-                                windowWidth,
-                            })}
+                            {leftPanels?.length > 0 &&
+                                renderPanels({
+                                    panels: leftPanels,
+                                    windowWidth,
+                                })}
+                            {mainPanel?.length > 0 &&
+                                renderPanels({
+                                    panels: mainPanel,
+                                    children,
+                                })}
+                            {rightPanels?.length > 0 &&
+                                renderPanels({
+                                    panels: rightPanels,
+                                    windowWidth,
+                                })}
                         </>
                     );
                 }}

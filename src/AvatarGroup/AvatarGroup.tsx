@@ -1,4 +1,4 @@
-import { Children, cloneElement, isValidElement } from 'react';
+import React, { Children, cloneElement, isValidElement } from 'react';
 import { Flex } from '../Flex';
 import useAvatarGroupStyle from './styles';
 import { AvatarGroupProps, MoreIndicatorProps } from './types';

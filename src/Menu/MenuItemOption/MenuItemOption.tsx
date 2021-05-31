@@ -1,5 +1,5 @@
 import { useId } from '@reach/auto-id';
-import { Children, cloneElement, forwardRef, isValidElement, useRef, useState } from 'react';
+import React, { Children, cloneElement, forwardRef, isValidElement, useRef, useState } from 'react';
 import { Box } from '../../Box';
 import { Icon } from '../../Icon';
 import { PseudoBox } from '../../PseudoBox';

@@ -1,5 +1,6 @@
 import { storiesOf } from '@storybook/react';
 import AlertIcon from 'mdi-react/AlertIcon';
+import React from 'react';
 import { FullTag } from '.';
 import { Stack } from '../Stack';
 

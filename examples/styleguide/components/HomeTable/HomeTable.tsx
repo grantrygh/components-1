@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Avatar } from '../../../../src/Avatar';
-import { Box } from '../../../../src/Box';
-import { Button } from '../../../../src/Button';
-import { ButtonGroup } from '../../../../src/ButtonGroup';
 import { Flex } from '../../../../src/Flex';
-import { Heading } from '../../../../src/Heading';
-import { Stack } from '../../../../src/Stack';
 import { Table, TableHeader, TableProvider, Td, Th, Tr } from '../../../../src/Table';
-import { Text } from '../../../../src/Text';
 
 export const HomeTable = () => {
     const initialRows = [
@@ -70,34 +64,34 @@ export const HomeTable = () => {
                         return (
                             <Tr
                                 key={first_name}
-                                expandedContent={
-                                    <Box>
-                                        <Flex>
-                                            <Avatar
-                                                name="Uchiha Sasuke"
-                                                size="lg"
-                                                mr={4}
-                                                src="https://vignette.wikia.nocookie.net/naruto/images/2/21/Sasuke_Part_1.png/revision/latest?cb=20170716092103"
-                                            />
-                                            <Stack>
-                                                <Heading kind="h6">{first_name}</Heading>
-                                                <Text maxW={600}>
-                                                    "Anim pariatur cliche reprehenderit, enim eiusmod high life
-                                                    accusamus terry richardson ad squid. Nihilanim keffiyeh helvetica,
-                                                    craft beer labore wes anderson cred nesciunt sapiente ea proident."
-                                                </Text>
-                                                <Text>Date joined: January 30, 2020</Text>
-                                                <Text>Status: Pending</Text>
-                                                <ButtonGroup>
-                                                    <Button>Edit</Button>
-                                                    <Button variant="primary" variantColor="error">
-                                                        Delete
-                                                    </Button>
-                                                </ButtonGroup>
-                                            </Stack>
-                                        </Flex>
-                                    </Box>
-                                }
+                                // expandedContent={
+                                //     <Box>
+                                //         <Flex>
+                                //             <Avatar
+                                //                 name="Uchiha Sasuke"
+                                //                 size="lg"
+                                //                 mr={4}
+                                //                 src="https://vignette.wikia.nocookie.net/naruto/images/2/21/Sasuke_Part_1.png/revision/latest?cb=20170716092103"
+                                //             />
+                                //             <Stack>
+                                //                 <Heading kind="h6">{first_name}</Heading>
+                                //                 <Text maxW={600}>
+                                //                     "Anim pariatur cliche reprehenderit, enim eiusmod high life
+                                //                     accusamus terry richardson ad squid. Nihilanim keffiyeh helvetica,
+                                //                     craft beer labore wes anderson cred nesciunt sapiente ea proident."
+                                //                 </Text>
+                                //                 <Text>Date joined: January 30, 2020</Text>
+                                //                 <Text>Status: Pending</Text>
+                                //                 <ButtonGroup>
+                                //                     <Button>Edit</Button>
+                                //                     <Button variant="primary" variantColor="error">
+                                //                         Delete
+                                //                     </Button>
+                                //                 </ButtonGroup>
+                                //             </Stack>
+                                //         </Flex>
+                                //     </Box>
+                                // }
                             >
                                 <Td>
                                     <Flex align="center">
@@ -118,32 +112,32 @@ export const HomeTable = () => {
                     return (
                         <Tr
                             key={first_name}
-                            expandedContent={
-                                <Flex align="center" justify="space-between">
-                                    <Flex>
-                                        <Avatar
-                                            name="Uchiha Sasuke"
-                                            size="lg"
-                                            mr={4}
-                                            src="https://vignette.wikia.nocookie.net/naruto/images/2/21/Sasuke_Part_1.png/revision/latest?cb=20170716092103"
-                                        />
-                                        <Stack mb={0}>
-                                            <Heading kind="h6">{first_name}</Heading>
-                                            <Text maxW={600}>
-                                                "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-                                                terry richardson ad squid. Nihilanim keffiyeh helvetica, craft beer
-                                                labore wes anderson cred nesciunt sapiente ea proident."
-                                            </Text>
-                                        </Stack>
-                                    </Flex>
-                                    <ButtonGroup>
-                                        <Button>Edit</Button>
-                                        <Button variant="primary" variantColor="error">
-                                            Delete
-                                        </Button>
-                                    </ButtonGroup>
-                                </Flex>
-                            }
+                            // expandedContent={
+                            //     <Flex align="center" justify="space-between">
+                            //         <Flex>
+                            //             <Avatar
+                            //                 name="Uchiha Sasuke"
+                            //                 size="lg"
+                            //                 mr={4}
+                            //                 src="https://vignette.wikia.nocookie.net/naruto/images/2/21/Sasuke_Part_1.png/revision/latest?cb=20170716092103"
+                            //             />
+                            //             <Stack mb={0}>
+                            //                 <Heading kind="h6">{first_name}</Heading>
+                            //                 <Text maxW={600}>
+                            //                     "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+                            //                     terry richardson ad squid. Nihilanim keffiyeh helvetica, craft beer
+                            //                     labore wes anderson cred nesciunt sapiente ea proident."
+                            //                 </Text>
+                            //             </Stack>
+                            //         </Flex>
+                            //         <ButtonGroup>
+                            //             <Button>Edit</Button>
+                            //             <Button variant="primary" variantColor="error">
+                            //                 Delete
+                            //             </Button>
+                            //         </ButtonGroup>
+                            //     </Flex>
+                            // }
                         >
                             <Td span={2}>
                                 <Flex align="center">
@@ -174,7 +168,7 @@ export const HomeTable = () => {
                     }
 
                     return (
-                        <TableHeader sorting={sorting} onSort={onSort}>
+                        <TableHeader>
                             <Th id="first_name" span={2}>
                                 First name
                             </Th>
@@ -190,8 +184,8 @@ export const HomeTable = () => {
                         rows={rows}
                         renderRow={renderRow}
                         renderHeader={renderHeader}
-                        cursor={cursor}
-                        onPageChange={current => setPage(current)}
+                        // cursor={cursor}
+                        // onPageChange={current => setPage(current)}
                     />
                 );
             }}

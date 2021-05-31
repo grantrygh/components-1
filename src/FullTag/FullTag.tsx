@@ -1,3 +1,4 @@
+import React from 'react';
 import { Flex } from '../Flex';
 import { Stack } from '../Stack';
 import { Tag, TagCloseButton, TagLabel } from '../Tag';

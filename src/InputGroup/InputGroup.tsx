@@ -1,18 +1,23 @@
 import React, { Children, cloneElement, isValidElement } from 'react';
-import { InputLeftElement, InputRightElement } from '..';
+import { InputLeftElement, InputRightElement, useFormField } from '..';
 import { Box } from '../Box';
 import { FormControlWrapper } from '../FormControl';
 import { useTheme } from '../ThemeProvider';
 import { InputGroupProps } from './types';
 
-export const InputGroup = ({ children, size = 'md', name, isInline, ...props }: InputGroupProps) => {
+export const InputGroup = ({ children, size = 'md', name, isInline, schema, ...props }: InputGroupProps) => {
     const { space } = useTheme();
     let pl = null;
     let pr = null;
     const spacingProps = isInline ? { mr: 'spacing' } : { mb: 'spacing' };
 
+    const { errors } = useFormField({
+        name,
+        schema,
+    });
+
     return (
-        <FormControlWrapper id={name} {...spacingProps} {...props}>
+        <FormControlWrapper id={name} error={errors} {...spacingProps} {...props}>
             <Box display="flex" position="relative">
                 {Children.map(children, (child, index) => {
                     if (!isValidElement(child)) {

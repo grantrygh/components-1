@@ -52,6 +52,7 @@ const spacing = {
 
 const input = {
     // Heights
+    xl: '3.25rem',
     lg: '2.75rem',
     md: '2.25rem',
     sm: '1.75rem',
@@ -61,6 +62,7 @@ const input = {
 };
 
 const canvas = {
+    minifiedWidth: '100px',
     width: '300px',
     spacing: baseSizes[5],
 };

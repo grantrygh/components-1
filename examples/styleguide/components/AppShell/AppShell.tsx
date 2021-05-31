@@ -44,6 +44,7 @@ export const AppShellBase = props => {
                 return renderProps.children;
             },
             bg: 'pageBg',
+            overflowY: 'scroll',
         },
         notifications: {
             position: 'right',

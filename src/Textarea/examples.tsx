@@ -1,4 +1,5 @@
 import { storiesOf } from '@storybook/react';
+import React from 'react';
 import { ExpandingTextarea, Textarea } from '.';
 
 const stories = storiesOf('Textarea', module);

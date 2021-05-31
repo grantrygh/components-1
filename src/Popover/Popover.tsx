@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 
 import { useId } from '@reach/auto-id';
-import { Children, cloneElement, createContext, useContext, useEffect, useRef, useState } from 'react';
+import React, { Children, cloneElement, createContext, useContext, useEffect, useRef, useState } from 'react';
 import { Box } from '../Box';
 import { BoxProps } from '../Box/types';
 import { CloseButton } from '../CloseButton';

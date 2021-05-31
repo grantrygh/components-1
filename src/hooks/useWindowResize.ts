@@ -1,4 +1,4 @@
-import { throttle } from '@audentio/utils/src/throttle';
+import { throttle } from '@audentio/utils/lib/throttle';
 import { useCallback, useEffect, useState } from 'react';
 
 export function useWindowResize(throttleDuration: number = 200) {

@@ -1,27 +1,52 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FormContext } from './context';
+import { validate } from './formValidation';
 
 export function useFormField(props) {
-    const { getFieldValue, onChange, context, clearForm } = React.useContext(FormContext);
+    const {
+        getFieldValue,
+        onChange,
+        registerField,
+        getFormFieldError,
+        fields,
+        deleteFormFieldError,
+    } = React.useContext(FormContext);
+
+    const errors = getFormFieldError && getFormFieldError(props.name);
+
+    const onValidate = ({ isValid: isSubmitValid }) => {
+        if (isSubmitValid) {
+            deleteFormFieldError(props.name);
+        }
+    };
+
+    // Register the form field into Form Validator
+    useEffect(() => {
+        if (props.schema) {
+            registerField(props);
+        }
+    }, [props.schema]);
 
     const $onChange = React.useCallback(
         (e, value = null) => {
             if (onChange) {
-                if (value || typeof value === 'boolean') {
-                    onChange({
-                        value,
-                        name: props.name,
-                    });
-                } else {
-                    onChange({
-                        // support e for NumberInput (direct value)
-                        value: e && e.target && e.target.value,
-                        name: props.name,
-                    });
-                }
+                const newValue = value || typeof value === 'boolean' ? value : e && e.target && e.target.value;
+                onChange({
+                    value: newValue,
+                    name: props.name,
+                });
+                const formValue = {
+                    [props.name]: newValue,
+                };
+                // setTimeout((): void => {
+                // need to run validation *after* the update from field change
+                // since that can potentially change schema
+                // if anyone has better ideas i'm all ears - tushar
+                validate(formValue, fields, onValidate);
+                // }, 0);
             }
         },
-        [props.name]
+        [props.name, errors]
     );
 
     return {
@@ -29,5 +54,6 @@ export function useFormField(props) {
         context,
         onChange: $onChange,
         value: getFieldValue && getFieldValue(props.name),
+        errors,
     };
 }

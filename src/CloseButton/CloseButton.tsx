@@ -1,3 +1,4 @@
+import React from 'react';
 import { Icon } from '../Icon';
 import { PseudoBox } from '../PseudoBox';
 import useCloseButtonStyle from './styles';

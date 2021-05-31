@@ -1,8 +1,16 @@
 import { componentStyleDef } from '../theme/types';
 import { useTheme } from '../ThemeProvider';
 
-export const canvasStyle: componentStyleDef = ({ isMobile }, { sizes }) => {
-    const getPanelStyle = ({ width = sizes.canvas.width, position, isOverlay, bg = 'canvasBg', name, zIndex }) => ({
+export const canvasStyle: componentStyleDef = ({ isMobile }, { sizes, colors }) => {
+    const getPanelStyle = ({
+        width = sizes.canvas.width,
+        minifiedWidth = sizes.canvas.minifiedWidth,
+        position,
+        isOverlay,
+        bg = 'canvasBg',
+        name,
+        zIndex,
+    }) => ({
         variants: {
             visible: {
                 width: isMobile ? '100vw' : width,
@@ -10,7 +18,7 @@ export const canvasStyle: componentStyleDef = ({ isMobile }, { sizes }) => {
                 zIndex: 2,
             },
             minified: {
-                width: 'fit-content',
+                width: minifiedWidth,
                 display: 'block',
                 zIndex: 2,
             },
@@ -22,17 +30,19 @@ export const canvasStyle: componentStyleDef = ({ isMobile }, { sizes }) => {
                 },
             },
         },
-        position: isOverlay && 'absolute',
+        position: isOverlay && 'fixed',
+        top: 0,
         left: position === 'left' && 0,
         right: position === 'right' && 0,
         flexGrow: name === 'main' && '1',
         bg,
-        maxWidth: name !== 'main' && `min(${width}px, 90vw)`,
+        maxWidth: name !== 'main' && `min(${width}, 90vw)`,
+        overflowX: name !== 'main' && 'hidden',
     });
 
     return {
         style: {
-            minHeight: '100vh',
+            minHeight: '100%',
             flexDirection: 'row',
             // set global typography here in canvas container. setting in <Page> will not apply to all canvas panels, just 'main'.
             color: 'bodyText',
@@ -43,9 +53,18 @@ export const canvasStyle: componentStyleDef = ({ isMobile }, { sizes }) => {
             fontWeight: 'normal',
         },
         panel: {
-            height: '100vh',
-            overflowX: 'hidden',
-            direction: 'column',
+            height: '100%',
+            maxHeight: '100vh',
+            flexDirection: 'column',
+            // _scrollbar: {
+            //     backgroundColor: colors.scrollbar,
+            // },
+            // _track: {
+            //     backgroundColor: colors.scrollTrack,
+            // },
+            // _thumb: {
+            //     backgroundColor: colors.scrollThumb,
+            // },
             transition: { type: 'spring', damping: 50, stiffness: 200 },
             // transition: { type: 'spring', damping: 50, stiffness: 1 },
         },

@@ -48,6 +48,7 @@ export const Select = forwardRef((props: SelectProps, ref) => {
         }
     };
 
+    const isInitialMulti = props.isMulti && Array.isArray(initialSelectValue);
     const { root: selectStyleProps, theme: selectTheme } = useSelectStyle({
         size,
         border,
@@ -55,13 +56,37 @@ export const Select = forwardRef((props: SelectProps, ref) => {
 
     // Handle default value
     let defaultSelectValue = null;
+    if (props.isMulti) {
+        defaultSelectValue = [];
+    }
+
     options.forEach(o => {
-        if (o.value && o.value === initialSelectValue) {
-            defaultSelectValue = o;
+        if (
+            (o.value && o.value === initialSelectValue) ||
+            (isInitialMulti && initialSelectValue.indexOf(o.value) > -1)
+        ) {
+            if (isInitialMulti) {
+                defaultSelectValue.push(o);
+            } else {
+                defaultSelectValue = o;
+            }
         } else if (o.options) {
-            const v = o.options.filter(opt => opt.value === initialSelectValue);
+            const v = o.options.filter(opt => {
+                // when isMulti, handle initial form values of array types
+                if (isInitialMulti && initialSelectValue.indexOf(opt.value) > -1) {
+                    return true;
+                }
+                if (opt.value === initialSelectValue) {
+                    return true;
+                }
+                return false;
+            });
             if (v.length > 0) {
-                defaultSelectValue = v;
+                if (isInitialMulti) {
+                    defaultSelectValue = defaultSelectValue.concat(v);
+                } else {
+                    defaultSelectValue = v;
+                }
             }
         }
     });

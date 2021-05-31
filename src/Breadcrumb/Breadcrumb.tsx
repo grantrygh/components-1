@@ -1,5 +1,4 @@
-
-import { Children, cloneElement, forwardRef, isValidElement } from 'react';
+import React, { Children, cloneElement, forwardRef, isValidElement } from 'react';
 import { Box } from '../Box';
 import { BoxProps } from '../Box/types';
 import { Link } from '../Link';

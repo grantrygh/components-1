@@ -82,14 +82,16 @@ Navigation.Item = function NavItem(props: NavigationItemProps) {
         >
             {(isActive || isLinkActive) && !isSubmenuItem && <Box {...activeBarStyleProps} />}
             {/* Navigation.ItemMedia | Navigation.ItemText | Navigation.ItemMeta */}
-            {Children.map(props.children, (child, index) => {
-                if (child) {
-                    return cloneElement(child as any, {
-                        isActive: isLinkActive,
-                    });
-                }
-                return null;
-            })}
+            {typeof props.children !== 'string'
+                ? Children.map(props.children, (child, index) => {
+                      if (child) {
+                          return cloneElement(child as any, {
+                              isActive: isLinkActive,
+                          });
+                      }
+                      return null;
+                  })
+                : props.children}
         </NavElement>
     );
 };

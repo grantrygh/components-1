@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { Icon } from '.';
 import { Box } from '../Box';
 import { Icons } from '../theme/icons';

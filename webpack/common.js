@@ -159,6 +159,9 @@ const createWebpackConfig = (options, $config) => {
             mainFields: options.__BROWSER__ ? ['browser', 'main', 'module'] : ['main', 'module'],
             extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
             modules: [PATHS.node_modules, PATHS.src, PATHS.base],
+            alias: {
+                'core-js/es6': 'core-js/es',
+            },
         },
 
         output: output || {

@@ -1,5 +1,5 @@
 import { useId } from '@reach/auto-id';
-import {
+import React, {
     Children,
     cloneElement,
     forwardRef,
@@ -25,6 +25,7 @@ export const RadioGroup = forwardRef(
             isInline,
             skipFormChange,
             value: valueProp,
+            schema,
             children,
             ...rest
         }: RadioGroupProps,
@@ -38,9 +39,10 @@ export const RadioGroup = forwardRef(
         const fallbackName = `radio-${useId()}`;
         const _name = name || fallbackName;
 
-        const { onChange: formOnChange, value: initialRadioValue } = useFormField({
+        const { onChange: formOnChange, value: initialRadioValue, errors } = useFormField({
             name: _name,
             onChange,
+            schema,
         });
 
         const rootRef: RefObject<any> = useRef();
@@ -105,7 +107,7 @@ export const RadioGroup = forwardRef(
         const spacingProps = isInline ? { mr: 'spacing' } : { mb: 'spacing' };
 
         return (
-            <FormControlWrapper id={name} {...rest} {...spacingProps}>
+            <FormControlWrapper id={name} error={errors} {...rest} {...spacingProps}>
                 <Box ref={rootRef} role="radiogroup" {...rest}>
                     {clones}
                 </Box>

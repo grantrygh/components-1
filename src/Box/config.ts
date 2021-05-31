@@ -108,6 +108,10 @@ export const config = {
     wordBreak: true,
     overflowWrap: true,
     textOverflow: true,
+    mask: true,
+    maskImage: true,
+    maskPosition: true,
+    maskSize: true,
     boxSizing: true,
     cursor: true,
     resize: true,
@@ -115,6 +119,7 @@ export const config = {
     listStyleType: true,
     listStylePosition: true,
     listStyleImage: true,
+    columnCount: true,
     fill: {
         property: 'fill',
         scale: 'colors',

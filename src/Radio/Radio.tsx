@@ -1,4 +1,4 @@
-import { forwardRef, RefObject } from 'react';
+import React, { forwardRef, RefObject } from 'react';
 import { VisuallyHidden } from '..';
 import { Box } from '../Box';
 import useCheckboxStyle from '../Checkbox/styles';

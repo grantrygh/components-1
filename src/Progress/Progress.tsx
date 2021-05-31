@@ -1,4 +1,5 @@
 import { css, keyframes } from '@emotion/core';
+import React from 'react';
 import { Box } from '../Box';
 import { valueToPercent } from '../Slider/utils';
 import { generateStripe } from '../theme/colors-utils';

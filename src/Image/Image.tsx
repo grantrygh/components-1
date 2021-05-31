@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import { Box } from '../Box';
 import { LightboxMedia } from '../Lightbox';
 import { ImageProps } from './types';

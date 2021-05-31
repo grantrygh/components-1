@@ -1,7 +1,6 @@
 import { keyframes } from '@emotion/core';
 import React, { forwardRef } from 'react';
 import { Box } from '../Box';
-import { Text } from '../Text';
 import useCircularProgressStyle from './styles';
 import { CircularProgressLabelProps, CircularProgressProps } from './types';
 
@@ -42,7 +41,7 @@ export const CircularProgressLabel = (props: CircularProgressLabelProps) => (
         css={{ fontVariantNumeric: 'tabular-nums' }}
         {...props}
     >
-        <Text>{props.children}</Text>
+        {props.children}
     </Box>
 );
 

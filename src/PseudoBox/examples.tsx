@@ -1,4 +1,5 @@
 import { storiesOf } from '@storybook/react';
+import React from 'react';
 import { PseudoBox } from '.';
 import { Box } from '../Box';
 

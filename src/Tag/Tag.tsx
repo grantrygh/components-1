@@ -1,4 +1,5 @@
 import CloseIcon from 'mdi-react/CloseIcon';
+import React from 'react';
 import useBadgeStyle from '../Badge/styles';
 import { Box } from '../Box';
 import { useVariantColorWarning } from '../hooks/useVariantColorWarning';

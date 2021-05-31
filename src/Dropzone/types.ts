@@ -16,6 +16,9 @@ interface IDropzone {
     // Array of accepted file extensions
     // ie.:  image/jpeg, .png, image/*, .xls
     accept?: Array<String>;
+
+    // option for hiding the upload icon
+    showIcon?: boolean;
 }
 
 export type DropzoneProps = IDropzone & BoxProps;

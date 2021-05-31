@@ -16,10 +16,16 @@ export const TablePagination = ({ loading, onPageChange, cursor, children, ...pr
 
     if (!cursor || totalPages <= 1 || !onPageChange) return null;
 
+    if (loading) {
+        return (
+            <Flex align="center" w="100%" {...props} px="spacing">
+                <Spinner />
+            </Flex>
+        );
+    }
+
     return (
         <Flex align="center" justify="flex-end" w="100%" {...props}>
-            {loading && <Spinner />}
-
             {children}
 
             <Flex whiteSpace="nowrap" align="center">

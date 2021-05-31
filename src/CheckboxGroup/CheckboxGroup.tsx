@@ -1,5 +1,5 @@
 import { useId } from '@reach/auto-id';
-import { Children, cloneElement, isValidElement, useRef, useState } from 'react';
+import React, { Children, cloneElement, isValidElement, useRef, useState } from 'react';
 import { Box } from '../Box';
 import { useFormField } from '../Form';
 import { FormControlWrapper } from '../FormControl';
@@ -13,12 +13,14 @@ export const CheckboxGroup = ({
     defaultValue,
     isInline,
     value: valueProp,
+    schema,
     children,
     ...rest
 }: CheckboxGroupProps) => {
-    const { onChange: formOnChange, value: initialCheckboxGroupValues } = useFormField({
+    const { onChange: formOnChange, value: initialCheckboxGroupValues, errors } = useFormField({
         name,
         onChange,
+        schema,
     });
 
     const [values, setValues] = useState(defaultValue || initialCheckboxGroupValues || []);
@@ -91,7 +93,7 @@ export const CheckboxGroup = ({
     const spacingProps = isInline ? { mr: 'spacing' } : { mb: 'spacing' };
 
     return (
-        <FormControlWrapper id={firstChildName} {...spacingProps} {...rest}>
+        <FormControlWrapper id={firstChildName} error={errors} {...spacingProps} {...rest}>
             <Box role="group" {...rest}>
                 {clones}
             </Box>

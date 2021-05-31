@@ -1,34 +1,41 @@
-import { Box } from '../Box';
-import { Modal, ModalCloseButton, ModalContent, ModalOverlay } from '../Modal';
-import { useTheme } from '../ThemeProvider';
-import { SlideIn } from '../Transition';
-import { LightboxGalleryControls } from './components';
-import { LightboxProps } from './types';
+import React, { useEffect } from 'react';
+import ReactLightbox from 'react-image-lightbox';
+import { useGalleryContext } from './components';
 
-export const Lightbox = (props: LightboxProps) => {
-    const { zIndices } = useTheme();
-    const { isOpen, onClose, showControls, onKeyDown, children } = props;
+// still uses context and self-adding images
+// Switch to use lightbox library - no need to reinvent the wheel
+export const Lightbox = () => {
+    const context = useGalleryContext();
+    const { activeItem, activeIndex, media, setActiveItem, onPrev, onNext } = context;
 
-    return (
-        <Box>
-            <SlideIn offset="10px" in={isOpen}>
-                {/* @ts-ignore */}
-                {styles => (
-                    <Modal isOpen={isOpen} onClose={onClose} preserveScrollBarGap isCentered blockScrollOnMount>
-                        {/* solid background ModalOverlay */}
-                        <ModalOverlay opacity={1} backgroundColor="rgba(11,11,11,0.9)" />
+    useEffect(() => {
+        if (activeItem && media?.length > 0) {
+            document.body.style.overflow = 'hidden';
+            return () => {
+                document.body.style.overflow = 'unset';
+            };
+        }
+        return () => null;
+    }, [activeItem, media?.length]);
 
-                        {/* overlay wrapper for close & navigation button actions */}
-                        <ModalOverlay bg="transparent" onKeyDown={onKeyDown}>
-                            <ModalCloseButton zIndex={zIndices.modal + 1} color="white" />
-                            {showControls && <LightboxGalleryControls />}
-                            <ModalContent {...styles} shadow={0} bg="transparent" h="100%" my={0} pt="48px">
-                                {children}
-                            </ModalContent>
-                        </ModalOverlay>
-                    </Modal>
-                )}
-            </SlideIn>
-        </Box>
-    );
+    if (activeItem && media?.length > 0) {
+        const current = media[activeIndex]?.src;
+        const next = media[(activeIndex + 1) % media.length]?.src;
+        const prev = media[(activeIndex + media.length - 1) % media.length]?.src;
+        return (
+            <ReactLightbox
+                mainSrc={current}
+                // mainSrcThumbnail={current}
+                nextSrc={next}
+                // nextSrcThumbnail={next}
+                prevSrc={prev}
+                // prevSrcThumbnail={prev}
+                onCloseRequest={() => setActiveItem(null)}
+                onMovePrevRequest={() => onPrev()}
+                onMoveNextRequest={() => onNext()}
+            />
+        );
+    }
+
+    return null;
 };

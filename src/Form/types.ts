@@ -1,5 +1,4 @@
-// import { Schema } from 'yup';
-
+import { Schema } from 'yup';
 import { BoxProps } from '../Box/types';
 
 export interface FormValue {
@@ -7,35 +6,25 @@ export interface FormValue {
 }
 
 export type FormContextType = {
-    fields: {};
-    // registerField: Function;
+    fields: { [name: string]: Schema<any> };
     getFormValue: Function;
     getFieldValue: Function;
     onChange: Function;
     registerField: Function;
     clearForm: Function;
-
-    // object to be spread as props on all fields
-    context: { [key: string]: any };
+    getFormFieldError: Function;
+    deleteFormFieldError: Function;
 };
 
 export interface FormFieldProps {
     name: string;
-    disabled?: boolean;
 
     /**
      *
      * Validation schema
      * not used directly by input. <Form> uses it for validation
      */
-    // schema?: Schema<any>;
-
-    /**
-     * !unconfirmed
-     * Skip value in Form's onSubmit prop
-     * this lets you use create inputs solely for dynamic fields
-     */
-    skipOnSubmit?: boolean;
+    schema?: Schema<any>;
 }
 
 export interface IForm {
@@ -107,7 +96,7 @@ export interface IForm {
     className?: string;
     style?: React.CSSProperties;
 
-    // Errors object
+    // Errors object. Passed error message for FormControl if able
     // generally server-side errors
     errors?: FormErrors;
 
@@ -136,7 +125,7 @@ export type FormProps = IForm & Omit<BoxProps, 'onSubmit'>;
 
 export interface FormErrors {
     // formFieldName: [errorValue, [errorStrings]]
-    [name: string]: [string, Array<string>];
+    [name: string]: Array<string>;
 }
 
 export interface FormState {

@@ -220,7 +220,7 @@ const MenuButton = forwardRef(
 
 //
 
-const MenuList = ({ onKeyDown, onBlur, ...props }: MenuListProps) => {
+const MenuList = ({ onKeyDown, onBlur, usePortal = false, ...props }: MenuListProps) => {
     const {
         activeIndex: index,
         isOpen,
@@ -296,7 +296,7 @@ const MenuList = ({ onKeyDown, onBlur, ...props }: MenuListProps) => {
 
     return (
         <Popper
-            usePortal={false}
+            usePortal={usePortal}
             isOpen={isOpen}
             anchorEl={buttonRef.current}
             placement={placement}

@@ -15,11 +15,11 @@ export function Home(props) {
         <Page title="Home">
             <Tabs size="lg">
                 <TabList>
-                    <Tab>
+                    <Tab href="/">
                         <Icon name="phone" size="1em" mr="spacing-sm" />
                         Table
                     </Tab>
-                    <Tab>Toggles</Tab>
+                    <Tab href="/toggles">Toggles</Tab>
                 </TabList>
                 <TabPanels>
                     <TabPanel>

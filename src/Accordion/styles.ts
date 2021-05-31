@@ -23,7 +23,7 @@ export const accordionStyle = ({ isDisabled, isExpanded }, theme) => ({
         flex: 1,
     },
     panel: {
-        p: 'spacing',
+        p: ['spacing-sm', 'spacing'],
     },
     icon: {
         position: 'absolute',

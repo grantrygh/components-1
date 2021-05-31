@@ -321,7 +321,7 @@ const ModalBody = forwardRef((props: BoxProps, ref: RefObject<HTMLDivElement>) =
 
 const ModalCloseButton = forwardRef((props: CloseButtonProps, ref: RefObject<any>) => {
     const { onClose } = useModalContext();
-    return <CloseButton ref={ref} onClick={onClose} position="absolute" top="8px" right="12px" {...props} />;
+    return <CloseButton ref={ref} onClick={onClose} position="absolute" top="12px" right="24px" {...props} />;
 });
 
 const ModalTransition = ({ isOpen, duration = 150, children }) => (

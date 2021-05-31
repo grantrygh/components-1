@@ -50,8 +50,6 @@ export function useFormField(props) {
     );
 
     return {
-        clearForm,
-        context,
         onChange: $onChange,
         value: getFieldValue && getFieldValue(props.name),
         errors,

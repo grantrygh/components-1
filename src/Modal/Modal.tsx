@@ -5,7 +5,7 @@ import { hideOthers } from 'aria-hidden';
 import exenv from 'exenv';
 import React, { createContext, forwardRef, RefObject, useCallback, useContext, useEffect, useRef } from 'react';
 import FocusLock from 'react-focus-lock/dist/cjs';
-import { Transition } from 'react-spring/renderprops';
+import { Transition } from 'react-spring';
 import { Box } from '../Box';
 import { BoxProps } from '../Box/types';
 import { Card } from '../Card';

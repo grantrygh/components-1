@@ -1,8 +1,7 @@
-import { ThemeContext } from '@emotion/core';
-import { ThemeProvider as EmotionThemeProvider } from 'emotion-theming';
-import React, { useContext } from 'react';
+import { ThemeProvider as EmotionThemeProvider } from '@emotion/react';
+import React from 'react';
 import { ColorModeProvider, IColorModeProvider, useColorMode } from '../ColorModeProvider';
-import { baseTheme, theme, ThemeType } from '../theme';
+import { baseTheme, ThemeType } from '../theme';
 import { ITheme } from '../theme/types';
 
 export interface IThemeProvider {
@@ -22,6 +21,7 @@ const BaseThemeProvider = ({ theme: providedTheme, children }: IThemeProvider) =
         providedTheme,
         mode: colorMode?.mode,
     });
+
     return <EmotionThemeProvider theme={emotionTheme as ThemeType}>{children}</EmotionThemeProvider>;
 };
 
@@ -36,11 +36,4 @@ export const ThemeProvider = ({ theme: providedTheme, children, defaultMode }: I
     );
 };
 
-export function useTheme(): ITheme {
-    const _theme = useContext(ThemeContext);
-    if (theme === undefined) {
-        throw new Error('useTheme must be used within a ThemeProvider');
-    }
-    // @ts-ignore
-    return _theme;
-}
+export { useTheme } from '@emotion/react';

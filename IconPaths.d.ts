@@ -1,3 +1,9 @@
+import { ThemeType } from './src';
+
+declare module '@emotion/react' {
+    export interface Theme extends ThemeType {}
+}
+
 declare const iconPaths: {
     copy: {
         path: JSX.Element;
@@ -5,7 +11,7 @@ declare const iconPaths: {
     search: {
         path: JSX.Element;
     };
-    "search-2": {
+    'search-2': {
         path: JSX.Element;
     };
     moon: {
@@ -17,7 +23,7 @@ declare const iconPaths: {
     add: {
         path: JSX.Element;
     };
-    "small-add": {
+    'small-add': {
         path: JSX.Element;
         viewBox: string;
     };
@@ -25,7 +31,7 @@ declare const iconPaths: {
         viewBox: string;
         path: JSX.Element;
     };
-    "check-circle": {
+    'check-circle': {
         path: JSX.Element;
     };
     lock: {
@@ -37,7 +43,7 @@ declare const iconPaths: {
     view: {
         path: JSX.Element;
     };
-    "view-off": {
+    'view-off': {
         path: JSX.Element;
     };
     download: {
@@ -50,43 +56,43 @@ declare const iconPaths: {
     repeat: {
         path: JSX.Element;
     };
-    "repeat-clock": {
+    'repeat-clock': {
         path: JSX.Element;
     };
     edit: {
         path: JSX.Element;
     };
-    "chevron-right": {
+    'chevron-right': {
         path: JSX.Element;
     };
-    "chevron-left": {
+    'chevron-left': {
         path: JSX.Element;
     };
-    "chevron-down": {
+    'chevron-down': {
         path: JSX.Element;
     };
-    "chevron-up": {
+    'chevron-up': {
         path: JSX.Element;
     };
-    "arrow-forward": {
+    'arrow-forward': {
         path: JSX.Element;
     };
-    "arrow-up": {
+    'arrow-up': {
         path: JSX.Element;
     };
-    "arrow-down": {
+    'arrow-down': {
         path: JSX.Element;
     };
-    "arrow-back": {
+    'arrow-back': {
         path: JSX.Element;
     };
-    "external-link": {
+    'external-link': {
         path: JSX.Element;
     };
     link: {
         path: JSX.Element;
     };
-    "plus-square": {
+    'plus-square': {
         path: JSX.Element;
     };
     chat: {
@@ -103,17 +109,17 @@ declare const iconPaths: {
     attachment: {
         path: JSX.Element;
     };
-    "up-down": {
+    'up-down': {
         viewBox: string;
         path: JSX.Element;
     };
-    "at-sign": {
+    'at-sign': {
         path: JSX.Element;
     };
-    "arrow-left": {
+    'arrow-left': {
         path: JSX.Element;
     };
-    "arrow-right": {
+    'arrow-right': {
         path: JSX.Element;
     };
     star: {
@@ -129,30 +135,30 @@ declare const iconPaths: {
     spinner: {
         path: JSX.Element;
     };
-    "drag-handle": {
+    'drag-handle': {
         viewBox: string;
         path: JSX.Element;
     };
     close: {
         path: JSX.Element;
     };
-    "small-close": {
+    'small-close': {
         path: JSX.Element;
         viewBox: string;
     };
-    "not-allowed": {
+    'not-allowed': {
         path: JSX.Element;
     };
-    "triangle-down": {
+    'triangle-down': {
         path: JSX.Element;
     };
-    "triangle-up": {
+    'triangle-up': {
         path: JSX.Element;
     };
     bell: {
         path: JSX.Element;
     };
-    "info-outline": {
+    'info-outline': {
         path: JSX.Element;
     };
     info: {
@@ -161,16 +167,16 @@ declare const iconPaths: {
     question: {
         path: JSX.Element;
     };
-    "question-outline": {
+    'question-outline': {
         path: JSX.Element;
     };
     warning: {
         path: JSX.Element;
     };
-    "warning-2": {
+    'warning-2': {
         path: JSX.Element;
     };
-    "arrow-up-down": {
+    'arrow-up-down': {
         path: JSX.Element;
         viewBox: string;
     };
@@ -182,4 +188,5 @@ declare const iconPaths: {
         path: JSX.Element;
     };
 };
+
 export default iconPaths;

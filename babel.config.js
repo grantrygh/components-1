@@ -1,14 +1,17 @@
 /* eslint-disable no-template-curly-in-string */
 
+const preset_env_config = {
+    // exclude: ['transform-regenerator', 'transform-async-to-generator'],
+    // useBuiltIns: 'usage',
+    targets: {
+        esmodules: true,
+    },
+    modules: false,
+    loose: true,
+};
+
 const default_presets = () => [
-    [
-        '@babel/preset-env',
-        {
-            exclude: ['transform-regenerator', 'transform-async-to-generator'],
-            modules: false,
-            loose: true,
-        },
-    ],
+    ['@babel/preset-env', preset_env_config],
     '@babel/preset-react',
     '@babel/preset-typescript',
 ];
@@ -17,13 +20,10 @@ const server_presets = () => [
     [
         '@babel/preset-env',
         {
-            exclude: ['transform-regenerator', 'transform-async-to-generator'],
+            ...preset_env_config,
             targets: {
                 node: 'current',
-                browsers: [],
             },
-            modules: false,
-            loose: true,
         },
     ],
     '@babel/preset-react',
@@ -34,22 +34,8 @@ const test_presets = () => [['@babel/preset-env'], '@babel/preset-react'];
 
 const plugins = () => [
     ['@babel/plugin-proposal-decorators', { legacy: true }],
-    ['@babel/plugin-proposal-class-properties', { loose: false }],
+    ['@babel/plugin-proposal-class-properties', { loose: true }],
     '@babel/plugin-syntax-dynamic-import',
-    // [
-    //     'module:fast-async',
-    //     {
-    //         env: {
-    //             log: false,
-    //         },
-    //         compiler: {
-    //             promises: false,
-    //             generators: false,
-    //         },
-    //         runtimePattern: null,
-    //         useRuntimeModule: false,
-    //     },
-    // ],
     [
         'transform-imports',
         {

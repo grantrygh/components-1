@@ -1,5 +1,5 @@
-import { useTheme } from 'emotion-theming';
 import { componentStyleDef, DefaultTheme } from '../theme/types';
+import { useTheme } from '../ThemeProvider';
 import { UpdateBrowserProps } from './types';
 
 export const updateBrowserStyle: componentStyleDef<UpdateBrowserProps> = () => ({

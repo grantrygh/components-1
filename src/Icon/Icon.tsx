@@ -1,6 +1,6 @@
-import { ThemeContext } from '@emotion/core';
+import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
-import React, { forwardRef, useContext } from 'react';
+import React, { forwardRef } from 'react';
 import { Box } from '../Box';
 import { IconProps } from './types';
 
@@ -18,7 +18,7 @@ export const Icon = forwardRef(
         { size = '4', name, color = 'currentColor', role = 'presentation', focusable = false, ...rest }: IconProps,
         ref: any
     ) => {
-        const { icons: iconPaths } = useContext<{ icons?: any }>(ThemeContext);
+        const { icons: iconPaths } = useTheme();
 
         // Fallback in case you pass the wrong name
         const iconFallback = iconPaths['question-outline'];

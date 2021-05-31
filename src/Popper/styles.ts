@@ -1,4 +1,4 @@
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { useTheme } from '../ThemeProvider';
 
 const popperStyle = ({ arrowSize = '1rem', arrowShadowColor = 'rgba(0, 0, 0, 0.1)', hasArrow = true }, theme) => {

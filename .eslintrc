@@ -1,5 +1,5 @@
 {
-    "extends": ["@audentio/standard", "prettier", "prettier/react"],
+    "extends": ["@audentio/standard", "prettier"],
     "plugins": ["react-hooks"],
     "rules": {
         "dot-notation": ["off"],

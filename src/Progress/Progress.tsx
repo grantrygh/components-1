@@ -1,4 +1,4 @@
-import { css, keyframes } from '@emotion/core';
+import { css, keyframes } from '@emotion/react';
 import React from 'react';
 import { Box } from '../Box';
 import { valueToPercent } from '../Slider/utils';

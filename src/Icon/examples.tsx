@@ -1,4 +1,4 @@
-import { ThemeContext } from '@emotion/core';
+import { ThemeContext } from '@emotion/react';
 import { storiesOf } from '@storybook/react';
 import React, { useContext } from 'react';
 import { Icon } from '.';

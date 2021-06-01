@@ -20,13 +20,13 @@ export const Badge = forwardRef(
         // Hexagonal Badge
         if (variant === 'hexagon') {
             child = (
-                <React.Fragment>
+                <>
                     <svg viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" width={Number(size)}>
                         <defs />
                         <polygon points="50 1 95 25 95 75 50 99 5 75 5 25" />
                     </svg>
                     <Box position="absolute">{children}</Box>
-                </React.Fragment>
+                </>
             );
         }
 

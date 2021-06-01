@@ -33,6 +33,7 @@ const server_presets = () => [
 const test_presets = () => [['@babel/preset-env'], '@babel/preset-react'];
 
 const plugins = () => [
+    '@emotion/babel-plugin',
     ['@babel/plugin-proposal-decorators', { legacy: true }],
     ['@babel/plugin-proposal-class-properties', { loose: true }],
     ['@babel/plugin-proposal-private-property-in-object', { loose: true }],

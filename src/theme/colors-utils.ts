@@ -1,4 +1,4 @@
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import Color from 'color';
 
 export const get = (color, hue) => `${color}.${hue}`;

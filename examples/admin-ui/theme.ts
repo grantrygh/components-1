@@ -1,6 +1,6 @@
 import update from 'immutability-helper';
 import { alertStyle } from '../../src/Alert/styles';
-import defaultTheme from '../../src/theme';
+import { theme as defaultTheme } from '../../src/theme';
 
 export default {
     ...defaultTheme,

@@ -8,7 +8,8 @@
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "off",
         "react/state-in-constructor": ["off"],
-        "react/static-property-placement": ["off"]
+        "react/static-property-placement": ["off"],
+        "react/react-in-jsx-scope": ["off"]
     },
     "overrides": [
         {

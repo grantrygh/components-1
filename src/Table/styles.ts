@@ -26,7 +26,7 @@ export const tableStyle = ({ height, sticky, sortable, expandedContent, span = 1
         display: 'flex',
         width: '100%',
         position: 'relative',
-        borderBottomWidth: expandedContent ? 0 : '1px',
+        borderBottomWidth: expandedContent ? 0 : '5px',
         borderColor: 'border',
     },
     expandedRow: {

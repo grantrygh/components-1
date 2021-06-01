@@ -12,7 +12,7 @@ export const ColorModeProvider = ({ children, defaultMode }: IColorModeProvider)
     const [mode, updateMode] = useState(defaultMode);
     const setMode = newMode => {
         updateMode(newMode);
-        if (__BROWSER__ && localStorage) {
+        if (typeof window !== 'undefined' && localStorage) {
             localStorage.setItem('themeMode', newMode); // save theme selection
         }
     };

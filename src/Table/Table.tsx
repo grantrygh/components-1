@@ -54,7 +54,7 @@ export const Table = (props: TableProps, ref) => {
         height,
     });
 
-    if (!width && __BROWSER__ && !renderImmediately) {
+    if (!width && typeof window !== 'undefined' && !renderImmediately) {
         return null;
     }
 

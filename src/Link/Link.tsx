@@ -1,7 +1,9 @@
 import { isExternalUrl } from '@audentio/utils/lib/isExternalUrl';
+import NextLink from 'next/link';
 import React, { forwardRef } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink as ReactRouterLink } from 'react-router-dom';
 import { PseudoBox } from '../PseudoBox';
+import { isNextApp } from '../utils/isNextApp';
 import { LinkProps } from './types';
 
 const baseStyleProps = {
@@ -32,10 +34,18 @@ export const Link = forwardRef(({ isDisabled, onClick, href, ...rest }: LinkProp
     const linkHref = getHref();
     const isExternal = isExternalUrl(linkHref);
 
-    const externalProps =
-        isExternal || !linkHref
-            ? { as: 'a', href: linkHref, target: '_blank', rel: 'noopener noreferrer' }
-            : { as: NavLink, to: linkHref };
+    let linkProps = {};
+
+    if (isExternal || !linkHref) {
+        // use normal anchor for external links
+        linkProps = { as: 'a', href: linkHref, target: '_blank', rel: 'noopener noreferrer' };
+    } else if (isNextApp()) {
+        // use next/link inside next apps
+        linkProps = { as: NextLink, href: linkHref };
+    } else {
+        // use react-router as fallback
+        linkProps = { as: ReactRouterLink, to: linkHref };
+    }
 
     return (
         // @ts-ignore
@@ -44,8 +54,8 @@ export const Link = forwardRef(({ isDisabled, onClick, href, ...rest }: LinkProp
             tabIndex={isDisabled ? -1 : undefined}
             aria-disabled={isDisabled}
             onClick={isDisabled ? event => event.preventDefault() : onClick}
-            {...externalProps}
             {...baseStyleProps}
+            {...linkProps}
             {...rest}
         />
     );

@@ -37,7 +37,6 @@ type ComposeProps<T, K extends keyof T> = { [P in keyof T]?: T[P] };
 
 /* eslint-disable no-unused-vars, no-use-before-define */
 declare const __DEV__: boolean;
-declare const __BROWSER__: boolean;
 declare const __VERSION__: string;
 
 // global types

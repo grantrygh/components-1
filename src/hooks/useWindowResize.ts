@@ -3,8 +3,8 @@ import { useCallback, useEffect, useState } from 'react';
 
 export function useWindowResize(throttleDuration: number = 200) {
     const [state, setState] = useState({
-        windowHeight: __BROWSER__ ? window.innerHeight : 0,
-        windowWidth: __BROWSER__ ? window.innerWidth : 0,
+        windowHeight: typeof window !== 'undefined' ? window.innerHeight : 0,
+        windowWidth: typeof window !== 'undefined' ? window.innerWidth : 0,
     });
 
     const resizeHandler = useCallback(

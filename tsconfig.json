@@ -6,25 +6,28 @@
         "moduleResolution": "node",
         "jsx": "preserve",
         "baseUrl": ".",
-        "allowJs": true,
-        "rootDir": "src",
-        "outDir": "lib",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "sourceMap": true,
         "noUnusedLocals": true,
         "allowSyntheticDefaultImports": true,
-        "noErrorTruncation": false,
-        "skipLibCheck": true,
+        "noErrorTruncation": true,
         "paths": {
             "components/*": ["*", "src/*"],
             "*": ["*", "src/*"]
-        }
-        // "esModuleInterop": true
+        },
+        "allowJs": true,
+        "outDir": "lib",
+        "skipLibCheck": true,
+        "strict": false,
+        "forceConsistentCasingInFileNames": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true
     },
     "typeAcquisition": {
         "enable": true
     },
-    "include": ["src"],
-    "exclude": ["node_modules", "src/**/*.test.tsx", "src/**/*examples.tsx"]
+    "exclude": ["node_modules", "src/**/*.test.tsx", "src/**/*examples.tsx"],
+    "include": ["src/**/*.tsx", "src/**/*.ts"]
 }

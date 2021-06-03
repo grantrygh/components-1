@@ -4,10 +4,13 @@ module.exports = {
     future: {
         webpack5: true,
     },
+    typescript: {
+        ignoreBuildErrors: true,
+    },
     experimental: {
         externalDir: true,
     },
-    webpack: config => {
+    webpack: (config) => {
         // make sure only one instance of react is used
         // in some cases you can end up with multiple copies of react and get invalid hook call errors
         const newconfig = {

@@ -86,6 +86,7 @@
     },
     "dependencies": {
         "@audentio/utils": "^4.4.2",
+        "@emotion/babel-plugin": "^11.3.0",
         "@emotion/react": "^11.4.0",
         "@emotion/styled": "^11.3.0",
         "@reach/auto-id": "0.15.0",

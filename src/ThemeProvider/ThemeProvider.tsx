@@ -37,4 +37,5 @@ export const ThemeProvider = ({ theme: providedTheme, children, defaultMode }: I
     );
 };
 
-export { css, default as styled, useTheme } from '@emotion/react';
+export { css, useTheme } from '@emotion/react';
+export { default as styled } from '@emotion/styled';

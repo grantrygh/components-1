@@ -38,9 +38,6 @@
     },
     "homepage": "https://github.com/Audentio/components#readme",
     "release-it": {
-        "npm": {
-            "skipChecks": true
-        },
         "git": {
             "pushRepo": "git@github.com:Audentio/components.git"
         }

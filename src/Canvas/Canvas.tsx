@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
 import React, { createContext, createRef, useContext, useEffect, useState } from 'react';
 import { Flex } from '../Flex';
-import { useRouter } from '../hooks/useRouter';
 import { useWindowResize } from '../hooks/useWindowResize';
 import { ModalOverlay } from '../Modal';
 import { PseudoBox } from '../PseudoBox';
 import { useTheme } from '../ThemeProvider';
+import { useRouter } from '../utils/router';
 import useCanvasStyle from './styles';
 import { CanvasWrapperProps } from './types';
 
@@ -212,6 +212,7 @@ const renderPanels = ({ panels = [], children = null, windowWidth = 0, ...render
                 return (
                     <CanvasPanel
                         name={name}
+                        key={name}
                         borderRight={name !== 'main' && '1px'}
                         borderColor="border"
                         windowWidth={windowWidth}
@@ -278,7 +279,7 @@ export const CanvasWrapper = (props: CanvasWrapperProps) => {
 
 export function CanvasPanel({ name, children, type = 'inline', ranges, windowWidth, ...rest }) {
     const { updatePanel } = useCanvasContext();
-    const { location } = useRouter();
+    const { pathname } = useRouter();
     const ref = createRef();
 
     const currentWindowWidth = Math.max(1, windowWidth);
@@ -327,7 +328,7 @@ export function CanvasPanel({ name, children, type = 'inline', ranges, windowWid
                 isVisible: false,
             });
         }
-    }, [location.pathname]);
+    }, [pathname]);
 
     return null;
 }

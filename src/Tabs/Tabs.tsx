@@ -15,11 +15,11 @@ import React, {
 } from 'react';
 import { Box } from '../Box';
 import { Flex } from '../Flex';
-import { useRouter } from '../hooks/useRouter';
 import { useVariantColorWarning } from '../hooks/useVariantColorWarning';
 import { Link } from '../Link';
 import { PseudoBox } from '../PseudoBox';
 import { assignRef } from '../utils/assignRef';
+import { useRouter } from '../utils/router';
 import useTabStyle, { useTabListStyle } from './styles';
 import { TabContextProps, TabListProps, TabPanelProps, TabProps, TabsProps } from './types';
 
@@ -85,7 +85,7 @@ const TabList = forwardRef((props: TabListProps, ref) => {
         align,
     } = useContext(TabContext);
 
-    const { location } = useRouter();
+    const { pathname } = useRouter();
 
     const { root: tabListStyleProps, container: tabListContainerStyleProps } = useTabListStyle({
         orientation,
@@ -219,7 +219,7 @@ const TabList = forwardRef((props: TabListProps, ref) => {
                 isSelected,
                 onClick: handleClick,
                 id: `${id}-${index}`,
-                pathname: location?.pathname,
+                pathname,
             });
         }
 

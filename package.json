@@ -1,6 +1,6 @@
 {
     "name": "@audentio/stuff",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "React component library by Audentio",
     "main": "lib/index.js",
     "scripts": {
@@ -79,7 +79,7 @@
         "object-inspect": "^1.10.3",
         "react-image-lightbox": "^5.1.1",
         "react-textarea-autosize": "^8.3.2",
-        "release-it": "^14.7.0",
+        "release-it": "^14.8.0",
         "styled-components": "^5.3.0",
         "stylis": "^4.0.10",
         "tslib": "2.1.0"

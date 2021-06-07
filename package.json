@@ -80,11 +80,7 @@
         "react-image-lightbox": "^5.1.1",
         "react-textarea-autosize": "^8.3.2",
         "release-it": "^14.7.0",
-        "responsive-loader": "^1.2.0",
         "styled-components": "^5.3.0",
-        "stylelint": "^13.2.0",
-        "stylelint-config-audentio": "^1.0.2",
-        "stylelint-config-standard": "^20.0.0",
         "stylis": "^4.0.10",
         "tslib": "2.1.0"
     },
@@ -129,6 +125,10 @@
         "use-dark-mode": "2.3.1",
         "webpack-cli": "^4.7.0",
         "webpack-dev-server": "^3.11.2"
+    },
+    "exports": {
+        ".": "./lib/index.js",
+        "./*": "./src/*"
     },
     "snyk": true
 }

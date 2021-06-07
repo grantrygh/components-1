@@ -15,7 +15,7 @@
         "storybook:server": "http-server storybook-build",
         "cy": "cypress run",
         "cy:open": "cypress open",
-        "build": "rm -rf lib && yarn build:babel && yarn build:tsdecs && copyfiles src/**/*.png -u 1 ./lib &&  copyfiles src/**/**/*.png -u 1 ./lib",
+        "build": "rm -rf lib && yarn build:babel && copyfiles src/**/*.png -u 1 ./lib &&  copyfiles src/**/**/*.png -u 1 ./lib",
         "build:tsdecs": "tsc -d --target es5 --emitDeclarationOnly",
         "build:babel": "babel src --out-dir lib --extensions '.ts,.tsx,.js' --source-maps",
         "release": "yarn build && release-it",

@@ -9,13 +9,20 @@ export function useReactRouter<
     C extends StaticContext = StaticContext,
     S = H.LocationState
 >() {
-    return useContext(RouterContext) as RouteComponentProps<Params, C, S>;
+    const router_context = useContext(RouterContext) as RouteComponentProps<Params, C, S>;
+
+    if (router_context === undefined) {
+        // will use light theme by default
+        return null;
+    }
+
+    return router_context;
 }
 
 export const useRouter = () => {
     // const location = useLocation();
     // const history = useHistory();
-    const { location, history } = useReactRouter();
+    const reactRouter = useReactRouter();
 
     const router = useNextRouter();
     // next
@@ -29,8 +36,8 @@ export const useRouter = () => {
 
     // react-router
     return {
-        pathname: location?.pathname,
-        search: location?.search,
-        router: history,
+        pathname: reactRouter?.location?.pathname,
+        search: reactRouter?.location?.search,
+        router: reactRouter?.history,
     };
 };

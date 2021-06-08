@@ -19,7 +19,7 @@ export const useCanvasContext = () => {
     return context;
 };
 
-const MotionPanel = motion(PseudoBox);
+const MotionPanel = motion.custom(PseudoBox);
 
 const getPanels = panels => {
     const panelList = Object.keys(panels)

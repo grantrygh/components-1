@@ -11,7 +11,7 @@ import React, {
     useContext,
     useEffect,
     useRef,
-    useState,
+    useState
 } from 'react';
 import { Box } from '../Box';
 import { Flex } from '../Flex';

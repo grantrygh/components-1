@@ -4,6 +4,13 @@ TODO.md
 examples/dev
 
 storybook-build
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
 
 # Dependencies and builds
 node_modules

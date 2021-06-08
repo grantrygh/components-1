@@ -129,8 +129,8 @@
     },
     "exports": {
         ".": "./lib/index.js",
-        "./*": "./src/*",
-        "./src/*": "./src/*"
+        "./src/*": "./src/*",
+        "./lib/*": "./lib/*"
     },
     "snyk": true
 }

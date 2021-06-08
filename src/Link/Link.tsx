@@ -41,7 +41,20 @@ export const Link = forwardRef(({ isDisabled, onClick, href, ...rest }: LinkProp
         linkProps = { as: 'a', href: linkHref, target: '_blank', rel: 'noopener noreferrer' };
     } else if (id === 'next') {
         // use next/link inside next apps
-        linkProps = { as: RouterLink || 'a', href: linkHref };
+        return (
+            // next/link: child must be an anchor which wraps the link content
+            <RouterLink href={linkHref}>
+                <PseudoBox
+                    ref={ref}
+                    tabIndex={isDisabled ? -1 : undefined}
+                    aria-disabled={isDisabled}
+                    onClick={isDisabled ? (event) => event.preventDefault() : onClick}
+                    as="a"
+                    {...baseStyleProps}
+                    {...rest}
+                />
+            </RouterLink>
+        );
     } else {
         // use react-router as fallback
         linkProps = { as: RouterLink || 'a', to: linkHref };
@@ -53,7 +66,7 @@ export const Link = forwardRef(({ isDisabled, onClick, href, ...rest }: LinkProp
             ref={ref}
             tabIndex={isDisabled ? -1 : undefined}
             aria-disabled={isDisabled}
-            onClick={isDisabled ? event => event.preventDefault() : onClick}
+            onClick={isDisabled ? (event) => event.preventDefault() : onClick}
             {...baseStyleProps}
             {...linkProps}
             {...rest}

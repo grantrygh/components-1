@@ -43,7 +43,8 @@
         }
     },
     "publishConfig": {
-        "access": "public"
+        "access": "public",
+        "registry": "https://registry.npmjs.org/"
     },
     "devDependencies": {
         "@audentio/eslint-config-standard": "^2.3.0",
@@ -129,7 +130,8 @@
     },
     "exports": {
         ".": "./lib/index.js",
-        "./*": "./src/*"
+        "./*": "./src/*",
+        "./src/*": "./src/*"
     },
     "snyk": true
 }

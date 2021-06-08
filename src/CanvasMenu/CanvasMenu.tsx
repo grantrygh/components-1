@@ -1,5 +1,8 @@
 import React from 'react';
-import { Accordion, AccordionHeader, AccordionIcon, AccordionItem, AccordionPanel, Box, Flex, Navigation } from '..';
+import { Accordion, AccordionHeader, AccordionIcon, AccordionItem, AccordionPanel } from '../Accordion';
+import { Box } from '../Box';
+import { Flex } from '../Flex';
+import { Navigation } from '../Navigation';
 import { Tooltip } from '../Tooltip';
 import { CanvasMenuProps, NavItemProps } from './types';
 
@@ -37,7 +40,7 @@ export function CanvasMenu(props: CanvasMenuProps) {
         );
     };
 
-    const renderAccordion = accProps => {
+    const renderAccordion = (accProps) => {
         return (
             <Navigation.Item key={accProps.children}>
                 <Accordion allowToggle defaultIndex={-1}>
@@ -52,7 +55,7 @@ export function CanvasMenu(props: CanvasMenuProps) {
                             {!isMinified && <AccordionIcon />}
                         </AccordionHeader>
                         {accProps.children &&
-                            accProps.children.map(child => (
+                            accProps.children.map((child) => (
                                 <AccordionPanel p={0}>
                                     {renderNavItem({
                                         ...child,
@@ -66,7 +69,7 @@ export function CanvasMenu(props: CanvasMenuProps) {
         );
     };
 
-    const renderItem = item => {
+    const renderItem = (item) => {
         // allows for passing and rendering components, rather than menu item objects
         if (!item || (!item?.label && !item?.media && !item?.icon)) {
             if (item && typeof item === 'function') {
@@ -88,7 +91,7 @@ export function CanvasMenu(props: CanvasMenuProps) {
             {/* CanvasMenu Header */}
             {items?.header?.length > 0 && (
                 <Box>
-                    {items.header.map(item =>
+                    {items.header.map((item) =>
                         renderItem(
                             typeof item === 'function'
                                 ? item
@@ -109,7 +112,7 @@ export function CanvasMenu(props: CanvasMenuProps) {
             <Box flexGrow="1">
                 {/* Main navigation links (if any) */}
                 {items?.content?.length > 0 &&
-                    items.content.map(item => {
+                    items.content.map((item) => {
                         return renderItem(item);
                     })}
 
@@ -119,7 +122,7 @@ export function CanvasMenu(props: CanvasMenuProps) {
             {/* CanvasMenu Footer */}
             {items?.footer?.length > 0 && (
                 <Box>
-                    {items.footer.map(item => {
+                    {items.footer.map((item) => {
                         return renderItem(item);
                     })}
                 </Box>

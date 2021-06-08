@@ -1,6 +1,6 @@
 {
     "name": "@audentio/stuff",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "description": "React component library by Audentio",
     "main": "lib/index.js",
     "scripts": {
@@ -90,7 +90,6 @@
         "webpack-dev-server": "^3.11.2"
     },
     "dependencies": {
-
         "react-image-lightbox": "^5.1.1",
         "react-textarea-autosize": "^8.3.2",
         "stylis": "^4.0.10",

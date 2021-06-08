@@ -1,9 +1,7 @@
 import { isExternalUrl } from '@audentio/utils/lib/isExternalUrl';
-import NextLink from 'next/link';
 import React, { forwardRef } from 'react';
-import { NavLink as ReactRouterLink } from 'react-router-dom';
 import { PseudoBox } from '../PseudoBox';
-import { isNextApp } from '../utils/isNextApp';
+import { useRouter } from '../utils/router';
 import { LinkProps } from './types';
 
 const baseStyleProps = {
@@ -24,8 +22,10 @@ const baseStyleProps = {
 };
 
 export const Link = forwardRef(({ isDisabled, onClick, href, ...rest }: LinkProps, ref: any) => {
+    const { Link: RouterLink, id } = useRouter();
+
     function getHref() {
-        if (href && href.indexOf(window?.location.origin) === 0) {
+        if (href && typeof window !== 'undefined' && href.indexOf(window?.location.origin) === 0) {
             return href.replace(window?.location.origin, '');
         }
         return href;
@@ -39,12 +39,25 @@ export const Link = forwardRef(({ isDisabled, onClick, href, ...rest }: LinkProp
     if (isExternal || !linkHref) {
         // use normal anchor for external links
         linkProps = { as: 'a', href: linkHref, target: '_blank', rel: 'noopener noreferrer' };
-    } else if (isNextApp()) {
+    } else if (id === 'next') {
         // use next/link inside next apps
-        linkProps = { as: NextLink, href: linkHref };
+        return (
+            // next/link: child must be an anchor which wraps the link content
+            <RouterLink href={linkHref}>
+                <PseudoBox
+                    ref={ref}
+                    tabIndex={isDisabled ? -1 : undefined}
+                    aria-disabled={isDisabled}
+                    onClick={isDisabled ? (event) => event.preventDefault() : onClick}
+                    as="a"
+                    {...baseStyleProps}
+                    {...rest}
+                />
+            </RouterLink>
+        );
     } else {
         // use react-router as fallback
-        linkProps = { as: ReactRouterLink, to: linkHref };
+        linkProps = { as: RouterLink || 'a', to: linkHref };
     }
 
     return (
@@ -53,7 +66,7 @@ export const Link = forwardRef(({ isDisabled, onClick, href, ...rest }: LinkProp
             ref={ref}
             tabIndex={isDisabled ? -1 : undefined}
             aria-disabled={isDisabled}
-            onClick={isDisabled ? event => event.preventDefault() : onClick}
+            onClick={isDisabled ? (event) => event.preventDefault() : onClick}
             {...baseStyleProps}
             {...linkProps}
             {...rest}

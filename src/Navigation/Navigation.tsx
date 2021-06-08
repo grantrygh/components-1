@@ -2,9 +2,9 @@ import React, { Children, cloneElement } from 'react';
 import { Box } from '../Box';
 import { BoxProps } from '../Box/types';
 import { Flex } from '../Flex';
-import { useRouter } from '../hooks/useRouter';
 import { Link } from '../Link';
 import { PseudoBox } from '../PseudoBox';
+import { useRouter } from '../utils/router';
 import useNavigationStyle from './styles';
 import { NavigationItemMediaProps, NavigationItemProps } from './types';
 
@@ -53,11 +53,10 @@ Navigation.Tertiary = function NavigationTertiary(props: BoxProps) {
 
 Navigation.Item = function NavItem(props: NavigationItemProps) {
     const { href, exact, isSubmenuItem, isActive, isParent, isMinified, onClick, ...rest } = props;
-    const { location } = useRouter();
+    const { pathname, search } = useRouter();
 
     let isLinkActive = false;
-    const pathname = location?.pathname;
-    const path = `${pathname}${location.search}`;
+    const path = `${pathname}${search}`;
 
     if (href && href === path && exact) {
         isLinkActive = true;

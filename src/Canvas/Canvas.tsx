@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
 import React, { createContext, createRef, useContext, useEffect, useState } from 'react';
 import { Flex } from '../Flex';
-import { useRouter } from '../hooks/useRouter';
 import { useWindowResize } from '../hooks/useWindowResize';
 import { ModalOverlay } from '../Modal';
 import { PseudoBox } from '../PseudoBox';
 import { useTheme } from '../ThemeProvider';
+import { useRouter } from '../utils/router';
 import useCanvasStyle from './styles';
 import { CanvasWrapperProps } from './types';
 
@@ -21,13 +21,13 @@ export const useCanvasContext = () => {
 
 const MotionPanel = motion(PseudoBox);
 
-const getPanels = panels => {
+const getPanels = (panels) => {
     const panelList = Object.keys(panels)
-        .map(panelKey => ({ ...panels[panelKey], name: panelKey }))
-        .filter(p => p);
-    const leftPanels = panelList.filter(panel => panel.position === 'left');
-    const rightPanels = panelList.filter(panel => panel.position === 'right');
-    const mainPanel = panelList.filter(panel => panel.name === 'main');
+        .map((panelKey) => ({ ...panels[panelKey], name: panelKey }))
+        .filter((p) => p);
+    const leftPanels = panelList.filter((panel) => panel.position === 'left');
+    const rightPanels = panelList.filter((panel) => panel.position === 'right');
+    const mainPanel = panelList.filter((panel) => panel.name === 'main');
 
     return {
         leftPanels,
@@ -52,7 +52,7 @@ export function CanvasContainer(props) {
     });
 
     const updatePanel = (name, update) => {
-        setPanels($prev => {
+        setPanels(($prev) => {
             return {
                 ...$prev,
                 [name]: {
@@ -63,8 +63,8 @@ export function CanvasContainer(props) {
         });
     };
 
-    const togglePanel = name => {
-        setPanels($prev => {
+    const togglePanel = (name) => {
+        setPanels(($prev) => {
             const panel = $prev[name];
             if (!panel) {
                 return null;
@@ -84,7 +84,7 @@ export function CanvasContainer(props) {
     };
 
     const addPanel = (name, update) => {
-        setPanels($prev => {
+        setPanels(($prev) => {
             return {
                 ...$prev,
                 [name]: update($prev[name] || {}),
@@ -92,9 +92,9 @@ export function CanvasContainer(props) {
         });
     };
 
-    const removePanel = name => {
+    const removePanel = (name) => {
         const deletePanel = () => {
-            setPanels($prev => {
+            setPanels(($prev) => {
                 if (name !== 'main') {
                     const newPanelList = { ...$prev };
                     delete newPanelList[name];
@@ -212,13 +212,14 @@ const renderPanels = ({ panels = [], children = null, windowWidth = 0, ...render
                 return (
                     <CanvasPanel
                         name={name}
+                        key={name}
                         borderRight={name !== 'main' && '1px'}
                         borderColor="border"
                         windowWidth={windowWidth}
                         {...renderPanelsProps}
                         {...rest}
                     >
-                        {props => (
+                        {(props) => (
                             <>
                                 {/* pass props to the component which the panel renders */}
                                 {render({
@@ -278,7 +279,7 @@ export const CanvasWrapper = (props: CanvasWrapperProps) => {
 
 export function CanvasPanel({ name, children, type = 'inline', ranges, windowWidth, ...rest }) {
     const { updatePanel } = useCanvasContext();
-    const { location } = useRouter();
+    const { pathname } = useRouter();
     const ref = createRef();
 
     const currentWindowWidth = Math.max(1, windowWidth);
@@ -327,7 +328,7 @@ export function CanvasPanel({ name, children, type = 'inline', ranges, windowWid
                 isVisible: false,
             });
         }
-    }, [location.pathname]);
+    }, [pathname]);
 
     return null;
 }

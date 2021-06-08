@@ -1,11 +1,11 @@
 import { isExternalUrl } from '@audentio/utils/lib/isExternalUrl';
 import React from 'react';
 import { Box } from '../Box';
-import { useRouter } from '../hooks/useRouter';
+import { useRouter } from '../utils/router';
 import { ClickableProps } from './types';
 
 export const Clickable = ({ onClick, href, as, staticContext, innerRef, ...props }: ClickableProps) => {
-    const { history } = useRouter();
+    const { router } = useRouter();
 
     const handleClick = (e: React.MouseEvent<HTMLElement>): void => {
         if (onClick) {
@@ -35,7 +35,7 @@ export const Clickable = ({ onClick, href, as, staticContext, innerRef, ...props
             } else {
                 // internal link
                 // push to history
-                history.push(href);
+                router.push(href);
             }
         }
 

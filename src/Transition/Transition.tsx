@@ -33,9 +33,9 @@ export const Slide = ({ in: inProp, children, duration, from, finalHeight, final
             leave={{ opacity: 0, offset }}
             config={{ duration: slideDuration, easing: expOut }}
         >
-            {inPropI =>
+            {(inPropI) =>
                 inPropI &&
-                (styles =>
+                ((styles) =>
                     children(
                         {
                             willChange: 'opacity, transform',
@@ -65,9 +65,9 @@ export const Scale = ({ in: inProp, initialScale, duration, children, ...rest }:
             leave={{ opacity: 0, transform: `scale(${scaleInitialScale})` }}
             {...rest}
         >
-            {inPropI =>
+            {(inPropI) =>
                 inPropI &&
-                (styles =>
+                ((styles) =>
                     children({
                         willChange: 'opacity, transform',
                         ...styles,
@@ -92,9 +92,9 @@ export const SlideIn = ({ in: inProp, offset, duration, children, ...rest }: Sli
             leave={{ opacity: 0, transform: `translate3d(0, ${slideInOffset}, 0)` }}
             {...rest}
         >
-            {inPropI =>
+            {(inPropI) =>
                 inPropI &&
-                (styles =>
+                ((styles) =>
                     children({
                         willChange: 'opacity, transform',
                         ...styles,

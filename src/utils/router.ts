@@ -39,11 +39,21 @@ export const useRouter = () => {
     }
 
     // react-router
+    if (reactRouter) {
+        return {
+            id: 'react-router',
+            pathname: reactRouter?.location?.pathname,
+            search: reactRouter?.location?.search,
+            router: reactRouter?.history,
+            Link: ReactRouterLink,
+        };
+    }
+
     return {
-        id: 'react-router',
-        pathname: reactRouter?.location?.pathname,
-        search: reactRouter?.location?.search,
-        router: reactRouter?.history,
-        Link: ReactRouterLink,
+        id: null,
+        pathname: null,
+        search: null,
+        router: null,
+        Link: null,
     };
 };

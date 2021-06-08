@@ -41,10 +41,10 @@ export const Link = forwardRef(({ isDisabled, onClick, href, ...rest }: LinkProp
         linkProps = { as: 'a', href: linkHref, target: '_blank', rel: 'noopener noreferrer' };
     } else if (id === 'next') {
         // use next/link inside next apps
-        linkProps = { as: RouterLink, href: linkHref };
+        linkProps = { as: RouterLink || 'a', href: linkHref };
     } else {
         // use react-router as fallback
-        linkProps = { as: RouterLink, to: linkHref };
+        linkProps = { as: RouterLink || 'a', to: linkHref };
     }
 
     return (

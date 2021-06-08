@@ -25,7 +25,7 @@ export const Link = forwardRef(({ isDisabled, onClick, href, ...rest }: LinkProp
     const { Link: RouterLink, id } = useRouter();
 
     function getHref() {
-        if (href && href.indexOf(window?.location.origin) === 0) {
+        if (href && typeof window !== 'undefined' && href.indexOf(window?.location.origin) === 0) {
             return href.replace(window?.location.origin, '');
         }
         return href;

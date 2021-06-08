@@ -29,7 +29,12 @@ import PopperJS from './util';
  * @param {string} placement
  */
 function flipPlacement(placement) {
-    const direction = (typeof window !== 'undefined' && __BROWSER__ && document?.body.getAttribute('dir')) || 'ltr';
+    const direction =
+        (typeof window !== 'undefined' &&
+            typeof __BROWSER__ !== 'undefined' &&
+            __BROWSER__ &&
+            document?.body.getAttribute('dir')) ||
+        'ltr';
 
     if (direction !== 'rtl') {
         return placement;

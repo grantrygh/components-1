@@ -1,9 +1,7 @@
 import { isExternalUrl } from '@audentio/utils/lib/isExternalUrl';
-import NextLink from 'next/link';
 import React, { forwardRef } from 'react';
-import { NavLink as ReactRouterLink } from 'react-router-dom';
 import { PseudoBox } from '../PseudoBox';
-import { isNextApp } from '../utils/isNextApp';
+import { useRouter } from '../utils/router';
 import { LinkProps } from './types';
 
 const baseStyleProps = {
@@ -24,6 +22,8 @@ const baseStyleProps = {
 };
 
 export const Link = forwardRef(({ isDisabled, onClick, href, ...rest }: LinkProps, ref: any) => {
+    const { Link: RouterLink } = useRouter();
+
     function getHref() {
         if (href && href.indexOf(window?.location.origin) === 0) {
             return href.replace(window?.location.origin, '');
@@ -39,12 +39,9 @@ export const Link = forwardRef(({ isDisabled, onClick, href, ...rest }: LinkProp
     if (isExternal || !linkHref) {
         // use normal anchor for external links
         linkProps = { as: 'a', href: linkHref, target: '_blank', rel: 'noopener noreferrer' };
-    } else if (isNextApp()) {
-        // use next/link inside next apps
-        linkProps = { as: NextLink, href: linkHref };
     } else {
         // use react-router as fallback
-        linkProps = { as: ReactRouterLink, to: linkHref };
+        linkProps = { as: RouterLink, to: linkHref };
     }
 
     return (

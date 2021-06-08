@@ -19,15 +19,15 @@ export const useCanvasContext = () => {
     return context;
 };
 
-const MotionPanel = motion.custom(PseudoBox);
+const MotionPanel = motion(PseudoBox);
 
-const getPanels = panels => {
+const getPanels = (panels) => {
     const panelList = Object.keys(panels)
-        .map(panelKey => ({ ...panels[panelKey], name: panelKey }))
-        .filter(p => p);
-    const leftPanels = panelList.filter(panel => panel.position === 'left');
-    const rightPanels = panelList.filter(panel => panel.position === 'right');
-    const mainPanel = panelList.filter(panel => panel.name === 'main');
+        .map((panelKey) => ({ ...panels[panelKey], name: panelKey }))
+        .filter((p) => p);
+    const leftPanels = panelList.filter((panel) => panel.position === 'left');
+    const rightPanels = panelList.filter((panel) => panel.position === 'right');
+    const mainPanel = panelList.filter((panel) => panel.name === 'main');
 
     return {
         leftPanels,
@@ -52,7 +52,7 @@ export function CanvasContainer(props) {
     });
 
     const updatePanel = (name, update) => {
-        setPanels($prev => {
+        setPanels(($prev) => {
             return {
                 ...$prev,
                 [name]: {
@@ -63,8 +63,8 @@ export function CanvasContainer(props) {
         });
     };
 
-    const togglePanel = name => {
-        setPanels($prev => {
+    const togglePanel = (name) => {
+        setPanels(($prev) => {
             const panel = $prev[name];
             if (!panel) {
                 return null;
@@ -84,7 +84,7 @@ export function CanvasContainer(props) {
     };
 
     const addPanel = (name, update) => {
-        setPanels($prev => {
+        setPanels(($prev) => {
             return {
                 ...$prev,
                 [name]: update($prev[name] || {}),
@@ -92,9 +92,9 @@ export function CanvasContainer(props) {
         });
     };
 
-    const removePanel = name => {
+    const removePanel = (name) => {
         const deletePanel = () => {
-            setPanels($prev => {
+            setPanels(($prev) => {
                 if (name !== 'main') {
                     const newPanelList = { ...$prev };
                     delete newPanelList[name];
@@ -219,7 +219,7 @@ const renderPanels = ({ panels = [], children = null, windowWidth = 0, ...render
                         {...renderPanelsProps}
                         {...rest}
                     >
-                        {props => (
+                        {(props) => (
                             <>
                                 {/* pass props to the component which the panel renders */}
                                 {render({

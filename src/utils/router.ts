@@ -25,11 +25,12 @@ export const useRouter = () => {
     // const location = useLocation();
     // const history = useHistory();
     const reactRouter = useReactRouter();
-
     const router = useNextRouter();
+
     // next
     if (isNextApp()) {
         return {
+            id: 'next',
             pathname: router?.pathname,
             search: router?.query,
             router,
@@ -39,6 +40,7 @@ export const useRouter = () => {
 
     // react-router
     return {
+        id: 'react-router',
         pathname: reactRouter?.location?.pathname,
         search: reactRouter?.location?.search,
         router: reactRouter?.history,

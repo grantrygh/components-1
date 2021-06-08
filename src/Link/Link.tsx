@@ -22,7 +22,7 @@ const baseStyleProps = {
 };
 
 export const Link = forwardRef(({ isDisabled, onClick, href, ...rest }: LinkProps, ref: any) => {
-    const { Link: RouterLink } = useRouter();
+    const { Link: RouterLink, id } = useRouter();
 
     function getHref() {
         if (href && href.indexOf(window?.location.origin) === 0) {
@@ -39,6 +39,9 @@ export const Link = forwardRef(({ isDisabled, onClick, href, ...rest }: LinkProp
     if (isExternal || !linkHref) {
         // use normal anchor for external links
         linkProps = { as: 'a', href: linkHref, target: '_blank', rel: 'noopener noreferrer' };
+    } else if (id === 'next') {
+        // use next/link inside next apps
+        linkProps = { as: RouterLink, href: linkHref };
     } else {
         // use react-router as fallback
         linkProps = { as: RouterLink, to: linkHref };

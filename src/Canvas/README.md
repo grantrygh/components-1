@@ -2,17 +2,16 @@
 
 1. CanvasWrapper should wrap all content. It consists of a CanvasContainer which provides context for panel states, and handles rendering of panels.
 2. Include in the project's AppShell which wraps all Routes.
-3. Takes in an initialCanvasState props which should contain (at minimum) the main panel content.
+3. Takes in an initialCanvasState props which should contain (at minimum) any panels open by default.
 
 ## Usage
 
 #### 1. Initialization
 
-Any global panels can be passed in to the CanvasWrapper upon initialization, such as the main panel and navigation menu.
-It is required that the main panel be named "main".
+Any global panels can be passed in to the CanvasWrapper upon initialization, such as the navigation menu panel.
 
 ```jsx
-export const AppShell = props => {
+export const AppShell = (props) => {
     const { children } = props;
     const { breakpoints } = useTheme();
 
@@ -25,15 +24,8 @@ export const AppShell = props => {
                 allowMinify: [breakpoints.stripped.md, 9999],
                 defaultMinified: [breakpoints.stripped.md, breakpoints.stripped.lg],
             },
-            render: componentProps => <CanvasMenu as="nav" items={menuItems} {...componentProps} />,
+            render: (componentProps) => <CanvasMenu as="nav" items={menuItems} {...componentProps} />,
             bg: 'canvasBg',
-        },
-        main: {
-            // Main section is always visible, inline, and non-minifiable
-            render: renderProps => {
-                return renderProps.children;
-            },
-            bg: 'pageBg',
         },
     };
 
@@ -57,7 +49,7 @@ useEffect(() => {
             defaultVisible: [0, 9999],
             defaultMinified: false,
         },
-        render: componentProps => <FilterMenuForm onSubmit={val => setFormValue(val)} />,
+        render: (componentProps) => <FilterMenuForm onSubmit={(val) => setFormValue(val)} />,
         bg: 'navBg',
     }));
 

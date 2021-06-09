@@ -10,6 +10,13 @@ webpack
 
 # Dependencies and builds
 node_modules
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
 package-lock.json
 /dist
 /coverage

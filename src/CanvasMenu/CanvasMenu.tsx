@@ -56,7 +56,7 @@ export function CanvasMenu(props: CanvasMenuProps) {
                         </AccordionHeader>
                         {accProps.children &&
                             accProps.children.map((child) => (
-                                <AccordionPanel p={0}>
+                                <AccordionPanel p={0} key={child}>
                                     {renderNavItem({
                                         ...child,
                                         isSubmenuItem: true,
@@ -91,19 +91,21 @@ export function CanvasMenu(props: CanvasMenuProps) {
             {/* CanvasMenu Header */}
             {items?.header?.length > 0 && (
                 <Box>
-                    {items.header.map((item) =>
-                        renderItem(
-                            typeof item === 'function'
-                                ? item
-                                : {
-                                      ...item,
-                                      align: 'center',
-                                      unstyled: true,
-                                      minH: null,
-                                      pb: 'spacing',
-                                  }
-                        )
-                    )}
+                    {items.header.map((item) => (
+                        <Box key={item?.label || item}>
+                            {renderItem(
+                                typeof item === 'function'
+                                    ? item
+                                    : {
+                                          ...item,
+                                          align: 'center',
+                                          unstyled: true,
+                                          minH: null,
+                                          pb: 'spacing',
+                                      }
+                            )}
+                        </Box>
+                    ))}
                 </Box>
             )}
 
@@ -113,7 +115,7 @@ export function CanvasMenu(props: CanvasMenuProps) {
                 {/* Main navigation links (if any) */}
                 {items?.content?.length > 0 &&
                     items.content.map((item) => {
-                        return renderItem(item);
+                        return <Box key={item?.label || item}>{renderItem(item)}</Box>;
                     })}
 
                 {children}
@@ -123,7 +125,7 @@ export function CanvasMenu(props: CanvasMenuProps) {
             {items?.footer?.length > 0 && (
                 <Box>
                     {items.footer.map((item) => {
-                        return renderItem(item);
+                        return <Box key={item?.label || item}>{renderItem(item)}</Box>;
                     })}
                 </Box>
             )}

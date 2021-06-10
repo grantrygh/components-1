@@ -25,15 +25,19 @@ export function CanvasMenu(props: CanvasMenuProps) {
         }
         const showFullItem = !isMinified && isVisible;
 
+        const MediaTooltipItem = (mediaProps) => {
+            return (
+                <Tooltip label={label} placement="right" closeOnClick showTooltip={isMinified}>
+                    <Navigation.ItemMedia icon={icon} mr={!isMinified && 4} unstyled={unstyled} {...mediaProps}>
+                        {media}
+                    </Navigation.ItemMedia>
+                </Tooltip>
+            );
+        };
+
         return (
             <Navigation.Item href={href} exact={isAccordion ? false : exact} key={label + href} {...rest}>
-                {media && (
-                    <Tooltip label={label} placement="right" closeOnClick showTooltip={isMinified}>
-                        <Navigation.ItemMedia icon={icon} mr={!isMinified && 4} unstyled={unstyled}>
-                            {media}
-                        </Navigation.ItemMedia>
-                    </Tooltip>
-                )}
+                {media && <MediaTooltipItem />}
                 {showFullItem && <Navigation.ItemText>{label}</Navigation.ItemText>}
                 {meta && showFullItem && <Navigation.ItemMeta>{meta}</Navigation.ItemMeta>}
             </Navigation.Item>

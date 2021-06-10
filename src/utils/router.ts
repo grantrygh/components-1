@@ -1,3 +1,4 @@
+import { queryString } from '@audentio/utils/src/queryString';
 import * as H from 'history';
 import NextLink from 'next/link';
 import { useRouter as useNextRouter } from 'next/router';
@@ -32,7 +33,7 @@ export const useRouter = () => {
         return {
             id: 'next',
             pathname: router?.pathname,
-            search: router?.query,
+            search: queryString.stringify(router?.query),
             router,
             Link: NextLink,
         };

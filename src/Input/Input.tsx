@@ -7,7 +7,7 @@ import { InputProps } from './types';
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     const {
-        size = 'md',
+        size = 'lg',
         variant = 'filled',
         as = 'input',
         'aria-label': ariaLabel,

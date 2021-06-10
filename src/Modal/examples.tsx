@@ -10,16 +10,13 @@ import { FormControl } from '../FormControl';
 import { FormLabel } from '../FormLabel';
 import { useDisclosure } from '../hooks/useDisclosure';
 import { Input } from '../Input';
-import { Scale, SlideIn } from '../Transition';
 
 const stories = storiesOf('Modal', module);
-stories.addDecorator(story => {
-    return (
-        <Box maxWidth="lg" mx="auto" mt={6} p={6}>
-            {story()}
-        </Box>
-    );
-});
+stories.addDecorator((story) => (
+    <Box maxWidth="lg" mx="auto" mt={6} p={6}>
+        {story()}
+    </Box>
+));
 
 stories.add('Default', () => {
     const SampleModal = () => {
@@ -60,36 +57,6 @@ stories.add('Default', () => {
     return <SampleModal />;
 });
 
-stories.add('with slide transition', () => {
-    const SampleModal = () => {
-        const [isOpen, setIsOpen] = useState(false);
-        const btnRef = useRef();
-        return (
-            <>
-                <Button ref={btnRef} onClick={() => setIsOpen(true)}>
-                    Trigger modal
-                </Button>
-                <SlideIn offset="10px" in={isOpen}>
-                    {styles => (
-                        <Modal isOpen onClose={() => setIsOpen(false)} finalFocusRef={btnRef}>
-                            <ModalOverlay opacity={styles.opacity} />
-                            <ModalContent {...styles} pb={5}>
-                                <ModalHeader>Login now</ModalHeader>
-                                <ModalCloseButton />
-                                <ModalBody>
-                                    <Lorem count={2} />
-                                </ModalBody>
-                            </ModalContent>
-                        </Modal>
-                    )}
-                </SlideIn>
-            </>
-        );
-    };
-
-    return <SampleModal />;
-});
-
 stories.add('with preserve scrollbar', () => {
     const SampleModal = () => {
         const [isOpen, setIsOpen] = useState(false);
@@ -100,20 +67,16 @@ stories.add('with preserve scrollbar', () => {
                     Trigger modal
                 </Button>
                 <Lorem count={5} />
-                <SlideIn offset="10px" in={isOpen}>
-                    {styles => (
-                        <Modal isOpen onClose={() => setIsOpen(false)} finalFocusRef={btnRef} preserveScrollBarGap>
-                            <ModalOverlay opacity={styles.opacity} />
-                            <ModalContent {...styles} pb={5}>
-                                <ModalHeader>Login now</ModalHeader>
-                                <ModalCloseButton />
-                                <ModalBody>
-                                    <Lorem count={2} />
-                                </ModalBody>
-                            </ModalContent>
-                        </Modal>
-                    )}
-                </SlideIn>
+                <Modal isOpen onClose={() => setIsOpen(false)} finalFocusRef={btnRef} preserveScrollBarGap>
+                    <ModalOverlay />
+                    <ModalContent pb={5}>
+                        <ModalHeader>Login now</ModalHeader>
+                        <ModalCloseButton />
+                        <ModalBody>
+                            <Lorem count={2} />
+                        </ModalBody>
+                    </ModalContent>
+                </Modal>
             </>
         );
     };
@@ -130,20 +93,16 @@ stories.add('with scale transition', () => {
                 <Button ref={btnRef} onClick={() => setIsOpen(true)}>
                     Trigger modal
                 </Button>
-                <Scale in={isOpen}>
-                    {styles => (
-                        <Modal isOpen onClose={() => setIsOpen(false)} finalFocusRef={btnRef}>
-                            <ModalOverlay opacity={styles.opacity} />
-                            <ModalContent {...styles} pb={5}>
-                                <ModalHeader>Login now</ModalHeader>
-                                <ModalCloseButton />
-                                <ModalBody>
-                                    <Lorem count={2} />
-                                </ModalBody>
-                            </ModalContent>
-                        </Modal>
-                    )}
-                </Scale>
+                <Modal isOpen onClose={() => setIsOpen(false)} finalFocusRef={btnRef} motionPreset="scale">
+                    <ModalOverlay />
+                    <ModalContent pb={5}>
+                        <ModalHeader>Login now</ModalHeader>
+                        <ModalCloseButton />
+                        <ModalBody>
+                            <Lorem count={2} />
+                        </ModalBody>
+                    </ModalContent>
+                </Modal>
             </>
         );
     };
@@ -260,7 +219,7 @@ stories.add('no close on overlay click', () => {
                 <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={close}>
                     <ModalOverlay zIndex={7} />
                     <ModalContent zIndex={8}>
-                        <ModalHeader onClose={close}>Create your account</ModalHeader>
+                        <ModalHeader>Create your account</ModalHeader>
                         <ModalCloseButton />
                         <ModalBody pb={6}>
                             <Lorem count={2} />
@@ -299,7 +258,7 @@ stories.add('initial and final focus ref', () => {
                 <Modal initialFocusRef={initialRef} finalFocusRef={finalRef} isOpen={isOpen} onClose={close}>
                     <ModalOverlay zIndex={7} />
                     <ModalContent zIndex={8}>
-                        <ModalHeader onClose={close}>Create your account</ModalHeader>
+                        <ModalHeader>Create your account</ModalHeader>
                         <ModalCloseButton />
                         <ModalBody pb={6}>
                             <FormControl>
@@ -348,7 +307,7 @@ function App() {
                             <Input
                                 name="firstName"
                                 value={firstName}
-                                onChange={event => setFirstName(event.target.value)}
+                                onChange={(event) => setFirstName(event.target.value)}
                             />
                         </FormControl>
                         <FormControl>
@@ -356,7 +315,7 @@ function App() {
                             <Input
                                 name="lastName"
                                 value={lastName}
-                                onChange={event => setLastName(event.target.value)}
+                                onChange={(event) => setLastName(event.target.value)}
                             />
                         </FormControl>
                     </ModalBody>

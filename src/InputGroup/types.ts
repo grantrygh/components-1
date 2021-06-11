@@ -8,6 +8,7 @@ export interface IInputGroup {
     size?: IInput['size'];
     children: React.ReactNode;
     isInline?: boolean;
+    isFullWidth?: boolean;
 
     name?: string;
 }

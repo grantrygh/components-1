@@ -22,6 +22,9 @@ export const inputStyle = ({ isFullWidth = true }, theme) => ({
         width: isFullWidth ? 'full' : 'input.width',
     },
     sizes: {
+        xl: {
+            height: 'input.xl',
+        },
         lg: {
             height: 'input.lg',
         },

@@ -1,8 +1,8 @@
 import { hideOthers, Undo } from 'aria-hidden';
 import { KeyboardEvent, MouseEvent, RefObject, useCallback, useEffect, useRef, useState } from 'react';
-import { mergeRefs } from './mergeRefs';
+import { useIds } from '../hooks/useIds';
+import { mergeRefs } from '../utils/mergeRefs';
 import { manager, useModalManager } from './modal-manager';
-import { useIds } from './useIds';
 
 export interface UseModalProps {
     /**

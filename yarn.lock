@@ -85,10 +85,10 @@ __metadata:
     react-image-lightbox: ^5.1.1
     react-intersection-observer: ^8.32.0
     react-lorem-component: ^0.13.0
+    react-remove-scroll: ^2.4.2
     react-router: ^5.2.0
     react-router-dom: ^5.2.0
     react-select: ^4.3.1
-    react-spring: ^9.2.1
     react-textarea-autosize: ^8.3.2
     recharts: ^2.0.9
     release-it: ^14.8.0
@@ -3421,136 +3421,6 @@ __metadata:
     react: ^16.8.0
     react-dom: ^16.8.0
   checksum: c052ed414bd3c993be082dc7c6e0921375bb3591c2ca92e1566b8eae80eb4b60863c0aac210d8677a327c381e6f64296308a2b71760cd65bf4e0433390637622
-  languageName: node
-  linkType: hard
-
-"@react-spring/animated@npm:~9.2.0":
-  version: 9.2.2
-  resolution: "@react-spring/animated@npm:9.2.2"
-  dependencies:
-    "@react-spring/shared": ~9.2.0
-    "@react-spring/types": ~9.2.0
-  peerDependencies:
-    react: ^16.8.0  || ^17.0.0
-  checksum: deb001aedcf0dd790707998cb90ad368f7ab87f66c2a863c9e5ce89ba3dbc8ac4d482c638fd910f3277ab37600060300c9213ccd9c8fc1827ea85866c80b4674
-  languageName: node
-  linkType: hard
-
-"@react-spring/core@npm:~9.2.0":
-  version: 9.2.2
-  resolution: "@react-spring/core@npm:9.2.2"
-  dependencies:
-    "@react-spring/animated": ~9.2.0
-    "@react-spring/shared": ~9.2.0
-    "@react-spring/types": ~9.2.0
-  peerDependencies:
-    react: ^16.8.0  || ^17.0.0
-  checksum: 6f623c092b7e4b074b2e740911a57413c04528de85824d2f1a9368eba2d4b2f0704d230efab0df7b30ab25a9cf2d71ac10f8c95d1c5c9a115c6442f0738de070
-  languageName: node
-  linkType: hard
-
-"@react-spring/konva@npm:~9.2.0":
-  version: 9.2.2
-  resolution: "@react-spring/konva@npm:9.2.2"
-  dependencies:
-    "@react-spring/animated": ~9.2.0
-    "@react-spring/core": ~9.2.0
-    "@react-spring/shared": ~9.2.0
-    "@react-spring/types": ~9.2.0
-  peerDependencies:
-    konva: ">=2.6"
-    react: ^16.8.0  || ^17.0.0
-    react-konva: ^16.8.0  || ^17.0.0
-  checksum: de6f290fa5d1dbaef7ac458efd297f788353b66eea6a2840769bc0fbb2616018bf2a83070d0c2f92a4986479bac9ab8411c260786fa8f97acc89c2889f4a1067
-  languageName: node
-  linkType: hard
-
-"@react-spring/native@npm:~9.2.0":
-  version: 9.2.2
-  resolution: "@react-spring/native@npm:9.2.2"
-  dependencies:
-    "@react-spring/animated": ~9.2.0
-    "@react-spring/core": ~9.2.0
-    "@react-spring/shared": ~9.2.0
-    "@react-spring/types": ~9.2.0
-  peerDependencies:
-    react: ^16.8.0  || ^17.0.0
-    react-native: ">=0.58"
-  checksum: daa2dc375ec25da038c81d09bb045008830d6c49bd9d24c87ba1caac61576ef8906e7b4a75478e19e0c6f304917ef49132d4d125d9707d78cc3f115ab2ac8cb3
-  languageName: node
-  linkType: hard
-
-"@react-spring/rafz@npm:~9.2.0":
-  version: 9.2.2
-  resolution: "@react-spring/rafz@npm:9.2.2"
-  checksum: 84398b60f9266dabe9707cce1f0c65c5fce9ac190f061c10a722b0b47faa81bbbda147db48b5659d2f9b6ce80748d1e542ab374ad4197cfd1da16383d3a40f56
-  languageName: node
-  linkType: hard
-
-"@react-spring/shared@npm:~9.2.0":
-  version: 9.2.2
-  resolution: "@react-spring/shared@npm:9.2.2"
-  dependencies:
-    "@react-spring/rafz": ~9.2.0
-    "@react-spring/types": ~9.2.0
-  peerDependencies:
-    react: ^16.8.0  || ^17.0.0
-  checksum: 70e93981de1c4fc27b4891fb76aca1b4e93fab4aac368c918778a592f38963b88317fc6fec7ee521a6329faade1f6d824ba57b41e4f511b3821ed62d461745e0
-  languageName: node
-  linkType: hard
-
-"@react-spring/three@npm:~9.2.0":
-  version: 9.2.2
-  resolution: "@react-spring/three@npm:9.2.2"
-  dependencies:
-    "@react-spring/animated": ~9.2.0
-    "@react-spring/core": ~9.2.0
-    "@react-spring/shared": ~9.2.0
-    "@react-spring/types": ~9.2.0
-  peerDependencies:
-    "@react-three/fiber": ">=6.0"
-    react: ">=16.11"
-    three: ">=0.126"
-  checksum: 396750184808df8c7b4883c9dc51fe24896014334001f1854137b3a65769530d2710172a2f3441abb78e09b36695e33b3dbf26ddc62646a57863ea04ba402874
-  languageName: node
-  linkType: hard
-
-"@react-spring/types@npm:~9.2.0":
-  version: 9.2.2
-  resolution: "@react-spring/types@npm:9.2.2"
-  checksum: c777e7bfc667eb2248106a9d1ee438eaf76fc234caca4bc5d54a352da4e8733246afaffc8c41f7adeb543050d59d19c972121413536e2de0a7c0efc7773eabc8
-  languageName: node
-  linkType: hard
-
-"@react-spring/web@npm:~9.2.0":
-  version: 9.2.2
-  resolution: "@react-spring/web@npm:9.2.2"
-  dependencies:
-    "@react-spring/animated": ~9.2.0
-    "@react-spring/core": ~9.2.0
-    "@react-spring/shared": ~9.2.0
-    "@react-spring/types": ~9.2.0
-  peerDependencies:
-    react: ^16.8.0  || ^17.0.0
-    react-dom: ^16.8.0  || ^17.0.0
-  checksum: 5f2bbaae04bea6c4210eeb27bb83bef522c2e60c9273129af2f35146c4905ddfc6c5307a3c4be21e360ba71b074d3e8082fa39f3114a087760bebebf22cf2109
-  languageName: node
-  linkType: hard
-
-"@react-spring/zdog@npm:~9.2.0":
-  version: 9.2.2
-  resolution: "@react-spring/zdog@npm:9.2.2"
-  dependencies:
-    "@react-spring/animated": ~9.2.0
-    "@react-spring/core": ~9.2.0
-    "@react-spring/shared": ~9.2.0
-    "@react-spring/types": ~9.2.0
-  peerDependencies:
-    react: ^16.8.0  || ^17.0.0
-    react-dom: ^16.8.0  || ^17.0.0
-    react-zdog: ">=1.0"
-    zdog: ">=1.0"
-  checksum: 97bdd05b985c242d1bf3f27cc877b6d9435ea88c433b3c84c35a3d5bd6f7caf87613de01375bfb001e82b0defa001a4edc2a6f1b20f355d0be288b5d57c2e2ad
   languageName: node
   linkType: hard
 
@@ -12733,6 +12603,13 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"get-nonce@npm:^1.0.0":
+  version: 1.0.1
+  resolution: "get-nonce@npm:1.0.1"
+  checksum: 6414e4ba765537c3c7ed802dac8a8e48d7af0e4ed3ff65a395080bdeecd10c0d4dfa0c698168800558f748649bca4be5624bea016ddbff44954c925b17dda129
+  languageName: node
+  linkType: hard
+
 "get-orientation@npm:1.1.2":
   version: 1.1.2
   resolution: "get-orientation@npm:1.1.2"
@@ -20492,6 +20369,41 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"react-remove-scroll-bar@npm:^2.1.0":
+  version: 2.2.0
+  resolution: "react-remove-scroll-bar@npm:2.2.0"
+  dependencies:
+    react-style-singleton: ^2.1.0
+    tslib: ^1.0.0
+  peerDependencies:
+    "@types/react": ^16.8.0 || ^17.0.0
+    react: ^16.8.0 || ^17.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 5f792704f3f71397210dfd787131fea953b0417a19882c03c47eedea626bdd444621d85039f641d7c6ad821c4525c52d91d05956bf5a43223faff26897a73d66
+  languageName: node
+  linkType: hard
+
+"react-remove-scroll@npm:^2.4.2":
+  version: 2.4.2
+  resolution: "react-remove-scroll@npm:2.4.2"
+  dependencies:
+    react-remove-scroll-bar: ^2.1.0
+    react-style-singleton: ^2.1.0
+    tslib: ^1.0.0
+    use-callback-ref: ^1.2.3
+    use-sidecar: ^1.0.1
+  peerDependencies:
+    "@types/react": ^16.8.0 || ^17.0.0
+    react: ^16.8.0 || ^17.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 158c04b0a4ecf7d5f82915e60a319694f1683a3af70fa4360a0a47cbbb60b868bfc1004194a41e1adfecc94a9e7f148cc40f8f7743d5db335ee9eb634d104a06
+  languageName: node
+  linkType: hard
+
 "react-resize-detector@npm:^6.6.3":
   version: 6.7.2
   resolution: "react-resize-detector@npm:6.7.2"
@@ -20611,17 +20523,20 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"react-spring@npm:^9.2.1":
-  version: 9.2.2
-  resolution: "react-spring@npm:9.2.2"
+"react-style-singleton@npm:^2.1.0":
+  version: 2.1.1
+  resolution: "react-style-singleton@npm:2.1.1"
   dependencies:
-    "@react-spring/core": ~9.2.0
-    "@react-spring/konva": ~9.2.0
-    "@react-spring/native": ~9.2.0
-    "@react-spring/three": ~9.2.0
-    "@react-spring/web": ~9.2.0
-    "@react-spring/zdog": ~9.2.0
-  checksum: d6f90a94c020dc313ab45f15abbb3edae5154e1b45ce8d964448e5e771d3815f5cdb38af5a1a988d8d2e64d5913eb714956aef06faaf4d62dce0aa8dc317ac43
+    get-nonce: ^1.0.0
+    invariant: ^2.2.4
+    tslib: ^1.0.0
+  peerDependencies:
+    "@types/react": ^16.8.0 || ^17.0.0
+    react: ^16.8.0 || ^17.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: c7b4ed0d1f70da253e2d43b706c8e4550d87826d8a7bfbe5882b85db0ef12482663288d993f14286eea84f3a07e07bb27a677f27aee7a88848caee9a882c8f6a
   languageName: node
   linkType: hard
 
@@ -25094,6 +25009,19 @@ typescript@4.3.2:
     "@types/react":
       optional: true
   checksum: 7e559af86fc2776d334ea93aba52fecfff38ee2aa0fd253fd5ae02b0517bcdcf657ea4656d610743a52a524b0f7c276bc44accef20dce757c3c57aea426d9c4d
+  languageName: node
+  linkType: hard
+
+"use-callback-ref@npm:^1.2.3":
+  version: 1.2.5
+  resolution: "use-callback-ref@npm:1.2.5"
+  peerDependencies:
+    "@types/react": ^16.8.0 || ^17.0.0
+    react: ^16.8.0 || ^17.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 0d5fcb3fb8cea49425ba3240f00f932a70446669d3b863cfd6f0dc4f602c73135ff868f7b28f3489fba3befbe9ae9f5dbe1dc4985fff7499b65dfee9dd0827f0
   languageName: node
   linkType: hard
 

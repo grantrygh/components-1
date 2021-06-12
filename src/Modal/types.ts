@@ -1,32 +1,92 @@
 import * as React from 'react';
 import { BoxProps } from '../Box/types';
+import { PortalProps } from '../Portal/types';
+import { UseModalProps, UseModalReturn } from './use-modal';
 
 export type ModalSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | 'full';
 
-export interface IModal {
-    container?: React.RefObject<HTMLElement>;
+export interface ModalProps extends UseModalProps, ModalOptions {
+    children: any;
+
     /**
-     * If `true`, the modal when be opened.
-     */
-    isOpen?: boolean;
+     * Where scroll behavior should originate.
+     * - If set to `inside`, scroll only occurs within the `ModalBody`.
+     * - If set to `outside`, the entire `ModalContent` will scroll within the viewport.
+     *
+     * @default "outside"
+    f */
+    scrollBehavior?: ScrollBehavior;
     /**
-     * Callback invoked to close the modal.
+     * Props to be forwarded to the portal component
      */
-    onClose?: (event: React.MouseEvent | React.KeyboardEvent, reason?: 'pressedEscape' | 'clickedOverlay') => void;
+    portalProps?: PortalProps;
+    /**
+     * The transition that should be used for the modal
+     */
+    motionPreset?: MotionPreset;
+}
+export interface ModalOptions {
+    /**
+     *  If `true`, the modal will be centered on screen.
+     * @default true
+     */
+    isCentered?: boolean;
+    /**
+     * The size (maxWidth) of the modal.
+     */
+    size?: ModalSizes | BoxProps['maxWidth'];
+    /**
+     * Skip applying styling to modal
+     */
+    noStyles?: boolean;
+    /**
+     * If `false`, focus lock will be disabled completely.
+     *
+     * This is useful in situations where you still need to interact with
+     * other surrounding elements.
+     *
+     * 🚨Warning: We don't recommend doing this because it hurts the
+     * accessibility of the modal, based on WAI-ARIA specifications.
+     *
+     * @default true
+     */
+    trapFocus?: boolean;
+    /**
+     * Lock focus across frames
+     *
+     * @default true
+     */
+    lockFocusAcrossFrames?: boolean;
+    /**
+     * If `true`, the modal will autofocus the first enabled and interactive
+     * element within the `ModalContent`
+     *
+     * @default true
+     */
+    autoFocus?: boolean;
+    /**
+     * The `ref` of element to receive focus when the modal opens.
+     */
+    initialFocusRef?: React.RefObject<Element>;
+    /**
+     * The `ref` of element to receive focus when the modal closes.
+     */
+    finalFocusRef?: React.RefObject<Element>;
+    /**
+     * If `true`, the modal will return focus to the element that triggered it when it closes.
+     * @default true
+     */
+    returnFocusOnClose?: boolean;
     /**
      * If `true`, scrolling will be disabled on the `body` when the modal opens.
      *  @default true
      */
     blockScrollOnMount?: boolean;
     /**
-     * A11y: If `true`, the siblings of the `Modal` will have `aria-hidden`
-     * set to `true` so that screen readers can only see the `Modal`.
-     *
-     * This is commonly known as making the other elements **inert**
-     *
-     *  @default true
+     * Handle zoom/pinch gestures on iOS devices when scroll locking is enabled.
+     * Defaults to `false`.
      */
-    useInert?: boolean;
+    allowPinchZoom?: boolean;
     /**
      * If `true`, a `padding-right` will be applied to the body element
      * that's equal to the width of the scrollbar.
@@ -35,95 +95,15 @@ export interface IModal {
      * and content adjustment when the modal opens
      */
     preserveScrollBarGap?: boolean;
-    /**
-     * The content of the modal.
-     */
-    children: React.ReactNode;
-    /**
-     * The size (maxWidth) of the modal.
-     */
-    size?: ModalSizes | BoxProps['maxWidth'];
-    /**
-     *  If `true`, the modal will be centered on screen.
-     */
-    isCentered?: boolean;
-    /**
-     * The `ref` of element to receive focus when the modal opens.
-     */
-    initialFocusRef?: React.RefObject<HTMLElement>;
-    /**
-     * The `ref` of element to receive focus when the modal closes.
-     */
-    finalFocusRef?: React.RefObject<HTMLElement>;
-    /**
-     * Where scroll behaviour should originate.
-     * - If set to `inside`, scroll only occurs within the `ModalBody`.
-     * - If set to `outside`, the entire `ModalContent` will scroll within the viewport.
-     */
-    scrollBehavior?: 'inside' | 'outside';
-    /**
-     * If `true`, the modal will close when the overlay is clicked
-     * @default true
-     */
-    closeOnOverlayClick?: boolean;
-    /**
-     * If `true`, the modal will close when the `Esc` key is pressed
-     * @default true
-     */
-    closeOnEsc?: boolean;
-    /**
-     * The `id` of the modal
-     */
-    id?: string;
-    /**
-     * If `true`, the modal will return focus to the element that triggered it when it closes.
-     */
-    returnFocusOnClose?: boolean;
-    /**
-     * By default, a unique `id` is passed to the header and body.
-     * These ids are used to add `aria-labelledby` and `aria-describedby` to the `ModalContent`.
-     *
-     * You can configure this behavior:
-     * - Set it to `false` if you'd like to manually add the `aria-*` attributes.
-     * - Set it to `{header: false}` if you don't render the `ModalHeader` within the modal.
-     * We'll remove the `aria-labelledby` prop.
-     *
-     * @default true
-     */
-    addAriaLabels?: boolean | { header?: boolean; body?: boolean };
-    /**
-     * The function to format the `id`s passed to the `ModalHeader`, `Modalbody`, and `ModalContent`
-     */
-    formatIds?: (id: string | number) => { content: string; header: string; body: string };
 }
 
-export type ModalProps = IModal;
+export type ScrollBehavior = 'inside' | 'outside';
 
-export interface IModalContent {
-    onClick?: React.KeyboardEventHandler<HTMLElement>;
-    zIndex?: BoxProps['zIndex'];
-    children: React.ReactNode;
-    noStyles?: boolean;
+export type MotionPreset = 'slideInBottom' | 'slideInRight' | 'scale' | 'none';
+
+export interface ModalContext extends ModalOptions, UseModalReturn {
+    /**
+     * The transition that should be used for the modal
+     */
+    motionPreset?: MotionPreset;
 }
-
-export type ModalContentProps = IModalContent & BoxProps;
-
-export interface IModalContext {
-    contentRef?: React.MutableRefObject<any>;
-    bodyId?: string;
-    headerId?: string;
-    contentId?: string;
-    addAriaLabelledby?: boolean;
-    addAriaDescribedby?: boolean;
-}
-
-export type ModalContextProps = IModalContext & Omit<ModalProps, 'children'>;
-
-export interface IAriaHider {
-    isOpen?: boolean;
-    id?: string;
-    enableInert?: boolean;
-    container?: HTMLElement | null;
-}
-
-export type AriaHiderProps = IAriaHider;

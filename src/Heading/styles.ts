@@ -2,18 +2,20 @@ import { componentStyleDef } from '../theme/types';
 import { useTheme } from '../ThemeProvider';
 import { HeadingProps } from './types';
 
-const scaleRatio = 1.25;
+const scaleRatio = 1.16;
 const sizeBase = 14;
 
 function reverseNumber(n, min, max) {
     return max + min - n;
 }
 
-const getKind = kind => {
+export const getKind = (kind, scale = scaleRatio) => {
+    const fontSize = scale ** kind * sizeBase;
     return {
-        fontSize: `calc(${sizeBase + kind}px + ${0.2 * kind}vw)`,
-        lineHeight: '1.3',
+        fontSize: [0.9 * fontSize, null, fontSize],
+        lineHeight: '1.5',
         color: 'titleText',
+        mb: '0.4em',
     };
 };
 

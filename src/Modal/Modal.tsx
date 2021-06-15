@@ -1,339 +1,272 @@
-/* eslint-disable max-lines */
-import { useId } from '@reach/auto-id';
-import { hideOthers } from 'aria-hidden';
-// import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
-import exenv from 'exenv';
-import React, { createContext, forwardRef, RefObject, useCallback, useContext, useEffect, useRef } from 'react';
+import { AnimatePresence, motion, usePresence } from 'framer-motion';
+import React, { createContext, forwardRef, MouseEvent, useContext } from 'react';
 import FocusLock from 'react-focus-lock/dist/cjs';
-import { Transition } from 'react-spring';
+import { RemoveScroll } from 'react-remove-scroll';
 import { Box } from '../Box';
 import { BoxProps } from '../Box/types';
 import { Card } from '../Card';
 import { CloseButton } from '../CloseButton';
 import { CloseButtonProps } from '../CloseButton/types';
 import { Flex } from '../Flex';
-import { useForkRef } from '../hooks/useForkRef';
+import useModalStyle, { useModalOverlayStyle, useModalWrapperStyle } from '../Modal/styles';
 import { Portal } from '../Portal';
-import { getFocusables } from '../utils/getFocusables';
-import { wrapEvent } from '../utils/wrapEvent';
-import useModalStyle, { useModalWrapperStyle } from './styles';
-import { AriaHiderProps, ModalContentProps, ModalContextProps, ModalProps } from './types';
+import { fadeConfig } from '../Transition/fade';
+import { ModalTransition } from './modal-transition';
+import { ModalContext as ModalContextType, ModalProps } from './types';
+import { callAllHandlers, useModal } from './use-modal';
 
-const { canUseDOM } = exenv;
-const ModalContext = createContext<ModalContextProps>({});
+// @ts-ignore
+const ModalContext = createContext<ModalContextType>({});
 const useModalContext = () => useContext(ModalContext);
 
-function useAriaHider({ isOpen, id, enableInert, container = canUseDOM ? document.body : null }: AriaHiderProps) {
-    const mountRef = useRef(canUseDOM ? document.getElementById(id) || document.createElement('div') : null);
+/**
+ * Modal provides context, theming, and accessibility properties
+ * to all other modal components.
+ *
+ * It doesn't render any DOM node.
+ */
+export const Modal: React.FC<ModalProps> = (props) => {
+    const {
+        portalProps,
+        children,
+        autoFocus,
+        trapFocus,
+        initialFocusRef,
+        finalFocusRef,
+        returnFocusOnClose,
+        blockScrollOnMount,
+        allowPinchZoom,
+        preserveScrollBarGap,
+        motionPreset,
+        lockFocusAcrossFrames,
+        isCentered = true,
+        size = 'md',
+    } = props;
 
-    useEffect(() => {
-        let undoAriaHidden = null;
-        const mountNode = mountRef.current;
-
-        if (isOpen && canUseDOM) {
-            mountRef.current.id = id;
-            container.appendChild(mountRef.current);
-            if (enableInert) {
-                undoAriaHidden = hideOthers(mountNode);
-            }
-        }
-
-        return () => {
-            if (enableInert && undoAriaHidden != null) {
-                undoAriaHidden();
-            }
-            if (mountNode.parentElement) {
-                mountNode.parentElement.removeChild(mountNode);
-            }
-        };
-    }, [isOpen, id, enableInert, container]);
-
-    return mountRef;
-}
-
-const Modal = ({
-    isOpen,
-    initialFocusRef,
-    finalFocusRef,
-    onClose,
-    blockScrollOnMount = true,
-    closeOnEsc = true,
-    closeOnOverlayClick = true,
-    useInert = true,
-    scrollBehavior = 'outside',
-    isCentered = true,
-    addAriaLabels = true,
-    preserveScrollBarGap,
-    formatIds = id => ({
-        content: `modal-${id}`,
-        header: `modal-${id}-header`,
-        body: `modal-${id}-body`,
-    }),
-    container,
-    returnFocusOnClose = true,
-    children,
-    id,
-    size = 'md',
-}: ModalProps) => {
-    const contentRef = useRef(null);
-    const uuid = useId();
-    const _id = id || uuid;
-
-    const contentId = formatIds(_id)['content'];
-    const headerId = formatIds(_id)['header'];
-    const bodyId = formatIds(_id)['body'];
-    const portalId = `chakra-portal-${_id}`;
-
-    let addAriaLabelledby = false;
-    let addAriaDescribedby = false;
-
-    if (typeof addAriaLabels === 'object') {
-        addAriaLabelledby = addAriaLabels['header'];
-        addAriaDescribedby = addAriaLabels['body'];
-    }
-
-    if (typeof addAriaLabels === 'boolean') {
-        addAriaLabelledby = addAriaLabels;
-        addAriaDescribedby = addAriaLabels;
-    }
-
-    // body-scroll-lock package broken on ssr
-    // useEffect(() => {
-    // const dialogNode = contentRef.current;
-    // if (isOpen && blockScrollOnMount && __BROWSER__) {
-    //     disableBodyScroll(dialogNode, {
-    //         reserveScrollBarGap: preserveScrollBarGap,
-    //     });
-    // }
-    // return () => {
-    //     if (__BROWSER__) {
-    //         return enableBodyScroll(dialogNode);
-    //     }
-    //     return null;
-    // };
-    // }, [isOpen, blockScrollOnMount, preserveScrollBarGap]);
-
-    useEffect(() => {
-        const func = event => {
-            if (event.key === 'Escape' && closeOnEsc) {
-                onClose(event, 'pressedEscape');
-            }
-        };
-
-        if (isOpen && !closeOnOverlayClick && canUseDOM) {
-            document.addEventListener('keydown', func);
-        }
-        return () => {
-            if (canUseDOM) {
-                document.removeEventListener('keydown', func);
-            }
-        };
-    }, [isOpen, onClose, closeOnOverlayClick, closeOnEsc]);
-
-    const mountRef = useAriaHider({
-        isOpen,
-        id: portalId,
-        enableInert: useInert,
-        // @ts-ignore
-        container,
-    });
+    const modal = useModal(props);
 
     const context = {
-        isOpen,
+        ...modal,
+        autoFocus,
+        trapFocus,
         initialFocusRef,
-        onClose,
-        blockScrollOnMount,
-        closeOnEsc,
-        closeOnOverlayClick,
+        finalFocusRef,
         returnFocusOnClose,
-        contentRef,
-        scrollBehavior,
-        isCentered,
-        headerId,
-        bodyId,
-        contentId,
+        blockScrollOnMount,
+        allowPinchZoom,
+        preserveScrollBarGap,
+        motionPreset,
+        lockFocusAcrossFrames,
         size,
-        addAriaLabelledby,
-        addAriaDescribedby,
+        isCentered,
     };
-
-    const activateFocusLock = useCallback(() => {
-        if (initialFocusRef && initialFocusRef.current) {
-            initialFocusRef.current.focus();
-        } else if (contentRef.current) {
-            const focusables = getFocusables(contentRef.current);
-            if (focusables.length === 0) {
-                contentRef.current.focus();
-            }
-        }
-    }, [initialFocusRef]);
-
-    const deactivateFocusLock = useCallback(() => {
-        if (finalFocusRef && finalFocusRef.current) {
-            finalFocusRef.current.focus();
-        }
-    }, [finalFocusRef]);
-
-    if (!isOpen) return null;
 
     return (
         <ModalContext.Provider value={context}>
-            <Portal container={mountRef.current}>
-                <FocusLock
-                    returnFocus={returnFocusOnClose && !finalFocusRef}
-                    onActivation={activateFocusLock}
-                    onDeactivation={deactivateFocusLock}
-                >
-                    {children}
-                </FocusLock>
-            </Portal>
+            <AnimatePresence>{context.isOpen && <Portal {...portalProps}>{children}</Portal>}</AnimatePresence>
         </ModalContext.Provider>
     );
 };
 
-const ModalOverlay = React.forwardRef((props: BoxProps, ref: RefObject<HTMLDivElement>) => {
-    return (
-        <Box
-            pos="fixed"
-            bg="overlay"
-            left="0"
-            top="0"
-            w="100vw"
-            h="100vh"
-            ref={ref}
-            zIndex="overlay"
-            onClick={wrapEvent(props.onClick, event => {
-                event.stopPropagation();
-            })}
-            {...props}
-        />
-    );
-});
+Modal.defaultProps = {
+    lockFocusAcrossFrames: true,
+    returnFocusOnClose: true,
+    scrollBehavior: 'outside',
+    trapFocus: true,
+    autoFocus: true,
+    blockScrollOnMount: true,
+    allowPinchZoom: false,
+    motionPreset: 'scale',
+};
 
-const ModalContent = React.forwardRef(({ onClick, children, zIndex, noStyles, ...props }: ModalContentProps, ref) => {
-    const {
-        contentRef,
-        onClose,
-        isCentered,
-        bodyId,
-        headerId,
-        contentId,
-        size,
-        closeOnEsc,
-        addAriaLabelledby,
-        addAriaDescribedby,
-        scrollBehavior,
-        closeOnOverlayClick,
-    } = useModalContext();
-    const _contentRef = useForkRef(ref, contentRef);
+export interface ModalContentProps {
+    /**
+     * The props to forward to the modal's content wrapper
+     */
+    containerProps?: any;
+}
+
+const MotionDiv = motion.div;
+
+/**
+ * ModalContent is used to group modal's content. It has all the
+ * necessary `aria-*` properties to indicate that it is a modal
+ */
+export const ModalContent = forwardRef((props: ModalContentProps & BoxProps, ref) => {
+    const { children, containerProps: rootProps, ...rest } = props;
+
+    const { getDialogProps, getDialogContainerProps, size, isCentered, noStyles } = useModalContext();
+
+    const dialogProps = getDialogProps(rest, ref) as any;
+    const containerProps = getDialogContainerProps(rootProps);
 
     const modalWrapperStyleProps = useModalWrapperStyle({
-        scrollBehavior,
         isCentered,
         noStyles,
     });
 
     const modalStyleProps = useModalStyle({
-        scrollBehavior,
         isCentered,
         noStyles,
     });
 
+    const { motionPreset } = useModalContext();
+
+    const { ref: dialogRef, ...dialogPropsRest } = dialogProps;
+
     return (
-        <Box
-            pos="fixed"
-            d="flex"
-            // alignItems="center"
-            left="0"
-            top="0"
-            w="100%"
-            h="100%"
-            zIndex={zIndex || 'modal'}
-            onClick={event => {
-                event.stopPropagation();
-                if (closeOnOverlayClick) {
-                    onClose(event, 'clickedOverlay');
-                }
-            }}
-            onKeyDown={event => {
-                if (event.key === 'Escape') {
-                    event.stopPropagation();
-                    if (closeOnEsc) {
-                        onClose(event, 'pressedEscape');
-                    }
-                }
-            }}
-            {...modalWrapperStyleProps}
-        >
-            <Card
-                d="flex"
-                ref={_contentRef}
-                as="section"
-                role="dialog"
-                aria-modal="true"
-                tabIndex={-1}
-                maxWidth={size}
-                id={contentId}
-                {...(addAriaDescribedby && { 'aria-describedby': bodyId })}
-                {...(addAriaLabelledby && { 'aria-labelledby': headerId })}
-                zIndex={zIndex || 'modal'}
-                onClick={wrapEvent(onClick, event => event.stopPropagation())}
-                {...modalStyleProps}
-                {...props}
-            >
-                {children}
-            </Card>
-        </Box>
+        <ModalFocusScope>
+            <Box zIndex="modal" {...modalWrapperStyleProps} {...containerProps}>
+                <Card zIndex="modal" p={0} w="100%" maxWidth={size} {...modalStyleProps} {...dialogPropsRest}>
+                    <ModalTransition preset={motionPreset} ref={dialogRef}>
+                        {children}
+                    </ModalTransition>
+                </Card>
+            </Box>
+        </ModalFocusScope>
     );
 });
 
-const ModalHeader = forwardRef((props: BoxProps & { onClose?: () => void }, ref) => {
-    const { headerId } = useModalContext();
+interface ModalFocusScopeProps {
+    /**
+     * @type React.ReactElement
+     */
+    children: React.ReactElement;
+}
+
+export function ModalFocusScope(props: ModalFocusScopeProps) {
+    const {
+        autoFocus,
+        trapFocus,
+        dialogRef,
+        initialFocusRef,
+        blockScrollOnMount,
+        allowPinchZoom,
+        finalFocusRef,
+        returnFocusOnClose,
+        preserveScrollBarGap,
+        lockFocusAcrossFrames,
+    } = useModalContext();
+
+    const [isPresent, safeToRemove] = usePresence();
+
+    React.useEffect(() => {
+        if (!isPresent && safeToRemove) {
+            setTimeout(safeToRemove);
+        }
+    }, [isPresent, safeToRemove]);
+
     return (
-        <Flex
-            justify="space-between"
-            align="center"
+        <FocusLock
+            autoFocus={autoFocus}
+            isDisabled={!trapFocus}
+            initialFocusRef={initialFocusRef}
+            finalFocusRef={finalFocusRef}
+            restoreFocus={returnFocusOnClose}
+            contentRef={dialogRef}
+            lockFocusAcrossFrames={lockFocusAcrossFrames}
+        >
+            <RemoveScroll
+                removeScrollBar={!preserveScrollBarGap}
+                allowPinchZoom={allowPinchZoom}
+                enabled={blockScrollOnMount}
+                forwardProps
+            >
+                {props.children}
+            </RemoveScroll>
+        </FocusLock>
+    );
+}
+
+/**
+ * ModalOverlay renders a backdrop behind the modal. It is
+ * also used as a wrapper for the modal content for better positioning.
+ *
+ */
+export const ModalOverlay = forwardRef((props: BoxProps, ref) => {
+    const overlayStyle = useModalOverlayStyle({});
+
+    const { motionPreset } = useModalContext();
+    const motionProps: any = motionPreset === 'none' ? {} : fadeConfig;
+
+    return (
+        <MotionDiv
+            style={{
+                ...overlayStyle,
+                ...props,
+            }}
+            {...motionProps}
             ref={ref}
-            px="spacing-lg"
-            py="spacing"
-            id={headerId}
-            as="header"
-            position="relative"
-            {...props}
         />
     );
 });
 
-const ModalFooter = forwardRef((props: BoxProps, ref) => (
-    <Flex justify="flex-end" ref={ref} px="spacing-lg" py="spacing" as="footer" {...props} />
+/**
+ * ModalHeader
+ *
+ * React component that houses the title of the modal.
+ *
+ */
+export const ModalHeader = forwardRef((props: BoxProps, ref) => {
+    const { headerId, setHeaderMounted } = useModalContext();
+
+    /**
+     * Notify us if this component was rendered or used
+     * so we can append `aria-labelledby` automatically
+     */
+    React.useEffect(() => {
+        setHeaderMounted(true);
+        return () => setHeaderMounted(false);
+    }, [setHeaderMounted]);
+
+    const headerStyles = {
+        p: 'spacing',
+        flex: 0,
+        justify: 'space-between',
+        align: 'center',
+        color: 'titleText',
+    };
+
+    return <Flex pos="relative" ref={ref} id={headerId} as="header" {...headerStyles} {...props} />;
+});
+
+export const ModalBody = forwardRef((props: BoxProps, ref) => {
+    const { bodyId, setBodyMounted } = useModalContext();
+
+    /**
+     * Notify us if this component was rendered or used
+     * so we can append `aria-describedby` automatically
+     */
+    React.useEffect(() => {
+        setBodyMounted(true);
+        return () => setBodyMounted(false);
+    }, [setBodyMounted]);
+
+    return <Box ref={ref} id={bodyId} p="spacing" flex="1" color="bodyText" {...props} />;
+});
+
+export const ModalFooter = forwardRef((props: BoxProps, ref) => (
+    <Flex justify="flex-end" ref={ref} p="spacing" as="footer" {...props} />
 ));
 
-const ModalBody = forwardRef((props: BoxProps, ref: RefObject<HTMLDivElement>) => {
-    const { bodyId, scrollBehavior } = useModalContext();
-
-    let style = {};
-    if (scrollBehavior === 'inside') {
-        style = { overflowY: 'auto' };
-    }
-
-    return <Box ref={ref} id={bodyId} px="spacing-lg" py="spacing" flex="1" color="bodyText" {...style} {...props} />;
-});
-
-const ModalCloseButton = forwardRef((props: CloseButtonProps, ref: RefObject<any>) => {
+/**
+ * ModalCloseButton is used closes the modal.
+ *
+ * You don't need to pass the `onClick` to it, it reads the
+ * `onClose` action from the modal context.
+ */
+export const ModalCloseButton = forwardRef((props: CloseButtonProps, ref) => {
+    const { onClick, ...rest } = props;
     const { onClose } = useModalContext();
-    return <CloseButton ref={ref} onClick={onClose} position="absolute" top="12px" right="24px" {...props} />;
+
+    return (
+        <CloseButton
+            ref={ref}
+            onClick={callAllHandlers(onClick, (event: MouseEvent) => {
+                event.stopPropagation();
+                onClose();
+            })}
+            {...rest}
+        />
+    );
 });
-
-const ModalTransition = ({ isOpen, duration = 150, children }) => (
-    <Transition
-        items={isOpen}
-        from={{ opacity: 0, y: 10 }}
-        enter={{ opacity: 1, y: 0 }}
-        leave={{ opacity: 0, y: -10 }}
-        config={{ duration }}
-    >
-        {isTransOpen => isTransOpen && (styles => children(styles))}
-    </Transition>
-);
-
-export { Modal, ModalHeader, ModalTransition, ModalFooter, ModalBody, ModalCloseButton, ModalOverlay, ModalContent };

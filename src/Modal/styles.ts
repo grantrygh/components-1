@@ -2,51 +2,70 @@ import { useTheme } from '../ThemeProvider';
 
 export const modalStyle = ({ isCentered }, theme) => ({
     style: {
-        bg: 'popoverBg',
-        shadow: 'modal',
-        overflow: 'auto',
-        m: 'spacing',
-        mx: ['spacing', 'auto'],
-        w: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        position: 'relative',
+        width: '100%',
         outline: 0,
-        pos: 'relative',
-        flexDir: 'column',
-        p: 0,
     },
-    scrollBehavior: {
-        inside: {
-            height: '100%',
-            top: 0,
-        },
-        outside: {
-            my: [4, 16],
-            top: 0,
-        },
-    },
+    // scrollBehavior: {
+    //     inside: {
+    //         height: '100%',
+    //         top: 0,
+    //     },
+    //     outside: {
+    //         my: [4, 16],
+    //         top: 0,
+    //     },
+    // },
 });
 
 export const modalWrapperStyle = ({ isCentered }, theme) => ({
-    style: {},
-    scrollBehavior: {
-        inside: {
-            maxHeight: '100vh',
-            overflow: 'auto',
+    style: {
+        display: 'flex',
+        width: '100vw',
+        height: '100vh',
+        '@supports(height: -webkit-fill-available)': {
+            height: '-webkit-fill-available',
         },
-        outside: {
-            overflowY: 'auto',
-            overflowX: 'hidden',
-        },
+        // pointerEvents: 'all',
+        position: 'fixed',
+        left: 0,
+        top: 0,
+        p: 'spacing',
     },
+    // scrollBehavior: {
+    //     inside: {
+    //         maxHeight: '100vh',
+    //         overflow: 'auto',
+    //     },
+    //     outside: {
+    //         overflowY: 'auto',
+    //         overflowX: 'hidden',
+    //     },
+    // },
     props: {
         ...(isCentered && {
             display: 'flex',
-            alignItems: [null, 'center'],
+            alignItems: 'center',
             justifyContent: 'center',
         }),
     },
 });
 
-const useModalStyle = props => {
+export const modalOverlayStyle = (props, theme) => ({
+    style: {
+        position: 'fixed',
+        left: '0',
+        top: '0',
+        width: '100vw',
+        height: '100vh',
+        zIndex: theme.zIndices.overlay,
+        backgroundColor: theme.colors.overlay,
+    },
+});
+
+const useModalStyle = (props) => {
     const theme = useTheme();
     const styles = theme['styles'].modal ? theme['styles'].modal(props, theme) : modalStyle(props, theme);
 
@@ -60,12 +79,12 @@ const useModalStyle = props => {
         // base style
         ...styles.style,
 
-        ...styles.scrollBehavior[props.scrollBehavior],
+        // ...styles.scrollBehavior[props.scrollBehavior],
         ...styles.props,
     };
 };
 
-export const useModalWrapperStyle = props => {
+export const useModalWrapperStyle = (props) => {
     const theme = useTheme();
     const styles = theme['styles'].modalWrapper
         ? theme['styles'].modalWrapper(props, theme)
@@ -79,8 +98,20 @@ export const useModalWrapperStyle = props => {
         // base style
         ...styles.style,
 
-        ...styles.scrollBehavior[props.scrollBehavior],
+        // ...styles.scrollBehavior[props.scrollBehavior],
         ...styles.props,
+    };
+};
+
+export const useModalOverlayStyle = (props) => {
+    const theme = useTheme();
+    const styles = theme['styles'].modalOverlay
+        ? theme['styles'].modalOverlay(props, theme)
+        : modalOverlayStyle(props, theme);
+
+    return {
+        // base style
+        ...styles.style,
     };
 };
 

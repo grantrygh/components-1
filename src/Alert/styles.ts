@@ -1,3 +1,4 @@
+import { addOpacity } from '../theme/colors-utils';
 import { useTheme } from '../ThemeProvider';
 
 export const alertStyle = ({ color, status }, { colors }) => {
@@ -10,12 +11,16 @@ export const alertStyle = ({ color, status }, { colors }) => {
             position: 'relative',
             overflow: 'hidden',
             rounded: 'radius',
-            p: 'spacing',
+            p: 'spacing-sm',
         },
 
         variants: {
             subtle: {
                 bg,
+            },
+            opacity: {
+                color: `${alertColor}.500`,
+                background: addOpacity(colors[alertColor][500], '20%'),
             },
             solid: {
                 bg: `${alertColor}.500`,

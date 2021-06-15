@@ -41,6 +41,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
         lockFocusAcrossFrames,
         isCentered = true,
         size = 'md',
+        scrollBehavior,
     } = props;
 
     const modal = useModal(props);
@@ -59,6 +60,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
         lockFocusAcrossFrames,
         size,
         isCentered,
+        scrollBehavior,
     };
 
     return (
@@ -95,7 +97,7 @@ const MotionDiv = motion.div;
 export const ModalContent = forwardRef((props: ModalContentProps & BoxProps, ref) => {
     const { children, containerProps: rootProps, ...rest } = props;
 
-    const { getDialogProps, getDialogContainerProps, size, isCentered, noStyles } = useModalContext();
+    const { getDialogProps, getDialogContainerProps, size, isCentered, noStyles, scrollBehavior } = useModalContext();
 
     const dialogProps = getDialogProps(rest, ref) as any;
     const containerProps = getDialogContainerProps(rootProps);
@@ -103,11 +105,13 @@ export const ModalContent = forwardRef((props: ModalContentProps & BoxProps, ref
     const modalWrapperStyleProps = useModalWrapperStyle({
         isCentered,
         noStyles,
+        scrollBehavior,
     });
 
     const modalStyleProps = useModalStyle({
         isCentered,
         noStyles,
+        scrollBehavior,
     });
 
     const { motionPreset } = useModalContext();
@@ -183,7 +187,7 @@ export function ModalFocusScope(props: ModalFocusScopeProps) {
  * also used as a wrapper for the modal content for better positioning.
  *
  */
-export const ModalOverlay = forwardRef((props: BoxProps, ref) => {
+export const ModalOverlay = forwardRef(({ onClick = null, ...props }: BoxProps, ref) => {
     const overlayStyle = useModalOverlayStyle({});
 
     const { motionPreset } = useModalContext();
@@ -195,6 +199,7 @@ export const ModalOverlay = forwardRef((props: BoxProps, ref) => {
                 ...overlayStyle,
                 ...props,
             }}
+            {...(onClick ? { onClick } : {})}
             {...motionProps}
             ref={ref}
         />

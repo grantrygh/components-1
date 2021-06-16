@@ -26,7 +26,9 @@ const last = '&:last-of-type';
 const expanded = '&[aria-expanded=true]';
 const grabbed = '&[aria-grabbed=true]';
 const notFirst = '&:not(:first-of-type)';
+const notFirstChild = '&:not(:first-child)';
 const notLast = '&:not(:last-of-type)';
+const notLastChild = '&:not(:last-child)';
 const groupHover = '[role=group]:hover &';
 
 /**
@@ -60,7 +62,9 @@ export const PseudoBox = styled(Box)(
         _readOnly,
         _first,
         _notFirst,
+        _notFirstChild,
         _notLast,
+        _notLastChild,
         _last,
         _placeholder,
         _checked,
@@ -85,7 +89,9 @@ export const PseudoBox = styled(Box)(
             [readOnly]: tx(_readOnly),
             [first]: tx(_first),
             [notFirst]: tx(_notFirst),
+            [notFirstChild]: tx(_notFirstChild),
             [notLast]: tx(_notLast),
+            [notLastChild]: tx(_notLastChild),
             [last]: tx(_last),
             [odd]: tx(_odd),
             [even]: tx(_even),

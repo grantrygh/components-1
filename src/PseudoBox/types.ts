@@ -120,11 +120,20 @@ export interface IPseudoBoxProps {
     /**
      * Styles for CSS Selector `&:not(:last-of-type)`
      */
+     _notFirstChild?: BoxProps;
+     /**
+      * Styles for CSS Selector `&:not(:last-of-type)`
+      */
     _notLast?: BoxProps;
     /**
      * Styles for CSS Selector `&::placeholder`.
      * Useful for inputs
      */
+     _notLastChild?: BoxProps;
+     /**
+      * Styles for CSS Selector `&::placeholder`.
+      * Useful for inputs
+      */
     _placeholder?: BoxProps;
 
     /**

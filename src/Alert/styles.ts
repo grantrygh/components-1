@@ -12,6 +12,7 @@ export const alertStyle = ({ color, status }, { colors }) => {
             overflow: 'hidden',
             rounded: 'radius',
             p: 'spacing-sm',
+            mb: 'spacing',
         },
 
         variants: {
@@ -19,8 +20,8 @@ export const alertStyle = ({ color, status }, { colors }) => {
                 bg,
             },
             opacity: {
-                color: `${alertColor}.500`,
-                background: addOpacity(colors[alertColor][500], '20%'),
+                color: colors[alertColor][500],
+                background: addOpacity(colors[alertColor][500], .2),
             },
             solid: {
                 bg: `${alertColor}.500`,

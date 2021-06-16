@@ -29,7 +29,7 @@ export const Alert = ({ status = 'info', variant = 'left-accent', ...rest }: Ale
 
 export const AlertTitle = (props: BoxProps) => <Heading kind="h6" {...props} />;
 
-export const AlertDescription = (props: BoxProps) => <Text {...props} />;
+export const AlertDescription = (props: BoxProps) => <Text color="inherit" {...props} />;
 
 export const AlertIcon = props => {
     const { status, variant } = useContext(AlertContext);

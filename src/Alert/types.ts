@@ -8,7 +8,7 @@ export interface IAlert {
     /**
      * The variant of the alert style to use.
      */
-    variant?: 'subtle' | 'solid' | 'left-accent' | 'top-accent';
+    variant?: 'opacity' | 'subtle' | 'solid' | 'left-accent' | 'top-accent';
 }
 
 export type AlertProps = IAlert & BoxProps;

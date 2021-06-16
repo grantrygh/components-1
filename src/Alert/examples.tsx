@@ -1,4 +1,5 @@
 import { storiesOf } from '@storybook/react';
+import React from 'react';
 import { Alert, AlertDescription, AlertIcon, AlertTitle } from '.';
 import { Box } from '../Box';
 import { CloseButton } from '../CloseButton';
@@ -50,6 +51,19 @@ stories.add('Subtle', () => {
 stories.add('Solid', () => {
     return (
         <Alert status="error" variant="solid" justifyContent="center">
+            <AlertIcon />
+            <AlertTitle display="inline-block" mr="spacing-sm">
+                Your browser is outdated!
+            </AlertTitle>
+            <AlertDescription display="inline-block">Your Chakra experience may be degraded.</AlertDescription>
+            <CloseButton position="absolute" right="8px" top="8px" />
+        </Alert>
+    );
+});
+
+stories.add('Opacity', () => {
+    return (
+        <Alert status="error" variant="opacity" justifyContent="center">
             <AlertIcon />
             <AlertTitle display="inline-block" mr="spacing-sm">
                 Your browser is outdated!

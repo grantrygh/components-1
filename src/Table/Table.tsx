@@ -65,23 +65,18 @@ export const Table = (props: TableProps, ref) => {
     const header: any = renderHeader();
 
     return (
-        <PseudoBox {...containerStyleProps}>
-            <Box as="table" {...tableStyleProps}>
-                {header}
+        <>
+            <PseudoBox {...containerStyleProps}>
+                <Box as="table" {...tableStyleProps}>
+                    {header}
 
-                <Box as="tbody">{rows.map((row, index) => renderRow(row))}</Box>
-            </Box>
-            <Box {...props}>
-                {afterRows}
-                {cursor && onPageChange && (
-                    <TablePagination
-                        loading={loading}
-                        onPageChange={onPageChange}
-                        cursor={cursor}
-                        {...footerStyleProps}
-                    />
-                )}
-            </Box>
-        </PseudoBox>
+                    <Box as="tbody">{rows.map((row, index) => renderRow(row))}</Box>
+                </Box>
+            </PseudoBox>
+            {afterRows}
+            {cursor && onPageChange && (
+                <TablePagination loading={loading} onPageChange={onPageChange} cursor={cursor} {...footerStyleProps} />
+            )}
+        </>
     );
 };

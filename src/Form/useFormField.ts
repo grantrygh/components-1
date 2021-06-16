@@ -15,7 +15,7 @@ export function useFormField(props) {
     const errors = getFormFieldError && getFormFieldError(props.name);
 
     const onValidate = ({ isValid: isSubmitValid }) => {
-        if (isSubmitValid) {
+        if (isSubmitValid && typeof deleteFormFieldError === 'function') {
             deleteFormFieldError(props.name);
         }
     };

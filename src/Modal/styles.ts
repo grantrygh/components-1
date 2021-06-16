@@ -8,16 +8,12 @@ export const modalStyle = ({ isCentered }, theme) => ({
         width: '100%',
         outline: 0,
     },
-    // scrollBehavior: {
-    //     inside: {
-    //         height: '100%',
-    //         top: 0,
-    //     },
-    //     outside: {
-    //         my: [4, 16],
-    //         top: 0,
-    //     },
-    // },
+    scrollBehavior: {
+        outside: {
+            maxHeight: '100%',
+            top: 0,
+        },
+    },
 });
 
 export const modalWrapperStyle = ({ isCentered }, theme) => ({
@@ -33,17 +29,14 @@ export const modalWrapperStyle = ({ isCentered }, theme) => ({
         left: 0,
         top: 0,
         p: 'spacing',
+        justifyContent: 'center',
     },
-    // scrollBehavior: {
-    //     inside: {
-    //         maxHeight: '100vh',
-    //         overflow: 'auto',
-    //     },
-    //     outside: {
-    //         overflowY: 'auto',
-    //         overflowX: 'hidden',
-    //     },
-    // },
+    scrollBehavior: {
+        outside: {
+            maxHeight: '100vh',
+            overflow: 'auto',
+        },
+    },
     props: {
         ...(isCentered && {
             display: 'flex',
@@ -79,7 +72,7 @@ const useModalStyle = (props) => {
         // base style
         ...styles.style,
 
-        // ...styles.scrollBehavior[props.scrollBehavior],
+        ...styles.scrollBehavior[props.scrollBehavior],
         ...styles.props,
     };
 };
@@ -98,7 +91,7 @@ export const useModalWrapperStyle = (props) => {
         // base style
         ...styles.style,
 
-        // ...styles.scrollBehavior[props.scrollBehavior],
+        ...styles.scrollBehavior[props.scrollBehavior],
         ...styles.props,
     };
 };

@@ -10,7 +10,6 @@ export interface ModalProps extends UseModalProps, ModalOptions {
 
     /**
      * Where scroll behavior should originate.
-     * - If set to `inside`, scroll only occurs within the `ModalBody`.
      * - If set to `outside`, the entire `ModalContent` will scroll within the viewport.
      *
      * @default "outside"

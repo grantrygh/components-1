@@ -3,7 +3,6 @@ import { useTheme } from '../ThemeProvider';
 export const textStyle = (props, theme) => ({
     style: {
         fontFamily: 'body',
-        color: 'bodyText',
         fontWeight: 'normal',
         display: 'block',
     },

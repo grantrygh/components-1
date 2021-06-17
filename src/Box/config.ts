@@ -106,6 +106,7 @@ export const config = {
     userSelect: true,
     pointerEvents: true,
     wordBreak: true,
+    borderCollapse: true,
     overflowWrap: true,
     textOverflow: true,
     mask: true,

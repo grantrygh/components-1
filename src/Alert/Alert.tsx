@@ -39,9 +39,11 @@ export const AlertIcon = props => {
         color: props.color || status,
     });
 
+    console.log(statusProps.icon);
+
     return (
         <Box {...iconStyleProps}>
-            <Icon mr={3} size={5} name={statusProps.icon} {...props} />
+            <Icon mr={3} size={5} name={statusProps.icon} {...props} color="inherit" />
         </Box>
     );
 };

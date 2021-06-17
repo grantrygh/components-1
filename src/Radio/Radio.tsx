@@ -1,10 +1,10 @@
 import React, { forwardRef, RefObject } from 'react';
-import { VisuallyHidden } from '..';
 import { Box } from '../Box';
 import useCheckboxStyle from '../Checkbox/styles';
 import { ControlBox } from '../ControlBox';
 import { useVariantColorWarning } from '../hooks/useVariantColorWarning';
 import { Text } from '../Text';
+import { VisuallyHidden } from '../VisuallyHidden';
 import { RadioProps } from './types';
 
 export const Radio = forwardRef(

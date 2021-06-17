@@ -1,17 +1,26 @@
 import React, { Children, cloneElement, isValidElement } from 'react';
-import { InputLeftElement, InputRightElement, useFormField } from '..';
 import { Box } from '../Box';
+import { useFormField } from '../Form';
 import { FormControlWrapper } from '../FormControl';
+import { InputLeftElement, InputRightElement } from '../InputElement';
 import { useTheme } from '../ThemeProvider';
 import useInputGroupStyle from './styles';
 import { InputGroupProps } from './types';
 
-export const InputGroup = ({ isFullWidth, children, size = 'md', name, isInline, schema, ...props }: InputGroupProps) => {
+export const InputGroup = ({
+    isFullWidth,
+    children,
+    size = 'md',
+    name,
+    isInline,
+    schema,
+    ...props
+}: InputGroupProps) => {
     const { space } = useTheme();
     let pl = null;
     let pr = null;
     const spacingProps = isInline ? { mr: 'spacing' } : { mb: 'spacing' };
-    const inputGroupStyle = useInputGroupStyle({isFullWidth});
+    const inputGroupStyle = useInputGroupStyle({ isFullWidth });
 
     const { errors } = useFormField({
         name,

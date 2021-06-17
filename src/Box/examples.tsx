@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
-import { Heading } from '..';
+import { Heading } from '../Heading';
 import { Box } from './Box';
 
 const stories = storiesOf('Box', module);

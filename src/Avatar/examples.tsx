@@ -1,12 +1,12 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { Avatar, AvatarBadge } from '.';
-import { AvatarGroup } from '..';
+import { AvatarGroup } from '../AvatarGroup';
 import { Box } from '../Box';
 import { IAvatar } from './types';
 
 const stories = storiesOf('Avatar', module);
-stories.addDecorator(story => (
+stories.addDecorator((story) => (
     <Box maxWidth="lg" mt="40px" mx="auto">
         {story()}
     </Box>

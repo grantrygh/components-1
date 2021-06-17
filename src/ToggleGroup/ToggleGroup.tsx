@@ -1,8 +1,9 @@
 import { useId } from '@reach/auto-id';
 import React, { Children, cloneElement, useRef, useState } from 'react';
-import { Button, FormControlWrapper } from '..';
 import { Box } from '../Box';
+import { Button } from '../Button';
 import { useFormField } from '../Form';
+import { FormControlWrapper } from '../FormControl';
 import useToggleGroupStyle from './styles';
 import { ToggleButtonProps, ToggleGroupProps } from './types';
 
@@ -57,11 +58,11 @@ export const ToggleGroup = ({
 
     const allNodes = useRef([]);
 
-    const focusableValues = Children.map(children, child =>
+    const focusableValues = Children.map(children, (child) =>
         child.props.isDisabled === true ? null : child.props.value
-    ).filter(val => val != null);
+    ).filter((val) => val != null);
 
-    const allValues = Children.map(children, child => child.props.value);
+    const allValues = Children.map(children, (child) => child.props.value);
 
     const updateIndex = (index, event) => {
         const childValue = focusableValues[index];
@@ -79,7 +80,7 @@ export const ToggleGroup = ({
         }
     };
 
-    const handleKeyDown = event => {
+    const handleKeyDown = (event) => {
         if (event.key === 'Tab') {
             return;
         }
@@ -117,7 +118,7 @@ export const ToggleGroup = ({
 
         const isChecked = child.props.value === _value;
 
-        const handleClick = e => {
+        const handleClick = (e) => {
             if (!isControlled) {
                 setValue(child.props.value);
             }
@@ -139,7 +140,7 @@ export const ToggleGroup = ({
         };
 
         return cloneElement(child, {
-            ref: node => {
+            ref: (node) => {
                 allNodes.current[index] = node;
             },
             name: _name,

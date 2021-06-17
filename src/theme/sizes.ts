@@ -69,9 +69,14 @@ const canvas = {
 
 const header = baseSizes[16];
 
+const other = {
+    expandedRowTrigger: baseSizes[12],
+};
+
 const sizes = {
     ...baseSizes,
     ...largeSizes,
+    ...other,
     spacing,
     containers,
     input,

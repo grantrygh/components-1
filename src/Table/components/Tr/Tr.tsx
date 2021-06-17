@@ -3,90 +3,75 @@ import React from 'react';
 import { Box } from '../../../Box';
 import { Button } from '../../../Button';
 import { Collapse } from '../../../Collapse';
-import { Flex } from '../../../Flex';
-import { useTheme } from '../../../ThemeProvider';
+import { PseudoBox } from '../../../PseudoBox';
 import useTableStyle from '../../styles';
 import { TableRowProps } from '../../types';
 import { Td } from '../Td';
 
-export const Tr = (props: TableRowProps) => {
-    const { colors } = useTheme();
-    const { expandedContent, asComponent } = props;
+export const Tr = ({ expandedContent, children, ...rest }: TableRowProps) => {
     const { row: rowStyleProps } = useTableStyle({
         expandedContent,
     });
     const [expanded, setExpanded] = React.useState(false);
 
     const handleExpand = () => setExpanded(!expanded);
-    const RowComponent = !asComponent ? Box : asComponent;
-    const rowProps = asComponent ? {} : { as: 'tr' };
 
     return (
         <>
-            <RowComponent
-                style={
-                    // needed to apply styles to motion component while keeping correct table structure
-                    asComponent && {
-                        ...rowStyleProps,
-                        ...props,
-                        borderColor: colors.border,
-                    }
-                }
-                {...rowProps}
+            <PseudoBox
+                as="tr"
                 {...rowStyleProps}
-                {...props}
-                flexDirection="column"
+                {...rest}
+                d="table-row"
+                {...(expandedContent ? { onClick: handleExpand, cursor: 'pointer' } : {})}
             >
-                <Box {...rowStyleProps} {...(expandedContent ? { onClick: handleExpand, cursor: 'pointer' } : {})}>
-                    {props.children}
-                    {expandedContent && (
-                        <Td flex={0} pr={0}>
-                            <Flex align="center" pr="spacing" h="100%">
-                                <Button
-                                    onClick={handleExpand}
-                                    size="sm"
-                                    variant="unstyled"
-                                    leftIcon={() => (
-                                        <Box
-                                            transform={expanded ? 'rotate(180deg)' : 'rotate(0deg)'}
-                                            transition="0.2s"
-                                            willChange="rotate"
-                                        >
-                                            <ChevronDownIcon />
-                                        </Box>
-                                    )}
-                                    color="faintText"
-                                    iconOnly
-                                />
-                            </Flex>
-                        </Td>
-                    )}
-                </Box>
-                <ExpandedRow expanded={expanded} {...props} />
-            </RowComponent>
+                {children}
+
+                {expandedContent && (
+                    <Box as="td" w="expandedRowTrigger">
+                        <Button
+                            onClick={handleExpand}
+                            size="sm"
+                            variant="unstyled"
+                            leftIcon={() => (
+                                <Box
+                                    transform={expanded ? 'rotate(180deg)' : 'rotate(0deg)'}
+                                    transition="0.2s"
+                                    willChange="rotate"
+                                >
+                                    <ChevronDownIcon />
+                                </Box>
+                            )}
+                            color="faintText"
+                            iconOnly
+                        />
+                    </Box>
+                )}
+            </PseudoBox>
+            <ExpandedRow expanded={expanded} expandedContent={expandedContent} />
         </>
     );
 };
 
-const ExpandedRow = props => {
+const ExpandedRow = (props) => {
     const { expandedContent, expanded } = props;
     const { expandedRow: expandedRowStyleProps } = useTableStyle({});
     if (!expandedContent || !expanded) {
         return null;
     }
     return (
-        <Flex
+        <Box
+            as="tr"
             {...expandedRowStyleProps}
-            {...props}
             expandedContent={null}
             borderBottomWidth={expanded ? 1 : 0}
             borderColor="border"
         >
-            <Td py={0}>
+            <Td colSpan="100%">
                 <Collapse my="spacing" isOpen={expanded}>
                     {expandedContent}
                 </Collapse>
             </Td>
-        </Flex>
+        </Box>
     );
 };

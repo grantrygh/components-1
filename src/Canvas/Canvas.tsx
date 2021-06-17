@@ -110,7 +110,9 @@ export function CanvasContainer(props) {
     };
 
     const renderPanel = (panel, i) => {
-        if (!panel || !(panel && panel.render)) return null;
+        // need to check case where panel in state without any isVisible, isMinified, etc properties
+        // which will cause the panel to initially render as 'hidden' and ignore initial animation properties set
+        if (!panel || !(panel && panel.render) || !panel.hasOwnProperty('isVisible')) return null;
 
         const {
             name,
@@ -152,9 +154,9 @@ export function CanvasContainer(props) {
             >
                 <MotionPanel
                     key={`motion-${panel.name}`}
-                    initial={animateTo}
-                    animate={animateTo}
                     {...panelStyleProps}
+                    initial={panel.disableInitialAnimation ? false : 'hidden'}
+                    animate={animateTo}
                     transition={{ type: 'spring', duration: 0.5, bounce: 0 }}
 
                     // _track={{ backgroundColor: 'black' }}

@@ -1,12 +1,10 @@
 import { useTheme } from '../ThemeProvider';
 
-export const tableStyle = ({ height, sticky, sortable, expandedContent, span = 1 }, { colors }) => ({
+export const tableStyle = ({ height, sticky, sortable, span = 1 }, { colors }) => ({
     style: {
         color: 'bodyText',
         width: '100%',
-        borderColor: 'border',
-        borderRadius: 'radius',
-        borderWidth: '1px',
+
         bg: 'cardBg',
     },
     container: {
@@ -14,6 +12,9 @@ export const tableStyle = ({ height, sticky, sortable, expandedContent, span = 1
         overflowY: height && 'auto',
         overflowX: 'auto',
         position: 'relative',
+        borderColor: 'border',
+        borderRadius: 'radius',
+        borderWidth: '1px',
         _scrollbar: {
             width: '0.4em',
             height: '0.4em',
@@ -23,21 +24,23 @@ export const tableStyle = ({ height, sticky, sortable, expandedContent, span = 1
         },
     },
     row: {
-        display: 'flex',
+        display: 'table-row',
         width: '100%',
         position: 'relative',
-        borderBottomWidth: expandedContent ? 0 : '5px',
+        borderBottomWidth: '1px',
         borderColor: 'border',
     },
     expandedRow: {
         backgroundColor: colors.tableHeaderBg,
         boxShadow: 'inset 0 3px 6px -3px rgba(0, 0, 0, .2)',
+        flex: 'unset',
+        w: '100%',
     },
     cell: {
         flex: span,
         textAlign: 'left',
-        p: 4,
-        display: 'inline-flex',
+        p: 'spacing',
+        d: 'table-cell',
         alignItems: 'center',
     },
     headerRow: {
@@ -47,7 +50,6 @@ export const tableStyle = ({ height, sticky, sortable, expandedContent, span = 1
         zIndex: 'docked',
     },
     headerCell: {
-        display: 'inline-flex',
         alignItems: 'center',
         position: 'relative',
         cursor: sortable && 'pointer',
@@ -58,12 +60,12 @@ export const tableStyle = ({ height, sticky, sortable, expandedContent, span = 1
         fontWeight: 'semibold',
     },
     footer: {
-        p: 4,
+        p: 'spacing',
         bg: 'tableHeaderBg',
     },
 });
 
-const useTableStyle = props => {
+const useTableStyle = (props) => {
     const theme = useTheme();
     const styles = theme['styles'].table ? theme['styles'].table(props, theme) : tableStyle(props, theme);
 

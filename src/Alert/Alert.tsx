@@ -31,15 +31,13 @@ export const AlertTitle = (props: BoxProps) => <Heading kind="h6" {...props} />;
 
 export const AlertDescription = (props: BoxProps) => <Text {...props} />;
 
-export const AlertIcon = props => {
+export const AlertIcon = (props) => {
     const { status, variant } = useContext(AlertContext);
     const { status: statusProps } = useAlertStyle({ variant, status });
     const iconStyleProps = useAlertIconStyle({
         variant,
         color: props.color || status,
     });
-
-    console.log(statusProps.icon);
 
     return (
         <Box {...iconStyleProps}>

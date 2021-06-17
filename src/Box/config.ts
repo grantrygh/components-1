@@ -107,6 +107,7 @@ export const config = {
     pointerEvents: true,
     wordBreak: true,
     borderCollapse: true,
+    borderImage: true,
     overflowWrap: true,
     textOverflow: true,
     mask: true,

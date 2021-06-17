@@ -67,6 +67,7 @@ export interface ICustomConfig {
     objectFit?: StyledSystem.ResponsiveValue<CSS['objectFit']>;
     objectPosition?: StyledSystem.ResponsiveValue<CSS['objectPosition']>;
     borderCollapse?: StyledSystem.ResponsiveValue<CSS['borderCollapse']>;
+    borderImage?: StyledSystem.ResponsiveValue<CSS['borderImage']>;
 
     // Ellipsis alias
     wordBreak?: StyledSystem.ResponsiveValue<CSS['wordBreak']>;

@@ -11,7 +11,7 @@ import React, {
     useContext,
     useEffect,
     useRef,
-    useState
+    useState,
 } from 'react';
 import { Box } from '../Box';
 import { Flex } from '../Flex';
@@ -27,14 +27,6 @@ export const TabContext = createContext<TabContextProps>({});
 
 const Tab = forwardRef((props: TabProps, ref) => {
     const { href, exact = true, onClick, pathname, isSelected, isDisabled, id, activeProps, ...rest } = props;
-
-    useEffect(() => {
-        if (href) {
-            if (((exact && href === pathname) || (!exact && pathname.indexOf(href) > -1)) && !isSelected) {
-                onClick(null);
-            }
-        }
-    }, [pathname]);
 
     const { orientation, variant, isFitted, color, size } = useContext(TabContext);
 
@@ -103,14 +95,14 @@ const TabList = forwardRef((props: TabListProps, ref) => {
             return child.props.isDisabled === true ? null : index;
         }
         return null;
-    }).filter(index => index != null);
+    }).filter((index) => index != null);
 
     const enabledSelectedIndex = focusableIndexes.indexOf(selectedIndex);
     const count = focusableIndexes.length;
 
-    const enableSmartScrolling = index => {
+    const enableSmartScrolling = (index) => {
         // smart tab scrolling to center active tab
-        const currentTab = allNodes.current[index].getBoundingClientRect();
+        const currentTab = allNodes.current[index]?.getBoundingClientRect();
         const tabListProps = tabListRef?.current?.getBoundingClientRect();
         const containerProps = tabContainerRef?.current;
 
@@ -146,7 +138,7 @@ const TabList = forwardRef((props: TabListProps, ref) => {
         }
     };
 
-    const updateIndex = index => {
+    const updateIndex = (index) => {
         const childIndex = focusableIndexes[index];
         allNodes.current[childIndex].focus();
 
@@ -157,7 +149,7 @@ const TabList = forwardRef((props: TabListProps, ref) => {
         }
     };
 
-    const handleKeyDown = event => {
+    const handleKeyDown = (event) => {
         if (event.key === 'ArrowRight') {
             event.preventDefault();
             const nextIndex = (enabledSelectedIndex + 1) % count;
@@ -192,10 +184,14 @@ const TabList = forwardRef((props: TabListProps, ref) => {
         }
     };
 
+    useEffect(() => {
+        enableSmartScrolling(selectedIndex);
+    }, []);
+
     const clones = Children.map(children, (child: React.ReactElement, index) => {
         const isSelected = isManual ? index === manualIndex : index === selectedIndex;
 
-        const handleClick = event => {
+        const handleClick = (event) => {
             // Hack for Safari. Buttons don't receive focus on click on Safari
             // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#Clicking_and_focus
             allNodes.current[index].focus();
@@ -246,7 +242,7 @@ const TabPanel = forwardRef(
     ({ children, isSelected, selectedPanelRef, id, ...rest }: TabPanelProps, ref: RefObject<HTMLDivElement>) => {
         return (
             <Box
-                ref={node => {
+                ref={(node) => {
                     if (isSelected) {
                         assignRef(selectedPanelRef, node);
                     }
@@ -335,7 +331,7 @@ const Tabs = forwardRef(
         const actualIdx = getActualIdx();
         const manualIdx = isControlled ? controlledIndex : manualIndex;
 
-        const onChangeTab = index => {
+        const onChangeTab = (index) => {
             if (!isControlled) {
                 setSelectedIndex(index);
             }
@@ -349,7 +345,7 @@ const Tabs = forwardRef(
             }
         };
 
-        const onManualTabChange = index => {
+        const onManualTabChange = (index) => {
             if (!isControlled) {
                 setManualIndex(index);
             }

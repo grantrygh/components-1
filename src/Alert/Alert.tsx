@@ -31,7 +31,7 @@ export const AlertTitle = (props: BoxProps) => <Heading kind="h6" {...props} />;
 
 export const AlertDescription = (props: BoxProps) => <Text {...props} />;
 
-export const AlertIcon = props => {
+export const AlertIcon = (props) => {
     const { status, variant } = useContext(AlertContext);
     const { status: statusProps } = useAlertStyle({ variant, status });
     const iconStyleProps = useAlertIconStyle({
@@ -41,7 +41,7 @@ export const AlertIcon = props => {
 
     return (
         <Box {...iconStyleProps}>
-            <Icon mr={3} size={5} name={statusProps.icon} {...props} />
+            <Icon mr={3} size={5} name={statusProps.icon} {...props} color="inherit" />
         </Box>
     );
 };

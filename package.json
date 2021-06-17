@@ -2,7 +2,6 @@
     "name": "@audentio/stuff",
     "version": "1.2.2",
     "description": "React component library by Audentio",
-    "main": "lib/index.js",
     "scripts": {
         "test": "jest --passWithNoTests",
         "start": "yarn example:styleguide",
@@ -124,9 +123,8 @@
         "use-dark-mode": "2.3.1"
     },
     "exports": {
-        ".": "./lib/index.js",
-        "./src/*": "./src/*",
-        "./lib/*": "./lib/*"
+        "./*": "./src/*",
+        "./src/*": "./src/*"
     },
     "snyk": true,
     "peerDependencies": {

@@ -3,7 +3,7 @@ import React from 'react';
 import { tailwindPreflight } from './preflight';
 import { CSSResetProps } from './types';
 
-const defaultConfig = theme => ({
+const defaultConfig = (theme) => ({
     color: theme.colors.gray[800],
     bg: undefined,
     borderColor: theme.colors.gray[200],
@@ -11,7 +11,7 @@ const defaultConfig = theme => ({
 });
 
 export const CSSReset = ({ config }: CSSResetProps) => {
-    const configCSS = theme => {
+    const configCSS = (theme) => {
         const _defaultConfig = defaultConfig(theme);
 
         const _config = config ? config(theme, _defaultConfig) : defaultConfig(theme);
@@ -23,6 +23,7 @@ export const CSSReset = ({ config }: CSSResetProps) => {
                 line-height: 1.5;
                 color: ${color};
                 background-color: ${bg};
+                font-size: '87.5%';
             }
 
             body {
@@ -64,5 +65,5 @@ export const CSSReset = ({ config }: CSSResetProps) => {
         `;
     };
 
-    return <Global styles={theme => css([tailwindPreflight(theme), configCSS(theme)])} />;
+    return <Global styles={(theme) => css([tailwindPreflight(theme), configCSS(theme)])} />;
 };

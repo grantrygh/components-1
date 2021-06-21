@@ -23,7 +23,7 @@ export const CSSReset = ({ config }: CSSResetProps) => {
                 line-height: 1.5;
                 color: ${color};
                 background-color: ${bg};
-                font-size: '87.5%';
+                font-size: 87.5%;
             }
 
             body {

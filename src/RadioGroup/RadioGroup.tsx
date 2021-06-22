@@ -26,6 +26,7 @@ export const RadioGroup = forwardRef(
             skipFormChange,
             value: valueProp,
             schema,
+            content,
             children,
             ...rest
         }: RadioGroupProps,
@@ -47,7 +48,7 @@ export const RadioGroup = forwardRef(
 
         const rootRef: RefObject<any> = useRef();
 
-        const _onChange = event => {
+        const _onChange = (event) => {
             if (!isControlled) {
                 setValue(event.target.value);
             }
@@ -65,13 +66,10 @@ export const RadioGroup = forwardRef(
             if (!isValidElement(child)) {
                 return null;
             }
-
-            const isLastRadio = children.length === index + 1;
-            const spacingProps = isInline ? { mr: 'spacing' } : { mb: 'spacing-xs' };
             const isChecked = child.props.value === _value ? true : undefined;
 
             return (
-                <Box display={isInline ? 'inline-block' : 'block'} {...(!isLastRadio && spacingProps)}>
+                <>
                     {cloneElement(child, {
                         size: child.props.size || size,
                         variantColor: child.props.variantColor || variantColor,
@@ -81,7 +79,8 @@ export const RadioGroup = forwardRef(
                         // set undefined to avoid having values for both isChecked and defaultIsChecked
                         defaultIsChecked: !isChecked ? child.props.value === initialRadioValue : undefined,
                     })}
-                </Box>
+                    {content && content[index]}
+                </>
             );
         });
 
@@ -104,10 +103,8 @@ export const RadioGroup = forwardRef(
             []
         );
 
-        const spacingProps = isInline ? { mr: 'spacing' } : { mb: 'spacing' };
-
         return (
-            <FormControlWrapper id={name} error={errors} {...rest} {...spacingProps}>
+            <FormControlWrapper id={name} error={errors} {...rest}>
                 <Box ref={rootRef} role="radiogroup" {...rest}>
                     {clones}
                 </Box>

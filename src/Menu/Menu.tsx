@@ -304,7 +304,7 @@ const MenuList = ({ usePortal = false, onKeyDown, onBlur, ...props }: MenuListPr
             anchorEl={buttonRef.current}
             placement={placement}
             modifiers={{
-                preventOverflow: { boundariesElement: 'viewport' },
+                preventOverflow: { enabled: true, boundariesElement: 'window' },
             }}
             role="menu"
             ref={menuRef}
@@ -359,6 +359,9 @@ const MenuItem = forwardRef(
                         const nextIndex = focusableItems.current.indexOf(event.currentTarget);
                         focusAtIndex(nextIndex);
                     }
+                })}
+                onMouseLeave={wrapEvent(onMouseLeave, () => {
+                    focusAtIndex(-1);
                 })}
                 onKeyDown={wrapEvent(onKeyDown, (event) => {
                     if (isDisabled) return;

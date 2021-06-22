@@ -9,7 +9,6 @@ import React, {
     useRef,
     useState,
 } from 'react';
-import { Box } from '../Box';
 import { useFormField } from '../Form';
 import { FormControlWrapper } from '../FormControl';
 import { RadioGroupProps } from './types';
@@ -104,10 +103,8 @@ export const RadioGroup = forwardRef(
         );
 
         return (
-            <FormControlWrapper id={name} error={errors} {...rest}>
-                <Box ref={rootRef} role="radiogroup" {...rest}>
-                    {clones}
-                </Box>
+            <FormControlWrapper id={name} error={errors} ref={rootRef} role="radiogroup" {...rest}>
+                {clones}
             </FormControlWrapper>
         );
     }

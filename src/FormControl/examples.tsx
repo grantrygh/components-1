@@ -1,13 +1,16 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import { FormControl } from '.';
-import { FormErrorMessage, Input, InputGroup, Select } from '..';
 import { Box } from '../Box';
+import { FormErrorMessage } from '../FormErrorMessage';
 import { FormHelperText } from '../FormHelperText';
 import { FormLabel } from '../FormLabel';
+import { Input } from '../Input';
 import { InputLeftAddon } from '../InputAddon';
+import { InputGroup } from '../InputGroup';
+import { Select } from '../Select';
 
-const stories = storiesOf('FormControl', module).addDecorator(story => (
+const stories = storiesOf('FormControl', module).addDecorator((story) => (
     <Box maxWidth="sm" mx="auto" mt={5}>
         {story()}
     </Box>

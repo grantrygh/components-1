@@ -22,9 +22,9 @@ const CustomTooltip = ({ active = null, payload = null, label = null, items }) =
         return (
             <Box bg="cardBg" boxShadow="menu" p={3}>
                 <Heading kind="h6">{payload && payload[0].payload.name}</Heading>
-                {items.map((item, index) => {
-                    return <Text key={item.key}>{`${item.title}: ${payload && payload[index].value}`}</Text>;
-                })}
+                {items.map((item, index) => (
+                    <Text key={item.key}>{`${item.title}: ${payload && payload[index].value}`}</Text>
+                ))}
             </Box>
         );
     }
@@ -32,9 +32,7 @@ const CustomTooltip = ({ active = null, payload = null, label = null, items }) =
     return null;
 };
 
-const renderLegendText = (value, entry, index, items) => {
-    return <Text d="inline-block">{items[index]?.title}</Text>;
-};
+const renderLegendText = (value, entry, index, items) => <Text d="inline-block">{items[index]?.title}</Text>;
 
 export const BarGraph = ({ data, items = [], height = 300, colorOverride, ...props }: BarGraphProps) => {
     const {

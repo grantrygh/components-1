@@ -4,13 +4,11 @@ import { Box } from '../Box';
 import { AreaGraph, BarGraph } from './Graph';
 
 const stories = storiesOf('Graph', module);
-stories.addDecorator((story) => {
-    return (
-        <Box maxWidth="xl" mx="auto" mt={6} p={6}>
-            {story()}
-        </Box>
-    );
-});
+stories.addDecorator((story) => (
+    <Box maxWidth="xl" mx="auto" mt={6} p={6}>
+        {story()}
+    </Box>
+));
 
 const data = [
     {
@@ -61,26 +59,26 @@ const items = [
     },
 ];
 
-stories.add('Area Graph', () => {
-    return (
-        <Box>
-            <AreaGraph data={data} items={items} />
-        </Box>
-    );
-});
+stories.add('Area Graph', () => (
+    <Box>
+        <AreaGraph data={data} items={items} />
+    </Box>
+));
 
-stories.add('Basic Area Graph', () => {
-    return (
-        <Box>
-            <AreaGraph basic data={data} items={[items[1]]} />
-        </Box>
-    );
-});
+stories.add('Basic Area Graph', () => (
+    <Box>
+        <AreaGraph basic data={data} items={[items[1]]} />
+    </Box>
+));
 
-stories.add('Bar Graph', () => {
-    return (
-        <Box>
-            <BarGraph data={data} items={items} />
-        </Box>
-    );
-});
+stories.add('Custom Colors', () => (
+    <Box>
+        <AreaGraph basic data={data} items={items} colorOverride={['red', 'green']} />
+    </Box>
+));
+
+stories.add('Bar Graph', () => (
+    <Box>
+        <BarGraph data={data} items={items} />
+    </Box>
+));

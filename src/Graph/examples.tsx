@@ -4,7 +4,7 @@ import { Box } from '../Box';
 import { AreaGraph, BarGraph } from './Graph';
 
 const stories = storiesOf('Graph', module);
-stories.addDecorator(story => {
+stories.addDecorator((story) => {
     return (
         <Box maxWidth="xl" mx="auto" mt={6} p={6}>
             {story()}
@@ -65,6 +65,14 @@ stories.add('Area Graph', () => {
     return (
         <Box>
             <AreaGraph data={data} items={items} />
+        </Box>
+    );
+});
+
+stories.add('Basic Area Graph', () => {
+    return (
+        <Box>
+            <AreaGraph basic data={data} items={[items[1]]} />
         </Box>
     );
 });

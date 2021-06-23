@@ -62,16 +62,6 @@ module.exports = {
     webpackFinal: (config) => {
         const { css, scss, js } = loaders;
 
-        // responsive images
-        config.module.rules.unshift({
-            test: /\.(jpe?g|png)$/i,
-            loader: 'responsive-loader',
-            options: {
-                // we'll use jimp until build perf becomes a problem
-                // adapter: require('responsive-loader/sharp'),
-            },
-        });
-
         config.resolve.modules.push(PATHS.base);
 
         // config.module.rules.push(css({ __DEV__: true, useStyleLoader: true, __BROWSER__: true }));

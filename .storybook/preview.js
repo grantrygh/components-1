@@ -45,12 +45,14 @@ const AppProvider = ({ children }) => {
                     Switch to {story.switchTo.label} mode
                 </Button>
             </Box>
-            <Box bg={story.pageBg} minHeight="100vh">
-                {children}
-            </Box>
+
+            {children}
             {/* </CurrentColorMode> */}
         </ThemeProvider>
     );
 };
 
 export const decorators = [(Story) => <AppProvider>{Story()}</AppProvider>];
+export const parameters = {
+    layout: 'centered',
+};

@@ -8,6 +8,9 @@ const defaultConfig = (theme) => ({
     bg: undefined,
     borderColor: theme.colors.gray[200],
     placeholderColor: theme.colors.gray[400],
+
+    // if true CSSReset won't set height: 100% on body,html,#root
+    noHeight: false,
 });
 
 export const CSSReset = ({ config }: CSSResetProps) => {
@@ -16,7 +19,7 @@ export const CSSReset = ({ config }: CSSResetProps) => {
 
         const _config = config ? config(theme, _defaultConfig) : defaultConfig(theme);
 
-        const { color, bg, borderColor, placeholderColor } = _config;
+        const { color, bg, borderColor, placeholderColor, noHeight } = _config;
 
         return css`
             html {
@@ -34,7 +37,7 @@ export const CSSReset = ({ config }: CSSResetProps) => {
             body,
             #root {
                 width: 100%;
-                height: 100%;
+                ${noHeight && 'height: 100%;'}
             }
 
             /**

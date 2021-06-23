@@ -85,7 +85,6 @@
     },
     "dependencies": {
         "@audentio/utils": "^4.4.2",
-        "@emotion/react": "^11.4.0",
         "@emotion/styled": "^10.0.27",
         "@reach/auto-id": "0.2.0",
         "@styled-system/css": "5.1.5",

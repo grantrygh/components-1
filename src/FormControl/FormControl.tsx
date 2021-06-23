@@ -16,7 +16,7 @@ export const useFormControlContext = () => {
     return context;
 };
 
-export const useFormControl = props => {
+export const useFormControl = (props) => {
     const context = useFormControlContext();
     if (!context) {
         return props;
@@ -54,11 +54,11 @@ export const FormControl = forwardRef(
 );
 
 // template for input groups
-export const FormControlWrapper = (props: FormControlProps) => {
+export const FormControlWrapper = forwardRef((props: FormControlProps, ref) => {
     const { children, label, id, helperText, error, ...rest } = props;
 
     return (
-        <FormControl isInvalid={!!error} {...rest}>
+        <FormControl ref={ref} isInvalid={!!error} {...rest}>
             {label && <FormLabel htmlFor={id}>{label}</FormLabel>}
             {children}
 
@@ -67,4 +67,4 @@ export const FormControlWrapper = (props: FormControlProps) => {
             {error && <FormErrorMessage id={`${id}-error`}>{error}</FormErrorMessage>}
         </FormControl>
     );
-};
+});

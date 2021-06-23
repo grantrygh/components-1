@@ -34,7 +34,7 @@ export const CheckboxGroup = ({
         if (checked) {
             newValues = [..._values, boxName];
         } else {
-            newValues = _values.filter(val => val !== boxName);
+            newValues = _values.filter((val) => val !== boxName);
         }
 
         // If CheckboxGroup is passed a name, child checkbox values are contained within one array.
@@ -74,7 +74,7 @@ export const CheckboxGroup = ({
                     size,
                     variantColor,
                     name: child.props.name || defCheckboxName,
-                    onChange: e => {
+                    onChange: (e) => {
                         _onChange(e, child.props.name || defCheckboxName);
                         if (typeof child.props.onChange === 'function') {
                             child.props.onChange(e);
@@ -94,9 +94,7 @@ export const CheckboxGroup = ({
 
     return (
         <FormControlWrapper id={firstChildName} error={errors} {...spacingProps} {...rest}>
-            <Box role="group" {...rest}>
-                {clones}
-            </Box>
+            {clones}
         </FormControlWrapper>
     );
 };

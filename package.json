@@ -120,6 +120,7 @@
     "react-lorem-component": "^0.13.0",
     "react-router-dom": "^5.2.0",
     "react-select": "^4.3.1",
+    "react-spring": "^9.2.3",
     "react-textarea-autosize": "^8.3.2",
     "recharts": "^2.0.9",
     "styled-system": "5.1.5",

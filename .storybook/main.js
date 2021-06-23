@@ -47,6 +47,15 @@ module.exports = {
         '@storybook/addon-actions/register',
         '@storybook/addon-storysource/register',
         '@storybook/addon-viewport/register',
+        {
+            name: '@storybook/addon-storysource',
+            options: {
+                rule: {
+                    test: [/\examples\.tsx?$/],
+                    include: [path.resolve(__dirname, '../src')], // You can specify directories
+                },
+            },
+        },
     ],
     babel: async (options) => {
         return {

@@ -1,15 +1,8 @@
-import { addDecorator, configure } from '@storybook/react';
-import React, { useState } from 'react';
+import { default as React, useState } from 'react';
 import { Box } from '../src/Box';
 import { Button } from '../src/Button';
 import { CSSReset } from '../src/CSSReset';
 import { ThemeProvider } from '../src/ThemeProvider';
-
-const req = require.context('../src', true, /examples\.(js|mdx|ts|tsx)$/);
-
-function loadStories() {
-    req.keys().forEach(filename => req(filename));
-}
 
 const storyStyle = {
     light: {
@@ -60,6 +53,4 @@ const AppProvider = ({ children }) => {
     );
 };
 
-addDecorator(story => <AppProvider>{story()}</AppProvider>);
-
-configure(loadStories, module);
+export const decorators = [(Story) => <AppProvider>{Story()}</AppProvider>];

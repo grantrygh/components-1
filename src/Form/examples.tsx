@@ -1,22 +1,20 @@
 import { storiesOf } from '@storybook/react';
 import React, { useState } from 'react';
 import { Form } from '.';
-import {
-    Button,
-    Checkbox,
-    CheckboxGroup,
-    Heading,
-    Input,
-    InputGroup,
-    NumberInput,
-    Radio,
-    RadioGroup,
-    Select,
-    Switch,
-    Text,
-} from '..';
 import { Box } from '../Box';
+import { Button } from '../Button';
+import { Checkbox } from '../Checkbox';
+import { CheckboxGroup } from '../CheckboxGroup';
+import { Heading } from '../Heading';
+import { Input } from '../Input';
+import { InputGroup } from '../InputGroup';
+import { NumberInput } from '../NumberInput';
+import { Radio } from '../Radio';
+import { RadioGroup } from '../RadioGroup';
+import { Select } from '../Select';
 import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from '../Slider';
+import { Switch } from '../Switch';
+import { Text } from '../Text';
 import { ToggleButton, ToggleGroup } from '../ToggleGroup';
 
 const stories = storiesOf('Form', module);

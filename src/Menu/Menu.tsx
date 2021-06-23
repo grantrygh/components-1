@@ -10,6 +10,7 @@ import { Popper } from '../Popper';
 import { PseudoBox } from '../PseudoBox';
 import { Text } from '../Text';
 import { getFocusables } from '../utils/getFocusables';
+import { useRouter } from '../utils/router';
 import { wrapEvent } from '../utils/wrapEvent';
 import { useMenuItemStyle, useMenuStyle } from './styles';
 import { MenuButtonProps, MenuContextProps, MenuGroupProps, MenuItemProps, MenuListProps, MenuProps } from './types';
@@ -47,7 +48,7 @@ const Menu = ({
 
     useEffect(() => {
         if (_isOpen && menuRef && menuRef.current) {
-            const focusables = getFocusables(menuRef.current).filter(node =>
+            const focusables = getFocusables(menuRef.current).filter((node) =>
                 ['menuitem', 'menuitemradio', 'menuitemcheckbox'].includes(node.getAttribute('role'))
             );
             focusableItems.current = menuRef.current ? focusables : [];
@@ -55,10 +56,10 @@ const Menu = ({
         }
     }, [_isOpen]);
 
-    const updateTabIndex = index => {
+    const updateTabIndex = (index) => {
         if (focusableItems.current && focusableItems.current.length > 0) {
             const nodeAtIndex = focusableItems.current[index];
-            focusableItems.current.forEach(node => {
+            focusableItems.current.forEach((node) => {
                 if (node !== nodeAtIndex) {
                     node.setAttribute('tabindex', -1);
                 }
@@ -69,7 +70,7 @@ const Menu = ({
 
     const resetTabIndex = () => {
         if (focusableItems.current) {
-            focusableItems.current.forEach(node => node.setAttribute('tabindex', -1));
+            focusableItems.current.forEach((node) => node.setAttribute('tabindex', -1));
         }
     };
 
@@ -105,7 +106,7 @@ const Menu = ({
         setActiveIndex(0);
     };
 
-    const focusAtIndex = index => {
+    const focusAtIndex = (index) => {
         setActiveIndex(index);
     };
 
@@ -201,7 +202,7 @@ const MenuButton = forwardRef(
                         openMenu();
                     }
                 })}
-                onKeyDown={wrapEvent(onKeyDown, event => {
+                onKeyDown={wrapEvent(onKeyDown, (event) => {
                     if (event.key === 'ArrowDown') {
                         event.preventDefault();
                         focusOnFirstItem();
@@ -220,7 +221,7 @@ const MenuButton = forwardRef(
 
 //
 
-const MenuList = ({ onKeyDown, onBlur, usePortal = false, ...props }: MenuListProps) => {
+const MenuList = ({ usePortal = false, onKeyDown, onBlur, ...props }: MenuListProps) => {
     const {
         activeIndex: index,
         isOpen,
@@ -232,12 +233,12 @@ const MenuList = ({ onKeyDown, onBlur, usePortal = false, ...props }: MenuListPr
         buttonRef,
         menuId,
         buttonId,
+        placement,
         menuRef,
         closeOnBlur,
-        placement,
     } = useMenuContext();
 
-    const handleKeyDown = event => {
+    const handleKeyDown = (event) => {
         const count = focusableItems.current && focusableItems.current.length;
         let nextIndex;
         if (event.key === 'ArrowDown') {
@@ -262,7 +263,9 @@ const MenuList = ({ onKeyDown, onBlur, usePortal = false, ...props }: MenuListPr
         if (/^[a-z0-9_-]$/i.test(event.key)) {
             event.stopPropagation();
             event.preventDefault();
-            const foundNode = focusableItems.current.find(item => item.textContent.toLowerCase().startsWith(event.key));
+            const foundNode = focusableItems.current.find((item) =>
+                item.textContent.toLowerCase().startsWith(event.key)
+            );
             if (foundNode) {
                 nextIndex = focusableItems.current.indexOf(foundNode);
                 focusAtIndex(nextIndex);
@@ -275,7 +278,7 @@ const MenuList = ({ onKeyDown, onBlur, usePortal = false, ...props }: MenuListPr
     };
 
     // Close the menu on blur
-    const handleBlur = event => {
+    const handleBlur = (event) => {
         if (
             closeOnBlur &&
             isOpen &&
@@ -301,7 +304,7 @@ const MenuList = ({ onKeyDown, onBlur, usePortal = false, ...props }: MenuListPr
             anchorEl={buttonRef.current}
             placement={placement}
             modifiers={{
-                preventOverflow: { enabled: true, boundariesElement: 'viewport' },
+                preventOverflow: { enabled: true, boundariesElement: 'window' },
             }}
             role="menu"
             ref={menuRef}
@@ -326,6 +329,7 @@ const MenuItem = forwardRef(
         const { focusableItems, focusAtIndex, closeOnSelect, closeMenu } = useMenuContext();
 
         const menuItemStyleProps = useMenuItemStyle(null);
+        const { router } = useRouter();
 
         return (
             <PseudoBox
@@ -335,7 +339,7 @@ const MenuItem = forwardRef(
                 tabIndex={-1}
                 disabled={isDisabled}
                 aria-disabled={isDisabled}
-                onClick={wrapEvent(onClick, event => {
+                onClick={wrapEvent(onClick, (event) => {
                     if (isDisabled) {
                         event.stopPropagation();
                         event.preventDefault();
@@ -345,7 +349,7 @@ const MenuItem = forwardRef(
                         closeMenu();
                     }
                 })}
-                onMouseEnter={wrapEvent(onMouseEnter, event => {
+                onMouseOver={wrapEvent(onMouseEnter, (event) => {
                     if (isDisabled) {
                         event.stopPropagation();
                         event.preventDefault();
@@ -359,10 +363,14 @@ const MenuItem = forwardRef(
                 onMouseLeave={wrapEvent(onMouseLeave, () => {
                     focusAtIndex(-1);
                 })}
-                onKeyDown={wrapEvent(onKeyDown, event => {
+                onKeyDown={wrapEvent(onKeyDown, (event) => {
                     if (isDisabled) return;
                     if (event.key === 'Enter' || event.key === ' ') {
                         event.preventDefault();
+
+                        if (props.href && router) {
+                            router.push(props.href);
+                        }
 
                         if (onClick) {
                             onClick(event);

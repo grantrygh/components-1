@@ -17,6 +17,10 @@ export interface IRadioGroup {
     onChange?: (event: React.ChangeEvent<HTMLInputElement>, value: IRadio['value']) => void;
     isInline?: boolean;
 
+    // additional content to be rendered outside of a radio item. allows for data between radio items for example
+    // based on item index, pass object such as content={{0: <Box />, 1: <Text />}}
+    content?: Object;
+
     // don't update the form field value.
     // Used in cases where just the functionality is needed, or handled externally, rather than storing value in the form.
     skipFormChange?: boolean;

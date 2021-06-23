@@ -3,7 +3,7 @@ TODO.md
 
 examples/dev
 
-storybook-build
+storybook-static
 .yarn/*
 !.yarn/patches
 !.yarn/releases

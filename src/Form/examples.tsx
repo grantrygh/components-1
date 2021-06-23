@@ -30,7 +30,7 @@ stories.add('Sample', () => {
                     e.preventDefault();
                     setFormValue(getFormValue());
                 }}
-                onChange={p => console.log(p)}
+                onChange={(p) => console.log(p)}
                 initialValue={{
                     cone: 'waffle',
                     first_name: 'testname',
@@ -111,13 +111,11 @@ stories.add('Sample', () => {
             {formValue && (
                 <Box>
                     <Heading kind="h4" />
-                    {Object.keys(formValue).map(key => {
-                        return (
-                            <Text>
-                                {key} : {formValue[key].toString()}
-                            </Text>
-                        );
-                    })}
+                    {Object.keys(formValue).map((key) => (
+                        <Text>
+                            {key} : {formValue[key].toString()}
+                        </Text>
+                    ))}
                 </Box>
             )}
         </Box>

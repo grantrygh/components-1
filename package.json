@@ -50,6 +50,7 @@
     "@audentio/eslint-config-standard": "^2.3.0",
     "@babel/cli": "^7.14.3",
     "@babel/core": "^7.14.3",
+    "@babel/plugin-proposal-private-property-in-object": "^7.14.5",
     "@babel/preset-env": "^7.14.4",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
@@ -77,6 +78,7 @@
     "jimp": "^0.16.1",
     "next": "10.2.3",
     "object-inspect": "^1.10.3",
+    "prop-types": "^15.7.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-remove-scroll": "^2.4.2",
@@ -92,6 +94,7 @@
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.8.0",
     "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
@@ -127,7 +130,8 @@
     "stylelint": "^13.13.1",
     "stylis": "^4.0.10",
     "toasted-notes": "3.2.0",
-    "use-dark-mode": "2.3.1"
+    "use-dark-mode": "2.3.1",
+    "yup": "^0.32.9"
   },
   "exports": {
     "./*": "./src/*",

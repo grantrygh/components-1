@@ -108,9 +108,14 @@ export const AreaGraph = ({
                         );
                     })}
                 </defs>
-                {!basic && <XAxis dataKey="name" {...axisStyleProps} />}
-                {!basic && <YAxis {...axisStyleProps} />}
-                {!basic && <CartesianGrid strokeDasharray="3 3" vertical={false} />}
+                {!basic && (
+                    <>
+                        <XAxis dataKey="name" {...axisStyleProps} />
+                        <YAxis {...axisStyleProps} />
+                        <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                    </>
+                )}
+
                 <Tooltip content={<CustomTooltip items={items} />} />
                 <Legend
                     formatter={(value, entry, index) => renderLegendText(value, entry, index, items)}

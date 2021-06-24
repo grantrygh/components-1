@@ -37,7 +37,7 @@ export const CSSReset = ({ config }: CSSResetProps) => {
             body,
             #root {
                 width: 100%;
-                ${noHeight && 'height: 100%;'}
+                ${!noHeight && 'height: 100%;'}
             }
 
             /**

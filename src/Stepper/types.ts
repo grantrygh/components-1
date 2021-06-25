@@ -33,7 +33,7 @@ interface IStepperItem {
     isCompleted?: boolean;
 
     size?: 'sm' | 'md';
-    children?: any;
+    children?: string | Function;
     orientation?: IStepper['orientation'];
 
     // size of the step divider

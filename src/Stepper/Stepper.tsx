@@ -1,7 +1,7 @@
-import CheckIcon from 'mdi-react/CheckIcon';
 import React, { Children, cloneElement, isValidElement } from 'react';
 import { Box } from '../Box';
 import { Button } from '../Button';
+import { Icon } from '../Icon';
 import { Tab, TabList, Tabs } from '../Tabs';
 import { Text } from '../Text';
 import useStepperStyle from './styles';
@@ -20,51 +20,9 @@ export const Stepper = ({
     children,
     ...props
 }: StepperProps) => {
-    // const totalSteps = () => {
-    //     return steps.length;
-    // };
-
-    // const completedSteps = () => {
-    //     return Object.keys(completed).length;
-    // };
-
-    // const isLastStep = () => {
-    //     return activeStep === totalSteps() - 1;
-    // };
-
-    // const allStepsCompleted = () => {
-    //     return completedSteps() === totalSteps();
-    // };
-
-    // const handleNext = () => {
-    //     const newActiveStep =
-    //         isLastStep() && !allStepsCompleted()
-    //             ? // It's the last step, but not all steps have been completed,
-    //               // find the first step that has been completed
-    //               steps.findIndex((step, i) => !(i in completed))
-    //             : activeStep + 1;
-    //     setActiveStep(newActiveStep);
-    // };
-
-    // const handleBack = () => {
-    //     setActiveStep(prevActiveStep => prevActiveStep - 1);
-    // };
-
     const handleStep = (step) => {
         setActiveStep(step);
     };
-
-    // const handleComplete = () => {
-    //     const newCompleted = completed;
-    //     newCompleted[activeStep] = true;
-    //     setCompleted(newCompleted);
-    //     handleNext();
-    // };
-
-    // const handleReset = () => {
-    //     setActiveStep(0);
-    //     setCompleted({});
-    // };
 
     const { root: stepperStyleProps } = useStepperStyle({
         orientation,
@@ -166,18 +124,24 @@ export const StepperItem = React.forwardRef(
                     >
                         {isCompleted && !isActive && (
                             <Box {...checkStyleProps}>
-                                <CheckIcon size={12} />
+                                <Icon name="check" size="12px" />
                             </Box>
                         )}
                         {isActive && <Box w="4px" h="4px" bg="primary.500" rounded="full" zIndex="base" />}
                     </Button>
-                    <Text
-                        ml={orientation === 'vertical' && 'spacing'}
-                        mt={orientation === 'horizontal' && 'spacing-sm'}
-                        state={isActive ? 'emphasis' : 'faint'}
-                    >
-                        {children}
-                    </Text>
+
+                    {typeof children === 'function' ? (
+                        children({ isActive })
+                    ) : (
+                        <Text
+                            ml={orientation === 'vertical' && 'spacing'}
+                            mt={orientation === 'horizontal' && 'spacing-sm'}
+                            state={isActive ? 'emphasis' : 'faint'}
+                        >
+                            {children}
+                        </Text>
+                    )}
+
                     {showDivider && orientation === 'horizontal' && (
                         <StepDivider
                             size={divider}

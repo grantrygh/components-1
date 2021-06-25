@@ -50,7 +50,7 @@ export const Stepper = ({
     //     setActiveStep(prevActiveStep => prevActiveStep - 1);
     // };
 
-    const handleStep = step => {
+    const handleStep = (step) => {
         setActiveStep(step);
     };
 
@@ -87,7 +87,8 @@ export const Stepper = ({
                         onClick: () => {
                             if (child.props.onClick) {
                                 child.props.onClick();
-                            } else {
+                            } else if (!child.props.href) {
+                                // if no StepperItem onClick or href
                                 handleStep(index);
                             }
                         },
@@ -143,7 +144,11 @@ export const StepperItem = React.forwardRef(
     ) => {
         const { button, divider } = sizeProps[size];
 
-        const { item: itemStyleProps, outer: outerStyleProps, check: checkStyleProps } = useStepperStyle({
+        const {
+            item: itemStyleProps,
+            outer: outerStyleProps,
+            check: checkStyleProps,
+        } = useStepperStyle({
             size,
             isCompleted,
             orientation,

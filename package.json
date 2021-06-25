@@ -21,7 +21,8 @@
     "jest": "./node_modules/.bin/jest",
     "snyk-protect": "snyk protect",
     "prepublishOnly": "npm run build",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "editorsdk": "pnpify --sdk vscode"
   },
   "repository": {
     "type": "git",
@@ -66,6 +67,7 @@
     "@storybook/react": "^6.2.9",
     "@types/recharts": "^2.0.0",
     "@types/styled-system": "5.1.11",
+    "@yarnpkg/pnpify": "^3.0.0-rc.7",
     "babel-loader": "^8.2.2",
     "copyfiles": "^2.4.1",
     "cypress": "^7.4.0",

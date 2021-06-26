@@ -105,4 +105,6 @@ export interface ModalContext extends ModalOptions, UseModalReturn {
      * The transition that should be used for the modal
      */
     motionPreset?: MotionPreset;
+
+    scrollBehavior: string;
 }

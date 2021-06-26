@@ -13,7 +13,7 @@ export interface IVideo {
     withLightbox?: boolean;
 
     error?: Error;
-    loading?: boolean;
+    loading?: 'eager' | 'lazy';
 
     full?: boolean;
     height?: number;

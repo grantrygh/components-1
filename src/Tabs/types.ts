@@ -74,7 +74,7 @@ export interface ITabList {
     /**
      * Outer layer styling for tablist
      */
-    containerStyle: { [key: string]: string };
+    containerStyle?: { [key: string]: string };
 }
 
 export type TabListProps = ITabList & FlexProps;

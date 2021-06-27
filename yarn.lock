@@ -78,6 +78,7 @@ __metadata:
     "@types/react-textarea-autosize": ^4.3.5
     "@types/recharts": ^2.0.0
     "@types/storybook__addon-info": ^5.2.3
+    "@types/styled-components": ^5.1.10
     "@types/styled-system": 5.1.11
     "@types/styled-system__css": 5.0.15
     "@types/styled-system__should-forward-prop": 5.1.2
@@ -5946,6 +5947,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/hoist-non-react-statics@npm:*":
+  version: 3.3.1
+  resolution: "@types/hoist-non-react-statics@npm:3.3.1"
+  dependencies:
+    "@types/react": "*"
+    hoist-non-react-statics: ^3.3.0
+  checksum: 16ab4c45d4920fa378c8be76554b10061247fc04d2c8af11bdb7d520b3967e9c06d7ad5efd9b0f1657fbc4d095f62c6e1325f03b9141eb1ef2c8095b96fd42f8
+  languageName: node
+  linkType: hard
+
 "@types/html-minifier-terser@npm:^5.0.0":
   version: 5.1.1
   resolution: "@types/html-minifier-terser@npm:5.1.1"
@@ -6475,6 +6486,17 @@ __metadata:
     "@storybook/react": ^5.2.0
     "@types/react": "*"
   checksum: 444156fdd2750ac1d7208066b4f0ecfcde7dacf5c83c38cd9c8911d47b4ddc512f8bd74f319a40df1285197908fe81694d6e39f88ecb8c9084dbbff5f293b049
+  languageName: node
+  linkType: hard
+
+"@types/styled-components@npm:^5.1.10":
+  version: 5.1.10
+  resolution: "@types/styled-components@npm:5.1.10"
+  dependencies:
+    "@types/hoist-non-react-statics": "*"
+    "@types/react": "*"
+    csstype: ^3.0.2
+  checksum: eba8385e96b819eff9ac9ac853a582295b09587e9268116e685d91f17f5e0e3223f3326f0fab38364f308d659282fbdf2745c433fb82decddb2384d62966d6bf
   languageName: node
   linkType: hard
 

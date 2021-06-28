@@ -4,10 +4,10 @@ import { IButton } from '../Button/types';
 import { PopperProps } from '../Popper/types';
 import { PseudoBoxProps } from '../PseudoBox/types';
 
-interface InternalState {
+type InternalState = {
     isOpen?: boolean;
     onClose?: () => void;
-}
+};
 
 type MenuChildren =
     | {
@@ -30,37 +30,37 @@ export type IMenu = {
 
 export type MenuProps = IMenu & MenuChildren;
 
-export interface IMenuButton {
+export type IMenuButton = {
     onClick?: React.MouseEventHandler<HTMLElement>;
     onKeyDown?: React.KeyboardEventHandler<HTMLElement>;
     variantColor?: IButton['variantColor'];
     variant?: IButton['variant'];
-}
+};
 export type MenuButtonProps = PseudoBoxProps & IMenuButton;
 
-export interface IMenuList {
+export type IMenuList = {
     onKeydown?: React.KeyboardEventHandler<HTMLElement>;
     onBlur?: React.FocusEventHandler<HTMLElement>;
-}
+};
 export type MenuListProps = IMenuList & PopperProps;
 
-interface IMenuItem {
+type IMenuItem = {
     isDisabled?: boolean;
     role?: 'menuitem' | 'menuitemradio' | 'menuitemcheckbox';
     onClick?: React.KeyboardEventHandler<HTMLElement>;
     onMouseLeave?: React.MouseEventHandler<HTMLElement>;
     onKeyDown?: React.KeyboardEventHandler<HTMLElement>;
     onMouseEnter?: React.MouseEventHandler<HTMLElement>;
-}
+};
 export type MenuItemProps = IMenuItem & PseudoBoxProps;
 
-interface IMenuGroup {
+type IMenuGroup = {
     title?: string;
     children: React.ReactNode;
-}
+};
 export type MenuGroupProps = IMenuGroup & BoxProps;
 
-export interface IMenuContext {
+export type IMenuContext = {
     activeIndex?: number;
     isOpen?: boolean;
     focusAtIndex?: (index: number) => void;
@@ -76,6 +76,6 @@ export interface IMenuContext {
     closeOnBlur?: boolean;
     autoSelect?: IMenu['autoSelect'];
     placement?: IMenu['placement'];
-}
+};
 
 export type MenuContextProps = IMenuContext;

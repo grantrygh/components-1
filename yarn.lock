@@ -70,8 +70,8 @@ __metadata:
     "@types/mdx-js__react": ^1.5.3
     "@types/object-inspect": ^1.8.0
     "@types/prop-types": ^15.7.3
-    "@types/react": 17.0.2
-    "@types/react-dom": 17.0.2
+    "@types/react": 17.0.11
+    "@types/react-dom": 17.0.8
     "@types/react-router": ^5.1.15
     "@types/react-router-dom": ^5.1.7
     "@types/react-select": ^4.0.16
@@ -139,8 +139,8 @@ __metadata:
     stylis: ^4.0.10
     toasted-notes: 3.2.0
     ts-loader: ^9.2.3
-    tslib: 2.1.0
-    typescript: 4.2.2
+    tslib: 2.3.0
+    typescript: 4.3.4
     use-dark-mode: 2.3.1
     webpack: ^5.40.0
     webpack-cli: ^4.7.2
@@ -6266,21 +6266,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:*":
+"@types/react-dom@npm:*, @types/react-dom@npm:17.0.8":
   version: 17.0.8
   resolution: "@types/react-dom@npm:17.0.8"
   dependencies:
     "@types/react": "*"
   checksum: 3859a6e06ec4545319c159ea71814beb3822801f0d4c41219855258557722cbcec8b5fba84551489169ec228b8817b4c05a8ef0dc87eb2bafb4d1431d1af9608
-  languageName: node
-  linkType: hard
-
-"@types/react-dom@npm:17.0.2":
-  version: 17.0.2
-  resolution: "@types/react-dom@npm:17.0.2"
-  dependencies:
-    "@types/react": "*"
-  checksum: abaadaa2629640870f4b982e3f32cf8f719773cfa97f02931baebef1993c0e2d70fd17f94b29bcf00d45ea099d5f04a042cf55ecb5e2bf8804c4e4cabdb4adc0
   languageName: node
   linkType: hard
 
@@ -6362,7 +6353,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*":
+"@types/react@npm:*, @types/react@npm:17.0.11":
   version: 17.0.11
   resolution: "@types/react@npm:17.0.11"
   dependencies:
@@ -6370,16 +6361,6 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: ed2b57e44e8da99b13a7b0cd7d9d9159e3113a5160e25c9deae4f577cfb87f05103b54bb0e9722f48a7db3ddb3a836ade12b971bbc338d397b719886fb81efff
-  languageName: node
-  linkType: hard
-
-"@types/react@npm:17.0.2":
-  version: 17.0.2
-  resolution: "@types/react@npm:17.0.2"
-  dependencies:
-    "@types/prop-types": "*"
-    csstype: ^3.0.2
-  checksum: de1cd27ce57a961379978f83676d60d88bf729337683d1d4cb22dd8f285ed4200db19f7243052dc67c80133fe6798da1497456fe6f67a5bba5f5e30ce2544bfa
   languageName: node
   linkType: hard
 
@@ -25445,10 +25426,10 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"tslib@npm:2.1.0":
-  version: 2.1.0
-  resolution: "tslib@npm:2.1.0"
-  checksum: d8f5bdd067611651c6b846c2388f4dc8ba1f5af124e66105f5263d1ad56da17f4b8c6566887ca2f205c5a9758451871ceca87d5d06087af2dca1699c5e33db69
+"tslib@npm:2.3.0, tslib@npm:^2.0.0, tslib@npm:^2.0.1, tslib@npm:^2.0.3, tslib@npm:^2.1.0":
+  version: 2.3.0
+  resolution: "tslib@npm:2.3.0"
+  checksum: 7b4fc9feff0f704743c3760f5d8d708f6417fac6458159e63df3a6b1100f0736e3b99edb9fe370f274ad15160a1f49ff05cb49402534c818ff552c48e38c3e6e
   languageName: node
   linkType: hard
 
@@ -25456,13 +25437,6 @@ resolve@^2.0.0-next.3:
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
   checksum: f44fe7f216946b17d3e3074df3746372703cf24e9127b4c045511456e8e4bf25515fb0a1bb3937676cc305651c5d4fcb6377b0588a4c6a957e748c4c28905d17
-  languageName: node
-  linkType: hard
-
-"tslib@npm:^2.0.0, tslib@npm:^2.0.1, tslib@npm:^2.0.3, tslib@npm:^2.1.0":
-  version: 2.3.0
-  resolution: "tslib@npm:2.3.0"
-  checksum: 7b4fc9feff0f704743c3760f5d8d708f6417fac6458159e63df3a6b1100f0736e3b99edb9fe370f274ad15160a1f49ff05cb49402534c818ff552c48e38c3e6e
   languageName: node
   linkType: hard
 
@@ -25626,23 +25600,23 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-typescript@4.2.2:
-  version: 4.2.2
-  resolution: "typescript@npm:4.2.2"
+typescript@4.3.4:
+  version: 4.3.4
+  resolution: "typescript@npm:4.3.4"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: b2e3d5551a12c51b6b7a14f0e78d2664c136fab4dfb3eecaaf7a6e8e7e608f2cf43c6ebe81387d194db2588793b769720d2df523d445a1664b7585c5b9a85984
+  checksum: 9791c5fe98db6cb70ec0efad8d3d2eb957b9643ee600b90bff49267de69768d0d5f59c41a8fd731cfd63df1ccfb2cb25505a2015d7b39ac10ea51f605a058e16
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@4.2.2#builtin<compat/typescript>":
-  version: 4.2.2
-  resolution: "typescript@patch:typescript@npm%3A4.2.2#builtin<compat/typescript>::version=4.2.2&hash=ddfc1b"
+"typescript@patch:typescript@4.3.4#builtin<compat/typescript>":
+  version: 4.3.4
+  resolution: "typescript@patch:typescript@npm%3A4.3.4#builtin<compat/typescript>::version=4.3.4&hash=ddfc1b"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: aa60765443932c0aa294cf24295a8bba163dd791735b20e2e43dffe2d21f6bf80de8342c9ab9c4338c59e36f4bcae179195fdfaae1cae4678821994e77199d34
+  checksum: c8766e84a4f71e925cc059af8286cc7f41819fe821d433b90c83e9b36729cbda7a8e4be3292d8a1433cd717d529c93217d58d173418f43862290b206bd88b284
   languageName: node
   linkType: hard
 

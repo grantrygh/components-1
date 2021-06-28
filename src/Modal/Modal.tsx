@@ -25,6 +25,7 @@ const useModalContext = () => useContext(ModalContext);
  *
  * It doesn't render any DOM node.
  */
+// @ts-ignore
 export const Modal: React.FC<ModalProps> = (props) => {
     const {
         portalProps,
@@ -217,16 +218,16 @@ export const ModalHeader = forwardRef((props: BoxProps, ref) => {
         return () => setHeaderMounted(false);
     }, [setHeaderMounted]);
 
-    const headerStyles = {
-        p: 'spacing',
-        flex: 0,
-        justify: 'space-between',
-        align: 'center',
-        color: 'titleText',
-    };
-
-    return <Flex pos="relative" ref={ref} id={headerId} as="header" {...headerStyles} {...props} />;
+    return <Flex pos="relative" ref={ref} id={headerId} as="header" {...modalHeaderStyles} {...props} />;
 });
+
+const modalHeaderStyles = {
+    p: 'spacing',
+    flex: 0,
+    justify: 'space-between',
+    align: 'center',
+    color: 'titleText',
+};
 
 export const ModalBody = forwardRef((props: BoxProps, ref) => {
     const { bodyId, setBodyMounted } = useModalContext();

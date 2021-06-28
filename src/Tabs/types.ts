@@ -70,6 +70,11 @@ export interface ITabList {
      * The children of the tab list should be `Tab`.
      */
     children: React.ReactNode;
+
+    /**
+     * Outer layer styling for tablist
+     */
+    containerStyle?: { [key: string]: string };
 }
 
 export type TabListProps = ITabList & FlexProps;

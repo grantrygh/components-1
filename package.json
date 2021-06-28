@@ -11,7 +11,7 @@
     "cy:open": "cypress open",
     "build:babel": "babel src --out-dir lib --extensions '.ts,.tsx,.js' --source-maps",
     "build:tsdecs": "tsc -d --target es5 --emitDeclarationOnly",
-    "release": "yarn build && release-it",
+    "release": "release-it",
     "jest": "./node_modules/.bin/jest",
     "snyk-protect": "snyk protect",
     "prepublishOnly": "yarn build",

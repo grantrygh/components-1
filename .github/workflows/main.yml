@@ -20,9 +20,16 @@ jobs:
   #     - uses: actions/checkout@v2
   #     - run: yarn eslint . --ext .js,.jsx,.ts,.tsx
 
+  build-lib:
+    name: Build component library
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: yarn build:babel
+      - run: yarn build:tsdecs
+
   build-storybook:
     name: Build storybook
-    # needs: lint
     env:
       NEXT_TELEMETRY_DISABLED: 1
     runs-on: ubuntu-latest

@@ -12,7 +12,7 @@ import useModalStyle, { useModalOverlayStyle, useModalWrapperStyle } from '../Mo
 import { Portal } from '../Portal';
 import { fadeConfig } from '../Transition/fade';
 import { ModalTransition } from './modal-transition';
-import { ModalContext as ModalContextType, ModalProps } from './types';
+import { ModalContentProps, ModalContext as ModalContextType, ModalProps } from './types';
 import { callAllHandlers, useModal } from './use-modal';
 
 // @ts-ignore
@@ -81,20 +81,13 @@ Modal.defaultProps = {
     motionPreset: 'scale',
 };
 
-export interface ModalContentProps {
-    /**
-     * The props to forward to the modal's content wrapper
-     */
-    containerProps?: any;
-}
-
 const MotionDiv = motion.div;
 
 /**
  * ModalContent is used to group modal's content. It has all the
  * necessary `aria-*` properties to indicate that it is a modal
  */
-export const ModalContent = forwardRef((props: ModalContentProps & BoxProps, ref) => {
+export const ModalContent = forwardRef((props: ModalContentProps, ref) => {
     const { children, containerProps: rootProps, ...rest } = props;
 
     const { getDialogProps, getDialogContainerProps, size, isCentered, noStyles, scrollBehavior } = useModalContext();

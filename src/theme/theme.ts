@@ -157,4 +157,4 @@ export const baseTheme = ({ providedTheme = {}, mode = 'light' }) => {
 
 export const theme = baseTheme({});
 
-export type ThemeType = typeof theme;
+export type ThemeType = Omit<typeof theme, 'styles'> & { styles: any };

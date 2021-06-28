@@ -49,6 +49,8 @@ export const Link = forwardRef(({ isDisabled, onClick, href, ...rest }: LinkProp
         // use next/link inside next apps
         return (
             // next/link: child must be an anchor which wraps the link content
+            // it's safe but typescript doesn't know this
+            // @ts-ignore
             <RouterLink href={linkHref}>
                 <PseudoBox
                     ref={ref}

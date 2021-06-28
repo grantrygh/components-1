@@ -5,6 +5,7 @@ interface Config {
     bg: string;
     borderColor: string;
     placeholderColor: string;
+    noHeight: boolean;
 }
 
 export type CSSResetProps = {

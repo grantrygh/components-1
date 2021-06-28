@@ -1,3 +1,5 @@
+/// <reference path="./images.d.ts" />
+
 import React from 'react';
 import { Box } from '../Box';
 import { Button } from '../Button';
@@ -48,7 +50,7 @@ export const UpdateBrowser = ({ onClick, href, children, ...props }: UpdateBrows
                     features.
                 </Text>
                 <Box w="100%" maxWidth="992px" margin="16px auto" textAlign="center">
-                    {browsers.map(browser => (
+                    {browsers.map((browser) => (
                         <Link {...browserBoxStyleProps} href={browser.href} key={browser.name}>
                             <Image htmlWidth="70px" src={browser.logo} margin="0 auto 10px" />
                             <Text>{browser.name}</Text>

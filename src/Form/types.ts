@@ -1,4 +1,4 @@
-import { Schema } from 'yup';
+import { AnySchema as Schema } from 'yup';
 import { BoxProps } from '../Box/types';
 
 export interface FormValue {
@@ -12,8 +12,9 @@ export type FormContextType = {
     onChange: Function;
     registerField: Function;
     clearForm: Function;
-    getFormFieldError: Function;
-    deleteFormFieldError: Function;
+    getFormFieldError?: Function;
+    deleteFormFieldError?: Function;
+    context?: any;
 };
 
 export interface FormFieldProps {

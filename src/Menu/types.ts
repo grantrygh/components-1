@@ -15,7 +15,7 @@ type MenuChildren =
       }
     | { children: (props: InternalState) => React.ReactNode };
 
-export interface IMenu {
+export type IMenu = {
     isOpen?: boolean;
     autoSelect?: boolean;
     closeOnBlur?: boolean;
@@ -26,7 +26,7 @@ export interface IMenu {
     onClose?: () => void;
     defaultActiveIndex?: number;
     placement?: PopperProps['placement'];
-}
+};
 
 export type MenuProps = IMenu & MenuChildren;
 

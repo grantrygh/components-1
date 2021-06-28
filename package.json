@@ -14,7 +14,6 @@
     "release": "release-it",
     "jest": "./node_modules/.bin/jest",
     "snyk-protect": "snyk protect",
-    "prepublishOnly": "yarn build",
     "editorsdk": "pnpify --sdk vscode",
     "example:next": "yarn --cwd ./examples/next dev",
     "example:admin": "EXAMPLE=admin-ui ./node_modules/.bin/webpack serve --config ./webpack/example-dev.js",

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BoxProps } from '../Box/types';
 
-interface ILabelProps {
+type ILabelProps = {
     isInvalid?: boolean;
     /**
      * This prop is read from the `FormControl` context but can be passed as well.
@@ -9,6 +9,6 @@ interface ILabelProps {
      */
     isDisabled?: boolean;
     children: React.ReactNode;
-}
+};
 
 export type FormLabelProps = ILabelProps & BoxProps & React.LabelHTMLAttributes<any>;

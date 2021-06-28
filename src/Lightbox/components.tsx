@@ -1,3 +1,4 @@
+// @ts-ignore
 import lightboxTheme from '!file-loader!react-image-lightbox/style.css'; /* eslint-disable-line import/no-webpack-loader-syntax, import/order  */
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';

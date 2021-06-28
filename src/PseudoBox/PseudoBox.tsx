@@ -98,10 +98,10 @@ export const PseudoBox = styled(Box)(
             '&:after': tx(_after),
             '&:hover:after': tx(_hoverAfter),
             '&:focus-within': tx(_focusWithin),
-            '&::placeholder': _placeholder,
-            '&::-webkit-scrollbar': _scrollbar,
-            '&::-webkit-scrollbar-track': _track,
-            '&::-webkit-scrollbar-thumb': _thumb,
+            '&::placeholder': tx(_placeholder),
+            '&::-webkit-scrollbar': tx(_scrollbar),
+            '&::-webkit-scrollbar-track': tx(_track),
+            '&::-webkit-scrollbar-thumb': tx(_thumb),
         });
     }
 );

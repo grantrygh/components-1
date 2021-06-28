@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BoxProps } from '../Box/types';
 
-interface ICircularProgress {
+type ICircularProgress = {
     /**
      * The size of the circular progress in CSS units
      */
@@ -48,7 +48,7 @@ interface ICircularProgress {
      * Defaults to theme variable color: "progress"
      */
     color?: string;
-}
+};
 
 export type CircularProgressProps = BoxProps & ICircularProgress;
 

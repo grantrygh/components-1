@@ -31,7 +31,7 @@ const AppProvider = ({ children }) => {
 
     return (
         <ThemeProvider>
-            <CSSReset />
+            <CSSReset config={(theme, defaultConfig) => ({ ...defaultConfig, noHeight: true })} />
             {/* <CurrentColorMode> */}
             <Box position="fixed" right={4} top={4} zIndex={1}>
                 <Button

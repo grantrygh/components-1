@@ -3,6 +3,7 @@ import React, { forwardRef } from 'react';
 import InView from 'react-intersection-observer';
 import { Box } from '../Box';
 import { valueToPercent } from '../Slider/utils';
+import { ProgressProps } from './types';
 
 export const AnimatedProgressIndicator = (props) => {
     return (
@@ -15,7 +16,7 @@ export const AnimatedProgressIndicator = (props) => {
 };
 
 export const AnimatedProgressIndicatorBar = forwardRef(
-    ({ isIndeterminate = false, min, max, value, baseColor = null, inView = true, ...rest }, ref) => {
+    ({ isIndeterminate = false, min, max, value, baseColor = null, inView = true, ...rest }: ProgressProps, ref) => {
         const percent = valueToPercent(value, min, max);
 
         return (

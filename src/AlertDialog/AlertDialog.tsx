@@ -3,14 +3,16 @@ import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHea
 import { ModalContentProps } from '../Modal/types';
 import { IAlertDialog } from './types';
 
-const formatIds = id => ({
-    content: `alert-dialog-${id}`,
-    header: `alert-dialog-${id}-label`,
-    body: `alert-dialog-${id}-desc`,
-});
+// const formatIds = id => ({
+//     content: `alert-dialog-${id}`,
+//     header: `alert-dialog-${id}-label`,
+//     body: `alert-dialog-${id}-desc`,
+// });
 
 const AlertDialog = ({ leastDestructiveRef, children, ...props }: IAlertDialog) => (
-    <Modal formatIds={formatIds} initialFocusRef={leastDestructiveRef} {...props}>
+    // TODO: @grantr
+    // confirm formatIds isn't needed
+    <Modal /*formatIds={formatIds}*/ initialFocusRef={leastDestructiveRef} {...props}>
         {children}
     </Modal>
 );

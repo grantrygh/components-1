@@ -3,7 +3,7 @@ import { BoxProps } from '../Box/types';
 import { Omit } from '../common-types';
 import { PseudoBoxProps } from '../PseudoBox';
 
-interface ISlider {
+type ISlider = {
     value?: number;
     defaultValue?: number;
     isDisabled?: boolean;
@@ -32,7 +32,7 @@ interface ISlider {
      * will display the current slider value next to the slider
      */
     showValue?: boolean;
-}
+};
 
 interface ISliderContext {
     trackRef?: React.RefObject<any>;

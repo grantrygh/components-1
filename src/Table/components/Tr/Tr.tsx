@@ -67,7 +67,7 @@ const ExpandedRow = (props) => {
             borderBottomWidth={expanded ? 1 : 0}
             borderColor="border"
         >
-            <Td colSpan="100%">
+            <Td colSpan={100}>
                 <Collapse my="spacing" isOpen={expanded}>
                     {expandedContent}
                 </Collapse>

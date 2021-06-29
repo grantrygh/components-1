@@ -17,7 +17,7 @@ interface IMenuOptionGroup {
 
 export type MenuOptionGroupProps = MenuGroupProps & IMenuOptionGroup;
 
-interface IMenuItemOption {
+type IMenuItemOption = {
     children: React.ReactNode;
     isDisabled?: boolean;
     isChecked?: boolean;
@@ -27,6 +27,6 @@ interface IMenuItemOption {
     onKeyDown?: React.KeyboardEventHandler<HTMLElement>;
     onMouseMove?: React.MouseEventHandler<HTMLElement>;
     value?: string | number;
-}
+};
 
 export type MenuItemOptionProps = PseudoBoxProps & IMenuItemOption;

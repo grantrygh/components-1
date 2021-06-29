@@ -9,7 +9,7 @@ import { ButtonGroup } from '../ButtonGroup';
 
 const stories = storiesOf('Button', module);
 stories.addDecorator(withKnobs);
-stories.addDecorator(story => {
+stories.addDecorator((story) => {
     return (
         <Box mx="auto" mt={6} p={6}>
             {story()}

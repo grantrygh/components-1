@@ -1,6 +1,6 @@
 import { BoxProps } from '../Box/types';
 
-interface IStepper {
+type IStepper = {
     // Array of steps in the steper
     steps?: Array<any>;
 
@@ -19,9 +19,9 @@ interface IStepper {
     setActiveStep?: (args: number) => void;
     orientation?: 'vertical' | 'horizontal';
     children?: React.ReactNode;
-}
+};
 
-interface IStepperItem {
+type IStepperItem = {
     onClick?: () => any;
     // defaults to the last index step item not showing the divider;
     showDivider?: boolean;
@@ -33,16 +33,16 @@ interface IStepperItem {
     isCompleted?: boolean;
 
     size?: 'sm' | 'md';
-    children?: any;
+    children?: string | Function;
     orientation?: IStepper['orientation'];
 
     // size of the step divider
     spacing?: number;
-}
+};
 
-interface IStepDivider {
+type IStepDivider = {
     buttonSize?: number;
-}
+};
 
 export type StepperProps = IStepper & BoxProps;
 export type StepperItemProps = IStepperItem & BoxProps;

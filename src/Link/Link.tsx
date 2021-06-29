@@ -25,14 +25,20 @@ export const Link = forwardRef(({ isDisabled, onClick, href, ...rest }: LinkProp
     const { Link: RouterLink, id } = useRouter();
 
     function getHref() {
-        if (href && typeof window !== 'undefined' && href.indexOf(window?.location.origin) === 0) {
+        if (
+            href &&
+            typeof href === 'string' &&
+            typeof window !== 'undefined' &&
+            href.indexOf(window?.location.origin) === 0
+        ) {
             return href.replace(window?.location.origin, '');
         }
+
         return href;
     }
 
     const linkHref = getHref();
-    const isExternal = isExternalUrl(linkHref);
+    const isExternal = typeof href === 'string' && isExternalUrl(linkHref);
 
     let linkProps = {};
 
@@ -43,6 +49,8 @@ export const Link = forwardRef(({ isDisabled, onClick, href, ...rest }: LinkProp
         // use next/link inside next apps
         return (
             // next/link: child must be an anchor which wraps the link content
+            // it's safe but typescript doesn't know this
+            // @ts-ignore
             <RouterLink href={linkHref}>
                 <PseudoBox
                     ref={ref}

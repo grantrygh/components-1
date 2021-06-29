@@ -1,0 +1,95 @@
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+
+name: main
+concurrency: 
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # lint:
+  #   name: Lint codebase
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - run: yarn eslint . --ext .js,.jsx,.ts,.tsx
+
+  build-lib:
+    name: Build component library
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: yarn
+      - run: yarn build:babel
+      - run: yarn build:tsdecs
+
+  build-storybook:
+    name: Build storybook
+    env:
+      NEXT_TELEMETRY_DISABLED: 1
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: yarn
+      - run: yarn build-storybook
+      - uses: actions/cache@v2
+        id: cache-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+
+  # github_release:
+  #   runs-on: ubuntu-latest
+  #   needs: cypress
+  #   if: ${{ github.repository == 'Audentio/poolparty-frontend' && github.event_name == 'push' }}
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: 0
+  #     - name: git config
+  #       run: |
+  #         git config user.name "${GITHUB_ACTOR}"
+  #         git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+  #     - run: yarn release
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.RELEASE_IT }}
+  #         RELEASE_IT: ${{ secrets.RELEASE_IT }}
+  #     - name: downcase REPO
+  #       run: |
+  #         echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
+  #     - uses: nelonoel/branch-name@v1.0.1
+  #     - name: Slack Notification
+  #       if: ${{ success() }}
+  #       uses: rtCamp/action-slack-notify@v2
+  #       env:
+  #         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+  #         SLACK_COLOR: ${{ job.status }}
+  #         SLACK_TITLE: A wild release appeared!
+  #         MSG_MINIMAL: actions url,commit
+  #         SLACK_FOOTER: "<https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-docker-registry#authenticating-with-a-personal-access-token|required: login to github docker registry>"
+  #         SLACK_MESSAGE: >
+  #           <https://github.com/Audentio/${{ env.REPO }}/blob/${{ env.BRANCH }}/CHANGELOG.md: view changelog>
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-storybook
+    name: Deploy to Github Pages
+    if: ${{ github.event_name != 'pull_request' }}
+    steps:
+      # restore built files
+      - uses: actions/cache@v2
+        id: restore-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages
+          folder: storybook-static

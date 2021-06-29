@@ -1,15 +1,8 @@
-import { addDecorator, configure } from '@storybook/react';
-import React, { useState } from 'react';
+import { default as React, useState } from 'react';
 import { Box } from '../src/Box';
 import { Button } from '../src/Button';
 import { CSSReset } from '../src/CSSReset';
 import { ThemeProvider } from '../src/ThemeProvider';
-
-const req = require.context('../src', true, /examples\.(js|mdx|ts|tsx)$/);
-
-function loadStories() {
-    req.keys().forEach(filename => req(filename));
-}
 
 const storyStyle = {
     light: {
@@ -38,7 +31,7 @@ const AppProvider = ({ children }) => {
 
     return (
         <ThemeProvider>
-            <CSSReset />
+            <CSSReset config={(theme, defaultConfig) => ({ ...defaultConfig, noHeight: true })} />
             {/* <CurrentColorMode> */}
             <Box position="fixed" right={4} top={4} zIndex={1}>
                 <Button
@@ -52,14 +45,14 @@ const AppProvider = ({ children }) => {
                     Switch to {story.switchTo.label} mode
                 </Button>
             </Box>
-            <Box bg={story.pageBg} minHeight="100vh">
-                {children}
-            </Box>
+
+            {children}
             {/* </CurrentColorMode> */}
         </ThemeProvider>
     );
 };
 
-addDecorator(story => <AppProvider>{story()}</AppProvider>);
-
-configure(loadStories, module);
+export const decorators = [(Story) => <AppProvider>{Story()}</AppProvider>];
+export const parameters = {
+    layout: 'centered',
+};

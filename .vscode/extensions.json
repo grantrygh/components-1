@@ -1,17 +1,19 @@
 {
-    "recommendations": [
-        "jpoissonnier.vscode-styled-components",
-        "CoenraadS.bracket-pair-colorizer",
-        "christian-kohler.path-intellisense",
-        "audentio.audentio-javascript-snippets",
-        "DigitalBrainstem.javascript-ejs-support",
-        "clinyong.vscode-css-modules",
-        "mrmlnc.vscode-scss",
-        "dbaeumer.vscode-eslint",
-        "aaron-bond.better-comments",
-        "esbenp.prettier-vscode",
-        "msjsdiag.debugger-for-chrome",
-        "fabiospampinato.vscode-projects-plus",
-        "eamodio.gitlens"
-    ]
+  "recommendations": [
+    "jpoissonnier.vscode-styled-components",
+    "CoenraadS.bracket-pair-colorizer",
+    "christian-kohler.path-intellisense",
+    "audentio.audentio-javascript-snippets",
+    "DigitalBrainstem.javascript-ejs-support",
+    "clinyong.vscode-css-modules",
+    "mrmlnc.vscode-scss",
+    "dbaeumer.vscode-eslint",
+    "aaron-bond.better-comments",
+    "esbenp.prettier-vscode",
+    "msjsdiag.debugger-for-chrome",
+    "fabiospampinato.vscode-projects-plus",
+    "eamodio.gitlens",
+    "arcanis.vscode-zipfs",
+    "stylelint.vscode-stylelint"
+  ]
 }

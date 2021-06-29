@@ -1,30 +1,14 @@
+import '@emotion/react';
+import { ThemeType } from './theme';
+
+declare module '@emotion/react' {
+    export interface Theme extends ThemeType {}
+}
 /* eslint-disable */
 
 declare module '*.scss' {
     const obj: { [key: string]: string };
     export default obj;
-}
-
-// declare module 'react' {
-//     const forwardRef: ((props: T) => {  })
-// }
-
-declare const __image__: string;
-
-declare module '*.png' {
-    export default __image__;
-}
-
-declare module '*.jpg' {
-    export default __image__;
-}
-
-declare module '*.svg' {
-    export default __image__;
-}
-
-declare module '*.jpeg' {
-    export default __image__;
 }
 
 /**

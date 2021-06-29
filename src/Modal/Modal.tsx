@@ -12,7 +12,7 @@ import useModalStyle, { useModalOverlayStyle, useModalWrapperStyle } from '../Mo
 import { Portal } from '../Portal';
 import { fadeConfig } from '../Transition/fade';
 import { ModalTransition } from './modal-transition';
-import { ModalContext as ModalContextType, ModalProps } from './types';
+import { ModalContentProps, ModalContext as ModalContextType, ModalProps } from './types';
 import { callAllHandlers, useModal } from './use-modal';
 
 // @ts-ignore
@@ -25,6 +25,7 @@ const useModalContext = () => useContext(ModalContext);
  *
  * It doesn't render any DOM node.
  */
+// @ts-ignore
 export const Modal: React.FC<ModalProps> = (props) => {
     const {
         portalProps,
@@ -81,20 +82,13 @@ Modal.defaultProps = {
     motionPreset: 'scale',
 };
 
-export interface ModalContentProps {
-    /**
-     * The props to forward to the modal's content wrapper
-     */
-    containerProps?: any;
-}
-
 const MotionDiv = motion.div;
 
 /**
  * ModalContent is used to group modal's content. It has all the
  * necessary `aria-*` properties to indicate that it is a modal
  */
-export const ModalContent = forwardRef((props: ModalContentProps & BoxProps, ref) => {
+export const ModalContent = forwardRef((props: ModalContentProps, ref) => {
     const { children, containerProps: rootProps, ...rest } = props;
 
     const { getDialogProps, getDialogContainerProps, size, isCentered, noStyles, scrollBehavior } = useModalContext();
@@ -224,16 +218,16 @@ export const ModalHeader = forwardRef((props: BoxProps, ref) => {
         return () => setHeaderMounted(false);
     }, [setHeaderMounted]);
 
-    const headerStyles = {
-        p: 'spacing',
-        flex: 0,
-        justify: 'space-between',
-        align: 'center',
-        color: 'titleText',
-    };
-
-    return <Flex pos="relative" ref={ref} id={headerId} as="header" {...headerStyles} {...props} />;
+    return <Flex pos="relative" ref={ref} id={headerId} as="header" {...modalHeaderStyles} {...props} />;
 });
+
+const modalHeaderStyles = {
+    p: 'spacing',
+    flex: 0,
+    justify: 'space-between',
+    align: 'center',
+    color: 'titleText',
+};
 
 export const ModalBody = forwardRef((props: BoxProps, ref) => {
     const { bodyId, setBodyMounted } = useModalContext();

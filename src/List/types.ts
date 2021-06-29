@@ -5,7 +5,7 @@ import { Omit } from '../common-types';
 import { IconProps } from '../Icon/types';
 import { PseudoBoxProps } from '../PseudoBox';
 
-interface IList {
+type IList = {
     /**
      * The `list-style-type` of the list
      */
@@ -18,7 +18,7 @@ interface IList {
      * The space between each list item
      */
     spacing?: StyledSystem.MarginBottomProps['marginBottom'];
-}
+};
 
 export type ListProps = IList & BoxProps;
 

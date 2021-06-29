@@ -120,20 +120,20 @@ export interface IPseudoBoxProps {
     /**
      * Styles for CSS Selector `&:not(:last-of-type)`
      */
-     _notFirstChild?: BoxProps;
-     /**
-      * Styles for CSS Selector `&:not(:last-of-type)`
-      */
+    _notFirstChild?: BoxProps;
+    /**
+     * Styles for CSS Selector `&:not(:last-of-type)`
+     */
     _notLast?: BoxProps;
     /**
      * Styles for CSS Selector `&::placeholder`.
      * Useful for inputs
      */
-     _notLastChild?: BoxProps;
-     /**
-      * Styles for CSS Selector `&::placeholder`.
-      * Useful for inputs
-      */
+    _notLastChild?: BoxProps;
+    /**
+     * Styles for CSS Selector `&::placeholder`.
+     * Useful for inputs
+     */
     _placeholder?: BoxProps;
 
     /**
@@ -160,6 +160,11 @@ export interface IPseudoBoxProps {
      * Styles for CSS Selector `&:hover:before`
      */
     _hoverBefore?: BoxProps;
+
+    /**
+     * Link that is pushed to router
+     */
+    href?: string;
 }
 
 export type PseudoBoxProps = IPseudoBoxProps & BoxProps;

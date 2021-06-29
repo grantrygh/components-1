@@ -1,7 +1,7 @@
 import { Omit } from '../common-types';
 import { PseudoBoxProps } from '../PseudoBox/types';
 
-interface ICloseButton {
+type ICloseButton = {
     /**
      * The size of the close button
      */
@@ -22,6 +22,6 @@ interface ICloseButton {
      * The type of button (defaults to button)
      */
     type?: string;
-}
+};
 
 export type CloseButtonProps = ICloseButton & Omit<PseudoBoxProps, 'size'>;

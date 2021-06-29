@@ -18,6 +18,7 @@ import { Box } from '../Box';
 import { useForkRef } from '../hooks/useForkRef';
 import { Portal } from '../Portal';
 import { PseudoBox } from '../PseudoBox';
+import { appEnv } from '../utils/appEnv';
 import { createChainedFunction } from '../utils/createChainedFunction';
 import { setRef } from '../utils/setRef';
 import usePopperStyle from './styles';
@@ -29,12 +30,7 @@ import PopperJS from './util';
  * @param {string} placement
  */
 function flipPlacement(placement) {
-    const direction =
-        (typeof window !== 'undefined' &&
-            typeof __BROWSER__ !== 'undefined' &&
-            __BROWSER__ &&
-            document?.body.getAttribute('dir')) ||
-        'ltr';
+    const direction = (appEnv.isBrowser && document?.body.getAttribute('dir')) || 'ltr';
 
     if (direction !== 'rtl') {
         return placement;
@@ -121,7 +117,7 @@ export const Popper = forwardRef(
                 handlePopperRefRef.current(null);
             }
 
-            const handlePopperUpdate = data => {
+            const handlePopperUpdate = (data) => {
                 setPlacement(data.placement);
             };
             const popper = new PopperJS(getAnchorEl(anchorEl), popperNode, {
@@ -142,7 +138,7 @@ export const Popper = forwardRef(
         }, [anchorEl, usePortal, modifiers, isOpen, rtlPlacement, popperOptions]);
 
         const handleRef = useCallback(
-            node => {
+            (node) => {
                 setRef(ownRef, node);
                 handleOpen();
             },

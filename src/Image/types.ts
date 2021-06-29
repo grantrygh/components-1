@@ -1,6 +1,6 @@
 import { BoxProps } from '../Box/types';
 
-interface IImage {
+type IImage = {
     /**
      * The path to the image source
      */
@@ -39,6 +39,6 @@ interface IImage {
      * If true, image will be included in the lightbox, and serve as a trigger to open the lightbox.
      */
     withLightbox?: boolean;
-}
+};
 
 export type ImageProps = IImage & BoxProps & Partial<HTMLImageElement>;

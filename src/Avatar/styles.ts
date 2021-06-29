@@ -29,7 +29,7 @@ export const avatarSizes = {
     full: 'full',
 };
 
-export const avatarStyle: componentStyleDef<AvatarProps> = ({ size, showBorder, name }, theme) => ({
+export const avatarStyle: componentStyleDef<AvatarProps> = ({ size, showBorder, name, borderColor="white" }, theme) => ({
     style: {
         display: 'inline-flex',
         verticalAlign: 'top',
@@ -42,7 +42,7 @@ export const avatarStyle: componentStyleDef<AvatarProps> = ({ size, showBorder, 
         size: avatarSizes[size],
         ...(showBorder && {
             border: '2px',
-            borderColor: 'white',
+            borderColor,
         }),
         fontSize: `calc(${theme.sizes[avatarSizes[size]]} / 2.5)`,
         // lineHeight: avatarSizes[size],

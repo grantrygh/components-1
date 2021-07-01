@@ -1,6 +1,6 @@
 import { BoxProps } from '../Box/types';
 
-interface IFlex {
+type IFlex = {
     /**
      * Shorthand for Styled-System `alignItems` prop
      */
@@ -17,6 +17,6 @@ interface IFlex {
      * Shorthand for Styled-System `flexDirection` prop
      */
     direction?: BoxProps['flexDirection'];
-}
+};
 
 export type FlexProps = IFlex & BoxProps;

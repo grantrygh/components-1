@@ -3,7 +3,7 @@ import { BoxProps } from '../Box/types';
 import { Omit } from '../common-types';
 import { IInput } from '../Input/types';
 
-interface IInputElement {
+type IInputElement = {
     /**
      * The size of the adornment is inherited from the `InputGroup` via `cloneElement`.
      */
@@ -22,7 +22,7 @@ interface IInputElement {
      * This allows for the content of the adornment to focus the input on click.
      */
     disablePointerEvents?: boolean;
-}
+};
 
 export type InputElementProps = IInputElement & BoxProps;
 

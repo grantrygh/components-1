@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Omit } from '../common-types';
-import { IModal } from '../Modal/types';
+import { ModalProps } from '../Modal/types';
 
-export interface IAlertDialog extends Omit<IModal, 'initialFocusRef'> {
+export interface IAlertDialog extends Omit<ModalProps, 'initialFocusRef'> {
     leastDestructiveRef: React.RefObject<HTMLElement>;
 }

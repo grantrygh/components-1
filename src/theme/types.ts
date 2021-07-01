@@ -1,6 +1,7 @@
 /* eslint-disable max-lines */
 import * as SS from 'styled-system';
 import { Omit } from '../common-types';
+import { ThemeType } from './theme';
 
 interface Shadows {
     sm: string;
@@ -311,6 +312,6 @@ export interface CustomTheme extends SS.Theme {
     icons?: IconsType;
 }
 
-export type ITheme = DefaultTheme;
+export type ITheme = ThemeType;
 
-export type componentStyleDef<Props = any> = (props: Props, theme: DefaultTheme) => { style: any; [key: string]: any };
+export type componentStyleDef<Props = any> = (props: Props, theme: ThemeType) => { style: any; [key: string]: any };

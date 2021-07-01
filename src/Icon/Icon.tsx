@@ -22,10 +22,18 @@ export const Icon = forwardRef(
 
         // Fallback in case you pass the wrong name
         const iconFallback = iconPaths['question-outline'];
+        let icon = iconPaths[name];
 
-        const path = iconPaths[name] == null ? iconFallback.path : iconPaths[name].path;
+        if (icon === null) {
+            if (process.env.NODE_ENV === 'development') {
+                console.warn(`Unknown icon ${name} passed to <Icon />`);
+            }
 
-        const viewBox = (iconPaths[name] == null ? iconFallback.viewBox : iconPaths[name].viewBox) || '0 0 24 24';
+            icon = iconFallback;
+        }
+
+        const path = icon.path;
+        const viewBox = icon['viewBox'];
 
         return (
             <Svg

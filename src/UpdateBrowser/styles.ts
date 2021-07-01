@@ -1,4 +1,4 @@
-import { componentStyleDef, DefaultTheme } from '../theme/types';
+import { componentStyleDef } from '../theme/types';
 import { useTheme } from '../ThemeProvider';
 import { UpdateBrowserProps } from './types';
 
@@ -27,8 +27,8 @@ const browserBoxStyle = {
     boxSizing: 'border-box' as const,
 };
 
-const useUpdateBrowserStyle = props => {
-    const theme = useTheme() as DefaultTheme;
+const useUpdateBrowserStyle = (props) => {
+    const theme = useTheme();
     const styles = theme['styles'].updateBrowser
         ? theme['styles'].updateBrowser(props, theme)
         : updateBrowserStyle(props, theme);

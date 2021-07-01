@@ -59,6 +59,10 @@ interface IPopover {
      */
     initialFocusRef?: React.RefObject<HTMLElement>;
     /**
+     * The `ref` of the element the popover attaches to when opened. Used for site tours, for example
+     */
+    initialReferenceRef?: React.RefObject<HTMLElement>;
+    /**
      * The interaction that triggers the popover.
      *
      * `hover` - means the popover will open when you hover with mouse or

@@ -1,4 +1,3 @@
-export * from './AnimatedTr';
 export * from './TableHeader';
 export * from './TablePagination';
 export * from './Td';

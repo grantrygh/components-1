@@ -13,6 +13,10 @@ export interface SiteTourProps {
 
     // additional action to be performed when the tour closes
     onClose?: Function;
+
+    // optionally override default footer navigation section with custom component.
+    //
+    renderNav?: (props: RenderTourNavProps) => ReactElement;
 }
 
 export interface FooterNavProps {
@@ -23,3 +27,5 @@ export interface FooterNavProps {
     onClose: React.MouseEventHandler<HTMLAnchorElement>;
     allowSkip?: SiteTourProps['allowSkip'];
 }
+
+export type RenderTourNavProps = Omit<FooterNavProps, 'allowskip'> & { currentStep?: number };

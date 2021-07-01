@@ -35,7 +35,13 @@ const FooterNavContent = forwardRef(
     )
 );
 
-export const SiteTour = ({ tourSteps, isDefaultOpen = false, onClose: onCustomClose, ...props }: SiteTourProps) => {
+export const SiteTour = ({
+    tourSteps,
+    isDefaultOpen = false,
+    onClose: onCustomClose,
+    renderNav,
+    ...props
+}: SiteTourProps) => {
     const { isOpen, onClose: onTourClose } = useDisclosure(isDefaultOpen);
     const [tourStep, setTourStep] = useState(0);
     const { contentStyles, bodyStyles, footerStyles, popoverStyles } = useSiteTourStyle({});
@@ -79,6 +85,14 @@ export const SiteTour = ({ tourSteps, isDefaultOpen = false, onClose: onCustomCl
         }
     }, [tourStep, isOpen]);
 
+    const navProps = {
+        isFirst,
+        isLast,
+        onNext,
+        onPrev,
+        onClose,
+    };
+
     // if no reference ref is defined, render content as a centered modal
     if (!referenceRef) {
         return (
@@ -89,14 +103,14 @@ export const SiteTour = ({ tourSteps, isDefaultOpen = false, onClose: onCustomCl
                         <ModalBody {...bodyStyles}>{currentStep?.content}</ModalBody>
 
                         <ModalFooter {...footerStyles}>
-                            <FooterNavContent
-                                isFirst={isFirst}
-                                isLast={isLast}
-                                onNext={onNext}
-                                onPrev={onPrev}
-                                onClose={onClose}
-                                {...props}
-                            />
+                            {renderNav && typeof renderNav === 'function' ? (
+                                renderNav({
+                                    ...navProps,
+                                    currentStep: tourStep,
+                                })
+                            ) : (
+                                <FooterNavContent {...navProps} {...props} />
+                            )}
                         </ModalFooter>
                     </ModalContent>
                 </Modal>
@@ -123,15 +137,14 @@ export const SiteTour = ({ tourSteps, isDefaultOpen = false, onClose: onCustomCl
                     <PopoverBody {...bodyStyles}>{currentStep?.content}</PopoverBody>
 
                     <PopoverFooter {...footerStyles}>
-                        <FooterNavContent
-                            ref={initRef}
-                            isFirst={isFirst}
-                            isLast={isLast}
-                            onNext={onNext}
-                            onPrev={onPrev}
-                            onClose={onClose}
-                            {...props}
-                        />
+                        {renderNav && typeof renderNav === 'function' ? (
+                            renderNav({
+                                ...navProps,
+                                currentStep: tourStep,
+                            })
+                        ) : (
+                            <FooterNavContent ref={initRef} {...navProps} {...props} />
+                        )}
                     </PopoverFooter>
                 </PopoverContent>
             </Popover>

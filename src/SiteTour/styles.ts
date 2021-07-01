@@ -15,7 +15,6 @@ export const siteTourStyle = (props, theme) => ({
         p: 'spacing',
     },
     popover: {
-        zIndex: 1400,
         color: 'bodyText',
         modifiers: {
             preventOverflow: { enabled: true, boundariesElement: 'viewport' },
@@ -25,6 +24,7 @@ export const siteTourStyle = (props, theme) => ({
         _focus: {
             outline: 0,
         },
+        zIndex: 'popover',
     },
 });
 

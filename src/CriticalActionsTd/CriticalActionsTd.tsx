@@ -38,8 +38,8 @@ export const CriticalActionsTd = ({ actions, mobileMenu = true, mobileMenuIcon, 
                     <Menu placement="auto-end">
                         <MenuButton
                             as={Button}
-                            // @ts-ignore
                             color="buttonText"
+                            // @ts-ignore
                             iconOnly
                             d={['inline-flex', null, null, 'none']}
                         >

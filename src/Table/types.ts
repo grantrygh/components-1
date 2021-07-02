@@ -74,21 +74,6 @@ export interface ITableCell {
     span?: number;
 }
 
-export interface CriticalActionsTdProps extends TableCellProps {
-    actions: Array<
-        ButtonProps & {
-            label: string;
-            iconOnlyMobile?: boolean;
-        }
-    >;
-
-    // if more than 1 action, actions will be converted into a vertical dot menu button
-    mobileMenu?: boolean;
-
-    // replace default icon
-    mobileMenuIcon?: ReactElement;
-}
-
 export interface ITableRow {
     // any content to be shown upon un-collapsing the row. leave null to disable row collapsing
     expandedContent?: any;

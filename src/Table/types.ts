@@ -1,4 +1,6 @@
+import { ReactElement } from 'react';
 import { BoxProps } from '../Box/types';
+import { ButtonProps } from '../Button/types';
 
 export interface ITable {
     /**
@@ -70,6 +72,21 @@ export interface ITableCell {
 
     // Passed to flex-grow
     span?: number;
+}
+
+export interface CriticalActionsTdProps extends TableCellProps {
+    actions: Array<
+        ButtonProps & {
+            label: string;
+            iconOnlyMobile?: boolean;
+        }
+    >;
+
+    // if more than 1 action, actions will be converted into a vertical dot menu button
+    mobileMenu?: boolean;
+
+    // replace default icon
+    mobileMenuIcon?: ReactElement;
 }
 
 export interface ITableRow {

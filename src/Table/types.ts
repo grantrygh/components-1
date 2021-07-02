@@ -1,6 +1,4 @@
-import { ReactElement } from 'react';
 import { BoxProps } from '../Box/types';
-import { ButtonProps } from '../Button/types';
 
 export interface ITable {
     /**

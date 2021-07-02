@@ -3,7 +3,9 @@ import React from 'react';
 import { Box } from '../../../Box';
 import { Button } from '../../../Button';
 import { ButtonGroup } from '../../../ButtonGroup';
+import { Clickable } from '../../../Clickable';
 import { Flex } from '../../../Flex';
+import { Link } from '../../../Link';
 import { Menu, MenuButton, MenuItem, MenuList } from '../../../Menu';
 import { Portal } from '../../../Portal';
 import useTableStyle from '../../styles';
@@ -45,14 +47,28 @@ export const CriticalActionsTd = ({ actions, mobileMenu, mobileMenuIcon, ...prop
             {willRenderMenu && (
                 <Flex w="100%" justify="flex-end">
                     <Menu placement="auto-end">
-                        <MenuButton as={Button} iconOnly d={['inline-flex', null, null, 'none']}>
+                        <MenuButton
+                            as={Button}
+                            // @ts-ignore
+                            iconOnly
+                            d={['inline-flex', null, null, 'none']}
+                        >
                             {mobileMenuIcon || <DotsVerticalIcon />}
                         </MenuButton>
                         <Portal>
                             <MenuList minWidth="200px" d={['block', null, null, 'none']} color="bodyText">
-                                {actions?.map((action) => (
-                                    <MenuItem title={action?.label} {...action}>
-                                        {action?.label}
+                                {actions?.map(({ label, onClick, href }) => (
+                                    <MenuItem
+                                        as={href ? Link : Clickable}
+                                        title={label}
+                                        onClick={(e) => {
+                                            if (onClick) {
+                                                onClick(e);
+                                            }
+                                        }}
+                                        href={href}
+                                    >
+                                        {label}
                                     </MenuItem>
                                 ))}
                             </MenuList>

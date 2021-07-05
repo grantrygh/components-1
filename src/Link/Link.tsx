@@ -58,6 +58,7 @@ export const Link = forwardRef(({ isDisabled, onClick, href, ...rest }: LinkProp
                     aria-disabled={isDisabled}
                     onClick={isDisabled ? (event) => event.preventDefault() : onClick}
                     as="a"
+                    href={linkHref}
                     {...baseStyleProps}
                     {...rest}
                 />

@@ -9,6 +9,7 @@ export interface IClickable {
 
     innerRef?: any;
     staticContext?: any;
+    target?: string;
 }
 
 export type ClickableProps = IClickable & BoxProps;

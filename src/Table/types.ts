@@ -73,9 +73,6 @@ export interface ITableCell {
 }
 
 export interface ITableRow {
-    // render row as a different component. used by AnimatedTr to pass motion.tr
-    asComponent?: any;
-
     // any content to be shown upon un-collapsing the row. leave null to disable row collapsing
     expandedContent?: any;
 }

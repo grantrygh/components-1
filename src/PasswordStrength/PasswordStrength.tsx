@@ -27,6 +27,7 @@ export const PasswordStrength = ({ fieldName = 'password', customOverrides, ...p
                     }
                     return (
                         <AnimatedProgressIndicatorBar
+                            key={barI}
                             min={0}
                             max={1}
                             value={barColorProps ? 1 : 0}

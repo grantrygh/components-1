@@ -1,3 +1,4 @@
+import { addOpacity } from '../theme';
 import { useTheme } from '../ThemeProvider';
 
 export const tableStyle = ({ height, sticky, sortable, span = 1 }, { colors }) => ({
@@ -5,7 +6,7 @@ export const tableStyle = ({ height, sticky, sortable, span = 1 }, { colors }) =
         color: 'bodyText',
         width: '100%',
 
-        bg: 'cardBg',
+        bg: 'tableBg',
     },
     container: {
         maxHeight: height,
@@ -43,6 +44,11 @@ export const tableStyle = ({ height, sticky, sortable, span = 1 }, { colors }) =
         d: 'table-cell',
         alignItems: 'center',
     },
+    criticalActions: {
+        position: 'sticky',
+        right: 0,
+        background: `linear-gradient(to right, ${addOpacity(colors.tableBg, 0.25)} 0%, ${colors.tableBg} 100%)`,
+    },
     headerRow: {
         position: sticky && 'sticky',
         top: 0,
@@ -76,6 +82,7 @@ const useTableStyle = (props) => {
         row: styles.row,
         expandedRow: styles.expandedRow,
         cell: styles.cell,
+        criticalActions: styles.criticalActions,
         headerCell: styles.headerCell,
         headerRow: styles.headerRow,
         header: styles.header,

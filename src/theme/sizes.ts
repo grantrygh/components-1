@@ -67,6 +67,13 @@ const canvas = {
     spacing: baseSizes[5],
 };
 
+const modal = {
+    sm: '425px',
+    md: '600px',
+    lg: '800px',
+    xl: '1000px',
+};
+
 const header = baseSizes[16];
 
 const other = {
@@ -81,6 +88,7 @@ const sizes = {
     containers,
     input,
     canvas,
+    modal,
     header,
 };
 

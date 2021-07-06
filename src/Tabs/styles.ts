@@ -126,7 +126,7 @@ const alignments = {
     start: 'flex-start',
 };
 
-export const tabListStyle = ({ align = 'start', showScrollbar }, { colors }) => ({
+export const tabListStyle = ({ align = 'start', showScrollbar, scrollPos }, { colors }) => ({
     style: {
         borderColor: 'transparent',
     },
@@ -177,6 +177,17 @@ export const tabListStyle = ({ align = 'start', showScrollbar }, { colors }) => 
             backgroundColor: colors.track,
         },
     },
+    scrollPos: {
+        left: {
+            maskImage: 'linear-gradient(to right, transparent 5%, #000000 10%)', // scrolled to left
+        },
+        right: {
+            maskImage: 'linear-gradient(to left, transparent 5%, #000000 10%)', // scrolled to right
+        },
+        both: {
+            maskImage: 'linear-gradient(to right, rgba(0, 0, 0, 0) 5%, #000000 10%, #000000 90%, rgba(0, 0, 0, 0) 95%)', // scrolled in middle
+        },
+    }
 });
 
 export const useTabListStyle = props => {
@@ -189,7 +200,10 @@ export const useTabListStyle = props => {
             ...styles.variants[props.variant],
             ...styles.style,
         },
-        container: styles.container,
+        container: {
+            ...styles.container,
+            ...styles.scrollPos[props.scrollPos],
+        }
     };
 };
 

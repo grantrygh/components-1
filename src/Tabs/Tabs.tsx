@@ -1,5 +1,6 @@
 /* eslint-disable max-lines */
 
+import { throttle } from '@audentio/utils/lib/throttle';
 import { useId } from '@reach/auto-id';
 import React, {
     Children,
@@ -8,6 +9,7 @@ import React, {
     forwardRef,
     isValidElement,
     RefObject,
+    useCallback,
     useContext,
     useEffect,
     useRef,
@@ -79,9 +81,12 @@ const TabList = forwardRef((props: TabListProps, ref) => {
 
     const { pathname } = useRouter();
 
+    const [scrollPos, setScrollPos] = useState('');
+
     const { root: tabListStyleProps, container: tabListContainerStyleProps } = useTabListStyle({
         orientation,
         variant,
+        scrollPos,
         align,
         showScrollbar,
     });
@@ -221,6 +226,58 @@ const TabList = forwardRef((props: TabListProps, ref) => {
 
         return null;
     });
+
+    const scrollHandler = useCallback(
+        throttle(() => {
+            const totalScrollWidth = tabListRef.current.clientWidth - tabContainerRef.current.clientWidth;
+
+            if (tabContainerRef.current.scrollLeft > 0 && tabContainerRef.current.scrollLeft < totalScrollWidth) {
+                if (scrollPos !== 'both') {
+                    setScrollPos('both');
+                }
+            } else if (
+                tabContainerRef.current.scrollLeft === 0 &&
+                tabContainerRef.current.scrollLeft < totalScrollWidth
+            ) {
+                if (scrollPos !== 'right') {
+                    setScrollPos('right');
+                }
+            } else if (tabContainerRef.current.scrollLeft > 0) {
+                if (scrollPos !== 'left') {
+                    setScrollPos('left');
+                }
+            } else {
+                setScrollPos('');
+            }
+        }, 100),
+        []
+    );
+
+    useEffect(() => {
+        if (tabContainerRef.current) {
+            window.addEventListener('resize', scrollHandler);
+
+            return function cleanup() {
+                window.removeEventListener('resize', scrollHandler);
+            };
+        }
+    }, [tabContainerRef?.current]);
+
+    useEffect(() => {
+        if (tabContainerRef.current) {
+            // initial mount
+            scrollHandler();
+
+            window.addEventListener('resize', scrollHandler);
+
+            tabContainerRef.current.addEventListener('scroll', scrollHandler);
+
+            return function cleanup() {
+                tabContainerRef.current.removeEventListener('scroll', scrollHandler);
+                window.removeEventListener('resize', scrollHandler);
+            };
+        }
+    }, [tabContainerRef?.current]);
 
     return (
         <PseudoBox ref={tabContainerRef} {...tabListContainerStyleProps} {...containerStyle}>
@@ -381,10 +438,14 @@ const Tabs = forwardRef(
             orientation,
         };
 
+        //const _ref: any = useForkRef(ownRef, ref);
+        const ownRef = useRef();
+        const _ref = ref || ownRef;
+
         return (
             // @ts-ignore
             <TabContext.Provider value={context}>
-                <Box ref={ref} w="100%" {...props}>
+                <Box ref={_ref} w="100%" {...props}>
                     {children}
                 </Box>
             </TabContext.Provider>

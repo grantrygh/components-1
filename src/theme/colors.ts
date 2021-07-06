@@ -217,6 +217,7 @@ const colors = (providedTheme, mode) => {
             // page layout
             cardBg: neutral[1],
             navBg: neutral[2],
+            tableBg: neutral[1],
             popoverBg: neutral[2],
             pageBg: neutral[3],
             altBg: neutral[3],
@@ -243,6 +244,7 @@ const colors = (providedTheme, mode) => {
             // page layout
             cardBg: neutral[11],
             navBg: neutral[11],
+            tableBg: neutral[11],
             popoverBg: neutral[10],
             pageBg: neutral[12],
             altBg: neutral[9],

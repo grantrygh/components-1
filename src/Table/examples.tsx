@@ -1,7 +1,9 @@
 import { storiesOf } from '@storybook/react';
 import React, { useEffect, useState } from 'react';
 import { Box } from '../Box';
+import { CriticalActionsTd } from '../CriticalActionsTd';
 import { Table, TableHeader, Td, Th, Tr } from '../Table';
+import { Text } from '../Text';
 import { ITableCell } from './types';
 
 const stories = storiesOf('Table', module);
@@ -50,7 +52,7 @@ stories.add('Default', () => {
         onSort(sorting);
     }, []);
 
-    const renderRow = props => {
+    const renderRow = (props) => {
         const { first_name, last_name } = props;
         return (
             <Tr key={first_name}>
@@ -80,7 +82,94 @@ stories.add('Default', () => {
                 renderRow={renderRow}
                 renderHeader={renderHeader}
                 cursor={cursor}
-                onPageChange={page => console.log('page: ', page)}
+                onPageChange={(page) => console.log('page: ', page)}
+            />
+        </Box>
+    );
+});
+
+stories.add('Critical actions cell', () => {
+    const rows = [
+        {
+            first_name: 'Charlie',
+            last_name: 'Foxtrot',
+            location: 'Los Angeles',
+            dob: 'December 25, 1990',
+        },
+        {
+            first_name: 'Bravo',
+            last_name: 'Echo',
+            location: 'Los Angeles',
+            dob: 'December 25, 1990',
+        },
+        {
+            first_name: 'Delta',
+            last_name: 'Hotel',
+            location: 'Los Angeles',
+            dob: 'December 25, 1990',
+        },
+        {
+            first_name: 'Alpha',
+            last_name: 'Gulf',
+            location: 'Los Angeles',
+            dob: 'December 25, 1990',
+        },
+    ];
+
+    const renderRow = (props) => {
+        const { first_name, last_name, location, dob } = props;
+        return (
+            <Tr key={first_name}>
+                <Td>{first_name}</Td>
+                <Td>{last_name}</Td>
+                <Td>
+                    <Text whiteSpace="nowrap">{location}</Text>
+                </Td>
+                <Td>
+                    <Text whiteSpace="nowrap">{dob}</Text>
+                </Td>
+                <CriticalActionsTd
+                    mobileMenu={last_name !== 'Hotel'}
+                    actions={[
+                        {
+                            label: 'Ban',
+                            onClick: () => console.log('Ban user'),
+                        },
+                        {
+                            label: 'Delete',
+                            onClick: () => console.log('Delete user'),
+                            variantColor: 'error',
+                        },
+                    ]}
+                />
+            </Tr>
+        );
+    };
+
+    const renderHeader = () => (
+        <TableHeader>
+            <Th id="first_name">First name</Th>
+            <Th id="last_name">Last name</Th>
+            <Th id="first_name">Location</Th>
+            <Th id="last_name">Date of birth</Th>
+            <Th />
+        </TableHeader>
+    );
+
+    const cursor = {
+        total: 9,
+        currentPage: 2,
+        perPage: 4,
+    };
+
+    return (
+        <Box>
+            <Table
+                rows={rows}
+                renderRow={renderRow}
+                renderHeader={renderHeader}
+                cursor={cursor}
+                onPageChange={(page) => console.log('page: ', page)}
             />
         </Box>
     );

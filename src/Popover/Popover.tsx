@@ -62,7 +62,7 @@ const PopoverTrigger = ({ children }: PopoverTriggerProps) => {
     if (trigger === 'hover') {
         eventHandlers = {
             onFocus: wrapEvent(child.props.onFocus, onOpen),
-            onKeyDown: wrapEvent(child.props.onKeyDown, event => {
+            onKeyDown: wrapEvent(child.props.onKeyDown, (event) => {
                 if (event.key === 'Escape') {
                     setTimeout(onClose, 300);
                 }
@@ -152,7 +152,7 @@ const PopoverContent = ({
 
     eventHandlers = {
         ...eventHandlers,
-        onKeyDown: wrapEvent(onKeyDown, event => {
+        onKeyDown: wrapEvent(onKeyDown, (event) => {
             if (event.key === 'Escape' && closeOnEsc && onClose) {
                 onClose();
             }
@@ -196,12 +196,14 @@ const Popover = ({
     closeOnEsc = true,
     onOpen: onOpenProp,
     onClose: onCloseProp,
+    initialReferenceRef,
 }: PopoverProps) => {
     const [isOpen, setIsOpen] = useState(defaultIsOpen || false);
     const { current: isControlled } = useRef(isOpenProp != null);
 
     const isHoveringRef = useRef() as IPopoverContextValue['isHoveringRef'];
-    const referenceRef = useRef() as IPopoverContextValue['referenceRef'];
+    const referenceRefDefault = useRef() as IPopoverContextValue['referenceRef'];
+    const referenceRef = initialReferenceRef || referenceRefDefault;
     const popoverRef = useRef() as IPopoverContextValue['popoverRef'];
 
     const _isOpen = isControlled ? isOpenProp : isOpen;
@@ -238,7 +240,7 @@ const Popover = ({
         }
     };
 
-    const handleBlur = event => {
+    const handleBlur = (event) => {
         if (
             _isOpen &&
             closeOnBlur &&

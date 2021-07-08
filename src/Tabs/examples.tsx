@@ -8,7 +8,7 @@ import { Icon } from '../Icon';
 
 const stories = storiesOf('Tabs', module).addDecorator(withKnobs);
 
-stories.addDecorator(story => (
+stories.addDecorator((story) => (
     <Box maxWidth="xl" mx="auto" mt="spacing">
         {story()}
     </Box>
@@ -168,7 +168,7 @@ stories.add('Tablist Only (Manual)', () => {
         const [index, setIndex] = React.useState(2);
         return (
             <>
-                <input type="range" max="4" min="0" value={index} onChange={e => setIndex(Number(e.target.value))} />
+                <input type="range" max="4" min="0" value={index} onChange={(e) => setIndex(Number(e.target.value))} />
                 <Tabs {...props} color="green" index={index} defaultIndex={2} isManual onChange={setIndex}>
                     <TabList>
                         <Tab>Tab 1</Tab>

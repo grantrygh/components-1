@@ -3,14 +3,8 @@ import { FormContext } from './context';
 import { validate } from './formValidation';
 
 export function useFormField(props) {
-    const {
-        getFieldValue,
-        onChange,
-        registerField,
-        getFormFieldError,
-        fields,
-        deleteFormFieldError,
-    } = React.useContext(FormContext);
+    const { getFieldValue, onChange, registerField, getFormFieldError, fields, deleteFormFieldError, formDisabled } =
+        React.useContext(FormContext);
 
     const errors = getFormFieldError && getFormFieldError(props.name);
 
@@ -53,5 +47,6 @@ export function useFormField(props) {
         onChange: $onChange,
         value: getFieldValue && getFieldValue(props.name),
         errors,
+        disabled: formDisabled,
     };
 }

@@ -44,16 +44,24 @@ export const Checkbox = forwardRef(
         // Let's add a warning hook that validates the passed variantColor
         useVariantColorWarning('Checkbox', variantColor);
 
-        const { onChange: formOnChange, value: initialCheckboxValue } = useFormField({
+        const {
+            onChange: formOnChange,
+            value: initialCheckboxValue,
+            disabled,
+        } = useFormField({
             name,
             onChange,
         });
         const { isChecked = initialCheckboxValue } = rest;
 
-        const { root: rootStyleProps, label: labelStyleProps, container: containerStyleProps } = useCheckboxStyle({
+        const {
+            root: rootStyleProps,
+            label: labelStyleProps,
+            container: containerStyleProps,
+        } = useCheckboxStyle({
             color: variantColor,
             size,
-            isDisabled,
+            isDisabled: disabled,
             isFullWidth,
             isChild,
         });
@@ -67,7 +75,7 @@ export const Checkbox = forwardRef(
             }
         }, [isIndeterminate, _ref]);
 
-        const onSwitchChange = v => {
+        const onSwitchChange = (v) => {
             if (!skipFormChange && formOnChange && typeof formOnChange === 'function') {
                 formOnChange(v, v.target.checked);
             }
@@ -93,7 +101,7 @@ export const Checkbox = forwardRef(
                     onFocus={onFocus}
                     defaultChecked={isReadOnly ? undefined : defaultIsChecked}
                     checked={isChecked}
-                    disabled={isDisabled}
+                    disabled={disabled ? true : isDisabled}
                     readOnly={isReadOnly}
                     aria-readonly={isReadOnly}
                     aria-invalid={isInvalid}

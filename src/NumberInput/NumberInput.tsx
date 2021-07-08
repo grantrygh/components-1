@@ -57,7 +57,7 @@ const NumberInput = forwardRef(
             name,
             onChange,
         });
-        const handleInputChange = e => {
+        const handleInputChange = (e) => {
             if (onChange) {
                 onChange(e);
             }
@@ -81,7 +81,7 @@ const NumberInput = forwardRef(
             getAriaValueText,
             isReadOnly,
             isInvalid,
-            isDisabled,
+            isDisabled: formField.disabled ? true : isDisabled,
         });
 
         const _children = children || (

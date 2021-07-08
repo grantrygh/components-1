@@ -14,6 +14,7 @@ export type FormContextType = {
     clearForm: Function;
     getFormFieldError?: Function;
     deleteFormFieldError?: Function;
+    formDisabled?: boolean;
     context?: any;
 };
 

@@ -34,14 +34,14 @@ const renderSelect = (props, ref) => {
 };
 
 export const Select = forwardRef((props: SelectProps, ref) => {
-    const { onChange: formOnChange, value: initialSelectValue } = useFormField(props);
+    const { onChange: formOnChange, value: initialSelectValue, disabled } = useFormField(props);
     const { size = 'md', options = [], border = 'full' } = props;
 
     // optionally allow custom onChange event along with passed Form onChange
     const hasOnChange = props.onChange || (formOnChange && typeof formOnChange === 'function');
-    const onChange = e => {
+    const onChange = (e) => {
         if (formOnChange && typeof formOnChange === 'function') {
-            formOnChange(e, e.constructor === Array ? e.map(v => v.value) : e.value);
+            formOnChange(e, e.constructor === Array ? e.map((v) => v.value) : e.value);
         }
         if (props.onChange) {
             props.onChange(e);
@@ -52,6 +52,7 @@ export const Select = forwardRef((props: SelectProps, ref) => {
     const { root: selectStyleProps, theme: selectTheme } = useSelectStyle({
         size,
         border,
+        disabled,
     });
 
     // Handle default value
@@ -60,7 +61,7 @@ export const Select = forwardRef((props: SelectProps, ref) => {
         defaultSelectValue = [];
     }
 
-    options.forEach(o => {
+    options.forEach((o) => {
         if (
             (o.value && o.value === initialSelectValue) ||
             (isInitialMulti && initialSelectValue.indexOf(o.value) > -1)
@@ -71,7 +72,7 @@ export const Select = forwardRef((props: SelectProps, ref) => {
                 defaultSelectValue = o;
             }
         } else if (o.options) {
-            const v = o.options.filter(opt => {
+            const v = o.options.filter((opt) => {
                 // when isMulti, handle initial form values of array types
                 if (isInitialMulti && initialSelectValue.indexOf(opt.value) > -1) {
                     return true;
@@ -96,7 +97,8 @@ export const Select = forwardRef((props: SelectProps, ref) => {
         onChange: hasOnChange && onChange,
         styles: selectStyleProps,
         defaultValue: defaultSelectValue,
-        theme: theme => ({
+        isDisabled: disabled,
+        theme: (theme) => ({
             ...theme,
             ...selectTheme.root,
             colors: {

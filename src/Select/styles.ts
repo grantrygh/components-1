@@ -1,6 +1,6 @@
 import { useTheme } from '../ThemeProvider';
 
-export const selectStyle = ({ size, border }, { colors, sizes, zIndices }) => ({
+export const selectStyle = ({ disabled, size, border }, { colors, sizes, zIndices }) => ({
     style: {
         // !IMPORTANT: To override any component style, uncomment and add overrides below provided. some properties can be changed in the theme object below
         // clearIndicator: (provided, props) => ({
@@ -11,6 +11,7 @@ export const selectStyle = ({ size, border }, { colors, sizes, zIndices }) => ({
             ...provided,
             width: '100%',
             minWidth: '10rem',
+            opacity: disabled ? 0.4 : undefined,
         }),
         control: (provided, { isFocused }) => {
             const stateColor = colors.primary[500];
@@ -127,7 +128,7 @@ export const selectStyle = ({ size, border }, { colors, sizes, zIndices }) => ({
     },
 });
 
-const useSelectStyle = props => {
+const useSelectStyle = (props) => {
     const theme = useTheme();
     const styles = theme['styles'].select ? theme['styles'].select(props, theme) : selectStyle(props, theme);
 

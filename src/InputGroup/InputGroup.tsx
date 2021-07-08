@@ -22,7 +22,7 @@ export const InputGroup = ({
     const spacingProps = isInline ? { mr: 'spacing' } : { mb: 'spacing' };
     const inputGroupStyle = useInputGroupStyle({ isFullWidth });
 
-    const { errors } = useFormField({
+    const { errors, disabled } = useFormField({
         name,
         schema,
     });
@@ -48,6 +48,7 @@ export const InputGroup = ({
                         size: child.props.size || size,
                         id: child.props.id || name,
                         name: child.props.name || name,
+                        disabled,
                         ...(!isElement && {
                             pl: child.props.pl || pl,
                             pr: child.props.pr || pr,

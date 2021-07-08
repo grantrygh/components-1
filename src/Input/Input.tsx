@@ -34,7 +34,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
             as={as}
             readOnly={formControl.isReadOnly}
             aria-readonly={isReadOnly}
-            disabled={formControl.isDisabled}
+            disabled={formField.disabled ? true : formControl.isDisabled}
             aria-label={ariaLabel}
             aria-invalid={formControl.isInvalid}
             required={formControl.isRequired}

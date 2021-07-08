@@ -11,8 +11,8 @@ const useFormFieldsValidator = () => {
      * Register a form field
      * saves it in fields state to allow using asynchronously
      */
-    const registerField = React.useCallback(props => {
-        setFields($fields => ({ ...$fields, [props.name]: props.schema }));
+    const registerField = React.useCallback((props) => {
+        setFields(($fields) => ({ ...$fields, [props.name]: props.schema }));
     }, []);
 
     return {
@@ -22,7 +22,7 @@ const useFormFieldsValidator = () => {
 };
 
 export function Form(props: FormProps) {
-    const { onSubmit, initialValue = {}, onChange: onFormChange, ...rest } = props;
+    const { onSubmit, initialValue = {}, onChange: onFormChange, disabled, ...rest } = props;
 
     const { fields, registerField } = useFormFieldsValidator();
 
@@ -39,12 +39,12 @@ export function Form(props: FormProps) {
     }, [props.errors]);
 
     const getFormValue = () => value;
-    const getFieldValue = name => value[name] || '';
+    const getFieldValue = (name) => value[name] || '';
     const clearForm = () => setValue(initialValue);
-    const getFormFieldError = name => (errors ? errors[name] : null);
-    const deleteFormFieldError = name => {
+    const getFormFieldError = (name) => (errors ? errors[name] : null);
+    const deleteFormFieldError = (name) => {
         if (errors && errors[name]) {
-            setErrors(prevErrors => {
+            setErrors((prevErrors) => {
                 const updated = prevErrors;
                 delete updated[name];
                 return updated;
@@ -52,18 +52,18 @@ export function Form(props: FormProps) {
         }
     };
 
-    const onChange = useCallback(data => {
+    const onChange = useCallback((data) => {
         // supports a single {name: value} or an array of {name: value} pairs
         const { name, value: changeValue } = data;
 
         if (Array.isArray(data)) {
             const newValues = {};
-            data.forEach(item => {
+            data.forEach((item) => {
                 newValues[item.name] = item.value;
             });
-            setValue(val => ({ ...val, ...newValues }));
+            setValue((val) => ({ ...val, ...newValues }));
         } else {
-            setValue(val => ({ ...val, [name]: changeValue }));
+            setValue((val) => ({ ...val, [name]: changeValue }));
         }
         if (onFormChange) {
             onFormChange(data);
@@ -101,6 +101,7 @@ export function Form(props: FormProps) {
                 clearForm,
                 getFormFieldError,
                 deleteFormFieldError,
+                formDisabled: disabled,
             }}
         >
             <form onSubmit={formOnSubmit} noValidate {...rest}>

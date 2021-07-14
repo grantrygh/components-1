@@ -67,18 +67,7 @@ export const useStepperCompletion = ({
                         addArrayItem(lastFieldUpdated);
                     }
 
-                    // perform for all steps to support accurate updates
-                    steps.forEach((s, sIndex) => {
-                        // if all items in this step have values, mark step as completed
-                        const routeItems = formCompletionFields.filter((item) => item.route === s.id);
-                        let allComplete = true;
-                        routeItems.forEach((item) => {
-                            if (updatedArray.indexOf(item.name) === -1) {
-                                allComplete = false;
-                            }
-                        });
-                        handleComplete(allComplete, sIndex);
-                    });
+                    validate(updatedArray);
 
                     return updatedArray;
                 });
@@ -86,6 +75,21 @@ export const useStepperCompletion = ({
         },
         [fieldsWithValues]
     );
+
+    const validate = (toValidate) => {
+        // perform for all steps to support accurate updates
+        steps.forEach((s, sIndex) => {
+            // if all items in this step have values, mark step as completed
+            const routeItems = formCompletionFields.filter((item) => item.route === s.id);
+            let allComplete = true;
+            routeItems.forEach((item) => {
+                if (toValidate.indexOf(item.name) === -1) {
+                    allComplete = false;
+                }
+            });
+            handleComplete(allComplete, sIndex);
+        });
+    };
 
     const handleComplete = useCallback((isComplete = true, i = activeStep) => {
         const newCompleted = completed;
@@ -97,6 +101,10 @@ export const useStepperCompletion = ({
 
         setCompleted(newCompleted);
     }, []);
+
+    useEffect(() => {
+        validate(fieldsWithValues);
+    }, [activeStep]);
 
     useEffect(() => {
         // update the stepper within a canvas

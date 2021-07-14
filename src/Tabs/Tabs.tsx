@@ -254,7 +254,7 @@ const TabList = forwardRef((props: TabListProps, ref) => {
     );
 
     useEffect(() => {
-        if (tabContainerRef.current) {
+        if (tabContainerRef?.current) {
             window.addEventListener('resize', scrollHandler);
 
             return function cleanup() {
@@ -264,7 +264,7 @@ const TabList = forwardRef((props: TabListProps, ref) => {
     }, [tabContainerRef?.current]);
 
     useEffect(() => {
-        if (tabContainerRef.current) {
+        if (tabContainerRef?.current) {
             // initial mount
             scrollHandler();
 

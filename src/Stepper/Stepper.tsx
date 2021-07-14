@@ -29,8 +29,8 @@ export const Stepper = ({
     });
 
     return (
-        <Tabs orientation={orientation} {...stepperStyleProps} {...props}>
-            <TabList justifyContent="flex-start">
+        <Tabs orientation={orientation} {...stepperStyleProps} {...props} maxW="100%" overflow="hidden">
+            <TabList justifyContent="flex-start" maxW="100%" overflow="hidden">
                 {Children.map(children, (child, index) => {
                     if (!isValidElement(child)) {
                         return null;
@@ -96,6 +96,7 @@ export const StepperItem = React.forwardRef(
             spacing = 8,
             children,
             size = 'sm',
+            customIcon,
             ...rest
         }: StepperItemProps,
         ref
@@ -123,10 +124,9 @@ export const StepperItem = React.forwardRef(
                         // borderColor={!isCompleted ? 'border' : 'secondary'}
                     >
                         {isCompleted && !isActive && (
-                            <Box {...checkStyleProps}>
-                                <Icon name="check" size="12px" />
-                            </Box>
+                            <Box {...checkStyleProps}>{customIcon || <Icon name="check" size="12px" />}</Box>
                         )}
+
                         {isActive && <Box w="4px" h="4px" bg="primary.500" rounded="full" zIndex="base" />}
                     </Button>
 

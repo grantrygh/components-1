@@ -36,6 +36,8 @@ type IStepperItem = {
     children?: string | Function;
     orientation?: IStepper['orientation'];
 
+    customIcon?: any;
+
     // size of the step divider
     spacing?: number;
 };

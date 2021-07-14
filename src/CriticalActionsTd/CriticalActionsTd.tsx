@@ -27,7 +27,7 @@ export const CriticalActionsTd = ({ actions, mobileMenu = true, mobileMenuIcon, 
                 w="100%"
             >
                 {actions?.map((action) => (
-                    <Button title={action?.label} ariaLabel={action?.label} {...action}>
+                    <Button key={action?.label} title={action?.label} ariaLabel={action?.label} {...action}>
                         {action?.label}
                     </Button>
                 ))}
@@ -49,6 +49,7 @@ export const CriticalActionsTd = ({ actions, mobileMenu = true, mobileMenuIcon, 
                             <MenuList minWidth="200px" d={['block', null, null, 'none']} color="bodyText">
                                 {actions?.map(({ label, onClick, href }) => (
                                     <MenuItem
+                                        key={label}
                                         as={href ? Link : Clickable}
                                         title={label}
                                         onClick={(e) => {

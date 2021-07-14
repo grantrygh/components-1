@@ -107,7 +107,7 @@ export const tabStyle = ({ color = 'button' }, theme) => ({
     },
 });
 
-const useTabStyle = props => {
+const useTabStyle = (props) => {
     const theme = useTheme();
     const styles = theme['styles'].tab ? theme['styles'].tab(props, theme) : tabStyle(props, theme);
 
@@ -179,18 +179,19 @@ export const tabListStyle = ({ align = 'start', showScrollbar, scrollPos }, { co
     },
     scrollPos: {
         left: {
-            maskImage: 'linear-gradient(to right, transparent 5%, #000000 10%)', // scrolled to left
+            maskImage: 'linear-gradient(to right, transparent 0%, #000000 10%)', // scrolled to left
         },
         right: {
-            maskImage: 'linear-gradient(to left, transparent 5%, #000000 10%)', // scrolled to right
+            maskImage: 'linear-gradient(to left, transparent 0%, #000000 10%)', // scrolled to right
         },
         both: {
-            maskImage: 'linear-gradient(to right, rgba(0, 0, 0, 0) 5%, #000000 10%, #000000 90%, rgba(0, 0, 0, 0) 95%)', // scrolled in middle
+            maskImage:
+                'linear-gradient(to right, rgba(0, 0, 0, 0) 0%, #000000 10%, #000000 90%, rgba(0, 0, 0, 0) 100%)', // scrolled in middle
         },
-    }
+    },
 });
 
-export const useTabListStyle = props => {
+export const useTabListStyle = (props) => {
     const theme = useTheme();
     const styles = theme['styles'].tabList ? theme['styles'].tabList(props, theme) : tabListStyle(props, theme);
 
@@ -203,7 +204,7 @@ export const useTabListStyle = props => {
         container: {
             ...styles.container,
             ...styles.scrollPos[props.scrollPos],
-        }
+        },
     };
 };
 

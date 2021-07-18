@@ -17,7 +17,11 @@ export const CheckboxGroup = ({
     children,
     ...rest
 }: CheckboxGroupProps) => {
-    const { onChange: formOnChange, value: initialCheckboxGroupValues, errors } = useFormField({
+    const {
+        onChange: formOnChange,
+        value: initialCheckboxGroupValues,
+        errors,
+    } = useFormField({
         name,
         onChange,
         schema,
@@ -63,13 +67,10 @@ export const CheckboxGroup = ({
             firstChildName = child.props.name;
         }
 
-        const isLastCheckbox = children.length === index + 1;
-        const spacingProps = isInline ? { mr: 'spacing-xs' } : { mb: 'spacing-xs' };
-
         const defCheckboxName = `${_name}-${index}`;
 
         return (
-            <Box display={isInline ? 'inline-block' : 'block'} {...(!isLastCheckbox && spacingProps)}>
+            <Box display={isInline ? 'inline-block' : 'block'}>
                 {cloneElement(child, {
                     size,
                     variantColor,
@@ -90,10 +91,8 @@ export const CheckboxGroup = ({
         );
     });
 
-    const spacingProps = isInline ? { mr: 'spacing' } : { mb: 'spacing' };
-
     return (
-        <FormControlWrapper id={firstChildName} error={errors} {...spacingProps} {...rest}>
+        <FormControlWrapper id={firstChildName} error={errors} {...rest}>
             {clones}
         </FormControlWrapper>
     );

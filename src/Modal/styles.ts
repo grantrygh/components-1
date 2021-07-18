@@ -14,6 +14,25 @@ export const modalStyle = ({ isCentered }, theme) => ({
             top: 0,
         },
     },
+    header: {
+        p: 'spacing',
+        flex: 0,
+        justify: 'space-between',
+        align: 'center',
+        color: 'titleText',
+    },
+    footer: {
+        p: 'spacing',
+        justify: 'flex-end',
+        // pos: 'sticky',
+        // zIndex: 'sticky',
+        // bottom: 0,
+    },
+    body: {
+        p: 'spacing',
+        flex: 1,
+        color: 'bodyText',
+    },
 });
 
 export const modalWrapperStyle = ({ isCentered }, theme) => ({
@@ -69,11 +88,15 @@ const useModalStyle = (props) => {
     }
 
     return {
-        // base style
-        ...styles.style,
+        content: {
+            ...styles.style,
 
-        ...styles.scrollBehavior[props.scrollBehavior],
-        ...styles.props,
+            ...styles.scrollBehavior[props.scrollBehavior],
+            ...styles.props,
+        },
+        header: styles.header,
+        body: styles.body,
+        footer: styles.footer,
     };
 };
 

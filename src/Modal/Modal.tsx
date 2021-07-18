@@ -102,7 +102,7 @@ export const ModalContent = forwardRef((props: ModalContentProps, ref) => {
         scrollBehavior,
     });
 
-    const modalStyleProps = useModalStyle({
+    const { content: contentStyleProps } = useModalStyle({
         isCentered,
         noStyles,
         scrollBehavior,
@@ -115,7 +115,7 @@ export const ModalContent = forwardRef((props: ModalContentProps, ref) => {
     return (
         <ModalFocusScope>
             <Box zIndex="modal" {...modalWrapperStyleProps} {...containerProps}>
-                <Card zIndex="modal" p={0} w="100%" maxWidth={size} {...modalStyleProps} {...dialogPropsRest}>
+                <Card zIndex="modal" p={0} w="100%" maxWidth={size} {...contentStyleProps} {...dialogPropsRest}>
                     <ModalTransition preset={motionPreset} ref={dialogRef}>
                         {children}
                     </ModalTransition>
@@ -208,6 +208,7 @@ export const ModalOverlay = forwardRef(({ onClick = null, ...props }: BoxProps, 
  */
 export const ModalHeader = forwardRef((props: BoxProps, ref) => {
     const { headerId, setHeaderMounted } = useModalContext();
+    const { header: headerStyleProps } = useModalStyle({});
 
     /**
      * Notify us if this component was rendered or used
@@ -218,19 +219,13 @@ export const ModalHeader = forwardRef((props: BoxProps, ref) => {
         return () => setHeaderMounted(false);
     }, [setHeaderMounted]);
 
-    return <Flex pos="relative" ref={ref} id={headerId} as="header" {...modalHeaderStyles} {...props} />;
+    return <Flex ref={ref} id={headerId} as="header" {...headerStyleProps} {...props} />;
 });
-
-const modalHeaderStyles = {
-    p: 'spacing',
-    flex: 0,
-    justify: 'space-between',
-    align: 'center',
-    color: 'titleText',
-};
 
 export const ModalBody = forwardRef((props: BoxProps, ref) => {
     const { bodyId, setBodyMounted } = useModalContext();
+
+    const { body: bodyStyleProps } = useModalStyle({});
 
     /**
      * Notify us if this component was rendered or used
@@ -241,12 +236,13 @@ export const ModalBody = forwardRef((props: BoxProps, ref) => {
         return () => setBodyMounted(false);
     }, [setBodyMounted]);
 
-    return <Box ref={ref} id={bodyId} p="spacing" flex="1" color="bodyText" {...props} />;
+    return <Box ref={ref} id={bodyId} {...bodyStyleProps} {...props} />;
 });
 
-export const ModalFooter = forwardRef((props: BoxProps, ref) => (
-    <Flex justify="flex-end" ref={ref} p="spacing" as="footer" {...props} />
-));
+export const ModalFooter = forwardRef((props: BoxProps, ref) => {
+    const { footer: footerStyleProps } = useModalStyle({});
+    return <Flex ref={ref} as="footer" {...footerStyleProps} {...props} />;
+});
 
 /**
  * ModalCloseButton is used closes the modal.
